@@ -21,11 +21,11 @@ final class Dog_IRCWS implements IWebSocketServerObserver, Dog_IRC
 	private $queue_in = NULL;
 	private $queue_out = NULL;
 	
-	public function alive() { return $this->socket !== NULL; }
+	public function alive() { return $this->isConnected(); }
 	
 	public function isConnected()
 	{
-		return $this->connected !== false;
+		return $this->connected;
 	}
 	
 	public function connect(Dog_Server $server, $blocking=0)
@@ -37,13 +37,14 @@ final class Dog_IRCWS implements IWebSocketServerObserver, Dog_IRC
 		
 		$this->connecting = true;
 		
-		$this->socket = new WebSocketServer('tcp://0.0.0.0:'.$server->getPort(), 'rob_hubbard_fanclub!');
-		$this->socket->addObserver($this);
+		// Disconnect, so the child process has no db that it could kill.
+		global $SINGLE_GDO_DB;
+		$SINGLE_GDO_DB->disconnect();
+		$SINGLE_GDO_DB = null;
 		
 		$pid = pcntl_fork();
 		if ($pid == -1)
 		{
-			return false;
 		}
 		else if ($pid)
 		{
@@ -54,6 +55,7 @@ final class Dog_IRCWS implements IWebSocketServerObserver, Dog_IRC
 				die('Cannot get message queue :(');
 			}
 			$this->connected = true;
+			gdo_db();
 			return true;
 		}
 		else
@@ -66,18 +68,29 @@ final class Dog_IRCWS implements IWebSocketServerObserver, Dog_IRC
 			{
 				die('Cannot install SIGINT handler in '.__FILE__.PHP_EOL);
 			}
-// 			set_error_handler(array($this, 'SIGINT'));
-// 			register_shutdown_function(array($this, 'SIGINT'));
+			if (false === pcntl_signal(SIGCHLD, array($this, 'SIGINT')))
+			{
+				die('Cannot install SIGCHLD handler in '.__FILE__.PHP_EOL);
+			}
 			
 			if (!$this->initQueues())
 			{
 				die('Cannot get message queue :(');
 			}
+
+			$this->socket = new WebSocketServer('tcp://0.0.0.0:'.$server->getPort(), 'rob_hubbard_fanclub!');
+			$this->socket->addObserver($this);
 			$this->socket->initQueue((int)$server->getID());
+
+// 			sleep(10);
+// 			die('oops');
+		
 			if (false === $this->socket->run($this))
 			{
 				$this->socket_try = false;
+				return false;
 			}
+			return true;
 		}
 	}
 	
@@ -97,6 +110,8 @@ final class Dog_IRCWS implements IWebSocketServerObserver, Dog_IRC
 	public function SIGINT()
 	{
 		pcntl_wait(self::$PARENT_PID);
+		$this->connected = false;
+		$this->disconnect('SIGINT');
 // 		sleep(1);
 		die("SIGINT IN CHILD!\n");
 	}

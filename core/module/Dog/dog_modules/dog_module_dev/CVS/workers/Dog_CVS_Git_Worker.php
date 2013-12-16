@@ -27,7 +27,7 @@ final class Dog_CVS_Git_Worker extends Dog_Worker
 		$path = self::getRepoPath($gdo_data);
 		$epath = escapeshellarg($path);
 		
-		self::proc_with_callback("git clone --progress $eurl $epath 2>&1", array(__CLASS__, 'proc_out'));
+		self::proc_with_callback("git clone --progress $eurl $epath 2>&1", array(__CLASS__, 'proc_checkout'));
 	}
 	
 	public static function proc_checkout($message)
@@ -107,6 +107,24 @@ final class Dog_CVS_Git_Worker extends Dog_Worker
 		self::printFindResults();
 	}	
 
+	public static function findd($term, $gdo_data)
+	{
+		$path = self::getRepoPath($gdo_data);
+		$epath = escapeshellarg($path);
+		$eterm = escapeshellarg($term);
+		self::proc_with_callback("find $epath -type d -name $eterm", array(__CLASS__, 'proc_find'));
+		self::printFindResults();
+	}
+	
+	public static function finddi($term, $gdo_data)
+	{
+		$path = self::getRepoPath($gdo_data);
+		$epath = escapeshellarg($path);
+		$eterm = escapeshellarg($term);
+		self::proc_with_callback("find $epath -type d -iname $eterm", array(__CLASS__, 'proc_find'));
+		self::printFindResults();
+	}	
+
 	public static function search($term, $gdo_data)
 	{
 		$path = self::getRepoPath($gdo_data);
@@ -126,6 +144,7 @@ final class Dog_CVS_Git_Worker extends Dog_Worker
 		$function = array(__CLASS__, 'pull_'.$gdo_data['repo_type']);
 		if (!GWF_Callback::isCallback($function))
 		{
+			// Compose result code 0
 			return array(0, 'err_repo_type_stub');
 		}
 		return call_user_func($function, $gdo_data);
@@ -138,22 +157,29 @@ final class Dog_CVS_Git_Worker extends Dog_Worker
 		$path = self::getRepoPath($gdo_data);
 		$epath = escapeshellarg($path);
 		
+		// Pull
 		self::exec("cd $epath && git pull");
-		$revcount = self::exec_line("cd $epath && git rev-list HEAD --count");
-		$lines = self::exec("cd $epath && git log -1");
 		
-		$revision = array_shift($lines);
-		$commiter = array_shift($lines);
-		$_data = array_shift($lines);
-		$_stub = array_shift($lines);
+		// Check revision counter
+		$revcount = self::exec_line("cd $epath && git rev-list HEAD --count");
+		
+		// Check curent revision
+		$lines = self::exec("cd $epath && git log -1");
+		$revision = trim(Common::substrFrom(array_shift($lines), ' '));
+		$commiter = Common::substrUntil(trim(Common::substrFrom(array_shift($lines), ' ')), ' ');;
+		$date = trim(Common::substrFrom(array_shift($lines), ' '));
+		$_emptyline = array_shift($lines);
+		array_map('trim', $lines);
 		$comment = implode(' ', $lines);
-		return array(1, array($revcount, $revision, $commiter, $comment));
+
+		// Compose result code 1
+		$result = array(
+			'revcount' => $revcount,
+			'revision' => $revision,
+			'revdate' => $date,
+			'commiter' => $commiter,
+			'comment' => $comment,
+		);
+		return array(1, $result);
 	}
-	
-	public static function proc_pull_git($message)
-	{
-		echo $message;
-	}
-	
-	
 }

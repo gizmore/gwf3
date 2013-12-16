@@ -2,9 +2,11 @@
 $lang = array(
 	'en' => array(
 		'help' => 'Usage: %CMD% [<command>]. Show all commands in this context or the help for a %BOT% command. Register in private with %BOT% to see more commands.',
+		'scope' => 'This works %s and requires %s permissions.',
 	),
 	'de' => array(
 		'help' => 'Nutze: %CMD% [<command>]. Zeige alle Befehle in diesem Kontext oder die Hilfe für einen %BOT% Befehl. Registriere dich im query mit %BOT% um mehr Befehle zu sehen.',
+		'scope' => 'Dies funktioniert %s und benötigt %s Rechte.',
 	),
 );
 
@@ -39,6 +41,16 @@ if (!function_exists('dogplug_help_all'))
 				$DPH_ALL[$dir][] = $name;
 			}
 		}
+	}
+}
+
+if (!function_exists('dogplug_scopetxt'))
+{
+	function dogplug_scopetxt(Dog_Plugin $plugin, $priv, $scope)
+	{
+		$priv = Dog::lang('priv_'.$priv);
+		$scope = Dog::lang('scop_'.$scope);
+		return ' '.$plugin->lang('scope', array($scope, $priv));
 	}
 }
 
@@ -83,12 +95,14 @@ elseif ($argc === 1)
 	if (false !== ($plug = Dog_Plugin::getPlug($argv[0])))
 // 	if (false !== ($plug = Dog_Plugin::getPlugWithPerms(Dog::getServer(), Dog::getChannel(), Dog::getUser(), $argv[0])))
 	{
-		$plugin->reply($plug->getHelp());
+		$scopetxt = dogplug_scopetxt($plugin, $plug->getPriv(), $plug->getScope());
+		$plugin->reply($plug->getHelp().$scopetxt);
 	}
 	elseif (false !== ($mod = Dog_Module::getByTrigger($argv[0])))
 // 	elseif (false !== ($mod = Dog_Module::getModuleWithPermsByTrigger(Dog::getServer(), Dog::getChannel(), Dog::getUser(), $argv[0])))
 	{
-		$plugin->reply($mod->getHelp($argv[0]));
+		$scopetxt = dogplug_scopetxt($plugin, $mod->getPriv($argv[0]), $mod->getScope($argv[0]));
+		$plugin->reply($mod->getHelp($argv[0]).$scopetxt);
 	}
 	else
 	{

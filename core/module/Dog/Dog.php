@@ -6,6 +6,13 @@ require_once 'dog_include/Dog_Includes.php';
 final class Dog
 {
 	const CONNECT_WAIT = 1.5;
+
+	/**
+	 * @var Dog_WorkerThread
+	 */
+	private static $WORKER = null;
+	
+	private static $UNIX_USER = 'root';
 	
 	private static $TRIGGERED = false;
 	
@@ -27,6 +34,26 @@ final class Dog
 	 * @var Dog_Server
 	 */
 	private static $LAST_SERVER = false;
+
+	private static $EVENT_ERROR = false;
+	
+	public static $IN_STARTUP = true;
+	
+	#############
+	### Scope ###
+	#############
+	public static function getScope()
+	{
+		return new Dog_Scope(self::$LAST_USER, self::$LAST_CHANNEL, self::$LAST_SERVER);
+	}
+	
+	public static function setScope(Dog_Scope $scope)
+	{
+		self::$LAST_USER = $scope->getUser();
+		self::$LAST_CHANNEL = $scope->getChannel();
+		self::$LAST_SERVER = $scope->getServer();
+	}
+	
 	/**
 	 * @return Dog_Plugin
 	 */
@@ -55,16 +82,28 @@ final class Dog
 	public static function getUser() { return self::$LAST_USER; }
 	public static function getUID() { return self::$LAST_USER->getID(); }
 	
+	public static function setUnixUsername($u) { self::$UNIX_USER = $u; }
+	public static function getUnixUsername() { return self::$UNIX_USER; }
+	
+	public static function getWorker() { return self::$WORKER; }
+	public static function setWorker(Dog_WorkerThread $worker) { self::$WORKER = $worker; $worker->setReplyHandler(array(__CLASS__, 'reply')); }
+	
+	
 	/**
 	 * @return Dog_User
 	 */
 	public static function setupUser()
 	{
-		if (false !== (self::$LAST_USER = self::$LAST_SERVER->getUserByName(Common::substrUntil(self::$LAST_MSG->getFrom(), '!'))))
+		return self::setUser(self::$LAST_SERVER->getUserByName(Common::substrUntil(self::$LAST_MSG->getFrom(), '!')));
+	}
+	
+	public static function setUser($user)
+	{
+		if (false !== (self::$LAST_USER = $user))
 		{
 			self::$LAST_USER->setUIStates();
 		}
-		return self::$LAST_USER;
+		return $user;
 	}
 	
 	public static function isItself()
@@ -82,11 +121,22 @@ final class Dog
 	 */
 	public static function setupChannel()
 	{
-		if (false !== (self::$LAST_CHANNEL = self::$LAST_SERVER->getChannelByName(self::$LAST_MSG->getArg(0))))
+		return self::setChannel(self::$LAST_SERVER->getChannelByName(self::$LAST_MSG->getArg(0)));
+	}
+	
+	public static function setChannel($channel)
+	{
+		if ($channel !== false)
 		{
+			self::$LAST_CHANNEL = $channel;
 			self::$LAST_CHANNEL->setUIStates();
 		}
 		return self::$LAST_CHANNEL;
+	}
+	
+	public static function suppressModules()
+	{
+		self::$EVENT_ERROR = true;
 	}
 	
 	/**
@@ -141,6 +191,22 @@ final class Dog
 		return self::hasPermission($serv, $chan, $user, $priv, 'c', false);
 	}
 	
+	public static function isInScope(Dog_Server $serv, $chan=false, $abc)
+	{
+		switch ($abc)
+		{
+			case 'a': return $chan === false;
+			case 'b': return true;
+			case 'c': return $chan !== false;
+			default: return false;
+		}
+	}
+	
+	public static function scopeError($abc)
+	{
+		Dog::rply('err_scope_'.$abc);
+	}
+	
 	public static function hasPermission(Dog_Server $serv, $chan=false, Dog_User $user, $priv, $abc=NULL, $needlogin=true)
 	{
 		switch ($abc)
@@ -157,10 +223,15 @@ final class Dog
 			: Dog_PrivChannel::hasPermBits($chan, $user, $priv, $needlogin);
 	}
 	
+	public static function permissionError($privchar)
+	{
+		Dog::rply('err_no_perm', array($privchar, self::lang('priv_'.$privchar)));
+	}
+	
 	public static function lang($key, $args=NULL) { return Dog_Lang::langISO(self::getLangISO(), $key, $args); }
 	public static function rply($key, $args=NULL) { self::reply(self::lang($key, $args)); }
 	public static function reply($message) { self::$LAST_SERVER->reply($message); }
-	public static function err($key, $args=NULL) { return self::reply(GWF_HTML::lang($key, $args)); }
+	public static function err($key, $args=NULL) { $message = GWF_HTML::lang($key, $args); Dog_Log::error($message); self::reply($message); }
 	public static function getReplyObject() { return self::$LAST_CHANNEL === false ? self::$LAST_USER : self::$LAST_CHANNEL; }
 	
 	public static function getLangISO()
@@ -325,6 +396,7 @@ final class Dog
 	
 	public static function mainloop()
 	{
+		Dog_Log::debug('Dog::mainloop() - start');
 		while (!Dog_Launcher::shouldRestart())
 		{
 			foreach (self::$SERVERS as $server)
@@ -336,8 +408,10 @@ final class Dog
 				}
 			}
 			Dog_Timer::sleepAndTrigger();
+			self::$WORKER->executeCallbacks();
 		}
 		Dog_Launcher::cleanup();
+		Dog_Log::debug('Dog::mainloop() - exited');
 	}
 	
 	private static function processServer(Dog_Server $server)
@@ -400,12 +474,6 @@ final class Dog
 	
 	private static function processMessage(Dog_Server $server, $message)
 	{
-		# Clear vars that might not get set in events.
-		# The events, which get executed first, will call Dog::setupUser() and Dog::setupChannel()
-		self::$TRIGGERED = false;
-		self::$LAST_USER = false;
-		self::$LAST_CHANNEL = false;
-		
 		# IBEDS
 		$message = str_replace('\ţ', ' ', $message);
 		
@@ -430,21 +498,27 @@ final class Dog
 			Dog_Log::debugMessage();
 		}
 		
-		# Include event hooks
-		$path = DOG_PATH.'event_plug/'.$event.'.php';
-		if (Common::isFile($path))
-		{
-			include $path;
-		}
 		
 		# if FIXes invalid users on privmsg hooks :S
-		if ( ($event !== 'PRIVMSG') || (self::getUser() !== false) )
+		if (self::$EVENT_ERROR === false)
 		{
+			# Include event hooks
+// 			$path = DOG_PATH.'event_plug/'.$event.'.php';
+// 			if (Common::isFile($path))
+// 			{
+// 				include $path;
+// 			}
+			
 			# Execute module hooks
 			Dog_Module::map('event_'.$event);
 		}
 		
-		
+		# Clear vars that might not get set in events.
+		# The events, which get executed first, will call Dog::setupUser() and Dog::setupChannel()
+		self::$TRIGGERED = false;
+		self::$LAST_USER = false;
+		self::$LAST_CHANNEL = false;
+		self::$EVENT_ERROR = false;
 	}
 	
 	/**
@@ -454,5 +528,6 @@ final class Dog
 	{
 		echo "Bot is ready!\n";
 		Dog_Module::map('botReady');
+		self::$IN_STARTUP = false;
 	}
 }

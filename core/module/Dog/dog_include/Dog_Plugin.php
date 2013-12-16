@@ -106,6 +106,7 @@ final class Dog_Plugin
 	public function msg() { return trim(Common::substrFrom(Dog::getIRCMsg()->getArg(1), ' ', '')); }
 	public function argv($n=NULL) { $msg = $this->msg(); $argv = $msg === '' ? array() : explode(' ', $msg); return $n === NULL ? $argv : $argv[$n]; }
 	public function argc() { return count($this->argv()); }
+	public function argvMsgFrom($from=1) { return implode(' ', array_slice($this->argv(), $from)); }
 	public function execute() { include $this->path; }
 	public function showHelp() { Dog::processFakeMessage('help '.$this->name); }
 	public function getConfGlob($key, $def) { return Dog_Conf_Plug::getConf($this->name, $key, $def); }

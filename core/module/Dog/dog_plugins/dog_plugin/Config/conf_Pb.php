@@ -1,10 +1,10 @@
 <?php
 $lang = array(
 	'en' => array(
-		'help' => 'Usage: %CMD% <command|module> [<key>] [<value>]. Show or change settings for your user.',
+		'help' => 'Usage: %CMD% <command|module> [<key>] [<value>]. Show or change settings for yourself.',
 	),
 	'de' => array(
-		'help' => 'Nutze: %CMD% <Befehl|Modul> [<Variable>] [<Wert>]. Zeige oder ändere Einstellungen für deinen Benutzer.',
+		'help' => 'Nutze: %CMD% <Befehl|Modul> [<Variable>] [<Wert>]. Zeige oder ändere Einstellungen für Dich.',
 	),
 );
 $user = Dog::getUser();

@@ -4,8 +4,9 @@ $serv = Dog::getServer();
 $chan_name = $msg->getArg(2);
 if (false === ($channel = $serv->getChannelByName($chan_name)))
 {
-	return;
+	return Dog::suppressModules();
 }
+Dog::setChannel($channel);
 
 $sid = $serv->getID();
 foreach (explode(' ', $msg->getArg(3)) as $username)

@@ -16,8 +16,18 @@ abstract class Dog_Worker
 	
 	protected static function exec($command)
 	{
+		echo "Dog_Worker::exec($command)\n";
 		$output = array();
-		exec("uptime", $output);
+		if (false === ($proc = popen($command, 'r')))
+		{
+			return self::err('ERR_GENERAL', array(__FILE__, __LINE__));
+		}
+		while (false !== ($line = fgets($proc, 1024)))
+		{
+			$output[] = trim($line);
+		}
+		pclose($proc);
+// 		var_dump($output);
 		return $output;
 	}
 
@@ -29,17 +39,17 @@ abstract class Dog_Worker
 
 	protected static function proc_with_callback($command, $callback)
 	{
-		if (false === ($proc = popen($command, 'r')))
+		if (false === ($handle = popen($command, 'r')))
 		{
 			return self::err('ERR_GENERAL', array(__FILE__, __LINE__));
 		}
 		
-		while (!feof($proc))
+		while (false !== ($line = fgets($handle, 1024)))
 		{
-			call_user_func($callback, fgets($proc, 1024));
+			call_user_func($callback, trim($line));
 		}
 		
-		pclose($proc);
+		pclose($handle);
 		return true;
 	}
 	

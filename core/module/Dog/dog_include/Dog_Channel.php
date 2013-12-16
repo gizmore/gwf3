@@ -23,10 +23,10 @@ final class Dog_Channel extends GDO
 		return array(
 			'chan_id' => array(GDO::AUTO_INCREMENT),
 			'chan_sid' => array(GDO::UMEDIUMINT, GDO::NOT_NULL),
-			'chan_name' => array(GDO::VARCHAR|GDO::ASCII|GDO::CASE_I, GDO::NOT_NULL, 63),
+			'chan_name' => array(GDO::VARCHAR|GDO::BINARY|GDO::CASE_S, GDO::NOT_NULL, 64),
 			'chan_lang' => array(GDO::VARCHAR|GDO::ASCII|GDO::CASE_S, 'en', 4),
-			'chan_pass' => array(GDO::VARCHAR|GDO::UTF8|GDO::CASE_S, GDO::NULL, 63),
-			'chan_modes' => array(GDO::VARCHAR|GDO::ASCII|GDO::CASE_S, '', 63),
+			'chan_pass' => array(GDO::VARCHAR|GDO::UTF8|GDO::CASE_S, GDO::NULL, 64),
+			'chan_modes' => array(GDO::VARCHAR|GDO::ASCII|GDO::CASE_S, '', 64),
 			'chan_triggers' => array(GDO::VARCHAR|GDO::ASCII|GDO::CASE_S, NULL, 8),
 			'chan_options' => array(GDO::UMEDIUMINT, self::DEFAULT_OPTIONS),
 		);
@@ -45,6 +45,7 @@ final class Dog_Channel extends GDO
 	public function sendNOTICE($message) { $this->getServer()->sendNOTICE($this->getName(), $message); }
 	public function sendPRIVMSG($message) { $this->getServer()->sendPRIVMSG($this->getName(), $message); }
 	public function getUsers() { return $this->users; }
+	public function getUserCount() { return count($this->users); }
 
 	public function isBoldEnabled() { return $this->isOptionEnabled(self::BOLD); }
 	public function isColorEnabled() { return $this->isOptionEnabled(self::COLORS); }

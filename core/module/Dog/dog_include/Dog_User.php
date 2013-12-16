@@ -20,6 +20,7 @@ final class Dog_User extends GDO
 	{
 		return array(
 			'user_id' => array(GDO::AUTO_INCREMENT),
+			'user_guid' => array(GDO::UINT, GDO::NULL), # GwfUserID
 			'user_sid' => array(GDO::UINT|GDO::INDEX, GDO::NOT_NULL),
 			'user_name' => array(GDO::VARCHAR|GDO::ASCII|GDO::CASE_S, GDO::NOT_NULL, 63),
 			'user_pass' => array(GDO::VARCHAR|GDO::ASCII|GDO::CASE_S, GDO::NULL, GWF_Password::HASHLEN),
@@ -39,6 +40,8 @@ final class Dog_User extends GDO
 		
 	public function getID() { return $this->getVar('user_id'); }
 	public function getSID() { return $this->getVar('user_sid'); }
+	public function getGUID() { return $this->getVar('user_guid'); }
+	public function getGWFUser() { return GWF_User::getByID($this->getGUID()); }
 	public function getName() { return $this->getVar('user_name'); }
 	public function getFullName() { return $this->getName().'{'.$this->getSID().'}'; }
 	public function getPass() { return $this->getVar('user_pass'); }
@@ -73,8 +76,8 @@ final class Dog_User extends GDO
 	{
 		$this->logged_in = $bool;
 		// Call event hooks
-		$function_trigger = $bool ? 'trigger_login' : 'trigger_logout';
-		Dog_Module::map($function_trigger, $this);
+		$function_trigger = $bool ? 'login' : 'logout';
+		Dog_ModuleGWF::executeHook($function_trigger, $this);
 	}
 	
 	/**

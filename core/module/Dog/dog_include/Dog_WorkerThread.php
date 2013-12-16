@@ -23,9 +23,9 @@ final class Dog_WorkerThread
 	
 	// IPC Message queues.
 	private $queue_in = null;
-	private $qid_in = 6669; // QUEUE ID
+	private $qid_in = 6666; // QUEUE ID
 	private $queue_out = null;
-	private $qid_out = 6670; // QUEUE ID
+	private $qid_out = 6667; // QUEUE ID
 	private $max_msg_len = 65535;
 	
 	// Callbacks
@@ -57,6 +57,16 @@ final class Dog_WorkerThread
 		$this->callmxtim = max((int)$call_max_time, 5);
 		$this->callb_max = max((int)$call_max_jobs, 1);
 		$this->init_sleep = max(floatval($init_sleep), 0);
+	}
+	
+	public function __destruct()
+	{
+		printf("Dog_WorkerThread::__destruct()");
+// 		if ($this->pid)
+		{
+			msg_remove_queue($this->queue_in);
+			msg_remove_queue($this->queue_out);
+		}
 	}
 	
 	public function setReplyHandler($callback)
@@ -127,7 +137,7 @@ final class Dog_WorkerThread
 			$message = null;
 			while (false !== msg_receive($this->queue_out, 0, $msgtype, $this->max_msg_len, $message, true, MSG_IPC_NOWAIT))
 			{
-				printf("Dog_WorkerThread::parent_receive: $msgtype\nMSG: %s\n", print_r($message, true));
+// 				printf("Dog_WorkerThread::parent_receive: $msgtype\nMSG: %s\n", print_r($message, true));
 				if (isset($this->callbacks[$message[self::OUT_ID]]))
 				{
 					if ($msgtype === self::REPLY)
@@ -157,8 +167,8 @@ final class Dog_WorkerThread
 	
 	private function executeResult(array $result)
 	{
-		printf("Dog_WorkerThread::executeResult()cb: %s\n", print_r($result[self::RES_CALLBACK], true));
-		printf("Dog_WorkerThread::executeResult()args: %s\n", print_r($result[self::RES_CALLARGS], true));
+// 		printf("Dog_WorkerThread::executeResult()cb: %s\n", print_r($result[self::RES_CALLBACK], true));
+// 		printf("Dog_WorkerThread::executeResult()args: %s\n", print_r($result[self::RES_CALLARGS], true));
 		$callback = $result[self::RES_CALLBACK];
 		if (GWF_Callback::isCallback($callback))
 		{
@@ -254,7 +264,7 @@ final class Dog_WorkerThread
 			$this->cleanupCallbacks();
 			return false;
 		}
-		printf('Dog_WorkerThread::queue(%s, %s, %s, %s, %s, %s)', $type, $scope, print_r($message, true), GWF_Callback::printCallback($callback), print_r($args, true), print_r($includes, true));
+// 		printf('Dog_WorkerThread::queue(%s, %s, %s, %s, %s, %s)', $type, $scope, print_r($message, true), GWF_Callback::printCallback($callback), print_r($args, true), print_r($includes, true));
 		if (msg_send($this->queue_in, self::msgtype($type), array($this->callbacnt, $message, $includes)))
 		{
 			return $this->storeCallback($callback, $args, $scope);
@@ -323,18 +333,18 @@ final class Dog_WorkerThread
 		$message = null;
 		if (msg_receive($this->queue_in, 0, $msgtype, $this->max_msg_len, $message))
 		{
-			printf("Child: $msgtype:  %s\n", print_r($message, true));
+// 			printf("Child: $msgtype:  %s\n", print_r($message, true));
 			$this->currcallb = $message[self::IN_ID];
 			$this->includes($message[self::IN_INCLUDES]);
 			$result = $this->executeQueueMessage(self::type($msgtype), $message[self::IN_ARGS]);
-			printf("Child sending: %s\n", print_r($result, true));
+// 			printf("Child sending: %s\n", print_r($result, true));
 			msg_send($this->queue_out, $msgtype, array($message[self::IN_ID], $result));
 		}
 	}
 	
 	private function includes(array $includes)
 	{
-		printf('Dog_WorkerThread::includes() %s', print_r($includes));
+// 		printf('Dog_WorkerThread::includes() %s', print_r($includes));
 		foreach ($includes as $filename)
 		{
 			require_once $filename;
@@ -343,13 +353,13 @@ final class Dog_WorkerThread
 	
 	private function executeQueueMessage($type, $message)
 	{
-		printf("executeQueueMessage: %s\n", print_r($message, true));
+// 		printf("executeQueueMessage: %s\n", print_r($message, true));
 		return call_user_func(array(__CLASS__, 'msg_type_'.$type), $message);
 	}
 	
 	private function msg_type_call($message)
 	{
-		printf("msg_type_call: %s\n", print_r($message, true));
+// 		printf("msg_type_call: %s\n", print_r($message, true));
 		
 		if ( (!is_array($message)) || (count($message) !== 2) )
 		{
@@ -365,7 +375,7 @@ final class Dog_WorkerThread
 		}
 		else
 		{
-			printf("msg_type_call: %s\n%s", print_r($message[0]), print_r($message[1]));
+// 			printf("msg_type_call: %s\n%s", print_r($message[0]), print_r($message[1]));
 			return call_user_func_array($message[0], $message[1]);
 		}
 	}

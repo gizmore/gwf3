@@ -27,5 +27,10 @@ final class Dog_RepoSubscribes extends GDO
 	public static function unsubscribe(Dog_Repo $repo, Dog_Channel $chan)
 	{
 		return self::table(__CLASS__)->deleteWhere("reps_rid={$repo->getID()} AND reps_cid={$chan->getID()}");
-	} 
+	}
+	
+	public static function getSubscriptionsFor(Dog_Repo $repo)
+	{
+		return self::table(__CLASS__)->selectColumn('reps_cid', "reps_rid={$repo->getID()}");
+	}
 }

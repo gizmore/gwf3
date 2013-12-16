@@ -40,8 +40,14 @@ final class Dog_IRCPriv
 	
 	public static function matchSymbols($username)
 	{
-		$pattern = '/^(['.preg_quote(self::allSymbols(), '/').']+)/';
+		$pattern = preg_quote(self::allSymbols());
+		$pattern = "/^([$pattern]+)/";
 		return Common::regex($pattern, $username);
+	}
+	
+	public static function trimSymbols($channame)
+	{
+		return ltrim($channame, self::allSymbols());
 	}
 	
 	public static function symbolToChar($symbol, $p='p')

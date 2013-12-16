@@ -46,6 +46,7 @@ elseif ($argc === 1)
 	else
 	{
 		$user->saveVar('user_pass', GWF_Password::hashPasswordS($plugin->argv(0)));
+// 		Dog_ModuleGWF::executeHook('register', $user);
 		$user->setLoggedIn();
 		return $plugin->rply('success');
 	}

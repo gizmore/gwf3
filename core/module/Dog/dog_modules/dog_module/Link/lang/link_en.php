@@ -5,7 +5,12 @@ $lang = array(
 	'help_link++' => 'Usage: %CMD% <id>. Vote a link up.',
 	'help_link--' => 'Usage: %CMD% <id>. Vote a link down.',
 	'help_-link' => 'Usage: %CMD% <id>. Remove a link from the database.',
-
+		
+	'conf_collect_chan' => 'Collect links in this channe; 0=ForceOff, 1=ForceOn, 2=ServerSettings.',
+	'conf_collect_serv' => 'Collect links on this server; 0=ForceOff, 1=ForceOn, 2=ServerSettings.',
+	'conf_collect_user' => 'Collect links from this user; 0=ForceOff, 1=ForceOn, 2=ServerSettings.',
+	'conf_collect_glob' => 'Global setting if %BOT% should collect links; 0=ForceOff, 1=ForceOn, 2=ServerSettings.',
+		
 	'show_link' => 'Link %d: %s - %s - Rated: %s.',
 		
 	'err_link_id' => 'The link with ID %d is unknown.',

@@ -11,7 +11,7 @@ final class Dog_RepoUsers extends GDO
 		return array(
 			'repu_rid' => array(GDO::UINT|GDO::PRIMARY_KEY, GDO::NOT_NULL),
 			'repu_uid' => array(GDO::UINT|GDO::PRIMARY_KEY, GDO::NOT_NULL),
-			'repu_options' => array(GDO::UINT, 0),
+			'repu_options' => array(GDO::UINT|GDO::INDEX, 0),
 		);
 	}
 
@@ -47,4 +47,9 @@ final class Dog_RepoUsers extends GDO
 		return true;
 	}
 	
+	public static function getSubscriptionsFor(Dog_Repo $repo)
+	{
+		$SUB = self::SUBSCRIBED;
+		return self::table(__CLASS__)->selectColumn('repu_uid', "repu_rid={$repo->getID()} AND repu_options&$SUB");
+	}
 }

@@ -7,6 +7,8 @@ abstract class Dog_Module
 
 	private $name;
 	
+	private $path;
+	
 	/**
 	 * @var GWF_LangTrans
 	 */
@@ -15,7 +17,8 @@ abstract class Dog_Module
 	public function getName() { return $this->name; }
 	public function displayName() { return $this->getName(); }
 	public function setName($name) { $this->name = $name; }
-	public function getPath() { return DOG_PATH.'dog_module/'.$this->getName().'/'; }
+	public function getPath() { return $this->path; }
+	public function setPath($path) { $this->path = $path; }
 	public function getLangPath() { return $this->getPath().'lang'.'/'.strtolower($this->getName()); }
 	public function getTablePath() { return $this->getPath().'tables'.'/'; }
 	public function argc() { return count($this->argv()); }
@@ -29,16 +32,17 @@ abstract class Dog_Module
 	public function langISO($iso, $key, $args=NULL) { return $this->lang_->langISO($iso, $key, $args); }
 	public function getTrans() { return $this->lang_->getTrans(Dog::getLangISO()); }
 	public function hasTrans($key) { return $this->lang($key) !== $key; }
-	public function error($key, $args=NULL) { $this->rply($key, $args); }
+	public function error($key, $args=NULL) { $this->rply($key, $args); return false; }
 
 	################
 	### OVERRIDE ###
 	################
+	public function isServerDefaultEnabled() { return true; }
+	public function isChannelDefaultEnabled() { return true; }
 	public function getPriority() { return 50; }
 	public function onInstall($flush_tables) {}
 	public function onInitTimers() {}
 	public function onInit() {}
-// 	public function defaultEnabled() { return true; }
 
 	/**
 	* array(KEY => CONFSTRING, ...)
@@ -61,11 +65,14 @@ abstract class Dog_Module
 	*/
 	public static function getModule($modname) { return isset(self::$MODULES[$modname]) ? self::$MODULES[$modname] : false; }
 	public static function getModules() { return self::$MODULES; }
-	public static function createModule($modname)
+	public static function inited() { return count(self::$MODULES) > 0; }
+	
+	public static function createModule($path, $modname)
 	{
 		$classname = 'DOGMOD_'.$modname;
 		$module = new $classname();
 		$module->setName($modname);
+		$module->setPath($path);
 		$module->includeTables();
 		$module->loadLanguage();
 		$module->loadTriggers();
@@ -90,15 +97,17 @@ abstract class Dog_Module
 
 	public function loadTriggers()
 	{
-		$this->triggers = array();
+// 		$this->triggers = array();
 		$s = array('UP', 'DOWN', 'ADD', 'REMOVE');
 		$r = array('++', '--',   '+',   '-');
 		foreach (get_class_methods(get_class($this)) as $method)
 		{
-			if (substr($method, 0, 3) === 'on_')
+			if (Common::startsWith($method, 'on_'))
 			{
-				$trigger = str_replace($s, $r, substr($method, 3, -3));
-				$this->triggers[$method] = $trigger;
+				$trigger = substr($method, 3); // Cut off 'on_'
+				$trigger = Common::substrUntil($trigger, '_', $trigger, true); // Cut off privabcdef
+				$trigger = str_replace($s, $r, $trigger); // replace special chars
+				$this->triggers[$trigger] = $method;
 			}
 		}
 	}
@@ -108,15 +117,15 @@ abstract class Dog_Module
 		$this->reply($this->getHelp($trigger, $args));
 	}
 
-	// 	public function showHelpForMethod($method, $args=NULL)
-	// 	{
-	// 		$this->reply($this->getHelpForMethod($method, $args));
-	// 	}
+// 	public function showHelpForMethod($method, $args=NULL)
+// 	{
+// 		$this->reply($this->getHelpForMethod($method, $args));
+// 	}
 
-	// 	public function getHelpForMethod($method, $args=NULL)
-	// 	{
-	// 		return $this->getHelp(substr($method, 3, -3));
-	// 	}
+// 	public function getHelpForMethod($method, $args=NULL)
+// 	{
+// 		return $this->getHelp(substr($method, 3, -3));
+// 	}
 
 	public function getHelp($trigger, $args=NULL)
 	{
@@ -143,9 +152,9 @@ abstract class Dog_Module
 		foreach (self::$MODULES as $module)
 		{
 			$module instanceof Dog_Module;
-			if ($module->isEnabled($server, $channel))
+			if (method_exists($module, $method_name))
 			{
-				if (method_exists($module, $method_name))
+				if ($module->isEnabled($server, $channel))
 				{
 					call_user_func(array($module, $method_name), $args);
 				}
@@ -153,17 +162,22 @@ abstract class Dog_Module
 		}
 	}
 
-	private function getTriggers()
-	{
-		return $this->triggers;
-	}
-
+	private function getTriggers() { return $this->triggers; }
+	private function getFunc($trigger) { return $this->triggers[$trigger]; }
+	private function cutPrivABC($func) { return strtolower(Common::substrFrom($func, '_', 'yb', true)); }
+	private function getPrivABC($trigger) { return $this->cutPrivABC($this->getFunc($trigger)); }
+	private function getPrivABCIndex($trigger, $i) { $privabc = $this->getPrivABC($trigger); return $privabc[$i]; }
+	public function getPriv($trigger) { return $this->getPrivABCIndex($trigger, 0); }
+	public function getScope($trigger) { return $this->getPrivABCIndex($trigger, 1); }
+	public function getDefDis($trigger) { return Common::endsWith($this->getFunc($trigger), 'x') ? '1' : '0'; }
+	
+	public function hasTrigger($trigger) { return isset($this->triggers[$trigger]); }
 	public function getFilteredTriggers($serv, $chan, $user)
 	{
 		$back = array();
-		foreach ($this->getTriggers() as $func => $trigger)
+		foreach ($this->getTriggers() as $trigger => $func)
 		{
-			$privabc = strtolower(substr($func, -2));
+			$privabc = $this->cutPrivABC($func);
 			if  ( (Dog::hasPermission($serv, $chan, $user, $privabc[0], $privabc[1]))
 					&&($this->isEnabled($serv, $chan))
 					&&($this->isTriggerEnabled($serv, $chan, $trigger)) )
@@ -187,12 +201,9 @@ abstract class Dog_Module
 		foreach (self::$MODULES as $module)
 		{
 			$module instanceof Dog_Module;
-			foreach ($module->getTriggers() as $func => $trig)
+			if ($module->hasTrigger($trigger))
 			{
-				if ($trig === $trigger)
-				{
-					return $module;
-				}
+				return $module;
 			}
 		}
 		return false;
@@ -231,33 +242,32 @@ abstract class Dog_Module
 		}
 		return false;
 	}
-
+	
 	public function isEnabled(Dog_Server $server, $channel)
 	{
+		return !$this->isDisabled($server, $channel);
+	}
+
+	public function isDisabled(Dog_Server $server, $channel)
+	{
+		$defs = $this->isServerDefaultEnabled()?'0':'1';
+		$defc = $this->isChannelDefaultEnabled()?'0':'1';		
 		$mod = $this->getName();
-		if  (  Dog_Conf_Mod::isDisabled($mod)
-				|| Dog_Conf_Mod_Serv::isModuleDisabled($mod, $server->getID())
-				|| (($channel !== false) && Dog_Conf_Mod_Chan::isModuleDisabled($mod, $channel->getID())) )
-		{
-			return false;
-		}
-		return true;
+		return
+			Dog_Conf_Mod::isDisabled($mod, '0') ||
+			Dog_Conf_Mod_Serv::isModuleDisabled($mod, $server->getID(), $defs) ||
+			(($channel !== false) && Dog_Conf_Mod_Chan::isModuleDisabled($mod, $channel->getID(), $defc));
+	}
+
+	public function hasScopeFor($trigger, Dog_Server $serv, $chan)
+	{
+		return Dog::isInScope($serv, $chan, $this->getScope($trigger));
 	}
 	
 	public function hasPermissionFor($trigger, Dog_Server $serv, $chan, $user)
 	{
-		foreach ($this->getTriggers() as $func => $trig)
-		{
-			if ($trig === $trigger)
-			{
-				$privabc = strtolower(substr($func, -2));
-				if (Dog::hasPermission($serv, $chan, $user, $privabc[0], $privabc[1]))
-				{
-					return true;
-				}
-			}
-		}
-		return false;
+		$privabc = $this->getPrivABC($trigger);
+		return Dog::hasPermission($serv, $chan, $user, $privabc[0], $privabc[1]);
 	}
 
 	public function isTriggerEnabled(Dog_Server $server, $channel, $trigger)
@@ -266,19 +276,19 @@ abstract class Dog_Module
 		$sid = $server->getID();
 
 		if  (  (!$this->isEnabled($server, $channel))
-				|| Dog_Conf_Mod_Serv::isTriggerDisabled($mod, $sid, $trigger)
-				|| ( ($channel !== false) && Dog_Conf_Mod_Chan::isTriggerDisabled($mod, $channel->getID(), $trigger) ) )
+				|| Dog_Conf_Mod_Serv::isTriggerDisabled($mod, $sid, $trigger, '0')
+				|| ( ($channel !== false) && Dog_Conf_Mod_Chan::isTriggerDisabled($mod, $channel->getID(), $trigger, $this->getDefDis($trigger))) )
 		{
 			return false;
 		}
 		return true;
 	}
-
+	
 	public function execute($trigger)
 	{
-		call_user_func(array($this, array_search($trigger, $this->triggers, true)));
-	}
-
+		call_user_func(array($this, $this->getFunc($trigger)));
+	}	
+	
 	##############
 	### Config ###
 	##############
@@ -296,7 +306,7 @@ abstract class Dog_Module
 	{
 		return Dog_Var::getVar($this->getConfigVars(), $varname, $scope)->getValue();
 	}
-
+	
 	public function showConfigVarNames($scope)
 	{
 		Dog::rply('msg_modvars', array($this->getName(), Dog_Var::showVarNames($this->getConfigVars(), $scope)));
@@ -312,4 +322,3 @@ abstract class Dog_Module
 		Dog_Var::setVar($this->getConfigVars(), $scope, $varname, $value);
 	}
 }
-?>

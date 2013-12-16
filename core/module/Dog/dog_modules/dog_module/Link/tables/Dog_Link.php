@@ -88,7 +88,6 @@ final class Dog_Link extends GDO
 	 */
 	public static function insertImage($uid, $url, $content)
 	{
-		echo "ADDING IMAGE\n";
 		$link = new self(array(
 			'link_id' => '0',
 			'link_uid' => $uid,

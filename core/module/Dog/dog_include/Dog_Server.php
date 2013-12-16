@@ -207,7 +207,7 @@ final class Dog_Server extends GDO
 			}
 			else
 			{
-				$this->attempt = 0;
+				$this->attempt = 2;
 				return Dog_Auth::connect($this);
 			}
 		}

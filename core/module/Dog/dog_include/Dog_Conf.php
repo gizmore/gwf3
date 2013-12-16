@@ -41,10 +41,21 @@ abstract class Dog_Conf extends GDO
 			}
 			$this->setCache($id, $key, $value);
 		}
+		
+// 		if (!in_array($key, array('throttle')))
+// 		{
+// 			echo $this->getClassName()." GET ID=$id key=$key def=$default value=$value\n";
+// 		}
+		
 		return $value;
 	}
 	
-	static $CACHE = array('Dog_Conf_Bot' => array(),'Dog_Conf_Chan' => array(),'Dog_Conf_Mod' => array(),'Dog_Conf_Mod_Chan' => array(),'Dog_Conf_Mod_Serv' => array(),'Dog_Conf_Mod_User' => array(),'Dog_Conf_Plug' => array(),'Dog_Conf_Plug_Chan' => array(),'Dog_Conf_Plug_Serv' => array(),'Dog_Conf_Plug_User' => array(),'Dog_Conf_User' => array(), /* Dog_Conf_Serv' => array()*/);
+	private static $CACHE = array('Dog_Conf_Bot' => array(),'Dog_Conf_Chan' => array(),'Dog_Conf_Mod' => array(),'Dog_Conf_Mod_Chan' => array(),'Dog_Conf_Mod_Serv' => array(),'Dog_Conf_Mod_User' => array(),'Dog_Conf_Plug' => array(),'Dog_Conf_Plug_Chan' => array(),'Dog_Conf_Plug_Serv' => array(),'Dog_Conf_Plug_User' => array(),'Dog_Conf_User' => array(), /* Dog_Conf_Serv' => array()*/);
+	public static function flushCache()
+	{
+		self::$CACHE = array('Dog_Conf_Bot' => array(),'Dog_Conf_Chan' => array(),'Dog_Conf_Mod' => array(),'Dog_Conf_Mod_Chan' => array(),'Dog_Conf_Mod_Serv' => array(),'Dog_Conf_Mod_User' => array(),'Dog_Conf_Plug' => array(),'Dog_Conf_Plug_Chan' => array(),'Dog_Conf_Plug_Serv' => array(),'Dog_Conf_Plug_User' => array(),'Dog_Conf_User' => array(), /* Dog_Conf_Serv' => array()*/);
+	}
+	
 	private function getCached($id, $key)
 	{
 		if (isset(self::$CACHE[$this->getClassName()][$id.':'.$key]))
@@ -80,7 +91,7 @@ abstract class Dog_Conf extends GDO
 	{
 		if (is_bool($value))
 		{
-			return $value ? '1' : '0';
+			return $value === true ? '1' : '0';
 		}
 		return (string) $value;
 	}
@@ -135,7 +146,7 @@ final class Dog_Conf_Mod extends Dog_ConfText
 	public static function getConf($mod, $key, $def) { return self::table(__CLASS__)->get($mod, $key, $def); }
 	public static function setConf($mod, $key, $val) { return self::table(__CLASS__)->set($mod, $key, $val); }
 	public static function setDisabled($mod, $disabled='1') { return self::setConf($mod, 'disabled', $disabled); }
-	public static function isDisabled($mod) { return self::getConf($mod, 'disabled', '0') === '1'; }
+	public static function isDisabled($mod, $def='0') { return self::getConf($mod, 'disabled', $def) === '1'; }
 }
 
 # 4.Module Channel
@@ -145,9 +156,9 @@ final class Dog_Conf_Mod_Chan extends Dog_ConfText
 	public function getConfColumnName() { return 'conf_mcid'; }
 	public static function getConf($mod, $cid, $key, $def) { return self::table(__CLASS__)->get($cid.':'.$mod, $key, $def); }
 	public static function setConf($mod, $cid, $key, $val) { return self::table(__CLASS__)->set($cid.':'.$mod, $key, $val); }
-	public static function isModuleDisabled($mod, $cid) { return self::getConf($mod, $cid, 'disabled', '0') === '1'; }
+	public static function isModuleDisabled($mod, $cid, $def='0') { return self::getConf($mod, $cid, 'disabled', $def) === '1'; }
 	public static function setModuleDisabled($mod, $cid, $disabled='1') { return self::setConf($mod, $cid, 'disabled', $disabled); }
-	public static function isTriggerDisabled($mod, $cid, $trg) { return self::getConf($mod, $cid, $trg.':disabled', '0') === '1'; }
+	public static function isTriggerDisabled($mod, $cid, $trg, $def='0') { return self::getConf($mod, $cid, $trg.':disabled', $def) === '1'; }
 	public static function setTriggerDisabled($mod, $cid, $trg, $disabled='1') { return self::setConf($mod, $cid, $trg.':disabled', $disabled); }
 }
 
@@ -158,9 +169,9 @@ final class Dog_Conf_Mod_Serv extends Dog_ConfText
 	public function getConfColumnName() { return 'conf_msid'; }
 	public static function getConf($mod, $sid, $key, $def) { return self::table(__CLASS__)->get($sid.':'.$mod, $key, $def); }
 	public static function setConf($mod, $sid, $key, $val) { return self::table(__CLASS__)->set($sid.':'.$mod, $key, $val); }
-	public static function isModuleDisabled($mod, $sid) { return self::getConf($mod, $sid, 'disabled', '0') === '1'; }
+	public static function isModuleDisabled($mod, $sid, $def='0') { return self::getConf($mod, $sid, 'disabled', $def) === '1'; }
 	public static function setModuleDisabled($mod, $sid, $disabled='1') { return self::setConf($mod, $sid, 'disabled', $disabled); }
-	public static function isTriggerDisabled($mod, $sid, $trg) { return self::getConf($mod, $sid, $trg.':disabled', '0') === '1'; }
+	public static function isTriggerDisabled($mod, $sid, $trg, $def='0') { return self::getConf($mod, $sid, $trg.':disabled', $def) === '1'; }
 	public static function setTriggerDisabled($mod, $sid, $trigger, $disabled='1') { return self::setConf($mod, $sid, $trigger.':disabled', $disabled); }
 }
 
@@ -192,7 +203,7 @@ final class Dog_Conf_Plug_Chan extends Dog_ConfText
 	public static function getConf($plg, $cid, $key, $def) { return self::table(__CLASS__)->get($cid.':'.$plg, $key, $def); }
 	public static function setConf($plg, $cid, $key, $val) { return self::table(__CLASS__)->set($cid.':'.$plg, $key, $val); }
 	public static function setDisabled($plg, $cid, $disabled='1') { return self::setConf($plg, $cid, 'disabled', $disabled); }
-	public static function isDisabled($plg, $cid) { return self::getConf($plg, $cid, 'disabled', '0') === '1'; }
+	public static function isDisabled($plg, $cid, $def='0') { return self::getConf($plg, $cid, 'disabled', $def) === '1'; }
 }
 
 # 9.Plugin Server

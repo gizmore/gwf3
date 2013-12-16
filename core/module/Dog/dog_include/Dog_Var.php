@@ -291,13 +291,17 @@ final class Dog_Var
 		{
 			Dog::noPermission($var->getPriv());
 		}
+		elseif (false === ($oldval = $var->getValue()))
+		{
+			Dog::err('ERR_DATABASE', array(__FILE__, __LINE__));
+		}
 		elseif (!$var->setValue($value))
 		{
 			Dog::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		else
 		{
-			Dog::rply('msg_set_var', array($var->displayName(), $varname, $var->getValue()));
+			Dog::rply('msg_set_var', array($var->displayName(), $varname, $oldval, $var->getValue()));
 		}
 	}
 }

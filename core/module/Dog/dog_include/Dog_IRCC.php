@@ -21,7 +21,7 @@ final class Dog_IRCC implements Dog_IRC
 	{
 		$this->server = $server;
 		
-		if (false === ($this->context = stream_context_create()))
+		if (false === ($this->context = @stream_context_create()))
 		{
 			return Dog_Log::error('Dog_IRC::connect() ERROR: stream_context_create()');
 		}
@@ -42,13 +42,13 @@ final class Dog_IRCC implements Dog_IRC
 		
 		if ($server->isSSL())
 		{
-			if (false === stream_socket_enable_crypto($socket, true, STREAM_CRYPTO_METHOD_TLS_CLIENT))
+			if (false === @stream_socket_enable_crypto($socket, true, STREAM_CRYPTO_METHOD_TLS_CLIENT))
 			{
 				return Dog_Log::error('Dog_IRC::connect() ERROR: stream_socket_enable_crypto(true, STREAM_CRYPTO_METHOD_TLS_CLIENT)');
 			}
 		}
 		
-		if (false === stream_set_blocking($socket, 0))
+		if (false === @stream_set_blocking($socket, 0))
 		{
 			return Dog_Log::error('Dog_IRC::connect() ERROR: stream_set_blocking(): $blocked=0');
 		}
@@ -225,4 +225,3 @@ final class Dog_IRCC implements Dog_IRC
 		return true;
 	}
 }
-?>

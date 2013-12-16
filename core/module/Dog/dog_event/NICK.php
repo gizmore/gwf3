@@ -3,6 +3,7 @@ $old_user = Dog::setupUser();
 $serv = Dog::getServer();
 if (false === ($new_user = Dog::getOrCreateUserByName(Dog::argv(0))))
 {
+	Dog::suppressModules();
 	return Dog_Log::critical('Cannot create user!');
 }
 # Copy channels with privs 

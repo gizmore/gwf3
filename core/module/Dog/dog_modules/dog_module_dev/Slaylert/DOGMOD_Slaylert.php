@@ -1,5 +1,5 @@
 <?php
-final class DOGMOD_CVS extends Dog_Module
+final class DOGMOD_Slaylert extends Dog_GWFModule
 {
 	private $pull_cycle_num = 0;
 	private $pulling = false;

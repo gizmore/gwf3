@@ -16,6 +16,10 @@ final class DOGMOD_Link extends Dog_Module
 			'collect_serv' => 's,i,i,2',
 			'collect_user' => 'u,l,i,2',
 			'collect_glob' => 'g,x,i,2',
+			'images_chan' => 'c,o,i,2',
+			'images_serv' => 's,i,i,2',
+			'images_user' => 'u,l,i,2',
+			'images_glob' => 'g,x,i,2',
 		);
 	}
 	
@@ -28,13 +32,13 @@ final class DOGMOD_Link extends Dog_Module
 		return ($value === 0) || ($value === 1) ? $value : 2;
 	}
 	
-	public function collectorEnabled()
+	public function collectorEnabled($collector='collect')
 	{
 		if (Dog::getUser()===false) return false;
-		$user = $this->getCollectConf('collect_user', 'u');
-		$chan = $this->getCollectConf('collect_chan', 'c');
-		$serv = $this->getCollectConf('collect_serv', 's');
-		$glob = $this->getCollectConf('collect_glob', 'g');
+		$user = $this->getCollectConf($collector.'_user', 'u');
+		$chan = $this->getCollectConf($collector.'_chan', 'c');
+		$serv = $this->getCollectConf($collector.'_serv', 's');
+		$glob = $this->getCollectConf($collector.'_glob', 'g');
 		
 		if (false !== Dog::getChannel())
 		{
