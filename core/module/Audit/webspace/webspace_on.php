@@ -5,9 +5,9 @@ $content = <<< EOF
 <VirtualHost *:80>
         ServerName %USERNAME%.users.warchall.net
         ServerAlias *.%USERNAME%.users.warchall.net
-        DocumentRoot /home/user/%USERNAME%/www
+        DocumentRoot /home/users/%USERNAME%/www
         AssignUserId %USERNAME% %USERNAME%
-        <Directory "/home/user/%USERNAME%/www">
+        <Directory "/home/users/%USERNAME%/www">
                 Options FollowSymLinks Indexes
                 AllowOverride All
         </Directory>
