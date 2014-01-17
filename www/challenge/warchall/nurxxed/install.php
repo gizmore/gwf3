@@ -8,7 +8,7 @@ if (!GWF_User::isAdminS())
 {
 	return htmlSendToLogin('Better be admin !');
 }
-$solution = require_once 'challenge/warchall/nurxxed/www/solution.php';
+$solution = require_once 'challenge/warchall/nurxxed/www/config.php';
 $score = 6;
 $url = 'challenge/warchall/nurxxed/index.php';
 $creators = 'nurfed';

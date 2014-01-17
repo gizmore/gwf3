@@ -11,8 +11,9 @@ $chall->showHeader();
 $chall->onCheckSolution();
 
 $home = 'http://nurxxed.warchall.net';
+$flag = 'http://nurxxed.warchall.net/config.php';
 $war_url = GWF_WEB_ROOT.'challenge/warchall/begins/index.php';
-echo GWF_Box::box($chall->lang('info', array($home, $war_url)), $chall->lang('title'));
+echo GWF_Box::box($chall->lang('info', array($home, $flag)), $chall->lang('title'));
 
 formSolutionbox($chall, 14);
 echo $chall->copyrightFooter();
