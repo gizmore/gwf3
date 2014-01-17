@@ -52,10 +52,15 @@ if (!chown($dir, $username))
 
 $content = str_replace('%USERNAME%', $username, $content);
 
-if (!file_put_contents("/etc/apache2/vhosts.d/users/$username.conf", $content))
-{
-	die('cannot write .conf file!');
-}
+
+$filename2 = tempnam("/tmp", "wson$username");
+if(!file_put_contents($filename2, $content)) { die('Cannot create .conf!'); }
+if(!chmod($filename2, 0700)) { die('Cannot chmod temp.conf'); }
+if(!chown($filename2, 'root')) { die('Cannot chown temp.conf'); }
+if(!chgrp($filename2, 'root')) { die('Cannot chgrp temp.conf'); }
+
+$filename = "/etc/apache2/vhosts.d/users/$username.conf";
+if(!rename($filename2, $filename)) { die('Cannot move conf!'); }
 
 echo "Reloading apache2 config...\n";
 system("/etc/init.d/apache2 reload");
