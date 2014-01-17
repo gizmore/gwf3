@@ -3,14 +3,16 @@ $username = $argv[1];
 
 $content = <<< EOF
 <VirtualHost *:80>
-        ServerName %USERNAME%.users.warchall.net
-        ServerAlias *.%USERNAME%.users.warchall.net
-        DocumentRoot /home/users/%USERNAME%/www
-        AssignUserId %USERNAME% %USERNAME%
-        <Directory "/home/users/%USERNAME%/www">
-                Options FollowSymLinks Indexes
-                AllowOverride All
-        </Directory>
+	ServerName %USERNAME%.users.warchall.net
+	ServerAlias *.%USERNAME%.users.warchall.net
+	DocumentRoot /home/user/%USERNAME%/www
+	AssignUserId %USERNAME% %USERNAME%
+	<Directory "/home/user/%USERNAME%/www">
+		Options FollowSymLinks Indexes
+		AllowOverride All
+		Order allow,deny
+		Allow from all
+	</Directory>
 </VirtualHost>
 EOF;
 
@@ -55,6 +57,7 @@ if (!file_put_contents("/etc/apache2/vhosts.d/users/$username.conf", $content))
 	die('cannot write .conf file!');
 }
 
-echo "Reloading apache2...\n";
+echo "Reloading apache2 config...\n";
 system("/etc/init.d/apache2 reload");
 echo "Webserver should be available at $username.users.warchall.net!\n";
+echo "It can take a moment for the changes to take effect :)\n";
