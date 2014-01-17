@@ -57,3 +57,4 @@ if (!file_put_contents("/etc/apache2/vhosts.d/users/$username.conf", $content))
 
 echo "Reloading apache2...\n";
 system("/etc/init.d/apache2 reload");
+echo "Webserver should be available at $username.users.warchall.net!\n";

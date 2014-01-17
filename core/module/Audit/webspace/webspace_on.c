@@ -10,6 +10,8 @@ int main()
 {
     struct passwd *passwd;
     passwd = getpwuid ( getuid());
+    
+    setuid(0); // THX dloser! ;)
 
     char command[BUFFER_SIZE];
     strncpy(command, "/opt/php/gwf3/core/module/Audit/webspace/webspace_on.php", BUFFER_SIZE - 1);
