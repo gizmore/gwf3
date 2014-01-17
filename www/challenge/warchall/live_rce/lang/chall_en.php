@@ -2,9 +2,11 @@
 $lang = array(
 	'title' => 'Live RCE',
 	'info' =>
-		'You can try your php exploit skills on this <a href="%s">serious programming flaw</a>.'.PHP_EOL.
-		'Happy Exploiting'.PHP_EOL.
-		'gizmore',
-		
-		
+		'Nurfed and phiber finally fixed this challenge and made it a solveable relict.<br/>'.PHP_EOL.
+		'We hope you enjoy!<br/>'.PHP_EOL.
+		'<br/>'.PHP_EOL.
+		'Access the <a href="%s">challenge here on warchall</a>.<br/>'.PHP_EOL.
+		'<br/>'.PHP_EOL.
+		'Happy Exploiting<br/>'.PHP_EOL.
+		'nurfed and phiber',
 );
