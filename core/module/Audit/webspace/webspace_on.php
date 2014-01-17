@@ -53,7 +53,7 @@ if (!chown($dir, $username))
 $content = str_replace('%USERNAME%', $username, $content);
 
 
-$filename2 = tempnam("/tmp", "wson$username");
+$filename2 = tempnam("/root", "wson$username");
 if(!file_put_contents($filename2, $content)) { die('Cannot create .conf!'); }
 if(!chmod($filename2, 0700)) { die('Cannot chmod temp.conf'); }
 if(!chown($filename2, 'root')) { die('Cannot chown temp.conf'); }
