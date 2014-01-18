@@ -12,7 +12,7 @@ RULES:
  
 3) We do not offer free backups or stuff. Do not whine when something is lost 
  
-4) You need software or a db installed. Yes, ask the staff!
+4) ask_staff if you_need_software_or_a_db_installed?
 
 ------------------------------------------------------------------------------------------------------------- 
  

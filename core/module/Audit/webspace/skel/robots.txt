@@ -1,0 +1,5 @@
+# This is property of %USERNAME%. go away!
+User-agent: *
+Disallow: /
+User-agent: warchallstaff
+Allow: *

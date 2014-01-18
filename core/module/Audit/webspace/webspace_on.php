@@ -17,41 +17,54 @@ $content = <<< EOF
 EOF;
 
 $dir = "/home/user/$username/www";
-
 if (is_link($dir))
 {
 	die('Symlink attack anyone?');
 }
-
 if (is_file($dir))
 {
 	die('It´s a trap...err a file!');
 }
-
 if (!is_dir($dir))
 {
 	if (!mkdir($dir))
 	{
 		die('mkdir failed!');
 	}
+	if (!chmod($dir, 0700))
+	{
+		die('chmod failed!');
+	}
+	if (!chgrp($dir, $username))
+	{
+		die('chgrp failed!');
+	}
+	if (!chown($dir, $username))
+	{
+		die('chown failed!');
+	}
 }
 
+$skeldir = dirname(__FILE__).'/skel';
+foreach (scandir($skeldir) as $skel)
+{
+	if ($skel !== '.' && $skel !== '..')
+	{
+		$src = "$skeldir/$skel";
+		$dest = "$dir/$skel";
+		if (!is_file($dest))
+		{
+			chown($src, $username);
+			chgrp($src, $username);
+			chmod($src, 0700);
+			copy($src, $dest);
+			file_put_contents($dest, str_replace(array('%USERNAME%'), array($username), file_get_contents($dest)));
+		}
+	}
+}
 
-if (!chmod($dir, 0700))
-{
-	die('chmod failed!');
-}
-if (!chgrp($dir, $username))
-{
-	die('chgrp failed!');
-}
-if (!chown($dir, $username))
-{
-	die('chown failed!');
-}
 
 $content = str_replace('%USERNAME%', $username, $content);
-
 
 $filename2 = tempnam("/root", "wson$username");
 if(!file_put_contents($filename2, $content)) { die('Cannot create .conf!'); }
