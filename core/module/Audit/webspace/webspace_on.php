@@ -5,8 +5,11 @@ $content = <<< EOF
 <VirtualHost *:80>
 	ServerName %USERNAME%.users.warchall.net
 	ServerAlias *.%USERNAME%.users.warchall.net
-	DocumentRoot /home/user/%USERNAME%/www
 	AssignUserId %USERNAME% %USERNAME%
+	LogLevel warn
+	ErrorLog  /home/user/%USERNAME%/www_error.log
+	CustomLog /home/user/%USERNAME%/www_access.log combined
+	DocumentRoot /home/user/%USERNAME%/www
 	<Directory "/home/user/%USERNAME%/www">
 		Options FollowSymLinks Indexes
 		AllowOverride All
@@ -57,7 +60,8 @@ foreach (scandir($skeldir) as $skel)
 			chown($src, $username);
 			chgrp($src, $username);
 			chmod($src, 0700);
-			copy($src, $dest);
+			rename($src, $dest);
+			copy($dest, $src);
 			file_put_contents($dest, str_replace(array('%USERNAME%'), array($username), file_get_contents($dest)));
 		}
 	}
