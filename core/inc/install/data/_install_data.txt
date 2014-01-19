@@ -1,3 +1,7 @@
 In this folder you find various data from 3rd parties, which will get imported into the database during install.
 There is also an own GWF database to install, GWF_LanguageData.php, which you might like to import to your own projects.
 Remember: GWF is free as in beer!
+
+Links:
+ip-to-country.csv: http://ip-to-country.webhosting.info/downloads/ip-to-country.csv.zip
+webspiders: http://www.iplists.com/nw/
