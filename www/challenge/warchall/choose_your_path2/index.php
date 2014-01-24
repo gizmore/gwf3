@@ -21,5 +21,5 @@ if (Common::getGetString('highlight') === 'christmas') {
 }
 formSolutionbox($chall, 14);
 echo $chall->copyrightFooter();
+require 'challenge/warchall/ads.php';
 require_once('challenge/html_foot.php');
-?>

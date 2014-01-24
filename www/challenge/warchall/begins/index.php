@@ -32,6 +32,9 @@ else
 formSolutionbox($chall);
 
 echo $chall->copyrightFooter();
+
+require 'challenge/warchall/ads.php';
+
 require_once('challenge/html_foot.php');
 
 final class WCA_FormCreate
@@ -188,4 +191,3 @@ function warchall1createEMailB(WC_Challenge $chall, GDO_Database $db2, $eusernam
 
 	return GWF_HTML::message('Warchall', $chall->lang('msg_mail'));
 }
-?>

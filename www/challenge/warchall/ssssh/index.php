@@ -16,6 +16,5 @@ echo GWF_Box::box($chall->lang('info', array($href_warchall)), $chall->lang('tit
 formSolutionbox($chall, 14);
 
 echo $chall->copyrightFooter();
+require 'challenge/warchall/ads.php';
 require_once('challenge/html_foot.php');
-
-?>

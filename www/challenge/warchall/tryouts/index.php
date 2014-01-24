@@ -17,5 +17,5 @@ echo GWF_Box::box($chall->lang('info', array($matrixman, $home, $war_url)), $cha
 
 formSolutionbox($chall, 14);
 echo $chall->copyrightFooter();
+require 'challenge/warchall/ads.php';
 require_once('challenge/html_foot.php');
-?>
