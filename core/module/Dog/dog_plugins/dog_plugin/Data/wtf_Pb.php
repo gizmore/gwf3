@@ -13,9 +13,9 @@ if ('' === ($message = $plugin->msg()))
 	return $plugin->showHelp();
 }
 
-if (!function_exists('fetchDefinition'))
+if (!function_exists('fetchDefinitionE'))
 {
-	function fetchDefinition(Dog_Plugin $plugin, $term) {
+	function fetchDefinitionE(Dog_Plugin $plugin, $term) {
 		$output = array();
 		
 		$res = GWF_HTTP::getFromUrl('http://www.urbandictionary.com/define.php?term='.$term);
@@ -29,7 +29,7 @@ if (!function_exists('fetchDefinition'))
 			return $plugin->lang('none_yet', array($term, urlencode($term)));
 		}
 	
-		preg_match('#<div class="definition">(.+?)</div>.*?<div class="example">(.*?)</div>#s', $res, $arr);
+		preg_match('#<div class=\'meaning\'>(.+?)</div>.*?<div class=\'example\'>(.*?)</div>#s', $res, $arr);
 		
 		$definition = trim(html_entity_decode(strip_tags(preg_replace('#<\s*?br\s*?/?\s*?>#', "\n", $arr[1]))));
 		$definition = strtr($definition, array("\r" => ' ', "\n" => ' '));
@@ -59,7 +59,7 @@ if (!function_exists('fetchDefinition'))
 	}
 }
 
-$def = fetchDefinition($plugin, $message);
+$def = fetchDefinitionE($plugin, $message);
 
 if (is_string($def))
 {
