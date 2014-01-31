@@ -60,5 +60,4 @@ if (!function_exists('fetchFunctionDescription'))
 
 $text = fetchFunctionDescription($message);
 $text = preg_replace('/[ ]{2,}/', ' ', $text);
-$plugin->reply(utf8_encode($text));
-?>
+$plugin->reply(utf8_encode(html_entity_decode($text, ENT_QUOTES)));

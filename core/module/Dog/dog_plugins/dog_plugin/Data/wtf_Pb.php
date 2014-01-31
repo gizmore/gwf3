@@ -66,10 +66,10 @@ if (is_string($def))
 	return $plugin->reply($def);
 }
 
-$plugin->reply(utf8_encode($def['definition']));
+$plugin->reply(utf8_encode(html_entity_decode($def['definition'], ENT_QUOTES)));
 if (isset($def['example']))
 {
-	$plugin->rply('example', array(utf8_encode($def['example'])));
+	$plugin->rply('example', array(utf8_encode(html_entity_decode($def['example'], ENT_QUOTES))));
 }
 
 ?>
