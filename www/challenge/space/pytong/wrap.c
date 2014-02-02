@@ -37,7 +37,7 @@ int main(int argc, char *argv[])
 	char escaped_name[BUFSIZE];
 	char *filename;
 
-	setregid(1013,1013); // gid of level12
+	setregid(1013, 1013); // gid of level12
 
 	if (argc != 2)
 	{
@@ -45,7 +45,7 @@ int main(int argc, char *argv[])
 		exit(EXIT_FAILURE);
 	}
 
-	filename= argv[1];
+	filename = argv[1];
 
 	if (!escape_single_quotes(escaped_name, filename, BUFSIZE))
 	{
@@ -53,11 +53,13 @@ int main(int argc, char *argv[])
 		exit(EXIT_FAILURE);
 	}
 
-	if (snprintf(buf, BUFSIZE, "/usr/bin/python /home/level/12/pytong.py '%s'", escaped_name)>=BUFSIZE)
+	if (snprintf(buf, BUFSIZE, "/usr/bin/python /home/level/12/pytong.py '%s'", escaped_name) >= BUFSIZE)
 	{
 		fprintf(stderr, "Filename %s is too long!\n", filename);
 		exit(EXIT_FAILURE);
 	}
+
+	unsetenv("PYTHONPATH");
 
 	if (!(fp = popen(buf, "r")))
 	{
