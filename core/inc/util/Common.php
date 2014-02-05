@@ -63,7 +63,7 @@ final class Common
 		$search = array( ' ', '<', '>', '"', "'", '/', '#', '?', '!', ':', ')', '(', '[', ']', ',', '+', '_', '@',	        '&',	       '%');
 		$replace = array($ch, $ch, $ch, $ch, $ch, $ch, $ch, '',  '',  '',  '',  '',  '',  '',  '',  '',  $ch, $ch.'at'.$ch, $ch.'and'.$ch, $ch);
 		$back = str_replace($search, $replace, $string);
-		$back = preg_replace('/[^a-z0-9-]/i', $ch, $back);
+		$back = preg_replace('/[^a-z0-9]/i', $ch, $back);
 		$back = preg_replace('/'.$ch.'{2,}/', $ch, $back);
 		$back = trim($back, $ch);
 		return $back === '' ? '_title_' : $back;
