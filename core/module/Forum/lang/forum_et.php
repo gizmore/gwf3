@@ -199,7 +199,7 @@ $lang = array(
 		'The '.GWF_SITENAME.' Meeskond'.PHP_EOL,
 
 	# New Post EMail
-	'submail_subj' => GWF_SITENAME.': Uus postitus',
+	'submail_subj' => GWF_SITENAME.': Uus postitus: %s',
 	'submail_body' => 
 		'Lugupeetud %s'.PHP_EOL.
 		PHP_EOL.

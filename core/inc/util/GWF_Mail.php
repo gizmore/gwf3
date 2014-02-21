@@ -41,7 +41,7 @@ final class GWF_Mail
 	public function setSenderName($sn) { $this->senderName = $sn; }
 	public function setReceiver($r) { $this->receiver = $r; }
 	public function setReceiverName($rn) { $this->receiverName = $rn; }
-	public function setSubject($s) { $this->subject = $s; }
+	public function setSubject($s) { $this->subject = this->escapeHeader($s); }
 	public function setBody($b) { $this->body = $b; }
 	public function setGPGKey($k) { $this->gpgKey = $k; }
 	public function setAllowGPG($bool) { $this->allowGPG = $bool; }
@@ -49,6 +49,8 @@ final class GWF_Mail
 	public function addAttachment($title, $data, $mime='application/octet-stream') { $this->attachments[$title] = array($data, $mime); }
 	public function addAttachmentFile($title, $filename) { die('TODO: GET MIME TYPE AND LOAD FILE INTO MEMORY.'); }
 	public function removeAttachment($title) { unset($this->attachments[$title]); }
+	
+	private function escapeHeader($h) { return str_replace("\r", '', str_replace("\n", '', $h)); }
 
 	private function getUTF8Sender()
 	{
