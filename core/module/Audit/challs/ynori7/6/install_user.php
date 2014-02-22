@@ -4,11 +4,7 @@ if (!Common::isDir($dirname))
 {
 	GWF_File::removeDir($dirname);
 	$dirname2 = "/root/L6D";
-	if (!@mkdir($dirname2, 0700, true))
-	{
-		echo GWF_HTML::err('ERR_WRITE_FILE', array($dirname2));
-		return;
-	}
+	@mkdir($dirname2, 0700, true);
 	@chmod($dirname2, 0700);
 	@chown($dirname2, $username);
 	@chgrp($dirname2, $username);
