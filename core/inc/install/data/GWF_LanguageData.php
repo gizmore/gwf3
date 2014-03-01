@@ -220,7 +220,7 @@ final class GWF_LanguageData
 			'59' => array('Saudi Arabia', 'ara', 'as', 'SA', 25731776),
 			'225' => array('Senegal', 'fre:wol', 'af', 'SN', 12323252),
 			'81' => array('Serbia', 'ser:hun:slo:rom:cro:alb', 'eu', 'RS', 7344847),
-			'312' => array('Serbia and Montenegro', 'ser', 'eu', 'CS', 0),
+			#'312' => array('Serbia and Montenegro', 'ser', 'eu', 'CS', 0),
 			'226' => array('Seychelles', 'eng:fre', 'af', 'SC', 88340),
 			'227' => array('Sierra Leone', 'eng', 'af', 'SL', 5245695),
 			'52' => array('Singapore', 'eng:mal:man:tam', 'as', 'SG', 4701069),
