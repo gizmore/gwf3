@@ -1,7 +1,7 @@
 <?php
 if (!defined('GWF_DEBUG_EMAIL'))
 {
-	define('GWF_DEBUG_EMAIL', 0);
+	define('GWF_DEBUG_EMAIL', 31);
 }
 /**
  * Will send very simple html and plaintext mails.
@@ -41,12 +41,12 @@ final class GWF_Mail
 	public function setSenderName($sn) { $this->senderName = $sn; }
 	public function setReceiver($r) { $this->receiver = $r; }
 	public function setReceiverName($rn) { $this->receiverName = $rn; }
-	public function setSubject($s) { $this->subject = this->escapeHeader($s); }
+	public function setSubject($s) { $this->subject = $this->escapeHeader($s); }
 	public function setBody($b) { $this->body = $b; }
 	public function setGPGKey($k) { $this->gpgKey = $k; }
 	public function setAllowGPG($bool) { $this->allowGPG = $bool; }
 	public function setResendCheck($bool) { $this->resendCheck = $bool; }
-	public function addAttachment($title, $data, $mime='application/octet-stream') { $this->attachments[$title] = array($data, $mime); }
+	public function addAttachment($title, $data, $mime='application/octet-stream', $encrypted=true) { $this->attachments[$title] = array($data, $mime, $encrypted); }
 	public function addAttachmentFile($title, $filename) { die('TODO: GET MIME TYPE AND LOAD FILE INTO MEMORY.'); }
 	public function removeAttachment($title) { unset($this->attachments[$title]); }
 	
@@ -190,6 +190,7 @@ final class GWF_Mail
 		if (GWF_DEBUG_EMAIL & 16)
 		{
 			GWF_Website::addDefaultOutput(sprintf('<h1>Local EMail:</h1><pre>%s<br/>%s</pre>', htmlspecialchars($this->subject), $message));
+// 			GWF_Website::addDefaultOutput(sprintf('<h1>Local EMail:</h1><pre>%s<br/>%s</pre>', htmlspecialchars($this->subject), $encrypted));
 			return true;
 		}
 		else
@@ -224,7 +225,7 @@ final class GWF_Mail
 		$message .= "Content-Transfer-Encoding: 8bit\n";
 		$message .= "\n";
 		
-		$message .= $this->nestedTextBody();
+		$message .= $this->encrypt($this->nestedTextBody());
 		$message .= "\n\n";
 		
 		$message .= "--$bound_alt\n";
@@ -232,7 +233,7 @@ final class GWF_Mail
 		$message .= "Content-Transfer-Encoding: 8bit\n";
 		$message .= "\n";
 		
-		$message .= $this->nestedHTMLBody();
+		$message .= $this->encrypt($this->nestedHTMLBody());
 		$message .= "\n\n";
 		
 		$message .= "--$bound_alt--\n";
@@ -240,19 +241,26 @@ final class GWF_Mail
 		
 		foreach ($this->attachments as $filename => $attachdata)
 		{
-			list($attach, $mime) = $attachdata;
+			list($attach, $mime, $encrypted) = $attachdata;
 			$filename = preg_replace("/[^a-z0-9_\-\.]/i", '', $filename);
 			$message .= "--$bound_mix\n";
 			$message .= "Content-Type: $mime; name=\"$filename\"\n";
 			$message .= "Content-Transfer-Encoding: base64\nContent-Disposition: attachment\n\n";
-			$message .= chunk_split(base64_encode($attach));
+			if ($encrypted)
+			{
+				$message .= $this->encrypt(chunk_split(base64_encode($attach)));
+			}
+			else
+			{
+				$message .= chunk_split(base64_encode($attach));
+			}
 		}
 		
 		$message .= "--$bound_mix--\n\n";
 		
-		echo $message;
+// 		echo $message;
 		
-		$encrypted = $this->encrypt($message);
+// 		$encrypted = $this->encrypt($message);
 		
 		if (GWF_DEBUG_EMAIL & 16)
 		{
@@ -334,7 +342,7 @@ final class GWF_Mail
 		return crc32($b).md5($b).substr(sha1($b), 0, 32);
 	}
 
-	private function setupGPG(GWF_User $user)
+	public function setupGPG(GWF_User $user)
 	{
 		if ($this->allowGPG)
 		{
