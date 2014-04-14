@@ -717,4 +717,11 @@ $lang = array(
 	'info_warflag_solvers' => '%s people solved %s on %4$s. See them here in chronological order.',
 	'title_warbox_players' => 'Ranking for the %2$s box on %3$s',
 	'info_warbox_players' => 'All %s players ranked on %s - %s sorted by score and last activity.',
+
+	#5.07 warflags finish
+	'err_warbox' => 'The warbox is unknown to that site.',
+	'err_warflag' => 'This challenge is unknown or not in the scope.',
+
+	#5.08 minifixes
+	'more_online' => 'more',
 );

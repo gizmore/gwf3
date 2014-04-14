@@ -724,4 +724,7 @@ $lang = array(
 	#5.07 warflags finish
 	'err_warbox' => 'The warbox is unknown to that site.',
 	'err_warflag' => 'This challenge is unknown or not in the scope.',
+
+	#5.08 minifixes
+	'more_online' => 'more',
 );

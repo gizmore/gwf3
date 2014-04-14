@@ -722,4 +722,11 @@ $lang = array(
 	'info_warflag_solvers' => '%s Personen haben %s auf %4$s gelöst. Chronologische Reihenfolge.',
 	'title_warbox_players' => 'Rangliste für die %2$s box auf %3$s',
 	'info_warbox_players' => 'Alle %s Spieler von %s - %s sortiert nach Punkten und letzter Aktivität.',
+
+	#5.07 warflags finish
+	'err_warbox' => 'Diese Warbox gibt es nicht auf dieser Seite.',
+	'err_warflag' => 'Unbekanntes Challenge oder falsche Warbox.',
+		
+	#5.08 minifixes
+	'more_online' => 'mehr',
 );
