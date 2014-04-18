@@ -25,6 +25,11 @@ $bunny_id = $bunny->getID();
 require_once GWF_CORE_PATH.'module/Profile/GWF_ProfilePOI.php';
 $table = GDO::table('GWF_ProfilePOI');
 
+if (!$table->deleteWhere('pp_uid='.$bunny_id))
+{
+	die('DBERR1');
+}
+
 foreach ($solutions as $word => $latlon)
 {
 	if (!$table->insertAssoc(array(

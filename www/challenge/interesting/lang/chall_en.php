@@ -1,6 +1,7 @@
 <?php
 $lang = array(
 	'title' => 'Interesting',
+	'bunny' => 'EasterBunny',
 	'info' =>
 		'Hello Hacker,<br/>'.PHP_EOL.
 		'<br/>'.PHP_EOL.
