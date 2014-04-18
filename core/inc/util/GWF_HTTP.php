@@ -57,7 +57,7 @@ final class GWF_HTTP
 			return false;
 		}
 
-		if (false === ($ch = curl_init($url)))
+		if (!($ch = curl_init($url)))
 		{
 			return false;
 		}

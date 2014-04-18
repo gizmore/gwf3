@@ -36,6 +36,7 @@ a img { border: none 0px; }
 	background-repeat: no-repeat;
 	display: inline-block;
 	min-height: 16px;
+/* 	line-height: 11px; */
 	min-width: 16px;
 	font-size: 12px;
 	white-space: nowrap;

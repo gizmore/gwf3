@@ -130,7 +130,13 @@ class GWF_Module extends GDO
 	public function langUser(GWF_User $user, $key, $args=NULL) { return $this->lang->langUser($user, $key, $args); }
 	public function langISO($iso, $key, $args=NULL) { return $this->lang->langISO($iso, $key, $args); }
 	public function includeAjaxLang($iso=NULL) { GWF_Website::addJavascriptInline('var LANG_'.$this->getName().' = '.json_encode($this->getLang()->getTrans($iso)).';'); }
-
+	public function ajaxErr($err, $args=NULL) { $this->ajaxError($this->lang($err, $args)); }
+	public function ajaxError($error)
+	{
+		header('HTTP/1.1 401 Dumb Request');
+		die('{error:"'.str_replace('"', '\\"', $error).'"}');
+	}
+	
 	################
 	### Template ###
 	################

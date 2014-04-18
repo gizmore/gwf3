@@ -1,5 +1,4 @@
 <?php
-
 final class Profile_Form extends GWF_Method
 {
 	public function isLoginRequired() { return true; }
@@ -12,17 +11,18 @@ final class Profile_Form extends GWF_Method
 	public function getPageMenuLinks()
 	{
 		return array(
-				array(
-						'page_url' => 'profile_settings',
-						'page_title' => 'Profile Settings',
-						'page_meta_desc' => 'Browse or change settings in your account',
-				),
+			array(
+				'page_url' => 'profile_settings',
+				'page_title' => 'Profile Settings',
+				'page_meta_desc' => 'Browse or change settings in your account',
+			),
 		);
 	}
 	
 	public function execute()
 	{
-		if (false !== Common::getPost('edit')) {
+		if (false !== Common::getPost('edit'))
+		{
 			return $this->onEditSettings().$this->templateSettings();
 		}
 
@@ -40,6 +40,7 @@ final class Profile_Form extends GWF_Method
 	
 	private function getForm(GWF_Profile $profile)
 	{
+		$href_poi_white = GWF_WEB_ROOT.'index.php?mo=Profile&amp;me=POISWhitelist';
 		$data = array(
 			'firstname' => array(GWF_Form::STRING, $profile->getVar('prof_firstname'), $this->module->lang('th_firstname'), '', 32, false),
 			'lastname' => array(GWF_Form::STRING, $profile->getVar('prof_lastname'), $this->module->lang('th_lastname'), '', 32, false),
@@ -68,6 +69,9 @@ final class Profile_Form extends GWF_Method
 //			'hidden' => array(GWF_Form::CHECKBOX, $profile->isHidden(), $this->module->lang('th_hidden')),
 			'level_all' => array(GWF_Form::INT, $profile->getVar('prof_level_all'), $this->module->lang('th_level_all'), $this->module->lang('tt_level_all'), 5, true),
 			'level_contact' => array(GWF_Form::INT, $profile->getVar('prof_level_contact'), $this->module->lang('th_level_contact'), $this->module->lang('tt_level_contact'), 5, true),
+			'div4' => array(GWF_Form::DIVIDER),
+			'poi_score' => array(GWF_Form::INT, $profile->getVar('prof_poi_score'), $this->l('th_poi_score'), $this->l('tt_poi_score'), 5, true),
+			'poi_white' => array(GWF_Form::CHECKBOX, $profile->isPOIWhitelisting(), $this->l('th_poi_white', $href_poi_white), $this->l('tt_poi_white')),
 			'edit' => array(GWF_Form::SUBMIT, $this->module->lang('btn_edit')),
 		);
 		return new GWF_Form($this, $data);
@@ -97,6 +101,7 @@ final class Profile_Form extends GWF_Method
 		$profile->saveOption(GWF_Profile::HIDE_EMAIL, isset($_POST['hidemail']));
 		$profile->saveOption(GWF_Profile::HIDE_GUESTS, isset($_POST['hideguests']));
 		$profile->saveOption(GWF_Profile::HIDE_ROBOTS, isset($_POST['hiderobots']));
+		$profile->saveOption(GWF_Profile::POI_WHITELIST, isset($_POST['poi_white']));
 		
 		if (false === $profile->saveVars(array(
 			'prof_website' => $_POST['website'],
@@ -117,7 +122,7 @@ final class Profile_Form extends GWF_Method
 			'prof_irc' => $_POST['irc'],
 			'prof_level_all' => $_POST['level_all'],
 			'prof_level_contact' => $_POST['level_contact'],
-		
+			'prof_poi_score' => $_POST['poi_score'],
 		))) {
 			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
 		}
@@ -146,6 +151,7 @@ final class Profile_Form extends GWF_Method
 	public function validate_about_me(Module_Profile $m, $arg) { return $this->validateString($m, 'about_me', $arg, $m->cfgMaxAboutLen()); }
 	public function validate_level_all(Module_Profile $m, $arg) { return $this->validateNumber($m, 'level_all', $arg, 63); }
 	public function validate_level_contact(Module_Profile $m, $arg) { return $this->validateNumber($m, 'level_contact', $arg, 63); }
+	public function validate_poi_score(Module_Profile $m, $arg) { return $this->validateNumber($m, 'poi_score', $arg, 63); }
 	
 	private function validateString(Module_Profile $m, $key, $arg, $max)
 	{

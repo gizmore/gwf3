@@ -1,0 +1,15 @@
+var I18_eq = [
+'am':'amulet',
+'ar':'armor',
+'bo':'boots',
+'ea':'earring',
+'he':'helmet',
+'le':'legs',
+'ri':'ring',
+'sh':'shield',
+'we':'weapon',
+'mo':'mount',
+'pi':'piercing',
+'be':'belt',
+'gl':'gloves',
+];

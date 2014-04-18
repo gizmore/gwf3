@@ -113,6 +113,38 @@ $lang = array(
 	'th_hiderobot' => 'Vor Suchmaschinen verstecken?',
 	'tt_hiderobot' => 'Aktivieren Sie diese Option wenn Sie nicht wollen das Suchmaschinen Ihr Profil indizieren.',
 	'err_no_spiders' => 'Dieses Profil ist vor Suchmaschinen versteckt.',
-);
 
-?>
+	# monnino fixes
+	'cfg_prof_level_gb' => 'Mindest-Level um ein Gästebuch zu erzeugen',
+
+	# v2.08 (POI)
+	'ph_places' => 'Points of Interest',
+	'msg_white_added' => 'Der Nutzer %s wurde in Ihre Whitelist aufgenommen.',
+	'msg_white_removed' => 'Es wurden %s Nutzer von Ihrer Whitelist entfernt.',
+	'msg_pois_cleared' => 'Alle Ihre hinzugefügten POI wurden gelöscht.',
+	'msg_white_cleared' => 'Ihre POI Whitelist wurde geleert.',
+	'err_poi_read_perm' => 'Sie dürfen keine Ortsdaten abrufen.',
+	'err_poi_exceed' => 'Sie dürfen keine weiteren Ortsdaten hinzufügen.',
+	'err_self_whitelist' => 'Sie können sich nicht selbst auf Ihre Whitelist setzen.',
+	'prompt_rename' => 'Bitte geben Sie eine Beschreibung ein.',
+	'prompt_delete' => 'Möchten Sie diesen Ort löschen?',
+	'th_poi_score' => 'Benötiger Nutzerlevel für Ihre POI',
+	'tt_poi_score' => 'Sie können Ihre Points of Interest vor Nutzern mit einem niedrigen Level verstecken.',
+	'th_poi_white' => '<a href="%s">Whitelist</a> für POI nutzen',
+	'tt_poi_white' => 'Anstatt Nutzerlevel eine persönliche Whitelist verwenden.',
+	'ft_add_whitelist' => 'Einen Benutzer zur Whitelist hinzufügen',
+	'ft_clear_pois' => 'Löschen Ihrer gesamten Ortsdaten und Whitelist',
+	'th_date_added' => 'hinzugefügt am',
+	'btn_clear_pois' => 'Alle POI löschen!',
+	'btn_clear_white' => 'Whitelist leeren!',
+	'btn_add_whitelist' => 'Nutzer hinzufügen',
+	'btn_rem_whitelist' => 'Nutzer entfernen',
+	'poi_info' => 'Auf dieser Seite werden die POI der Nutzer angezeigt.<br/>Sie dürfern noch %s/%s POI hinzufügen.<br/>Sie können Ihre POI vor anderen Nutzern verstecken indem Sie einen <a href="%s">Mindest-User-Level</a> setzen oder eine <a href="%s">persönliche Whitelist konfigurieren.</a>.<br/>Standardmäßig sind die POI öffentlich einsehbar.',
+	'poi_usage' => 'Nutzung',
+	'poi_usage_data' => array(
+		'Ein Klick in einen leeren Platz auf der Karte erzeugt einen neuen POI.',
+		'Ein Doppelklick auf einen Ihrer POI löscht diesen.',
+		'Ein Klick auf einen Ihrer POI benennt diesen um.',
+		'Bitte fügen Sie keine Wohnorte anderer Nutzer hinzu!',
+	),
+);

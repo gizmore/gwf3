@@ -116,7 +116,35 @@ $lang = array(
 	
 	# monnino fixes
 	'cfg_prof_level_gb' => 'Minimum level to create a guestbook in the profile',
-		
-);
 
-?>
+	# v2.08 (POI)
+	'ph_places' => 'Points of Interest',
+	'msg_white_added' => 'Successfully added %s to your POI whitelist.',
+	'msg_white_removed' => 'Successfully removed %s user(s) from your POI whitelist.',
+	'msg_pois_cleared' => 'All your Point of Interest data has been cleared.',
+	'msg_white_cleared' => 'Your whitelist has been wiped.',
+	'err_poi_read_perm' => 'You are not allowed to see POI.',
+	'err_poi_exceed' => 'You cannot add more POI yet.',
+	'err_self_whitelist' => 'You cannot whitelist yourself.',
+	'prompt_rename' => 'Please enter a description.',
+	'prompt_delete' => 'Do you want to remove this Point of Interest?',
+	'th_poi_score' => 'Minimum user level to see your POI',
+	'tt_poi_score' => 'You can hide your Points of Interest from users whose user level is too low.',
+	'th_poi_white' => 'Use <a href="%s">whitelist</a> for POI',
+	'tt_poi_white' => 'Instead of level based restrictions use your own POI whitelist.',
+	'ft_add_whitelist' => 'Add a user to your whitelist',
+	'ft_clear_pois' => 'Remove all POI you have created or clear the whitelist.',
+	'th_date_added' => 'added on',
+	'btn_clear_pois' => 'Clear POI data',
+	'btn_clear_white' => 'Clear whitelist',
+	'btn_add_whitelist' => 'Add user',
+	'btn_rem_whitelist' => 'Remove user',
+	'poi_info' => 'This page shows POI entered by the users.<br/>You are allowed to add %s/%s Points Of Interest.<br/>You can protect your POI by either <a href="%s">requirering a minimum userlevel</a>, or by using a <a href="%s">personal whitelist</a>.<br/>By default your POI are public.',
+	'poi_usage' => 'Usage',
+	'poi_usage_data' => array(
+		'A click on an empty space adds a new POI.',
+		'A doubleclick on your own POI deletes them.',
+		'A click on your own POI renames them.',
+		'Please do not add the homes of other users by any means.',
+	),
+);

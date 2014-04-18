@@ -12,6 +12,7 @@ final class GWF_Profile extends GDO
 //	const SHOW_BIRTHDAY = 0x08;
 	const HIDE_GUESTS = 0x10;
 	const HIDE_ROBOTS = 0x20;
+	const POI_WHITELIST = 0x40;
 	###########
 	### GDO ###
 	###########
@@ -47,6 +48,8 @@ final class GWF_Profile extends GDO
 			'prof_yahoo' => array(GDO::VARCHAR|GDO::UTF8|GDO::CASE_I, GDO::NULL, 63),
 			'prof_aim' => array(GDO::VARCHAR|GDO::UTF8|GDO::CASE_I, GDO::NULL, 63),
 			'prof_irc' => array(GDO::VARCHAR|GDO::ASCII|GDO::CASE_S, GDO::NULL, 255),
+				
+			'prof_poi_score' => array(GDO::UINT, 0),
 		);
 	}
 	
@@ -63,7 +66,8 @@ final class GWF_Profile extends GDO
 	public function isRobotHidden() { return $this->isOptionEnabled(self::HIDE_ROBOTS); }
 	public function isHiddenLevel($level) { return $level < $this->getVar('prof_level_all'); }
 	public function isContactHiddenLevel($level) { return $level < $this->getVar('prof_level_contact'); }
-	
+	public function isPOIWhitelisting() { return $this->isOptionEnabled(self::POI_WHITELIST); }
+	public function getPOIScore() { return $this->getInt('prof_poi_score'); }
 	###############
 	### Display ###
 	###############
@@ -106,6 +110,7 @@ final class GWF_Profile extends GDO
 			'prof_tel' => '', 'prof_mobile' => '',
 			'prof_icq' => '', 'prof_msn' => '', 'prof_jabber' => '', 'prof_skype' => '', 'prof_yahoo' => '', 'prof_aim' => '',
 			'prof_irc' => '',
+			'prof_poi_score' => 0,
 		));
 		if (false === $profile->replace()) {
 			return false;
@@ -113,5 +118,3 @@ final class GWF_Profile extends GDO
 		return $profile;
 	}
 }
-
-?>

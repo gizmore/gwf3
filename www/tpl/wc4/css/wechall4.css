@@ -411,7 +411,7 @@ th {
 }
 
 
-h1, h2 {
+h1, h2, .GWF_PB_head {
 	padding: 2px 10px;
 	background: url(../img/title_shade_big.gif) #64768A repeat-x;
 	margin: 5px;
@@ -429,7 +429,7 @@ img {
 	vertical-align: middle;
 } 
 
-h1, .gwf_form_head[colspan="5"], th[colspan="3"], th[colspan="4"], th[colspan="5"], th a {
+h1, .gwf_form_head[colspan="5"], th[colspan="3"], th[colspan="4"], th[colspan="5"], th a, .GWF_PB_head {
 	color: #fff;
 }
 
@@ -848,5 +848,22 @@ td.gwf_num a {
 }
 
 .fl {
+	margin-left: 5px;
+}
+
+article.GWF_PB_content {
+	padding: 20px;
+	background: #fff;
+	margin: 0 5px;
+	min-height: 240px;
+}
+
+footer.GWF_PB_foot {
+	margin: 10px 5px 0;
+	background: #fff;
+	padding: 5px;
+}
+
+footer.GWF_PB_foot div {
 	margin-left: 5px;
 }

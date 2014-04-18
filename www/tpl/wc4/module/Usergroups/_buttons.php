@@ -7,6 +7,7 @@ echo GWF_Button::generic($tLang->lang('btn_groups'), $tVars['href_groups'], 'gen
 echo GWF_Button::generic($tLang->lang('btn_search'), $tVars['href_search'], 'generic', '', $m->isMethodSelected('Search'));
 echo GWF_Button::generic($tLang->lang('btn_gallery'), $tVars['href_gallery'], 'generic', '', $m->isMethodSelected('AvatarGallery'));
 echo GWF_Button::generic(WC_HTML::lang('btn_site_masters'), GWF_WEB_ROOT.'site_masters', 'generic', '', false);
+echo GWF_Button::generic(WC_HTML::lang('btn_hackerspace'), GWF_WEB_ROOT.'places', 'generic', '', false);
 ?>
 </div>
 </div>
