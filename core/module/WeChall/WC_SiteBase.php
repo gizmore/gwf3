@@ -100,12 +100,13 @@ abstract class WC_SiteBase extends GDO
 			return htmlDisplayError(WC_HTML::lang('err_response', array(GWF_HTML::display($result), $this->displayName())));
 		}
 	
-		$result = explode(':', $result);
+		$result = explode(':', trim($result));
 		if (count($result) !== 7)
 		{
 			return htmlDisplayError(WC_HTML::lang('err_response', array(GWF_HTML::display($result), $this->displayName())));
 		}
 	
+		$i = 0;
 		$username = $result[$i++];
 		$rank = $result[$i++];
 		$score = $result[$i++];
@@ -119,8 +120,8 @@ abstract class WC_SiteBase extends GDO
 			return htmlDisplayError(WC_HTML::lang('err_response', array(GWF_HTML::display($result), $this->displayName())));
 		}
 	
-		$this->updateSite($maxscore, $usercount, $challcount);
+// 		$this->updateSite($maxscore, $usercount, $challcount);
 	
-		return array($score, $rank, $challssolved);
+		return array($score, $rank, $challssolved, $maxscore, $usercount, $challcount);
 	}
 }

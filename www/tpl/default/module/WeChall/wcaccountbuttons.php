@@ -33,6 +33,8 @@ echo WC_HTML::button('btn_edit_profile', GWF_WEB_ROOT.'profile_settings', $mo===
 echo WC_HTML::button('btn_view_groups', GWF_WEB_ROOT.'my_groups');
 echo WC_HTML::button('btn_guestbook', GWF_WEB_ROOT.'index.php?mo=WeChall&me=CreateGB', $mo==='Guestbook'||$me==='CreateGB');
 #echo WC_HTML::button('btn_helpdesk', GWF_WEB_ROOT.'helpdesk');
+echo WC_HTML::button('btn_hackerspace', GWF_WEB_ROOT.'places', $mo==='Profile'&&$me==='Places');
+
 echo '</div>'.PHP_EOL;
 echo '</div>'.PHP_EOL;
 echo '</nav>'.PHP_EOL;

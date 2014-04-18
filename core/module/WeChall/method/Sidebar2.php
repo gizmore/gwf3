@@ -174,7 +174,7 @@ final class WeChall_Sidebar2 extends GWF_Method
 		
 		if ($count > $max)
 		{
-			$box .= '<div><a href="'.$href.'">, '.$module->lang('more_online').'…</a></div>';
+			$box .= '<div><a href="'.$href.'">, '.$this->module->lang('more_online').'…</a></div>';
 		}
 		
 		return $this->sidebox($this->module->lang('lp_last_online', array(GWF_Time::humanDuration($cut, 1))), $box);

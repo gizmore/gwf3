@@ -726,4 +726,7 @@ $lang = array(
 
 	#5.08 minifixes
 	'more_online' => 'more',
+
+	#5.09 hackerspace
+	'btn_hackerspace' => 'Hackerspace',
 );

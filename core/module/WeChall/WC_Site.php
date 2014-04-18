@@ -778,16 +778,16 @@ class WC_Site extends WC_SiteBase
 	########################
 	### Update / Scoring ###
 	########################
-	/**
-	 * Override this method for scoring. Returns array($onsitescore, $onsiterank, $challssolved)
-	 * @param $url
-	 * @return array
-	 */
-	public function parseStats($url)
-	{
-		echo WC_HTML::error('err_parse_stub', array(__CLASS__));
-		return array(0, -1, 0, 0, -1, 0);
-	}
+// 	/**
+// 	 * Override this method for scoring. Returns array($onsitescore, $onsiterank, $challssolved)
+// 	 * @param $url
+// 	 * @return array
+// 	 */
+// 	public function parseStats($url)
+// 	{
+// 		echo WC_HTML::error('err_parse_stub', array(__CLASS__));
+// 		return array(0, -1, 0, 0, -1, 0);
+// 	}
 	
 	/**
 	 * Update Site Stats.
@@ -1185,14 +1185,14 @@ class WC_Site extends WC_SiteBase
 		}
 		elseif ($onlink)
 		{
-			$percent = $new_score / $maxscore * 100;
+			$percent = $maxscore == 0 ? 0 : $new_score / $maxscore * 100;
 			return sprintf('linked an account to %s with %.02f%% solved (+%d points).', $sitename, $percent, $scoregain);
 		}
 		else
 		{
 			$gain = $new_score - $old_score;
 			$dir = $gain > 0 ? 'gained' : 'lost';
-			$percent = $gain / $maxscore * 100;
+			$percent = $maxscore == 0 ? 0 : $gain / $maxscore * 100;
 			return sprintf('%s %.02f%% (%d points) on %s.', $dir, $percent, $scoregain, $sitename);
 		}
 	}
