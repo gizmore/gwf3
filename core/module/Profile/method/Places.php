@@ -34,8 +34,8 @@ final class Profile_Places extends GWF_Method
 	{
 		GWF_Website::addJavascript($this->googleMapsPath());
 		GWF_Website::addJavascript(GWF_WEB_ROOT_NO_LANG.'js/module/Profile/profile.js');
-		GWF_Website::addJavascript(GWF_WEB_ROOT_NO_LANG.'js/3p/fancybox/jquery.fancybox.pack.js');
-		GWF_Website::addCSS(GWF_WEB_ROOT_NO_LANG.'js/3p/fancybox/jquery.fancybox.css');
+// 		GWF_Website::addJavascript(GWF_WEB_ROOT_NO_LANG.'js/3p/fancybox/jquery.fancybox.pack.js');
+// 		GWF_Website::addCSS(GWF_WEB_ROOT_NO_LANG.'js/3p/fancybox/jquery.fancybox.css');
 		GWF_Website::addCSS(GWF_WEB_ROOT_NO_LANG.'css/profile_poi.css');
 		
 		$userid = GWF_Session::getUserID();
