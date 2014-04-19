@@ -63,7 +63,7 @@ final class Profile_Form extends GWF_Method
 			'about_me' => array(GWF_Form::MESSAGE, $profile->getVar('prof_about_me'), $this->module->lang('th_about_me'), '', 0, false),
 //			'showbday' => array(GWF_Form::CHECKBOX, !$profile->isBirthdayHidden(), $this->module->lang('th_showbday')),
 			'hidecountry' => array(GWF_Form::CHECKBOX, $profile->isCountryHidden(), $this->module->lang('th_hidecountry')),
-			'hidemail' => array(GWF_Form::CHECKBOX, $profile->isEmailHidden(), $this->module->lang('th_hidemail')),
+// 			'hidemail' => array(GWF_Form::CHECKBOX, $profile->isEmailHidden(), $this->module->lang('th_hidemail')),
 			'hideguests' => array(GWF_Form::CHECKBOX, $profile->isGuestHidden(), $this->module->lang('th_hideguest')),
 			'hiderobots' => array(GWF_Form::CHECKBOX, $profile->isRobotHidden(), $this->module->lang('th_hiderobot'), $this->module->lang('tt_hiderobot')),
 //			'hidden' => array(GWF_Form::CHECKBOX, $profile->isHidden(), $this->module->lang('th_hidden')),
