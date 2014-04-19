@@ -12,8 +12,8 @@ window.gwf.Profile = function(mapID, userID, translations)
 	this.mapOptions = {
 		zoom: 8,
 		minZoom: 7,
-		maxZoom: 14,
-		center: new google.maps.LatLng(-34.397, 150.644)
+		maxZoom: 18, 
+		center: new google.maps.LatLng(52.32227800, 10.22904400)
 	};
 
 	this.guestText = function() { return this.trans.guest; };

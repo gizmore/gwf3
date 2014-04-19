@@ -7,8 +7,7 @@ $left = $can - $have;
 $href_settings = GWF_WEB_ROOT.'profile_settings';
 $href_whitelist = GWF_WEB_ROOT.'index.php?mo=Profile&amp;me=POISWhitelist';
 echo GWF_Box::box($tLang->lang('poi_info', array($left, $can, $href_settings, $href_whitelist)));
-// $usage = '<ul><li>'.implode('</li><li>', $tLang->lang('poi_usage_data')).'</li></ul>'.PHP_EOL;
-$usage = '';
+$usage = '<ul><li>'.implode('</li><li>', $tLang->lang('poi_usage_data')).'</li></ul>'.PHP_EOL;
 echo GWF_Box::box($usage, $tLang->lang('poi_usage'));
 ?>
 <div id="profile_map"></div>
