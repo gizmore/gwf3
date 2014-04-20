@@ -133,7 +133,7 @@ class GWF_Module extends GDO
 	public function ajaxErr($err, $args=NULL) { $this->ajaxError($this->lang($err, $args)); }
 	public function ajaxError($error)
 	{
-		header('HTTP/1.1 401 Dumb Request');
+		header($_SERVER['SERVER_PROTOCOL'].' 401 Dumb Request');
 		die('{error:"'.str_replace('"', '\\"', $error).'"}');
 	}
 	
