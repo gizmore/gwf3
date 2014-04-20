@@ -54,6 +54,7 @@ final class Contact_SendMail extends GWF_Method
 		$mail = new GWF_Mail();
 		$mail->setSender(GWF_BOT_EMAIL);
 		$mail->setReceiver($user->getValidMail());
+		$mail->setReply($sendermail);
 		$mail->setSubject($this->module->langUser($user, 'mail_subj_mail', $sendermail));
 		$mail->setBody($this->module->langUser($user, 'mail_subj_body', array($user->displayUsername(), $sendermail, GWF_Message::display($_POST['message']))));
 		if (false === $mail->sendToUser($user)) {
@@ -84,5 +85,3 @@ final class Contact_SendMail extends GWF_Method
 		return new GWF_Form($this, $data);
 	}
 }
-
-?>

@@ -123,10 +123,9 @@ final class Contact_Form extends GWF_Method
 		$mail = new GWF_Mail();
 		$mail->setSender(GWF_BOT_EMAIL);
 		$mail->setReceiver($user->getValidMail());
+		$mail->setReply($email);
 		$mail->setSubject($this->module->langUser($user, 'mail_subj'));
 		$mail->setBody($this->module->langUser($user, 'mail_body', array($email, $message)));
 		return $mail->sendToUser($user);
 	}
 }
-
-?>

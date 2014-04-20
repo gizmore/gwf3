@@ -23,8 +23,12 @@ final class GWF_Mail
 	const GPG_PASSPHRASE = ''; #GWF_EMAIL_GPG_SIG_PASS;
 	const GPG_FINGERPRINT = ''; #GWF_EMAIL_GPG_SIG;
 
+	private $reply = '';
+	private $replyName = '';
 	private $receiver = '';
 	private $receiverName = '';
+	private $return = '';
+	private $returnName = '';
 	private $sender = '';
 	private $senderName = '';
 	private $subject = '';
@@ -36,9 +40,13 @@ final class GWF_Mail
 
 	private $allowGPG = true;
 
-	public function __construct() {}
+// 	public function __construct() {}
+	public function setReply($r) { $this->reply = $r; }
+	public function setReplyName($rn) { $this->replyName = $rn; }
 	public function setSender($s) { $this->sender = $s; }
 	public function setSenderName($sn) { $this->senderName = $sn; }
+	public function setReturn($r) { $this->return = $r; }
+	public function setReturnName($rn) { $this->returnName = $rn; }
 	public function setReceiver($r) { $this->receiver = $r; }
 	public function setReceiverName($rn) { $this->receiverName = $rn; }
 	public function setSubject($s) { $this->subject = $this->escapeHeader($s); }
@@ -51,31 +59,38 @@ final class GWF_Mail
 	public function removeAttachment($title) { unset($this->attachments[$title]); }
 	
 	private function escapeHeader($h) { return str_replace("\r", '', str_replace("\n", '', $h)); }
-
+	
+	private function getUTF8Reply()
+	{
+		if ($this->reply === '')
+		{
+			return $this->getUTF8Sender();
+		}
+		return $this->getUTF8($this->reply, $this->replyName);
+	}
+	
+	private function getUTF8Return()
+	{
+		if ($this->reply === '')
+		{
+			return $this->getUTF8Sender();
+		}
+		return $this->getUTF8($this->return, $this->returnName);
+	}
+	
+	private function getUTF8($email, $name)
+	{
+		return $name === '' ? $email : '"'.$this->getUTF8Encoded($name)."\" <{$email}>";
+	}
+	
 	private function getUTF8Sender()
 	{
-		$sn = $this->senderName;
-		if ($sn === '')
-		{
-			return $this->sender;
-		}
-		else
-		{
-			return '"'.$this->getUTF8Encoded($sn)."\" <{$this->sender}>";
-		}
+		return $this->getUTF8($this->sender, $this->senderName);
 	}
 	
 	private function getUTF8Receiver()
 	{
-		$rn = $this->receiverName;
-		if ($rn === '')
-		{
-			return $this->receiver;
-		}
-		else
-		{
-			return '"'.$this->getUTF8Encoded($rn)."\" <{$this->receiver}>";
-		}
+		return $this->getUTF8($this->receiver, $this->receiverName);
 	}
 
 	private function getUTF8Subject() { return $this->getUTF8Encoded($this->subject); }
@@ -184,8 +199,8 @@ final class GWF_Mail
 			."Content-Transfer-Encoding: 8bit".self::HEADER_NEWLINE
 			."X-Mailer: PHP".self::HEADER_NEWLINE
 		    .'From: '.$from.self::HEADER_NEWLINE
-        	.'Reply-To: '.$from.self::HEADER_NEWLINE
-        	.'Return-Path: '.$from;
+        	.'Reply-To: '.$this->getUTF8Reply().self::HEADER_NEWLINE
+        	.'Return-Path: '.$this->getUTF8Return();
 		$encrypted = $this->encrypt($message);
 		if (GWF_DEBUG_EMAIL & 16)
 		{
@@ -213,8 +228,8 @@ final class GWF_Mail
 			."Content-Transfer-Encoding: 8bit".self::HEADER_NEWLINE
 			."X-Mailer: PHP".self::HEADER_NEWLINE
 		    .'From: '.$from.self::HEADER_NEWLINE
-        	.'Reply-To: '.$from.self::HEADER_NEWLINE
-        	.'Return-Path: '.$from;
+        	.'Reply-To: '.$this->getUTF8Reply().self::HEADER_NEWLINE
+        	.'Return-Path: '.$this->getUTF8Return();
 		
 		$message  = "--$bound_mix\n";
 		$message .= "Content-Type: multipart/alternative; boundary=\"$bound_alt\"\n";
