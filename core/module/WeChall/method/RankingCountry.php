@@ -35,29 +35,30 @@ final class WeChall_RankingCountry extends GWF_Method
 		
 		$users = GWF_TABLE_PREFIX.'user';
 		$countries = GWF_TABLE_PREFIX.'country';
-		$hide_ranking = 'AND user_options&0x10000000=0';
+		$hide_ranking = 'user_options&0x10000000=0';
 // 		$deleted = GWF_User::DELETED;
+		$desc = "ORDER BY `user_level` DESC";
+		$not_deleted = "`user_options`&2=0";
+		$country_condition = "$not_deleted AND `user_countryid` = `country_id` AND $hide_ranking";
+		$ranked_condition = "$country_condition $desc";
 		$query = 
 			"SELECT ".
 			"`c`.`country_id`, ".
 			"`c`.`country_name` AS `countryname`, ".
-			"COUNT(`user_id`) AS `users`, ".
-			"(SELECT `user_name` FROM `$users` WHERE `user_countryid`=country_id $hide_ranking ORDER BY `user_level` DESC LIMIT 1) AS `topuser`, ".
-			"MAX(`user_level`) as `topscore`, ".
-			"AVG(`u`.`user_level`) AS `avg`, ".
+			"COUNT(`u`.`user_id`) AS `users`, ".
 			"SUM(`user_level`) AS `totalscore`, ".
-				"MAX(`user_level`) + ".
-				"IFNULL((SELECT `user_level` FROM `$users` AS `u2` WHERE `u2`.`user_countryid`=`country_id` $hide_ranking ORDER BY `user_level` DESC LIMIT 1,1), 0) +".
-				"IFNULL((SELECT `user_level` FROM `$users` AS `u2` WHERE `u2`.`user_countryid`=`country_id` $hide_ranking ORDER BY `user_level` DESC LIMIT 2,1), 0) ".
-			"AS `top3`, ".
-			'ROUND(SUM(`user_level`) / `c`.`country_pop` * 1000, 2) AS `spc` '.
+			"MAX(`u`.`user_level`) AS `topscore`, ".
+			"(SELECT `u`.`user_name` $desc LIMIT 1,1) as `topuser`, ".
+			"AVG(`u`.`user_level`) AS `avg`, ".
+			"SUM(`u`.`user_level`) AS `totalscore`, ".
+			 "(SELECT SUM(`u`.`user_level`) $desc LIMIT 3) as `top3`, ".
+			'ROUND(SUM(`u`.`user_level`) / `c`.`country_pop` * 1000, 2) AS `spc` '.
 			"FROM `$countries` AS `c` ".
-			"JOIN `$users` AS `u` ON `u`.`user_countryid` = `c`.`country_id` AND `u`.`user_options`&2=0 ".
-			"WHERE `c`.`country_id` > 0 ".#$hide_ranking ".
-			"GROUP BY `country_id` ".
-			"ORDER BY $by $dir; ";
-		
-//		echo "$query<br/>";
+ 			"LEFT JOIN `$users` AS `u` ON $country_condition ".
+ 			"WHERE `c`.`country_id` > 0 ".
+ 			"AND `user_level` > 0 ".
+			"GROUP BY  `c`.`country_id` ".
+			"ORDER BY $by $dir";
 		
 		$db = gdo_db();
 		
