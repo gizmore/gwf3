@@ -35,8 +35,10 @@ final class GWF_ShowError extends GWF_Method
 			return GWF_HTML::err('ERR_NO_PERMISSION');
 		}
 
-		@header(Common::getProtocol().' '.$code.' '.$codes[$code]);
-
+		# FIXME: getProtocol() gives http/https
+		#@header(Common::getProtocol().' '.$code.' '.$codes[$code]);
+		@header('HTTP/1.1 '.$code.' '.$codes[$code]);
+		
 		# Generate template
 		$tVars = array(
 			'code' => $code,
