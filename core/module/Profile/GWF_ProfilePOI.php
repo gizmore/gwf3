@@ -29,4 +29,33 @@ final class GWF_ProfilePOI extends GDO
 	{
 		return $id == 0 ? true : self::table(__CLASS__)->countRows("pp_id = $id AND pp_uid=$userid") === 1;
 	}
+	
+	public static function wherePermissions()
+	{
+		$user = GWF_User::getStaticOrGuest();
+		
+		if ($user->isAdmin())
+		{
+			return '1';
+		}
+
+		$uid = $user->getID();
+		$level = $user->getLevel();
+		$whitelist = GDO::table('GWF_ProfilePOIWhitelist')->getTableName();
+		$white_on = GWF_Profile::POI_WHITELIST;
+		$user_deleted = GWF_User::DELETED;
+
+		$whereown = "pp_uid=$uid";
+		$whereguest = "pp_uid=0";
+		$wherealive = "(pp_uid=0 OR (user_options&$user_deleted=0))";
+		$wherescore = "prof_options&$white_on=0 AND prof_poi_score<=$level";
+		$wherewhite = "prof_options&$white_on AND (SELECT 1 FROM $whitelist WHERE pw_uida=pp_uid AND pw_uidb=$uid)";
+		
+		return "$wherealive AND ($whereguest OR $whereown OR $wherescore OR $wherewhite)";
+	}
+
+	public static function whereLocations($minlat, $maxlat, $minlon, $maxlon)
+	{
+		return "pp_lat BETWEEN $minlat AND $maxlat AND pp_lon BETWEEN $minlon AND $maxlon";
+	}
 }

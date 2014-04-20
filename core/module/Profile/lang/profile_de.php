@@ -147,4 +147,13 @@ $lang = array(
 		'Ein Klick auf einen Ihrer POI benennt diesen um.',
 		'Bitte fügen Sie keine Wohnorte anderer Nutzer hinzu!',
 	),
+	'poi_helper' => 'Places Anwendung',
+	'btn_poi_init' => 'Starte Places',
+	'btn_poi_init_sensor' => 'Starte Places mit meinem Standort',
+	'ph_poi_jump' => 'Springe zu dieser Adresse',
+	'err_poi_jump' => 'Die Adresse konnte nicht gefunden werden.',
+	'poi_privacy_t' => 'Datenschutzhinweise',
+	'poi_privacy' => 'Ich nehmen an Sie sind besorgt über Ihre Privatsphäre und nutzen diese Anwendung nur ungerne.<br/>Ihre abgerufenen Kartenabschnitte tauchen in den Server und Webseitenlogs auf.<br/>Google selbst wird vermutlich Ihre Anfragen sammeln und eventuell zuordnen können.<br/>Neben diesen bedenklichen Probleme versucht diese Webseite keinen Zusammenhang zu Ihrem Standort permanent herzustellen.<br/>Die Webseiten-Logfiles werden regelmäßig auf einen anderen Rechner verschoben. Die Webserver logfiles können nur eine Verknüpfung zwischen Ihrer IP und den abgerufenen Kartenabschnitten herstellen.<br/>Die POI Datenbank speichert nur die eingegebenen POI Daten und nichts weiter.',
+	'poi_stats_t' => 'POI Statistik',
+	'poi_stats' => 'In der Datenbank befinden sich %s POI von denen Sie %s auf der Karte sehen können.',
 );

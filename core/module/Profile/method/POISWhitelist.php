@@ -22,6 +22,10 @@ final class Profile_POISWhitelist extends GWF_Method
 		{
 			$back .= $this->onClear(false, true);
 		}
+		elseif (isset($_POST['save_settings']))
+		{
+			$back .= $this->onSaveSettings();
+		}
 		return $back.$this->templateWhitelist();
 	}
 
@@ -44,6 +48,7 @@ final class Profile_POISWhitelist extends GWF_Method
 		$tVars = array(
 			'form_add' => $this->formAdd(),
 			'form_clear' => $this->formClear(),
+			'form_settings' => $this->formSettings(),
 			'table' => $table,
 			'where' => $where,
 			'by' => $by,
@@ -162,4 +167,32 @@ final class Profile_POISWhitelist extends GWF_Method
 		}
 		return '';
 	}
+	
+	private function formSettings()
+	{
+		$profile = GWF_Profile::getProfile(GWF_Session::getUserID());
+		$data = array(
+			'use_white' => array(GWF_Form::CHECKBOX, $profile->isPOIWhitelisting(), $this->l('th_poi_white'), $this->l('tt_poi_white')),
+			'save_settings' => array(GWF_Form::SUBMIT, $this->l('btn_edit')),
+		);
+		return new GWF_Form($this, $data);
+		
+	}
+	
+	private function onSaveSettings()
+	{
+		$form = $this->formSettings();
+		if (false !== ($error = $form->validate($this->module)))
+		{
+			return $error;
+		}
+		$profile = GWF_Profile::getProfile(GWF_Session::getUserID());
+		if (!$profile->saveOption(GWF_Profile::POI_WHITELIST, isset($_POST['use_white'])))
+		{
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
+		}
+		return $this->module->message('msg_edited');
+	}
+	
+	
 }

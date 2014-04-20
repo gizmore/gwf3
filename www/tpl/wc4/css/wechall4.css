@@ -286,7 +286,7 @@ select {
 	white-space: nowrap;
 }
 
-.gwf_button, input[type="submit"] {
+.gwf_button, input[type="submit"], button {
 	border: 1px solid #000;
 	color: #000;
 	background: url(../img/grad.gif) repeat-x;
@@ -303,7 +303,7 @@ select {
 	width: auto;
 }
 
-.gwf_button:HOVER,input[type=submit]:HOVER,.gwf_btn_sel {
+.gwf_button:HOVER,input[type=submit]:HOVER,.gwf_btn_sel,button:hover {
 	border: 2px solid #000;
 	background-image: url(../img/grad2.gif);
 	padding: 0px 4px;
@@ -866,4 +866,8 @@ footer.GWF_PB_foot {
 
 footer.GWF_PB_foot div {
 	margin-left: 5px;
+}
+
+#jump_address {
+	width: 320px;
 }

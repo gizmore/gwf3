@@ -12,7 +12,7 @@ final class GWF_ProfileInstall
 			'pnt_pois' => array('0', 'int', '0'),
 			'pnt_add_pois' => array('0', 'int', '0'),
 			'pnt_show_pois' => array('0', 'int', '0'),
-			'maps_api_key' => array('', 'text', '0', '32'),
+			'maps_api_key' => array('', 'text', '0', '64'),
 		));
 	}
 }

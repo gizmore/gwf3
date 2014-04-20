@@ -147,4 +147,13 @@ $lang = array(
 		'A click on your own POI renames them.',
 		'Please do not add the homes of other users by any means.',
 	),
+	'poi_helper' => 'Places Application',
+	'btn_poi_init' => 'Start Places',
+	'btn_poi_init_sensor' => 'Start Places with my current location',
+	'ph_poi_jump' => 'Jump to an address',
+	'err_poi_jump' => 'The address could not been found.',
+	'poi_privacy_t' => 'Privacy gotchas',
+	'poi_privacy' => 'I bet some are worried about privacy and refuse to use this page.<br/>Your country coordinates currently occur in apache and gwf logfiles.<br/>Google probably records your requests as well.<br/>Beside these evil problems this server is trying to not make a connection to your location.<br/>gwf logfiles are removed from the server regularly and the apache logs only connect IPs with your requests.<br/>The POI database only stores your POI data you can choose on your own and nothing else.',
+	'poi_stats_t' => 'POI Statistics',
+	'poi_stats' => 'There are %s POI in the database wheras %s are visible to you.',
 );

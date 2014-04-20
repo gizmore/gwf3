@@ -1,5 +1,5 @@
 window.gwf = {};
-window.gwf.Profile = function(mapID, userID, translations)
+window.gwf.Profile = function(mapID, userID, translations, left, is_admin, api_key, protocol)
 {
 	this.map = null;
 	this.mapID = mapID;
@@ -9,6 +9,10 @@ window.gwf.Profile = function(mapID, userID, translations)
 	this.loadTimer = null;
 	this.loadDelay = 600;
 	this.initial = true;
+	this.left = left;
+	this.is_admin = is_admin;
+	this.api_key = api_key;
+	this.protocol = protocol;
 	this.mapOptions = {
 		zoom: 8,
 		minZoom: 7,
@@ -16,20 +20,29 @@ window.gwf.Profile = function(mapID, userID, translations)
 		center: new google.maps.LatLng(52.32227800, 10.22904400)
 	};
 
+	this.getApiKeyArg = function() { return this.api_key === '' ? '' : '&api_key='+this.api_key; };
 	this.guestText = function() { return this.trans.guest; };
 	this.deleteConfirmText = function() { return this.trans.remove; };
 	this.poiPromptText = function() { return this.trans.rename; };
+	this.errCountryText = function() { return this.trans.err_jump; };
 	
-	this.init = function()
+	this.init = function(geolocate)
 	{
+		$('#jump_address').onEnterKey(this.jumpToAddress.bind(this));
+		$('#poi_init').hide();
 		this.resizeMap();
-		this.getUserLocation();
+		this.getUserLocation(geolocate);
+		$('html,body').animate({scrollTop: $('#poi_helper').offset().top}, 'slow');
 	};
 	
 	this.getCanvas = function() { return document.getElementById(this.mapID); };
 
 	this.calcMapWidth = function() { return '100%'; };
-	this.calcMapHeight = function() { return (document.getElementById('page_wrap').clientHeight-20) + 'px'; };
+	this.calcMapHeight = function()
+	{
+		var helper = document.getElementById('poi_helper').clientHeight;
+		return (document.getElementById('page_wrap').clientHeight-20-helper) + 'px';
+	};
 	
 	this.resizeMap = function()
 	{
@@ -39,8 +52,12 @@ window.gwf.Profile = function(mapID, userID, translations)
 		canvas.style.height = this.calcMapHeight();
 	};
 	
-	this.getUserLocation = function()
+	this.getUserLocation = function(geolocate)
 	{
+		if (!geolocate)
+		{
+			this.initGoogle();
+		}
 		try
 		{
 			navigator.geolocation.getCurrentPosition(this.gotLocation.bind(this), this.locationFailed.bind(this));
@@ -320,8 +337,52 @@ window.gwf.Profile = function(mapID, userID, translations)
 	
 	this.initPOI = function(poi)
 	{
-		poi.pp_uid == this.userID ? this.addMarker(poi) : this.addPOI(poi);
+		(poi.pp_uid == this.userID) || this.is_admin ? this.addMarker(poi) : this.addPOI(poi);
 	};
 	
-	this.init();
+	this.jumpToAddress = function()
+	{
+		var address = $('#jump_address').val();
+		if (address !== '')
+		{
+			this.requestAddressLocation(address);
+		}
+	};
+	
+	this.getAddressURI = function(country)
+	{
+		return sprintf('%s://maps.googleapis.com/maps/api/geocode/json?address=%s&sensor=false%s', this.protocol, country, this.getApiKeyArg());
+	};
+	
+	this.requestAddressLocation = function(address)
+	{
+		$.ajax(this.getAddressURI(address), {
+			context: this,
+			success: this.gotCountryLocation,
+			error: this.ajaxError
+		});
+	};
+	
+	this.noCountryLocation = function(xhr, status, error)
+	{
+		this.noCountryError();
+	};
+	
+	this.noCountryError = function()
+	{
+		alert(this.errCountryText());
+	};
+	
+	this.gotCountryLocation = function(data, status, xhr)
+	{
+		try
+		{
+			var loc = data.results[0].geometry.location;
+			this.map.panTo(new google.maps.LatLng(loc.lat, loc.lng));
+		}
+		catch (e)
+		{
+			this.noCountryError();
+		}
+	};
 };

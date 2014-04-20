@@ -9,6 +9,9 @@ $headers = array(
 );
 
 echo '<div class="fl">';
+echo $tVars['form_settings']->templateX($tVars['module']->lang('ft_settings'));
+echo '</div>'.PHP_EOL;
+echo '<div class="fl">';
 echo $tVars['form_add']->templateX($tLang->lang('ft_add_whitelist'));
 echo '</div>'.PHP_EOL;
 echo '<div class="fl">';

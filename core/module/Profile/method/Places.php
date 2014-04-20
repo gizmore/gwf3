@@ -27,24 +27,31 @@ final class Profile_Places extends GWF_Method
 	
 	private function googleMapsPath()
 	{
-		return Common::getProtocol().'://maps.googleapis.com/maps/api/js?sensor=true'.$this->googleAPIKey();
+		return Common::getProtocol().'://maps.googleapis.com/maps/api/js?sensor=false'.$this->googleAPIKey();
 	}
 	
 	private function templatePlaces()
 	{
 		GWF_Website::addJavascript($this->googleMapsPath());
-		GWF_Website::addJavascript(GWF_WEB_ROOT_NO_LANG.'js/module/Profile/profile.js');
+		GWF_Website::addJavascript(GWF_WEB_ROOT_NO_LANG.'js/module/Profile/profile.js?v=57');
 // 		GWF_Website::addJavascript(GWF_WEB_ROOT_NO_LANG.'js/3p/fancybox/jquery.fancybox.pack.js');
 // 		GWF_Website::addCSS(GWF_WEB_ROOT_NO_LANG.'js/3p/fancybox/jquery.fancybox.css');
-		GWF_Website::addCSS(GWF_WEB_ROOT_NO_LANG.'css/profile_poi.css');
+// 		GWF_Website::addCSS(GWF_WEB_ROOT_NO_LANG.'css/profile_poi.css');
 		
-		$userid = GWF_Session::getUserID();
+		$user = GWF_User::getStaticOrGuest();
+		$userid = $user->getID();
+		$table = GDO::table('GWF_ProfilePOI');
 		$tVars = array(
 			'user_id' => $userid,
+			'is_admin' => $user->isAdmin() ? 'true' : 'false',
+			'total' => $table->countRows(),
+			'visible' => $table->countRows(GWF_ProfilePOI::wherePermissions(), array('users', 'profiles', 'whitelist')),
 			'js_trans' => $this->jsTrans(),
 			'form_delete' => $this->formDelete(),
 			'pois' => GWF_ProfilePOI::getPOICount($userid),
 			'maxp' => $this->module->cfgAllowedPOIs(),
+			'api_key' => $this->module->cfgMapsApiKey(),
+			'protocol' => Common::getProtocol(),
 		);
 		
 		return $this->module->templatePHP('places.php', $tVars);
@@ -56,6 +63,7 @@ final class Profile_Places extends GWF_Method
 			'guest' => GWF_HTML::lang('guest'),
 			'remove' => $this->l('prompt_delete'),
 			'rename' => $this->l('prompt_rename'),
+			'err_jump' => $this->l('err_poi_jump'),
 		);
 		return json_encode($data);
 	}

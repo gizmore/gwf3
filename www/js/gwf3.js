@@ -333,3 +333,15 @@ if (!Function.prototype.bind)
 		return fBound;
 	};
 }
+
+$.fn.onEnterKey = function(closure)
+{
+	$(this).keypress(function(event) {
+		var code = event.keyCode ? event.keyCode : event.which;
+		if (code === 13)
+		{
+			closure();
+			return false;
+		}
+	});
+};
