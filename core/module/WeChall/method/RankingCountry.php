@@ -59,7 +59,7 @@ final class WeChall_RankingCountry extends GWF_Method
 //  			"AND `users` >= 10 ".
  			"AND `user_level` > 0 ".
 			"GROUP BY  `c`.`country_id` ".
- 			"HAVING users >= 5 ".
+//   			"HAVING users >= 3 ".
 			"ORDER BY $by $dir";
 		
 		$db = gdo_db();

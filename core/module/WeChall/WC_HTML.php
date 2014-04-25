@@ -331,7 +331,7 @@ final class WC_HTML
 	
 	private static function onlineMoreAnchor(Module_WeChall $module)
 	{
-		return GWF_HTML::anchor(GWF_WEB_ROOT.'users/with/All/by/user_lastactivity/DESC/page-1', $module->lang('more').'...');
+		return GWF_HTML::anchor(GWF_WEB_ROOT.'users/with/All/by/user_lastactivity/DESC/page-1', ', '.$module->lang('more_online').'…');
 	}
 	
 	##############
