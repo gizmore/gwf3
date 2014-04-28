@@ -730,4 +730,8 @@ $lang = array(
 
 	#5.09 hackerspace
 	'btn_hackerspace' => 'Hackerspace',
+		
+	#5.10 SiteRSS
+	'siterss_title' => 'Recent activity on %s',
+	'siterssi_title' => '%s activity',
 );

@@ -1,5 +1,6 @@
-<rss version="2.0">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
+		<atom:link href="<?php echo htmlspecialchars(Common::getAbsoluteURL($tVars['title_link'], false)); ?>" rel="self" type="application/rss+xml" />
 		<title><?php echo GWF_HTML::display($tVars['feed_title']); ?></title>
 		<link><?php echo htmlspecialchars(Common::getAbsoluteURL($tVars['title_link'], false)); ?></link>
 		<description><?php echo GWF_HTML::display($tVars['feed_description']); ?></description>
@@ -7,9 +8,9 @@
 		<lastBuildDate><?php echo $tVars['build_date']; ?></lastBuildDate>
 		<pubDate><?php echo $tVars['pub_date']; ?></pubDate>
 		<image>
-			<title><?php echo GWF_SITENAME; ?></title>
+			<title><?php echo GWF_HTML::display($tVars['feed_title']); ?></title>
 			<url><?php echo $tVars['image_url']?></url>
-			<link><?php echo $tVars['image_link']?></link>
+			<link><?php echo htmlspecialchars(Common::getAbsoluteURL($tVars['title_link'], false)); ?></link>
 			<width><?php echo $tVars['image_width']?></width>
 			<height><?php echo $tVars['image_height']?></height>
 		</image>

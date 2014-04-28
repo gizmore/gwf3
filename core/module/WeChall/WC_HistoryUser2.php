@@ -14,7 +14,8 @@ final class WC_HistoryUser2 extends GDO implements GWF_RSSItem
 	###########
 	public function getRSSTitle() { return WC_HTML::lang('siterssi_title', array($this->getSite()->displayName())); }
 	public function getRSSDescription() { return $this->getUser()->getVar('user_name').' '.$this->displayComment(); }
-	public function getRSSLink() { return GWF_WEB_ROOT.'site/history/'.$this->getSite()->displayName(); }
+	public function getRSSLink() { return null; }
+// 	public function getRSSLink() { return GWF_WEB_ROOT.'site/history/'.$this->getSite()->displayName(); }
 // 	public function getRSSGUID() { return null; } #$this->getRSSLink(); }
 	public function getRSSGUID() { return $this->getRSSLink(); }
 	public function getRSSPubDate() { return GWF_Time::getDate(14, $this->getVar('userhist_date')); }
