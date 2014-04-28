@@ -12,8 +12,9 @@ final class Common
 	############
 	public static function getGet($var, $default=false) { return true === isset($_GET[$var]) ? $_GET[$var] : $default; }
 	public static function cmpGet($var, $cmp, $default=false) { return $cmp === self::getGet($var, $default) ? true : $default; }
-	public static function getGetInt($var, $default=0) { return true === isset($_GET[$var]) ? ((int)$_GET[$var]) : $default; }
-	public static function getGetString($var, $default='') { return true === isset($_GET[$var]) ? (string)$_GET[$var] : $default; }
+	public static function getGetInt($var, $default=0) { return true === isset($_GET[$var]) && is_string($_GET[$var]) ? ((int)$_GET[$var]) : $default; }
+	public static function getGetFloat($var, $default=0) { return true === isset($_GET[$var]) && is_string($_GET[$var]) ? ((float)$_GET[$var]) : $default; }
+	public static function getGetString($var, $default='') { return true === isset($_GET[$var]) && is_string($_GET[$var]) ? $_GET[$var] : $default; }
 	public static function getGetArray($var, $default=false) { return (true === isset($_GET[$var]) && is_array($_GET[$var])) ? $_GET[$var] : $default; }
 	public static function displayGet($var, $default='') { return true === isset($_GET[$var]) ? htmlspecialchars($_GET[$var], ENT_QUOTES) : $default; }
 

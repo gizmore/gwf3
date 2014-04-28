@@ -4,10 +4,21 @@
  * This class replaced WC_HistoryUser.
  * @author gizmore
  */
-final class WC_HistoryUser2 extends GDO
+final class WC_HistoryUser2 extends GDO implements GWF_RSSItem
 {
 	public static $HISTORY_TYPES = array('link', 'unlink', 'gain', 'lost', 'ban', 'unban', 'unknown');
 	const NO_XSS = 0x01;
+	
+	###########
+	### RSS ###
+	###########
+	public function getRSSTitle() { return WC_HTML::lang('siterssi_title', array($this->getSite()->displayName())); }
+	public function getRSSDescription() { return $this->getUser()->getVar('user_name').' '.$this->displayComment(); }
+	public function getRSSLink() { return GWF_WEB_ROOT.'site/history/'.$this->getSite()->displayName(); }
+// 	public function getRSSGUID() { return null; } #$this->getRSSLink(); }
+	public function getRSSGUID() { return $this->getRSSLink(); }
+	public function getRSSPubDate() { return GWF_Time::getDate(14, $this->getVar('userhist_date')); }
+	
 	
 	###########
 	### GDO ###
@@ -38,6 +49,7 @@ final class WC_HistoryUser2 extends GDO
 		
 		);
 	}
+	public function getUser() { return $this->getVar('userhist_uid'); }
 
 	###############
 	### Display ###

@@ -92,6 +92,14 @@ final class GWF_User extends GDO
 	 * @return GWF_User
 	 */
 	public static function getByEmail($email) { return self::table(__CLASS__)->selectFirstObject('*', 'user_email=\''.self::escape($email).'\''); }
+	
+	/**
+	 * Get all users inside a group.
+	 * FIXME: This returns not an array of GWF_User!!!!
+	 * @param string $groupname
+	 * @return array
+	 */
+	public static function getAllInGroup($groupname) { return GWF_UserSelect::getUsers($groupname); }
 
 	############
 	### Lang ###
