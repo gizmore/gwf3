@@ -26,9 +26,9 @@ $lang = array(
 		'Example:<br/>'.
 		'Imagine Peter has got 30000 points on HackQuest, from a maximum of 100000 points.<br/>'.
 		'This means Peter has solved 30%% on Hackquest.<br/>'.
-		'This percentage is adjusted with a formula (p*p/100) that makes higher percentages relatively worth more than lower percentages.<br/>'.
-		'So on WeChall he gets 9%% (30*30/100) of the HackQuest sitescore for that.<br/>'.
-		'HackQuest currently has a score of 19698, so Peter gets 1773 rankpoints.<br/>'.
+		'This percentage p is adjusted with a formula pow(p,1+100/97) that makes higher percentages relatively worth more than lower percentages. The 100 is an admin-adjustable factor and 97 is the number of challenges on HackQuest.<br/>'.
+		'So on WeChall he gets 9%% (pow(30%%,2.03)) of the HackQuest sitescore for that.<br/>'.
+		'HackQuest currently has a score of 19698, so Peter gets 1708 rankpoints.<br/>'.
 		'<br/>'.
 		'The admins can manually adjust the base score for sites.<br/>'.
 		'It may be possible that a site with less or easier challenges may get a lower score than a site with lots of difficult challs.<br/>'.

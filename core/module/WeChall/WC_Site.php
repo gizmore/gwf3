@@ -1240,13 +1240,6 @@ class WC_Site extends WC_SiteBase
 			$basescore = $this->getBasescore();
 			$average = $this->getAverage();
 			$challcnt = $this->getChallcount();
-			$onsitescore = $this->getOnsiteScore();
-			
-			if ($onsitescore === 0)
-			{
-				$onsitescore = 0.0000001;
-			}
-			
 			$spc = $this->getVar('site_spc');
 			
 			$basescore += $spc * $challcnt;
