@@ -114,7 +114,11 @@ final class WeChall_RankingTag extends GWF_Method
 		$uid = $user->getVar('user_id');
 		$score = $this->calcScore($user, $bit);
 		$regat = GWF_TABLE_PREFIX.'wc_regat';
-		$query = "SELECT regat_uid, SUM(regat_score) AS sum FROM $regat WHERE regat_tagbits&$bit GROUP BY regat_uid HAVING sum>$score OR (sum=$score AND regat_uid<$uid)";
+		$query = "SELECT regat_uid, SUM(regat_score) AS sum ".
+			"FROM $regat ".
+			"WHERE regat_tagbits&$bit AND regat_options&4=0 ".
+			"GROUP BY regat_uid ".
+			"HAVING sum>$score OR (sum=$score AND regat_uid<$uid)";
 		if (false === ($result = $db->queryRead($query, false))) {
 			return -1;
 		}
@@ -131,10 +135,10 @@ final class WeChall_RankingTag extends GWF_Method
 		$query = 
 			"SELECT user_id, user_name, user_level, user_countryid, B.sum, regat_sid, regat_score, regat_solved ".
 			"FROM $regat AS A ".
-			"JOIN (SELECT regat_uid, SUM(regat_score) AS sum FROM $regat WHERE regat_tagbits&$bit GROUP BY regat_uid ORDER BY sum DESC LIMIT $from, $ipp) AS B ON A.regat_uid = B.regat_uid ".
+			"JOIN (SELECT regat_uid, SUM(regat_score) AS sum FROM $regat WHERE regat_tagbits&$bit GROUP BY regat_uid ORDER BY sum DESC, regat_uid ASC LIMIT $from, $ipp) AS B ON A.regat_uid = B.regat_uid ".
 			"JOIN $users AS U on user_id=A.regat_uid ".
-			"WHERE regat_options&4=0 ".
-			"ORDER BY sum DESC";
+			"WHERE regat_options&4=0 AND user_options&0x10000000=0 ".
+			"ORDER BY sum DESC, user_id ASC";
 		
 		$back = array();
 		if (false === ($result = $db->queryRead($query))) {
