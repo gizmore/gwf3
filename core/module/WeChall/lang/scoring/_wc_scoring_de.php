@@ -28,7 +28,7 @@ $lang = array(
 		'Peter hat auf HackQuest 30.000 Punkte von 100.000 Punkten erreicht.<br/>'.
 		'Damit hat er 30%% der Seite gelöst.<br/>'.
 		'Dieser Anteil p wird mit der Formel pow(p,1+100/97) relativiert, wodurch höhere Anteile relativ mehr Wert sind als mehrere Kleine. Der 100 ist ein Admin einstellbaren Faktor und 97 ist die Anzahl der HackQuest Challenges.<br/>'.
-		'Folglich bekommt er auf WeChall 9%% (pow(30%,2.03)) der Seitenpunktzahl von HackQuest.<br/>'.
+		'Folglich bekommt er auf WeChall 9%% (pow(30%%,2.03)) der Seitenpunktzahl von HackQuest.<br/>'.
 		'Da HackQuest zur Zeit eine Seitenpunktzahl von 19698 Punkten besitzt, bekommt Peter 1708 Rankingpunkte.<br/>'.
  		'<br/>'.
 		'Administratoren können die Basispunktzahl von Seiten manuell anpassen.<br/>'.

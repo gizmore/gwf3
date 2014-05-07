@@ -27,7 +27,7 @@ $lang = array(
 		'Imaginez que Peter a 30000 points sur HackQuest, sur un maximum de 100000 points.<br/>'.
 		'Cela signifie que Peter a résolu 30%% de Hackquest.<br/>'.
 		'Ce pourcentage p est ajusté avec la formule pow(p,1+100/97) qui donne davantage de valeur aux plus grands pourcentages, comparativement aux pourentages faibles. Le 100 est un facteur réglable et 97 est le nombre de challenges sur HackQuest.<br/>'.
-		'Il obtient donc 9%% (pow(30%,2.03)) des points de HackQuest sur WeChall.<br/>'.
+		'Il obtient donc 9%% (pow(30%%,2.03)) des points de HackQuest sur WeChall.<br/>'.
 		'HackQuest a actuellement un score de 19698, donc Peter aura 1708 points de classement.<br/>'.
 		'<br/>'.
 		'Les administrateurs peuvent ajuster manuellement le score de base pour chaque site.<br/>'.
@@ -35,4 +35,3 @@ $lang = array(
 		'<br/>'.
 		'N\'hésitez pas à poser des questions sur le <a href="%s">forum</a> si quelque chose ne vous paraît pas clair.',
 );
-?>
