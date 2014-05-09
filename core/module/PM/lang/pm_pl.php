@@ -191,6 +191,8 @@ $lang = array(
 	'cfg_pm_limit_per_level' => 'PM limit per level',
 	'cfg_pm_own_bot' => 'PM own bot',
 	'th_reason' => 'Reason',
+	# v2.09 (pmo_level)
+	'err_user_pmo_level' => 'This user requires you to have a userlevel of %s to send him PM.',
+	'th_pmo_level' => 'Min userlevel of sender',
+	'tt_pmo_level' => 'Set a minimal userlevel requirement to allow to send you PM',
 );
-
-?>

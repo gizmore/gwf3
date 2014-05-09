@@ -61,6 +61,7 @@ final class PM_Options extends GWF_Method
 		$data = GWF_FormGDO::dataFromGDOExclusive($this->module, $this->options, array('pmo_uid', 'pmo_options'));
 		$data['email'] = array(GWF_Form::CHECKBOX, $this->options->isOptionEnabled(GWF_PMOptions::EMAIL_ON_PM), $this->module->lang('th_pmo_options&'.GWF_PMOptions::EMAIL_ON_PM));
 		$data['guestpm'] = array(GWF_Form::CHECKBOX, $this->options->isOptionEnabled(GWF_PMOptions::ALLOW_GUEST_PM), $this->module->lang('th_pmo_options&'.GWF_PMOptions::ALLOW_GUEST_PM));
+		#$data['level'] = array(GWF_Form::INT, $this->options->getVar('pmo_level'), $this->l('th_pmo_level'), $this->l('tt_pmo_level'));
 		$data['change'] = array(GWF_Form::SUBMIT, $this->module->lang('btn_save'));
 		return new GWF_Form($this, $data);
 	}
@@ -100,6 +101,7 @@ final class PM_Options extends GWF_Method
 		if (false === $this->options->saveVars(array(
 			'pmo_signature' => $form->getVar('pmo_signature'),
 			'pmo_auto_folder' => $form->getVar('pmo_auto_folder'),
+			'pmo_level' => $form->getVar('pmo_level'),
 		))) {
 			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
 		}
@@ -124,6 +126,7 @@ final class PM_Options extends GWF_Method
 
 	public function validate_pmo_auto_folder(Module_PM $module, $arg) { return $this->module->validate_pmo_auto_folder($arg); }
 	public function validate_pmo_signature(Module_PM $module, $arg) { return $this->module->validate_pmo_signature($arg); }
+	public function validate_pmo_level(Module_PM $module, $arg) { return GWF_Validator::validateInt($module, 'pmo_level', $arg); }
 	
 	private function onIgnore()
 	{
@@ -228,6 +231,3 @@ final class PM_Options extends GWF_Method
 		return $back.$this->module->message('msg_auto_folder_done');
 	}
 }
-
-
-?>

@@ -63,26 +63,24 @@ final class PM_Send extends GWF_Method
 		}
 		$this->user = GWF_User::getStaticOrGuest();
 		
-		if (false !== ($error = $this->module->validate_limits())) {
-			return GWF_HTML::error('PM', $error);
-		}
-		
-		
-		if ($this->user->isBot()) {
+		if ($this->user->isBot())
+		{
 			return $this->module->error('err_bot');
 		}
 		
-		if (false !== ($uname = Common::getGet('to'))) {
-			if ( (false === ($this->rec = GWF_User::getByName($uname))) || ($this->rec->isDeleted())) {
+		if (false !== ($uname = Common::getGet('to')))
+		{
+			if ( (false === ($this->rec = GWF_User::getByName($uname))) || ($this->rec->isDeleted()))
+			{
 				return GWF_HTML::err('ERR_UNKNOWN_USER');
 			}
-			else if ( 
-				(!GWF_PMOptions::getPMOptions($this->rec)->isOptionEnabled(GWF_PMOptions::ALLOW_GUEST_PM)) 
-				&& (!GWF_User::isLoggedIn())
-				) {
-				return $this->module->error('err_user_no_ppm');
-			}
 		}
+		
+		if (false !== ($error = $this->module->validate_limits($this->user, $this->rec)))
+		{
+			return GWF_HTML::error('PM', $error);
+		}
+		
 		
 		if ($this->rec === false)
 		{
@@ -151,7 +149,7 @@ final class PM_Send extends GWF_Method
 			'title' => array(GWF_Form::STRING, $this->getFormTitle(), $this->module->lang('th_pm_title')),
 			'message' => array(GWF_Form::MESSAGE, $this->getFormMessage(), $this->module->lang('th_pm_message')),
 			'ignore' => array(GWF_Form::VALIDATOR),
-			'limits' => array(GWF_Form::VALIDATOR)
+// 			'limits' => array(GWF_Form::VALIDATOR)
 		);
 		if (!GWF_User::isLoggedIn() && $this->module->cfgGuestCaptcha()) {
 			$data['captcha'] = array(GWF_Form::CAPTCHA);

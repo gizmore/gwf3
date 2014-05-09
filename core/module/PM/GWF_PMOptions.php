@@ -19,8 +19,9 @@ final class GWF_PMOptions extends GDO
 			'pmo_uid' => array(GDO::OBJECT|GDO::PRIMARY_KEY, GDO::NOT_NULL, array('GWF_User', 'pmo_uid', 'user_id')),
 			'pmo_options' => array(GDO::UINT, 0),
 			'pmo_auto_folder' => array(GDO::UINT, 0),
-			'pmo_signature' => array(GDO::TEXT|GDO::UTF8|GDO::CASE_I),
+			'pmo_signature' => array(GDO::MESSAGE|GDO::UTF8|GDO::CASE_I),
 			'pmo_user' => array(GDO::JOIN, 0, array('GWF_User', 'pmo_uid', 'user_id')),
+			'pmo_level' => array(GDO::UINT, 0),
 		);
 	}
 	public function getID() { return $this->getVar('pmo_uid'); }

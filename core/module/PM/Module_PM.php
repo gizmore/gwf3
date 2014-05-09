@@ -9,7 +9,7 @@ final class Module_PM extends GWF_Module
 	##################
 	### GWF_Module ###
 	##################
-	public function getVersion() { return 1.04; }
+	public function getVersion() { return 1.05; }
 	public function onLoadLanguage() { return $this->loadLanguage('lang/pm'); }
 	
 	################
@@ -183,21 +183,34 @@ final class Module_PM extends GWF_Module
 		}
 	}
 	
-	public function validate_limits()
+	public function validate_limits(GWF_User $from, GWF_User $to)
 	{
-		if (GWF_User::isAdminS() || GWF_User::isStaffS()) {
+		$options = GWF_PMOptions::getPMOptions($to);
+		if ($from->isGuest() && (!$options->isOptionEnabled(GWF_PMOptions::ALLOW_GUEST_PM)))
+		{
+			return $this->error('err_user_no_ppm');
+		}
+		if ($from->isAdmin() || $from->isStaff())
+		{
 			return false;
 		}
-		if (!$this->cfgIsPMLimited()) {
+		if (!$this->cfgIsPMLimited())
+		{
 			return false;
 		}
+		if ($from->getLevel() <= $options->getVar('pmo_level'))
+		{
+			return $this->error('err_user_pmo_level', array($options->getVar('pmo_level')));
+		}
+		
 		$user = GWF_Session::getUser();
 		$uid = GWF_Session::getUserID();
 		$within = $this->cfgLimitTimeout();
 		$cut = GWF_Time::getDate(GWF_Date::LEN_SECOND, time()-$within);
 		$count = GDO::table('GWF_PM')->countRows("pm_from=$uid AND pm_date>'$cut'");
 		$max = $this->calcPMLimit($user);
-		if ($count >= $max) {
+		if ($count >= $max)
+		{
 			return $this->lang('err_limit', array($max, GWF_Time::humanDuration($within)));
 		}
 		return false;
@@ -218,14 +231,14 @@ final class Module_PM extends GWF_Module
 
 	public function validate_ignore(GWF_User $recipient)
 	{
-		if (false === ($user = GWF_Session::getUser())) {
+		if (false === ($user = GWF_Session::getUser()))
+		{
 			return false;
 		}
-		
-		if (false !== ($message = GWF_PMIgnore::isIgnored($recipient->getID(), $user->getID()))) {
+		if (false !== ($message = GWF_PMIgnore::isIgnored($recipient->getID(), $user->getID())))
+		{
 			return $this->lang('err_ignored', array($recipient->display('user_name'), htmlspecialchars($message)));
 		}
-		
 		return false;
 	}
 
