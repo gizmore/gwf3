@@ -95,13 +95,13 @@ final class GWF_FormGDO
 		{
 			return array(GWF_Form::STRING, $gdo->getVar($c, ''), $module->lang('th_'.$c), $tt, $d[2]);
 		}
-		if (($gdo_d & GDO::TEXT) === GDO::TEXT)
-		{
-			return array(GWF_Form::STRING, $gdo->getVar($c, ''), $module->lang('th_'.$c), $tt, 40);
-		}
 		if (($gdo_d & GDO::MESSAGE) === GDO::MESSAGE)
 		{
 			return array(GWF_Form::MESSAGE, $gdo->getVar($c, ''), $module->lang('th_'.$c), $tt);
+		}
+		if (($gdo_d & GDO::TEXT) === GDO::TEXT)
+		{
+			return array(GWF_Form::STRING, $gdo->getVar($c, ''), $module->lang('th_'.$c), $tt, 40);
 		}
 		# Enum
 		if (($gdo_d & GDO::ENUM) === GDO::ENUM)
