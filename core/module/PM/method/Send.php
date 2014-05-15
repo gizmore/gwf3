@@ -76,6 +76,29 @@ final class PM_Send extends GWF_Method
 			}
 		}
 		
+		if (false !== ($pmid = Common::getGetString('reply', false)))
+		{
+			if (false === ($pm = GWF_PM::getByID($pmid)))
+			{
+				return $this->module->error('err_pm');
+			}
+			$this->rec = $pm->getSender();
+		}
+		
+		if (false !== ($pmid = Common::getGetString('quote', false)))
+		{
+			if (false === ($pm = GWF_PM::getByID($pmid)))
+			{
+				return $this->module->error('err_pm');
+			}
+			$this->rec = $pm->getSender();
+		}
+		
+		if ($this->rec === false)
+		{
+			return GWF_HTML::err('ERR_UNKNOWN_USER');
+		}
+		
 		if (false !== ($error = $this->module->validate_limits($this->user, $this->rec)))
 		{
 			return GWF_HTML::error('PM', $error);
