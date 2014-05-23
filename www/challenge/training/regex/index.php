@@ -75,7 +75,7 @@ function train_regex_level_3(WC_Challenge $chall, $answer)
 {
 	$solution = '/^wechall4?\.(?:jpg|gif|tiff|bmp|png)$/';
 	$samples_good = array('wechall.jpg', 'wechall.gif', 'wechall.tiff', 'wechall.bmp', 'wechall.png', 'wechall4.jpg', 'wechall4.gif', 'wechall4.tiff', 'wechall4.bmp', 'wechall4.png');
-	$samples_bad = array('wechall', 'wechall4', 'wechall3.png', 'wechall4.jpf', 'wechallpng', 'wechallxjpg', 'wechall.jpg ', ' wechall.jpg', 'mechall.jpg', 'meechll.jpg');
+	$samples_bad = array('wechall', 'wechall4', 'wechall3.png', 'wechall4.jpf', 'wechallpng', 'wechallxjpg', 'wechall.jpg ', ' wechall.jpg', 'mechall.jpg', 'meechll.jpg', 'wechall44.jpg', 'wecdfss.jpg');
 	
 	foreach ($samples_good as $t)
 	{
@@ -112,7 +112,7 @@ function train_regex_level_4(WC_Challenge $chall, $answer)
 {
 	$solution = '/^(wechall4?)\.(?:jpg|gif|tiff|bmp|png)$/';
 	$samples_good = array('wechall.jpg', 'wechall.gif', 'wechall.tiff', 'wechall.bmp', 'wechall.png', 'wechall4.jpg', 'wechall4.gif', 'wechall4.tiff', 'wechall4.bmp', 'wechall4.png');
-	$samples_bad = array('wechall', 'wechall4', 'wechall3.png', 'wechall4.jpf', 'wechallpng', 'wechallxjpg', 'wechall.jpg ', ' wechall.jpg', 'mechall.jpg', 'meechll.jpg');
+	$samples_bad = array('wechall', 'wechall4', 'wechall3.png', 'wechall4.jpf', 'wechallpng', 'wechallxjpg', 'wechall.jpg ', ' wechall.jpg', 'mechall.jpg', 'meechll.jpg', 'wechall44.jpg', 'wecdfss.jpg');
 	
 	foreach ($samples_good as $t)
 	{
