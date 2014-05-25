@@ -274,7 +274,7 @@ abstract class SR_Blacksmith extends SR_Store
 		$bot = Shadowrap::instance($player);
 		if (count($args) !== 2)
 		{
-			$bot->reply(Shadowhelp::getHelp($player, 'upgrade'));
+			$bot->reply(Shadowhelp::getHelp($player, $safe ? 'safeupgrade' : 'upgrade'));
 			return false;
 		}
 

@@ -11,15 +11,15 @@ class SR_Quest extends GDO
 	
 	/**
 	 * Get a quest without city prefix. Used in #help.
-	 * @param string $classname
+	 * @param string $questname
 	 * @return SR_Quest
 	 */
-	public static function getQuestWithoutCity(SR_Player $player, $classname)
+	public static function getQuestWithoutCity(SR_Player $player, $questname)
 	{
-		$classname = '_'.$classname;
 		foreach (self::$QUESTS as $cname => $quest)
 		{
-			if (Common::endsWith($cname, $classname))
+			list(,,$qname) = explode('_', $cname, 3);
+			if ($qname === $questname)
 			{
 				return self::getQuest($player, $cname);
 			}
