@@ -55,6 +55,7 @@ final class GWF_PageMenu
 	 */
 	public static function display($page, $nPages, $href, $npm=8)
 	{
+		$page = abs((int)$page);
 		if ($nPages < 2) { return ''; }
 		$pages = array();
 		$pages[1] = " href=\"".self::replaceHref($href, 1)."\"";
