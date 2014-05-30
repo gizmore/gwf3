@@ -31,20 +31,20 @@ if (GWF_Session::isLoggedIn())
 }
 
 $headers = array(
-	array($tLang->lang('th_chall_score'), 'chall_score'),
-	array($tLang->lang('th_chall_title'), 'chall_title'),
-	array($tLang->lang('th_chall_creator_name'), 'chall_creator_name'),
-	array($tLang->lang('th_chall_solvecount'), 'chall_solvecount'),
-	array($tLang->lang('th_chall_date'), 'chall_date'),
-	array($tLang->lang('th_chall_votecount'), 'chall_votecount'),
-	array($tLang->lang('th_dif'), 'chall_dif'),
-	array($tLang->lang('th_edu'), 'chall_edu'),
-	array($tLang->lang('th_fun'), 'chall_fun'),
+	array($tLang->lang('th_chall_score'), 'chall_score', 'ASC'),
+	array($tLang->lang('th_chall_title'), 'chall_title', 'ASC'),
+	array($tLang->lang('th_chall_creator_name'), 'chall_creator_name', 'ASC'),
+	array($tLang->lang('th_chall_solvecount'), 'chall_solvecount', 'DESC'),
+	array($tLang->lang('th_chall_date'), 'chall_date', 'DESC'),
+	array($tLang->lang('th_chall_votecount'), 'chall_votecount', 'DESC'),
+	array($tLang->lang('th_dif'), 'chall_dif', 'DESC'),
+	array($tLang->lang('th_edu'), 'chall_edu', 'DESC'),
+	array($tLang->lang('th_fun'), 'chall_fun', 'DESC'),
 	array($tLang->lang('th_forum')),
 );
 echo '<table class="wc_chall_table">';
 $raw = '<tr><th colspan="10">'.$tVars['table_title'].'</th></tr>';
-echo GWF_Table::displayHeaders2($headers, $tVars['sort_url'], '', '', 'by', 'dir', $raw);
+echo GWF_Table::displayHeaders1($headers, $tVars['sort_url'], 'chall_date', 'DESC', 'by', 'dir', $raw);
 $is_admin = GWF_User::isAdminS();
 
 $icon_vote = GWF_WEB_ROOT.'tpl/wc4/ico/vote.gif';
