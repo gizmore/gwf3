@@ -2,8 +2,8 @@
 
 final class WeChall_Challs extends GWF_Method
 {
-	const DEFAULT_BY = 'chall_score,chall_date';
-	const DEFAULT_DIR = 'ASC,ASC';
+	const DEFAULT_BY = 'chall_date';
+	const DEFAULT_DIR = 'DESC';
 	public function getHTAccess()
 	{
 		return
@@ -45,8 +45,8 @@ final class WeChall_Challs extends GWF_Method
 		$for_userid = GWF_Session::getUserID();
 		$from_userid = false;
 		$tag = Common::getGetString('tag', '');
-		$by = Common::getGetString('by', self::DEFAULT_BY);
-		$dir = Common::getGetString('dir', self::DEFAULT_DIR);
+		$by = $_GET['by'] = Common::getGetString('by', self::DEFAULT_BY);
+		$dir = $_GET['dir'] =  Common::getGetString('dir', self::DEFAULT_DIR);
 		return $this->templateChalls($for_userid, $from_userid, $tag, $by, $dir);
 	}
 	
