@@ -44,7 +44,8 @@ if (Common::getGetString('letterbox') === 'santa.php')
 		$mail->setSubject($chall->lang('p1_subj'));
 		$mail->setBody($chall->lang('p1_body'));
 		$mail->addAttachment('0xdeadbeef.asc', $key1, 'application/octet-stream', false);
-		$mail->sendAsHTML();
+		$mail->sendAsText();
+		echo GWF_HTML::message('Happy Holidays', $chall->lang('msg_mail_sent', array($user->getValidMail())), false);
 	}
 }
 

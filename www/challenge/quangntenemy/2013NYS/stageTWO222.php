@@ -1,4 +1,5 @@
 <?php
+$secret = require('secret.php');
 $key2 = file_get_contents('key2.key');
 chdir('../../../');
 define('GWF_PAGE_TITLE', '2013 New Years Special');
@@ -11,7 +12,7 @@ if (false === ($chall = WC_Challenge::getByTitle(GWF_PAGE_TITLE)))
 $chall->showHeader();
 
 require_once GWF_CORE_PATH.'module/WeChall/WC_CryptoChall.php';
-$SOLUTION = WC_CryptoChall::generateSolution('quangsterisfat', true);
+$SOLUTION = WC_CryptoChall::generateSolution($secret, true);
 
 if (!($bot = GWF_User::getByName('Silvester2013')))
 {
@@ -48,6 +49,7 @@ if (Common::getGetString('santa') === 'clause.json')
 		$mail->setBody($chall->lang('p2_body', array($SOLUTION)));
 		$mail->addAttachment('0xdeadc0de.asc', $key2, 'application/octet-stream', false);
 		$mail->sendAsHTML();
+		echo GWF_HTML::message('Happy Holidays', $chall->lang('msg_mail_sent', array($user->getValidMail())), false);
 	}
 }
 

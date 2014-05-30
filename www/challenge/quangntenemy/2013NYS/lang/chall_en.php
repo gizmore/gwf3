@@ -2,6 +2,7 @@
 $lang = array(
 		
 	'err_no_mail' => 'Sadly you need to login, so we know where to send emails to.',
+	'msg_mail_sent' => 'We have sent mail to Rudolph, Santa, Sylvester and %s.',
 		
 	'p1_subj' => 'Merry Christmas',
 	'p1_body' => 'Wow such mail, very present, such gifted!',
