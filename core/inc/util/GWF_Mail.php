@@ -284,7 +284,7 @@ final class GWF_Mail
 		}
 		else
 		{
-			return @mail($to, $subject, $encrypted, $headers); #, '-r ' . $this->sender);
+			return @mail($to, $subject, $message, $headers); #, '-r ' . $this->sender);
 		}
 	}
 	
