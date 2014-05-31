@@ -6,7 +6,7 @@ $lang = array(
 	'descr' =>
 		'Ich grüße Dich, %s!<br/>'.PHP_EOL.
 		'<br/>'.PHP_EOL.
-		'Schau Dir mal unsere neue SEO freundliche <b>deutsche</b> Seite über wissenschafftliche Arbeiten an.<br/>'.PHP_EOL.
+		'Schau Dir mal unsere neue SEO freundliche Seite über wissenschafftliche Arbeiten an.<br/>'.PHP_EOL.
 		'%s<br/>'.PHP_EOL.
 		'gizmore + kalle'.PHP_EOL,
 );
