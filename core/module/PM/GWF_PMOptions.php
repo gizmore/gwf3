@@ -74,6 +74,7 @@ final class GWF_PMOptions extends GDO
 			'pmo_options' => 0,
 			'pmo_auto_folder' => 0,
 			'pmo_signature' => '',
+			'pmo_level' => 0,
 		));
 		if (false === ($row->replace())) {
 			return false;
@@ -82,5 +83,3 @@ final class GWF_PMOptions extends GDO
 		return $row;
 	}
 }
-
-?>
