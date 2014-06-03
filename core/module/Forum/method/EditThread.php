@@ -133,15 +133,26 @@ final class Forum_EditThread extends GWF_Method
 		
 		$pc = $t->getPostCount();
 		
-		if (false === $t->getBoard()->adjustCounters(-1, -$pc)) {
+		if (false === $t->getBoard()->adjustCounters(-1, -$pc))
+		{
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
-		if (false === $t->saveVar('thread_bid', $b->getID())) {
+		if (false === $b->adjustCounters(1, $pc))
+		{
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
-		if (false === $b->adjustCounters(1, $pc)) {
+		if (false === $t->saveVars(array(
+			'thread_bid' => $b->getID(),
+			'thread_gid' => $b->getGroupID(),
+		)))
+		{
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
+		}
+		
+		if (false === $t->saveVar('thread_bid', $b->getID()))
+		{
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
