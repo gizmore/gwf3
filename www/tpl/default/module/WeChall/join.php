@@ -24,7 +24,7 @@ echo GWF_Box::box($l->lang('join_1b', array($url_1_1, $hidden_1_1)), '1) <a name
 echo GWF_Box::box($l->lang('join_2b', array($url_2_1, $hidden_2_1)), '2) <a name="join_2" href="#join_2">'.$l->lang('join_2t').'</a>');
 echo GWF_Box::box($l->lang('join_3b'),  '3) <a name="join_3" href="#join_3">'.$l->lang('join_3t').'</a>');
 echo GWF_Box::box($l->lang('join_4b'),  '4) <a name="join_4" href="#join_4">'.$l->lang('join_4t').'</a>');
-echo GWF_Box::box($l->lang('join_process_b'),  '4) <a name="joining_process" href="#joining_process" title="WeChall Joining Process">'.$l->lang('join_process_t').'</a>');
+echo GWF_Box::box($l->lang('join_process_b', array(GWF_WEB_ROOT.'index.php?mo=WeChall&me=JoinUs&section=optional')),  '4) <a name="joining_process" href="#joining_process" title="WeChall Joining Process">'.$l->lang('join_process_t').'</a>');
 
 echo '<div class="gwf_buttons_outer"><div class="gwf_buttons">'.PHP_EOL;
 echo GWF_Button::generic($l->lang('btn_join'), GWF_WEB_ROOT.'join_us', 'generic', '', true);
