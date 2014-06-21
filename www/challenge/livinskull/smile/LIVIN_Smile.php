@@ -122,4 +122,3 @@ final class LIVIN_Smile extends GDO
 		return $solution;
 	}
 }
-?>
