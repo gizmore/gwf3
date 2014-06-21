@@ -114,7 +114,7 @@ $lang = array(
 		'<li>A description of your site, can be in the sites language.</li>'.PHP_EOL.
 		'<li>The wanted displayed sitename. You also use this name for remoteupdate.php</li>'.PHP_EOL.
 		'</ul>',
-		
+	
 	'join_4t' => '[OPTIONAL] A page that shows your users profile.',
 	'join_4b' =>
 		'<i>profile.php?username=%%USERNAME%%</i><br/>'.
@@ -123,6 +123,45 @@ $lang = array(
 		'If you like to support us with this script, make sure you don\'t need to login for that.<br/>'.
 		'Again, you can choose the filename and vars for your script freely.<br/>'.
 		'Profile scripts that use an URL like <i>profile/%%USERNAME%%.html</i> will work fine too.',
+		
+	'join_process_t' => 'The Joining Process',
+	'join_process_b' =>
+		'<p>This documents the usual steps and process when your site (you are the siteadmin) joins.</p>'.
+		'<br/><pre>'.PHP_EOL.
+		'1. You usually start off sneakily writing the validate- and usercore api scripts.'.PHP_EOL.
+		'2. You then ask to add your challenge site.'.PHP_EOL.
+		'   The sarcasm here is intended, and this section shall reduce the time required for your site to join.'.PHP_EOL.
+		'   I also want to point out that every single site is a great addition to the challenge scene. Shouts and thanks go out to all the creators!'.PHP_EOL.
+		'3. We check your input and scripts, do some testing and give feedback.'.PHP_EOL.
+		'3a) For that we need to know your endpoints for validate- and userscore api scripts, as you may name them freely.'.PHP_EOL.
+		'3b) Usually you ignore that we would like an icon. 32x32.transparent.gif is preferred, but can be any, even animated ico, image format.'.PHP_EOL.
+		'3c) Also you can choose your displayed sitename, like ´ChillChalls`.'.PHP_EOL.
+		'3d) A few days later we will realize that we also need the main challenge categories of your site. Pleae tell us the 2-4 _main_ challenge categories.'.PHP_EOL.
+		'3e) We also always forget about: Site birthday, Origin Country of authors and maybe other settings.'.PHP_EOL.
+		'4) We have tested your site and the linking process. We are almost ready to make it official...'.PHP_EOL.
+		'4a) We are writing a Newsletter every time a site joins - briefly giving an impression and overview of your site and background information.'.PHP_EOL.
+		'4a.1) Personally i like to know who founded the site, when and why. Is there something special to know, do you have something special to tell?'.PHP_EOL.
+		'      You will be able to proofread the newsletter and do changes and additions as the site admin.'.PHP_EOL.
+		'      What you wanna tell and reveal is totally up to you and will fit your theme and way of life.'.PHP_EOL.
+		'4b) It is nice when a site admin can be contacted easily via wechall. It would be great if you...'.PHP_EOL.
+		'4b.1) Register at wechall and get assigned site-admin for your site. Please use an email where you read the inbox once in a while.'.PHP_EOL.
+		'      Multiple site-admins are possible.'.PHP_EOL.
+		'4b.2) Enable EmailOnPM, PublicEmail and ShowEmailAddress for your wechall account.'.PHP_EOL.
+		'4b.3) Subscribe to the ´Comments on &lt;YourSite&gt;` thread to receive emails when someone leaves a comment in the forum.'.PHP_EOL.
+		'5) Edit your site'.PHP_EOL.
+		'5a) Maybe you have an IRC channel you wanna provide when editing your site.'.PHP_EOL.
+		'5b) Don´t forget to edit your site´s description. This can also be done for multiple languages.'.PHP_EOL.
+		'5c) Maybe be the first to leave a comment about your site in the forum.'.PHP_EOL.
+		'5d) If you have an own profile page for the players you should specify it!'.PHP_EOL.
+		'6) More interaction'.PHP_EOL.
+		'6a) Please have a look at <a href="%s">join_advanced</a> which describes wechall API for more automated interaction:'.PHP_EOL.
+		'6a.1) IRC Forum Announcements for your site.'.PHP_EOL.
+		'6a.2) IRC Announcements when someone solves a challenge on your site.'.PHP_EOL.
+		'6a.3) Automatic updates for users that linked their account.'.PHP_EOL.
+		'6a.4) And more?'.PHP_EOL.
+		PHP_EOL.
+		'Thank you for flying IPv(?:4|6)'.PHP_EOL.
+		'</pre>'.PHP_EOL,
 		
 	'join_5t' => '[OPTIONAL] Updating WeChall automatically',
 	'join_5b' =>

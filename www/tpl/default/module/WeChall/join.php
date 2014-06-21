@@ -20,12 +20,11 @@ $hidden_1_1 = Common::getGet('show') === 'example_1_1' ? 'block' : 'none';
 $url_2_1 = GWF_WEB_ROOT.'index.php?mo=WeChall&amp;me=JoinUs&amp;section=join&amp;show=example_2_1';
 $hidden_2_1 = Common::getGet('show') === 'example_2_1' ? 'block' : 'none';
 
-echo '<a name="join_1"></a>'.PHP_EOL;
-echo GWF_Box::box($l->lang('join_1b', array($url_1_1, $hidden_1_1)), '1) '.$l->lang('join_1t'));
-echo '<a name="join_2"></a>'.PHP_EOL;
-echo GWF_Box::box($l->lang('join_2b', array($url_2_1, $hidden_2_1)), '2) '.$l->lang('join_2t'));
-echo '<a name="join_3"></a>'.PHP_EOL;
-echo GWF_Box::box($l->lang('join_3b'),  '3) '.$l->lang('join_3t'));
+echo GWF_Box::box($l->lang('join_1b', array($url_1_1, $hidden_1_1)), '1) <a name="join_1" href="#join_1">'.$l->lang('join_1t').'</a>');
+echo GWF_Box::box($l->lang('join_2b', array($url_2_1, $hidden_2_1)), '2) <a name="join_2" href="#join_2">'.$l->lang('join_2t').'</a>');
+echo GWF_Box::box($l->lang('join_3b'),  '3) <a name="join_3" href="#join_3">'.$l->lang('join_3t').'</a>');
+echo GWF_Box::box($l->lang('join_4b'),  '4) <a name="join_4" href="#join_4">'.$l->lang('join_4t').'</a>');
+echo GWF_Box::box($l->lang('join_process_b'),  '4) <a name="joining_process" href="#joining_process" title="WeChall Joining Process">'.$l->lang('join_process_t').'</a>');
 
 echo '<div class="gwf_buttons_outer"><div class="gwf_buttons">'.PHP_EOL;
 echo GWF_Button::generic($l->lang('btn_join'), GWF_WEB_ROOT.'join_us', 'generic', '', true);
