@@ -36,8 +36,8 @@ $lang = array(
 	'err_no_image' => 'Please upload images only.',
 	'err_path' => 'Your rule has no valid smiley image, and thus did not get added.',
 	'err_xss' => 'Your smiley path seems to contain dangerous input.',
+	'err_ascii' => 'Make sure your input contains only 7-bit ascii characters.',
 
 	'msg_rule_added' => 'Thank you for adding another smiley rule!',
 	'msg_uploaded' => 'Thank you for uploading a smiley. Use this as replacement for your patterns: %1$s',
 );
-?>

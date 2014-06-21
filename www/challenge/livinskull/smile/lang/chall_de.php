@@ -35,8 +35,8 @@ $lang = array(
 	'err_no_image' => 'Bitte nur Bilder hochladen.',
 	'err_path' => 'Deine Regel hat kein gültiges Smiley und wurde nicht hinzugefügt.',
 	'err_xss' => 'Dein Smiley enthält gefährliche Eingabe.',
-
+	'err_ascii' => 'Bitte verwende nur 7-Bit Ascii Zeichen.',
+		
 	'msg_rule_added' => 'Vielen Dank! Eine neue Regel wurde hinzugefügt.',
 	'msg_uploaded' => 'Vielen Dank! Ein neues Smiley Bild wurde hochgeladen. Nutze diese Ersetzungsregel in deiner Pattern: %1$s',
 );
-?>

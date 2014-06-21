@@ -154,6 +154,16 @@ class LivinForm
 		$pattern = $form->getVar('pattern');
 		$path = $form->getVar('filename');
 		
+		if (!preg_match('/^[\x00-\x7f]$/D', $pattern))
+		{
+			return GWF_HTML::error('Smile Pattern', array($chall->lang('err_ascii')));
+		}
+
+		if (!preg_match('/^[\x00-\x7f]$/D', $path))
+		{
+			return GWF_HTML::error('Smile Path', array($chall->lang('err_ascii')));
+		}
+		
 		# Show a sample output for the new smiley :)
 		if (!LIVIN_Smile::testSmiley($chall, $pattern, $path))
 		{

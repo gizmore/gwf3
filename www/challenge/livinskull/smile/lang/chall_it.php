@@ -36,8 +36,8 @@ $lang = array(
 	'err_no_image' => 'Carica solo immagini, per favore.',
 	'err_path' => 'La tua regola non ha immagini valide, per cui non è stata caricata.',
 	'err_xss' => 'Il percorso del tuo smiley sembra contenere degli input pericolosi.',
-
+	'err_ascii' => 'Assicurati che il tuo input contiene solo caratteri ASCII a 7 bit.',
+		
 	'msg_rule_added' => 'Grazie per aver aggiunto un altra regola smiley!',
 	'msg_uploaded' => 'Grazie per aver aggiunto uno smiley. Usa questo rimpiazzo per i tuoi pattern: %1$s',
 );
-?>
