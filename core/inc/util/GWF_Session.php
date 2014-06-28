@@ -322,12 +322,10 @@ final class GWF_Session extends GDO
 		}
 		
 		# Update session 
-		$data = array('sess_user' => $userid);
-		if ($bind_to_ip)
-		{
-			$data['sess_ip'] = GWF_IP6::getIP(GWF_IP_EXACT);
-		}
-		if (false === self::$SESSION->saveVars($data))
+		if (!self::$SESSION->saveVars(array(
+			'sess_user' => $userid,
+			'sess_ip' => $bind_to_ip ? GWF_IP6::getIP(GWF_IP_EXACT) : null,
+		)))
 		{
 			return false;
 		}
