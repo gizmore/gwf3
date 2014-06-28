@@ -1,6 +1,6 @@
 <?php
 $solution = require 'solution.php';
-$base = file_get_contents('base.php');
+// $base = file_get_contents('base.php');
 chdir('../../../');
 define('GWF_PAGE_TITLE', 'The BrownOS');
 require_once('challenge/html_head.php');

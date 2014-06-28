@@ -1,0 +1,4 @@
+RewriteEngine On
+RewriteRule (.*).txt.dl viewer.php?f=$1&dl=1
+RewriteRule (.*).txt.hl viewer.php?f=$1&hl=1
+RewriteRule (.*).txt viewer.php?f=$1

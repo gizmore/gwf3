@@ -1,0 +1,189 @@
+* {
+	font-family: sans-serif;
+	font-size: 18px;
+}
+
+html, body {
+	height: 100%;
+}
+body, html, .outerwrap {
+	min-height: 100%;
+}
+
+.outerwrap {
+	position: relative;
+}
+
+.footer, .footerspace, .header {
+	height: 120px;
+	position: relative;
+}
+.footer {
+	position: absolute;
+	bottom: 0px;
+	height: 110px;
+	margin-top: 10px;
+}
+
+.header, .footer {
+	background: #ff0000;
+	width: 100%;
+}
+
+nav#topmenu, h1, .header * {
+	font-family: monospace;
+}
+
+nav#topmenu {
+	position: relative;
+	height: 60px;
+	overflow: hidden;
+}
+nav#topmenu ul, nav#topmenu li, nav#topmenu li a {
+    position: relative;
+	display: inline-block;
+	margin: 0;
+	padding: 0;
+	height: 60px;
+}
+nav#topmenu ul {
+	width: 100%;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+nav#topmenu li {
+	font-size: 18px;
+	min-width: 20%;
+	text-align: center;
+	height: 60px;
+}
+
+nav#topmenu li a {
+	width: 100%;
+	font-size: 20px;
+	line-height: 60px;
+}
+
+nav#topmenu li a {
+	color: #000;
+	letter-spacing: 2px;
+    transition: letter-spacing 0.8s, color 1.2s;
+}
+
+nav#topmenu li:hover a {
+	color: #d66;
+	letter-spacing: 10px;
+}
+
+h1 {
+	text-decoration: overline;
+	font-weight: bolder;
+	text-align: center;
+	font-size: 48px;
+}
+
+.footer p {
+	font-size: 60px;
+	line-height: 110px;
+	vertical-align: bottom;
+	right: 32px;
+	position: absolute;
+}
+
+.footer p, .header, .header a {
+	color: #fff;	
+}
+
+.header a, .header span {
+	height: 60px;
+	line-height: 60px;
+	display: block;
+	margin-left: 32px;
+}
+
+.header a {
+	font-size: 52px;
+}
+
+.header span {
+	font-size: 26px;
+	margin-left: 60px;
+}
+
+.page_content p {
+	padding: 20px 40px 10px;
+	text-align: center;
+}
+
+table, .encrypt_input {
+	margin: 10px auto;
+}
+
+.encrypt_input {
+	text-align: center;
+} 
+
+th, th a {
+	color: #000;
+	font-size: 20px;
+}
+
+td {
+	padding: 2px;
+}
+
+td[colspan="2"] {
+	text-align: right;
+	padding: 1px;
+}
+
+input[type="submit"], button, a.button, div.gwf_pagemenu a {
+	-webkit-appearance: push-button;
+	-webkit-user-select: none;
+	background-color: rgb(221, 221, 221);
+	border: 2px outset rgb(221, 221, 221);
+	border-collapse: separate;
+	box-sizing: border-box;
+	color: rgb(0, 0, 0);
+	display: inline-block;
+	padding: 2px 6px;
+	text-align: center;
+	white-space: pre;
+}
+
+div.gwf_pagemenu a.gwf_pagemenu_sel, h1 {
+	color: #a11;
+}
+
+th a {
+	text-decoration: underline;
+}
+
+.ranking_table {
+	min-width: 50%;
+}
+.ranking_table td {
+	padding: 4px 8px;
+}
+
+code, .code {
+	display: block;
+	padding: 16px;
+}
+
+.gwf_bb_code table {
+	margin: 0;
+	padding: 0;
+	display: block;
+	width: 100%;
+}
+
+div.gwf_bb_code div:FIRST-CHILD {
+	display: none;
+}
+
+.gwf_pagemenu {
+	text-align: center;
+	margin: 16px 0 12px;	
+}
