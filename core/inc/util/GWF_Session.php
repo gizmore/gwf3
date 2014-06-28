@@ -367,6 +367,7 @@ final class GWF_Session extends GDO
 		
 		if (false === self::$SESSION->saveVars(array(
 			'sess_user' => 0,
+			'sess_ip' => null, # thx dloser
 		))) {
 			return false;
 		}
