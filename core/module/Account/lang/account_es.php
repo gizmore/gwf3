@@ -214,4 +214,9 @@ El personal de '.GWF_SITENAME,
 	'tt_alert_isps' => 'Sends you an email when your ISP / hostname changes. (not recommended)',
 	'msg_alert_isps_on' => 'Security Alert Email will be sent when your hostname changes significantly. Recording needs to be enabled.',
 	'msg_alert_isps_off' => 'ISP/hostname changes are now ignored.',
+
+	'th_date' => 'Date',
+	'th_ua' => 'UserAgent',
+	'th_ip' => 'IP Address',
+	'th_ips' => 'Hostname',
 );

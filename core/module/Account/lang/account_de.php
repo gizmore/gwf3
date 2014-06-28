@@ -233,4 +233,9 @@ $lang = array(
 	'tt_alert_isps' => 'Sendet eine Email wenn sich Ihr Provider geändert hat. (nicht empfohlen)',
 	'msg_alert_isps_on' => 'Sicherheitshinweise werden nun bei einem Providerwechsel gesendet.',
 	'msg_alert_isps_off' => 'Providerwechsel werden nun ignoriert.',
+
+	'th_date' => 'Datum',
+	'th_ua' => 'Browser',
+	'th_ip' => 'IP Adresse',
+	'th_ips' => 'Hostname',
 );
