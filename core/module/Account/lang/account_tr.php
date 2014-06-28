@@ -188,6 +188,48 @@ $lang = array(
 	'err_email_invalid' => 'Your email looks invalid.',
 	# v3.00 (fixes3)
 	'err_email_taken' => 'This email address is already in use.',
-);
 
-?>
+	# v3.01 (record IPs)
+	'btn_record_enable' => 'IP Recording',
+	'mail_signature' => GWF_SITENAME.' Security Robot',
+	'mails_record_disabled' => GWF_SITENAME.': IP Recording',
+	'mailv_record_disabled' => 'IP recording has been disabled for your account.',
+	'mails_record_alert' => GWF_SITENAME.': Security Alert',
+	'mailv_record_alert' => 'There has been access to your account via an unknown UserAgent or an unknown/suspicious IP.',
+	'mailb_record_alert' =>
+		'Hello %s'.PHP_EOL.
+		PHP_EOL.
+		'%s'.PHP_EOL.
+		PHP_EOL.
+		'UserAgent: %s'.PHP_EOL.
+		'IP address: %s'.PHP_EOL.
+		'Hostname: %s'.PHP_EOL.
+		PHP_EOL.
+		'You can ignore this Email safely or maybe you like to review all IPs:'.PHP_EOL.
+		PHP_EOL.
+		'%s'.PHP_EOL.
+		PHP_EOL.
+		PHP_EOL.
+		'Kind Regards'.PHP_EOL.
+		'The %s'.PHP_EOL,
+	# 4 Checkboxes
+	'th_record_ips' => 'Monitor <a href="%s">IP access</a>',
+	'tt_record_ips' => 'Record access to your account by IP so you can review it. Entries cannot be deleted!',
+	'msg_record_ips_on' => 'All unique IP Addresses using your account are now lieftime recorded. This is your last change to quit. You can of course pause recording anytime.',
+	'msg_record_ips_off' => 'You have disabled IP recording for your account.',
+	#
+	'th_alert_uas' => 'Alert on UA change',
+	'tt_alert_uas' => 'Sends you an email when your UserAgent changes. (recommended)',
+	'msg_alert_uas_on' => 'Security Alert Email will be sent when your User Agent changes. Recording needs to be enabled.',
+	'msg_alert_uas_off' => 'User Agent changes are now ignored.',
+	#
+	'th_alert_ips' => 'Alert on IP change',
+	'tt_alert_ips' => 'Sends you an email when ´your´ IP changes. (recommended)',
+	'msg_alert_ips_on' => 'Security Alert Email will be sent when your IP changes. Recording needs to be enabled.',
+	'msg_alert_ips_off' => 'IP changes are now ignored.',
+	#	
+	'th_alert_isps' => 'Alert on ISP change',
+	'tt_alert_isps' => 'Sends you an email when your ISP / hostname changes. (not recommended)',
+	'msg_alert_isps_on' => 'Security Alert Email will be sent when your hostname changes significantly. Recording needs to be enabled.',
+	'msg_alert_isps_off' => 'ISP/hostname changes are now ignored.',
+);

@@ -103,6 +103,10 @@ final class Account_Form extends GWF_Method
 		if ($this->module->cfgShowCheckboxes())
 		{
 			$data['online'] = array(GWF_Form::CHECKBOX, $user->isOptionEnabled(GWF_User::HIDE_ONLINE), $this->module->lang('th_online'));
+			$data['record_ips'] = array(GWF_Form::CHECKBOX, $user->isOptionEnabled(GWF_User::RECORD_IPS), $this->module->lang('th_record_ips', array($this->module->getMethodURL('Access'))), $this->module->lang('tt_record_ips'));
+			$data['alert_uas'] = array(GWF_Form::CHECKBOX, $user->isOptionEnabled(GWF_User::ALERT_UAS), $this->module->lang('th_alert_ips'), $this->module->lang('tt_alert_uas'));
+			$data['alert_ips'] = array(GWF_Form::CHECKBOX, $user->isOptionEnabled(GWF_User::ALERT_IPS), $this->module->lang('th_alert_ips'), $this->module->lang('tt_alert_ips'));
+			$data['alert_isps'] = array(GWF_Form::CHECKBOX, $user->isOptionEnabled(GWF_User::ALERT_ISPS), $this->module->lang('th_alert_isps'), $this->module->lang('tt_alert_isps'));
 			$data['show_bday'] = array(GWF_Form::CHECKBOX,  $user->isOptionEnabled(GWF_User::SHOW_BIRTHDAY), $this->module->lang('th_show_bday'));
 			$data['show_obday'] = array(GWF_Form::CHECKBOX, $user->isOptionEnabled(GWF_User::SHOW_OTHER_BIRTHDAYS), $this->module->lang('th_show_obday'));
 			$data['show_email'] = array(GWF_Form::CHECKBOX, $user->isOptionEnabled(GWF_User::SHOW_EMAIL), $this->module->lang('th_show_email'));
@@ -178,6 +182,20 @@ final class Account_Form extends GWF_Method
 		$back .= $this->changeFlag($user, 'show_obday', GWF_USER::SHOW_OTHER_BIRTHDAYS);
 		$back .= $this->changeFlag($user, 'show_email', GWF_USER::SHOW_EMAIL);
 		$back .= $this->changeFlag($user, 'allow_email', GWF_USER::ALLOW_EMAIL);
+		# Flags IP recording
+		$msg_record_disabled = $this->changeFlag($user, 'record_ips', GWF_USER::RECORD_IPS);
+		if ($msg_record_disabled !== '')
+		{
+			$back .= $msg_record_disabled;
+			if (!$user->isOptionEnabled(GWF_User::RECORD_IPS))
+			{
+				GWF_AccountAccess::sendAlertMail($this->module, $user, 'record_disabled');
+				unset($_POST['alert_uas'], $_POST['alert_ips'], $_POST['alert_isps']);
+			}
+		}
+		$back .= $this->changeFlag($user, 'alert_uas', GWF_USER::ALERT_UAS);
+		$back .= $this->changeFlag($user, 'alert_ips', GWF_USER::ALERT_IPS);
+		$back .= $this->changeFlag($user, 'alert_isps', GWF_USER::ALERT_ISPS);
 		
 		
 		# Email Format
@@ -238,7 +256,8 @@ final class Account_Form extends GWF_Method
 		$newFlag = Common::getPost($flagname) !== false;
 		$oldFlag = $user->isOptionEnabled($bits);
 		if ($newFlag === $oldFlag) { return ''; }
-		if (false === $user->saveOption($bits, $newFlag)) {
+		if (!$user->saveOption($bits, $newFlag))
+		{
 			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
 		}
 		return $this->module->message('msg_'.$flagname.($newFlag?'_on':'_off'));

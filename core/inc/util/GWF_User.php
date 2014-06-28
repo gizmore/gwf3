@@ -27,7 +27,12 @@ final class GWF_User extends GDO
 	const EMAIL_TEXT = 0x1000;
 	const EMAIL_GPG = 0x2000;
 	const WEBSPIDER = 0x4000;
-
+	const RESERVED1 = 0x8000;
+	const RECORD_IPS = 0x10000;
+	const ALERT_IPS = 0x20000;
+	const ALERT_ISPS = 0x40000;
+	const ALERT_UAS = 0x80000;
+	
 	### Gender Bits ###
 	const MALE = 'male';
 	const FEMALE = 'female';

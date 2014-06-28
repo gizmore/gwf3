@@ -189,5 +189,48 @@ $lang = array(
 
 	# v3.00 (fixes3)
 	'err_email_taken' => 'Diese EMail wird bereits von einem anderen Profil benutzt.',
+
+	# v3.01 (record IPs)
+	'btn_record_enable' => 'IP Aufzeichnung',
+	'mail_signature' => GWF_SITENAME.' Security Bot',
+	'mails_record_disabled' => GWF_SITENAME.': IP Aufzeichnung',
+	'mailv_record_disabled' => 'Aufzeichnen von IPs wurde für Ihr Konto deaktiviert.',
+	'mails_record_alert' => GWF_SITENAME.': Sicherheitshinweis',
+	'mailv_record_alert' => 'Auf Ihr Konto wurde von einem unbekannten Browser oder einer auffälligen IP aus zugegriffen.',
+	'mailb_record_alert' =>
+		'Hallo %s'.PHP_EOL.
+		PHP_EOL.
+		'%s'.PHP_EOL.
+		PHP_EOL.
+		'UserAgent: %s'.PHP_EOL.
+		'IP Adresse: %s'.PHP_EOL.
+		'Hostname: %s'.PHP_EOL.
+		PHP_EOL.
+		'Sie können diese Email ignorieren, oder auch alle verschiedenen IPs einsehen:'.PHP_EOL.
+		PHP_EOL.
+		'%s'.PHP_EOL.
+		PHP_EOL.
+		PHP_EOL.
+		'Viele Grüße'.PHP_EOL.
+		'Der %s'.PHP_EOL,
+	# 4 Checkboxes
+	'th_record_ips' => '<a href="%s">IPs aufzeichnen</a>',
+	'tt_record_ips' => 'Zeichnet alle IPs auf, die auf Ihr Konto zugreifen, und bietet eine Übersicht disere. Einträge könenn nicht gelöscht werden!',
+	'msg_record_ips_on' => 'Alle IP Adressen werden nun auf unbestimmte Zeit aufgezeichnet. Sie können die Aufzeichnung jederzeit beenden.',
+	'msg_record_ips_off' => 'Sie haben das Aufzeichnen von IPs deaktiviert.',
+	#
+	'th_alert_uas' => 'Alarm bei UA-Wechsel',
+	'tt_alert_uas' => 'Sendet eine Email wenn sich Ihr Browser geändert hat. (empfohlen)',
+	'msg_alert_uas_on' => 'Sicherheitshinweise werden nun bei einem Browserwechsel gesendet.',
+	'msg_alert_uas_off' => 'Browserwechsel werden nun ignoriert.',
+	#
+	'th_alert_ips' => 'Alarm bei IP-Wechsel',
+	'tt_alert_ips' => 'Sendet eine Email wenn sich Ihre IP geändert hat. (empfohlen)',
+	'msg_alert_ips_on' => 'Sicherheitshinweise werden nun bei einem IP Wechsel gesendet.',
+	'msg_alert_ips_off' => 'IP Wechsel werden nun ignoriert.',
+	#	
+	'th_alert_isps' => 'Alert on ISP change',
+	'tt_alert_isps' => 'Sendet eine Email wenn sich Ihr Provider geändert hat. (nicht empfohlen)',
+	'msg_alert_isps_on' => 'Sicherheitshinweise werden nun bei einem Providerwechsel gesendet.',
+	'msg_alert_isps_off' => 'Providerwechsel werden nun ignoriert.',
 );
-?>

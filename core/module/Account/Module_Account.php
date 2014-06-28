@@ -8,11 +8,12 @@ final class Module_Account extends GWF_Module
 	##################
 	### GWF_Module ###
 	##################
-	public function getVersion() { return 1.03; }
+	public function getVersion() { return 1.04; }
 	public function onLoadLanguage() { return $this->loadLanguage('lang/account'); }
 	public function onCronjob() { require_once 'GWF_AccountCronjob.php'; GWF_AccountCronjob::onCronjob($this); }
-	public function getClasses() { return array('GWF_AccountChange', 'GWF_AccountDelete'); }
+	public function getClasses() { return array('GWF_AccountChange', 'GWF_AccountDelete', 'GWF_AccountAccess'); }
 	public function getDescription() { return 'Change account settings. Delete Account'; }
+	public function getDefaultAutoLoad() { return true; }
 	###############
 	### Install ###
 	###############
@@ -48,6 +49,16 @@ final class Module_Account extends GWF_Module
 	public function cfgAvatarMaxHeight() { return $this->getModuleVarInt('avatar_max_y', 96); }
 	public function cfgUseAvatar() { return $this->getModuleVarBool('show_avatar', '1'); }
 	public function cfgShowCheckboxes() { return $this->getModuleVarBool('show_checkboxes', '1'); }
+	
+	public function onStartup()
+	{
+		if ($user = GWF_Session::getUser())
+		{
+			if ($user->isOptionEnabled(GWF_User::RECORD_IPS))
+			{
+				$this->includeClass('GWF_AccountAccess');
+				GWF_AccountAccess::onAccess($this, $user);
+			}
+		}
+	}
 }
-
-?>
