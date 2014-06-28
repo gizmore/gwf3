@@ -60,7 +60,7 @@ final class GWF_AccountAccess extends GDO
 	
 	private static function uahash()
 	{
-		return self::hash($_SERVER['HTTP_USER_AGENT']);
+		return self::hash(preg_replace('/\d/', '', $_SERVER['HTTP_USER_AGENT']));
 	}
 	
 	private static function hashquote($hash, $quote='"')
@@ -70,7 +70,7 @@ final class GWF_AccountAccess extends GDO
 	
 	private static function hash($value)
 	{
-		return $value === null ? null  : md5($value, true);
+		return $value === null ? null : md5($value, true);
 	}
 	
 	public static function onAccess(Module_Account $module, GWF_User $user)
@@ -125,14 +125,14 @@ final class GWF_AccountAccess extends GDO
 	
 	public static function sendAlertMail(Module_Account $module, GWF_User $user, $record_alert='record_alert')
 	{
-		if ($mail = $user->getValidMail())
+		if ($receive_mail = $user->getValidMail())
 		{
 			$module->onLoadLanguage();
 			$mail = new GWF_Mail();
 			$mail->setSender(GWF_BOT_EMAIL);
 			$sig = $module->lang("mailf_signature");
 			$mail->setSenderName($sig);
-			$mail->setReceiver($user);
+			$mail->setReceiver($receive_mail);
 			$mail->setSubject($module->lang("mails_$record_alert"));
 			$url = Common::getAbsoluteURL($module->getMethodURL('Access'));
 			$mail->setBody($module->lang("mailb_record_alert", array(

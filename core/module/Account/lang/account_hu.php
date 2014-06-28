@@ -229,5 +229,5 @@ WeChall csapata',
 	'th_date' => 'Date',
 	'th_ua' => 'UserAgent',
 	'th_ip' => 'IP Address',
-	'th_ips' => 'Hostname',
+	'th_isp' => 'Hostname',
 );

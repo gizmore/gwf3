@@ -15,11 +15,11 @@ final class Account_Form extends GWF_Method
 	public function getPageMenuLinks()
 	{
 		return array(
-				array(
-						'page_url' => 'account',
-						'page_title' => 'Account',
-						'page_meta_desc' => 'Your account',
-				),
+			array(
+				'page_url' => 'account',
+				'page_title' => 'Account',
+				'page_meta_desc' => 'Your account',
+			),
 		);
 	}
 	
@@ -104,7 +104,7 @@ final class Account_Form extends GWF_Method
 		{
 			$data['online'] = array(GWF_Form::CHECKBOX, $user->isOptionEnabled(GWF_User::HIDE_ONLINE), $this->module->lang('th_online'));
 			$data['record_ips'] = array(GWF_Form::CHECKBOX, $user->isOptionEnabled(GWF_User::RECORD_IPS), $this->module->lang('th_record_ips', array($this->module->getMethodURL('Access'))), $this->module->lang('tt_record_ips'));
-			$data['alert_uas'] = array(GWF_Form::CHECKBOX, $user->isOptionEnabled(GWF_User::ALERT_UAS), $this->module->lang('th_alert_ips'), $this->module->lang('tt_alert_uas'));
+			$data['alert_uas'] = array(GWF_Form::CHECKBOX, $user->isOptionEnabled(GWF_User::ALERT_UAS), $this->module->lang('th_alert_uas'), $this->module->lang('tt_alert_uas'));
 			$data['alert_ips'] = array(GWF_Form::CHECKBOX, $user->isOptionEnabled(GWF_User::ALERT_IPS), $this->module->lang('th_alert_ips'), $this->module->lang('tt_alert_ips'));
 			$data['alert_isps'] = array(GWF_Form::CHECKBOX, $user->isOptionEnabled(GWF_User::ALERT_ISPS), $this->module->lang('th_alert_isps'), $this->module->lang('tt_alert_isps'));
 			$data['show_bday'] = array(GWF_Form::CHECKBOX,  $user->isOptionEnabled(GWF_User::SHOW_BIRTHDAY), $this->module->lang('th_show_bday'));

@@ -237,5 +237,5 @@ $lang = array(
 	'th_date' => 'Datum',
 	'th_ua' => 'Browser',
 	'th_ip' => 'IP Adresse',
-	'th_ips' => 'Hostname',
+	'th_isp' => 'Hostname',
 );
