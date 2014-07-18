@@ -5,5 +5,4 @@ $lang = array(
 	),
 );
 $plugin = Dog::getPlugin();
-$plugin->reply('https://encrypted.google.com/search?q=' . urlencode($plugin->msg()));
-?>
+$plugin->reply('https://google.com/search?q=' . urlencode($plugin->msg()));
