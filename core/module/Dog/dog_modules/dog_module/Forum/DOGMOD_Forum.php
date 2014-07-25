@@ -38,7 +38,7 @@ final class DOGMOD_Forum extends Dog_Module
 		
 		if (false === ($board = Dog_Forum::testBoard($argv[0], $argv[1])))
 		{
-			return $this->rply('err_response', array($board->displayName()));
+			return $this->rply('err_response', array($argv[1]));
 		}
 		
 		$board->insert();

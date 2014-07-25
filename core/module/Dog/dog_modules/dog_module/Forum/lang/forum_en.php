@@ -18,4 +18,3 @@ $lang = array(
 	
 	'msg_entry' => '[%s] - %s has posted in "%s": %s',
 );
-?>

@@ -57,7 +57,9 @@ final class Dog_Forum extends GDO
 	{
 		GWF_HTTP::setTimeout(3);
 		GWF_HTTP::setConnectTimeout(2);
-		$content = GWF_HTTP::getFromURL($this->getReplacedUrl($this->getDate(), $limit));
+		$url = $this->getReplacedUrl($this->getDate(), $limit);
+		echo "CHECKING FORUM WITH URL: $url\n";
+		$content = GWF_HTTP::getFromURL($url);
 		GWF_HTTP::setTimeout();
 		GWF_HTTP::setConnectTimeout();
 		return $content;
@@ -109,6 +111,11 @@ final class Dog_Forum extends GDO
 		
 			# Fetch line
 			list($threadid, $lastdate, $boardid, $url, $username, $title) = $thedata;
+			
+			if ($lastdate < $gwf_date)
+			{
+				continue;
+			}
 		
 			if (!Common::isNumeric($threadid))
 			{
