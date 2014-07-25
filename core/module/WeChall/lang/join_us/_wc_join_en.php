@@ -225,8 +225,7 @@ $lang = array(
 		'Your query has to be ordered by thread_lastpostdate DESC.<br/>'.
 		'Your output has to print the result in reverse order.<br/>'.
 		'You have to escape : with \\: and \\n with \\\\n.<br/>'.
-		'The columns are: threadid::datestamp::groupid::url::nickname::threadname<br/>'.
-		'It is optional if you output threads that have a groupid != 0.<br/>'.
+		'The columns are: threadid::datestamp::boardid::url::nickname::threadname<br/>'.
 		'<br/>'.
 		'<a href="%s" onclick="toggleHidden(\'example_7_1\'); return false;">Click here for an example on the server side</a><br/>'.
 		'<pre class="gwf_code" style="display: %s;" id="example_7_1">'.
@@ -238,7 +237,9 @@ $lang = array(
 		'%s'.
 		'</pre>'.
 		'<br/>'.
-		'If you like to, I can implement this script for you, in case you use some known forum software, like phpbb.',
+		'If you like to, I can implement this script for you, in case you use some known forum software, like phpbb.'.
+		'Meanwhile there are scripts for a very few well known forum softwares available.'.
+		'You can take a look at them in the <a href="%s">gwf3 code repository</a>.',
 		
 	'api_1t' => 'Poll the latest forum activity',
 	'api_1b' =>

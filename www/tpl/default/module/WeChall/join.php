@@ -1,11 +1,11 @@
 <?php
 $l = $tVars['join'];
-echo '<div class="gwf_buttons_outer"><div class="gwf_buttons">'.PHP_EOL;
+echo GWF_Button::wrapStart();
 echo GWF_Button::generic($l->lang('btn_join'), GWF_WEB_ROOT.'join_us', 'generic', '', true);
 echo GWF_Button::generic($l->lang('btn_join_war'), GWF_WEB_ROOT.'index.php?mo=WeChall&me=JoinUs&section=warbox');
 echo GWF_Button::generic($l->lang('btn_join_opt'), GWF_WEB_ROOT.'index.php?mo=WeChall&me=JoinUs&section=optional');
 echo GWF_Button::generic($l->lang('btn_api'), GWF_WEB_ROOT.'index.php?mo=WeChall&me=JoinUs&section=wechall_api');
-echo '</div></div>'.PHP_EOL;
+echo GWF_Button::wrapEnd();
 
 $url_api = htmlspecialchars(GWF_WEB_ROOT.'index.php?mo=WeChall&me=JoinUs&section=wechall_api');
 echo GWF_Box::box($l->lang('join_0_b', array($url_api)), $l->lang('join_0_t'));
@@ -26,10 +26,9 @@ echo GWF_Box::box($l->lang('join_3b'),  '3) <a name="join_3" href="#join_3">'.$l
 echo GWF_Box::box($l->lang('join_4b'),  '4) <a name="join_4" href="#join_4">'.$l->lang('join_4t').'</a>');
 echo GWF_Box::box($l->lang('join_process_b', array(GWF_WEB_ROOT.'index.php?mo=WeChall&me=JoinUs&section=optional')),  '4) <a name="joining_process" href="#joining_process" title="WeChall Joining Process">'.$l->lang('join_process_t').'</a>');
 
-echo '<div class="gwf_buttons_outer"><div class="gwf_buttons">'.PHP_EOL;
+echo GWF_Button::wrapStart();
 echo GWF_Button::generic($l->lang('btn_join'), GWF_WEB_ROOT.'join_us', 'generic', '', true);
 echo GWF_Button::generic($l->lang('btn_join_war'), GWF_WEB_ROOT.'index.php?mo=WeChall&me=JoinUs&section=warbox');
 echo GWF_Button::generic($l->lang('btn_join_opt'), GWF_WEB_ROOT.'index.php?mo=WeChall&me=JoinUs&section=optional');
 echo GWF_Button::generic($l->lang('btn_api'), GWF_WEB_ROOT.'index.php?mo=WeChall&me=JoinUs&section=wechall_api');
-echo '</div></div>'.PHP_EOL;
-?>
+echo GWF_Button::wrapEnd();

@@ -9,7 +9,7 @@ if ($limit > 10 || $limit < 1) {
 }
 $date = $_GET['datestamp'];
 $date = mysql_real_escape_string($date);
-if (strlen($data) !== 14) {
+if (strlen($date) !== 14) {
 	die('Error: datestamp has to be 14 chars long.');
 }
 
@@ -42,7 +42,7 @@ foreach ($threads as $row)
 	echo '::';
 	echo $row['datestamp'];
 	echo '::';
-	echo $row['groupid'];
+	echo $row['boardid'];
 	echo '::';
 	echo escape_csv_like(forum_push_get_url($row, $censor)); # Get url and censor, if desired.
 	echo '::';
@@ -56,4 +56,3 @@ function escape_csv_like($string)
 {
 	return str_replace(array(':', "\n"), array('\\:', "\\\n"), $string);
 }
-?>
