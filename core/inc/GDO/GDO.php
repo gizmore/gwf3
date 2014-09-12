@@ -428,6 +428,13 @@ abstract class GDO
 	
 	public function getMultiOrderby($by, $dir, $nested=true, array &$whitelist=NULL)
 	{
+		# Fix Information Disclosure (thx dloser)
+		# Admins cannot sort by emails anymore in some modules, but meh. Security first (thx dloser)
+		if (in_array($by, array('user_email', 'user_password', 'user_birthdate')))
+		{
+			return '';
+		}
+		
 		$back = '';
 		$by = explode(',', $by);
 		$dir = explode(',', $dir);
