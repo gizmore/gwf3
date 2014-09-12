@@ -27,7 +27,7 @@ abstract class Dog_ModuleGWF extends Dog_Module
 	
 	public function onInstall($flush_tables)
 	{
-		return $this->getModule()->onInstall($flush_tables);
+// 		return $this->getModule()->onInstall($flush_tables);
 	}
 	
 	public static function executeHook($hook, $args)

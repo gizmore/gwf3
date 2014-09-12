@@ -11,4 +11,4 @@ $lang = array(
 	),
 );
 $plugin = Dog::getPlugin();
-$plugin->reply('http://mp3.gizmore.org/metal/Manowar "o');
+$plugin->reply('http://mp3:iloveyou@mp3.gizmore.org/metal/Manowar "o');

@@ -12,10 +12,10 @@ $server = Dog::getServer();
 $channel = Dog::getChannel();
 $channame = $channel->getName();
 
-if (rand(0,2))
-{
-	return Dog::reply($plugin->getHelp());
-}
+// if (rand(0,2))
+// {
+// 	return Dog::reply($plugin->getHelp());
+// }
 
 $names = array();
 foreach ($channel->getUsers() as $user)
@@ -25,8 +25,9 @@ foreach ($channel->getUsers() as $user)
 
 while (count($names) > 0)
 {
-	$_names = array_slice($names, 0, 10);
-	$names = array_slice($names, 10);
+	$min = min(4, count($names));
+	$_names = array_slice($names, 0, $min);
+	$names = array_slice($names, $min);
 	$_modes = str_repeat('o', count($_names));
 	$_names = implode(' ', $_names);
 	$server->sendRAW("MODE {$channame} +{$_modes} $_names");

@@ -5,9 +5,11 @@ $nick = Dog::getNickname();
 
 Dog::getOrCreateUserByName(Dog::argv(0));
 
-$server->sendRAW("MODE {$nick} +b");
-$server->sendRAW("MODE {$nick} +B");
-
+if (!$server->isOptionEnabled(Dog_Server::NO_BOTFLAG))
+{
+	$server->sendRAW("MODE {$nick} +b");
+	$server->sendRAW("MODE {$nick} +B");
+}
 if (false !== ($connector = $server->getVarDefault('dog_connector', false)))
 {
 	$server->unsetVar('dog_connector');

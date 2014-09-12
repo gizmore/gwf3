@@ -86,4 +86,17 @@ if (!$user->isBot())
 	{
 		require 'CTCP.php';
 	}
+	
+	else
+	{
+		$msg = preg_replace('[^a-z]', '', $msg);
+		if ($msg === 'wechallnetISUP')
+		{
+			Dog::reply('Yay \o/');
+		}
+		elseif ($msg === 'wechallnetISUP')
+		{
+			Dog::reply('NO! :(');
+		}
+	}
 }

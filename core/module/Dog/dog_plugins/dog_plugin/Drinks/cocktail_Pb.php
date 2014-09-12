@@ -13,6 +13,7 @@ $cocktails = array(
 	'Sex on the Beach',
 	'Caipirinha',
 	'Tequila Sunrise',
+	'Cosmopolitan',
 );
 $plugin = Dog::getPlugin();
 $argv = $plugin->argv();

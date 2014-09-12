@@ -20,7 +20,7 @@ final class Dog_IRCPriv
 	public static function filterPrivsToEdit($chars)
 	{
 		$valid = self::allChangeableChars();
-		return preg_replace("[^$valid]", '', $chars);
+		return preg_replace("/[^$valid]/", '', $chars);
 	}
 	
 	public static function displayChar($char) { return Dog::lang('priv_'.$char); }

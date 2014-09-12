@@ -8,6 +8,7 @@ final class Dog_Server extends GDO
 	const BNC = 0x40;
 	const WS = 0x80;
 	const HAS_CONNECTED_ONCE = 0x100;
+	const NO_BOTFLAG = 0x200;
 	const DEFAULT_OPTIONS = 0x11;
 	const LOGBITS = 0x03;
 	

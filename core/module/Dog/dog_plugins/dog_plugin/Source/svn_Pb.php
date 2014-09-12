@@ -5,4 +5,3 @@ $lang = array(
 	),
 );
 Dog::getPlugin()->showHelp();
-?>

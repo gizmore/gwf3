@@ -40,6 +40,7 @@ if ($argc === 1)
 }
 elseif ($argc === 2)
 {
+	$sign = $argv[1][0];
 	$argv[1] = Dog_IRCPriv::filterPrivsToEdit($argv[1]);
 	
 	# Alter Privs
@@ -51,7 +52,7 @@ elseif ($argc === 2)
 	{
 		$plugin->rply('not_regged', array($user->displayName()));
 	}
-	elseif ( ($argv[1][0] === '+') && (strlen($argv[1]) > 1) )
+	elseif ( ($sign === '+') && (strlen($argv[1]) >= 1) )
 	{
 		$u = Dog::getUser();
 		$have = Dog_PrivServer::getPermbits($serv, $u);
@@ -69,7 +70,7 @@ elseif ($argc === 2)
 			$plugin->rply('set', array($user->displayName(), $serv->displayName(), Dog_IRCPriv::displayBits($now)));
 		}
 	}
-	elseif ($argv[1][0] === '-')
+	elseif ( ($sign === '-') && (strlen($argv[1]) >= 1) )
 	{
 		$u = Dog::getUser();
 		$have = Dog_PrivServer::getPermbits($serv, $u);
