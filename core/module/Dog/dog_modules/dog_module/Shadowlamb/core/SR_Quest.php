@@ -18,10 +18,14 @@ class SR_Quest extends GDO
 	{
 		foreach (self::$QUESTS as $cname => $quest)
 		{
-			list(,,$qname) = explode('_', $cname, 3);
-			if ($qname === $questname)
+			$list = explode('_', $cname, 3);
+			if (count($list) === 3)
 			{
-				return self::getQuest($player, $cname);
+				list(,,$qname) = $list;
+				if ($qname === $questname)
+				{
+					return self::getQuest($player, $cname);
+				}
 			}
 		}
 		return false;

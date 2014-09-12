@@ -3,8 +3,8 @@ final class Redmond_Snowman extends SR_NPC
 {
 	public function getNPCLevel() { return 2; }
 	public function getNPCPlayerName() { return 'Snowman'; }
-	public function getNPCMeetPercent(SR_Party $party) { return 15.00; }
-	public function canNPCMeet(SR_Party $party) { return false; }
+	public function getNPCMeetPercent(SR_Party $party) { return 0.00; }
+	public function canNPCMeet(SR_Party $party) { return true; }
 	public function getNPCEquipment()
 	{
 		return array(
@@ -15,7 +15,7 @@ final class Redmond_Snowman extends SR_NPC
 	public function getNPCModifiers() {
 		return array(
 			'nuyen' => 0,
-			'base_hp' => rand(5, 35),
+			'base_hp' => rand(155, 235),
 			'strength' => 1,
 		);
 	}
@@ -29,14 +29,14 @@ final class Redmond_Snowman extends SR_NPC
 	
 	public function getNPCLoot(SR_Player $player)
 	{
-		$got = SR_PlayerVar::getVal($player, '2012_SNO', 0);
+		$got = SR_PlayerVar::getVal($player, '2013_SNO', 0);
 		
 		if ($got >= 20)
 		{
 			return array();
 		}
 		
-		SR_PlayerVar::increaseVal($player, '2012_SNO', 1);
+		SR_PlayerVar::increaseVal($player, '2013_SNO', 1);
 		
 		return array('Present');
 		

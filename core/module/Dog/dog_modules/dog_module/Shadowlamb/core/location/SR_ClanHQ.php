@@ -365,7 +365,7 @@ abstract class SR_ClanHQ extends SR_Location
 // 			return true;
 		}
 		
-		if ($clan->isMaxMoney())
+		if ($clan->isMaxWealth())
 		{
 			$player->msg('5171', array($clan->displayNuyen(), $clan->displayMaxNuyen()));
 // 			$player->message(sprintf('Your clan has already reached the maximum of %s/%s.', $clan->displayNuyen(), $clan->displayMaxNuyen()));
@@ -418,7 +418,7 @@ abstract class SR_ClanHQ extends SR_Location
 // 			return true;
 		}
 		
-		if ($clan->isMaxStorage())
+		if ($clan->getMaxStorage() >= SR_Clan::MAX_STORAGE)
 		{
 			$player->msg('5171', array($clan->displayNuyen(), $clan->displayMaxNuyen()));
 // 			$player->message(sprintf('Your clan has already reached the maximum of %s/%s storage.', $clan->displayStorage(), $clan->displayMaxStorage()));
@@ -471,7 +471,7 @@ abstract class SR_ClanHQ extends SR_Location
 			return true;
 		}
 		
-		if ($clan->isMaxStorage())
+		if ($clan->getMaxMembercount() >= SR_Clan::MAX_MEMBERCOUNT)
 		{
 			$player->msg('5171', array($clan->getMembercount(), $clan->displayMaxMembercount()));
 // 			$player->message(sprintf('Your clan has already reached the maximum of %s/%s storage.', $clan->displayStorage(), $clan->displayMaxStorage()));

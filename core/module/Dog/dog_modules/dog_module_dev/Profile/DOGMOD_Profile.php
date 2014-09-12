@@ -1,4 +1,4 @@
 <?php
-class DOGMOD_Profile extends Dog_GWFModule
+class DOGMOD_Profile extends DOGMOD_GWF
 {
 }

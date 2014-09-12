@@ -29,7 +29,7 @@ class DOGMOD_YouTube extends Dog_Module
 		
 		$vars = array(
 				$data['title'],
-				GWF_TimeConvert::humanDurationISO($chan->getLangISO(), $data['duration']),
+				GWF_TimeConvert::humanDurationISO($iso, $data['duration']),
 				sprintf('%.02f', $data['rating']),
 				number_format($data['views']),
 				number_format($data['num_raters']));

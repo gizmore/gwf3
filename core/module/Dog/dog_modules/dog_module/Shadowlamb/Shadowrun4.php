@@ -358,13 +358,13 @@ final class Shadowrun4
 			if ($player->isHuman())
 			{
 				$u = $player->getUser();
-// 				if ($u instanceof Dog_User)
-// 				{
+				if ($u instanceof Dog_User)
+				{
 					if ($user->getID() === $u->getID())
 					{
 						return $player;
 					}
-// 				}
+				}
 			}
 		}
 		

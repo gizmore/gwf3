@@ -32,6 +32,11 @@ final class DOGMOD_AutoLogin extends Dog_Module
 			$this->tryAutoLogin($server, $user);
 		}
 	}
+
+	public function event_307()
+	{
+		$this->event_330();
+	}
 	
 	public function event_330()
 	{

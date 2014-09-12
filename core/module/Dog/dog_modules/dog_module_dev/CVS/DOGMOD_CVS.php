@@ -303,16 +303,17 @@ final class DOGMOD_CVS extends Dog_Module
 
 	private function checkout_svn(Dog_Repo $repo)
 	{
-		$this->rply('err_func_is_stub');
+		
 	}
 	
 	private function checkout_git(Dog_Repo $repo)
 	{
+		$type = strtoupper($repo->getType());
 		$calldata = array($repo->getGDOData());
 		$callback = array($this, 'after_checkout');
 		$callargs = array($repo->getID());
-		$includes = array($this->getPath().'workers/Dog_CVS_Git_Worker.php');
-		if (!Dog::getWorker()->async_method('Dog_CVS_Git_Worker', 'checkout', $calldata, $callback, $callargs, $includes))
+		$includes = array($this->getPath()."workers/Dog_CVS_{$type}_Worker.php");
+		if (!Dog::getWorker()->async_method("Dog_CVS_{$type}_Worker", 'checkout', $calldata, $callback, $callargs, $includes))
 		{
 			$this->rply('err_worker');
 		}
