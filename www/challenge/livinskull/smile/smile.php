@@ -124,7 +124,7 @@ class LivinForm
 			$allowed = false;
 		}
 		
-		if (!preg_match('/^[\x00-\x7f]$/D', $filename))
+		if (!preg_match('/^[\x00-\x7f]+$/D', $filename))
 		{
 			return GWF_HTML::error('Smile Path', array($chall->lang('err_ascii')));
 		}
@@ -160,12 +160,12 @@ class LivinForm
 		$pattern = $form->getVar('pattern');
 		$path = $form->getVar('filename');
 		
-// 		if (!preg_match('/^[\x00-\x7f]$/D', $pattern))
+// 		if (!preg_match('/^[\x00-\x7f]+$/D', $pattern))
 // 		{
 // 			return GWF_HTML::error('Smile Pattern', array($chall->lang('err_ascii')));
 // 		}
 
-		if (!preg_match('/^[\x00-\x7f]$/D', $path))
+		if (!preg_match('/^[\x00-\x7f]+$/D', $path))
 		{
 			return GWF_HTML::error('Smile Path', array($chall->lang('err_ascii')));
 		}
@@ -223,4 +223,3 @@ echo LIVIN_Smile::showAllSmiles($chall);
 echo $chall->copyrightFooter();
 
 require_once('challenge/html_foot.php');
-?>
