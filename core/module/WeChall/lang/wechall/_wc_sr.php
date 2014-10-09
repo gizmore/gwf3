@@ -132,7 +132,7 @@ $lang = array(
 	'pi_ug_join' => 'Можете се <a href="%s">придружити групи ако кликнете овде</a>.',
 	'pi_ug_register' => 'Морате се <a href="%s">регистровати</a> да се придружите групи.',
 	'pit_ranking' => 'Глобално рангирање',
-	'pi_ranking' => 'The best hackers and challenge solvers in the world (that registered on wechall)',
+	'pi_ranking' => 'The best hackers and challenge solvers in the world, who registered on wechall.',
 	'pi_viewcount' => 'Ова страна је погледана %s пут/пута.',
 
 	# Header

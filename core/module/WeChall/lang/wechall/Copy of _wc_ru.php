@@ -1,59 +1,60 @@
 <?php
+
 $lang = array(
 	# New Left Sidebar
-	'li_last_active' => '%s reached %s%% on %s',
+	'li_last_active' => '%s достиг %s%% на %s', 
 
 	# Global Meta Tags
 	'mt_wechall' => 'Hackit, Challenge, Problem, Riddle, WeChall, Global, Hacker, Website,  Ranking',
 	'md_wechall' => 'Overview of hacking challenge and problem solving sites. - wechall',
 
 	# TextHistory
-	'pt_texthis' => 'History for %s',
-	'pi_texthis' => 'The complete user history for %s.',
+	'pt_texthis' => 'История для %s',
+	'pi_texthis' => 'Полная история пользователя %s.',
 	'mt_texthis' => 'WeChall, History, %s, Text Based',
-	'md_texthis' => 'The complete history and challenge site activities for user %s.',
+	'md_texthis' => 'Полная история и выполненые задания пользователя %s.',
 
 	# Country Ranking
-	'pt_csrank' => 'Country Ranking',
-	'pi_csrank' => 'The best hacker countries in the world.<br/>SpC (Score per Citizen) does take countries population into account.<br/>Formula: SUM(score) / population * 1000.',
+	'pt_csrank' => 'Ранг страны',
+	'pi_csrank' => 'Лучшие страны хакеров на планете. <br/>СнЧ (счет на человека) берёт во внимание население страны. <br/>Формула: сумма(счет)/население * 1000',
 	'mt_csrank' => 'WeChall, Country Ranking, Global Country Ranking, Hacker, Ranking',
-	'md_csrank' => 'The best hacker countries in the world on WeChall.net',
+	'md_csrank' => 'Лучшие хакерские страны в мире на  WeChall.net',
 
-	'pt_crank' => '%s Ranking - Page %s',
-	'pi_crank' => 'The best hackers and challenge solvers from %s.',
-	'mt_crank' => 'WeChall, Country Ranking, %s, %s Ranking',
-	'md_crank' => 'A table of the best hackers in %s.',
+	'pt_crank' => '%s Список лучших- Страница %s',
+	'pi_crank' => 'Лучшие хакеры и решившие задачи из %s.',
+	'mt_crank' => 'WeChall, Ранг Страны, %s, %s Список лучших',
+	'md_crank' => 'Список лучших хакеров в %s.',
 
 
-	'solved_by_title' => '<a href="%s">%s</a> Heroes',
-	'solved_by_text' => 'All people that solved %s, ordered by solving date.',
-	'newsrow_linkt' => 'Todays Account Linking',
-	'newsrow_link' => '%s linked his/her account to %s with %s%% solved.',
+	'solved_by_title' => '<a href="%s">%s</a> Герои',
+	'solved_by_text' => 'Все кто решил %s, отсортированы по дате решения.',
+	'newsrow_linkt' => 'Сегодня Аккаунт Подсоеденили',
+	'newsrow_link' => '%s подсоеденил/подсоеденила свой аккаунт к %s с решонными %s.',
 	
 	# Quick Update
-	'th_quickupdate' => 'Quick Update',
+	'th_quickupdate' => 'Быстрое обновление',
 
 	# Cat Ranking
-	'pi_tagrank' => 'The best players in the category %s.<br/>Note that here all sites that have some %s challenges sum up, so it it not very representative.',
-	'pt_tagrank' => '%s ranking',
-	'mt_tagrank' => GWF_SITENAME.', %s, Ranking, %s Ranking',
-	'md_tagrank' => '%s ranking on '.GWF_SITENAME.'. Page %s of %s.',
+	'pi_tagrank' => 'Лучшие игроки в категории %s. Заметь здесь все сайты в которых есть задания %s, поэтому это не очень наглядно.',
+	'pt_tagrank' => '%s список лучшых',
+	'mt_tagrank' => GWF_SITENAME.', %s, список лучшых, %s список лучшых',
+	'md_tagrank' => '%s список лучшых на  '.GWF_SITENAME.'. Страница  %s из %s.',
 
 	# Lang Ranking
-	'logo2_hover' => '%s solved %s%% on %s',
-	'pt_langrank' => '%s ranking - page %s/%s',
-	'pit_langrank' => '%s ranking',
-	'pi_langrank' => 'The best players on %s sites.',
-	'pt_rankingc' => 'Country Ranking',
-	'mt_ranking_lang' => GWF_SITENAME.', Ranking, %s, Challenge, Sites, List, Cross, Challenge, Site, Sites',
-	'md_ranking_lang' => 'The best hackers on %s sites, registered on '.GWF_SITENAME.'. Page %s of %s.',
+	'logo2_hover' => '%s решенно %s%% на %s',
+	'pt_langrank' => '%s список лучшых - страница %s/%s',
+	'pit_langrank' => '%s список лучшых',
+	'pi_langrank' => 'Лучшие игроки на %1 сайтах.',
+	'pt_rankingc' => 'Список лучшых в стране',
+	'mt_ranking_lang' => GWF_SITENAME.', список лучшых, %s, Challenge, Sites, List, Cross, Challenge, Site, Sites',
+	'md_ranking_lang' => 'Лучшие хакеры на %s сайтах, зарегестрированые на '.GWF_SITENAME.'. Страница %s из %s.',
 
 	# User Graphs
-	'alt_challvotes' => 'Challenge Votes',
+	'alt_challvotes' => 'Голоса за задание',
 	'alt_graph_rank' => 'Ranking History for %s',
-	'alt_graph_rank_vs' => 'Ranking History for %s vs. %s',
-	'alt_graph_totalscore' => 'Totalscore Graph for %s',
-	'alt_graph_totalscore_vs' => 'Totalscore Graph for %s vs. %s',
+	'alt_graph_rank_vs' => 'Ranking History for %s в сравнении с %s',
+	'alt_graph_totalscore' => 'График общего счёта для %s',
+	'alt_graph_totalscore_vs' => 'График общего счёта для %s в сравнении с %s',
 
 	# Site graphs
 	'it_graph_sitescore' => 'Score history for site %s',
@@ -131,7 +132,7 @@ $lang = array(
 	'pi_ug_join' => 'You can <a href="%s">join the group by clicking here</a>.',
 	'pi_ug_register' => 'You need to <a href="%s">register</a> to join groups.',
 	'pit_ranking' => 'Global Ranking',
-	'pi_ranking' => 'The best hackers and challenge solvers in the world, who registered on wechall.',
+	'pi_ranking' => 'The best hackers and challenge solvers in the world (that registered on wechall)',
 	'pi_viewcount' => 'This page has been viewed %s times.',
 
 	# Header
@@ -211,7 +212,7 @@ $lang = array(
 	'th_site_tags' => 'Category Tags',
 	'th_score' => 'Score',
 	'th_totalscore' => 'Totalscore',
-	'th_site_country' => ' ',
+	'th_site_country' => '',
 	'th_site_country2' => 'The Site`s origin Country',
 	'th_site_language' => 'Language',
 	'th_site_language2' => 'The Site`s primary user Language',
@@ -299,7 +300,7 @@ $lang = array(
 	'err_site_dup' => 'The sitename already exists.',
 	'err_classname_dup' => 'The classname already exists for a site.',
 	'err_site' => 'This Challenge Site is unknown.',
-	'err_site_name' => 'The Site Name is invalid. It has to be between %s and %s chars in length.',
+	'err_site_name' => 'The Site Name is invalid. It has to be between %s and %s chars.',
 	'err_site_classname' => 'The Site Classname is invalid. It has to be between %s and %s ascii chars.',
 	'err_not_linked' => 'You are not linked to %s.',
 	'err_site_basescore' => 'The Site`s Basescore has to be between %s and %s.',
@@ -650,8 +651,8 @@ $lang = array(
 	'msg_rem_favcat' => 'The category \'%s\' got removed from your favorite categories.',
 	'err_site_status' => 'The sites status is invalid.',
 	'menu_download' => 'Downloads',
-		
-	#WC5 (monnino fixes)
+
+	# WC5 (monnino fixes)
 	'th_site_color' => 'Site color',
 	'th_onsitename' => 'User OnSiteName',
 	'pi_site_tags' => 'Site Tags',
@@ -663,13 +664,13 @@ $lang = array(
 	'btn_your_stats' => 'Your Stats',
 	'menu_changes' => 'Changes',
 	'btn_helpdesk' => 'Helpdesk',
-		
+
 	# v5.01 (chall filter)
 	'btn_all' => 'All',
 	'btn_open' => 'Open',
 	'th_no_urlencode' => 'No urlencoding',
 	'tt_no_urlencode' => 'Disable urlencoding of parameters. Not recommended!',
-		
+
 	# v5.02 (EPOCH_WARBOX)
 	'btn_warboxes' => 'WarBoxes',
 	'err_warbox_nick' => 'You cannot, and do not need to, choose a different nickname on a Warbox.',
@@ -710,7 +711,7 @@ $lang = array(
 	'err_name' => 'The name hase to be between %s and %s characters in length.',
 	'msg_warbox_added' => 'You have added another Warbox to your site!',
 	'msg_warbox_edited' => 'The Warbox config has been edited.',
-	
+
 	#5.06 wargames
 	'title_warboxes_details' => 'Warboxes on %s',
 	'info_warboxes_details' => 'There are %2$s warboxes available on %1$s. Click on a levels count to see the levels. Click on a players count to inspect the rankings for this box.',
@@ -720,7 +721,7 @@ $lang = array(
 	'info_warflag_solvers' => '%s people solved %s on %4$s. See them here in chronological order.',
 	'title_warbox_players' => 'Ranking for the %2$s box on %3$s',
 	'info_warbox_players' => 'All %s players ranked on %s - %s sorted by score and last activity.',
-		
+
 	#5.07 warflags finish
 	'err_warbox' => 'The warbox is unknown to that site.',
 	'err_warflag' => 'This challenge is unknown or not in the scope.',
@@ -730,7 +731,7 @@ $lang = array(
 
 	#5.09 hackerspace
 	'btn_hackerspace' => 'Hackerspace',
-		
+
 	#5.10 SiteRSS
 	'siterss_title' => 'Recent activity on %s',
 	'siterssi_title' => '%s activity',
