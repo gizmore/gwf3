@@ -1,7 +1,10 @@
 <?php
 final class Slay_PNow
 {
-	const URL = 'http://www.slayradio.org/ajax/gateway/playing/now';
+// 	const URL = 'http://www.slayradio.org/ajax/gateway/playing/now';
+	const URL = 'http://www.slayradio.org/api.php?query=nowplaying';
+	
+	# Keys in database, also locks Oo (well, it might work)
 	const NP_KEY = 'slay_np';
 	const NP_NEXT_KEY = 'slay_npt';
 	const NP_LOCK_KEY = 'slay_lock';
@@ -77,36 +80,43 @@ final class Slay_PNow
 			return self::dummySong($module);
 		}
 		
-//		var_dump($data);
+		$data = $data['data'];
+		
+// 		var_dump(($data));
 //		$data = new Slay_Response($data);
 		
 		if ( (isset($data['live'])) && ($data['live']) )
 		{
 			return self::querySlayLiveshow($module, $data['redirect_url']);
 		}
+
+		# Timing
+		$duration = (int) $data['duration'];
+		$left = (int) $data['next_song_expected'];
+		$now = $duration - $left;
+// 		$started = time() - $now;
+// 		$ending = time() + $left;
 		
-		$now = (int) $data['now'];
-		$started = (int) $data['started'];
-		$ending = (int) $data['ending'];
-		$left = $ending - $now;
-		$duration = $ending - $started;
+// 		var_dump("LEFT: $left. NOW: $now.");
 		
-		$si = $data['slay_info'];
-		$slay_id = $si['songID'];
+// 		$si = $data['slay_info'];
+		$si = $data;
+		$slay_id = $si['id'];
 		$artist = $si['artist'];
 		$title = $si['title'];
 		$album = $si['album'];
-		$composer = $si['SID_composer'];
-		$sid_path = isset($si['url_SID']) ? $si['url_SID'] : NULL;
+// 		$composer = $si['SID_composer'];
+		$sid_path = isset($si['sid_path']) ? $si['sid_path'] : NULL;
 		
 		$rko_id = 0;
 		$rko_vote = 0;
-		if (isset($data['rko_info']))
+		if (isset($data['r64_id']) && ($data['r64_id']) > 0)
 		{
-			$ri = $data['rko_info'];
-			$rko_id = $ri['rko_ID'];
+// 			$ri = $data['rko_info'];
+			$ri = $data;
+			$rko_id = $ri['r64_id'];
 			$rko_vote = $ri['r64_vote'];
-			$sid_path = isset($ri['SID_path']) ? $ri['SID_path'] : $sid_path;
+// 			$sid_path = isset($ri['SID_path']) ? $ri['SID_path'] : $sid_path;
 		}
 		
 		$sid_path = $sid_path === NULL ? NULL : Common::substrFrom($sid_path, '?sid_tune=', $sid_path);
@@ -127,7 +137,7 @@ final class Slay_PNow
 				
 					'ss_title' => $title,
 					'ss_artist' => $artist,
-					'ss_composer' => $composer,
+					'ss_composer' => '', #$composer,
 				
 					'ss_taggers' => 0,
 					'ss_lyrics' => 0,
@@ -146,10 +156,13 @@ final class Slay_PNow
 			}
 		}
 		
-		$song->increase('ss_played', 1);
+		if (GWF_Settings::getSetting(self::NP_KEY) != $song->getID())
+		{
+			$song->increase('ss_played', 1);
+			GWF_Settings::setSetting(self::NP_KEY, $song->getID());
+			GWF_Settings::setSetting(self::NP_NEXT_KEY, time()+$left+1);
+		}
 		
-		GWF_Settings::setSetting(self::NP_KEY, $song->getID());
-		GWF_Settings::setSetting(self::NP_NEXT_KEY, time()+$left+1);
 		
 		return $song;
 	}

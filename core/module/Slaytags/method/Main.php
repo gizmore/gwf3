@@ -9,14 +9,18 @@ final class Slaytags_Main extends GWF_Method
 	
 	private function templateMain()
 	{
+
 		$left = Slay_PNow::getTimeLeft();
 		
-		GWF_Website::addJavascriptOnload("slayInitRedirect(".($left+1).");");
+		$now = Slay_PNow::getNowPlaying($this->module);
+// 		var_dump($left);
+		
+		GWF_Website::addJavascriptOnload("slayInitRedirect(".(max($left+2, 5)).");");
 		
 		$tVars = array(
 			'href_history' => $this->module->getMethodURL('History', '&page='.Slay_PlayHistory::getNumPages()),
 			'history' => Slay_PlayHistory::getLastPlayed(1),
-			'now' => Slay_PNow::getNowPlaying($this->module),
+			'now' => $now,
 			'left' => $left,
 //			'next' => Slay_Pnext::getNextPlaying(),
 		);
