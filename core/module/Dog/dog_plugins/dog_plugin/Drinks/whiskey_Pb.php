@@ -23,5 +23,5 @@ if ( (count($args) === 1) && ( $args[0] != '') && ( $args[0] != $unam) )
 }
 else 
 {
-	$plugin->rplyAction('give1', array($args[0]));
+	$plugin->rplyAction('give1', array($unam));
 }
