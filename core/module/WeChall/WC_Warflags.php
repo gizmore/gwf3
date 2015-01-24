@@ -73,11 +73,18 @@ final class WC_Warflags extends GDO
 	{
 		if (false !== ($entry = self::getByFlagUser($flag, $user)))
 		{
-			return $entry->saveVars(array(
-				'wf_attempts' => $entry->getVar('wf_attempts') + 1,
-				'wf_last_attempt' => NULL,
-				'wf_solved_at' => GWF_Time::getDate(),
-			));
+			if ($entry->getVar('wf_solved_at'))
+			{
+				return $entry->saveVars(array(
+					'wf_attempts' => $entry->getVar('wf_attempts') + 1,
+					'wf_last_attempt' => NULL,
+					'wf_solved_at' => GWF_Time::getDate(),
+				));
+			}
+			else
+			{
+				return true;
+			}
 		}
 		return self::table(__CLASS__)->insertAssoc(array(
 			'wf_wfid' => $flag->getID(),
