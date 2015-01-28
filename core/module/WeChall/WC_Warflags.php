@@ -73,7 +73,7 @@ final class WC_Warflags extends GDO
 	{
 		if (false !== ($entry = self::getByFlagUser($flag, $user)))
 		{
-			if ($entry->getVar('wf_solved_at'))
+			if (!$entry->getVar('wf_solved_at'))
 			{
 				return $entry->saveVars(array(
 					'wf_attempts' => $entry->getVar('wf_attempts') + 1,
