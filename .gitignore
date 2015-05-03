@@ -1,0 +1,36 @@
+
+# /
+/.project
+
+# /core/disabled_modules/Lamb/
+/core/disabled_modules/Lamb/www
+
+# /core/disabled_modules/Lamb/lamb_bin/
+/core/disabled_modules/Lamb/lamb_bin/lamb_pass.php
+
+# /core/disabled_modules/Lamb/lamb_module/Shadowlamb/
+/core/disabled_modules/Lamb/lamb_module/Shadowlamb/GameMasters.php
+/core/disabled_modules/Lamb/lamb_module/Shadowlamb/data
+
+# /core/disabled_modules/Lamb/lamb_module/Shadowlamb/city/
+/core/disabled_modules/Lamb/lamb_module/Shadowlamb/city/Nysoft
+
+# /core/inc/3p/PHPMailer/
+/core/inc/3p/PHPMailer/*.git
+
+# /core/module/Audit/ruth/
+/core/module/Audit/ruth/config.php
+/core/module/Audit/ruth/lastwcid
+
+# /core/module/Dog/
+/core/module/Dog/OWNER.php
+/core/module/Dog/dog_event_plug_gizmore
+/core/module/Dog/dog_events
+/core/module/Dog/dog_timer_plug
+/core/module/Dog/dog_timer_plug_gizmore
+
+# /core/module/Dog/dog_modules/
+/core/module/Dog/dog_modules/dog_module_secret
+
+# /core/module/Dog/dog_modules/dog_module/Shadowlamb/
+/core/module/Dog/dog_modules/dog_module/Shadowlamb/secret.php
