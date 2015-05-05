@@ -1,4 +1,5 @@
 <?php
+require_once 'equipper.php';
 class SR_AI_customer extends SR_AI_equipper
 {
 	public function ai_goal(SR_RealNPC $npc)
