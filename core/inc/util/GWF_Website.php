@@ -251,6 +251,11 @@ final class GWF_Website
 	####################
 	### Display Page ###
 	####################
+	public static function isMobile()
+	{
+		return false;
+	}
+
 	public static function getHTMLHead()
 	{
 		$tVars = array(
