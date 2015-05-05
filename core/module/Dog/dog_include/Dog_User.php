@@ -59,6 +59,11 @@ final class Dog_User extends GDO
 	
 	public function isFlooding($update=true)
 	{
+		if (Dog::$FAKING_MESSAGE)
+		{
+			return false;
+		}
+
 		$time = microtime(true);
 		$flood = Dog_Init::getFloodTime();
 		if (($this->last_msg + $flood) > $time)
