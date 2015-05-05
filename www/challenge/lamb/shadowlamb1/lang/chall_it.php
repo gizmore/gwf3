@@ -1,8 +1,10 @@
 <?php
 $lang = array(
 	'title' => 'Shadowlamb - Capitolo I',
-	'info' => 
-		'Ugah fatto gioco. Tu gioca gioco. Tu #usa PergamenaDellaConoscenza. Tu <a href="%1$s">giochi su IRC</a>. Gioco in inglese (ancora per poco).',
+	'info' =>
+		'Ugah fatto gioco. Tu gioca gioco. Tu #usa PergamenaDellaConoscenza. Tu <a href="%1$s">giochi su IRC</a>. Gioco in inglese (ancora per poco).<br/>'.PHP_EOL,
+		'<br/>'.PHP_EOL.
+		'If you cannot base64, you can connect to rpg network darkmyst: ircs://nebula.uk.eu.darkmyst.org:6697#shadowlamb'.PHP_EOL,
 
 	'client_it' => 'Come giocare',
 	'client_info' =>

@@ -2,7 +2,9 @@
 $lang = array(
 	'title' => 'Shadowlamb - Kapitel I',
 	'info' => 
-		'Ugah hat Spiel. Du spielen. Du #use ScrollOfWisdom. Du <a href="%1$s">spielen in IRC</a>. Das Spiel Englisch.',
+		'Ugah hat Spiel. Du spielen. Du #use ScrollOfWisdom. Du <a href="%1$s">spielen in IRC</a>. Das Spiel Englisch.<br/>'.PHP_EOL.
+		'<br/>'.PHP_EOL.
+		'Wenn Du nicht base64, du kannst dich zum Darkmyst RPG network verbinden:: ircs://nebula.uk.eu.darkmyst.org:6697#shadowlamb'.PHP_EOL,
 
 	'client_it' => 'Anleitung',
 	'client_info' =>

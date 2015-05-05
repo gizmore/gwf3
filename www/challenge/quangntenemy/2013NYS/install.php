@@ -23,7 +23,7 @@ $tags = 'Special,Crypto';
 
 WC_Challenge::installChallenge($title, $solution, $score, $url, $creators, $tags, true, WC_Challenge::CHALL_CASE_I);
 
-if (!GWF_User::getByName('Rudolph2013'))
+if (!($user = GWF_User::getByName('Rudolph2013')))
 {
 	$user = new GWF_User(array(
 		'user_id' => '0',
@@ -35,10 +35,14 @@ if (!GWF_User::getByName('Rudolph2013'))
 	));
 	$user->insert();
 }
+else
+{
+	$user->saveOption(GWF_User::EMAIL_GPG, true);
+}
 GWF_PublicKey::updateKey($user->getID(), $key1);
 
 
-if (!$user = GWF_User::getByName('Silvester2013'))
+if (!($user = GWF_User::getByName('Silvester2013')))
 {
 	$user = new GWF_User(array(
 			'user_id' => '0',
@@ -49,6 +53,10 @@ if (!$user = GWF_User::getByName('Silvester2013'))
 			'user_email' => 'silvester2013@gizmore.org',
 	));
 	$user->insert();
+}
+else
+{
+	$user->saveOption(GWF_User::EMAIL_GPG, true);
 }
 GWF_PublicKey::updateKey($user->getID(), $key2);
 

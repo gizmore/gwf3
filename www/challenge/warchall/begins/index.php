@@ -114,7 +114,7 @@ function warchall1createAccount(WC_Challenge $chall)
 	$f2 = new WCA_FormSetupMail();
 	if (false === ($db2 = gdo_db_instance(WARGIZ_DB_HOST, WARGIZ_DB_USER, WARGIZ_DB_PASS, WARGIZ_DB_DB)))
 	{
-		return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+		return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 	}
 	$email = '';
 	if (false !== ($result = $db2->queryFirst("SELECT am_email FROM gwf_audit_mails WHERE am_username='$eusername'", true)))
@@ -153,7 +153,7 @@ function warchall1createAccountB(WC_Challenge $chall)
 {
 	if (false === ($db = gdo_db_instance(WARBOX_DB_HOST, WARBOX_DB_USER, WARBOX_DB_PASS, WARBOX_DB_DB)))
 	{
-		return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+		return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 	}
 	
 	$user = GWF_Session::getUser();
@@ -161,7 +161,7 @@ function warchall1createAccountB(WC_Challenge $chall)
 	$pass = $db->escape(crypt($_POST['password1']));
 	if (false === $db->queryWrite("REPLACE INTO war_audit_add_user VALUES('{$username}', '{$pass}')"))
 	{
-		return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+		return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 	}
 	
 	return GWF_HTML::message('Let the Warchall begin', $chall->lang('msg_creating_account', $username, $_POST['password1']));
@@ -171,7 +171,7 @@ function warchall1createEMailB(WC_Challenge $chall, GDO_Database $db2, $eusernam
 {
 	if (false === ($db2->queryWrite("DELETE FROM gwf_audit_mails WHERE am_username='$eusername'")))
 	{
-		return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+		return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 	}
 	if ($db2->affectedRows() == 1)
 	{
@@ -186,7 +186,7 @@ function warchall1createEMailB(WC_Challenge $chall, GDO_Database $db2, $eusernam
 	$eemail = GDO::escape($email);
 	if (false === ($db2->queryWrite("REPLACE INTO gwf_audit_mails VALUES('$eusername', '$eemail')")))
 	{
-		return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+		return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 	}
 
 	return GWF_HTML::message('Warchall', $chall->lang('msg_mail'));

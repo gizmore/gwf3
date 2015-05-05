@@ -194,7 +194,6 @@ RewriteRule ^(.*/country)/Sao\s?Tome\s?And\s?Principe(.png|/)?$ $1/224
 RewriteRule ^(.*/country)/Saudi\s?Arabia(.png|/)?$ $1/59
 RewriteRule ^(.*/country)/Senegal(.png|/)?$ $1/225
 RewriteRule ^(.*/country)/Serbia(.png|/)?$ $1/81
-RewriteRule ^(.*/country)/Serbia\s?and\s?Montenegro(.png|/)?$ $1/312
 RewriteRule ^(.*/country)/Seychelles(.png|/)?$ $1/226
 RewriteRule ^(.*/country)/Sierra\s?Leone(.png|/)?$ $1/227
 RewriteRule ^(.*/country)/Singapore(.png|/)?$ $1/52

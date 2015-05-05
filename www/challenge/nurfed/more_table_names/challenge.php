@@ -17,7 +17,7 @@ if (false !== Common::getGet('login'))
 	$username = Common::getGetString('username', '');
 	$password = Common::getGetString('password', '');
 	
-	if (preg_match('/statistics|tables|columns|table_constraints|key_column_usage|partitions|schema_privileges|schemata|database/i', $username.$password))
+	if (preg_match('/statistics|tables|columns|table_constraints|key_column_usage|partitions|schema_privileges|schemata|database|schema\(\)/i', $username.$password))
 	{
 		echo GWF_HTML::error(GWF_PAGE_TITLE, $chall->lang('on_match'));
 	}

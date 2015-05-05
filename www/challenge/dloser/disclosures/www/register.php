@@ -25,7 +25,7 @@ function dldc_reqister($username, $password, $email, $firstname, $lastname)
 	else
 	{
 		dldc_cleanup(); # DELETE YOUR OLD "PLAYER"!
-		if ( !DLDC_User::create($username, $password, $email, $firstname, $lastname))
+		if (!DLDC_User::create($username, $password, $email, $firstname, $lastname))
 		{
 			dldc_error('An error occured!');
 		}

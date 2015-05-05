@@ -15,4 +15,5 @@ $lang = array(
 		'<br/>'.PHP_EOL.
 		'Enjoy!<br/>'.PHP_EOL,
 		'gizmore<br/>'.PHP_EOL,
+	'copy' => 'The song is copyrighted by someone else!',
 );

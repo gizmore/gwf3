@@ -15,7 +15,7 @@ if (isset($_POST['answer']) && is_string($_POST['answer']))
 }
 $chall->onCheckSolution();
 $href = GWF_WEB_ROOT.'places';
-$bunny = sprintf('<a href="%s/profile/EasterBunny">%s</a>', GWF_WEB_ROOT, $chall->lang('bunny'));
+$bunny = sprintf('<a href="%sprofile/EasterBunny">%s</a>', GWF_WEB_ROOT, $chall->lang('bunny'));
 echo GWF_Box::box($chall->lang('info', array($href, count($solutions), $bunny)), $chall->lang('title'));
 formSolutionbox($chall);
 echo $chall->copyrightFooter();

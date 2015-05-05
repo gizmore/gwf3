@@ -23,9 +23,8 @@ echo GWF_Box::box($chall->lang('info', $args), $chall->lang('title'));
 
 formSolutionbox($chall);
 
-echo $chall->copyrightFooter();
 ?>
-
+<div class="box box_c"><?php echo $chall->lang('copy'); ?></div>
 <?php
 function sidologyRemixCheckAnswer(WC_Challenge $chall, $answer)
 {
