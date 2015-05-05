@@ -39,6 +39,8 @@ final class Dog
 	
 	public static $IN_STARTUP = true;
 	
+	public static $FAKING_MESSAGE = false;
+	
 	#############
 	### Scope ###
 	#############
@@ -445,7 +447,11 @@ final class Dog
 		$from = self::$LAST_MSG->getFrom();
 		$to = $chan === false ? $serv->getNick()->getName() : $chan->getName();
 		$trigger = self::getTrigger();
+
+		$old = self::$FAKING_MESSAGE;
+		self::$FAKING_MESSAGE = true;
 		self::processMessage(self::getServer(), sprintf(':%s PRIVMSG %s :%s%s', $from, $to, $trigger, $message));
+		self::$FAKING_MESSAGE = $old;
 	}
 	
 	/**
