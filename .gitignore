@@ -34,3 +34,205 @@
 
 # /core/module/Dog/dog_modules/dog_module/Shadowlamb/
 /core/module/Dog/dog_modules/dog_module/Shadowlamb/secret.php
+
+# /core/module/Dog/dog_plugins/
+/core/module/Dog/dog_plugins/dog_plugin_secret
+
+# /core/module/Lamb/
+/core/module/Lamb/www
+
+# /core/module/Lamb/lamb_bin/
+/core/module/Lamb/lamb_bin/lamb_pass.php
+
+# /core/module/Lamb/lamb_module/Shadowlamb/
+/core/module/Lamb/lamb_module/Shadowlamb/GameMasters.php
+/core/module/Lamb/lamb_module/Shadowlamb/data
+
+# /core/module/Lamb/lamb_module/Shadowlamb/city/
+/core/module/Lamb/lamb_module/Shadowlamb/city/Nysoft
+
+# /www/challenge/FREMES/
+/www/challenge/FREMES/fremes.php
+
+# /www/challenge/Jinx/chessy/
+/www/challenge/Jinx/chessy/install.php
+
+# /www/challenge/Mawekl/are_you_blind/
+/www/challenge/Mawekl/are_you_blind/installb.php
+/www/challenge/Mawekl/are_you_blind/settings.php
+
+# /www/challenge/Mawekl/light_in_the_darkness/
+/www/challenge/Mawekl/light_in_the_darkness/installb.php
+/www/challenge/Mawekl/light_in_the_darkness/settings.php
+
+# /www/challenge/Mawekl/what_is_your_name/
+/www/challenge/Mawekl/what_is_your_name/solution.php
+
+# /www/challenge/XcrackX/Vermeer/
+/www/challenge/XcrackX/Vermeer/install.php
+
+# /www/challenge/Z/reloaded/
+/www/challenge/Z/reloaded/c0dem30ww.php
+/www/challenge/Z/reloaded/zshellz_answers.php
+
+# /www/challenge/addslashes/
+/www/challenge/addslashes/install.php
+
+# /www/challenge/are_you_serial/
+/www/challenge/are_you_serial/but.not.too.insecure.php
+
+# /www/challenge/blind_light/
+/www/challenge/blind_light/settings.php
+
+# /www/challenge/blind_lighter/
+/www/challenge/blind_lighter/settings.php
+/www/challenge/blind_lighter/installb.php
+
+# /www/challenge/brainfucked/
+/www/challenge/brainfucked/index.php
+/www/challenge/brainfucked/install.php
+
+# /www/challenge/bsdhell/thelasthope/
+/www/challenge/bsdhell/thelasthope/install.php
+
+# /www/challenge/burning_fox/
+/www/challenge/burning_fox/burning_fox_solution.php
+/www/challenge/burning_fox/FirefoxPortable.zip
+/www/challenge/burning_fox/burningfox.zip
+
+# /www/challenge/dloser/disclosures/
+/www/challenge/dloser/disclosures/secrets.php
+
+# /www/challenge/hashgame/
+/www/challenge/hashgame/passwords.php
+
+# /www/challenge/identity/
+/www/challenge/identity/install.php
+
+# /www/challenge/identity/stalking/
+/www/challenge/identity/stalking/somework.and.some.bravery.php
+
+# /www/challenge/illuminati/
+/www/challenge/illuminati/secret.php
+/www/challenge/illuminati/sometimes.ttf
+
+# /www/challenge/inka/
+/www/challenge/inka/3p
+/www/challenge/inka/inka.php
+
+# /www/challenge/interesting/
+/www/challenge/interesting/solution.php
+
+# /www/challenge/lamb/shadowlamb1/
+/www/challenge/lamb/shadowlamb1/secret.php
+
+# /www/challenge/lamb/shadowlamb4/
+/www/challenge/lamb/shadowlamb4/index.php
+
+# /www/challenge/lettergrid/
+/www/challenge/lettergrid/generate.php
+/www/challenge/lettergrid/words.php
+
+# /www/challenge/letterworm/
+/www/challenge/letterworm/73h_vordz.php
+/www/challenge/letterworm/generate.php
+
+# /www/challenge/ludde/babbage_and_coldplay/
+/www/challenge/ludde/babbage_and_coldplay/install.php
+
+# /www/challenge/nurfed/more_table_names/
+/www/challenge/nurfed/more_table_names/secret.php
+
+# /www/challenge/oleg/extractme/
+/www/challenge/oleg/extractme/oleg_solution.php
+/www/challenge/oleg/extractme/oleg__solution.php
+
+# /www/challenge/paranoid/
+/www/challenge/paranoid/index.php
+/www/challenge/paranoid/install.php
+
+# /www/challenge/pimitive_encryption/
+/www/challenge/pimitive_encryption/install.php
+
+# /www/challenge/quangntenemy/2013NYS/
+/www/challenge/quangntenemy/2013NYS/secret.php
+
+# /www/challenge/quangntenemy/QMine/
+/www/challenge/quangntenemy/QMine/index.php
+/www/challenge/quangntenemy/QMine/install.php
+
+# /www/challenge/screwed_signup/
+/www/challenge/screwed_signup/ssqlSolved.php
+
+# /www/challenge/sidology/
+/www/challenge/sidology/index.php
+
+# /www/challenge/snake/
+/www/challenge/snake/CGI_Highscore.php
+
+# /www/challenge/space/pytong/
+/www/challenge/space/pytong/pytong_solution.php
+
+# /www/challenge/subversive/
+/www/challenge/subversive/the_real_solution.php
+
+# /www/challenge/training/php/experience/
+/www/challenge/training/php/experience/.htaccess
+/www/challenge/training/php/experience/blackbox.php
+/www/challenge/training/php/experience/expdb.php
+/www/challenge/training/php/experience/solution.php
+
+# /www/challenge/training/stegano/caterpillar/
+/www/challenge/training/stegano/caterpillar/install.php
+
+# /www/challenge/training/www/ip6/
+/www/challenge/training/www/ip6/solutions.php
+
+# /www/challenge/warchall/begins/
+/www/challenge/warchall/begins/install.php
+/www/challenge/warchall/begins/warconfig.php
+
+# /www/challenge/warchall/choose_your_path/
+/www/challenge/warchall/choose_your_path/install.php
+
+# /www/challenge/warchall/choose_your_path2/
+/www/challenge/warchall/choose_your_path2/install.php
+
+# /www/challenge/warchall/live_lfi/www/
+/www/challenge/warchall/live_lfi/www/solution.php
+
+# /www/challenge/warchall/live_rce/
+/www/challenge/warchall/live_rce/config.php
+
+# /www/challenge/warchall/live_rce/www/
+/www/challenge/warchall/live_rce/www/solution.php
+
+# /www/challenge/warchall/live_rfi/
+/www/challenge/warchall/live_rfi/solution.php
+
+# /www/challenge/warchall/live_rfi/www/
+/www/challenge/warchall/live_rfi/www/solution.php
+
+# /www/challenge/warchall/nurxxed/www/
+/www/challenge/warchall/nurxxed/www/config.php
+
+# /www/challenge/warchall/ssssh/
+/www/challenge/warchall/ssssh/solution.php
+
+# /www/challenge/warchall/tropical/7/
+/www/challenge/warchall/tropical/7/install.php
+
+# /www/challenge/warchall/tryouts/
+/www/challenge/warchall/tryouts/tryouts_solution.php
+/www/challenge/warchall/tryouts/tryouts.c
+
+# /www/protected/
+/www/protected/config.php
+
+# /www/tpl/konz/
+/www/tpl/konz/audio
+/www/tpl/konz/bild
+/www/tpl/konz/bild_org
+/www/tpl/konz/img
+/www/tpl/konz/presse
+
