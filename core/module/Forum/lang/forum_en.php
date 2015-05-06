@@ -199,7 +199,7 @@ $lang = array(
 		'The '.GWF_SITENAME.' Team'.PHP_EOL,
 
 	# New Post EMail
-	'submail_subj' => GWF_SITENAME.': New Post: %s',
+	'submail_subj' => GWF_SITENAME.': New Post: "%s" by %s in %s',
 	'submail_body' => 
 		'Dear %s'.PHP_EOL.
 		PHP_EOL.

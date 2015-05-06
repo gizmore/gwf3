@@ -198,7 +198,7 @@ $lang = array(
 		'A '.GWF_SITENAME.' csapata'.PHP_EOL,
 
 	# New Post EMail
-	'submail_subj' => GWF_SITENAME.': Új üzenet: %s',
+	'submail_subj' => GWF_SITENAME.': Új üzenet: "%s" by %s in %s',
 	'submail_body' => 
 		'Kedves %s'.PHP_EOL.
 		PHP_EOL.

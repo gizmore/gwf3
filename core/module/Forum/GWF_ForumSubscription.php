@@ -311,7 +311,7 @@ final class GWF_ForumSubscription extends GDO
 		$mail = new GWF_Mail();
 		$mail->setSender($sender);
 		$mail->setReceiver($receiver);
-		$mail->setSubject($module->langUser($user, 'submail_subj', array($threadTitle)));
+		$mail->setSubject($module->langUser($user, 'submail_subj', array($threadTitle, $username, $boardText)));
 		$mail->setBody($module->langUser($user, 'submail_body', array($username, $msg_count, $boardText, $threadTitle, $msg_block, $showLink, $unsubLink, $unsubLinkAll)));
 		
 		if (false === $mail->sendToUser($user))

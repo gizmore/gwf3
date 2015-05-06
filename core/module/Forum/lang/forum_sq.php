@@ -198,7 +198,7 @@ $lang = array(
 		''.GWF_SITENAME.' Teami'.PHP_EOL,
 
 	# New Post EMail
-	'submail_subj' => GWF_SITENAME.': Forumin e ri: %s',
+	'submail_subj' => GWF_SITENAME.': Forumin e ri: "%s" by %s in %s',
 	'submail_body' => 
 		'Përshëndetje %s'.PHP_EOL.
 		PHP_EOL.
