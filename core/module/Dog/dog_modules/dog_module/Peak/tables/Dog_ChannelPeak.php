@@ -16,6 +16,7 @@ final class Dog_ChannelPeak extends GDO
 			'lcpeak_cid' => array(GDO::UINT|GDO::PRIMARY_KEY, GDO::NOT_NULL),
 			'lcpeak_peak' => array(GDO::UINT, 0),
 			'lcpeak_date' => array(GDO::DATE, GDO::NOT_NULL, GWF_Date::LEN_SECOND),
+			'lcpeak_options' => array(GDO::UINT, 0),
 		);
 	}
 	

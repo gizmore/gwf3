@@ -34,12 +34,14 @@ final class Forest_Lake extends SR_SearchRoom
 		elseif (rand(0,3) === 3)
 		{
 			$player->getParty()->setTemp('FORLAKGRB', 1);
-			$this->onSparkleItem($player);
 			$this->partyMessage($player, 'grab2', array($player->getName()));
-			return true;
+			$this->onSparkleItem($player);
 		}
-		
-		$this->partyMessage($player, 'grab1', array($player->getName()));
+		else
+		{
+			$this->partyMessage($player, 'grab1', array($player->getName()));
+		}
+
 		$numSirenes = self::getNumSirenes($player);
 		$enemies = array();
 		for ($i = 0; $i < $numSirenes; $i++)
