@@ -481,7 +481,7 @@ $lang = array(
 '10003' => '%1$s casts a level %2$s %3$s on %4$s, %8$s',
 # Berzerk
 '10010' => '%1$s uses a level %2$s %3$s potion on %4$s, +%5$s min_dmg / +%6$s max_dmg for %7$s, %8$s',
-'10011' => '%1$s casts a level %2$s %3$s on %4$s, +%5$s min_dmg / +%6$s max_dmg for %7$%s, %8$s %9$s left.',
+'10011' => '%1$s casts a level %2$s %3$s on %4$s, +%5$s min_dmg / +%6$s max_dmg for %7$s, %8$s %9$s left.',
 '10012' => '%1$s uses a level %2$s %3$s potion on %4$s, %8$s',
 '10013' => '%1$s casts a level %2$s %3$s on %4$s, %8$s',
 # Blow
