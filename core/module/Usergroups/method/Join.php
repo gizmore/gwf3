@@ -121,8 +121,8 @@ final class Usergroups_Join extends GWF_Method
 		$mail = new GWF_Mail();
 		$mail->setSender(GWF_BOT_EMAIL);
 		$mail->setReceiver($email);
-		$mail->setSubject($this->module->lang('mail_subj_req', array( $user->displayUsername()), $group->display('group_name')));
-		$mail->setBody($this->module->lang('mail_body_req', array( $leader->displayUsername()), $user->displayUsername(), $group->display('group_name'), $link));
+		$mail->setSubject($this->module->lang('mail_subj_req', array( $user->displayUsername(), $group->display('group_name'))));
+		$mail->setBody($this->module->lang('mail_body_req', array($leader->displayUsername(), $user->displayUsername(), $group->display('group_name'), $link)));
 		
 		return $mail->sendToUser($leader);
 	}

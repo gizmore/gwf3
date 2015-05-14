@@ -12,7 +12,7 @@ if (false === ($chall = WC_Challenge::getByTitle(GWF_PAGE_TITLE)))
 # And display the header
 $chall->showHeader();
 
-$PORT = 5;
+$PORT = 42;
 
 if ($_SERVER['REMOTE_PORT'] == $PORT)
 {

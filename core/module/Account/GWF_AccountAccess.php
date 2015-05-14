@@ -130,7 +130,7 @@ final class GWF_AccountAccess extends GDO
 			$module->onLoadLanguage();
 			$mail = new GWF_Mail();
 			$mail->setSender(GWF_BOT_EMAIL);
-			$sig = $module->lang("mailf_signature");
+			$sig = $module->lang("mail_signature");
 			$mail->setSenderName($sig);
 			$mail->setReceiver($receive_mail);
 			$mail->setSubject($module->lang("mails_$record_alert"));

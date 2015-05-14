@@ -2,14 +2,14 @@
 chdir("../../");
 require_once("challenge/html_head.php");
 html_head("Install No Escape");
-if (!GWF_User::isAdminS())
-{
+if (!GWF_User::isAdminS()) {
 	return htmlSendToLogin("Better be admin !");
 }
 
 /*
+CREATE USER 'gizmore_noesc'@'localhost' IDENTIFIED BY 'gizmore_noesc';
 CREATE DATABASE gizmore_noesc;
-GRANT ALL ON gizmore_noesc.* TO 'gizmore_noesc'@'localhost' IDENTIFIED BY 'xxxxxxxxxx';
+GRANT ALL ON gizmore_noesc.* TO 'gizmore_noesc'@'localhost' IDENTIFIED BY 'gizmore_noesc';
 # Now execute install.php
 */
 define('NO_ESCAPE_USER', 'gizmore_noesc');
@@ -29,3 +29,4 @@ $tags = 'Exploit,PHP,MySQL';
 WC_Challenge::installChallenge($title, $solution, $score, $url, $creators, $tags, true);
 
 require_once("challenge/html_foot.php");
+?>

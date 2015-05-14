@@ -2,8 +2,8 @@
 
 final class WeChall_Challs extends GWF_Method
 {
-	const DEFAULT_BY = 'chall_date';
-	const DEFAULT_DIR = 'DESC';
+	const DEFAULT_BY = 'chall_score';
+	const DEFAULT_DIR = 'ASC';
 	public function getHTAccess()
 	{
 		return

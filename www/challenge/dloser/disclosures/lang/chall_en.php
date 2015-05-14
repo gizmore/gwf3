@@ -6,7 +6,7 @@ $lang = array(
 		'Hello %s,<br/>'.PHP_EOL.
 		'<br/>'.PHP_EOL.
 		'We are working on a new challenge site, but there already has been the first security incident.<br/>'.PHP_EOL.
-		'%s managed to login as Administrator and we have absolutely no idea how.<br/>'.PHP_EOL.
+		'%s managed to login as Admin and we have absolutely no idea how.<br/>'.PHP_EOL.
 		'<br/>'.PHP_EOL.
 		'Can you take a look at <a href="%s">Minihack</a> for us please?<br/>'.PHP_EOL.
 		'<br/>'.PHP_EOL.

@@ -90,8 +90,9 @@ final class GWF_HTTP
 		# Handle HTTPS links
 		if(isset($parts['scheme']) && $parts['scheme']=='https')
 		{
-			curl_setopt($ch, CURLOPT_SSL_VERIFYHOST,  1);
+			curl_setopt($ch, CURLOPT_SSL_VERIFYHOST,  0);
 			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0); # Should be 1!
+			curl_setopt($ch, CURLOPT_SSLVERSION, 1);
 		}
  
 		$response = curl_exec($ch);
@@ -164,8 +165,9 @@ final class GWF_HTTP
 		# Handle HTTPS links
 		if(Common::startsWith($url, 'https://'))
 		{
-			curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
-			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, '0'); # should be 1!
+			curl_setopt($ch, CURLOPT_SSL_VERIFYHOST,0);
+			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0); # should be 1!
+			curl_setopt($ch, CURLOPT_SSLVERSION, 1);
 		}
 		
 		if (false === ($received = curl_exec($ch)))
@@ -222,8 +224,9 @@ final class GWF_HTTP
  		curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
 		if($parts['scheme']=='https')
 		{
-			curl_setopt($ch, CURLOPT_SSL_VERIFYHOST,  1);
+			curl_setopt($ch, CURLOPT_SSL_VERIFYHOST,  0);
 			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+			curl_setopt($ch, CURLOPT_SSLVERSION, 1);
 		}
 		if ($returnHeader === true) {
 			curl_setopt($ch, CURLOPT_HEADER, true);

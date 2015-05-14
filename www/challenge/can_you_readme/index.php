@@ -46,7 +46,6 @@ function checkSolution(WC_Challenge $chall)
 	$taken = sprintf('%.03fs', $timediff);	
 	if ($correct !== ($answer = Common::getGetString('solution', '')))
 	{
-		GWF_Session::set('cyrm_timeout', false);
 		return htmlDisplayError($chall->lang('err_wrong', array(htmlspecialchars($answer, ENT_QUOTES), $correct, $taken)));
 	}
 	
@@ -58,3 +57,4 @@ function checkSolution(WC_Challenge $chall)
 	
 	return htmlDisplayMessage($chall->lang('msg_correct', array($taken)));
 }
+?>
