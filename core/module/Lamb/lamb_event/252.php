@@ -1,2 +1,0 @@
-<?php
-# OPS ONLINE

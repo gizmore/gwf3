@@ -1,3 +1,0 @@
-<?php
-#RPL_ENDOFNAMES
-?>
