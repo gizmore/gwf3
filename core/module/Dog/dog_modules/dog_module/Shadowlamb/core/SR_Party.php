@@ -225,18 +225,22 @@ final class SR_Party extends GDO
 		{
 			return false;
 		}
+		$last = ($a === 'talk' or $a === 'fight' or $a === 'hijack');
+		if ($last)
+		{
+		  $a = $this->getLastAction();
+		}
 		switch ($a)
 		{
 			case 'talk': case 'fight': case 'hijack':
-				return $this->getVar('sr4pa_last_target');
 			case 'explore': case 'goto': case 'inside':  case 'outside': case 'sleep':
-				return $this->getVar('sr4pa_target');
+				return $this->getTarget($last);
 			case 'hunt':  
-				return $this->getHuntTargetCity();
+				return $this->getHuntTargetCity($last);
 			case 'hijack':  
-				return $this->getHijackTargetCity();
+				return $this->getHijackTargetCity($last);
 			case 'travel':
-				return Common::substrUntil($this->getVar('sr4pa_last_target'), '_', false);
+				return Common::substrUntil($this->getLastTarget(), '_', false);
 			case 'delete':
 				return false;
 			default:
@@ -255,7 +259,7 @@ final class SR_Party extends GDO
 	}
 	public function getAction() { return $this->getVar('sr4pa_action'); }
 	public function getLastAction() { return $this->getVar('sr4pa_last_action'); }
-	public function getTarget() { return $this->getVar('sr4pa_target'); }
+	public function getTarget($last=false) { return $last?$this->getLastTarget():$this->getVar('sr4pa_target'); }
 	public function getLastTarget() { return $this->getVar('sr4pa_last_target'); }
 	public function getETA() { return $this->getVar('sr4pa_eta'); }
 	public function getLastETA() { return (0 === ($last_eta = (int)$this->getVar('sr4pa_last_eta'))) ? 0 : $last_eta - $this->getETA() + Shadowrun4::getTime(); }
@@ -264,16 +268,16 @@ final class SR_Party extends GDO
 	/**
 	 * @return SR_Player
 	 */
-	public function getHuntTarget() { return Shadowrun4::getPlayerByName($this->getHuntTargetName()); }
-	public function getHuntTargetCity() { return Common::substrFrom($this->getTarget(), ' in '); }
-	public function getHuntTargetName() { return Common::substrUntil($this->getTarget(), ' in '); }
+	public function getHuntTarget($last=false) { return Shadowrun4::getPlayerByName($this->getHuntTargetName($last)); }
+	public function getHuntTargetCity($last=false) { return Common::substrFrom($this->getTarget($last), ' in '); }
+	public function getHuntTargetName($last=false) { return Common::substrUntil($this->getTarget($last), ' in '); }
 	
 	/**
 	 * @return SR_Player
 	 */
-	public function getHijackTarget() { return Shadowrun4::getPlayerByName($this->getHijackTargetName()); }
-	public function getHijackTargetCity() { return Common::substrFrom($this->getTarget(), ' at '); }
-	public function getHijackTargetName() { return Common::substrUntil($this->getTarget(), ' at '); }
+	public function getHijackTarget($last=false) { return Shadowrun4::getPlayerByName($this->getHijackTargetName($last)); }
+	public function getHijackTargetCity($last=false) { return Common::substrFrom($this->getTarget($last), ' at '); }
+	public function getHijackTargetName($last=false) { return Common::substrUntil($this->getTarget($last), ' at '); }
 	
 	/**
 	 * @return SR_Party
