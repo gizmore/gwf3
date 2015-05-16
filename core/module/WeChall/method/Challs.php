@@ -64,12 +64,16 @@ final class WeChall_Challs extends GWF_Method
 		}
 		
 		$solve_filter = Common::getGetString('filter', '');
+		if ($solve_filter === 'solved' or $solve_filter == 'open')
+		{
+			$filter_prefix = $solve_filter.'_';
+		} else {
+			$filter_prefix = '';
+		}
 		
 		$from_query = $from_userid === 0 ? '1' : "chall_creator LIKE '%,$from_userid,%'";
-		$tag_query = $tag === '' ? '1' : "chall_tags LIKE '%,".GDO::escape($tag)."%'";
 				 
-		$conditions = "($from_query) AND ($tag_query)";
-//		var_dump($conditions);
+		$conditions = "($from_query)";
 		if (0 === ($count = $challs->countRows($conditions))) {
 			return '';
 		}
@@ -82,12 +86,13 @@ final class WeChall_Challs extends GWF_Method
 		$sort_url = 'challs/'.$tag_2.'by/'.$by.'/'.$dir.'/page-1';
 		
 		$tVars = array(
-			'sort_url' => GWF_WEB_ROOT.'challs/'.$tag_2.'by/%BY%/%DIR%/page-1',
-//			'challs' => $challs->select($conditions, $orderby),
+			'filter_prefix' => $filter_prefix,
+			'sort_url' => GWF_WEB_ROOT.$filter_prefix.'challs/'.$tag_2.'by/%BY%/%DIR%/page-1',
 			'challs' => $challs->selectObjects('*', $conditions, $orderby),
 			'tags' => $show_cloud ? $this->getTags() : '',
 			'solved_bits' => $solved_bits,
 			'table_title' => $this->getTableTitle($for_userid, $from_userid, $tag, $count),
+			'tag' => $tag,
 			'by' => $by,
 			'dir' => $dir,
 			'href_all' => GWF_WEB_ROOT.$sort_url,

@@ -61,7 +61,7 @@ final class WC_Challenge extends GDO
 	}
 	
 	###################
-	### Convinience ###
+	### Convenience ###
 	###################
 	public function getID() { return $this->getVar('chall_id'); }
 	public function getGID() { return $this->getVar('chall_gid'); }
@@ -70,6 +70,7 @@ final class WC_Challenge extends GDO
 	public function getTitle() { return $this->getVar('chall_title'); }
 	public function getName() { return $this->getTitle(); }
 	public function getVotecount() { return $this->getVar('chall_votecount'); }
+	public function hasTag($tag) { return false !== strpos($this->getVar('chall_tags'),",$tag,"); }
 	public function isCaseI() { return $this->isOptionEnabled(self::CHALL_CASE_I); }
 	public function setSolution($solution, $case_i=false) { $this->setVar('chall_solution', self::hashSolution($solution, $case_i)); }
 	

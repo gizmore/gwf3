@@ -1,9 +1,30 @@
 <?php
 GWF_Module::loadModuleDB('Forum', true);
 GWF_ForumBoard::init(true);
+
+$show_tags_and_filters = is_array($tVars['tags']);
+
+$solved_bits = $tVars['solved_bits'];
+$challs = array();
+foreach ($tVars['challs'] as $chall)
+{
+	if (isset($solved_bits[$chall->getID()]))
+	{
+		if (!$tVars['sel_unsolved'])
+		{
+			$challs[] = $chall;
+		}
+	} else {
+		if (!$tVars['sel_solved'])
+		{
+			$challs[] = $chall;
+		}
+	}
+}
+
 $by = $tVars['by'];
 $dir = $tVars['dir'];
-if (is_array($tVars['tags']))
+if ($show_tags_and_filters)
 {
 	$cloud = '';
 	$cloud .= '<div class="gwf_tags_outer">'.PHP_EOL;
@@ -11,17 +32,28 @@ if (is_array($tVars['tags']))
 	$cloud_tags = '';
 	foreach ($tVars['tags'] as $tag => $count)
 	{
-		$href = GWF_WEB_ROOT.'challs/'.$tag.'/by/'.urlencode($by).'/'.urlencode($dir).'/page-1';
+		$count = 0;
+		foreach ($challs as $chall)
+		{
+			$chall instanceof WC_Challenge;
+			if ($chall->hasTag($tag))
+			{
+				$count++;
+			}
+		}
+		$href = GWF_WEB_ROOT.$tVars['filter_prefix'].'challs/'.$tag.'/by/'.urlencode($by).'/'.urlencode($dir).'/page-1';
 		$text = $tag.'('.$count.')';
 		$cloud_tags .= ', '.GWF_HTML::anchor($href, $text);
 	}
-	$cloud .= substr($cloud_tags, 2);
+	$href = GWF_WEB_ROOT.$tVars['filter_prefix'].'challs/by/'.urlencode($by).'/'.urlencode($dir).'/page-1';
+	$text = 'All('.count($challs).')';
+	$cloud .= GWF_HTML::anchor($href, $text).$cloud_tags;
 	$cloud .= '</div>'.PHP_EOL;
 	$cloud .= '</div>'.PHP_EOL;
 	echo $cloud.PHP_EOL;
 }
 
-if (GWF_Session::isLoggedIn())
+if ($show_tags_and_filters and GWF_Session::isLoggedIn())
 {
 	echo GWF_Button::wrapStart();
 	echo GWF_Button::generic($tLang->lang('btn_all'), $tVars['href_all'], 'generic', '', $tVars['sel_all']);
@@ -42,6 +74,13 @@ $headers = array(
 	array($tLang->lang('th_fun'), 'chall_fun', 'DESC'),
 	array($tLang->lang('th_forum')),
 );
+if (!$show_tags_and_filters)
+{
+  foreach ($headers as &$header)
+  {
+    array_splice($header,1);
+  }
+}
 echo '<table class="wc_chall_table">';
 $raw = '<tr><th colspan="10">'.$tVars['table_title'].'</th></tr>';
 echo GWF_Table::displayHeaders1($headers, $tVars['sort_url'], 'chall_date', 'DESC', 'by', 'dir', $raw);
@@ -51,30 +90,26 @@ $icon_vote = GWF_WEB_ROOT.'tpl/wc4/ico/vote.gif';
 $icon_voted = GWF_WEB_ROOT.'tpl/wc4/ico/voted.gif';
 $icon_novote = GWF_WEB_ROOT.'tpl/wc4/ico/show_votes.gif';
 
-$solved_bits = $tVars['solved_bits'];
 $alt = $tLang->lang('alt_challvotes');
 $txt_edit = WC_HTML::lang('btn_edit_chall');
-foreach ($tVars['challs'] as $chall)
+foreach ($challs as $chall)
 {
 	$chall instanceof WC_Challenge;
+
+	if ($tVars['tag'] !== '' and !$chall->hasTag($tVars['tag']))
+	{
+		continue;
+	}
 	
 	$cid = $chall->getID();
 	$solved = isset($solved_bits[$cid]);
 	
 	if ($solved)
 	{
-		if ($tVars['sel_unsolved'])
-		{
-			continue;
-		}
 		$icon = $solved_bits[$cid]['csolve_options']&1 ? $icon_voted : $icon_vote;
 	}
 	else
 	{
-		if ($tVars['sel_solved'])
-		{
-			continue;
-		}
 		$icon = $icon_novote;
 	}
 	
