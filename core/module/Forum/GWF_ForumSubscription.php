@@ -266,22 +266,35 @@ final class GWF_ForumSubscription extends GDO
 	#########################
 	### Subscription Mail ###
 	#########################
-	public static function sendSubscription(Module_Forum $module, GWF_ForumThread $thread, $msg_block, $msg_count)
+	public static function sendSubscription(Module_Forum $module, GWF_ForumThread $thread, $posts)
 	{
 		$users = self::getSubscriptions($thread);
 		
 		$boardText = self::getBoardTreeText($thread->getBoard());
 		$threadTitle = $thread->display('thread_title');
 		$sender = GWF_BOT_EMAIL;
+		$last_poster = '';
+		$msg_block = '';
+
+		foreach ($posts as $post)
+		{
+			$post instanceof GWF_ForumPost;
+			$last_poster = $post->getPosterName();
+			$msg_block .=
+				'FROM: '.$post->getPosterName().PHP_EOL.
+				'TITLE: '.$post->displayTitle().PHP_EOL.
+				PHP_EOL.
+				$post->displayMessage().PHP_EOL.PHP_EOL;
+		}
 		
 		foreach ($users as $user)
 		{
-			self::sendSubscriptionB($module, $thread, $user, $msg_block, $msg_count, $boardText, $threadTitle, $sender);
+			self::sendSubscriptionB($module, $thread, $user, $last_poster, $msg_block, count($posts), $boardText, $threadTitle, $sender);
 			usleep($module->cfgMailMicrosleep());
 		}
 	}
 	
-	private static function sendSubscriptionB(Module_Forum $module, GWF_ForumThread $thread, GWF_User $user, $msg_block, $msg_count, $boardText, $threadTitle, $sender)
+	private static function sendSubscriptionB(Module_Forum $module, GWF_ForumThread $thread, GWF_User $user, $postername, $msg_block, $msg_count, $boardText, $threadTitle, $sender)
 	{
 		$userid = $user->getID();
 		$username = $user->displayUsername();
@@ -311,7 +324,7 @@ final class GWF_ForumSubscription extends GDO
 		$mail = new GWF_Mail();
 		$mail->setSender($sender);
 		$mail->setReceiver($receiver);
-		$mail->setSubject($module->langUser($user, 'submail_subj', array($threadTitle, $username, $boardText)));
+		$mail->setSubject($module->langUser($user, 'submail_subj', array($threadTitle, $postername, $boardText)));
 		$mail->setBody($module->langUser($user, 'submail_body', array($username, $msg_count, $boardText, $threadTitle, $msg_block, $showLink, $unsubLink, $unsubLinkAll)));
 		
 		if (false === $mail->sendToUser($user))

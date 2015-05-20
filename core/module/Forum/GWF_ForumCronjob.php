@@ -114,8 +114,8 @@ final class GWF_ForumCronjob extends GWF_Cronjob
 		self::log(sprintf('In %d different threads...', count($threaded)));
 		foreach ($threaded as $tid => $data)
 		{
-			list($thread, $msg_block, $msg_count) = $data;
-			GWF_ForumSubscription::sendSubscription($module, $thread, $msg_block, $msg_count);
+			list($thread, $posts) = $data;
+			GWF_ForumSubscription::sendSubscription($module, $thread, $posts);
 		}
 	}
 	
@@ -135,16 +135,10 @@ final class GWF_ForumCronjob extends GWF_Cronjob
 					self::log('A post could not find it\'s thread!!');
 					continue; // OOps!!!
 				}
-				$back[$tid] = array($t, '', 0);
+				$back[$tid] = array($t, array());
 			}
 			
-			$back[$tid][1] .=
-				'FROM: '.$post->getPosterName().PHP_EOL.
-				'TITLE: '.$post->displayTitle().PHP_EOL.
-				PHP_EOL.
-				$post->displayMessage().PHP_EOL.PHP_EOL;
-				
-			$back[$tid][2]++;
+			$back[$tid][1][] = $post;
 			
 			$post->saveOption(GWF_ForumPost::MAIL_OUT, false);
 		}
