@@ -386,22 +386,22 @@ final class WC_HTML
 	
 	public static function displayFooter($debug=true)
 	{
-		if (!self::wantFooter()) {
-			return '';
+		$back = '';
+		if (self::wantFooter())
+		{
+			$back .= '<footer id="gwf_footer">';
+			$back .= self::displayFooterMenu(Module_WeChall::instance());
+			if (!($module = GWF_Module::getModule('Heart')))
+			{
+				return GWF_HTML::err('ERR_MODULE_MISSING', array('Heart'));
+			}
+			$back .= '<div id="foot_boxes" class="cf">'.PHP_EOL;
+			$back .= '<div class="foot_box">'.self::lang('footer_1', array(date('Y'))).'</div>'.PHP_EOL;
+			$back .= '<div class="foot_box">'.self::lang('footer_2', array($module->cfgUserrecordCount(), GWF_Time::displayDate($module->cfgUserrecordDate()), $module->cfgPagecount())).'</div>'.PHP_EOL;
+			$back .= $debug ? '<div class="foot_box">'.self::debugFooter().'</div>'.PHP_EOL : '';
+			$back .= '</div>'.PHP_EOL;
+			$back .= '</footer>'.PHP_EOL;
 		}
-		if (false === ($module = GWF_Module::getModule('Heart'))) {
-			return GWF_HTML::err('ERR_MODULE_MISSING', array('Heart'));
-		}
-		
-		$back = '<footer id="gwf_footer">';
-		$back .= self::displayFooterMenu(Module_WeChall::instance());
-		$back .= '<div id="foot_boxes">'.PHP_EOL;
-		$back .= '<div class="foot_box">'.self::lang('footer_1', array(date('Y'))).'</div>'.PHP_EOL;
-		$back .= '<div class="foot_box">'.self::lang('footer_2', array($module->cfgUserrecordCount(), GWF_Time::displayDate($module->cfgUserrecordDate()), $module->cfgPagecount())).'</div>'.PHP_EOL;
-		$back .= $debug ? '<div class="foot_box">'.self::debugFooter().'</div>'.PHP_EOL : '';
-		$back .= '</div>'.PHP_EOL;
-		$back .= '<div class="cl"></div>'.PHP_EOL;
-		$back .= '</footer>'.PHP_EOL;
 		return $back;
 	}
 	
@@ -409,6 +409,7 @@ final class WC_HTML
 	{
 		$db = gdo_db();
 		$queries = $db->getQueryCount();
+		$writes = $db->getQueryWriteCount();
 		$t_total = microtime(true)-GWF_DEBUG_TIME_START;
 		$t_mysql = $db->getQueryTime();
 		$t_php = $t_total - $t_mysql;
@@ -416,7 +417,7 @@ final class WC_HTML
 		$bd = '';#self::debugBrowser();
 		$mem = GWF_Upload::humanFilesize(memory_get_peak_usage(true));
 		$mods = GWF_Module::getModulesLoaded();
-		return sprintf("<div>%d Queries in $f - PHP Time: $f - Total Time: $f. Memory: %s<br/>Modules loaded: %s</div>", $queries, $t_mysql, $t_php, $t_total, $mem, $mods).$bd;
+		return sprintf("<div>%d Queries (%d writes) in $f - PHP Time: $f - Total Time: $f. Memory: %s<br/>Modules loaded: %s</div>", $queries, $writes, $t_mysql, $t_php, $t_total, $mem, $mods).$bd;
 	}
 	
 	private static function displayFooterMenu(Module_WeChall $module)
@@ -845,5 +846,19 @@ final class WC_HTML
 		);
 		return $colors[Common::clamp(intval(round($percent/10)), 0, 10)];
 	}
+	
+	public static function displayMobileHeader()
+	{
+		$tVars = array(
+		);
+		return GWF_Template::templatePHPMain('mobile_header.php', $tVars);
+	}
+
+	public static function displayMobileFooter()
+	{
+		$tVars = array(
+		);
+		return GWF_Template::templatePHPMain('mobile_footer.php', $tVars);
+	}
 }
-?>
+

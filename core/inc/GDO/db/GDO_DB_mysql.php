@@ -73,6 +73,7 @@ final class GDO_DB_mysql extends GDO_Database
 	{
 		if (true === $this->queryRead($query))
 		{
+			$this->queries_writes++;
 			$this->queries_closed++;
 			return true;
 		}
