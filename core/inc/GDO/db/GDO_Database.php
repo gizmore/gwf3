@@ -21,7 +21,7 @@ abstract class GDO_Database
 	protected $queries_opened = 1;
 	protected $queries_closed = 1;
 	
-	public function getQueryWrites() { return $this->queries_writes; }
+	public function getQueryWriteCount() { return $this->queries_writes; }
 	public function getQueriesOpened() { return $this->queries_opened; }
 	public function getQueriesClosed() { return $this->queries_closed; }
 	

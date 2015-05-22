@@ -75,6 +75,7 @@ final class GDO_DB_mysqli extends GDO_Database
 		if (true === $this->queryRead($query))
 		{
 			$this->queries_closed++;
+			$this->queries_writes++;
 			return true;
 		}
 		return false;
