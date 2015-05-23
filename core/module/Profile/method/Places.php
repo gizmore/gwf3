@@ -52,6 +52,8 @@ final class Profile_Places extends GWF_Method
 			'maxp' => $this->module->cfgAllowedPOIs(),
 			'api_key' => $this->module->cfgMapsApiKey(),
 			'protocol' => Common::getProtocol(),
+			'init_lat' => 0,
+			'init_lon' => 0,
 		);
 		
 		return $this->module->templatePHP('places.php', $tVars);
