@@ -10,7 +10,7 @@ if (false === ($chall = WC_Challenge::getByTitle(GWF_PAGE_TITLE)))
 $chall->showHeader();
 $chall->onCheckSolution();
 $url1 = 'https://www.wechall.net/challenge';
-$url2 = 'http://trac.gwf3.gizmore.org';
+$url2 = 'https://github.com/gizmore/gwf3';
 $url3 = '/profile/kwisatz';
 echo GWF_Box::box($chall->lang('info', array($url1, $url2, $url3)), $chall->lang('title'));
 formSolutionbox($chall, 14);

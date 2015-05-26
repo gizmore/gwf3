@@ -32,7 +32,7 @@ $url_7_1 = GWF_WEB_ROOT.'index.php?mo=WeChall&amp;me=JoinUs&amp;section=optional
 $url_7_2 = GWF_WEB_ROOT.'index.php?mo=WeChall&amp;me=JoinUs&amp;section=optional&amp;show=example_7_2';
 $hidden_7_1 = Common::getGet('show') === 'example_7_1' ? 'block' : 'none';
 $hidden_7_2 = Common::getGet('show') === 'example_7_2' ? 'block' : 'none';
-$href3p = 'http://trac.gwf3.gizmore.org/browser/extra/3p_irc_forum_plugins';
+$href3p = 'https://github.com/gizmore/gwf3/tree/master/extra/3p_irc_forum_plugins';
 echo '<a name="join_7"></a>'.PHP_EOL;
 echo GWF_Box::box($l->lang('join_7b', array($url_7_1, $hidden_7_1, $code_7_1, $url_7_2, $hidden_7_2, $code_7_2, $href3p)), '7) '.$l->lang('join_7t'));
 
