@@ -41,9 +41,11 @@ if ($show_tags_and_filters)
 				$count++;
 			}
 		}
-		$href = GWF_WEB_ROOT.$tVars['filter_prefix'].'challs/'.$tag.'/by/'.urlencode($by).'/'.urlencode($dir).'/page-1';
-		$text = $tag.'('.$count.')';
-		$cloud_tags .= ', '.GWF_HTML::anchor($href, $text);
+		if ($count || $tag === $tVars['tag']) {
+			$href = GWF_WEB_ROOT.$tVars['filter_prefix'].'challs/'.$tag.'/by/'.urlencode($by).'/'.urlencode($dir).'/page-1';
+			$text = $tag.'('.$count.')';
+			$cloud_tags .= ', '.GWF_HTML::anchor($href, $text);
+		}
 	}
 	$href = GWF_WEB_ROOT.$tVars['filter_prefix'].'challs/by/'.urlencode($by).'/'.urlencode($dir).'/page-1';
 	$text = 'All('.count($challs).')';
