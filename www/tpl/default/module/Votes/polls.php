@@ -1,13 +1,11 @@
 <?php
 $headers = array(
-	array($tLang->lang('th_date'), 'vm_date'),
-	array($tLang->lang('th_title'), 'vm_title'),
-	array($tLang->lang('th_votes'), 'vm_votes'),
-	array($tLang->lang('th_top_answ')),
+	array($tLang->lang('th_date'), 'vm_date', 'DESC', 6),
+	array($tLang->lang('th_title'), 'vm_title', 'ASC', 1),
+	array($tLang->lang('th_votes'), 'vm_votes', 'DESC', 3),
+	array($tLang->lang('th_top_answ'), null, null, 2),
 );
-?>
-<table>
-<?php
+echo GWF_Table::start();
 echo GWF_Table::displayHeaders1($headers, $tVars['sort_url']);
 foreach ($tVars['polls'] as $poll)
 {
@@ -20,7 +18,11 @@ foreach ($tVars['polls'] as $poll)
 	echo sprintf('<td><a href="%s">%s</a></td>', $href, $poll->displayTopAnswers());
 	echo GWF_Table::rowEnd();
 }
-?>
-</table>
+echo GWF_Table::end();
 
-<?php if ($tVars['may_add_poll']) { echo GWF_Button::add($tLang->lang('btn_add_poll'), $tVars['href_add_poll']); } ?>
+if ($tVars['may_add_poll'])
+{
+	echo GWF_Button::wrapStart();
+	echo GWF_Button::add($tLang->lang('btn_add_poll'), $tVars['href_add_poll']);
+	echo GWF_Button::wrapEnd();
+}

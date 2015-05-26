@@ -27,9 +27,10 @@
 
 {if $page->isOptionEnabled(GWF_Page::SHOW_TRANS)}
 {if $trans_string == ''}	
-	<div>{$lang->lang('msg_no_trans')}</div>
+	<div>{$lang->lang('msg_no_trans', array($page->hrefTranslate()))}</div>
 {else}
 	<div>{$lang->lang('translations')}: {$trans_string}</div>
+	<div>{$lang->lang('translatethis', array({$page->hrefTranslate()}))}</div>
 {/if}
 {/if}
 

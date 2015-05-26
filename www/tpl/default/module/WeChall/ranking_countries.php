@@ -4,15 +4,15 @@ echo GWF_Box::box($tLang->lang('pi_csrank'), $tLang->lang('pt_csrank'));
 WC_HTML::rankingPageButtons();
 
 $headers = array(
-	array('#'),
-	array(''),
-	array($tLang->lang('th_user_countryid'), 'countryname', 'ASC'),
-	array($tLang->lang('th_players'), 'users', 'DESC'),
-	array($tLang->lang('th_score'), 'totalscore', 'DESC'),
-	array($tLang->lang('th_spc'), 'spc', 'DESC'),
-	array($tLang->lang('th_avg'), 'avg', 'DESC'),
-	array($tLang->lang('th_sumtop3'), 'top3', 'DESC'),
-	array($tLang->lang('th_top_player'), 'topuser', 'ASC'),
+	array('#', null, null, 2),
+	array('', null, null, 1),
+	array($tLang->lang('th_user_countryid'), 'countryname', 'ASC', 3),
+	array($tLang->lang('th_players'), 'users', 'DESC', 6),
+	array($tLang->lang('th_score'), 'totalscore', 'DESC', 4),
+	array($tLang->lang('th_spc'), 'spc', 'DESC', 7),
+	array($tLang->lang('th_avg'), 'avg', 'DESC', 8),
+	array($tLang->lang('th_sumtop3'), 'top3', 'DESC', 9),
+	array($tLang->lang('th_top_player'), 'topuser', 'ASC', 5),
 );
 $rank = 1;
 $hlc = $tVars['highlight_country'];
@@ -30,7 +30,6 @@ foreach ($tVars['data'] as $row)
 	echo sprintf('<td class="gwf_num">%d</td>', $rank++);
 	echo sprintf('<td>%s</td>', GWF_Country::displayFlagS2($cid, $row['countryname']));
 	echo sprintf('<td><a href="%s">%s</a></td>', $href, GWF_HTML::display($row['countryname']));
-	
 	echo sprintf('<td class="gwf_num">%d</td>', $row['users']);
 	echo sprintf('<td class="gwf_num">%d</td>', $row['totalscore']);
 	echo sprintf('<td class="gwf_num">%s</td>', $row['spc']);
@@ -42,4 +41,3 @@ foreach ($tVars['data'] as $row)
 echo GWF_Table::end();
 
 echo GWF_Box::box($tLang->lang('scorefaq_box', GWF_WEB_ROOT.'scoring_faq'));
-?>

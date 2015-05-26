@@ -1,5 +1,4 @@
 <?php $required = "(*)"; $cols = 3; ?>
-
 <div class="gwf3_formY">
 	<form action="<?php echo $tVars['action']; ?>" method="<?php echo $tVars['method']; ?>" enctype="<?php echo $tVars['enctype']; ?>">
 	<table>

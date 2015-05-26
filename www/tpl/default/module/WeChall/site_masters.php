@@ -1,9 +1,9 @@
-<div class="gwf_buttons_outer gwf_buttons">
 <?php
+echo GWF_Button::wrapStart();
 echo GWF_Button::generic(WC_HTML::lang('btn_site_masters_old'), GWF_WEB_ROOT.'old_site_masters', 'generic', '', $tVars['old']===true);
 echo GWF_Button::generic(WC_HTML::lang('btn_site_masters'), GWF_WEB_ROOT.'site_masters', 'generic', '', $tVars['old']===false);
+echo GWF_Button::wrapEnd();
 ?>
-</div>
 <?php
 $headers = array(
 	array('', 'user_countryid'),

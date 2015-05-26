@@ -32,7 +32,9 @@ window.gwf.profile = new window.gwf.Profile('profile_map',
 <?php echo $left; ?>,
 <?php echo $tVars['is_admin']; ?>,
 '<?php echo $tVars['api_key']; ?>',
-'<?php echo $tVars['protocol']; ?>'		
+'<?php echo $tVars['protocol']; ?>',
+<?php echo $tVars['init_lat']; ?>,
+<?php echo $tVars['init_lon']; ?>
 );
 </script>
 <!-- When you can read this you really need to get laid. -->
