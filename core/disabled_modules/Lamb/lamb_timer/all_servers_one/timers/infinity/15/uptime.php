@@ -1,1 +1,0 @@
-<?php GWF_Settings::setSetting('_lamb3_shutdowntime', microtime(true)); # Uptime records # ?>
