@@ -4,26 +4,26 @@ $lang = array(
 
 	'ERR_DATABASE' => 'Datenbank Fehler in Datei %s Zeile %s.',
 	'ERR_FILE_NOT_FOUND' => 'Datei nicht gefunden: %s',
-	'ERR_MODULE_DISABLED' => 'Das Modul %s ist zur zeit deaktiviert.',
+	'ERR_MODULE_DISABLED' => 'Das Modul %s ist zur Zeit deaktiviert.',
 	'ERR_LOGIN_REQUIRED' => 'Für diese Funktion müssen sie angemeldet sein.',
 	'ERR_NO_PERMISSION' => 'Zugriff Verweigert.',
 	'ERR_WRONG_CAPTCHA' => 'Sie müssen die Buchstaben aus dem Captcha Bild richtig abtippen.',
 	'ERR_MODULE_MISSING' => 'Modul %s konnte nicht gefunden werden.',
-	'ERR_COOKIES_REQUIRED' => 'Ihre Sitzung ist abgelaufen. Bitte versuchen sie die Seite erneut zu laden.',
+	'ERR_COOKIES_REQUIRED' => 'Ihre Sitzung ist abgelaufen. Bitte versuchen Sie die Seite erneut zu laden.',
 	'ERR_UNKNOWN_USER' => 'Dieser Benutzer ist unbekannt.',
-	'ERR_UNKNOWN_COUNTRY' => 'Dieses Land ist unbekant.',
-	'ERR_UNKNOWN_LANGUAGE' => 'Diese Sprache ist unbekant.',
+	'ERR_UNKNOWN_COUNTRY' => 'Dieses Land ist unbekannt.',
+	'ERR_UNKNOWN_LANGUAGE' => 'Diese Sprache ist unbekannt.',
 	'ERR_UNKNOWN_GROUP' => 'Unbekannte Benutzergruppe.',
 	'ERR_METHOD_MISSING' => 'Unbekannte Funktion %s in Modul %s.',
 	'ERR_GENERAL' => 'Undefinierter Fehler in %s Zeile %s.',
-	'ERR_WRITE_FILE' => 'Kann die Datei %s nicht beschreiben.',
+	'ERR_WRITE_FILE' => 'Kann die Datei %s nicht schreiben.',
 	'ERR_CLASS_NOT_FOUND' => 'Unbekannte Klasse: %s.',
-	'ERR_MISSING_VAR' => 'Fehlende Formular Daten für feld %s.',
+	'ERR_MISSING_VAR' => 'Fehlende Formular Daten für Feld %s.',
 	'ERR_MISSING_UPLOAD' => 'Sie müssen eine Datei hochladen.',
 	'ERR_MAIL_SENT' => 'Es trat ein Fehler beim Senden der EMail auf.',
 	'ERR_CSRF' => 'Ihr gesendetes Formular ist ungültig. Wahrscheinlich haben sie ein Formular zwei mal gesendet, oder Ihre Sitzung ist abgelaufen.',
 	'ERR_HOOK' => 'Eine Erweiterung lieferte einen Fehler zurück: %s.',
-	'ERR_PARAMETER' => 'Ungültiges argument in %s Zeile %s. Funktionsargument %s ist ungültig.',
+	'ERR_PARAMETER' => 'Ungültiges Argument in %s Zeile %s. Funktionsargument %s ist ungültig.',
 	'ERR_DEPENDENCY' => 'Funktion benötigt ein fehlendes Modul: core/module/%s/method/%s benötigt Modul %s v%s.',
 	'ERR_SEARCH_TERM' => 'Der Suchbegriff muss %s - %s Zeichen lang sein.',
 	'ERR_SEARCH_NO_MATCH' => 'Ihre Suche nach &quot;%s&quot; ergab keine Treffer.',
@@ -112,21 +112,21 @@ $lang = array(
 
 	# GWF_Form
 	'th_captcha1' => '<a href="http://de.wikipedia.org/wiki/Captcha">Captcha</a>', #<br/>Click the image to reload',
-	'th_captcha2' => 'Tippen sie die 5 Buchstaben aus dem Bild ab',
+	'th_captcha2' => 'Tippen Sie die 5 Buchstaben aus dem Bild ab',
 	'tt_password' => 'Passwörter müssen mindestens 8 Zeichen lang sein.',
-	'tt_captcha1' => 'Klicken sie auf das Captch Bild um ein neues anzufordern.',
-	'tt_captcha2' => 'Tippen sie die Buchstaben ab um zu beweisen das sie ein Mensch sind.',
+	'tt_captcha1' => 'Klicken Sie auf das Captcha Bild um ein neues anzufordern.',
+	'tt_captcha2' => 'Tippen Sie die Buchstaben ab um zu beweisen das Sie ein Mensch sind.',
 
 	# GWF_Category
 	'no_category' => 'Alle Kategorien',
-	'sel_category' => 'Wählen sie eine Kategorie',
+	'sel_category' => 'Wählen Sie eine Kategorie',
 
 	# GWF_Language
-	'sel_language' => 'Wählen sie eine Sprache',
+	'sel_language' => 'Wählen Sie eine Sprache',
 	'unknown_lang' => 'Unbekannte Sprache',
 
 	# GWF_Country
-	'sel_country' => 'Wählen sie ein Land',
+	'sel_country' => 'Wählen Sie ein Land',
 	'unknown_country' => 'Unbekanntes Land',
 
 	# GWD_User#gender
@@ -138,12 +138,12 @@ $lang = array(
 	'alt_avatar' => '%s`s Benutzerbild',
 
 	# GWF_Group
-	'sel_group' => 'Wählen sie eine Benutzer-Gruppe',
+	'sel_group' => 'Wählen Sie eine Benutzer-Gruppe',
 
 	# Date select
-	'sel_year' => 'Wählen sie ein Jahr',
-	'sel_month' => 'Wählen sie einen Monat ',
-	'sel_day' => 'Wählen sie einen Tag',
+	'sel_year' => 'Wählen Sie ein Jahr',
+	'sel_month' => 'Wählen Sie einen Monat ',
+	'sel_day' => 'Wählen Sie einen Tag',
 	'sel_older' => 'Älter als',
 	'sel_younger' => 'Jünger als',
 
@@ -173,9 +173,9 @@ $lang = array(
 	'bbhelp_quote' => 'Dieser Text ist ein Zitat',
 	'bbhelp_url' => 'Linktext',
 	'bbhelp_email' => 'E-Mail text',
-	'bbhelp_noparse' => 'BBCode ist hier deaktivert',
+	'bbhelp_noparse' => 'BBCode ist hier deaktiviert',
 	'bbhelp_level' => 'Dieser Text benötigt einen bestimmten Userlevel',
-	'bbhelp_spoiler' => 'Unsichtbarer text. Durch Klick anzeigen.',
+	'bbhelp_spoiler' => 'Unsichtbarer Text. Durch Klick anzeigen.',
 
 	# v2.04 BBCode3
 	'quote_from' => 'Zitat von %s',
@@ -187,11 +187,11 @@ $lang = array(
 	'no' => 'Nein',
 
 	# 2.06 spoiler
-	'bbspoiler_info' => 'Click for spoiler',
+	'bbspoiler_info' => 'Klicken, um Spoiler anzuzeigen',
 
 	# 3.00 Filesize
 	'filesize' => array('B','KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'YB', 'ZB'),
-	'err_bb_level' => 'You need a userlevel of %s to see this content.',
+	'err_bb_level' => 'Sie benötigen einen Benutzerlevel von %s um diesen Inhalt zu sehen.',
 );	
 
 ?>
