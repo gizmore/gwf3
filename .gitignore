@@ -2,6 +2,9 @@
 # /
 /.project
 
+# PhpStorm project directory
+/.idea
+
 # /core/disabled_modules/Lamb/
 /core/disabled_modules/Lamb/www
 
