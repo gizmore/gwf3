@@ -4,19 +4,19 @@ $lang = array(
 
 	# Titles
 	'form_title' => 'Konto Einstellungen',
-	'chmail_title' => 'Geben sie ihre neue EMail Adresse an',
+	'chmail_title' => 'Geben Sie ihre neue EMail Adresse an',
 
 	# Headers
 	'th_username' => 'Ihr Nickname',
 	'th_email' => 'Kontakt EMail',
-	'th_demo' => 'Demographische Optionen - Diese können sie nur einmal alle %s ändern.',
+	'th_demo' => 'Demographische Optionen - Diese können Sie nur einmal alle %s ändern.',
 	'th_countryid' => 'Land',	
 	'th_langid' => 'Muttersprache',	
 	'th_langid2' => '1. Fremdsprache',
 	'th_birthdate' => 'Ihr Geburtsdatum',
 	'th_gender' => 'Ihr Geschlecht',
 	'th_flags' => 'Optionen - Änderungen sind jederzeit möglich',
-	'th_adult' => 'Möchten sie Inhalt für Erwachsene?',
+	'th_adult' => 'Möchten Sie Inhalt für Erwachsene?',
 	'th_online' => 'Ihren Online Status verstecken?',
 	'th_show_email' => 'EMail Adresse öffentlich sichtbar?',
 	'th_avatar' => 'Ihr Benutzerbild',
@@ -37,7 +37,7 @@ $lang = array(
 	'err_no_mail_to_approve' => 'Sie haben keine EMail zum Bestätigen angegeben.',
 	'err_already_approved' => 'Ihre EMail Adresse ist bereits bestätigt.',
 	'err_no_image' => 'Datei ist kein Bild, oder zu klein.',
-	'err_demo_wait' => 'Sie haben Ihre demographischen Einstellungen erst kürzlich geändert. Bitte warten sie %s.',
+	'err_demo_wait' => 'Sie haben Ihre demographischen Einstellungen erst kürzlich geändert. Bitte warten Sie %s.',
 	'err_birthdate' => 'Ihr Geburtsdatum ist ungültig.',
 
 	# Messages
@@ -45,11 +45,11 @@ $lang = array(
 	'msg_deleted_avatar' => 'Ihr Benutzerbild wurde gelöscht.',
 	'msg_avatar_saved' => 'Ihr neues Benutzerbild wurde gespeichert.',
 	'msg_demo_changed' => 'Ihre demographischen Einstellungen wurden erfolgreich geändert.',
-	'msg_mail_sent' => 'Wir haben Ihnen eine EMail gesendet um die Änderungen vorzunehmen. Bitte folgen sie den Anweisungen dort.',
+	'msg_mail_sent' => 'Wir haben Ihnen eine EMail gesendet um die Änderungen vorzunehmen. Bitte folgen Sie den Anweisungen dort.',
 	'msg_show_email_on' => 'Ihre EMail ist nun öffentlich sichtbar.',
 	'msg_show_email_off' => 'Ihre EMail ist nun versteckt.',
 	'msg_adult_on' => 'Sie können nun Inhalte für Erwachsene sehen.',
-	'msg_adult_off' => 'Inhalte für Erwachsene wurde deaktiviert.',
+	'msg_adult_off' => 'Inhalte für Erwachsene wurden deaktiviert.',
 	'msg_online_on' => 'Ihr Online-Status ist nun unsichtbar.',
 	'msg_online_off' => 'Ihr Online-Status ist nun sichtbar.',
 
@@ -74,8 +74,8 @@ $lang = array(
 		'Liebe/Lieber %s,'.PHP_EOL.
 		PHP_EOL.
 		'Sie haben angefragt Ihre EMail auf '.GWF_SITENAME.' zu ändern.'.PHP_EOL.
-		'Um die Änderung abzuschließen, folgen sie bitte dem Link unterhalb dieses Textes.'.PHP_EOL.
-		'Falls sie die Änderung nicht selbst beantragt haben sollten, können sie diese Mail ignorieren, oder uns darüber informieren.'.PHP_EOL.
+		'Um die Änderung abzuschließen, folgen Sie bitte dem Link unterhalb dieses Textes.'.PHP_EOL.
+		'Falls Sie die Änderung nicht selbst beantragt haben sollten, können sie diese Mail ignorieren, oder uns darüber informieren.'.PHP_EOL.
 		PHP_EOL.
 		'%s'.PHP_EOL.
 		PHP_EOL.
@@ -87,7 +87,7 @@ $lang = array(
 	'chmailb_body' => 
 		'Liebe/Lieber %s,'.PHP_EOL.
 		PHP_EOL.
-		'Um diese EMail als ihre Kontakt-Adresse zu verwenden, müssen sie dies noch bestätigen indem sie den folgenden Link aufrufen:'.PHP_EOL.
+		'Um diese EMail als ihre Kontakt-Adresse zu verwenden, müssen Sie dies noch bestätigen indem Sie den folgenden Link aufrufen:'.PHP_EOL.
 		'%s'.PHP_EOL.
 		PHP_EOL.
 		'Freundliche Grüße'.PHP_EOL.
@@ -99,7 +99,7 @@ $lang = array(
 		'Liebe/Lieber %s,'.PHP_EOL.
 		PHP_EOL.
 		'Sie haben angefragt ihre demographischen Einstellungen festzulegen oder zu ändern.'.PHP_EOL.
-		'Dies können sie nur einmal alle %s ausführen, also stellen Sie bitte sicher, dass Ihre Angaben korrekt sind bevor sie fortfahren.'.PHP_EOL.
+		'Dies können Sie nur einmal alle %s ausführen, also stellen Sie bitte sicher, dass Ihre Angaben korrekt sind bevor Sie fortfahren.'.PHP_EOL.
 		PHP_EOL.
 		'Geschlecht: %s'.PHP_EOL.
 		'Land: %s'.PHP_EOL.
@@ -133,7 +133,7 @@ $lang = array(
 		'Sie möchten ihr Konto auf '.GWF_SITENAME.' löschen.<br/>'.
 		'Das ist schade. Ihr Konto wird nicht vollständig gelöscht, aber alle Verweise werden entfernt und Ihr Konto ist danach unbrauchbar.<br/>'.
 		'Alle Verknüpfungen und Verweise zu Ihrem Konto werden als Gast angezeigt, dies kann nicht rückgängig gemacht werden.<br/>'.
-		'Bevor sie Ihr Konto endgültig löschen, können Sie uns eine Nachricht hinterlassen, falls sie mit uns unzufrieden waren.<br/>',
+		'Bevor sie Ihr Konto endgültig löschen, können Sie uns eine Nachricht hinterlassen, falls Sie mit uns unzufrieden waren.<br/>',
 	'th_accrm_note' => 'Notiz',
 	'btn_accrm' => 'Konto Löschen',
 	'msg_accrm' => 'Ihr Konto wurde als gelöscht markiert. Alle Verweise wurden gelöscht.<br/>Sie wurden aus dem System ausgeloggt.',
@@ -215,7 +215,7 @@ $lang = array(
 		'Der %s'.PHP_EOL,
 	# 4 Checkboxes
 	'th_record_ips' => '<a href="%s">IPs aufzeichnen</a>',
-	'tt_record_ips' => 'Zeichnet alle IPs auf, die auf Ihr Konto zugreifen, und bietet eine Übersicht disere. Einträge könenn nicht gelöscht werden!',
+	'tt_record_ips' => 'Zeichnet alle IPs auf, die auf Ihr Konto zugreifen, und bietet eine Übersicht dieser. Einträge können nicht gelöscht werden!',
 	'msg_record_ips_on' => 'Alle IP Adressen werden nun auf unbestimmte Zeit aufgezeichnet. Sie können die Aufzeichnung jederzeit beenden.',
 	'msg_record_ips_off' => 'Sie haben das Aufzeichnen von IPs deaktiviert.',
 	#
