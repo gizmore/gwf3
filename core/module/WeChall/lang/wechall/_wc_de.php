@@ -678,7 +678,7 @@ $lang = array(
 	'title_wartoken' => 'WarTokens',
 	'info_wartoken' => 'Auf vielen Warboxes existieren keine Benutzerkonten.<br/>%s hat es ermöglicht diese mit %s, einem identd Authentifizierungs-Wrapper, einfach zu linken.',
 	'title_warboxes' => 'Unterstützte Warboxes',
-	'info_warboxes' => 'Lösen Sie einfach eine Challenge auf einer unterstützten Warbox; wenn Sie im nächsten Level eigelogged sind, verwenden sie netcat zu Port %s:<br/><br/><i>%s</i><br/><br/>Das wars schon!<br/><br/>Sie können <a href="%s">eine Warbox verlinken</a> wie eine normale Seite.<br/><br/><a href="%s">Ich habe eine eigene Warbox, wie kann ich sie hinzufügen?</a>',
+	'info_warboxes' => 'Lösen Sie einfach eine Challenge auf einer unterstützten Warbox; wenn Sie im nächsten Level eingelogged sind, verwenden Sie netcat zu Port %s:<br/><br/><i>%s</i><br/><br/>Das wars schon!<br/><br/>Sie können <a href="%s">eine Warbox verlinken</a> wie eine normale Seite.<br/><br/><a href="%s">Ich habe eine eigene Warbox, wie kann ich sie hinzufügen?</a>',
 	'title_your_wartoken' => 'Ihr aktuelles WarToken',
 	'title_warcredits' => 'Warbox Idee',
 	'info_warcredits' => 'Großer Dank geht an %s für diese tolle Idee und Implementation!',
