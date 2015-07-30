@@ -1,8 +1,7 @@
 <?php
 /**
 * chall.codeshell.kr
-* rank missing.
-* username:score:maxscore:challssolved:challcount:usercount
+* username:rank:score:maxscore:challssolved:challcount:usercount
 */
 class WCSite_CS extends WC_Site
 {
@@ -14,14 +13,14 @@ class WCSite_CS extends WC_Site
 		}
 	
 		$result = explode(':', trim($page));
-		if (count($result) !== 6)
+		if (count($result) !== 7)
 		{
 			return htmlDisplayError(WC_HTML::lang('err_response', array(GWF_HTML::display($page), $this->displayName())));
 		}
 	
 		$i = 0;
 		$username = $result[$i++];
-		$rank = -1;
+		$rank = $result[$i++];
 		$score = $result[$i++];
 		$maxscore = $result[$i++];
 		$challssolved = $result[$i++];
