@@ -60,14 +60,14 @@ final class WeChall_GraphSite extends GWF_Method
 		while (false !== ($row = $history->fetch($result, GDO::ARRAY_N)))
 		{
 			$value = (int) $row[1];
-			$xdataarray[] = $row[0];
-			$ydataarray[] = $value;
+			$day = GWF_Time::getDate(8, $row[0]);
+			$xdataarray[$day] = $row[0];
+			$ydataarray[$day] = $value;
 			if ($value > $highestvalue)
 			{   
 				$highestvalue = $value;
 			}
 		}
-		
 		$history->free($result);
 		
 		
