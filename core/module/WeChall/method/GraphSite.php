@@ -70,6 +70,8 @@ final class WeChall_GraphSite extends GWF_Method
 		}
 		$history->free($result);
 		
+		$xdataarray = array_values($xdataarray);
+		$ydataarray = array_values($ydataarray);
 		
 		// add current value
 		$xdataarray[] = time();
@@ -77,10 +79,6 @@ final class WeChall_GraphSite extends GWF_Method
 		if ($value > $highestvalue) {   
 			$highestvalue = $value;
 		}
-
-//		var_dump($xdataarray);
-//		var_dump($ydataarray);
-//		var_dump($xticks);
 		
 		
 		if ($highestvalue === 0) {
@@ -93,8 +91,6 @@ final class WeChall_GraphSite extends GWF_Method
 			die(0);
 		}
 		
-#		$dateformat = GWF_HTML::lang('df_8');
-//		$dateformat = "d.M.y-H:i";
 		$dateformat = "M.y";
 		$datemargin = strlen(date($dateformat)) * 11; 
 		
