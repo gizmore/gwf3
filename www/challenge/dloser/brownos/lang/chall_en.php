@@ -5,7 +5,7 @@ $lang = array(
 	'info' =>
 		'Reports have come in about a new kind of operating system that Gizmore is developing. Scans have detected an extra open port on wechall.net that might be related to this. Additionally, one of our dumpster divers has found part of what appears to be a cheat sheet for something called "BrownOS".<br/>'.PHP_EOL.
 		'<br/>'.PHP_EOL.
-		'Please investigate the service at hes2013.wechall.net port 61221.<br/>'.PHP_EOL,
+		'Please investigate the service at wc3.wechall.net port 61221.<br/>'.PHP_EOL,
 	'cheatsheet' =>
 		'<pre>FF: End Of Code marker'.PHP_EOL.
 		PHP_EOL.
