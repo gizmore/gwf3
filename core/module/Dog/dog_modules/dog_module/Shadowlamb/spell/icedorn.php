@@ -16,7 +16,7 @@ final class Spell_icedorn extends SR_OffensiveSpell
 
 	public function cast(SR_Player $player, SR_Player $target, $level, $hits, SR_Player $potion_player)
 	{
-		$wis = $potion_player->get('wisdom') * 4;
+		$wis = $potion_player->get('wisdom') * 2;
 		$min = 5+$level*5;
 		$max = 10+$level*10+$wis;
 		$seconds = rand($min, $max);
