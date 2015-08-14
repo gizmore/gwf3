@@ -8,8 +8,6 @@ final class GWF_HTTP
 	const DEFAULT_TIMEOUT = 60;
 	const DEFAULT_TIMEOUT_CONNECT = 10;
 	const USERAGENT = 'Mozilla/5.0 (X11; Linux x86_64; rv:5.0) Gecko/20100101 Firefox/5.0';
-	const COOKIE_PREFIX = 'cookie';
-	const COOKIE_PATH = 'extra/temp/gwfhttp/';
 
 	private static $TIMEOUT = self::DEFAULT_TIMEOUT;
 	private static $TIMEOUT_CONNECT = self::DEFAULT_TIMEOUT_CONNECT;
@@ -74,11 +72,6 @@ final class GWF_HTTP
 		curl_setopt($ch, CURLOPT_MAXREDIRS, 10);
 		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
 		
-		# Cookie stuff
-		$cookiefile = tempnam(self::COOKIE_PATH, self::COOKIE_PREFIX);
-		curl_setopt($ch, CURLOPT_COOKIEJAR, $cookiefile);
-		curl_setopt($ch, CURLOPT_COOKIEFILE, $cookiefile);
- 
 		# Timeout
   		curl_setopt($ch, CURLOPT_TIMEOUT, self::$TIMEOUT);
 		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, self::$TIMEOUT_CONNECT);
@@ -138,10 +131,6 @@ final class GWF_HTTP
 		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
 		
 		# Cookie stuff
-		$cookiefile = tempnam(self::COOKIE_PATH, self::COOKIE_PREFIX);
-		curl_setopt($ch, CURLOPT_COOKIEJAR, $cookiefile);
-		curl_setopt($ch, CURLOPT_COOKIEFILE, $cookiefile);
-		
 		if ($cookie !== false)
 		{
 			curl_setopt($ch, CURLOPT_COOKIE, $cookie);
@@ -213,9 +202,6 @@ final class GWF_HTTP
 		curl_setopt($ch, CURLOPT_PROTOCOLS, CURLPROTO_HTTP|CURLPROTO_HTTPS);
 		
 		# Cookie stuff
-		$cookiefile = tempnam(self::COOKIE_PATH, self::COOKIE_PREFIX);
-		curl_setopt($ch, CURLOPT_COOKIEJAR, $cookiefile);
-		curl_setopt($ch, CURLOPT_COOKIEFILE, $cookiefile);
 		if ($cookie !== false) {
 			curl_setopt($ch, CURLOPT_COOKIE, $cookie);
 		}
@@ -264,32 +250,6 @@ final class GWF_HTTP
 		#header('Cache-Control: no-control, messup-Opera, spontanious-revalidation, redirect-at-will, hidden-execute-malware-mode');
 	}
 
-	/**
-	 * Removes all cookies in a directory
-	 * @param int $time one week
-	 * @param string $path
-	 * @author spaceone
-	 **/
-	public static function cleanupCookies($time=604800, $path=self::COOKIE_PATH)
-	{
-		if(false === ($files = scandir($path)))
-		{
-			return false;
-		}
-		$ret = true;
-		foreach($files as $file)
-		{
-			if((true === Common::startsWith($dir, self::COOKIE_PREFIX)) && (false === is_dir($path.$file)) && (filemtime($path.$file) <= time()-$time))
-			{
-				if(false === unlink($path.$file))
-				{
-					$ret = false;
-				}	
-			}
-		}
-		return $ret;
-	}
-	
 	/**
 	 * 
 	 * @param string $url
