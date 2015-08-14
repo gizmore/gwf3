@@ -156,12 +156,12 @@ abstract class SR_TalkingNPC extends SR_NPC
 	{
 		switch (count($args))
 		{
-			case 1:
+			case 0:
 				$this->reply("Yes. Try #ttj bounty <player{server}> to see the bounty for a player. Try #ttj bounty <player{server}> <nuyen> to raise the bounty for a player.");
 				return true;
 			
-			case 2:
-				if (false === ($target = Shadowrun4::loadPlayerByName($args[1])))
+			case 1:
+				if (false === ($target = Shadowrun4::loadPlayerByName($args[0])))
 				{
 					$this->reply("This player is unknown. Try #ttj <nickname{serverid}>.");
 				}
@@ -171,15 +171,15 @@ abstract class SR_TalkingNPC extends SR_NPC
 				}
 				return true;
 				
-			case 3:
+			case 2:
 				
-				if (false === ($target = Shadowrun4::loadPlayerByName($args[1])))
+				if (false === ($target = Shadowrun4::loadPlayerByName($args[0])))
 				{
 					$this->reply("This player is unknown. Try #ttj <nickname{serverid}>.");
 					return true;
 				}
 				
-				$nuyen = (int)$args[2];
+				$nuyen = (int)$args[1];
 				$min_nuyen = SR_Bounty::getMinNuyen($target);
 				if ($nuyen < $min_nuyen)
 				{

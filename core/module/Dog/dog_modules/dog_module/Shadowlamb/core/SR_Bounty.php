@@ -91,7 +91,7 @@ final class SR_Bounty extends GDO
 // 			$out .= sprintf(", \x02%s\X02-%s(%s)", $i+1, $data[0], $ny);
 		}
 		
-		return $player->lang('bounty_page', array($page, $numPages, ltrim(',; ', 2)));
+		return $player->lang('bounty_page', array($page, $numPages, substr($out, 2)));
 // 		return sprintf('Bounties page %s/%s: %s.', $page, $numPages, substr($out, 2));
 	}
 	
