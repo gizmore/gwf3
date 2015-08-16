@@ -261,6 +261,8 @@ final class Shadowhelp
 						'world' => 'Print info about the world of Shadowlamb.',
 						'players' => 'Usage: #players <page>. Print info about the current players. Paginated.',
 						'parties' => 'Usage: #parties <page>. Print info about the current active parties, paginated.',
+						'bounty' => 'Usage: #bounty [<player>]. Shows bounty set for player. Bounties can be set by talking to certain NPCs.',
+						'bounties' => 'Usage: #bounties [<page>]. Lists all current bounties. Bounties can be set by talking to certain NPCs.',
 					),
 					
 					'gm_cmds' => '"Game Master" commands for debugging and cheating',
