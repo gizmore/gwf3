@@ -96,18 +96,18 @@ abstract class SR_Blacksmith extends SR_Store
 		
 		
 		# Confirm
-		$uid = $player->getUID();
+		$pid = $player->getID();
 		if ($args[0] !== $itemname)
 		{
-			if ( (!isset(self::$CLEAN_CONFIRM[$uid])) || (self::$CLEAN_CONFIRM[$uid] !== $args[0]) )
+			if ( (!isset(self::$CLEAN_CONFIRM[$pid])) || (self::$CLEAN_CONFIRM[$pid] !== $args[0]) )
 			{
 				$bot->reply(sprintf('You plan to clean your %s. Please retype to confirm.', $itemname));
-				self::$CLEAN_CONFIRM[$uid] = $args[0];
+				self::$CLEAN_CONFIRM[$pid] = $args[0];
 				return false;
 			}
 			else
 			{
-				unset(self::$CLEAN_CONFIRM[$uid]);
+				unset(self::$CLEAN_CONFIRM[$pid]);
 			}
 		}
 

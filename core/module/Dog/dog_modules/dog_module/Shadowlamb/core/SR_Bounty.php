@@ -18,7 +18,7 @@ final class SR_Bounty extends GDO
 			'sr4bo_victim' => array(GDO::UINT|GDO::INDEX, GDO::NOT_NULL),
 			'sr4bo_bounty' => array(GDO::UINT, GDO::NOT_NULL),
 			'sr4bo_date' => array(GDO::DATE, GDO::NOT_NULL, GWF_Date::LEN_SECOND),
-			'victim' => array(GDO::JOIN,0, array('Dog_User', 'sr4bo_victim', 'user_id')),
+			'victim' => array(GDO::JOIN,0, array('SR_Player', 'sr4bo_victim', 'sr4pl_id')),
 		);
 	}
 	
@@ -73,7 +73,7 @@ final class SR_Bounty extends GDO
 		$numPages = GWF_PageMenu::getPagecount($ipp, $numItems);
 		$page = Common::clamp(intval($page,10), 1, $numPages);
 		$from = GWF_PageMenu::getFrom($page, $ipp);
-		$bounties = $bounties->selectAll('concat(user_name, "{", user_sid, "}") name, SUM(sr4bo_bounty) bounty', '', $orderby, array('victim'), 10, $from, GDO::ARRAY_N, 'sr4bo_victim');
+		$bounties = $bounties->selectAll('concat(sr4pl_name, "{", sr4pl_sid, "}") name, SUM(sr4bo_bounty) bounty', '', $orderby, array('victim'), 10, $from, GDO::ARRAY_N, 'sr4bo_victim');
 		
 		if (count($bounties) === 0)
 		{
@@ -104,8 +104,8 @@ final class SR_Bounty extends GDO
 	{
 		$bounty = new self(array(
 			'sr4bo_id' => 0,
-			'sr4bo_boss' => $boss->getUID(),
-			'sr4bo_victim' => $victim->getUID(),
+			'sr4bo_boss' => $boss->getID(),
+			'sr4bo_victim' => $victim->getID(),
 			'sr4bo_bounty' => $nuyen,
 			'sr4bo_date' => GWF_Time::getDate(GWF_Date::LEN_SECOND),
 		));
@@ -125,13 +125,13 @@ final class SR_Bounty extends GDO
 	
 	private static function sumBounty(SR_Player $victim)
 	{
-		return self::table(__CLASS__)->selectVar('SUM(sr4bo_bounty)', 'sr4bo_victim='.$victim->getUID());
+		return self::table(__CLASS__)->selectVar('SUM(sr4bo_bounty)', 'sr4bo_victim='.$victim->getID());
 	}
 	
 	public static function onKilledByHuman(SR_Player $killer, SR_Player $victim)
 	{
 		$b = chr(2);
-		$where = 'sr4bo_victim='.$victim->getUID();
+		$where = 'sr4bo_victim='.$victim->getID();
 		$bounty = self::table(__CLASS__)->selectAll('sr4bo_id, sr4bo_bounty', $where, '');
 		$sum = 0;
 		foreach ($bounty as $data)
