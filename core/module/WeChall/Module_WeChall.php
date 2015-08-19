@@ -87,7 +87,7 @@ final class Module_WeChall extends GWF_Module
 		GWF_Hook::add(GWF_HOOK::ACTIVATE, array(__CLASS__, 'hookRegister'));
 		GWF_Hook::add(GWF_HOOK::CHANGE_PASSWD, array(__CLASS__, 'hookChangePass'));
 		GWF_Hook::add(GWF_HOOK::DELETE_USER, array(__CLASS__, 'hookDeleteUser'));
-		GWF_Hook::add(GWF_HOOK::CHANGE_UNAME, array(__CLASS__, 'hookDeleteUser'));
+		GWF_Hook::add(GWF_HOOK::CHANGE_UNAME, array(__CLASS__, 'hookRenameUser'));
 		
 		$this->onLoadLanguage();
 		
