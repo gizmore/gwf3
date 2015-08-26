@@ -188,9 +188,9 @@ final class Dog
 		return false;
 	}
 	
-	public static function hasChanPermission(Dog_Server $serv, Dog_Channel $chan, Dog_User $user, $priv)
+	public static function hasChanPermission(Dog_Server $serv, Dog_Channel $chan, Dog_User $user, $priv, $needlogin=false)
 	{
-		return self::hasPermission($serv, $chan, $user, $priv, 'c', false);
+		return self::hasPermission($serv, $chan, $user, $priv, 'c', $needlogin);
 	}
 	
 	public static function isInScope(Dog_Server $serv, $chan=false, $abc)

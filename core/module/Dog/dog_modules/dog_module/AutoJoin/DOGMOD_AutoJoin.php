@@ -48,55 +48,37 @@ final class DOGMOD_AutoJoin extends Dog_Module
 		}
 	}
 	
-	public function on_autojoin_Ia()
-	{
-		$argv = $this->argv();
-		$argc = count($argv);
-		
-		if  ( ($argc === 0)
-			||(false === ($channel = Dog::getOrLoadChannelByArg($argv[0]))) )
-		{
-			return Dog::rply('err_channel');
-		}
-		
-		switch ($argc)
-		{
-			# privmsg .autojoin #wechall (show bit for a channel)
-			case 1:
-				return $this->showStatus($channel);
-		
-			# privmsg .autojoin #wechall off (set bit for a channel)
-			case 2:
-				if (!Dog_Var::isValid('b', $argv[1]))
-				{
-					return Dog::rply('err_variabl', array($this->getName(), 'autojoin', Dog_Var::displayType('b')));
-				}
-				return $this->setEnabled($channel, Dog_Var::parseValue('b', $argv[1]));
-		}
-		
-		$this->showHelp('autojoin');
-	}
-	
-	public function on_autojoin_Ac()
+	public function on_autojoin_Pb()
 	{
 		$user = Dog::getUser();
+		$channel = Dog::getChannel();
 		$server = Dog::getServer();
 		
 		$argv = $this->argv();
 		$argc = count($argv);
 		
-		# Invoked in channel.
 		switch ($argc)
 		{
 			# .autojoin
-			case 0: return $this->showStatus($channel);
+			case 0:
+				if ($channel === false)
+				{
+					return $this->rply('no_channel');
+				} else {
+					return $this->showStatus($channel);
+				}
 		
-			# .autojoin on|#channel
+			# .autojoin 0|1|#channel
 			case 1:
 			
 				if (Dog_Var::isValid('b', $argv[0]))
 				{
-					return $this->setEnabled($channel, Dog_Var::parseValue('b', $argv[0]));
+					if ($channel === false)
+					{
+						return $this->rply('no_channel');
+					} else {
+						return $this->setEnabled($server, $channel, $user, Dog_Var::parseValue('b', $argv[0]));
+					}
 				}
 				elseif (false === ($channel = Dog::getOrLoadChannelByArg($argv[0])))
 				{
@@ -107,7 +89,7 @@ final class DOGMOD_AutoJoin extends Dog_Module
 					return $this->showStatus($channel);
 				}
 				
-			# .autojoin #wechall on
+			# .autojoin #channel 0|1
 			case 2:
 
 				if (false === ($channel = Dog::getOrLoadChannelByArg($argv[0])))
@@ -115,12 +97,7 @@ final class DOGMOD_AutoJoin extends Dog_Module
 					return Dog::rply('err_channel');
 				}
 					
-				if (!Dog::hasPermission($server, $channel, $user, 'A'))
-				{
-					return Dog::noPermission('s');
-				}
-
-				return $this->setEnabled($channel, Dog_Var::parseValue('b', $argv[1]));
+				return $this->setEnabled($server, $channel, $user, Dog_Var::parseValue('b', $argv[1]));
 		}
 		
 		$this->showHelp('autojoin');
@@ -132,8 +109,19 @@ final class DOGMOD_AutoJoin extends Dog_Module
 		return $this->rply($key, array($channel->displayName()));
 	}
 	
-	private function setEnabled(Dog_Channel $channel, $value)
+	private function setEnabled(Dog_Server $server, Dog_Channel $channel, Dog_User $user, $value)
 	{
+		if (!Dog::hasChanPermission($server, $channel, $user, 'a', true)
+		 && !Dog::hasPermission($server, false, $user, 'i'))
+		{
+			return $this->rply('no_perm');
+		}
+		
+		if ($channel->isOptionEnabled(Dog_Channel::AUTO_JOIN) === $value)
+		{
+			return $this->rply('no_change', array($channel->displayName()));
+		}
+
 		$channel->saveOption(Dog_Channel::AUTO_JOIN, $value);
 		$key = $value ? 'enabled' : 'disabled';
 		return $this->rply($key, array($channel->displayName()));
