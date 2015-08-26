@@ -8,7 +8,6 @@ $lang = array(
 		'no' => 'Your permissions are not high enough to grant %s to %s.',
 		'no2' => 'Your permissions are not high enough to remove %s from %s.',
 		'not_regged' => '%s is not registered with %BOT%.',
-		'err_bits' => 'You have to specify + or - to set permissions.',
 	),
 );
 
@@ -41,7 +40,7 @@ if ($argc === 1)
 elseif ($argc === 2)
 {
 	$sign = $argv[1][0];
-	$argv[1] = Dog_IRCPriv::filterPrivsToEdit($argv[1]);
+	$privs = Dog_IRCPriv::filterPrivsToEdit($argv[1]);
 	
 	# Alter Privs
 	if (false === ($user = Dog::getOrLoadUserByArg($argv[0])))
@@ -52,11 +51,11 @@ elseif ($argc === 2)
 	{
 		$plugin->rply('not_regged', array($user->displayName()));
 	}
-	elseif ( ($sign === '+') && (strlen($argv[1]) >= 1) )
+	elseif ( ($sign === '+') && (strlen($privs) >= 1) )
 	{
 		$u = Dog::getUser();
 		$have = Dog_PrivServer::getPermbits($serv, $u);
-		$want = Dog_IRCPriv::charsToBits(substr($argv[1], 1));
+		$want = Dog_IRCPriv::charsToBits($privs);
 		$high = Dog_IRCPriv::getHighestBit($have);
 		$wigh = Dog_IRCPriv::getHighestBit($want);
 		if ($wigh > $high)
@@ -70,11 +69,11 @@ elseif ($argc === 2)
 			$plugin->rply('set', array($user->displayName(), $serv->displayName(), Dog_IRCPriv::displayBits($now)));
 		}
 	}
-	elseif ( ($sign === '-') && (strlen($argv[1]) >= 1) )
+	elseif ( ($sign === '-') && (strlen($privs) >= 1) )
 	{
 		$u = Dog::getUser();
 		$have = Dog_PrivServer::getPermbits($serv, $u);
-		$want = Dog_IRCPriv::charsToBits(substr($argv[1], 1));
+		$want = Dog_IRCPriv::charsToBits($privs);
 		$high = Dog_IRCPriv::getHighestBit($have);
 		$wigh = Dog_IRCPriv::getHighestBit($want);
 		if ($wigh >= $high)
@@ -90,7 +89,7 @@ elseif ($argc === 2)
 	}
 	else
 	{
-		$plugin->rply('err_bits');
+		$plugin->showHelp();
 	}
 }
 else
