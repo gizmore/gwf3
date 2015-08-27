@@ -10,6 +10,7 @@ abstract class SR_Store extends SR_Location
 	
 	public function allowShopBuy(SR_Player $player) { return true; }
 	public function allowShopSell(SR_Player $player) { return true; }
+	public function allowShopSellAll(SR_Player $player) { return true; }
 	public function allowShopSteal(SR_Player $player) { return $player->getBase('thief') > 0; }
 	
 	private $lastPurchasedItem = NULL;
@@ -27,6 +28,10 @@ abstract class SR_Store extends SR_Location
 		if (true === $this->allowShopSell($player))
 		{
 			$back[] = 'sell';
+		        if (true === $this->allowShopSellAll($player))
+			{
+				$back[] = 'sellall';
+			}
 		}
 		if (true === $this->allowShopSteal($player))
 		{
@@ -317,39 +322,28 @@ abstract class SR_Store extends SR_Location
 	{
 		$bot = Shadowrap::instance($player);
 		$argc = count($args);
-		if ($argc > 1)
+		if ($argc !== 1)
 		{
 			$bot->reply(Shadowhelp::getHelp($player, 'sellall'));
 			return false;
 		}
 		
+		$inv = $player->getInventorySorted();
 		$min = 1;
-		$max = count($player->getInventorySorted());
+		$max = count($inv);
 		
-		if (count($args) === 0)
+		if (preg_match('/^\\d*-?\\d*$/', $args[0]))
 		{
-			$from = $min;
-			$to = $max;
-		}
-		elseif (preg_match('/^\\d*-?\\d*$/', $args[0]))
-		{
-			$arg = $args[0];
-			$pos = strpos($arg, '-');
-			if ($pos === false)
+			$lims = explode('-',$args[0]);
+			if (count($lims) === 1)
 			{
-				$from = (int)$arg;
-				$to = $max;
-			}
-			elseif ($pos === 0)
-			{
-				$from = $min;
-				$to = (int)substr($arg, 1);
+				$from = (int)$lims[0];
+				$to = $from;
 			}
 			else
 			{
-				echo "P{$pos} ".strlen($arg).PHP_EOL;
-				$from = (int)substr($arg, 0, $pos);
-				$to = $pos === strlen($arg)-1 ? $max : (int)substr($arg, $pos+1);
+				$from = (strlen($lims[0]) === 0) ? $min : (int)$lims[0];
+				$to = (strlen($lims[1]) === 0) ? $max : (int)$lims[1];
 			}
 		}
 		else
@@ -358,19 +352,61 @@ abstract class SR_Store extends SR_Location
 			return false;
 		}
 		
-		echo "$from-$to/$max\n";
-		
 		if ( ($from > $to) || ($from < 1) || ($to > $max) )
 		{
-			$bot->reply(Shadowhelp::getHelp($player, 'sellall'));
+			$bot->rply('1194');
 			return false;
 		}
 		
-		while ($to >= $from)
+		$i = 1;
+		$sold = 0;
+		$unsold = 0;
+		$price = 0;
+		foreach ($inv as $itemname => $data)
 		{
-			$item = $player->getInvItem($to--, false, false);
-			$this->on_sell($player, array($item->getItemName(), $item->getAmount()));
+			if ($i >= $from)
+			{
+				foreach ($data[1] as $item)
+				{
+					$amt = $item->getAmount();
+
+					if (!$item->isItemSellable())
+					{
+						$unsold += $amt;
+						continue;
+					}
+
+					$item_price = $this->calcSellPrice($player, $item, $amt);
+
+					if ( $item->deleteItem($player,false) )
+					{
+						$sold += $amt;
+						$price += $item_price;
+					} else {
+						$unsold += $amt;
+					}
+				}
+				if ($i === $to)
+				{
+					break;
+				}
+			}
+			$i++;
 		}
+		$player->modify();
+
+		$player->giveNuyen($price);
+
+		$msg_code = '5315';
+		$msg_args = array($sold, Shadowfunc::displayNuyen($price));
+		if ($unsold !== 0)
+		{
+			$msg_code = '5316';
+			$msg_args[] = $unsold;
+		}
+		$msg_args[] = Shadowfunc::displayWeight($player->get('weight'));
+		$msg_args[] = Shadowfunc::displayWeight($player->get('max_weight'));
+		return $bot->rply($msg_code, $msg_args);
 	}
 	
 	public function on_sell(SR_Player $player, array $args)
@@ -381,12 +417,6 @@ abstract class SR_Store extends SR_Location
 		{
 			$bot->reply(Shadowhelp::getHelp($player, 'sell'));
 			return false;
-		}
-		
-		// Multisell
-		if (preg_match('/^\\d*-\\d*$/', $args[0]) && $argc === 1)
-		{
-			return $this->on_sellall($player, $args);
 		}
 		
 		# Item
@@ -404,10 +434,6 @@ abstract class SR_Store extends SR_Location
 // 			$bot->reply(sprintf('I don\'t want your %s.', $item->getItemName()));
 			return false;
 		}
-		
-		# Price
-		$price = $item->getItemPrice();# / $item->getItemDefaultAmount();
-		$total = 0.0;
 		
 		# Amount
 		$amt = isset($args[0]) ? array_shift($args) : 1;
@@ -454,18 +480,20 @@ abstract class SR_Store extends SR_Location
 				return false;
 			}
 				
-			$stored = 0;
 			foreach ($items2 as $item2)
 			{
 				$item2 instanceof SR_Item;
-				if (!$item2->useAmount($player, 1))
+				if (!$item2->useAmount($player, 1, false))
 				{
 					$bot->reply('Database Error R3 D3.');
+					$player->modify(); // in case some succeeded
 					return false;
 				}
 			}
+			$player->modify();
 		}
 		
+		# Price
 		$total = $this->calcSellPrice($player, $item, $amt);
 		
 		$player->giveNuyen($total);

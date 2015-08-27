@@ -421,6 +421,7 @@ final class Shadowhelp
 						array(
 							'buy' => 'Location command. Usage: #(bu)y <view_id|item_name> [<amount>]. In shops you can buy items with this command. The price depends on your negotiation.',
 							'sell' => 'Location command. Usage: #(se)ll <inv_id|item_name> [<amount>]. In shops you can sell your items with this command. The price depends on your negotiation.',
+							'sellall' => 'Location command. Usage: #sellall [<inv_id>]-[<inv_id>]. Sell all inventory items in the given (inclusive) range.',
 							'secondhand_sell' => 'Location command. Usage: #(se)ll <inv_id|item_name>. In second hand stores you can only sell equipment, but modified items get slightly better prices here.',
 							'steal' => 'Location command. Usage: #(st)eal [<view_id>]. In some shops you can steal items with this command. Beware, you can get caught and get bad_karma.',
 							'view' => 'Location command. Usage: #(v)iew [<pattern>] [<page>]. In shops and alike you can use view to list or search items stored there.',

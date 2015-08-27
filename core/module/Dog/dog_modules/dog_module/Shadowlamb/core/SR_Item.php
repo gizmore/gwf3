@@ -380,9 +380,9 @@ class SR_Item extends GDO
 		return $back.'_of_'.substr($mod, 1);
 	}
 	
-	public function deleteItem(SR_Player $owner)
+	public function deleteItem(SR_Player $owner, $modify=true)
 	{
-		if (false === $owner->removeFromPlayer($this))
+		if (false === $owner->removeFromPlayer($this, $modify))
 		{
 			Dog_Log::error(sprintf('Item %s(%d) can not remove from player!', $this->getItemName(), $this->getID()));
 			return false;
@@ -547,7 +547,7 @@ class SR_Item extends GDO
 			$player->modify();
 		}
 		
-		return $this->getAmount() < 1 ? $this->deleteItem($player) : true;
+		return $this->getAmount() < 1 ? $this->deleteItem($player, $modify) : true;
 	}
 	
 	###############

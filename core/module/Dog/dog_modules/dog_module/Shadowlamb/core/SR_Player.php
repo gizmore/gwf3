@@ -1703,7 +1703,7 @@ class SR_Player extends GDO
 		}
 		$back = array_slice($items, $id-1, 1);
 		$back = array_shift($back);
-		return $items2[$back[1]];
+		return $items2[$back[1][0]->getID()];
 	}
 	
 	public function getAllItems()
@@ -2044,11 +2044,11 @@ class SR_Player extends GDO
 			if (isset($temp[$name]))
 			{
 				$temp[$name][0] += $item->getAmount();
-				$temp[$name][1] = $itemid;
+				$temp[$name][1][] = $item;
 			}
 			else
 			{
-				$temp[$name] = array($item->getAmount(), $itemid);
+				$temp[$name] = array($item->getAmount(), array($item));
 			}
 		}
 		return $temp;
@@ -2249,14 +2249,17 @@ class SR_Player extends GDO
 		return $this->removeFromPlayer($item);
 	}
 	
-	public function removeFromPlayer(SR_Item $item)
+	public function removeFromPlayer(SR_Item $item, $modify=true)
 	{
 		unset($this->sr4_bank[$item->getID()]);
 		unset($this->sr4_inventory[$item->getID()]);
 		unset($this->sr4_cyberware[$item->getID()]);
 		unset($this->sr4_mount_inv[$item->getID()]);
 		unset($this->sr4_equipment[$item->getID()]);
-		$this->modify();
+		if ($modify)
+		{
+			$this->modify();
+		}
 		return true;
 		
 	}

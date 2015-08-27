@@ -129,6 +129,7 @@ $lang = array(
 	'say' => 'say',
 	'search' => 'search',
 	'sell' => 'sell',
+	'sellall' => 'sellall',
 	'set_distance' => 'set_distance',
 	'setvar' => 'setvar',
 	'shout' => 'shout',

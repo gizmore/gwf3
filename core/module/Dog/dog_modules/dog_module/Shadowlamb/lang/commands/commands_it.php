@@ -129,6 +129,7 @@ $lang = array(
 	'say' => 'dici',
 	'search' => 'cerca',
 	'sell' => 'vendi',
+	'sellall' => 'venditutto',
 	'set_distance' => 'imposta_distanza',
 	'setvar' => 'imposta_var',
 	'shout' => 'urla',

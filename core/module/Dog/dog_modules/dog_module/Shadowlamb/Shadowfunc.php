@@ -733,7 +733,6 @@ final class Shadowfunc
 		foreach ($items as $itemname => $data)
 		{
 			$count = $data[0];
-			$itemid = $data[1];
 			$dcount = $count > 1 ? "($count)" : '';
 			$back .= sprintf($format, ($i++), $itemname, $dcount, $count);
 // 			$back .= sprintf(', %s-%s%s', $b.($i++).$b, $itemname, $dcount);

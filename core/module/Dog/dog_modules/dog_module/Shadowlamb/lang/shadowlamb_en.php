@@ -470,6 +470,7 @@ $lang = array(
 '1191' => 'All your "want to buy" slots are in use. Try #nowtb or two times #buyslot.',
 '1192' => 'This item is unknown.',
 '1193' => 'You cannot request statted items.',
+'1194' => 'Invalid range.',
 
 ########################
 # 10000-14999 = Spells #
@@ -856,6 +857,8 @@ $lang = array(
 '5312' => 'Your party needs: %s.', # feelings
 '5313' => 'Your feelings: %s.', # feelings
 '5314' => "{$b}%s{$b} responds: \"%s\"", # RealNPC, message
+'5315' => 'You sold %d items for %s. You now carry %s/%s.', # sold, nuyen, weight, maxweight
+'5316' => 'You sold %d items for %s. There were %d items that could not be sold. You now carry %s/%s.', # sold, nuyen, unsold, weight, maxweight
 '5980' => "{$b}%s{$b}-%s is starving and lost %s.",
 '5981' => "{$b}%s{$b}-%s is gagging for a drink and lost %s.",
 '5982' => "{$b}%s{$b}-%s is burned out due to lack of sleep and lost %s.",

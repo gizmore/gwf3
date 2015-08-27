@@ -460,6 +460,7 @@ $lang = array(
 '1188' => 'Vous ne pouvez nettoyer que les objets améliorés.',
 '1189' => 'Ce set d\'objets est inconnu.',
 '1190' => 'The %1$s has not opened. It is %2$s:%3$s and the %1$s is open from %4$s:%5$s to %6$s:%7$s.',
+'1194' => 'Invalid range.',
 
 ########################
 # 10000-14999 = Spells #
@@ -841,6 +842,8 @@ $lang = array(
 '5308' => 'Les XP de votre parti : %s', # fmt_xp
 '5309' => 'It is %1$s:%2$s; Date: %5$s/%4$s/%6$s', # H:I D:M:Y
 '5310' => 'The %s is open from %s:%s to %s:%s.', # location, h,i, h,i
+'5315' => 'You sold %d items for %s. You now carry %s/%s.', # sold, nuyen, weight, maxweight
+'5316' => 'You sold %d items for %s. There were %d items that could not be sold. You now carry %s/%s.', # sold, nuyen, unsold, weight, maxweight
 
 ####################
 ### Shadowclient ###
