@@ -31,20 +31,32 @@ final class Shadowcmd_gmi extends Shadowcmd
 		{
 			$bot->reply(sprintf('The item %s could not be created.', $args[1]));
 			return false;
-		} 
+		}
+		$items = array($item);
 		
 		if (isset($args[2]))
 		{
 			if (!$item->isItemStackable())
 			{
-				$bot->reply('No amount for equipment!');
-				return false;
+				$amt = intval($args[2]);
+				while ($amt > 1)
+				{
+					$newitem = $item->createCopy();
+					if ($newitem === false)
+					{
+						$bot->reply(sprintf('Error creating item %s; not all items will be given.', $args[1]));
+						break;
+					}
+					$items[] = $newitem;
+					$amt--;
+				}
+			} else {
+				$item->saveVar('sr4it_amount', intval($args[2]));
 			}
-			$item->saveVar('sr4it_amount', intval($args[2]));
 		}
 		
 		$b = chr(2);
-		$target->giveItems(array($item), sprintf("{$b}[GM]_%s{$b}", $player->getName()));
+		$target->giveItems($items, sprintf("{$b}[GM]_%s{$b}", $player->getName()));
 		
 		return true;
 	}

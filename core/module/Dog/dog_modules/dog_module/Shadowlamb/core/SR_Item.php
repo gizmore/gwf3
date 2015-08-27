@@ -290,6 +290,21 @@ class SR_Item extends GDO
 		$item->initModifiersB();
 		return $item;
 	}
+
+	public function createCopy($insert=true)
+	{
+		$item = self::instance($this->getName());
+		$item->setVar('sr4it_amount', $this->getAmount());
+		$item->setVar('sr4it_modifiers', $this->getModifiers());
+		if ($insert === true)
+		{
+			if (false === $item->insert()) {
+				return false;
+			}
+		}
+		$item->initModifiersB();
+		return $item;
+	}
 	
 	############
 	### Item ###
