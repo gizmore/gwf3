@@ -7,7 +7,7 @@ abstract class SR_Bank extends SR_Location
 	
 	public function getTransactionPrice() { return 0; }
 	
-	public function getCommands(SR_Player $player) { return array('view', 'viewi', 'push', 'pop', 'pushy', 'popy'); }
+	public function getCommands(SR_Player $player) { return array('view', 'viewi', 'push', 'pop', 'pushy', 'popy', 'pushall', 'popall'); }
 	
 	public function getFoundText(SR_Player $player)
 	{
@@ -239,6 +239,114 @@ abstract class SR_Bank extends SR_Location
 // 		return true;
 	}
 	
+	public function on_pushall(SR_Player $player, array $args)
+	{
+		$bot = Shadowrap::instance($player);
+		$argc = count($args);
+		if ($argc !== 1)
+		{
+			$bot->reply(Shadowhelp::getHelp($player, 'pushall'));
+			return false;
+		}
+		
+		$inv = $player->getInventorySorted();
+		$min = 1;
+		$max = count($inv);
+		
+		if (preg_match('/^\\d*-?\\d*$/', $args[0]))
+		{
+			$lims = explode('-',$args[0]);
+			if (count($lims) === 1)
+			{
+				$from = (int)$lims[0];
+				$to = $from;
+			}
+			else
+			{
+				$from = (strlen($lims[0]) === 0) ? $min : (int)$lims[0];
+				$to = (strlen($lims[1]) === 0) ? $max : (int)$lims[1];
+			}
+		}
+		else
+		{
+			$bot->reply(Shadowhelp::getHelp($player, 'pushall'));
+			return false;
+		}
+		
+		if ( ($from > $to) || ($from < 1) || ($to > $max) )
+		{
+			$bot->rply('1194');
+			return false;
+		}
+
+		$item_price = $this->calcPrice($player);
+		$max_price = ($to-$from+1) * $item_price;
+		$has_nuyen = $player->getNuyen();
+		if ($has_nuyen < $max_price)
+		{
+			$player->msg('1100', array(Shadowfunc::displayNuyen($max_price), Shadowfunc::displayNuyen($has_nuyen-$max_price)));
+			return false;
+		}
+		
+		$i = 1;
+		$pushed = 0;
+		$skipped = 0;
+		$price = 0;
+		foreach ($inv as $itemname => $data)
+		{
+			if ($i >= $from)
+			{
+				$has_pushed = false;
+				foreach ($data[1] as $item)
+				{
+					$amt = $item->getAmount();
+
+					if ($player->removeFromInventory($item, false))
+					{
+						if($player->putInBank($item))
+						{
+							$pushed += $amt;
+							$has_pushed = true;
+						} else {
+							if (!$player->giveItem($item))
+							{
+								Dog_Log::error(sprintf('Command pushall in %s made %s lose item %s (id: %d)!',$this->getName(),$player->getName(),$item->getNamePacked($player),$item->getID()));
+							}
+							$skipped += $amt;
+						}
+					} else {
+						$skipped += $amt;
+					}
+				}
+
+				if ($has_pushed)
+				{
+					$price += $item_price;
+				}
+
+				if ($i === $to)
+				{
+					break;
+				}
+			}
+			$i++;
+		}
+		$player->modify();
+
+		$player->pay($price);
+
+		$msg_code = '5317';
+		$msg_args = array($pushed, Shadowfunc::displayNuyen($price));
+		if ($skipped !== 0)
+		{
+			$msg_code = '5318';
+			$msg_args[] = $skipped;
+		}
+		$msg_args[] = Shadowfunc::displayWeight($player->get('weight'));
+		$msg_args[] = Shadowfunc::displayWeight($player->get('max_weight'));
+		return $bot->rply($msg_code, $msg_args);
+	}
+	
 	/**
 	 * Pop items from your bank.
 	 * @param SR_Player $player
@@ -252,7 +360,7 @@ abstract class SR_Bank extends SR_Location
 		# Errors
 		if ( (count($args) === 0) || (count($args) > 2) )
 		{
-			$bot->reply(Shadowhelp::getHelp($player, 'popi'));
+			$bot->reply(Shadowhelp::getHelp($player, 'pop'));
 			return false;
 		}
 		if (false === $this->checkAfford($player))
@@ -386,6 +494,114 @@ abstract class SR_Bank extends SR_Location
 // 		);
 // 		$bot->reply($paymsg);
 // 		return true;
+	}
+	
+	public function on_popall(SR_Player $player, array $args)
+	{
+		$bot = Shadowrap::instance($player);
+		$argc = count($args);
+		if ($argc !== 1)
+		{
+			$bot->reply(Shadowhelp::getHelp($player, 'pushall'));
+			return false;
+		}
+		
+		$inv = $player->getBankSorted();
+		$min = 1;
+		$max = count($inv);
+		
+		if (preg_match('/^\\d*-?\\d*$/', $args[0]))
+		{
+			$lims = explode('-',$args[0]);
+			if (count($lims) === 1)
+			{
+				$from = (int)$lims[0];
+				$to = $from;
+			}
+			else
+			{
+				$from = (strlen($lims[0]) === 0) ? $min : (int)$lims[0];
+				$to = (strlen($lims[1]) === 0) ? $max : (int)$lims[1];
+			}
+		}
+		else
+		{
+			$bot->reply(Shadowhelp::getHelp($player, 'pushall'));
+			return false;
+		}
+		
+		if ( ($from > $to) || ($from < 1) || ($to > $max) )
+		{
+			$bot->rply('1194');
+			return false;
+		}
+
+		$item_price = $this->calcPrice($player);
+		$max_price = ($to-$from+1) * $item_price;
+		$has_nuyen = $player->getNuyen();
+		if ($has_nuyen < $max_price)
+		{
+			$player->msg('1100', array(Shadowfunc::displayNuyen($max_price), Shadowfunc::displayNuyen($has_nuyen-$max_price)));
+			return false;
+		}
+		
+		$i = 1;
+		$popped = 0;
+		$skipped = 0;
+		$price = 0;
+		foreach ($inv as $itemname => $data)
+		{
+			if ($i >= $from)
+			{
+				$has_popped = false;
+				foreach ($data[1] as $item)
+				{
+					$amt = $item->getAmount();
+
+					if ($player->removeFromBank($item))
+					{
+						if($player->giveItem($item))
+						{
+							$popped += $amt;
+							$has_popped = true;
+						} else {
+							if (!$player->putInBank($item))
+							{
+								Dog_Log::error(sprintf('Command popall in %s made %s lose item %s (id: %d)!',$this->getName(),$player->getName(),$item->getNamePacked($player),$item->getID()));
+							}
+							$skipped += $amt;
+						}
+					} else {
+						$skipped += $amt;
+					}
+				}
+
+				if ($has_popped)
+				{
+					$price += $item_price;
+				}
+
+				if ($i === $to)
+				{
+					break;
+				}
+			}
+			$i++;
+		}
+		$player->modify();
+
+		$player->pay($price);
+
+		$msg_code = '5319';
+		$msg_args = array($popped, Shadowfunc::displayNuyen($price));
+		if ($skipped !== 0)
+		{
+			$msg_code = '5320';
+			$msg_args[] = $skipped;
+		}
+		$msg_args[] = Shadowfunc::displayWeight($player->get('weight'));
+		$msg_args[] = Shadowfunc::displayWeight($player->get('max_weight'));
+		return $bot->rply($msg_code, $msg_args);
 	}
 	
 	##################

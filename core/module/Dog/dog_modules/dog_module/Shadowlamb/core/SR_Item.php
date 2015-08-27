@@ -462,6 +462,7 @@ class SR_Item extends GDO
 		{
 			$back .= $amt.'x';
 		}
+		$back .= $this->getName();
 		if ($this->isItemStatted())
 		{
 			$back .= '_of_'.Shadowfunc::displayModifiersPacked($player, $this->getItemModifiersB($player));

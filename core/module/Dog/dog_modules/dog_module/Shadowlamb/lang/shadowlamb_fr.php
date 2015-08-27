@@ -844,6 +844,10 @@ $lang = array(
 '5310' => 'The %s is open from %s:%s to %s:%s.', # location, h,i, h,i
 '5315' => 'You sold %d items for %s. You now carry %s/%s.', # sold, nuyen, weight, maxweight
 '5316' => 'You sold %d items for %s. There were %d items that could not be sold. You now carry %s/%s.', # sold, nuyen, unsold, weight, maxweight
+'5317' => 'You put %s items into your bank account for %s. You now carry %s/%s.', # amount, nuyen, weight, maxweight
+'5318' => 'You put %s items into your bank account for %s. There were %d items that could not be stored. You now carry %s/%s.', # amount, nuyen, skipped, weight, maxweight
+'5319' => 'You remove %s items from your bank account for %s and put them into your inventory. You now carry %s/%s.', # amount, nuyen, weight, maxweight
+'5320' => 'You remove %s items from your bank account for %s and put them into your inventory. There were %d items that could not be removed. You now carry %s/%s.', # amount, nuyen, skipped, weight, maxweight
 
 ####################
 ### Shadowclient ###

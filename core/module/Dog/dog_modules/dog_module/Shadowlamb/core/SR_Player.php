@@ -2244,9 +2244,9 @@ class SR_Player extends GDO
 		return $item->changeOwnerAndPosition($this->getID(), 'inventory');
 	}
 	
-	public function removeFromInventory(SR_Item $item)
+	public function removeFromInventory(SR_Item $item, $modify=true)
 	{
-		return $this->removeFromPlayer($item);
+		return $this->removeFromPlayer($item, $modify);
 	}
 	
 	public function removeFromPlayer(SR_Item $item, $modify=true)
