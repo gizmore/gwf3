@@ -436,10 +436,10 @@ final class Shadowhelp
 						
 						'bank_cmds' => 'Bank commands',
 						array(
-							'push' => 'Location command. Usage: #push <inv_id|item_name> [<amount>]. With this command you can store your items in banks for a fee.',
+							'push' => 'Location command. Usage: #push <inv_id|item_name> [<amount>]. With this command you can store your items in banks for a fee. See also: #pushall.',
 							'pushall' => 'Location command. Usage: #pushall [<inv_id>]-[<inv_id>]. Pushes all inventory items in the given (inclusive) range.',
 							'pushy' => "Location command. Usage: #pushy <amount>. In banks you can store items and nuyen to keep them safe for later usage.",
-							'pop' => 'Location command. Usage: #pop <inv_id|item_name> [<amount>]. With this command you can retrieve your items from banks for a fee.',
+							'pop' => 'Location command. Usage: #pop <inv_id|item_name> [<amount>]. With this command you can retrieve your items from banks for a fee. See also: #popall.',
 							'popall' => 'Location command. Usage: #popall [<inv_id>]-[<inv_id>]. Pops all bank items in the given (inclusive) range.',
 							'popy' => "Location command. Usage: #popy <amount>. In banks you can store items and nuyen to keep them safe for later usage.",
 							'bank_search' => 'Location command. Usage: #search <term> [<page>]. Search your bank for items.',

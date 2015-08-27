@@ -284,7 +284,7 @@ abstract class SR_Bank extends SR_Location
 		$has_nuyen = $player->getNuyen();
 		if ($has_nuyen < $max_price)
 		{
-			$player->msg('1100', array(Shadowfunc::displayNuyen($max_price), Shadowfunc::displayNuyen($has_nuyen-$max_price)));
+			$player->msg('1100', array(Shadowfunc::displayNuyen($max_price), Shadowfunc::displayNuyen($has_nuyen)));
 			return false;
 		}
 		
@@ -502,7 +502,7 @@ abstract class SR_Bank extends SR_Location
 		$argc = count($args);
 		if ($argc !== 1)
 		{
-			$bot->reply(Shadowhelp::getHelp($player, 'pushall'));
+			$bot->reply(Shadowhelp::getHelp($player, 'popall'));
 			return false;
 		}
 		
@@ -526,7 +526,7 @@ abstract class SR_Bank extends SR_Location
 		}
 		else
 		{
-			$bot->reply(Shadowhelp::getHelp($player, 'pushall'));
+			$bot->reply(Shadowhelp::getHelp($player, 'popall'));
 			return false;
 		}
 		
@@ -541,7 +541,7 @@ abstract class SR_Bank extends SR_Location
 		$has_nuyen = $player->getNuyen();
 		if ($has_nuyen < $max_price)
 		{
-			$player->msg('1100', array(Shadowfunc::displayNuyen($max_price), Shadowfunc::displayNuyen($has_nuyen-$max_price)));
+			$player->msg('1100', array(Shadowfunc::displayNuyen($max_price), Shadowfunc::displayNuyen($has_nuyen)));
 			return false;
 		}
 		
