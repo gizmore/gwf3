@@ -24,12 +24,10 @@ if (!function_exists('fetchDefinitionE'))
 			return Dog::lang('err_timeout');
 		}
 		
-		if(strstr($res, "isn't defined <a href")) 
+		if (1 !== preg_match('#<div class=\'meaning\'>(.+?)</div>.*?<div class=\'example\'>(.*?)</div>#s', $res, $arr))
 		{
 			return $plugin->lang('none_yet', array($term, urlencode($term)));
 		}
-	
-		preg_match('#<div class=\'meaning\'>(.+?)</div>.*?<div class=\'example\'>(.*?)</div>#s', $res, $arr);
 		
 		$definition = trim(html_entity_decode(strip_tags(preg_replace('#<\s*?br\s*?/?\s*?>#', "\n", $arr[1]))));
 		$definition = strtr($definition, array("\r" => ' ', "\n" => ' '));
