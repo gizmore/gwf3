@@ -25,7 +25,7 @@ class DOGMOD_Translate extends Dog_Module
 			{
 				if (!self::hasLanguage($l[1]))
 				{
-					$this->rply('err_srv');
+					$this->rply('err_src');
 				}
 				elseif (!self::hasLanguage($l[2]))
 				{
