@@ -477,12 +477,12 @@ final class SR_Party extends GDO
 	{
 		if (false !== ($location = $this->getLocationClass()))
 		{
-			$location->onEnterLocation($this);
-			
 			$action = $this->getAction();
 			
 			if ($action === self::ACTION_INSIDE)
 			{
+				$location->onEnterLocation($this);
+			
 				# %2$s walk(s) by and enter(s) the %1$s.
 				$this->onPartyArrivedLeftEvents($location, array('outside'), '5281');
 				# %2$s just entered the %1$s.
