@@ -52,7 +52,8 @@ final class Shadowrun4
 			 */
 			if (false === (self::$GMS = @include_once('GameMasters.php')))
 			{
-				self::$GMS = array('gizmore{1}');
+				Dog_Log::warn('No game masters set for Shadowlamb!');
+				self::$GMS = array();
 			}
 		}
 		
