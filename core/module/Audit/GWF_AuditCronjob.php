@@ -53,7 +53,11 @@ final class GWF_AuditCronjob extends GWF_Cronjob
 	private static function parseSudoshRow(Module_Audit $module, $row, $fh2)
 	{
 // 		echo $row;
-		if (false === ($row2 = Common::substrFrom($row, '-sudosh: ', false)))
+		if (false === ($row2 = Common::substrFrom($row, '-sudosh[', false)))
+		{
+			return self::error('Invalid line: '.$row);
+		}
+		elseif (false === ($row2 = Common::substrFrom($row2, ']: ', false)))
 		{
 			return self::error('Invalid line: '.$row);
 		}
