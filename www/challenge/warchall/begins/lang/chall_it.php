@@ -9,7 +9,7 @@ $lang = array(
 		'Esempio: bitwarrior,Soluzione1,Soluzione2,Soluzione3,Soluzione4,Soluzione5<br/>'.PHP_EOL.
 		'<br/>'.PHP_EOL.
 		'Presentata, con orgoglio, dallo staff di The Warchall(tm)<br/>'.PHP_EOL.
-		'<b>Grazie a xd-- di <a href="http://crazycoders.com">crazycoders.com</a> per l\'idea, la motivazione e l\'ispirazione!</b><br/>'.PHP_EOL.
+		'<b>Grazie a xd-- per l\'idea, la motivazione e l\'ispirazione!</b><br/>'.PHP_EOL.
 		'',
 
 	'err_login' => 'Devi essere loggato per poter creare un account SSH per questa sfida.',
