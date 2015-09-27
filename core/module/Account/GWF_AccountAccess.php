@@ -63,9 +63,9 @@ final class GWF_AccountAccess extends GDO
 		return self::hash(preg_replace('/\d/', '', $_SERVER['HTTP_USER_AGENT']));
 	}
 	
-	private static function hashquote($hash, $quote='"')
+	private static function hash_check($field, $hash, $quote='"')
 	{
-		return $hash === null ? 'NULL' : $quote.GDO::escape($hash).$quote;
+		return $hash === null ? $field.' IS NULL' : $field.'='.$quote.GDO::escape($hash).$quote;
 	}
 	
 	private static function hash($value)
@@ -82,7 +82,7 @@ final class GWF_AccountAccess extends GDO
 		$ua = self::uahash();		
 		if ($user->isOptionEnabled(GWF_User::ALERT_UAS))
 		{
-			if (!$table->selectVar('1', "accacc_uid={$user->getID()} AND accacc_ua=".self::hashquote($ua)))
+			if (!$table->selectVar('1', "accacc_uid={$user->getID()} AND ".self::hash_check('accacc_ua',$ua)))
 			{
 				$alert = true;
 			}
@@ -102,7 +102,7 @@ final class GWF_AccountAccess extends GDO
 		if ($user->isOptionEnabled(GWF_User::ALERT_ISPS))
 		{
 			$isp = self::isphash();
-			if (!$table->selectVar('1', "accacc_uid={$user->getID()} AND accacc_isp=".self::hashquote($isp)))
+			if (!$table->selectVar('1', "accacc_uid={$user->getID()} AND ".self::hash_check('accacc_isp',$isp)))
 			{
 				$alert = true;
 			}
