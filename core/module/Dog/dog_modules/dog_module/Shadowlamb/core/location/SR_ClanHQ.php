@@ -101,6 +101,12 @@ abstract class SR_ClanHQ extends SR_Location
 			return false;
 		}
 		
+		if ($clan->isAbandoned())
+		{
+			$player->msg('1195');
+			return false;
+		}
+
 		if ($clan->isFullMembers())
 		{
 			$player->msg('1122', array($clan->getMaxMembercount()));

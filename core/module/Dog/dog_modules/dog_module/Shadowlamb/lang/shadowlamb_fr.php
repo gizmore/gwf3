@@ -461,6 +461,7 @@ $lang = array(
 '1189' => 'Ce set d\'objets est inconnu.',
 '1190' => 'The %1$s has not opened. It is %2$s:%3$s and the %1$s is open from %4$s:%5$s to %6$s:%7$s.',
 '1194' => 'Invalid range.',
+'1195' => 'Clan has been abandoned.',
 
 ########################
 # 10000-14999 = Spells #

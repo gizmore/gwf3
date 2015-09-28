@@ -45,6 +45,7 @@ final class SR_Clan extends GDO
 	public function getLeaderID() { return $this->getVar('sr4cl_founder'); }
 	public function isModerated() { return $this->isOptionEnabled(self::MODERATED); }
 	public function getSlogan() { return $this->getVar('sr4cl_slogan'); }
+	public function isAbandoned() { return $this->getMembercount() === 0; }
 	public function isFullMembers() { return $this->getMembercount() >= $this->getMaxMembercount(); }
 	public function isMaxStorage() { return $this->getStorage() >= $this->getMaxStorage(); }
 	public function isMaxMoney() { return $this->getNuyen() >= $this->getMaxNuyen(); }
@@ -56,6 +57,7 @@ final class SR_Clan extends GDO
 	public function getMaxNuyen() { return $this->getInt('sr4cl_max_money'); }
 	public function getStorage() { return $this->getInt('sr4cl_storage'); }
 	public function getMaxStorage() { return $this->getInt('sr4cl_max_storage'); }
+	public function isStorageEmpty() { return SR_ClanBank::isEmpty($this->getID()); }
 	public function getName() { return $this->getVar('sr4cl_name'); }
 	public function displayNuyen() { return Shadowfunc::displayNuyen($this->getNuyen()); }
 	public function displayMaxNuyen() { return Shadowfunc::displayNuyen($this->getMaxNuyen()); }
@@ -176,18 +178,23 @@ final class SR_Clan extends GDO
 		{
 			return false;
 		}
-		if (false === ($new_pid = SR_ClanMembers::computeLeaderID($cid)))
+
+		if (!$this->isAbandoned())
 		{
-			return false;
+			if (false === ($new_pid = SR_ClanMembers::computeLeaderID($cid)))
+			{
+				return false;
+			}
+			if (false === ($this->saveVar('sr4cl_founder', $new_pid)))
+			{
+				return false;
+			}
+			if (false === SR_ClanMembers::setClanOptions($cid, $new_pid, SR_ClanMembers::FOUNDER))
+			{
+				return false;
+			}
 		}
-		if (false === ($this->saveVar('sr4cl_founder', $new_pid)))
-		{
-			return false;
-		}
-		if (false === SR_ClanMembers::setClanOptions($cid, $new_pid, SR_ClanMembers::FOUNDER))
-		{
-			return false;
-		}
+
 		return SR_ClanHistory::onPart($this, $player);
 	}
 	

@@ -22,7 +22,11 @@ final class SR_ClanBank extends GDO
 	public function getClanID() { return $this->getVar('sr4cb_cid'); }
 	public function getIName() { return $this->getVar('sr4cb_iname'); }
 	public function getAmt() { return $this->getVar('sr4cb_iamt'); }
-	
+
+	public static function isEmpty($cid)
+	{
+		return 0 === self::table(__CLASS__)->countRows("sr4cb_cid={$cid}");
+	}
 	
 	/**
 	 * Get a clanbank row by clanid and itemname.

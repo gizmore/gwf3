@@ -471,6 +471,7 @@ $lang = array(
 '1192' => 'This item is unknown.',
 '1193' => 'You cannot request statted items.',
 '1194' => 'Invalid range.',
+'1195' => 'Clan has been abandoned.',
 
 ########################
 # 10000-14999 = Spells #
