@@ -1,9 +1,4 @@
 <?php
-/**
- * Stolen from noother´s irc bot; Nimda3
- * https://github.com/noother/Nimda3/blob/master/libs/libInternet.php
- * @author noother
- */
 final class GWF_YouTube
 {
 	static function youtubeID($string) {
@@ -19,39 +14,28 @@ final class GWF_YouTube
 
 	static function getYoutubeData($youtube_id) {
 		if(empty($youtube_id)) return false;
+		if(!defined('GWF_GOOGLE_API_KEY')) return false;
 
-		$html = GWF_HTTP::getFromURL('http://gdata.youtube.com/feeds/api/videos/'.$youtube_id);
-		$xml = simplexml_load_string($html);
-		if($xml === false) return false;
+		$json = GWF_HTTP::getFromURL('https://www.googleapis.com/youtube/v3/videos?id='.$youtube_id.'&part=snippet,contentDetails,statistics&key='.constant('GWF_GOOGLE_API_KEY'));
+		$ytdata = json_decode($json,true);
+		if($ytdata === NULL) return false;
+
+		if(!array_key_exists('items',$ytdata) || count($ytdata['items']) !== 1) return false;
+		$video = $ytdata['items'][0];
+
+		if(!array_key_exists('snippet',$video)) return false;
+		if(!array_key_exists('contentDetails',$video)) return false;
+		if(!array_key_exists('statistics',$video)) return false;
 
 		$data = array();
 
-		$media = $xml->children('http://search.yahoo.com/mrss/');
-		$data['title'] = (string)$media->group->title;
-		$data['description'] = (string)$media->group->description;
-		$data['category'] = (string)$media->group->category;
-		$data['keywords'] = explode(', ',$media->group->keywords);
-		$data['link'] = (string)$media->group->player->attributes()->url;
-		$data['duration'] = (int)$media->children('http://gdata.youtube.com/schemas/2007')->duration->attributes()->seconds;
-		$data['thumbnails'] = array();
-		foreach($media->group->thumbnail as $thumbnail) {
-			array_push (
-					$data['thumbnails'], array (
-							'url' => (string)$thumbnail->attributes()->url,
-							'width' => (int)$thumbnail->attributes()->width,
-							'height' => (int)$thumbnail->attributes()->height
-					)
-			);
-		}
-
-		$data['published'] = strtotime($xml->published);
-		$data['author'] = (string)$xml->author->name;
-
-		$gd = $xml->children('http://schemas.google.com/g/2005')->rating->attributes();
-		$data['rating'] = (float)$gd->average;
-		$data['num_raters'] = (int)$gd->numRaters;
-
-		$data['views'] = (int)$xml->children('http://gdata.youtube.com/schemas/2007')->statistics->attributes()->viewCount;
+		$data['title'] = $video['snippet']['title'];
+		$duration = $video['contentDetails']['duration'];
+		$duration = str_replace(array('P','D','T','H','M','S'),array('','d','','h','i','s'),$duration);
+		$data['duration'] = GWF_TimeConvert::humanToSeconds($duration);
+		$data['views'] = $video['statistics']['viewCount'];
+		$data['likes'] = $video['statistics']['likeCount'];
+		$data['dislikes'] = $video['statistics']['dislikeCount'];
 
 		return $data;
 	}

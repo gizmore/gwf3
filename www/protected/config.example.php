@@ -58,6 +58,7 @@ define('GWF_ONLINE_TIMEOUT', 10); # A request will mark you online for N seconds
 define('GWF_CRONJOB_BY_WEB', 0); # chance in permille to trigger www cronjob by client (0-1000)
 define('GWF_CAPTCHA_COLOR_BG', 'FFFFFF');
 define('GWF_USER_STACKTRACE', true); # Show a stacktrace to the user, if set.
+#define('GWF_GOOGLE_API_KEY', ''); # Required for GWF_YouTube
 
 ##############################
 ### Database Configuration ###
