@@ -34,7 +34,11 @@ final class Dog_IRCMsg
 		while ($len)
 		{
 			$arg = array_shift($by_space);
-			if ($arg[0] === ':')
+			if (strlen($arg) === 0)
+			{
+				# trailing spaces?
+			}
+			elseif ($arg[0] === ':')
 			{
 				# implode everything after colon
 				$this->args[] = trim(substr($arg, 1).' '.implode(' ', $by_space));
