@@ -204,7 +204,7 @@ final class Dog_Init
 			}
 			else
 			{
-				Dog_Log::debug(sprintf("Server %d-%s for Timer in path \"%s\" is not Online.", $serverid, $entry, $fullpath));
+				Dog_Log::debug(sprintf("Server %d-%s for Timer in path \"%s\" is not Online.", $server->getID(), $entry, $fullpath));
 			}
 		}
 		else
