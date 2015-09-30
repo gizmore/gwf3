@@ -108,6 +108,10 @@ final class DOGMOD_Shadowlamb extends Dog_Module
 	public function event_privmsg()
 	{
 		$message = $this->msg();
+		if (strlen($message) === 0)
+		{
+			return;
+		}
 		
 		# Triggered in channel?
 		if (false !== ($channel = Dog::getChannel()))
