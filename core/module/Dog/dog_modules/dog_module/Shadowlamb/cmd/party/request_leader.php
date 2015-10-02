@@ -23,8 +23,7 @@ final class Shadowcmd_request_leader extends Shadowcmd
 
 		$party = $player->getParty();
 		$leader = $party->getLeader();
-		$user = $leader->getUser();
-		$last = $user->getVar('lusr_timestamp');
+		$last = $leader->getTimestamp();
 		$wait = ($last+self::RL_TIME) - time();
 		
 		if ($leader->isOptionEnabled(SR_Player::NO_RL))

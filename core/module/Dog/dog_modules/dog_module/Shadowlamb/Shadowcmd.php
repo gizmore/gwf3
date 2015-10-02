@@ -565,8 +565,7 @@ class Shadowcmd
 			return false;
 		}
 		
-		$p = $player->getParty();
-		$p->setTimestamp(time());
+		$player->setTimestamp(time());
 		
 		$classname = 'Shadowcmd_'.$command;
 		if (class_exists($classname))
@@ -575,7 +574,7 @@ class Shadowcmd
 		}
 
 		$function = 'on_'.$command;
-		$location = $p->getLocationClass('inside');
+		$location = $player->getParty()->getLocationClass('inside');
 		if ( ($location !== false) && (method_exists($location, $function)))
 		{
 			return call_user_func(array($location, $function), $player, $args);

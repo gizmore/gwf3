@@ -16,14 +16,8 @@ final class Prison_Block1 extends SR_Location
 	public function isEnterAllowed(SR_Player $player) { return false; }
 	public function isExitAllowed(SR_Player $player)
 	{
-		# Eek?
-		if (false === ($user = $player->getUser()))
-		{
-			return false;
-		}
-		
 		# Check idle time.
-		$last = $user->getVar('lusr_timestamp');
+		$last = $player->getTimestamp();
 		if (($last+self::BAN_TIME) > time())
 		{
 			return false;

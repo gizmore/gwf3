@@ -270,6 +270,10 @@ class SR_Player extends GDO
 	public function hasRottingItems() { return true; }
 	public function isHotelFree() { return false; }
 
+	private $timestamp = 0; # last event.
+	public function getTimestamp() { return $this->timestamp; }
+	public function setTimestamp($time) { $this->timestamp = $time; $this->getParty()->setTimestamp($time); }
+
 	################
 	### Language ###
 	################
