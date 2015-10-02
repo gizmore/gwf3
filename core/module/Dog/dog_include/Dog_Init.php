@@ -198,13 +198,14 @@ final class Dog_Init
 	{
 		if (false !== ($server = Dog_Server::getByTLD($entry)))
 		{
-			if (false !== ($server = Dog::getServerByID($server->getID())))
+			$sid = $server->getID();
+			if (false !== ($server = Dog::getServerByID($sid)))
 			{
 				GWF_File::filewalker($fullpath, true, array(__CLASS__, 'initTimersDir'), false, $server);
 			}
 			else
 			{
-				Dog_Log::debug(sprintf("Server %d-%s for Timer in path \"%s\" is not Online.", $server->getID(), $entry, $fullpath));
+				Dog_Log::debug(sprintf("Server %d-%s for Timer in path \"%s\" is not Online.", $sid, $entry, $fullpath));
 			}
 		}
 		else
