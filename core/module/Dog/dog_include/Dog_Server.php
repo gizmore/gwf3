@@ -406,5 +406,32 @@ final class Dog_Server extends GDO
 			$this->msgs_sent = $this->connection->sendQueue($this->msgs_sent, $this->getThrottle());			
 		}
 	}
+
+	public static function parseURL($url)
+	{
+		$url = parse_url($url);
+
+		if (!isset($url['host']))
+		{
+			return false;
+		}
+		$host = $url['host'];
+
+		$prot = isset($url['scheme']) ? strtolower($url['scheme']) : 'irc';
+		if ( ($prot !== 'irc') && ($prot !== 'ircs') )
+		{
+			return false;
+		}
+		$ssl = $prot === 'ircs';
+
+		$default_port = $ssl ? 6697 : 6667;
+		$port = isset($url['port']) ? intval($url['port']) : $default_port;
+		return array(
+			'prot' => $prot,
+			'host' => $host,
+			'port' => $port,
+			'ssl' => $ssl,
+			);
+	}
 }
 ?>

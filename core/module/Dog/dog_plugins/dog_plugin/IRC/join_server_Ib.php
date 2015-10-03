@@ -23,21 +23,16 @@ if ( (Common::isNumeric($argv[0])) && (false !== ($server = Dog::getServerByID($
 }
 else
 {
-	$url = parse_url($argv[0]);
-	if (!isset($url['host']))
+	$url = Dog_Server::parseURL($argv[0]);
+	if ($url === false)
 	{
 		return $plugin->rply('err_url');
 	}
 	$host = $url['host'];
-	$prot = isset($url['scheme']) ? strtolower($url['scheme']) : 'irc';
-	if ( ($prot !== 'irc') && ($prot !== 'ircs') )
-	{
-		return $plugin->rply('err_url');
-	}
-	$default_port = $prot === 'ircs' ? 6697 : 6667;
-	$port = isset($url['port']) ? intval($url['port']) : $default_port;
+	$prot = $url['prot'];
+	$port = $url['port'];
 	$options = Dog_Server::DEFAULT_OPTIONS;
-	$options |= $prot === 'ircs' ? Dog_Server::SSL : 0;
+	$options |= $url['ssl'] ? Dog_Server::SSL : 0;
 }
 
 if ( (false !== ($server = Dog::getServerByArg($argv[0]))) || ((false !== ($server = Dog::getServerByArg($host)))) )
