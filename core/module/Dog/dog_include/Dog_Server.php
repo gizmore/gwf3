@@ -108,6 +108,15 @@ final class Dog_Server extends GDO
 		$ehost = self::escape($tld);
 		return self::table(__CLASS__)->selectFirstObject('*', "serv_host RLIKE '\\.?$ehost$'");
 	}
+	/**
+	 * @param string $host
+	 * @return Dog_Server
+	 */
+	public static function getByHost($host)
+	{
+		$ehost = self::escape($host);
+		return self::table(__CLASS__)->selectFirstObject('*', "serv_host = '$ehost'");
+	}
 	
 	/**
 	 * Get or create a server. Check for servers in DB that have same TLD.

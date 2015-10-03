@@ -35,7 +35,9 @@ else
 	$options |= $url['ssl'] ? Dog_Server::SSL : 0;
 }
 
-if ( (false !== ($server = Dog::getServerByArg($argv[0]))) || ((false !== ($server = Dog::getServerByArg($host)))) )
+if ( (false !== ($server = Dog::getServerByArg($argv[0]))) ||
+     (false !== ($server = Dog::getServerByArg($host))) ||
+     (false !== ($server = Dog_Server::getByHost($host))) )
 {
 	$plugin->reply('reconnecting');
 	$server->saveOption(Dog_Server::ACTIVE, true);
@@ -48,9 +50,9 @@ else
 	$server = Dog_Server::getOrCreate($host, $port, $options);
 	$server->setVar('dog_connector', Dog::getUser());
 	$server->setConf('ircoppass', GWF_Random::randomKey(8));
-	Dog::addServer($server);
 }
 
+Dog::addServer($server);
 $server->setConnectIn(0.5);
 
 $plugin->rply('connect');
