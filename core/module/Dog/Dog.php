@@ -152,34 +152,31 @@ final class Dog
 	 */
 	public static function getServerByID($id)
 	{
-		foreach (self::$SERVERS as $server)
+		if (isset(self::$SERVERS[$id]))
 		{
-			if ($server->getID() === $id)
-			{
-				return $server;
-			}
+			return self::$SERVERS[$id];
 		}
 		return false;
 	}
 	
 	public static function addServer(Dog_Server $server)
 	{		
-		Dog_Log::debug(sprintf('addServer(%d)', $server->getID()));
+		$id = $server->getID();
+		Dog_Log::debug(sprintf('addServer(%d)', $id));
 		$server->setConnectIn(count(self::$SERVERS)*self::CONNECT_WAIT+1);
 		
-		$host = $server->getHost();
-		if (!isset(self::$SERVERS[$host]))
+		if (!isset(self::$SERVERS[$id]))
 		{
 			$server->setupConnection();
-			self::$SERVERS[$host] = $server;
-			Dog_Log::debug(sprintf('addServer(%d)', $server->getID()));
+			self::$SERVERS[$id] = $server;
+			Dog_Log::debug(sprintf('addServer(%d)', $id));
 		}
 	}
 	
 	public static function removeServer(Dog_Server $server)
 	{
-		$tld = $server->getTLD();
-		unset(self::$SERVERS[$tld]);
+		$id = $server->getID();
+		unset(self::$SERVERS[$id]);
 	}
 	
 	public static function noPermission($priv)
