@@ -361,7 +361,7 @@ abstract class SR_Spell
 	 * @param int $level
 	 * @param double $damage
 	 */
-	public function spellDamageSingleTarget(SR_Player $player, SR_Player $target, $level, $key='10000', $damage, $arg4)
+	public function spellDamageSingleTarget(SR_Player $player, SR_Player $target, $level, $key='10000', $damage, $arg4='')
 	{
 		$maxhp = $target->getMaxHP();
 		$damage = round($damage, 1);
