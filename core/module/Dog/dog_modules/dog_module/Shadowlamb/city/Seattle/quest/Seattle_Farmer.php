@@ -1,7 +1,7 @@
 <?php
 final class Quest_Seattle_Farmer extends SR_Quest
 {
-	public function getQuestDescription() { return $this->lang('descr', max(0, $this->getNeededAmount()-$this->getAmount())); }
+	public function getQuestDescription() { return $this->lang('descr', array($this->getAmount(), $this->getNeededAmount())); }
 	
 	public function getRewardXP() { return 18; }
 	public function getRewardNuyen() { return 600; }
@@ -18,7 +18,7 @@ final class Quest_Seattle_Farmer extends SR_Quest
 		}
 		else
 		{
-			return $npc->reply($this->lang('more', array($this->getAmount(), $this->getNeededAmount())));
+			return $npc->reply($this->lang('more', max(0, $this->getNeededAmount()-$this->getAmount())));
 		}
 	}
 	
