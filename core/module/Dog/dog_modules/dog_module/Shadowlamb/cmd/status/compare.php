@@ -97,30 +97,42 @@ final class Shadowcmd_compare extends Shadowcmd
 		
 		if($item1ModA || $item2ModA)
 		{
-			if(array_key_exists('min_dmg', $item1ModA) || array_key_exists('min_dmg', $item2ModA))
+			if(array_key_exists('min_dmg', $item1ModA) ||
+				array_key_exists('max_dmg', $item1ModA) ||
+				array_key_exists('min_dmg', $item2ModA) ||
+				array_key_exists('max_dmg', $item2ModA))
 			{
 // 				$titles[] = 'dmg';
 				$titles[] = Shadowfunc::shortcutVariable($player, 'Damage');
-				$item1min = false;
-				$item1max = false;
-				$item2min = false;
-				$item2max = false;
+				$item1min = '';
+				$item1max = '';
+				$item2min = '';
+				$item2max = '';
 				if(array_key_exists('min_dmg', $item1ModA))
 				{
 					$item1min = $item1ModA['min_dmg'];
-					$item1max = $item1ModA['max_dmg'];
 					unset($item1ModA['min_dmg']);
+				}
+				if(array_key_exists('max_dmg', $item1ModA))
+				{
+					$item1max = $item1ModA['max_dmg'];
 					unset($item1ModA['max_dmg']);
 				}
 				if(array_key_exists('min_dmg', $item2ModA))
 				{
 					$item2min = $item2ModA['min_dmg'];
-					$item2max = $item2ModA['max_dmg'];
 					unset($item2ModA['min_dmg']);
+				}
+				if(array_key_exists('max_dmg', $item2ModA))
+				{
+					$item2max = $item2ModA['max_dmg'];
 					unset($item2ModA['max_dmg']);
 				}
 
-				if($item1min == $item2min)
+				if($item1min === '' && $item2min === '')
+				{
+				}
+				else if($item1min == $item2min)
 				{
 					$item1min = $b.$item1min.$b;
 					$item2min = $b.$item2min.$b;
@@ -133,7 +145,10 @@ final class Shadowcmd_compare extends Shadowcmd
 				{
 					$item2min = $b.$item2min.$b;
 				}
-				if($item1max == $item2max)
+				if($item1max === '' && $item2max === '')
+				{
+				}
+				else if($item1max == $item2max)
 				{
 					$item1min = $b.$item1min.$b;
 					$item2min = $b.$item2min.$b;
@@ -147,7 +162,7 @@ final class Shadowcmd_compare extends Shadowcmd
 					$item2max = $b.$item2max.$b;
 				}
 				
-				if($item1max)
+				if($item1min !== '' || $item1max !== '')
 				{
 					$item1Stuff[] = $item1min.'-'.$item1max;
 				}
@@ -155,7 +170,7 @@ final class Shadowcmd_compare extends Shadowcmd
 				{
 					$item1Stuff[] = "";
 				}
-				if($item2max)
+				if($item2min !== '' || $item2max !== '')
 				{
 					$item2Stuff[] = $item2min.'-'.$item2max;
 				}
