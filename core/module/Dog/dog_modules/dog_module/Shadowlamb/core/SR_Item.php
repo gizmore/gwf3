@@ -730,8 +730,8 @@ class SR_Item extends GDO
 		$back = array();
 		foreach (func_get_args() as $arg)
 		{
-// 			if (is_array($arg))
-// 			{
+ 			if (is_array($arg))
+ 			{
 				foreach ($arg as $k => $v)
 				{
 					if ($k === 'bmi')
@@ -748,7 +748,7 @@ class SR_Item extends GDO
 						$back[$k] = $v;
 					}
 				}
-// 			}
+ 			}
 		}
 		return $back;
 	}
