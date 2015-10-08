@@ -64,26 +64,7 @@ abstract class SR_Tower extends SR_Location
 		}
 		
 		$party = $player->getParty();
-
-		# City changed?
-		$oldcity = $party->getCity();
 		$party->pushAction($action, $target);
-		$newcity = $party->getCity();
-		if ($oldcity !== $newcity)
-		{
-			$city = $party->getCityClass();
-			$city->onCityEnter($party);
-		}
-		
-// 		if ($action === 'inside')
-// 		{
-// 			foreach ($party->getMembers() as $member)
-// 			{
-// 				$member->message($location->getEnterText($member));
-// 			}
-// 		}
-		
-		
 		$party->giveKnowledge('places', $target);
 		
 		return true;
