@@ -32,7 +32,7 @@ if (false !== ($channel = Dog::getChannelByArg($arg)))
 	return $plugin->rply('already');
 }
 
-$chan_name = Common::substrFrom($arg, '!', $arg);
+$chan_name = Common::substrUntil($arg, '!', $arg);
 
 if (false === ($channel = Dog_Channel::getOrCreate($server, $chan_name)))
 {
