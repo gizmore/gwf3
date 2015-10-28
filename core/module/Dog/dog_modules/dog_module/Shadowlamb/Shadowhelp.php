@@ -83,7 +83,7 @@ final class Shadowhelp
 					'body' => "The body attribute raises your max_hp by ".SR_Player::HP_PER_BODY.'.',
 					'magic' => "The magic attribute raises your max_mp by ".SR_Player::MP_PER_MAGIC.'. It also increases your MP refresh rate slightly.',
 					'strength' => "The strength attribute raises attack for melee weapons. It also raises the max weight you can carry.",
-					'quickness' => "Quickness raises your defense by increasing your chance to evade attacks. Also your busytime and explore times will decrease.",
+					'quickness' => "Quickness raises your defense by increasing your chance to evade attacks. Also your busytime will decrease.",
 					'wisdom' => "Wisdom increases duration of magic spells and increases your chance for successfull spell casting.",
 					'intelligence' => "Intelligence increases the power of your magic spells. It also increases your magic defense.",
 					'charisma' => "Charisma raises the time that hirelings follow you. It also betters the sell(+".Shadowfunc::SELL_PERCENT_CHARISMA."%) and buy(-".Shadowfunc::BUY_PERCENT_CHARISMA."%) prices for your character. You currently sell to {$sell_rate}% and buy to {$buy_rate}%.",
