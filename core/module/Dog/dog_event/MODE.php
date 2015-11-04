@@ -12,7 +12,7 @@ if (false === strpos('&#+!', $argv[0][0]))
 	# MODE <channel> *( ( "-" / "+" ) *<modes> *<modeparams> )
 	$channel = Dog::setupChannel();
 	$arg = 1;
-	while ($arg != $argc)
+	while ($arg < $argc)
 	{
 		$sign = $argv[$arg][0];
 		if ($sign !== '-' && $sign !== '+')
@@ -28,12 +28,17 @@ if (false === strpos('&#+!', $argv[0][0]))
 
 			if (false !== strpos('Oohv', $mode)) # member status
                         {
-				$nick = $argv[$arg++];
-				if (false !== ($user = $channel->getUserByName($nick)))
+				if ($arg < $argc)
 				{
-					$channel->setUser($user, $mode, $sign==='+');
+					$nick = $argv[$arg++];
+					if (false !== ($user = $channel->getUserByName($nick)))
+					{
+						$channel->setUser($user, $mode, $sign==='+');
+					} else {
+						Dog_Log::warn("Unknown user $nick in $rawmsg");
+					}
 				} else {
-					Dog_Log::warning("Unknown user $nick in $rawmsg");
+					Dog_Log::error("Ran out of arguments while handling mode $mode in $rawmsg");
 				}
 
 			} elseif (false !== strpos('aimnqpsrt', $mode))
