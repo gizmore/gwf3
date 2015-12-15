@@ -3,7 +3,7 @@ final class Redmond_Snowman extends SR_NPC
 {
 	public function getNPCLevel() { return 2; }
 	public function getNPCPlayerName() { return 'Snowman'; }
-	public function getNPCMeetPercent(SR_Party $party) { return 0.00; }
+	public function getNPCMeetPercent(SR_Party $party) { return 10.00; }
 	public function canNPCMeet(SR_Party $party) { return true; }
 	public function getNPCEquipment()
 	{
