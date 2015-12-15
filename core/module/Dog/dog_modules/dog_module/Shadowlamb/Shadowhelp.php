@@ -371,7 +371,7 @@ final class Shadowhelp
 						'equip' => 'Player command. Usage: #(eq)uip <item_name|inv_id>. Equip yourself with an item. Will cost time in combat.',
 						'unequip' => 'Player command. Usage: #uneqip|#uq <'.$eqs.'>. Unequip a wearing item. Will cost time in combat.',
 						'reload' => "Player command. Usage: #(r)eload. Reload your weapon. This is only needed for fireweapons and costs time in combat.",
-						'hijack' => "Leader command. Usage: #hijack [<target>]. Try to break into a player mount and steal an item. This will always add {$hjbk} bad karma to your character for trying such bad things.",
+						'hijack' => "Leader command. Usage: #hijack [<target>]. Try to break into a player's mount and steal an item. Only works when the player is inside a location and you are outside of it. This will always add {$hjbk} bad karma to your character for trying such bad things.",
 						'give' => 'Player command. Usage: #give <player_name> <inv_id|item> [<amount>]. Give a player in the same location some items. In combat this costs time. See also #givekp, #givekw and #giveny.',
 						'givekp' => 'Player command. Usage: #givekp [<player_name>] <#(kp)_id|location>. Tell a player in your location about a known place. See #give, #givekw and #giveny. If no player is specified, it will tell all your party members about it.',
 						'givekw' => 'Player command. Usage: #givekw [<player_name>] <#(kw)_id|word>. Tell a player in your location about a known word. See #give, #givekp and #giveny. If no player is specified, it will tell all your party members about it.',
