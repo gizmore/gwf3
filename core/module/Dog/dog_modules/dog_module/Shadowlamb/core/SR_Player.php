@@ -2380,39 +2380,22 @@ class SR_Player extends GDO
 	{
 		if ($item->isItemStackable())
 		{
-			if (false !== ($other = $this->getBankItemByName($item->getItemName())))
+			$others = $this->getBankItemsByItemName($item->getItemName());
+			# item is stackable, so there should be at most one
+			if (count($others) !== 0)
 			{
-				$other->increase('sr4it_amount', $item->getAmount());
+				$others[0]->increase('sr4it_amount', $item->getAmount());
 				return $item->delete();
 			}
 		}
 		
 		$this->sr4_bank[$item->getID()] = $item;
 		return $item->changePosition('bank');
-		
-// 		$bank = $this->getBankItems();
-// 		$bank[$item->getID()] = $item;
-// 		return $this->updateBank($bank);
 	}
-	
-// 	private function updateBank(array $items)
-// 	{
-// 		return $this->updateItemArray('sr4pl_bank', $items);
-// 	}
 	
 	public function getBankItems()
 	{
 		return $this->sr4_bank;
-// 		$bank = array();
-// 		foreach (explode(',', $this->getVar('sr4pl_bank')) as $itemid)
-// 		{
-// 			$itemid = (int) $itemid;
-// 			if (false !== ($item = SR_Item::getByID($itemid)))
-// 			{
-// 				$bank[$itemid] = $item;
-// 			}
-// 		}
-// 		return $bank;
 	}
 	
 	public function getBankItemsByItemName($itemname)
@@ -2433,13 +2416,10 @@ class SR_Player extends GDO
 	{
 		unset($this->sr4_bank[$item->getID()]);
 		return true;
-// 		$bank = $this->getBankItems();
-// 		unset($bank[$item->getID()]);
-// 		return $this->updateBank($bank);
 	}
 	
 	/**
-	 * Get a bank item by bank_id or itemname.
+	 * Get a bank item by bank_id or (partial) itemname.
 	 * @param string|int $arg
 	 * @return SR_Item
 	 */
