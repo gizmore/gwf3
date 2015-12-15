@@ -816,6 +816,10 @@ class SR_Player extends GDO
 		{
 			$p->kickUser($this, true);
 		}
+		if (false !== ($clan = SR_Clan::getByPlayer($this)))
+		{
+			$clan->kick($this);
+		}
 		Shadowrun4::removePlayer($this);
 		SR_Quest::deletePlayer($this);
 		SR_PlayerVar::deletePlayer($this);
