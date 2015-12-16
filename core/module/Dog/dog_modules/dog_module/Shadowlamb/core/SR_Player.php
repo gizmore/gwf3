@@ -565,6 +565,7 @@ class SR_Player extends GDO
 			$player->reloadEquipment($e);
 		}
 		$player->sr4_inventory = $player->reloadItemArray('inventory');
+		$player->inventoryChanged();
 		$player->sr4_cyberware = $player->reloadItemArray('cyberware');
 		$player->sr4_mount_inv = $player->reloadItemArray('mount_inv');
 		$player->sr4_bank = $player->reloadItemArray('bank');
@@ -1406,12 +1407,9 @@ class SR_Player extends GDO
 	{
 		$type = $item->getItemType();
 		unset($this->sr4_inventory[$item->getID()]);
+		$this->inventoryChanged();
 		$this->sr4_equipment[$type] = $item;
 		return $item->changePosition($type);
-		
-// 		unset($this->sr4_inventory[$item->getID()]);
-// 		$this->updateInventory();
-// 		return $this->updateEquipment($item->getItemType(), $item);
 	}
 	
 	public function unequip(SR_Equipment $item, $announce=true)
@@ -1424,6 +1422,7 @@ class SR_Player extends GDO
 		unset($this->sr4_equipment[$field]);
 		$itemid = $item->getID();
 		$this->sr4_inventory[$itemid] = $item;
+		$this->inventoryChanged();
 		
 // 		$field = $item->getItemType();
 // 		$itemid = $item->getID();
@@ -1488,7 +1487,25 @@ class SR_Player extends GDO
 		
 // 		return $this->saveVar('sr4pl_'.$field, $itemid);
 // 	}
-	
+
+	private $cached_can_spy = NULL;
+	public function canSpy()
+	{
+		if ( $this->cached_can_spy === NULL )
+		{
+			$this->cached_can_spy = false;
+			foreach ($this->getInventory() as $itemid => $item)
+			{
+				if ($item instanceof Item_Scanner_v6)
+				{
+					$this->cached_can_spy = true;
+					break;
+				}
+			}
+		}
+		return $this->cached_can_spy;
+	}
+
 	###############
 	### Effects ###
 	###############
@@ -2088,6 +2105,7 @@ class SR_Player extends GDO
 		}
 		
 		$this->sr4_inventory = GWF_Array::swapAssoc($this->sr4_inventory, $items1[0]->getID(), $items2[0]->getID());
+		$this->inventoryChanged(true);
 		$temp = $items1[0]->getMicrotime(); # Look ma, without temp!
 		if ($temp == $items2[0]->getMicrotime())
 		{
@@ -2095,53 +2113,6 @@ class SR_Player extends GDO
 		}
 		$items1[0]->saveMicrotime($items2[0]->getMicrotime());
 		$items2[0]->saveMicrotime($temp);
-		
-		
-// 		$beforeFirst = array();
-// 		$firstKey = -1;
-// 		$firstVal = null;
-// 		$beforeSecond = array();
-// 		$secondKey = -1;
-// 		$toMove = array();
-// 		$newinv = array();
-// 		$currentAdd =& $beforeFirst;
-
-// 		foreach($this->sr4_inventory as $key=>$value){
-// 			$vName = $value->getName();
-// 			if($vName == $items1[0]->getName() || $vName == $items2[0]->getName()){
-// 				if($firstKey == -1){
-// 					$firstKey = $key;
-// 					$firstVal = $value;
-// 					$currentAdd =& $beforeSecond;
-// 				}elseif($secondKey == -1 && $vName != $firstVal->getName()){
-// 					$secondKey = $key;
-
-// 					foreach($beforeFirst as $k => $v){
-// 						$newinv[$k] = $v;
-// 					}
-// 					$newinv[$key] = $value;
-// 					foreach($beforeSecond as $k => $v){
-// 						$newinv[$k] = $v;
-// 					}
-// 					$newinv[$firstKey] = $firstVal;
-// 					foreach($beforeSecond as $k => $v){
-// 						$newinv[$k] = $v;
-// 					}
-// 					foreach($toMove as $k => $v){
-// 						$newinv[$k] = $v;
-// 					}
-// 					$currentAdd =& $newinv;
-// 					$toMove =& $newinv;
-// 				}else{
-// 					$toMove[$key] = $value;
-// 				}
-// 			}else{
-// 				$currentAdd[$key] = $value;
-// 			}
-// 		}
-
-// 		$this->sr4_inventory = $newinv;
-// 		$this->updateInventory();
 	}
 	
 	/**
@@ -2249,6 +2220,7 @@ class SR_Player extends GDO
 			}
 		}
 		$this->sr4_inventory[$item->getID()] = $item;
+		$this->inventoryChanged();
 		return $item->changeOwnerAndPosition($this->getID(), 'inventory');
 	}
 	
@@ -2260,7 +2232,11 @@ class SR_Player extends GDO
 	public function removeFromPlayer(SR_Item $item, $modify=true)
 	{
 		unset($this->sr4_bank[$item->getID()]);
-		unset($this->sr4_inventory[$item->getID()]);
+		if (isset($this->sr4_inventory[$item->getID()]))
+		{
+			unset($this->sr4_inventory[$item->getID()]);
+			$this->inventoryChanged();
+		}
 		unset($this->sr4_cyberware[$item->getID()]);
 		unset($this->sr4_mount_inv[$item->getID()]);
 		unset($this->sr4_equipment[$item->getID()]);
@@ -2285,6 +2261,14 @@ class SR_Player extends GDO
 			$this->unequip($item, false);
 		}
 		return $this->removeFromInventory($item);
+	}
+
+	public function inventoryChanged($same_items=false)
+	{
+		if (!$same_items)
+		{
+			$this->cached_can_spy = NULL;
+		}
 	}
 	
 	#############
@@ -2359,8 +2343,6 @@ class SR_Player extends GDO
 	{
 		unset($this->sr4_mount_inv[$item->getID()]);
 		return true;
-// 		$this->sr4_inventory[$item->getID()] = $item;
-// 		return $item->changePosition('inventory');
 	}
 	
 	/**

@@ -152,7 +152,7 @@ class Shadowcmd
 		if (!$hidden_only)
 		{
 			$commands = array_merge($commands, self::$CMDS[$action]);
-			if (false !== ($scanner = $player->getInvItemByName('Scanner_v6', false)))
+			if ($player->canSpy())
 			{
 				$commands[] = 'spy';
 			}
