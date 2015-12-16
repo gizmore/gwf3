@@ -2272,9 +2272,9 @@ class SR_Player extends GDO
 		
 	}
 	
-	public function deleteFromInventory(SR_Item $item)
+	public function deleteFromInventory(SR_Item $item, $modify=true)
 	{
-		$this->removeFromInventory($item);
+		$this->removeFromInventory($item, $modify);
 		return $item->delete();
 	}
 	

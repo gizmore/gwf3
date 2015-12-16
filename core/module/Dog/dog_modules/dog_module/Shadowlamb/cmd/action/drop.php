@@ -88,7 +88,7 @@ final class Shadowcmd_drop extends Shadowcmd
 			$items = $player->getInvItems($iname, $amt);
 			foreach ($items as $item2)
 			{
-				if ($player->deleteFromInventory($item2))
+				if ($player->deleteFromInventory($item2, false))
 				{
 					$dropped++;
 				}
