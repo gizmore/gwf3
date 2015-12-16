@@ -203,7 +203,7 @@ final class Shadowhelp
 					'nuyen' => NULL,
 					'bad_karma' => "Bad karma determines how evil your character is. If you have bad karma you might encounter Polizia, also known as BlackOps. These will annoy the bad guys during their journey.$bad_karma",
 					
-					'special_stats' => 'There are some special stats too:',
+					'special_stats' => 'There are some special stats too',
 					array(
 						'casting' => 'Similar to the magic attribute, this skill increases your MP, but does not increase your MP refreshing.',
 						'spellatk' => 'Increases your magic attack. This is also affected by essence and intelligence.',
@@ -291,8 +291,7 @@ final class Shadowhelp
 						'skills' => NULL,
 						'asl' => NULL,
 						'aslset' => "Player command. Usage: #aslset RANDOM || #aslset <age>y <bmi>kg <hgt>cm. Example: #aslset 20y 140cm 80kg.",
-						'equipment' => 'Player command. Usage: #e(q)uipment. View your equipment.',
-						'sets' => 'Player command: Usage: #sets [<setpage|item_name|setname>]. Show all sets or list items and boni for an itemset.',
+						'equipment' => 'Player command. Usage: #e(q)uipment. View your equipment. Types',
 						array(
 							'amulet' => 'You can #equip amulets and wear them as #equipment.',
 							'armor' => 'You can #equip armory and wear them as #equipment.',
@@ -303,7 +302,7 @@ final class Shadowhelp
 							'ring' => 'You can #equip rings and wear them as #equipment.',
 							'shield' => 'You can #equip shields and wear them as #equipment.',
 							'weapon' => 'You can #equip weapons and wear them as #equipment.',
-							'mount' => 'You can #equip mounts to lower your travel times. Also you can store items in them. There are also mount runes:',
+							'mount' => 'You can #equip mounts to lower your travel times. Also you can store items in them. There are also mount runes',
 							array(
 								'lock' => 'LOCK determines the safety of your mount and prevents a #hijack. LOCK runes can only get applied on a mount.',
 								'tuneup' => 'Tuneup runes can only be applied to a mount and reduce travel times.',
@@ -311,6 +310,7 @@ final class Shadowhelp
 							),
 						),
 				
+						'sets' => 'Player command: Usage: #sets [<setpage|item_name|setname>]. Show all sets or list items and boni for an itemset.',
 						'party' => 'Player command. Usage. #(p)arty. View your party status.',
 						'inventory' => 'Player command. Usage: #(i)nventory [<page|search>] <[page]>. View or search your inventory. See',
 						array(
@@ -566,25 +566,25 @@ final class Shadowhelp
 				
 					'features' => 'Features',
 					array(
-						'crafting' => 'Crafting System: ',
+						'crafting' => 'Crafting System',
 						array(
 							'runes' => "You can runecraft items at the Blacksmith, but you need to solve the blacksmith quest first.",
 							'statted' => "Statted means crafted, like Cap_of_strength:1. The more modifiers the more complex is your item. The higher the modifiers, the more complex is your item. Adding a new modifier is more complex than increasing the power of the same modifiers.",
 						),
 							
-						'pvp' => 'PVP, or Player Vs Player, means attacking other humans. Most locations are non pvp, and you cannot #fight there. Dungeons usually have pvp enabled. Please note that outside of locations, pvp generally works.',
+						'pvp' => 'PVP, or Player Vs Player, means attacking other humans. Most locations are non pvp, and you cannot #fight there. Dungeons usually have pvp enabled. Please note that outside of locations, pvp generally works. See also',
 						array(
-							'kill_protection' => '',
+							'kill_protection' => 'Players or parties can be protected from pvp attacks when levels differ too much or they have been recently killed by the same attacker.',
 						),
 							
 // 						'items' => SR_Item::getTotalItemCount().' items: ',
 // 						self::getItemTree($player),
 					),
 						
-					'selection' => 'Selection: ',
+					'selection' => 'Selection',
 					array(
 						'enum' => 'To select items, words, places and spells, you can use the id from their respective status_commands; #inventory, #known_words, #known_places, #known_spells.',
-						'id' => 'ID´s:',
+						'id' => 'IDs',
 						array(
 							'inv_id' => 'inv_id means inventory ID, which is an enumeration of your invenotry items. The enumeration changes as less as possible, when removing or adding items.',
 							'view_id' => 'view_id specifies an item from a shop by enumeration. This type of enum / ID works for buy and similar commands. With #compare you can use S_1 to reference the first shop item.',
@@ -600,7 +600,7 @@ final class Shadowhelp
 						'item_name' => 'Specify an item by name. You can use abbreviations, like lglo for TinfoilGloves, but an abbreviation has to be at least 3 characters in length.',
 					),
 					
-					'events' => 'Events: ',
+					'events' => 'Events',
 					array(
 						'meet' => 'When you meet people or NPC on streets, you are in talk mode. Use #say to talk to the party you met. You can also use #join, #fight, #give or any other command you can imagine.',
 						'encounter' => 'When you encounter an enemy party, you start to combat them. In combat you can do any cmd, and the default is to attack a random target, which locks this choice.',
@@ -637,7 +637,7 @@ final class Shadowhelp
 						'noautolook_option' => 'You can enable this option to supress auto look, and arrival / leave messages.',
 					),
 					
-					'glossary' => 'Some glossary of terms and keywords used.',
+					'glossary' => 'Some glossary of terms and keywords used',
 					array(
 						'decker' => "In the Shadowrun(tm) world, a decker is a hacker, who directly connects to computersystem using cyberdecks.",
 						'eta' => 'ETA means estimated time to arrival; How many time is left until your party completed an action.',
