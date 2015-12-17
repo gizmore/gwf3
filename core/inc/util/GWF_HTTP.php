@@ -67,6 +67,9 @@ final class GWF_HTTP
 		curl_setopt($ch, CURLOPT_USERAGENT, self::USERAGENT);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
  
+		# Enable cookie engine with not saving the cookies to disk
+		curl_setopt($ch, CURLOPT_COOKIEFILE, "");
+		
 		# Try to follow redirects
 		curl_setopt($ch, CURLOPT_AUTOREFERER, true);
 		curl_setopt($ch, CURLOPT_MAXREDIRS, 10);
@@ -135,6 +138,9 @@ final class GWF_HTTP
 		{
 			curl_setopt($ch, CURLOPT_COOKIE, $cookie);
 		}
+		# Enable cookie engine with not saving the cookies to disk
+		curl_setopt($ch, CURLOPT_COOKIEFILE, "");
+		
 		
 		curl_setopt($ch, CURLOPT_USERAGENT, self::USERAGENT);
 		
@@ -205,6 +211,8 @@ final class GWF_HTTP
 		if ($cookie !== false) {
 			curl_setopt($ch, CURLOPT_COOKIE, $cookie);
 		}
+		# Enable cookie engine with not saving the cookies to disk
+		curl_setopt($ch, CURLOPT_COOKIEFILE, "");
 		
 		curl_setopt($ch, CURLOPT_URL, $url);
  		curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
