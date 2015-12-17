@@ -198,7 +198,7 @@ final class Module_PM extends GWF_Module
 		{
 			return false;
 		}
-		if ($from->getLevel() <= $options->getVar('pmo_level'))
+		if ($from->getLevel() < $options->getVar('pmo_level'))
 		{
 			return $this->error('err_user_pmo_level', array($options->getVar('pmo_level')));
 		}
