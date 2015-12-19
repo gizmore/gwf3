@@ -229,6 +229,9 @@
 /www/challenge/warchall/tryouts/tryouts_solution.php
 /www/challenge/warchall/tryouts/tryouts.c
 
+# /www/challenge/railsbin
+/www/challenge/railsbin/railsbin.solution.php
+
 # /www/protected/
 /www/protected/config.php
 
