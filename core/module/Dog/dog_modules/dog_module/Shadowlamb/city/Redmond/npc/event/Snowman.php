@@ -8,7 +8,7 @@ final class Redmond_Snowman extends SR_NPC
 	public function getNPCEquipment()
 	{
 		return array(
-			'weapon' => array_rand(array('Club', 'DemonSword', 'KnightsSword', 'Knife', 'BaseballBat'), 1),
+			'weapon' => array_rand(array('Club', 'Knife', 'BaseballBat'), 1),
 		);
 	}
 	public function getNPCInventory() { return array(); }
