@@ -11,7 +11,7 @@ $title = GWF_PAGE_TITLE;
 #$solution = "test";
 $score = 5;
 $url = "challenge/railsbin/index.php";
-$creators = "Gizmorer";
+$creators = "Gizmore";
 $tags = 'Exploit';
 WC_Challenge::installChallenge($title, $solution, $score, $url, $creators, $tags, true);
 require_once("challenge/html_foot.php");
