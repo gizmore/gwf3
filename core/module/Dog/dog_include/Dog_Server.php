@@ -295,9 +295,14 @@ final class Dog_Server extends GDO
 		}
 	}
 	
-	public function sendRAW($message)
+	public function sendRAW($message, $queued=true)
 	{
-		$this->connection->sendRAW($message);
+		if ($queued)
+		{
+			$this->connection->sendRAW($message);
+		} else {
+			$this->connection->send($message);
+		}
 	}
 	
 	public function sendPRIVMSG($to, $message)
