@@ -198,9 +198,9 @@ final class Dog_Server extends GDO
 		{
 			$this->attempt++;
 			echo "Dog_IRC::connect() to {$this->getURL()}{$this->displaySSL()} attempt {$this->attempt}.\n";
+			$this->setConnectIn($this->getNextConnectTime());
 			if (false === $this->connection->connect($this))
 			{
-				$this->setConnectIn($this->getNextConnectTime());
 				if (false !== ($connector = $this->getVarDefault('dog_connector', false)))
 				{
 					$connector instanceof Dog_User;
