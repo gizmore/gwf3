@@ -100,7 +100,7 @@ function warchall1createAccount(WC_Challenge $chall)
 		return '';
 	}
 	$username = strtolower($user->getVar('user_name'));
-	if (!preg_match('/^[a-z][a-z0-9_]{2,31}$/D', $username))
+	if (!preg_match('/^[a-z][-a-z0-9_]{2,31}$/D', $username))
 	{
 		return $chall->lang('err_unix_username');
 	}
