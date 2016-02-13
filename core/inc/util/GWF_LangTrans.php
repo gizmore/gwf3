@@ -43,7 +43,15 @@ final class GWF_LangTrans
 	{
 		return $this->translate(self::getBrowserISO(), $key, $args);
 	}
-
+	
+	/**
+	 * Check if language file has a key.
+	 * @param string $key
+	 */
+	public function hasKey($key)
+	{
+		return isset($this->trans[self::getBrowserISO()][$key]);
+	}
 
 	/**
 	 * Translate an key1[key2] for the browser ISO.
