@@ -8,6 +8,8 @@ require_once 'protected/config.php';
 # Init GDO and GWF core
 require_once '../gwf3.class.php';
 
+@pcntl_signal(SIGCHLD,SIG_IGN); # No zombies, please!
+
 if (false === ($socket = @socket_create(AF_INET, SOCK_STREAM, SOL_TCP)))
 {
 	die(1);
