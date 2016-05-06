@@ -15,6 +15,11 @@ if (false === ($socket = @socket_create(AF_INET, SOCK_STREAM, SOL_TCP)))
 	die(1);
 }
 
+if (!@socket_set_option($socket, SOL_SOCKET, SO_REUSEADDR, 1))
+{
+	# meh.. not critical
+}
+
 if (!@socket_bind($socket, '0.0.0.0', 4141))
 {
 	die(2);
@@ -320,14 +325,13 @@ while(true)
 	}
 	elseif ($pid) # Parent
 	{
-		if (function_exists('gc_collect_cycles'))
-		{
-			gc_collect_cycles();
-		}
-		#pcntl_wait($status, WNOHANG);
+		# noop
 	}
 	else # Child
 	{
 		warscore_function($client_socket, $pid);
+		die(5); # bad child; shouldn't get here
 	}
+
+	socket_close($client_socket);
 }
