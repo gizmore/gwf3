@@ -108,12 +108,12 @@ abstract class WC_SiteBase extends GDO
 	
 		$i = 0;
 		$username = $result[$i++];
-		$rank = $result[$i++];
-		$score = $result[$i++];
-		$maxscore = $result[$i++];
-		$challssolved = $result[$i++];
-		$challcount = $result[$i++];
-		$usercount = $result[$i++];
+		$rank = (int) $result[$i++];
+		$score = (int) $result[$i++];
+		$maxscore = (int) $result[$i++];
+		$challssolved = (int) $result[$i++];
+		$challcount = (int) $result[$i++];
+		$usercount = (int) $result[$i++];
 	
 		if ($maxscore === 0 || $challcount === 0)
 		{
