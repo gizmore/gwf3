@@ -542,13 +542,20 @@ class SR_Item extends GDO
 			Dog_Log::error(sprintf('Item %s(%d) can not decrease amount %d!', $this->getItemName(), $this->getID(), $amount));
 			return false;
 		}
+
+		$player->itemAmountChanged($this, -$amount, false);
+
+		if ($this->getAmount() < 1)
+		{
+			return $this->deleteItem($player, $modify);
+		}
 		
 		if ($modify)
 		{
 			$player->modify();
 		}
 		
-		return $this->getAmount() < 1 ? $this->deleteItem($player, $modify) : true;
+		return true;
 	}
 	
 	###############
