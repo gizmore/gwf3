@@ -10,6 +10,7 @@ class SR_Inventory
 	private $type;
 	private $inventory;
 	private $cached_grouped = null;
+	private $change_handlers = array();
 	
 
 
@@ -47,6 +48,25 @@ class SR_Inventory
 		$items_table->free($select_result);
 
 		$this->inventory = &$inv;
+	}
+
+
+
+	##############
+	### Events ###
+	##############
+
+	private function onChanged($same_items=false)
+	{
+		foreach ($this->change_handlers as $handler)
+		{
+			call_user_func($handler, $same_items);
+		}
+	}
+
+	public function addChangeHandler($handler)
+	{
+		$this->change_handlers[] = $handler;
 	}
 
 
@@ -358,6 +378,9 @@ class SR_Inventory
 				}
 
 				$this->increaseGroupAmount($item_name, $add_amount);
+
+				$this->onChanged();
+
 				return $item->delete();
 			}
 		}
@@ -368,7 +391,9 @@ class SR_Inventory
 		}
 		$this->inventory[$item->getID()] = $item;
 		$this->addToGroup($item);
-		//$this->inventoryChanged();
+
+		$this->onChanged();
+
 		return true;
 	}
 	
@@ -384,6 +409,8 @@ class SR_Inventory
 			$name = $item->getItemName();
 			$this->cached_grouped[$name][0] += $amount_change;
 		}
+		
+		$this->onChanged();
 	}
 
 	public function removeItem($item)
@@ -394,9 +421,9 @@ class SR_Inventory
 		}
 
 		unset($this->inventory[$item->getID()]);
-		//$item->changePosition(null); // XXX
 		$this->removeFromGroup($item);
-		//$this->inventoryChanged();
+
+		$this->onChanged();
 	}
 
 	public function swapItems($name1, $name2, $requesting_player)
@@ -530,6 +557,8 @@ class SR_Inventory
 		$this->inventory = &$new_inv;
 
 		$this->cached_grouped = null; // XXX make function; also, fix grouped instead? (as you normally always call it after some grouped view)
+
+		$item->onChanged(true);
 	}
 
 }

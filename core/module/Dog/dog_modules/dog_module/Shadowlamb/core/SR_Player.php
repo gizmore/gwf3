@@ -565,6 +565,7 @@ class SR_Player extends GDO
 			$player->reloadEquipment($e);
 		}
 		$player->sr4_inventory_new = new SR_Inventory('inventory',$player);
+		$player->sr4_inventory_new->addChangeHandler(array($player,'inventoryChanged'));
 		$player->sr4_cyberware = $player->reloadItemArray('cyberware');
 		$player->sr4_mount_inv = $player->reloadItemArray('mount_inv');
 		$player->sr4_bank = $player->reloadItemArray('bank');
@@ -2214,7 +2215,7 @@ class SR_Player extends GDO
 		return $this->removeFromInventory($item);
 	}
 
-	public function inventoryChanged($same_items=false)
+	public function inventoryChanged($same_items)
 	{
 		if (!$same_items)
 		{
