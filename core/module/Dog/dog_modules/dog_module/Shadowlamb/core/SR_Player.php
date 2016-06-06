@@ -1489,15 +1489,7 @@ class SR_Player extends GDO
 	{
 		if ( $this->cached_can_spy === NULL )
 		{
-			$this->cached_can_spy = false;
-			foreach ($this->getInventory() as $itemid => $item)
-			{
-				if ($item instanceof Item_Scanner_v6)
-				{
-					$this->cached_can_spy = true;
-					break;
-				}
-			}
+			$this->cached_can_spy = $this->getInventory()->getItemByClass('Item_Scanner_v6') !== false;
 		}
 		return $this->cached_can_spy;
 	}
@@ -1804,7 +1796,7 @@ class SR_Player extends GDO
 	
 	public function getInvItems($arg, $max=-1)
 	{
-		return $this->getItems($this->getInventory(), $arg, $max);
+		return $this->getItems($this->getInventoryItems(), $arg, $max);
 	}
 	
 	public function getMountItems($arg, $max=-1)
@@ -2020,7 +2012,12 @@ class SR_Player extends GDO
 	#################
 	### Inventory ###
 	#################
-	public function &getInventory() // XXX remove?
+	public function getInventory()
+	{
+		return $this->sr4_inventory_new;
+	}
+	
+	public function &getInventoryItems() // XXX remove?
 	{
 		return $this->sr4_inventory_new->getArrayRef();
 	}

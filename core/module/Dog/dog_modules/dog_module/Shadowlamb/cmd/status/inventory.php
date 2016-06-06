@@ -4,7 +4,7 @@ final class Shadowcmd_inventory extends Shadowcmd
 	const IPP = 10;
 	public static function execute(SR_Player $player, array $args)
 	{
-		$items = $player->getInventory();
+		$items = $player->getInventoryItems();
 		$text = array(
 			'usage' => Shadowhelp::getHelp($player, 'i'),
 			'prefix' => $player->lang('inventory'),

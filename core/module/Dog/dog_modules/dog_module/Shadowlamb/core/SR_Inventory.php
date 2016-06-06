@@ -331,6 +331,42 @@ class SR_Inventory
 		// XXX
 	}
 
+	public function getItemByClass($class)
+	{
+		$items = $this->getItemsByClass($class, 1);
+
+		if (count($items) !== 1)
+		{
+			return false;
+		}
+
+		return $items[0];
+	}
+
+        public function getItemsByClass($class, $max=false)
+	{
+		if ($max !== false && $max < 1)
+		{
+			return array();
+		}
+
+		$items = array();
+		foreach ($this->inventory as $item)
+		{
+			if ($item instanceof $class)
+			{
+				$items[] = $item;
+
+				if ($max !== false && count($items) === $max)
+				{
+					break;
+				}
+			}
+		}
+
+		return $items;
+	}
+
 	public function countByItemName($item_name)
 	{
 		if ($this->cached_grouped !== null)

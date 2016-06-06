@@ -186,15 +186,7 @@ abstract class SR_NPC extends SR_NPCBase
 	
 	private function getHealItems()
 	{
-		$items = array();
-		foreach ($this->getInventory() as $item)
-		{
-			if ($item instanceof SR_HealItem)
-			{
-				$items[] = $item;
-			}
-		}
-		return $items;
+		return $this->getInventory()->getItemsByClass('SR_HealItem');
 	}
 	
 	############
@@ -208,15 +200,7 @@ abstract class SR_NPC extends SR_NPCBase
 	
 	private function getFoodItems()
 	{
-		$items = array();
-		foreach ($this->getInventory() as $item)
-		{
-			if ($item instanceof SR_Food)
-			{
-				$items[] = $item;
-			}
-		}
-		return $items;
+		return $this->getInventory()->getItemsByClass('SR_Food');
 	}
 	
 	##################
@@ -239,15 +223,7 @@ abstract class SR_NPC extends SR_NPCBase
 
 	private function getPotions()
 	{
-		$potions = array();
-		foreach ($this->getInventory() as $item)
-		{
-			if ($item instanceof SR_Potion)
-			{
-				$potions[] = $item;
-			}
-		}
-		return $potions;
+		return $this->getInventory()->getItemsByClass('SR_Potion');
 	}
 	
 	private function getPotion()
@@ -375,15 +351,7 @@ abstract class SR_NPC extends SR_NPCBase
 	
 	public function getGrenades()
 	{
-		$items = array();
-		foreach ($this->getInventory() as $item)
-		{
-			if ($item instanceof SR_Grenade)
-			{
-				$items[] = $item;
-			}
-		}
-		return $items;
+		return $this->getInventory()->getItemsByClass('SR_Grenade');
 	}
 
 	public function combatAIEquipWeapon()
@@ -399,7 +367,7 @@ abstract class SR_NPC extends SR_NPCBase
 	private function getBestWeapon()
 	{
 		$best = false;
-		foreach ($this->getInventory() as $item)
+		foreach ($this->getInventoryItems() as $item)
 		{
 			if ($item instanceof SR_FireWeapon)
 			{
