@@ -241,25 +241,52 @@ class SR_Inventory
 
 		$group_array = array_slice($this->cached_grouped, $index, 1); // awkward way of getting element because array is indexed by name
 		$group = array_shift($group_array); // get only (keyed) element
-		//return $this->inventory[$group[1][0]->getID()]; // XXX probably better to take last
 		return end($group[1]); // XXX old code took first; is this ok?
 	}
 
-	public function getItemsByGroupedIndex($start, $end=false)
+	public function getItemsByGroupedIndex($start, $end=false, $pattern=null, $requesting_player=null, &$num_items=null)
 	{
 		$this->cacheGroupedItems(); // make sure it's available
+
+		$num_items = count($this->cached_grouped);
+
+		if ($start < 0)
+		{
+			$start = 0;
+		}
 
 		if ($end === false)
 		{
 			$end = $start+1;
-		}
-
-		if ( $start < 0 || count($this->cached_grouped) < $end )
+		} else if ($end > $num_items)
 		{
-			return false;
+			$end = $num_items;
 		}
 
-		return array_slice($this->cached_grouped, $start, $end-$start); // deep copy
+		if ($pattern === null)
+		{
+			return array_slice($this->cached_grouped, $start, $end-$start); // deep copy
+		} else {
+
+			$result = array();
+			$num_items = 0;
+			foreach ($this->cached_grouped as $item_name => $group)
+			{
+				$item = reset($group[1]);
+				if (   (false !== stripos($item->displayFullName($requesting_player, false, false), $pattern))
+					|| (false !== stripos($item_name, $pattern)) )
+				{
+					if ($start <= $num_items && $num_items < $end)
+					{
+						$result[$item_name] = $group;
+					}
+					$num_items++;
+				}
+			}
+
+			return $result;
+
+		}
 	}
 
 	public function getItemByItemName($item_name, $first=false)
@@ -303,7 +330,7 @@ class SR_Inventory
 		return false; // not found
 	}
 
-	public function getItemByName($name, $requesting_player)
+	public function getItemByName($name, $requesting_player, $check_base_name=true)
 	{
 		# Reverse search on full name
 		for ($item = end($this->inventory); false !== $item; $item = prev($this->inventory))
@@ -314,7 +341,12 @@ class SR_Inventory
 				return $item;
 			}
 		}
-		
+
+		if (!$check_base_name)
+		{
+			return false;
+		}
+
 		# Reverse search on full base name
 		for ($item = end($this->inventory); false !== $item; $item = prev($this->inventory))
 		{
@@ -331,7 +363,7 @@ class SR_Inventory
 	{
 		if ($prefer_fullname)
 		{
-			$item = $this->getItemByName($substr, $requesting_player);
+			$item = $this->getItemByName($substr, $requesting_player, false);
 			if ($item !== false)
 			{
 				return $item;
@@ -388,7 +420,7 @@ class SR_Inventory
 		return $items[0];
 	}
 
-        public function getItemsByClass($class, $max=false)
+	public function getItemsByClass($class, $max=false)
 	{
 		if ($max !== false && $max < 1)
 		{
@@ -478,7 +510,7 @@ class SR_Inventory
 		return true;
 	}
 	
-        public function itemAmountChanged(SR_Item $item, $amount_change, $modify=true)
+	public function itemAmountChanged(SR_Item $item, $amount_change, $modify=true)
 	{
 		if ($item->getPosition() !== $this->type) // make sure it's in here
 		{

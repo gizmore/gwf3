@@ -656,7 +656,7 @@ class SR_Item extends GDO
 			return -1;
 		}
 
-		$index = $owner->getInventory()->getGroupedIndex($itemname);
+		$index = $owner->getInventory()->getGroupedIndex($this->getItemName());
 		
 		return $index === false ? -1 : $index+1;
 	}
