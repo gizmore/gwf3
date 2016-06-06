@@ -374,6 +374,11 @@ class SR_Inventory
 	
         public function itemAmountChanged(SR_Item $item, $amount_change, $modify=true)
 	{
+		if ($item->getPosition() !== $this->type) // make sure it's in here
+		{
+			return;
+		}
+
 		if ($this->cached_grouped !== null)
 		{
 			$name = $item->getItemName();

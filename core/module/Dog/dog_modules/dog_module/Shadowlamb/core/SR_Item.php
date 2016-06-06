@@ -114,6 +114,8 @@ class SR_Item extends GDO
 	public function getMicrotime() { return $this->getVar('sr4it_microtime'); }
 	public function saveMicrotime($microtime) { return $this->saveVar('sr4it_microtime', $microtime); }
 	
+	public function getPosition() { return $this->getVar('sr4it_position'); }
+
 	public function changePosition($position)
 	{
 		return $this->saveVars(array(
