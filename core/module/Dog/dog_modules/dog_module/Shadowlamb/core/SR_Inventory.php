@@ -173,12 +173,40 @@ class SR_Inventory
 	### Inventory access ###
 	########################
 
+	public function getNumItems()
+	{
+		return count($this->inventory);
+	}
+
+	public function getNumGrouped()
+	{
+		$this->cacheGroupedItems(); // make sure it's available
+		return count($this->cached_grouped);
+	}
+
 	private function getInventoryIndex($item)
 	{
 		$index = 0;
 		foreach ($this->inventory as $inv_item)
 		{
 			if ($item === $inv_item)
+			{
+				return $index;
+			}
+			$index++;
+		}
+
+		return false;
+	}
+
+	public function getGroupedIndex($item_name)
+	{
+		$this->cacheGroupedItems(); // make sure it's available
+
+		$index = 0;
+		foreach ($this->cached_grouped as $current_name => $data)
+		{
+			if ($item_name === $current_name)
 			{
 				return $index;
 			}
@@ -215,6 +243,23 @@ class SR_Inventory
 		$group = array_shift($group_array); // get only (keyed) element
 		//return $this->inventory[$group[1][0]->getID()]; // XXX probably better to take last
 		return end($group[1]); // XXX old code took first; is this ok?
+	}
+
+	public function getItemsByGroupedIndex($start, $end=false)
+	{
+		$this->cacheGroupedItems(); // make sure it's available
+
+		if ($end === false)
+		{
+			$end = $start+1;
+		}
+
+		if ( $start < 0 || count($this->cached_grouped) < $end )
+		{
+			return false;
+		}
+
+		return array_slice($this->cached_grouped, $start, $end-$start); // deep copy
 	}
 
 	public function getItemByItemName($item_name, $first=false)

@@ -655,19 +655,10 @@ class SR_Item extends GDO
 		{
 			return -1;
 		}
+
+		$index = $owner->getInventory()->getGroupedIndex($itemname);
 		
-		$name = $this->getItemName();
-		$i = 1;
-		foreach ($owner->getInventorySorted() as $itemname => $data)
-		{
-			if ($name === $itemname)
-			{
-				return $i;
-			} 
-			$i++;
-		}
-		
-		return -1;
+		return $index === false ? -1 : $index+1;
 	}
 	
 	

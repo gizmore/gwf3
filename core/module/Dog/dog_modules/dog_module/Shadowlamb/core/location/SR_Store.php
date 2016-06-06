@@ -328,9 +328,8 @@ abstract class SR_Store extends SR_Location
 			return false;
 		}
 		
-		$inv = $player->getInventorySorted();
 		$min = 1;
-		$max = count($inv);
+		$max = $player->getInventory()->getNumGrouped();
 		
 		if (preg_match('/^\\d*-?\\d*$/', $args[0]))
 		{
@@ -358,40 +357,33 @@ abstract class SR_Store extends SR_Location
 			return false;
 		}
 		
-		$i = 1;
+		$inv = $player->getInventory()->getItemsByGroupedIndex($from-1, $to);
+
 		$sold = 0;
 		$unsold = 0;
 		$price = 0;
 		foreach ($inv as $itemname => $data)
 		{
-			if ($i >= $from)
+			foreach ($data[1] as $item)
 			{
-				foreach ($data[1] as $item)
+				$amt = $item->getAmount();
+
+				if (!$item->isItemSellable())
 				{
-					$amt = $item->getAmount();
-
-					if (!$item->isItemSellable())
-					{
-						$unsold += $amt;
-						continue;
-					}
-
-					$item_price = $this->calcSellPrice($player, $item, $amt);
-
-					if ( $item->deleteItem($player,false) )
-					{
-						$sold += $amt;
-						$price += $item_price;
-					} else {
-						$unsold += $amt;
-					}
+					$unsold += $amt;
+					continue;
 				}
-				if ($i === $to)
+
+				$item_price = $this->calcSellPrice($player, $item, $amt);
+
+				if ( $item->deleteItem($player,false) )
 				{
-					break;
+					$sold += $amt;
+					$price += $item_price;
+				} else {
+					$unsold += $amt;
 				}
 			}
-			$i++;
 		}
 		$player->modify();
 

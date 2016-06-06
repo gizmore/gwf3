@@ -2022,11 +2022,6 @@ class SR_Player extends GDO
 		return $this->sr4_inventory_new->getArrayRef();
 	}
 	
-	public function &getInventorySorted() // XXX remove?
-	{
-		return $this->sr4_inventory_new->getGroupedRef();
-	}
-	
 	public function getBankSorted()
 	{
 		return $this->getItemsSorted($this->getBankItems());

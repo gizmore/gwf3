@@ -249,9 +249,8 @@ abstract class SR_Bank extends SR_Location
 			return false;
 		}
 		
-		$inv = $player->getInventorySorted();
 		$min = 1;
-		$max = count($inv);
+		$max = $player->getInventory()->getNumGrouped();
 		
 		if (preg_match('/^\\d*-?\\d*$/', $args[0]))
 		{
@@ -288,48 +287,40 @@ abstract class SR_Bank extends SR_Location
 			return false;
 		}
 		
-		$i = 1;
+		$inv = $player->getInventory()->getItemsByGroupedIndex($from-1, $to);
+
 		$pushed = 0;
 		$skipped = 0;
 		$price = 0;
 		foreach ($inv as $itemname => $data)
 		{
-			if ($i >= $from)
+			$has_pushed = false;
+			foreach ($data[1] as $item)
 			{
-				$has_pushed = false;
-				foreach ($data[1] as $item)
-				{
-					$amt = $item->getAmount();
+				$amt = $item->getAmount();
 
-					if ($player->removeFromInventory($item, false))
+				if ($player->removeFromInventory($item, false))
+				{
+					if($player->putInBank($item))
 					{
-						if($player->putInBank($item))
-						{
-							$pushed += $amt;
-							$has_pushed = true;
-						} else {
-							if (!$player->giveItem($item))
-							{
-								Dog_Log::error(sprintf('Command pushall in %s made %s lose item %s (id: %d)!',$this->getName(),$player->getName(),$item->getNamePacked($player),$item->getID()));
-							}
-							$skipped += $amt;
-						}
+						$pushed += $amt;
+						$has_pushed = true;
 					} else {
+						if (!$player->giveItem($item))
+						{
+							Dog_Log::error(sprintf('Command pushall in %s made %s lose item %s (id: %d)!',$this->getName(),$player->getName(),$item->getNamePacked($player),$item->getID()));
+						}
 						$skipped += $amt;
 					}
-				}
-
-				if ($has_pushed)
-				{
-					$price += $item_price;
-				}
-
-				if ($i === $to)
-				{
-					break;
+				} else {
+					$skipped += $amt;
 				}
 			}
-			$i++;
+
+			if ($has_pushed)
+			{
+				$price += $item_price;
+			}
 		}
 		$player->modify();
 
