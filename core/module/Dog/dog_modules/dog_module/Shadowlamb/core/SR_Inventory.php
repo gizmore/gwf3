@@ -270,6 +270,7 @@ class SR_Inventory
 
 			$result = array();
 			$num_items = 0;
+			$index = 0;
 			foreach ($this->cached_grouped as $item_name => $group)
 			{
 				$item = reset($group[1]);
@@ -279,9 +280,11 @@ class SR_Inventory
 					if ($start <= $num_items && $num_items < $end)
 					{
 						$result[$item_name] = $group;
+						$result[$item_name][] = $index;
 					}
 					$num_items++;
 				}
+				$index++;
 			}
 
 			return $result;

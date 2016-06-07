@@ -1474,7 +1474,10 @@ final class Shadowfunc
 				$price = $item->getStorePrice();
 				$dprice = sprintf("(%s)", Shadowfunc::displayNuyen($price));
 			}
-			$back .= sprintf($format, $index+1, $dname, $dcount, $dprice, $count, $price);
+
+			$rindex = count($data) === 2 ? $index : $data[2];
+
+			$back .= sprintf($format, $rindex+1, $dname, $dcount, $dprice, $count, $price);
 
 			$index++;
 		}
