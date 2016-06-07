@@ -330,6 +330,47 @@ class SR_Inventory
 		return false; // not found
 	}
 
+	public function getItemsByItemName($item_name, $max=false) // XXX should items be in some order?
+	{
+		if ($max !== false && $max < 1)
+		{
+			return array();
+		}
+
+		if ($this->cached_grouped !== null)
+		{
+			if (!isset($this->cached_grouped[$item_name]))
+			{
+				return false;
+			}
+
+			$items = &$this->cached_grouped[$item_name][1];
+
+			if ($max !== false && $max < count($items))
+			{
+				return array_slice($items,-$max);
+			} else {
+				return $items;
+			}
+		}
+
+		$items = array();
+		for ($item = end($this->inventory); false !== $item; $item = prev($this->inventory))
+		{
+			if ($item->getItemName() === $item_name)
+			{
+				$items[] = $item;
+				if ($max !== false && $max === count($items))
+				{
+					break;
+				}
+			}
+		}
+
+		return $items;
+	}
+
+
 	public function getItemByName($name, $requesting_player, $check_base_name=true)
 	{
 		# Reverse search on full name
@@ -401,11 +442,6 @@ class SR_Inventory
 		} else {
 			return $this->getItemBySubstring($str, $requesting_player);
 		}
-	}
-
-	public function getItems($str)
-	{
-		// XXX
 	}
 
 	public function getItemByClass($class)

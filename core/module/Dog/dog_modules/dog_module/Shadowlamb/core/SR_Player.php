@@ -1796,7 +1796,7 @@ class SR_Player extends GDO
 	
 	public function getInvItems($arg, $max=-1)
 	{
-		return $this->getItems($this->getInventoryItems(), $arg, $max);
+		return $this->sr4_inventory_new->getItemsByItemName($arg,$max===-1?false:$max);
 	}
 	
 	public function getMountItems($arg, $max=-1)

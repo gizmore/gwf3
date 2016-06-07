@@ -89,22 +89,21 @@ class Item_Holostick extends Item_Credstick
 			return false;
 		}
 		
-		# Have at least 1?
-		$items = $player->getInvItems($args[1], $want_amt);
-		if (count($items) === 0)
+		# Find item
+		if (false === ($item = $player->getInvItem($args[1])))
 		{
-			$player->message('You don\'t have that item. Please note that you have to provide full item name.');
+			$bot = Shadowrap::instance($player);
+			$bot->rply('1029');
+// 			$bot->reply('You don`t have that item in your inventory.');
 			return false;
 		}
-		
+
 		# Gather data
-		$item = $items[0];
-		$item instanceof SR_Item;
 		$itemname = $item->getItemName();
+		$items = $player->getInvItems($itemname, $want_amt);
 		$have_amt = $item->isItemStackable() ? min($item->getAmount(), $want_amt) : count($items);
 		$have_worth = $have_amt * $item->getItemPrice();
 		$have_weight = $have_amt * $item->getItemWeight();
-		
 		
 		# Check amt
 		if ($have_amt < $want_amt)
@@ -128,6 +127,7 @@ class Item_Holostick extends Item_Credstick
 // 			$this->reply($player, sprintf('You are about to transfer %s %s to your bank. Cost: %s. Retype to confirm.'));
 // 			return true;
 // 		}
+		
 
 		# Transfer to bank
 		$need_amt = $want_amt;
