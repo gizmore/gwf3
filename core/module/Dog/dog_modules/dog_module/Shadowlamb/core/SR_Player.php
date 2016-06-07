@@ -564,8 +564,8 @@ class SR_Player extends GDO
 		{
 			$player->reloadEquipment($e);
 		}
-		$player->sr4_inventory_new = new SR_Inventory('inventory',$player);
-		$player->sr4_inventory_new->addChangeHandler(array($player,'inventoryChanged'));
+		$player->sr4_inventory = new SR_Inventory('inventory',$player);
+		$player->sr4_inventory->addChangeHandler(array($player,'inventoryChanged'));
 		$player->sr4_cyberware = $player->reloadItemArray('cyberware');
 		$player->sr4_mount_inv = $player->reloadItemArray('mount_inv');
 		$player->sr4_bank = $player->reloadItemArray('bank');
@@ -787,7 +787,7 @@ class SR_Player extends GDO
 	private $sr4_data_modified = array();
 	
 	private $sr4_effects = array();
-	private $sr4_inventory_new;
+	private $sr4_inventory;
 	private $sr4_cyberware = array();
 	private $sr4_equipment = array();
 	private $sr4_mount_inv = array();
@@ -934,7 +934,7 @@ class SR_Player extends GDO
 	
 	private function modifyLevelInventory()
 	{
-		$this->modifyLevelItems(array_merge($this->sr4_equipment, $this->sr4_inventory_new->getArrayRef()));
+		$this->modifyLevelItems(array_merge($this->sr4_equipment, $this->sr4_inventory->getArrayRef()));
 	}
 	
 	private function modifyLevelItems(array $items)
@@ -1002,7 +1002,7 @@ class SR_Player extends GDO
 		
 	private function modifyInventory()
 	{
-		foreach ($this->sr4_inventory_new->getArrayRef() as $item)
+		foreach ($this->sr4_inventory->getArrayRef() as $item)
 		{
 			$item instanceof SR_Item;
 			$this->sr4_data_modified['weight'] += $item->getItemWeightStacked();
@@ -1406,7 +1406,7 @@ class SR_Player extends GDO
 	public function equip(SR_Equipment $item)
 	{
 		$type = $item->getItemType();
-		$this->sr4_inventory_new->removeItem($item);
+		$this->sr4_inventory->removeItem($item);
 		$this->sr4_equipment[$type] = $item;
 		return $item->changePosition($type);
 	}
@@ -1414,7 +1414,7 @@ class SR_Player extends GDO
 	public function unequip(SR_Equipment $item, $announce=true)
 	{
 		$field = $item->getItemType();
-		if (!$this->sr4_inventory_new->addItem($item))
+		if (!$this->sr4_inventory->addItem($item))
 		{
 			return false;
 		}
@@ -1704,7 +1704,7 @@ class SR_Player extends GDO
 	
 	public function getItemByInvID($invid)
 	{
-		return $this->sr4_inventory_new->getItemByGroupedIndex(((int)$invid)-1);
+		return $this->sr4_inventory->getItemByGroupedIndex(((int)$invid)-1);
 	}
 	
 	public function getItemByID(array $items, $id, array $items2)
@@ -1722,7 +1722,7 @@ class SR_Player extends GDO
 	public function getAllItems()
 	{
 		$fists = $this->hasWeapon() ? array() : array(Item_Fists::staticFists());
-		return array_merge($this->sr4_cyberware, $this->sr4_inventory_new->getArrayRef(), $this->sr4_equipment, $fists);
+		return array_merge($this->sr4_cyberware, $this->sr4_inventory->getArrayRef(), $this->sr4_equipment, $fists);
 	}
 	
 	/**
@@ -1751,7 +1751,7 @@ class SR_Player extends GDO
 	public function getInvItem($arg, $shortcuts=true, $verbose=true)
 	{
 		return is_numeric($arg)
-			? $this->sr4_inventory_new->getItemByGroupedIndex(((int)$arg)-1)
+			? $this->sr4_inventory->getItemByGroupedIndex(((int)$arg)-1)
 			: $this->getInvItemByName($arg, $shortcuts, $verbose);
 	}
 	
@@ -1796,7 +1796,7 @@ class SR_Player extends GDO
 	
 	public function getInvItems($arg, $max=-1)
 	{
-		return $this->sr4_inventory_new->getItemsByItemName($arg,$max===-1?false:$max);
+		return $this->sr4_inventory->getItemsByItemName($arg,$max===-1?false:$max);
 	}
 	
 	public function getMountItems($arg, $max=-1)
@@ -1811,7 +1811,7 @@ class SR_Player extends GDO
 	 */
 	public function getInvItemCount($itemname)
 	{
-		return $this->sr4_inventory_new->countByItemName($itemname);
+		return $this->sr4_inventory->countByItemName($itemname);
 	}
 	
 	/**
@@ -1822,9 +1822,9 @@ class SR_Player extends GDO
 	{
 		if ($shortcuts)
 		{
-			return $this->sr4_inventory_new->getItemBySubstring($itemname, $this, true, $verbose);
+			return $this->sr4_inventory->getItemBySubstring($itemname, $this, true, $verbose);
 		} else {
-			return $this->sr4_inventory_new->getItemByName($itemname, $this);
+			return $this->sr4_inventory->getItemByName($itemname, $this);
 		}
 	}
 	
@@ -1879,7 +1879,7 @@ class SR_Player extends GDO
 	
 	public function getInvItemByShortName($itemname)
 	{
-		return $this->sr4_inventory_new->getItemBySubstring($itemname, $this, false);
+		return $this->sr4_inventory->getItemBySubstring($itemname, $this, false);
 	}
 	
 	/**
@@ -1994,7 +1994,7 @@ class SR_Player extends GDO
 	{
 		$deck = false;
 		$level = -1;
-		foreach ($this->sr4_inventory_new->getArrayRef() as $item)
+		foreach ($this->sr4_inventory->getArrayRef() as $item)
 		{
 			if ($item instanceof SR_Cyberdeck)
 			{
@@ -2014,12 +2014,12 @@ class SR_Player extends GDO
 	#################
 	public function getInventory()
 	{
-		return $this->sr4_inventory_new;
+		return $this->sr4_inventory;
 	}
 	
 	public function &getInventoryItems() // XXX remove?
 	{
-		return $this->sr4_inventory_new->getArrayRef();
+		return $this->sr4_inventory->getArrayRef();
 	}
 	
 	public function getBankSorted()
@@ -2060,7 +2060,7 @@ class SR_Player extends GDO
 	 */
 	public function swapInvItems($item1, $item2)
 	{
-		return $this->sr4_inventory_new->swapItems($item1, $item2, $this);
+		return $this->sr4_inventory->swapItems($item1, $item2, $this);
 	}
 	
 	/**
@@ -2159,12 +2159,12 @@ class SR_Player extends GDO
 	
 	public function giveItem(SR_Item $item)
 	{
-		return $this->sr4_inventory_new->addItem($item);
+		return $this->sr4_inventory->addItem($item);
 	}
 
 	public function itemAmountChanged(SR_Item $item, $amount_change, $modify=true)
 	{
-		$this->sr4_inventory_new->itemAmountChanged($item, $amount_change);
+		$this->sr4_inventory->itemAmountChanged($item, $amount_change);
 
 		if ($modify)
 		{
@@ -2180,7 +2180,7 @@ class SR_Player extends GDO
 	public function removeFromPlayer(SR_Item $item, $modify=true)
 	{
 		unset($this->sr4_bank[$item->getID()]);
-		$this->sr4_inventory_new->removeItem($item);
+		$this->sr4_inventory->removeItem($item);
 		unset($this->sr4_cyberware[$item->getID()]);
 		unset($this->sr4_mount_inv[$item->getID()]);
 		unset($this->sr4_equipment[$item->getID()]);
@@ -2870,7 +2870,7 @@ class SR_Player extends GDO
 	private function looseItem(SR_Player $killer)
 	{
 		Dog_Log::debug(sprintf('%s could loose an item!', $this->getName()));
-		$items = array_merge($this->sr4_equipment, $this->sr4_inventory_new->getArrayRef());
+		$items = array_merge($this->sr4_equipment, $this->sr4_inventory->getArrayRef());
 		foreach ($items as $i => $item)
 		{
 			$item instanceof SR_Item;
