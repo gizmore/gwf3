@@ -566,7 +566,7 @@ class SR_Player extends GDO
 		}
 		$player->sr4_inventory = new SR_Inventory('inventory', $player);
 		$player->sr4_inventory->addChangeHandler(array($player,'inventoryChanged'));
-		$player->sr4_cyberware = $player->reloadItemArray('cyberware');
+		$player->sr4_cyberware = new SR_Inventory('cyberware', $player);
 		$player->sr4_mount_inv = new SR_Inventory('mount_inv', $player);
 		$player->sr4_bank = $player->reloadItemArray('bank');
 		$player->reloadConstVars();
@@ -788,7 +788,7 @@ class SR_Player extends GDO
 	
 	private $sr4_effects = array();
 	private $sr4_inventory;
-	private $sr4_cyberware = array();
+	private $sr4_cyberware;
 	private $sr4_equipment = array();
 	private $sr4_mount_inv;
 	private $sr4_bank = array();
@@ -877,7 +877,7 @@ class SR_Player extends GDO
 		$this->modifyGender();
 		if (!$this->hasWeapon()) { $this->modifyItem(Item_Fists::staticFists()); }
 		$this->modifyItems($this->sr4_equipment);
-		$this->modifyItems($this->sr4_cyberware);
+		$this->modifyItems($this->sr4_cyberware->getArrayRef());
 		SR_SetItems::applyModifiers($this);
 		$this->modifyInventory();
 		
@@ -1722,7 +1722,7 @@ class SR_Player extends GDO
 	public function getAllItems()
 	{
 		$fists = $this->hasWeapon() ? array() : array(Item_Fists::staticFists());
-		return array_merge($this->sr4_cyberware, $this->sr4_inventory->getArrayRef(), $this->sr4_equipment, $fists);
+		return array_merge($this->sr4_cyberware->getArrayRef(), $this->sr4_inventory->getArrayRef(), $this->sr4_equipment, $fists);
 	}
 	
 	/**
@@ -1921,63 +1921,24 @@ class SR_Player extends GDO
 	#################
 	### Cyberware ###
 	#################
-	public function getCyberware()
+	public function &getCyberware() // XXX remove?
 	{
-		return $this->sr4_cyberware;
+		return $this->sr4_cyberware->getArrayRef();
 	}
 	
 	public function hasCyberware($itemname)
 	{
-		return $this->getCyberwareByName($itemname) !== false;
-	}
-	
-	public function getCyberwareByID($id)
-	{
-		$id = (int) $id;
-		$cyberware = $this->sr4_cyberware;
-		if ($id < 1 || $id > count($cyberware)) {
-			return false;
-		}
-		$back = array_slice($cyberware, $id-1, 1, false);
-		return $back[0];
-	}
-	
-	public function getCyberwareByName($itemname)
-	{
-		return $this->getItemByNameB($itemname, $this->sr4_cyberware);
+		return $this->sr4_cyberware->getItemByItemName($itemname) !== false;
 	}
 	
 	public function addCyberware(SR_Cyberware $item)
 	{
-		$item->saveVar('sr4it_uid', $this->getID());
-		$item->changePosition('cyberware');
-		$this->sr4_cyberware[$item->getID()] = $item;
-		return true;
-// 		return $this->updateCyberware();
+		return $this->sr4_cyberware->addItem($item);
 	}
-	
-// 	private function updateCyberware()
-// 	{
-// 		if (false === $this->updateItemArray('sr4pl_cyberware', $this->sr4_cyberware)) {
-// 			return false;
-// 		}
-// // 		$this->setOption(self::CYBER_DIRTY|self::STATS_DIRTY, true);
-// 		return true;
-// 	}
 	
 	public function removeCyberware(SR_Cyberware $item)
 	{
-		unset($this->sr4_cyberware[$item->getID()]);
-		return $item->delete();
-// 		foreach ($this->sr4_cyberware as $id => $i)
-// 		{
-// 			if ($item->getItemName() === $i->getItemName())
-// 			{
-// 				unset($this->sr4_cyberware[$id]);
-// 				return $this->updateCyberware();
-// 			}
-// 		}
-// 		return false;
+		return $this->sr4_cyberware->removeItem($item) && $item->delete();
 	}
 	
 	#################
@@ -1989,16 +1950,13 @@ class SR_Player extends GDO
 	{
 		$deck = false;
 		$level = -1;
-		foreach ($this->sr4_inventory->getArrayRef() as $item)
+		foreach ($this->sr4_inventory->getItemsByClass('SR_Cyberdeck') as $item)
 		{
-			if ($item instanceof SR_Cyberdeck)
+			$lvl = $item->getCyberdeckLevel();
+			if ($lvl > $level)
 			{
-				$lvl = $item->getCyberdeckLevel();
-				if ($lvl > $level)
-				{
-					$level = $lvl;
-					$deck = $item;
-				}
+				$level = $lvl;
+				$deck = $item;
 			}
 		}
 		return $deck;
@@ -2171,7 +2129,7 @@ class SR_Player extends GDO
 	{
 		unset($this->sr4_bank[$item->getID()]);
 		$this->sr4_inventory->removeItem($item);
-		unset($this->sr4_cyberware[$item->getID()]);
+		$this->sr4_cyberware->removeItem($item);
 		$this->sr4_mount_inv->removeItem($item);
 		unset($this->sr4_equipment[$item->getID()]);
 		if ($modify)
@@ -2257,6 +2215,11 @@ class SR_Player extends GDO
 	public function getMountInvItem($arg)
 	{
 		return $this->sr4_mount_inv->getItem($arg, $this);
+	}
+	
+	public function getCyberwareItem($arg)
+	{
+		return $this->sr4_cyberware->getItem($arg, $this);
 	}
 	
 	############
