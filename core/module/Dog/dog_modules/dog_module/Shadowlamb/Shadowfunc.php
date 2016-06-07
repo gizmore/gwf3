@@ -715,11 +715,6 @@ final class Shadowfunc
 		return Shadowrun4::lang($key, $args);
 	}
 	
-	public static function getMountInv(SR_Player $player)
-	{
-		return self::getItemsSorted($player, $player->getMountInvSorted());
-	}
-	
 	public static function getItemsSorted(SR_Player $player, array $items, $i=1)
 	{
 // 		$b = chr(2);

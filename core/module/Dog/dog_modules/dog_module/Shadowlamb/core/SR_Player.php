@@ -564,10 +564,10 @@ class SR_Player extends GDO
 		{
 			$player->reloadEquipment($e);
 		}
-		$player->sr4_inventory = new SR_Inventory('inventory',$player);
+		$player->sr4_inventory = new SR_Inventory('inventory', $player);
 		$player->sr4_inventory->addChangeHandler(array($player,'inventoryChanged'));
 		$player->sr4_cyberware = $player->reloadItemArray('cyberware');
-		$player->sr4_mount_inv = $player->reloadItemArray('mount_inv');
+		$player->sr4_mount_inv = new SR_Inventory('mount_inv', $player);
 		$player->sr4_bank = $player->reloadItemArray('bank');
 		$player->reloadConstVars();
 		$player->reloadEffects();
@@ -790,7 +790,7 @@ class SR_Player extends GDO
 	private $sr4_inventory;
 	private $sr4_cyberware = array();
 	private $sr4_equipment = array();
-	private $sr4_mount_inv = array();
+	private $sr4_mount_inv;
 	private $sr4_bank = array();
 	
 	public function get($field) { return $this->sr4_data_modified[$field]; }
@@ -1699,7 +1699,7 @@ class SR_Player extends GDO
 	
 	public function getMountInvItemByID($id)
 	{
-		return $this->getItemByID($this->getMountInvSorted(), $id, $this->getMountInvItems());
+		return $this->sr4_mount_inv->getItemByGroupedIndex(((int)$id)-1);
 	}
 	
 	public function getItemByInvID($invid)
@@ -1737,11 +1737,6 @@ class SR_Player extends GDO
 	public function getBankItemByName($itemname)
 	{
 		return $this->getItemByNameB($itemname, $this->getBankItems(), false);
-	}
-	
-	public function getMountInvItemByName($itemname)
-	{
-		return $this->getItemByNameB($itemname, $this->getMountInvItems(), false);
 	}
 	
 	/**
@@ -1801,7 +1796,7 @@ class SR_Player extends GDO
 	
 	public function getMountItems($arg, $max=-1)
 	{
-		return $this->getItems($this->getMountInvItems(), $arg, $max);
+		return $this->sr4_mount_inv->getItemsByItemName($arg,$max===-1?false:$max);
 	}
 	
 	/**
@@ -2027,11 +2022,6 @@ class SR_Player extends GDO
 		return $this->getItemsSorted($this->getBankItems());
 	}
 	
-	public function getMountInvSorted()
-	{
-		return $this->getItemsSorted($this->getMountInvItems());
-	}
-	
 	private function getItemsSorted(array $items)
 	{
 		$temp = array();
@@ -2182,7 +2172,7 @@ class SR_Player extends GDO
 		unset($this->sr4_bank[$item->getID()]);
 		$this->sr4_inventory->removeItem($item);
 		unset($this->sr4_cyberware[$item->getID()]);
-		unset($this->sr4_mount_inv[$item->getID()]);
+		$this->sr4_mount_inv->removeItem($item);
 		unset($this->sr4_equipment[$item->getID()]);
 		if ($modify)
 		{
@@ -2236,57 +2226,27 @@ class SR_Player extends GDO
 	
 	public function putInMountInv(SR_Item $item)
 	{
-		if ($item->isItemStackable())
-		{
-			if (false !== ($other = $this->getMountInvItemByName($item->getItemName())))
-			{
-				$other->increase('sr4it_amount', $item->getAmount());
-				$item->delete();
-				return true;
-			}
-		}
-		$item->changeOwnerAndPosition($this->getID(), 'mount_inv');
-		$this->sr4_mount_inv[$item->getID()] = $item;
-		return true;
+		return $this->sr4_mount_inv->addItem($item);
 	}
 	
-	public function getMountInvItemCount()
+	public function isMountEmpty()
 	{
-		return count($this->getMountInvItems());
+		return $this->sr4_mount_inv->getNumItems() === 0;
 	}
 	
-	public function getMountInvItems()
+	public function getMountInv()
 	{
 		return $this->sr4_mount_inv;
-// 		$mount_inv = array();
-// 		foreach (explode(',', $this->getVar('sr4pl_mount_inv')) as $itemid)
-// 		{
-// 			$itemid = (int) $itemid;
-// 			if (false !== ($item = SR_Item::getByID($itemid)))
-// 			{
-// 				$mount_inv[$itemid] = $item;
-// 			}
-// 		}
-// 		return $mount_inv;
-	}
-
-	public function getMountInvItemsByItemName($itemname)
-	{
-		$back = array();
-		foreach ($this->getMountInvItems() as $itemid => $item)
-		{
-			if ($item->getItemName() === $itemname)
-			{
-				$back[] = $item;
-			}
-		}
-		return $back;
 	}
 	
+	public function &getMountInvItems() // XXX remove?
+	{
+		return $this->sr4_mount_inv->getArrayRef();
+	}
+
 	public function removeFromMountInv(SR_Item $item)
 	{
-		unset($this->sr4_mount_inv[$item->getID()]);
-		return true;
+		return $this->sr4_mount_inv->removeItem($item);
 	}
 	
 	/**
@@ -2296,7 +2256,7 @@ class SR_Player extends GDO
 	 */
 	public function getMountInvItem($arg)
 	{
-		return is_numeric($arg) ? $this->getMountInvItemByID($arg) : $this->getMountInvItemByName($arg);
+		return $this->sr4_mount_inv->getItem($arg, $this);
 	}
 	
 	############

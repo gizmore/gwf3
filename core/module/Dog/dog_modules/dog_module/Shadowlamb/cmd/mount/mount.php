@@ -18,7 +18,7 @@ final class Shadowcmd_mount extends Shadowcmd
 			case 'clean': return self::on_clean($player, $args);
 			
 			default:
-				$items = $player->getMountInvItems();
+				$items = $player->getMountInv();
 				$text = array(
 					'prefix' => $player->lang('mount'),
 				);
