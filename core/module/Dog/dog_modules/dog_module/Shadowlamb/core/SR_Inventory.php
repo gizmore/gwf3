@@ -426,7 +426,7 @@ class SR_Inventory
 				{
 					if ($verbose)
 					{
-						$this->msg('1179'); # Ambigious
+						$requesting_player->msg('1179'); # Ambigious
 					}
 					return false;
 				}
@@ -553,7 +553,7 @@ class SR_Inventory
 	{
 		if ($item->getPosition() !== $this->type) // make sure it's in here
 		{
-			return;
+			return false;
 		}
 
 		if ($this->cached_grouped !== null)
@@ -563,19 +563,23 @@ class SR_Inventory
 		}
 		
 		$this->onChanged();
+
+		return true;
 	}
 
 	public function removeItem($item)
 	{
 		if (!isset($this->inventory[$item->getID()]))
 		{
-			return;
+			return false;
 		}
 
 		unset($this->inventory[$item->getID()]);
 		$this->removeFromGroup($item);
 
 		$this->onChanged();
+
+		return true;
 	}
 
 	public function swapItems($name1, $name2, $requesting_player)

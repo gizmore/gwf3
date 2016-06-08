@@ -568,7 +568,7 @@ class SR_Player extends GDO
 		$player->sr4_inventory->addChangeHandler(array($player,'inventoryChanged'));
 		$player->sr4_cyberware = new SR_Inventory('cyberware', $player);
 		$player->sr4_mount_inv = new SR_Inventory('mount_inv', $player);
-		$player->sr4_bank = $player->reloadItemArray('bank');
+		$player->sr4_bank = new SR_Inventory('bank', $player);
 		$player->reloadConstVars();
 		$player->reloadEffects();
 		$player->modify();
@@ -791,7 +791,7 @@ class SR_Player extends GDO
 	private $sr4_cyberware;
 	private $sr4_equipment = array();
 	private $sr4_mount_inv;
-	private $sr4_bank = array();
+	private $sr4_bank;
 	
 	public function get($field) { return $this->sr4_data_modified[$field]; }
 	public function getBase($field) { return $this->getVar('sr4pl_'.$field); }
@@ -1694,7 +1694,7 @@ class SR_Player extends GDO
 	
 	public function getBankItemByID($id)
 	{
-		return $this->getItemByID($this->getBankSorted(), $id, $this->getBankItems());
+		return $this->sr4_bank->getItemByGroupedIndex(((int)$id)-1);
 	}
 	
 	public function getMountInvItemByID($id)
@@ -1705,18 +1705,6 @@ class SR_Player extends GDO
 	public function getItemByInvID($invid)
 	{
 		return $this->sr4_inventory->getItemByGroupedIndex(((int)$invid)-1);
-	}
-	
-	public function getItemByID(array $items, $id, array $items2)
-	{
-		$id = (int)$id;
-		if ($id > count($items) || $id < 1)
-		{
-			return false;
-		}
-		$back = array_slice($items, $id-1, 1);
-		$back = array_shift($back);
-		return $items2[$back[1][0]->getID()];
 	}
 	
 	public function getAllItems()
@@ -1732,11 +1720,6 @@ class SR_Player extends GDO
 	public function getItemByName($itemname, $shortcuts=true)
 	{
 		return $this->getItemByNameB($itemname, $this->getAllItems(), $shortcuts);
-	}
-	
-	public function getBankItemByName($itemname)
-	{
-		return $this->getItemByNameB($itemname, $this->getBankItems(), false);
 	}
 	
 	/**
@@ -1975,30 +1958,6 @@ class SR_Player extends GDO
 		return $this->sr4_inventory->getArrayRef();
 	}
 	
-	public function getBankSorted()
-	{
-		return $this->getItemsSorted($this->getBankItems());
-	}
-	
-	private function getItemsSorted(array $items)
-	{
-		$temp = array();
-		foreach ($items as $itemid => $item)
-		{
-			$name = $item->getItemName();
-			if (isset($temp[$name]))
-			{
-				$temp[$name][0] += $item->getAmount();
-				$temp[$name][1][] = $item;
-			}
-			else
-			{
-				$temp[$name] = array($item->getAmount(), array($item));
-			}
-		}
-		return $temp;
-	}
-
 	/**
 	 * Swap the position of 2 items.
 	 * @author digitalseraphim
@@ -2127,7 +2086,7 @@ class SR_Player extends GDO
 	
 	public function removeFromPlayer(SR_Item $item, $modify=true)
 	{
-		unset($this->sr4_bank[$item->getID()]);
+		$this->sr4_bank->removeItem($item);
 		$this->sr4_inventory->removeItem($item);
 		$this->sr4_cyberware->removeItem($item);
 		$this->sr4_mount_inv->removeItem($item);
@@ -2227,44 +2186,28 @@ class SR_Player extends GDO
 	############
 	public function putInBank(SR_Item $item)
 	{
-		if ($item->isItemStackable())
-		{
-			$others = $this->getBankItemsByItemName($item->getItemName());
-			# item is stackable, so there should be at most one
-			if (count($others) !== 0)
-			{
-				$others[0]->increase('sr4it_amount', $item->getAmount());
-				return $item->delete();
-			}
-		}
-		
-		$this->sr4_bank[$item->getID()] = $item;
-		return $item->changePosition('bank');
+		return $this->sr4_bank->addItem($item);
 	}
 	
-	public function getBankItems()
+	public function getBank()
 	{
 		return $this->sr4_bank;
 	}
 	
-	public function getBankItemsByItemName($itemname)
+	public function &getBankItems() // XXX remove?
 	{
-		$back = array();
-		foreach ($this->getBankItems() as $itemid => $item)
-		{
-			if ($item->getItemName() === $itemname)
-			{
-				$back[] = $item;
-			}
-		}
-		return $back;
+		return $this->sr4_bank->getArrayRef();
+	}
+	
+	public function getBankItemsByItemName($itemname, $max=false)
+	{
+		return $this->sr4_bank->getItemsByItemName($itemname, $max);
 	}
 	
 	
 	public function removeFromBank(SR_Item $item)
 	{
-		unset($this->sr4_bank[$item->getID()]);
-		return true;
+		return $this->sr4_bank->removeItem($item);
 	}
 	
 	/**
@@ -2274,7 +2217,7 @@ class SR_Player extends GDO
 	 */
 	public function getBankItem($arg)
 	{
-		return is_numeric($arg) ? $this->getBankItemByID($arg) : $this->getBankItemByName($arg);
+		return $this->sr4_bank->getItem($arg, $this);
 	}
 	
 	#############

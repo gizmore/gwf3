@@ -79,12 +79,12 @@ abstract class SR_Bank extends SR_Location
 	#############
 	public function on_view(SR_Player $player, array $args)
 	{
-		$items = $player->getBankItems();
+		$inventory = $player->getBank();
 		$text = array(
 			'prefix' => $player->lang('bank'),
 			'code' => '5188',
 		);
-		return Shadowfunc::genericViewI($player, $items, $args, $text, false);
+		return Shadowfunc::genericViewI($player, $inventory, $args, $text);
 	}
 
 	public function on_viewi(SR_Player $player, array $args)
@@ -403,7 +403,7 @@ abstract class SR_Bank extends SR_Location
 			}
 			else
 			{
-				$items2 = $player->getBankItemsByItemName($item->getItemName());
+				$items2 = $player->getBankItemsByItemName($item->getItemName(), $amt);
 				$have_amt = count($items2);
 			}
 			if ($amt > $have_amt)
@@ -497,9 +497,8 @@ abstract class SR_Bank extends SR_Location
 			return false;
 		}
 		
-		$inv = $player->getBankSorted();
 		$min = 1;
-		$max = count($inv);
+		$max = $player->getBank()->getNumGrouped();
 		
 		if (preg_match('/^\\d*-?\\d*$/', $args[0]))
 		{
@@ -536,48 +535,39 @@ abstract class SR_Bank extends SR_Location
 			return false;
 		}
 		
-		$i = 1;
+		$inv = $player->getBank()->getItemsByGroupedIndex($from-1, $to);
 		$popped = 0;
 		$skipped = 0;
 		$price = 0;
 		foreach ($inv as $itemname => $data)
 		{
-			if ($i >= $from)
+			$has_popped = false;
+			foreach ($data[1] as $item)
 			{
-				$has_popped = false;
-				foreach ($data[1] as $item)
-				{
-					$amt = $item->getAmount();
+				$amt = $item->getAmount();
 
-					if ($player->removeFromBank($item))
+				if ($player->removeFromBank($item))
+				{
+					if($player->giveItem($item))
 					{
-						if($player->giveItem($item))
-						{
-							$popped += $amt;
-							$has_popped = true;
-						} else {
-							if (!$player->putInBank($item))
-							{
-								Dog_Log::error(sprintf('Command popall in %s made %s lose item %s (id: %d)!',$this->getName(),$player->getName(),$item->getNamePacked($player),$item->getID()));
-							}
-							$skipped += $amt;
-						}
+						$popped += $amt;
+						$has_popped = true;
 					} else {
+						if (!$player->putInBank($item))
+						{
+							Dog_Log::error(sprintf('Command popall in %s made %s lose item %s (id: %d)!',$this->getName(),$player->getName(),$item->getNamePacked($player),$item->getID()));
+						}
 						$skipped += $amt;
 					}
-				}
-
-				if ($has_popped)
-				{
-					$price += $item_price;
-				}
-
-				if ($i === $to)
-				{
-					break;
+				} else {
+					$skipped += $amt;
 				}
 			}
-			$i++;
+
+			if ($has_popped)
+			{
+				$price += $item_price;
+			}
 		}
 		$player->modify();
 

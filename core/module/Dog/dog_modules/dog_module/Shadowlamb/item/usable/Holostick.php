@@ -73,11 +73,11 @@ class Item_Holostick extends Item_Credstick
 	
 	protected function onItemUseViewi(SR_Player $player, array $args)
 	{
-		$items = $player->getBankItems();
+		$inventory = $player->getBank();
 		$args = array_slice($args,1);
 		$text = array(	'prefix' => 'Your bank items',
 				'usage' => 'Try #u Holostick view [<pattern>] [<page>].');
-		return Shadowfunc::genericViewI($player, $items, $args, $text);
+		return Shadowfunc::genericViewI($player, $inventory, $args, $text);
 	}
 	
 	protected function onItemUsePushi(SR_Player $player, array $args)
