@@ -18,11 +18,11 @@ final class Shadowcmd_mount extends Shadowcmd
 			case 'clean': return self::on_clean($player, $args);
 			
 			default:
-				$items = $player->getMountInv();
+				$inventory = $player->getMountInv();
 				$text = array(
 					'prefix' => $player->lang('mount'),
 				);
-				return self::rply($player, '5129', array(Shadowfunc::getGenericViewI($player, $items, $args, $text, false)));
+				return self::rply($player, '5129', array(Shadowfunc::getGenericViewI($player, $inventory, $args, $text)));
 		}
 	}
 
