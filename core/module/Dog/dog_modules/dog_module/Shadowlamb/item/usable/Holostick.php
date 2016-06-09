@@ -82,6 +82,8 @@ class Item_Holostick extends Item_Credstick
 	
 	protected function onItemUsePushi(SR_Player $player, array $args)
 	{
+		$bot = Shadowrap::instance($player);
+
 		$want_amt = isset($args[2]) ? ((int)$args[2]) : 1;
 		if ($want_amt < 1)
 		{
@@ -92,7 +94,6 @@ class Item_Holostick extends Item_Credstick
 		# Find item
 		if (false === ($item = $player->getInvItem($args[1])))
 		{
-			$bot = Shadowrap::instance($player);
 			$bot->rply('1029');
 // 			$bot->reply('You don`t have that item in your inventory.');
 			return false;
@@ -120,8 +121,23 @@ class Item_Holostick extends Item_Credstick
 			$this->reply($player, sprintf('You need %s for this transaction, but you only got %s.', $dp, $player->displayNuyen()));
 			return false;
 		}
-		
-		
+
+		# Room in bank?
+		if ($item->isItemStackable())
+		{
+			if ($player->getBank()->getItemByItemName($item->getItemName()) === false && !$player->getBank()->hasRoom())
+			{
+				$bot->rply('1196');
+				return false;
+			}
+		} else {
+			if (!$player->getBank()->hasRoom($want_amt))
+			{
+				$bot->rply('1196');
+				return false;
+			}
+		}
+
 // 		if (false !== ($this->confirm()))
 // 		{
 // 			$this->reply($player, sprintf('You are about to transfer %s %s to your bank. Cost: %s. Retype to confirm.'));

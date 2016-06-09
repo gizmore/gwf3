@@ -21,7 +21,12 @@ abstract class SR_Bank extends SR_Location
 
 	public function getHelpText(SR_Player $player)
 	{
-		return $player->lang('hlp_bank', array(Shadowfunc::displayNuyen($this->calcPrice($player))));
+		$max_items = $player->getBank()->getMaxNumItems();
+		if ($max_items === false)
+		{
+			$max_items = 'unlimited';
+		}
+		return $player->lang('hlp_bank', array(Shadowfunc::displayNuyen($this->calcPrice($player)), $player->getBank()->getNumItems(), $max_items));
 // 		$c = Shadowrun4::SR_SHORTCUT;
 // 		$p = Shadowfunc::displayNuyen($this->calcPrice($player));
 // 		return "In a bank you can use {$c}push and {$c}pop to bank items, and {$c}pushy and {$c}popy to store nuyen. Use {$c}view to list or search your banked items. Every transaction costs $p for you.";
@@ -130,6 +135,23 @@ abstract class SR_Bank extends SR_Location
 			return false;
 		}
 		
+		# Room in bank?
+		if ($item->isItemStackable())
+		{
+			if ($player->getBank()->getItemByItemName($item->getItemName()) === false && !$player->getBank()->hasRoom())
+			{
+				$bot->rply('1196');
+				return false;
+			}
+		} else {
+			$amount = count($args) > 1 ? (int)$args[1] : 1;
+			if (!$player->getBank()->hasRoom($amount))
+			{
+				$bot->rply('1196');
+				return false;
+			}
+		}
+
 		# Equipped?
 // 		if ($item->isEquipped($player))
 // 		{
@@ -289,10 +311,35 @@ abstract class SR_Bank extends SR_Location
 		
 		$inv = $player->getInventory()->getItemsByGroupedIndex($from-1, $to);
 
+		# Room in bank?
+		if ($player->getBank()->getMaxNumItems() !== false)
+		{
+			$total_amount_new = 0;
+			foreach ($inv as $itemname => &$data)
+			{
+				$item = reset($data[1]);
+				if ($item->isItemStackable())
+				{
+					if ($player->getBank()->getItemByItemName($itemname) === false)
+					{
+						$total_amount_new += 1;
+					}
+				} else {
+					$total_amount_new += $data[0];
+				}
+			}
+
+			if (!$player->getBank()->hasRoom($total_amount_new))
+			{
+				$bot->rply('1196');
+				return false;
+			}
+		}
+
 		$pushed = 0;
 		$skipped = 0;
 		$price = 0;
-		foreach ($inv as $itemname => $data)
+		foreach ($inv as $itemname => &$data)
 		{
 			$has_pushed = false;
 			foreach ($data[1] as $item)
@@ -539,7 +586,7 @@ abstract class SR_Bank extends SR_Location
 		$popped = 0;
 		$skipped = 0;
 		$price = 0;
-		foreach ($inv as $itemname => $data)
+		foreach ($inv as $itemname => &$data)
 		{
 			$has_popped = false;
 			foreach ($data[1] as $item)

@@ -232,7 +232,7 @@ $lang = array(
 # Ingame help
 'hlp_in_outside' => 'Lorsque vous trouver des endroits, vous êtes en dehors d\'eux. Utiliser #goto ou #enter pour entrer à l\'intérieur. Vous pouvez #(exp) encore pour trouver plus d\'endroit.',
 'hlp_clan_enter' => "Rejoignez un clan {$c}abandon, {$c}request et {$c}accept. Créer un clan avec {$c}create. Achetez plus d\'espace et de devises avec {$c}manage. Installer les options avec {$c}toggle. Accéder au clan banque avec {$c}push, {$c}pop et {$c}view, à l'argent du clan avec {$c}pushy et {$c}popy.",
-'hlp_bank' => "Dans une banque, vous pouvez utiliser #push et #pop pour stocker des objets, #pushy et #popy pour déposer vos nuyen. Utiliser #vies pour litesr ou chercher dans vos objets stockés. Chaque transaction coute %s pour vous.",
+'hlp_bank' => "Dans une banque, vous pouvez utiliser #push et #pop pour stocker des objets, #pushy et #popy pour déposer vos nuyen. Utiliser #vies pour litesr ou chercher dans vos objets stockés. Chaque transaction coute %s pour vous. Vous utilisez actuellement %s de %s slots d'article (empilables comptent pour un, par type).",
 'hlp_bazar' => "À la broquante, vous pouvez vendre vos objets. Vous pouvez utiliser #push, #pop, #view, #search, #buy, #bestbuy, #buyslot, #slogan et #price ici.",
 'hlp_elevator' => 'Dans les ascenseurs, vous pouvez utiliser #up, #down et #floor.',
 'hlp_exit' => 'Vous pouvez revenir à cet endroit en utilisant #leave.',

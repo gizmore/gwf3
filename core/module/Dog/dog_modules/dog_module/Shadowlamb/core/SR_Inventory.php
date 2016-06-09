@@ -8,6 +8,7 @@ class SR_Inventory
 
 	private $owner;
 	private $type;
+	private $size_limit;
 	private $inventory;
 	private $cached_grouped = null;
 	private $change_handlers = array();
@@ -18,10 +19,11 @@ class SR_Inventory
 	### Initialisation ###
 	######################
 
-	public function __construct($type, $owner)
+	public function __construct($type, $owner, $size_limit=false)
 	{
 		$this->type = $type;
 		$this->owner = $owner;
+		$this->size_limit = $size_limit;
 		$this->load();
 	}
 
@@ -207,6 +209,21 @@ class SR_Inventory
 	public function getNumItems()
 	{
 		return count($this->inventory);
+	}
+	
+	public function getMaxNumItems()
+	{
+		return $this->size_limit;
+	}
+	
+	public function hasRoom($for=1)
+	{
+		if ($this->size_limit === false)
+		{
+			return true;
+		}
+
+		return $this->getMaxNumItems() - $this->getNumItems() >= $for;
 	}
 
 	public function getNumGrouped()
@@ -570,6 +587,11 @@ class SR_Inventory
 
 				return $item->delete();
 			}
+		}
+
+		if ($this->size_limit !== false && count($this->inventory) >= $this->size_limit) // hard limit
+		{
+			return false;
 		}
 
 		if (!$item->changeOwnerAndPosition($this->owner->getID(),$this->type)) // also changes item microtime

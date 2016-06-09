@@ -568,7 +568,7 @@ class SR_Player extends GDO
 		$player->sr4_inventory->addChangeHandler(array($player,'inventoryChanged'));
 		$player->sr4_cyberware = new SR_Inventory('cyberware', $player);
 		$player->sr4_mount_inv = new SR_Inventory('mount_inv', $player);
-		$player->sr4_bank = new SR_Inventory('bank', $player);
+		$player->sr4_bank = new SR_Inventory('bank', $player, 10000);
 		$player->reloadConstVars();
 		$player->reloadEffects();
 		$player->modify();
