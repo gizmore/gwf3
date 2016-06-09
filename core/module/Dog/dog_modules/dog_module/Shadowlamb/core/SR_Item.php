@@ -275,7 +275,7 @@ class SR_Item extends GDO
 		
 		$item = self::instance($name);
 		
-		if ($amount === true)
+		if ($amount === true || $amount === false) # not a number
 		{
 			$amount = self::$items[$name]->getItemDefaultAmount();
 		}
