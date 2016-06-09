@@ -184,7 +184,7 @@ abstract class SR_Store extends SR_Location
 			'code' => $this->getStoreViewCode(),
 		);
 		$items = $this->getStoreItemsC($player);
-		return Shadowfunc::genericViewS($player, $items, $args, $text, false);
+		return Shadowfunc::genericViewS($player, $items, $args, $text);
 	}
 	
 	public function getStoreItemsC(SR_Player $player)
