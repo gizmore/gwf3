@@ -297,7 +297,7 @@ abstract class SR_NPCBase extends SR_Player
 		$data['sr4pl_classname'] = $classname;
 		$npc = new $classname($data);
 		$npc->setNPCClassName($classname);
-		$npc instanceof SR_NPC;
+		self::initInventories($npc);
 		$npc->setOption(self::CREATED, true);
 		$npc->setVar('sr4pl_name', $npc->getNPCPlayerName());
 		if (false === ($npc->insert()))
