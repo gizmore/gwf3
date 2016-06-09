@@ -75,6 +75,11 @@ class SR_Inventory
 	### Cached Grouped ###
 	######################
 
+	private function clearCache()
+	{
+		$this->cached_grouped = null;
+	}
+
 	private function cacheGroupedItems()
 	{
 		if ($this->cached_grouped !== null)
@@ -204,7 +209,7 @@ class SR_Inventory
 		$this->cacheGroupedItems(); // make sure it's available
 
 		$index = 0;
-		foreach ($this->cached_grouped as $current_name => $data)
+		foreach ($this->cached_grouped as $current_name => &$data)
 		{
 			if ($item_name === $current_name)
 			{
@@ -271,11 +276,12 @@ class SR_Inventory
 			$result = array();
 			$num_items = 0;
 			$index = 0;
-			foreach ($this->cached_grouped as $item_name => $group)
+			$iso = $requesting_player->getLangISO();
+			foreach ($this->cached_grouped as $item_name => &$group)
 			{
 				$item = reset($group[1]);
-				if (   (false !== stripos($item->displayFullName($requesting_player, false, false), $pattern))
-					|| (false !== stripos($item_name, $pattern)) )
+				if (   (false !== stripos($item_name, $pattern))
+					|| (false !== stripos(Shadowlang::itemNameForSearch($item, $iso), $pattern)) )
 				{
 					if ($start <= $num_items && $num_items < $end)
 					{
@@ -377,10 +383,11 @@ class SR_Inventory
 	public function getItemByName($name, $requesting_player, $check_base_name=true)
 	{
 		# Reverse search on full name
+		$iso = $requesting_player->getLangISO();
 		for ($item = end($this->inventory); false !== $item; $item = prev($this->inventory))
 		{
-			if (   (!strcasecmp($item->displayFullName($requesting_player, false, false), $name))
-				|| (!strcasecmp($item->getItemName(), $name)) )
+			if (   (!strcasecmp($item->getItemName(), $name))
+				|| (!strcasecmp(Shadowlang::itemNameForSearch($item, $iso), $name)) )
 			{
 				return $item;
 			}
@@ -417,10 +424,11 @@ class SR_Inventory
 		$found_item = false;
 		
 		# Reverse search on full name
+		$iso = $requesting_player->getLangISO();
 		for ($item = end($this->inventory); false !== $item; $item = prev($this->inventory))
 		{
-			if (   (false !== stripos($item->displayFullName($requesting_player, false, false), $substr))
-				|| (false !== stripos($item->getItemName(), $substr)) )
+			if (   (false !== stripos($item->getItemName(), $substr))
+				|| (false !== stripos(Shadowlang::itemNameForSearch($item, $iso), $substr)) )
 			{
 				if ($found_item !== false)
 				{
@@ -712,7 +720,7 @@ class SR_Inventory
 
 		$this->inventory = &$new_inv;
 
-		$this->cached_grouped = null; // XXX make function; also, fix grouped instead? (as you normally always call it after some grouped view)
+		$this->clearCache(); // XXX fix grouped instead? (as you normally always call it after some grouped view)
 
 		$item->onChanged(true);
 	}
