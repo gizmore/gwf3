@@ -155,6 +155,32 @@ class SR_Inventory
 		}
 	}
 
+	private function swapGroups($item_name1, $item_name2)
+	{
+		if ($this->cached_grouped === null)
+		{
+			return;
+		}
+		
+		$new_grouped = array();
+		$group1 = &$this->cached_grouped[$item_name1];
+		$group2 = &$this->cached_grouped[$item_name2];
+		foreach ($this->cached_grouped as $item_name => &$group)
+		{
+			if ($item_name === $item_name1)
+			{
+				$new_grouped[$item_name2] = &$group2;
+			} else if ($item_name === $item_name2)
+			{
+				$new_grouped[$item_name1] = &$group1;
+			} else {
+				$new_grouped[$item_name] = &$group;
+			}
+		}
+
+		$this->cached_grouped = &$new_grouped;
+	}
+
 
 
 	##########################
@@ -656,6 +682,7 @@ class SR_Inventory
 		$last_microtime = 0; // microtime of previous item
 		$update_microtime = false; // need to update item microtimes due to moved items?
 		$items_to_move = array($item1); // items like $item1 that need to be moved to keep indexing in order
+		$old_item2_microtime = $item2->getMicrotime();
 		foreach ($this->inventory as $id => $item)
 		{
 			if ($current_index == $index1)
@@ -672,7 +699,7 @@ class SR_Inventory
 
 				# make sure microtimes of $items_to_move are after $item2 in $new_inv
 				$old_microtime = $item1->getMicrotime();
-				$new_microtime = $item2->getMicrotime();
+				$new_microtime = $old_item2_microtime;
 				if ($old_microtime >= $new_microtime) # should not be greater, but could be equal
 				{
 					$new_microtime = $old_microtime + 0.001;
@@ -720,9 +747,9 @@ class SR_Inventory
 
 		$this->inventory = &$new_inv;
 
-		$this->clearCache(); // XXX fix grouped instead? (as you normally always call it after some grouped view)
+		$this->swapGroups($item_name1, $item_name2);
 
-		$item->onChanged(true);
+		$this->onChanged(true);
 	}
 
 }
