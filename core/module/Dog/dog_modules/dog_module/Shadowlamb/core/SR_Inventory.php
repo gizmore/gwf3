@@ -500,8 +500,9 @@ class SR_Inventory
 			return array();
 		}
 
+		# Reverse search for items
 		$items = array();
-		foreach ($this->inventory as $item)
+		for ($item = end($this->inventory); false !== $item; $item = prev($this->inventory))
 		{
 			if ($item instanceof $class)
 			{
