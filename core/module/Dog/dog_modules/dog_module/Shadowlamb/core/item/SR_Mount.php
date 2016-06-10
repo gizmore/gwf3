@@ -304,7 +304,7 @@ abstract class SR_Mount extends SR_Equipment
 		}
 		
 		$player->msg('5224', array($oname, $mname));
-		$player->msg('5225', array($player->getName(), $mname));
+		$owner->msg('5225', array($player->getName(), $mname));
 		
 		$item = $items[array_rand($items, 1)];
 		$item instanceof SR_Item;
