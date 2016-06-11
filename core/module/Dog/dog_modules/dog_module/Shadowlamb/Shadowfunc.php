@@ -1436,7 +1436,7 @@ final class Shadowfunc
 			$dcount = $count > 1 ? "($count)" : '';
 
 			$item = reset($data[1]);
-			$dname = $item->displayFullName($player, false, false);
+			$dname = $item->displayFullName($player);
 			
 			if ($is_store)
 			{
