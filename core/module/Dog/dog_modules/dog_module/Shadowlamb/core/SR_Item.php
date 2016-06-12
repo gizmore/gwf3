@@ -114,6 +114,8 @@ class SR_Item extends GDO
 	public function getMicrotime() { return $this->getVar('sr4it_microtime'); }
 	public function saveMicrotime($microtime) { return $this->saveVar('sr4it_microtime', $microtime); }
 	
+	public function getPosition() { return $this->getVar('sr4it_position'); }
+
 	public function changePosition($position)
 	{
 		return $this->saveVars(array(
@@ -542,13 +544,20 @@ class SR_Item extends GDO
 			Dog_Log::error(sprintf('Item %s(%d) can not decrease amount %d!', $this->getItemName(), $this->getID(), $amount));
 			return false;
 		}
+
+		$player->itemAmountChanged($this, -$amount, false);
+
+		if ($this->getAmount() < 1)
+		{
+			return $this->deleteItem($player, $modify);
+		}
 		
 		if ($modify)
 		{
 			$player->modify();
 		}
 		
-		return $this->getAmount() < 1 ? $this->deleteItem($player, $modify) : true;
+		return true;
 	}
 	
 	###############
@@ -646,19 +655,10 @@ class SR_Item extends GDO
 		{
 			return -1;
 		}
+
+		$index = $owner->getInventory()->getGroupedIndex($this->getItemName());
 		
-		$name = $this->getItemName();
-		$i = 1;
-		foreach ($owner->getInventorySorted() as $itemname => $data)
-		{
-			if ($name === $itemname)
-			{
-				return $i;
-			} 
-			$i++;
-		}
-		
-		return -1;
+		return $index === false ? -1 : $index+1;
 	}
 	
 	

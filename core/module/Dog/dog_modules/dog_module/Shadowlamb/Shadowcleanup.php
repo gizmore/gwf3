@@ -206,7 +206,7 @@ final class Shadowcleanup
 	{
 		$items = array_merge(
 			$player->getAllEquipment(false),
-			$player->getInventory(),
+			$player->getInventoryItems(),
 			$player->getBankItems(),
 			$player->getMountInvItems(),
 			$player->getCyberware()

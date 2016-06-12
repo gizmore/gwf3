@@ -241,6 +241,26 @@ final class Shadowlang
 		
 		return $back;
 	}
+
+	public static function itemNameForSearch(SR_Item $item, $iso)
+	{
+		$back = self::$LANG_ITEM->langISO($iso, $item->getName());
+
+		if (NULL !== ($mods = $item->getItemModifiersB()))
+		{
+			$mod = '';
+		        $format = DOGMOD_Shadowlamb::instance()->langISO($iso, 'fmt_itemmods');
+			foreach ($mods as $key => $value)
+			{
+				$key = self::$LANG_VARIABLES->langISO($iso, $key);
+				$mod .= sprintf($format, $key, $value);
+			}
+		        $of = DOGMOD_Shadowlamb::instance()->langISO($iso, 'of');
+			$back = $back.$of.ltrim($mod, ',; ');
+		}
+		
+		return $back;
+	}
 	
 	public static function getItemUUID(SR_Item $item)
 	{

@@ -135,7 +135,7 @@ abstract class SR_Mount extends SR_Equipment
 	public function isItemStattable() { return false; }
 	public function onItemEquip(SR_Player $player)
 	{
-		if ($player->getMountInvItemCount() > 0)
+		if (!$player->isMountEmpty())
 		{
 			$player->msg('1164');
 // 			$player->message('Your mount has to be empty to change it. Try #mount clean.');
@@ -146,7 +146,7 @@ abstract class SR_Mount extends SR_Equipment
 	
 	public function onItemUnequip(SR_Player $player)
 	{
-		if ($player->getMountInvItemCount() > 0)
+		if (!$player->isMountEmpty())
 		{
 			$player->msg('1164');
 // 			$player->message('Your mount has to be empty to change it. Try #mount clean.');

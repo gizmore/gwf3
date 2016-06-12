@@ -150,15 +150,7 @@ abstract class SR_Hospital extends SR_Store
 			$bot->reply(Shadowhelp::getHelp($player, 'unplant'));
 			return false;
 		}
-		$id = $args[0];
-		if (is_numeric($id))
-		{
-			$item = $player->getCyberwareByID($id);
-		}
-		else
-		{
-			$item = $player->getCyberwareByName($id);
-		}
+		$item = $player->getCyberwareItem($args[0]);
 		
 		if ($item === false)
 		{
@@ -166,7 +158,6 @@ abstract class SR_Hospital extends SR_Store
 // 			$bot->reply('You don`t have this cyberware implanted.');
 			return false;
 		}
-		$item instanceof SR_Cyberware;
 		
 		$price = Shadowfunc::calcBuyPrice($item->getItemPrice() * 0.10, $player);
 		$p1 = Shadowfunc::displayNuyen($price);

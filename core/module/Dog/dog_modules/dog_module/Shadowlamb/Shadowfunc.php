@@ -715,16 +715,6 @@ final class Shadowfunc
 		return Shadowrun4::lang($key, $args);
 	}
 	
-	public static function getMountInv(SR_Player $player)
-	{
-		return self::getItemsSorted($player, $player->getMountInvSorted());
-	}
-	
-	public static function getInventory(SR_Player $player)
-	{
-		return self::getItemsSorted($player, $player->getInventorySorted());
-	}
-	
 	public static function getItemsSorted(SR_Player $player, array $items, $i=1)
 	{
 // 		$b = chr(2);
@@ -1391,83 +1381,77 @@ final class Shadowfunc
 		return $level <= 0 ? '' : Shadowrun4::lang('lvl', array($level));
 	}
 
-	# N.B.: this function should return items in the same order as SR_Player::getItemsSorted()
-	public static function getItemsIndexed(array $items, $is_store = false, $raw=true)
+	public static function getGroupedItems(array $items, $start_index, $end_index, $pattern=null, $is_store=false, &$num_items=null)
 	{
-		$back = array();
-		$name2idx = array();
-		foreach ($items as $itemId => $item)
+		$grouped_items = array();
+		$seen = array();
+		$num_items = 0;
+		foreach ($items as $item)
 		{
-			$item instanceof SR_Item;
+			$iname = $item->getItemName();
+			$group_idx = $is_store ? $num_items : $iname;
 			
-			$name = $raw ? $item->getItemName() : $item->displayFullName(Shadowrun4::getCurrentPlayer());
-			
-			if (false === $is_store AND array_key_exists($name, $name2idx))
+			if (isset($seen[$group_idx]))
 			{
-				$idx = $name2idx[$name];
-				$back[$idx][1] += $item->getAmount();
+				if (isset($grouped_items[$group_idx]))
+				{
+					$grouped_items[$group_idx][0] += $item->getAmount();
+					$grouped_items[$group_idx][1][] = $item;
+				}
 			}
 			else
 			{
-				$name2idx[$name] = count($back);
-				$back[] = array($name, $item->getAmount(),$is_store?$item->getStorePrice():0);
+				if (   ($pattern === null)
+					|| (false !== stripos($iname, $pattern))
+					|| (false !== stripos($item->displayFullName(Shadowrun4::getCurrentPlayer(), false, false), $pattern)) )
+				{
+					$seen[$group_idx] = true;
+
+					if ($start_index <= $num_items && $num_items < $end_index)
+					{
+						$grouped_items[$group_idx] = array($item->getAmount(), array($item), $num_items);
+					}
+
+					$num_items++;
+				}
 			}
 		}
-		return $back;
+
+		return $grouped_items;
 	}
 
-	public static function getItemPage($page, $indexedItems, $is_store, $ipp = 10)
+	public static function getItemPage($player, $items, $start_index, $page, $num_pages, $is_store)
 	{
-		$nItems = count($indexedItems);
-		$page = (int) $page;
-		$nPages = (int) (($nItems+$ipp-1)/$ipp);
-		if ( ($page < 1) || ($page > $nPages) )
-		{
-			return false;
-		}
-		$from = ($page-1)*$ipp;
-		$indexedItems = array_slice($indexedItems, $from, $ipp, true);
-		
 		$b = chr(2);
 		$back = '';
 		$price = '0';
 		$dprice = '';
 		
-		$format = Shadowrun4::getCurrentPlayer()->lang('fmt_itemindex');
-		
-		foreach ($indexedItems as $idx => $data)
+		$format = $player->lang('fmt_itemindex');
+
+		$index = $start_index;
+		foreach ($items as $item_name => $data)
 		{
-			$itemname = $data[0];
-			$count = $data[1];
+			$count = $data[0];
 			$dcount = $count > 1 ? "($count)" : '';
+
+			$item = reset($data[1]);
+			$dname = $item->displayFullName($player);
 			
 			if ($is_store)
 			{
-				$price = $data[2];
+				$price = $item->getStorePrice();
 				$dprice = sprintf("(%s)", Shadowfunc::displayNuyen($price));
 			}
-			$back .= sprintf($format, $idx+1, $itemname, $dcount, $dprice, $count, $price);
-// 			$back .= sprintf(', %s%d%s-%s%s%s', $b, $idx+1, $b, $itemname, $count, $dprice);
+
+			$rindex = count($data) === 2 ? $index : $data[2];
+
+			$back .= sprintf($format, $rindex+1, $dname, $dcount, $dprice, $count, $price);
+
+			$index++;
 		}
 		
-		return Shadowrun4::lang('page', array($page, $nPages, ltrim($back, ',; ')));
-		
-// 		$back = sprintf('page %d/%d: %s.', $page, $nPages, $back);
-// 		return $back;
-	}
-	
-	public static function filterIndexedBySubstring($substring, $indexedItems)
-	{
-		$back = array();
-		foreach ($indexedItems as $idx => $data)
-		{
-			$itemName = $data[0];
-			if (false !== stristr($itemName,$substring))
-			{
-				$back[$idx] = $data;
-			}
-		}
-		return $back;
+		return Shadowrun4::lang('page', array($page, $num_pages, ltrim($back, ',; ')));
 	}
 	
 	public static function arrayGet($a, $key, $default)
@@ -1475,14 +1459,14 @@ final class Shadowfunc
 		return array_key_exists($key, $a) ? $a[$key] : $default;
 	}
 	
-	public static function genericViewI(SR_Player $player, array $items, array $args, $text=array(), $raw=true)
+	public static function genericViewI(SR_Player $player, $items, array $args, $text=array())
 	{
-		return Shadowrap::instance($player)->reply(self::getGenericViewI($player, $items, $args, $text, $raw));
+		return Shadowrap::instance($player)->reply(self::getGenericViewI($player, $items, $args, $text));
 	}
 	
-	public static function genericViewS(SR_Player $player, array $items, array $args, $text=array(), $raw=true)
+	public static function genericViewS(SR_Player $player, $items, array $args, $text=array())
 	{
-		return Shadowrap::instance($player)->reply(self::getGenericViewS($player, $items, $args, $text, $raw));
+		return Shadowrap::instance($player)->reply(self::getGenericViewS($player, $items, $args, $text));
 	}
 	
 	/**
@@ -1493,15 +1477,15 @@ final class Shadowfunc
 	 * @param array $text
 	 * @author dloser
 	 */
-	public static function getGenericViewI(SR_Player $player, array $items, array $args, $text=array(), $raw=true)
+	public static function getGenericViewI(SR_Player $player, $items, array $args, $text=array())
 	{
-		return self::getGenericView($player, $items, $args, false, $text, $raw);
+		return self::getGenericView($player, $items, $args, false, $text);
 	}
-	public static function getGenericViewS(SR_Player $player, array $items, array $args, $text=array(), $raw=true)
+	public static function getGenericViewS(SR_Player $player, $items, array $args, $text=array())
 	{
-		return self::getGenericView($player, $items, $args, true, $text, $raw);
+		return self::getGenericView($player, $items, $args, true, $text);
 	}
-	private static function getGenericView(SR_Player $player, array $items, array $args, $is_store, $text, $raw=true)
+	private static function getGenericView(SR_Player $player, $items, array $args, $is_store, $text, $ipp=10)
 	{
 		$bot = Shadowrap::instance($player);
 		
@@ -1512,9 +1496,7 @@ final class Shadowfunc
 // 			return false;
 		}
 		
-		$items = Shadowfunc::getItemsIndexed($items, $is_store, $raw);
-
-		# Setup pattern and args
+		# Setup pattern and page
 		if (count($args) === 2)
 		{
 			$pattern = $args[0];
@@ -1539,13 +1521,28 @@ final class Shadowfunc
 			$page = 1;
 		}
 
-		
-		# Filter on pattern
-		if ($pattern !== NULL)
-		{
-			$items = Shadowfunc::filterIndexedBySubstring($args[0], $items);
-		}
+		$start_index = ($page-1) * $ipp;
+		$end_index = $start_index + $ipp;
 
+		if (!($items instanceof SR_Inventory))
+		{
+
+			$items = Shadowfunc::getGroupedItems($items, $start_index, $end_index, $pattern, $is_store, $num_items);
+		
+		} else {
+
+			$inventory = $items;
+			
+			$items = $inventory->getItemsByGroupedIndex($start_index, $end_index, $pattern, $player, $num_items);
+
+			if ($items === false)
+			{
+				return false;
+			}
+
+		}
+		
+		$num_pages = (int) (($num_items+$ipp-1)/$ipp);
 		
 		# Display page
 		if (count($items) === 0)
@@ -1562,12 +1559,10 @@ final class Shadowfunc
 			}
 // 			return true;
 		}
-		
-		if (false === ($pageStr = Shadowfunc::getItemPage($page, $items, $is_store)))
+
+		if (false === ($pageStr = Shadowfunc::getItemPage($player, $items, $start_index, $page, $num_pages, $is_store)))
 		{
 			return self::arrayGet($text, 'no_page', Shadowrun4::lang('1009'));
-// 			$bot->reply(self::arrayGet($text, 'no_page', Shadowrun4::lang('1009')));
-// 			return false;
 		}
 		
 		$code = self::arrayGet($text, 'code', '5276');

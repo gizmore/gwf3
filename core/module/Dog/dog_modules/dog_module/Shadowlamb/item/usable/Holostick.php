@@ -73,15 +73,17 @@ class Item_Holostick extends Item_Credstick
 	
 	protected function onItemUseViewi(SR_Player $player, array $args)
 	{
-		$items = $player->getBankItems();
+		$inventory = $player->getBank();
 		$args = array_slice($args,1);
 		$text = array(	'prefix' => 'Your bank items',
 				'usage' => 'Try #u Holostick view [<pattern>] [<page>].');
-		return Shadowfunc::genericViewI($player, $items, $args, $text);
+		return Shadowfunc::genericViewI($player, $inventory, $args, $text);
 	}
 	
 	protected function onItemUsePushi(SR_Player $player, array $args)
 	{
+		$bot = Shadowrap::instance($player);
+
 		$want_amt = isset($args[2]) ? ((int)$args[2]) : 1;
 		if ($want_amt < 1)
 		{
@@ -89,22 +91,20 @@ class Item_Holostick extends Item_Credstick
 			return false;
 		}
 		
-		# Have at least 1?
-		$items = $player->getInvItems($args[1], $want_amt);
-		if (count($items) === 0)
+		# Find item
+		if (false === ($item = $player->getInvItem($args[1])))
 		{
-			$player->message('You don\'t have that item. Please note that you have to provide full item name.');
+			$bot->rply('1029');
+// 			$bot->reply('You don`t have that item in your inventory.');
 			return false;
 		}
-		
+
 		# Gather data
-		$item = $items[0];
-		$item instanceof SR_Item;
 		$itemname = $item->getItemName();
+		$items = $player->getInvItems($itemname, $want_amt);
 		$have_amt = $item->isItemStackable() ? min($item->getAmount(), $want_amt) : count($items);
 		$have_worth = $have_amt * $item->getItemPrice();
 		$have_weight = $have_amt * $item->getItemWeight();
-		
 		
 		# Check amt
 		if ($have_amt < $want_amt)
@@ -121,13 +121,29 @@ class Item_Holostick extends Item_Credstick
 			$this->reply($player, sprintf('You need %s for this transaction, but you only got %s.', $dp, $player->displayNuyen()));
 			return false;
 		}
-		
-		
+
+		# Room in bank?
+		if ($item->isItemStackable())
+		{
+			if ($player->getBank()->getItemByItemName($item->getItemName()) === false && !$player->getBank()->hasRoom())
+			{
+				$bot->rply('1196');
+				return false;
+			}
+		} else {
+			if (!$player->getBank()->hasRoom($want_amt))
+			{
+				$bot->rply('1196');
+				return false;
+			}
+		}
+
 // 		if (false !== ($this->confirm()))
 // 		{
 // 			$this->reply($player, sprintf('You are about to transfer %s %s to your bank. Cost: %s. Retype to confirm.'));
 // 			return true;
 // 		}
+		
 
 		# Transfer to bank
 		$need_amt = $want_amt;
