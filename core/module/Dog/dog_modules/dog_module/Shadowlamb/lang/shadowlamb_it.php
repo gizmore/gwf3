@@ -233,7 +233,7 @@ $lang = array(
 # Ingame help
 'hlp_in_outside' => 'Quando trovi delle località, ti troverai al di fuori di esse. Usa #vai o #entra per entrarvi. Puoi #(esp)lorare ancora per trovare altre località.',
 'hlp_clan_enter' => "Unisciti al clan con {$c}abbandona, {$c}richiedi e {$c}accetta. Crea un clan con {$c}crea. Compra dei miglioramenti e/o un motto con {$c}gestisci. Imposta le opzioni con {$c}alterna. Accedi alla banca oggetti del clan con {$c}versa, {$c}ritira e {$c}guarda, ed alla cassa con {$c}versay e {$c}ritiray.",
-'hlp_bank' => "In una banca puoi usare {$c}versa e {$c}ritira per lasciare e prendere oggetti, mentre {$c}versay e {$c}ritiray servono a versare e ritirare nuyen. Usa {$c}guarda per visualizzare o cercare i tuoi oggetti nella banca. Ogni transazione ti costerà %s.",
+'hlp_bank' => "In una banca puoi usare {$c}versa e {$c}ritira per lasciare e prendere oggetti, mentre {$c}versay e {$c}ritiray servono a versare e ritirare nuyen. Usa {$c}guarda per visualizzare o cercare i tuoi oggetti nella banca. Ogni transazione ti costerà %s. Stai utilizzando %s di %s slot per gli oggetti (impilabile contano per uno, per ogni tipo).",
 'hlp_bazar' => "Nel bazaar puoi vendere i tuoi oggetti. Qui puoi usare #versa, #ritira, #guarda, #cerca, #compra, #compramigliore, #compraslot, #slogan e #prezzo.",
 'hlp_elevator' => 'Negli ascensori puoi usare #su, #giù e #piano.',
 'hlp_exit' => 'Puoi ritornare in questa località se #esci dall\'edificio.',

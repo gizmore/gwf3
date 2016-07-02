@@ -20,6 +20,13 @@ final class Shadowcmd_gmi extends Shadowcmd
 			$player->message('The player is not in memory or unknown.');
 			return false;
 		}
+
+		$amount = isset($args[2]) ? (int)$args[2] : false;
+		if ($amount !== false && $amount < 1)
+		{
+			$player->message('Please specify a positive amount.');
+			return false;
+		}
 		
 		if (false === $target->isCreated())
 		{
@@ -27,19 +34,18 @@ final class Shadowcmd_gmi extends Shadowcmd
 			return false;
 		}
 		
-		if (false === ($item = SR_Item::createByName($args[1])))
+		if (false === ($item = SR_Item::createByName($args[1],false)))
 		{
 			$bot->reply(sprintf('The item %s could not be created.', $args[1]));
 			return false;
 		}
 		$items = array($item);
 		
-		if (isset($args[2]))
+		if ($amount !== false)
 		{
 			if (!$item->isItemStackable())
 			{
-				$amt = intval($args[2]);
-				while ($amt > 1)
+				while ($amount > 1)
 				{
 					$newitem = $item->createCopy();
 					if ($newitem === false)
@@ -48,10 +54,10 @@ final class Shadowcmd_gmi extends Shadowcmd
 						break;
 					}
 					$items[] = $newitem;
-					$amt--;
+					$amount--;
 				}
 			} else {
-				$item->saveVar('sr4it_amount', intval($args[2]));
+				$item->saveVar('sr4it_amount', $amount);
 			}
 		}
 		

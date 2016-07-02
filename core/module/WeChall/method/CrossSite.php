@@ -43,6 +43,9 @@ final class WeChall_CrossSite extends GWF_Method
 		if (false === ($user = GWF_User::getByName($username))) {
 			die('0');
 		}
+		if ($user->getVar('user_name') !== $username) {
+			die('0');
+		}
 		if ($user->getValidMail() !== $email) {
 			die('0');
 		}

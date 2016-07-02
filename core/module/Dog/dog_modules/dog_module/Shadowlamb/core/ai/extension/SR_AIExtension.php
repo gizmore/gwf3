@@ -90,6 +90,6 @@ abstract class SR_AIExtension
 	
 	public static function getUnwantedItems(SR_RealNPC $npc, $perc)
 	{
-		return self::sortedItems($npc, $npc->getInventorySorted(), 'needs_item');
+		return self::sortItems($npc, $npc->getInventoryItems(), 'needs_item');
 	}
 }

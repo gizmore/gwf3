@@ -324,7 +324,7 @@ abstract class SR_Blacksmith extends SR_Store
 		{
 			if ($item->isEquipped($player))
 			{
-				if (count($player->getMountInvSorted()) !== 0)
+				if (!$player->isMountEmpty())
 				{
 					$bot->rply('1164');
 // 					$bot->reply("Please '#mount clean' before you '#upgrade' it.");

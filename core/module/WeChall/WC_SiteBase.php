@@ -100,20 +100,20 @@ abstract class WC_SiteBase extends GDO
 			return htmlDisplayError(WC_HTML::lang('err_response', array(GWF_HTML::display($result), $this->displayName())));
 		}
 	
-		$result = explode(':', trim($result));
-		if (count($result) !== 7)
+		$stats = explode(':', trim($result));
+		if (count($stats) !== 7)
 		{
 			return htmlDisplayError(WC_HTML::lang('err_response', array(GWF_HTML::display($result), $this->displayName())));
 		}
 	
 		$i = 0;
-		$username = $result[$i++];
-		$rank = $result[$i++];
-		$score = $result[$i++];
-		$maxscore = $result[$i++];
-		$challssolved = $result[$i++];
-		$challcount = $result[$i++];
-		$usercount = $result[$i++];
+		$username = $stats[$i++];
+		$rank = (int) $stats[$i++];
+		$score = (int) $stats[$i++];
+		$maxscore = (int) $stats[$i++];
+		$challssolved = (int) $stats[$i++];
+		$challcount = (int) $stats[$i++];
+		$usercount = (int) $stats[$i++];
 	
 		if ($maxscore === 0 || $challcount === 0)
 		{

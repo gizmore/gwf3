@@ -119,6 +119,7 @@ final class Dog_WorkerThread
 			$this->setupChild();
 			usleep(intval($this->init_sleep * 1000000));
 			$this->mainloop();
+			die("Dog_WorkerThread - unexpected return from mainloop()\n");
 		}
 	}
 	
@@ -320,11 +321,12 @@ final class Dog_WorkerThread
 	private function mainloop()
 	{
 // 		echo "Dog_WorkerThread::mainloop()\n";
-		while (true)
+		while (msg_queue_exists($this->qid_in))
 		{
 			$this->process();
 			usleep(200000);
 		}
+		exit(0);
 	}
 	
 	private function process()

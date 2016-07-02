@@ -228,7 +228,7 @@ $lang = array(
 # Ingame help
 'hlp_in_outside' => 'Kad tu atrodi jaunas ēkas tu neesi iekša. Uzraksti #ietuz vai #ieiet lai ieietu iekšā. Tu vari rakstīt #(izp)ētīt lai atrastu jaunas vietas.',
 'hlp_clan_enter' => "Pievienojies/pamet klanus rakstot #atteikties, #pieprasīt and #apsiprināt. Uztaisi klanu rakstot #uztaisīt. Pērc lielākus izmērus vai moto rakstot #pārvaldīt. Regulē iestatījumus rakstot #iestatījumi. Saņem piekļuvi klana bankai rakstot #stumt, #pop un #skatīties, klana naudaiar #pushy un #popy.",
-'hlp_bank' => "Bankā tu vari #push un #pop lai bankas lietas, un #pushy un #popy lai pārdotu nuyen. Lieto #view lai redzētu visas bankas lietas. Visas lietas maksā%s tev.",
+'hlp_bank' => "Bankā tu vari #push un #pop lai bankas lietas, un #pushy un #popy lai pārdotu nuyen. Lieto #view lai redzētu visas bankas lietas. Visas lietas maksā%s tev. Jūs šobrīd izmantojat %s no %s lietām vietas (sakrautās lietas skaistas par vienu, par veidiem).",
 'hlp_bazar' => "Tirgū tu vari pārdot savas lietas. Tu vari lietot #stumt, #pop, #skatīties, #meklēt, #pirkt, #labākaispirkums, #pirktvietu, #sauklis un #cena šeit.",
 'hlp_elevator' => 'Liftā tu vari izmantot #augšu, #leju un #stāvs.',
 'hlp_exit' => 'Tu vari pamest vietu ar #pamest ēku.',

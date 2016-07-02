@@ -38,6 +38,7 @@ $lang = array(
 		'<br/>'.
 		'Please make sure that your users have the possibilty to change their emails or at least have some "used"/existing email address.<br/>'.
 		'To link accounts to wechall you have to confirm linking via this email address. (if they registered here with the same email there is no need to send mails).<br/>'.
+		'Also ensure that you do case-sensitive checks to avoid potential exploitation.<br/>'.
 		'<br/>'.
 		'hackthissite.org pointed out that the old API was prone to private information disclosure. You can simply use the script to test users against emails or vica versa.<br/>'.
 		'We introduced the optional AUTHKEY variable to make it not publicy exploitable.<br/>'.
@@ -51,7 +52,7 @@ $lang = array(
 		PHP_EOL.
 		'$uname = mysql_real_escape_string($_GET[\'username\']);'.PHP_EOL.
 		'$email = mysql_real_escape_string($_GET[\'email\']);'.PHP_EOL.
-		'$query = "SELECT 1 FROM users WHERE user_name=\'$uname\' AND user_email=\'$email\'";'.PHP_EOL.
+		'$query = "SELECT 1 FROM users WHERE BINARY user_name=\'$uname\' AND BINARY user_email=\'$email\'";'.PHP_EOL.
 		'if (false === ($result = mysql_query($query))) { '.PHP_EOL.
 		'	die(\'0\'); '.PHP_EOL.
 		'}'.PHP_EOL.
@@ -85,7 +86,7 @@ $lang = array(
 		'}'.PHP_EOL.
 		'# Let`s see if user exists.'.PHP_EOL.
 		'$uname = mysql_real_escape_string($_GET[\'username\']);'.PHP_EOL.
-		'$query = "SELECT * FROM users WHERE user_name="$uname";'.PHP_EOL.
+		'$query = "SELECT * FROM users WHERE BINARY user_name="$uname";'.PHP_EOL.
 		'if (false === ($result = mysql_query($query))) { '.PHP_EOL.
 		'	die(\'0\'); '.PHP_EOL.
 		'}'.PHP_EOL.

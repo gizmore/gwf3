@@ -439,6 +439,14 @@ final class Dog
 	 */
 	public static function processFakeMessage($message)
 	{
+                // save values set in processMessage for previous message that
+                // caused this fake message
+		$old_message = self::$LAST_MSG;
+		$old_triggered = self::$TRIGGERED;
+		$old_last_user = self::$LAST_USER;
+		$old_last_channel = self::$LAST_CHANNEL;
+		$old_event_error = self::$EVENT_ERROR;
+
 		$serv = self::getServer();
 		$chan = self::getChannel();
 		$from = self::$LAST_MSG->getFrom();
@@ -449,6 +457,13 @@ final class Dog
 		self::$FAKING_MESSAGE = true;
 		self::processMessage(self::getServer(), sprintf(':%s PRIVMSG %s :%s%s', $from, $to, $trigger, $message));
 		self::$FAKING_MESSAGE = $old;
+
+                // restore values set in processMessage
+		self::$LAST_MSG = $old_message;
+		self::$TRIGGERED = $old_triggered;
+		self::$LAST_USER = $old_last_user;
+		self::$LAST_CHANNEL = $old_last_channel;
+		self::$EVENT_ERROR = $old_event_error;
 	}
 	
 	/**
@@ -478,7 +493,7 @@ final class Dog
 	private static function processMessage(Dog_Server $server, $message)
 	{
 		# IBEDS
-		$message = str_replace('\ţ', ' ', $message);
+		$message = str_replace('\t', ' ', $message);
 		
 		# Parse the message
 		self::$LAST_MSG = new Dog_IRCMsg($message);

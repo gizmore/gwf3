@@ -7,9 +7,9 @@ class SR_AI_seller extends SR_AIExtension
 		
 		if ($npc->ai_can('sell'))
 		{
-			foreach ($npc->getInventorySorted() as $i => $items)
+			foreach ($npc->getInventoryItems() as $item)
 			{
-				if ($npc->realnpcfunc('needs_item', array($item)) < 5000)
+				if ($npc->realnpcfunc('needs_item', $item) < 5000)
 				{
 					
 				}
