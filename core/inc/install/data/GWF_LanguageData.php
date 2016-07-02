@@ -427,6 +427,10 @@ final class GWF_LanguageData
 			array('Sindebele', '', 'sid', ''),
 			array('Taiwanese', '', 'tai', ''),
 			array('Manx', '', 'max', ''),
+			array('Fanmglish', 'Famster', 'fam', 'xf'),
+			array('Bot', 'BotJSON', 'bot', 'xb'),
+			array('Ibdes', 'RFCBotJSON', 'ibd', 'xi'),
+			array('Test Japanese', 'Test Japanese', 'ori', 'xo')
 		);
 		return $languages;
 	}

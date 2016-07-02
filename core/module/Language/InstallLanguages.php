@@ -6,8 +6,16 @@ final class InstallLanguages
 		return GWF_ModuleLoader::installVars($module, array(
 // 			'edit_time' => array('300', 'time', '0', GWF_Time::ONE_HOUR),
 //			'lang_by_domain' => array(true, 'bool'),
-		)).self::installSupported($module, $dropTables).
+		)).
+		self::installDataFile($module, $dropTables).
+		self::installSupported($module, $dropTables).
 		self::installGoogleHasIt($module, $dropTables);
+	}
+	
+	private static function installDataFile($module, $dropTables)
+	{
+		require_once '../core/inc/install/GWF_InstallFunctions.php';
+		return GWF_InstallFunctions::createLanguage(true, true, false, false);
 	}
 	
 	private static function installSupported(Module_Language $module, $dropTables)

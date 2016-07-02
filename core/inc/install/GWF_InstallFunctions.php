@@ -186,36 +186,40 @@ final class GWF_InstallFunctions
 	* @return string
 	* @todo integrate in design but do flushing and error handling
 	*/
-	public static function createLanguage($__langs=true, $__cunts=true, $__ipmap=false)
+	public static function createLanguage($__langs=true, $__cunts=true, $__ipmap=false, $__output=true)
 	{
 		$success = true;
 		require_once GWF_CORE_PATH.'inc/install/data/GWF_LanguageData.php';
-		set_time_limit(0); # This function takes ages!
+		
+		if ($__ipmap) { # This function takes ages!
+			set_time_limit(0);
+		}
 
 		$cache = array();
 		$cache2 = array();
 		# Language
-		$i = 1;
+		$i = 0;
 		$linguas = GWF_LanguageData::getLanguages();
-		$ret = 'Installing '.count($linguas).' Languages';
-	//	flush();
+		$ret = '';
+		if ($__output) {
+			$ret = 'Installing '.count($linguas).' Languages';
+		}//	flush();
 		
 		$lang_t = new GWF_Language();
 		$supported = explode(';', GWF_SUPPORTED_LANGS);
 		
 		foreach ($linguas as $lang)
 		{
-	//		$ret .= '.';
-	//		flush();
+			$i++;
 
 			array_map('trim', $lang);
-			
+
 			list($name, $native, $short, $iso) = $lang;
 
-			if (false !== ($langrow = $lang_t->selectFirst('lang_id', "lang_short='$short'"))) { #GWF_Language::getByShort($short))) {
-				$cache[$short] = $langrow['lang_id']; #->getID();
-				continue;
-			}
+// 			if (false !== ($langrow = $lang_t->selectFirst('lang_id', "lang_short='$short'"))) {
+// 				$cache[$short] = $langrow['lang_id']; #->getID();
+// 				continue;
+// 			}
 			
 			if ($__langs)
 			{
@@ -226,30 +230,29 @@ final class GWF_InstallFunctions
 					'lang_short' => $short,
 					'lang_iso' => $iso,
 					'lang_options' => in_array($iso, $supported, true) ? GWF_Language::SUPPORTED : 0,
-				))) {
+				), true)) {
 					$ret .= GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 					$success = false;
 					continue;
 				}
 			}
-			$i++;
 			
 			$cache[$short] = $i; #langrow['lang_id'];
 		}
 		
-		$ret .= PHP_EOL;
 
 		# Country and Langmap
 		$countries = GWF_LanguageData::getCountries();
 		$country_t = new GWF_Country();
-		$ret .= 'Installing '.count($countries).' Countries';
-	//	flush();
+		if ($__output) {
+			$ret .= PHP_EOL;
+			$ret .= 'Installing '.count($countries).' Countries';
+			//	flush();
+					
+		}
 		
 		foreach ($countries as $cid => $c)
 		{
-	//		$ret .= '.';
-	//		flush();
-			
 			if (count($c) !== 5) {
 				$ret .= GWF_HTML::error('Country error', sprintf('%s has error.', $c[0]), true, true);
 			}
@@ -298,14 +301,15 @@ final class GWF_InstallFunctions
 				}
 			}
 		}
-		$ret .= PHP_EOL;
 		
 		if (!$__ipmap) {
-	//		return $success;
 			return $ret;
 		}
 
-		$ret .= 'Installing ip2country'.PHP_EOL;
+		if ($__output) {
+			$ret .= PHP_EOL;
+			$ret .= 'Installing ip2country'.PHP_EOL;
+		}
 		
 		# IP2Country
 		$max = 89323;
@@ -314,7 +318,6 @@ final class GWF_InstallFunctions
 
 		if (false === ($fp = fopen($filename, "r"))) {
 			$ret .= GWF_HTML::err('ERR_FILE_NOT_FOUND', array($filename), true, true);
-	//		return false;
 			return $ret;
 		}
 		
@@ -353,7 +356,6 @@ final class GWF_InstallFunctions
 			if (!($now % 2500)) {
 				$msg = sprintf('%d of %d...', $now, $max);
 				$ret .= GWF_HTML::message('Progress', $msg, true, true);
-	//			flush();
 			}
 		}
 		return $ret;

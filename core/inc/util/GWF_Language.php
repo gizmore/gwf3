@@ -89,8 +89,8 @@ final class GWF_Language extends GDO
 				'lang_id' => '0',
 				'lang_name' => 'Unknown',
 				'lang_nativename' => 'Unknown',
-				'lang_short' => '000',
-				'lang_iso' => '00',
+				'lang_short' => 'xxx',
+				'lang_iso' => 'xx',
 				'lang_options' => 0,
 			));
 		}
