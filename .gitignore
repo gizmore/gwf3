@@ -9,7 +9,6 @@
 # gizmore ssy
 /www/tpl/ssy/*
 /core/module/Assessystem
-/www
 
 # GWF3
 /www/dbimg
