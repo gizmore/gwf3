@@ -50,16 +50,17 @@ final class Shadowcmd_sets extends Shadowcmd
 		return self::rply($player, '5295', array($page, $nPages, $out));
 	}
 
-	private static function displaySet(SR_Player $player, $set)
+	private static function displaySet(SR_Player $player, $substr)
 	{
-		if ( (false === ($data = SR_SetItems::getSetByName($set)))
-		   && (false === ($data = SR_SetItems::getSetForItem($set)))
+		if ( (false === ($set = SR_SetItems::getSetByName($substr)))
+		   && (false === ($set = SR_SetItems::getSetForItem($substr)))
 		)
 		{
 			return self::rply($player, '1189');
 		}
 		
 		$modifiers = SR_SetItems::getModifiersForSet($set);
+		$items = SR_SetItems::getItemsForSet($set);
 		
 		$modstr = '';
 		$format = ', %s:%s';
@@ -69,7 +70,7 @@ final class Shadowcmd_sets extends Shadowcmd
 			$i = "\X02\X036";
 			$i2 = "\X03\X02";
 		}
-		foreach ($data[0] as $key => $value)
+		foreach ($modifiers as $key => $value)
 		{
 			$modstr .= sprintf($format, $key, $value);
 		}
@@ -77,7 +78,7 @@ final class Shadowcmd_sets extends Shadowcmd
 		
 		$itemstr = '';
 		$format = ', %s%s%s';
-		foreach ($data[1] as $items2)
+		foreach ($items as $items2)
 		{
 			$items2 = GWF_Array::arrify($items2);
 			$pre = count($items2) > 1 ? '(' : '';

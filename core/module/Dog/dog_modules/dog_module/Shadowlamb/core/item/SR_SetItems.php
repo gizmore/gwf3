@@ -46,27 +46,39 @@ final class SR_SetItems
 	public static function getSetNames() { return array_keys(self::$SETS); }
 	public static function getModifiersForSet($set) { return self::$SETS[$set][0]; }
 	public static function getItemsForSet($set) { return self::$SETS[$set][1]; }
-	public static function getSetByName($set) { return isset(self::$SETS[$set]) ? self::$SETS[$set] : false; }
 	
-	public static function getSetForItem($itemname)
+	public static function getSetByName($substr)
 	{
-		foreach (self::$SETS as $set => $data)
+		foreach (self::$SETS as $name => $set)
 		{
-			foreach ($data[1] as $items)
+			if (false !== stripos($name, $substr))
+			{
+				return $name;
+			}
+		}
+
+		return false;
+	}
+	
+	public static function getSetForItem($substr)
+	{
+		foreach (self::$SETS as $name => $set)
+		{
+			foreach ($set[1] as $items)
 			{
 				if (is_array($items))
 				{
 					foreach ($items as $item)
 					{
-						if ($item === $itemname)
+						if (false !== stripos($item, $substr))
 						{
-							return $set;
+							return $name;
 						}
 					}
 				}
-				elseif ($items === $itemname)
+				elseif (false !== stripos($items, $substr))
 				{
-					return $set;
+					return $name;
 				}
 			}
 		}
