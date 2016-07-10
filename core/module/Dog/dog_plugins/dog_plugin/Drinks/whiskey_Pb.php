@@ -2,13 +2,8 @@
 $lang = array(
 	'en' => array(
 		'help' => 'Usage: %CMD% [<user>]. Give or grab a whiskey to settle the day.',
-		'give1' => 'passes 1 glass of scotch whiskey to %s.',
-		'give2' => 'and %s pass 1 glass of scotch whiskey to %s.',
-	),
-	'de' => array(
-		'help' => 'Nutze: %CMD% [<user>]. Gib jemandem oder gönne Dir ein Glas Whisky um den Abend zu geniessen.',
-		'give1' => 'reicht %s ein Glas Whisky.',
-		'give2' => 'und %s reichen %s ein Glas Whisky. Wohl bekommt´s.',
+		'give1' => 'passes 1 jar of moonshine to %s.',
+		'give2' => 'and %s pass 1 jar of moonshine to %s.',
 	),
 );
 $plugin = Dog::getPlugin();

@@ -2,7 +2,7 @@
 $lang = array(
 	'en' => array(
 		'help' => 'Usage: %CMD%. Read: Wine, not whine!',
-		'wine' => 'A glas of wine, like a sire!',
+		'wine' => 'A glass of wine, like a sire!',
 	),
 );
 $plugin = Dog::getPlugin();
