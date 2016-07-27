@@ -108,7 +108,7 @@ final class Item_AlchemicPotion extends SR_Usable
 		$mods['intelligence'] = false === isset($mods['intelligence']) ? $player->getBase('intelligence') : $mods['intelligence'];
 		$mods['wisdom'] = false === isset($mods['wisdom']) ? $player->getBase('wisdom') : $mods['wisdom'];
 		
-		$dummy = new SR_Player(SR_Player::getPlayerData(0));
+		$dummy = SR_Player::createDummy();
 		$dummy->setVar('sr4pl_magic', $mods['magic']);
 		$dummy->setVar('sr4pl_intelligence', $mods['intelligence']);
 		$dummy->setVar('sr4pl_wisdom', $mods['wisdom']);

@@ -371,6 +371,13 @@ class SR_Player extends GDO
 // 		}
 // 		return $user;
 	}
+
+	public static function createDummy()
+	{
+                $dummy = new SR_Player(self::getPlayerData(0));
+                self::initInventories($dummy);
+                return $dummy;
+	}
 		
 	#################
 	### Temp vars ###
