@@ -1,0 +1,50 @@
+<html>
+<head>
+<title>Matze ist doof</title>
+
+<style type="text/css">
+
+* { /* PD */
+font-weight: normal;
+text-decoration: none;
+box-sizing: border-box;
+margin: 0;
+padding: 0;
+position: relative;
+}
+
+body {
+min-height: 100%;
+background: red;
+}
+
+html {
+height: 100%;
+} /* 32 */
+
+</style>
+
+<script type="text/javascript">
+window.wanda = {}; // NAMEspace
+var Wanda = window.wanda;
+Wanda.turn_into = '#F00';
+Wanda.is_hex_color = function(input) {
+	return false;
+};
+Wanda.things_change = function() {
+	
+};
+</script> <!-- mul(32, 2) -->
+
+</head>
+
+<body>
+
+<div id="control_area">
+  <input type="text" id="css_colorcode" onkeyup="wanda.things_change();" value="#F00" />
+  <button onclick="wanda.things_change();">CHANGE</button>
+</div>
+
+</body>
+
+</html>
