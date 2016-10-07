@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="UTF-8">
+<title>Farbrat Peine</title>
+
+<!-- linked files -->
+<link href="../../js/jqmcp/css/colorpicker.css" />
+<link href="../../js/jqmcp/css/layout.css" />
+
+</head>
+<body>
+
+<!-- Chantré Fastloader -->
+<script src="../../js/jquery-3.1.0.min.js"></script>
+<script src="../../js/jqm/jquery.mobile-1.4.5.js"></script>
+
+<script type="text/javascript">
+function ratioCalc() {
+	var small = $('#ratioSmall').value();
+	var large = $('#ratioLarge').value();
+	var total = $('#ratioTotal').value();
+	alert(1);
+	return false;
+}
+</script>
+
+<pre>
+<form onsubmit="ratioCalc(); return false;">
+  <input type="text" id="ratioSmall" size="10" /> <input type="text" id="ratioLarge" size="22" />
+  <input type="text" id="ratioTotal" size="32"/>
+</form>
+</pre>
+
+</body>
+</html>
