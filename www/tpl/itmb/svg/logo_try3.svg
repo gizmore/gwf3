@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<svg width="704" height="702" xmlns="http://www.w3.org/2000/svg">
+<style>
+</style>
+  <g fill="red">
+    <rect x="0" y="0" width="32" height="32" stroke="black" />
+    <polyline points="4,7 9,3 23,3 28,7 28,13 16,29 4,13 4,7" fill="#fff8" stroke="#fff8" stroke-width="2" />
+    <text style="" x="8" y="21" fill="#0008" font-size="16" font-family="'Times', bold">I</text>
+    <text style="" x="16" y="21" fill="#0008" font-size="16" font-family="'Times', bold">T</text>
+  </g>  
+</svg>
