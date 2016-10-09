@@ -15,6 +15,6 @@
 
 		<hr/>
 
-		<div id="main-content">
+		<div id="main-content" class="mo_{Common::getGetString('mo')} me_{Common::getGetString('me')} mome_{Common::getGetString('mo')}{Common::getGetString('me')}">
 
 		{$errors}

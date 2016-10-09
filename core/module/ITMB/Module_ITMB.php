@@ -8,7 +8,7 @@ final class Module_ITMB extends GWF_Module
 	##################
 	### GWF_Module ###
 	##################
-	private static final $instance;
+	private static $instance;
 	public static function instance()
 	{
 		return self::$instance;
