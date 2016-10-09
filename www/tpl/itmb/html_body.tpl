@@ -1,11 +1,20 @@
 <body>
 	<div id="pagewrap">
-		<div id="topmenu">
-			{include file='tpl/itmb/menu_top.tpl'}
+		<div id="firstrow">
+		    <a href="{$root}"><img class="itmb-logo" type="image/svg" src="tpl/itmb/svg/itmb_logo_full.svg" /></a>
+			<div id="header">
+				<span>Programming, Architecture, Support</span>
+				<div class="itmb-hr"></div>
+				<span>+49 176 59 59 88 44</span>
+			</div>
 		</div>
+
 		<hr/>
 
-		<img class="itmb-logo" type="image/svg" src="tpl/itmb/svg/logo_try2.svg" />
+		{include file='tpl/itmb/menu_top.tpl'}
 
-		<div id="gwf3_page">
-{$errors}
+		<hr/>
+
+		<div id="main-content">
+
+		{$errors}

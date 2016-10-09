@@ -4,7 +4,6 @@
 	<meta name="robots" content="index, follow" />
 	{$meta}
 	<meta name="generator" content="GWFv{$smarty.const.GWF_CORE_VERSION}" />
-	<link rel="stylesheet" type="text/css" href="{$root}tpl/default/css/gwf3.css" />
 	<link rel="stylesheet" type="text/css" href="{$root}tpl/itmb/css/itmb1.css" />
 
  <!--   <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.11.2/angular-material.min.css"> -->

@@ -78,7 +78,25 @@
 			</div>
 		</div>
 		<div id="main-content">
-			Preise nur nach Vereinbarung im Bereich von 10-80 Euro.<br/>Ich mag auch Werbeartikel.		</div>
+			Preise nach Vereinbarung im Bereich von 20-79 Euro.
+			
+			<ol id="itmb-skills">
+			<li>Personalvermittlung. – Nein keine ZAG, sondern nur outsourcing.</li>
+			<li>Programming. – Das ist mein Steckenpferd.</li>
+			<li>Administration. – Muss ja ;)</li>
+			</ol>
+
+			<ol id="cbh-itmb-skills">
+			<li>PHP</li>
+			<li>Java</li>
+			<li>Objective C/++</li>
+			<li>Ruby</li>
+			<li>ABAP</li>
+			<li>Javascript</li>
+			<li>CSS/XHTML</li>
+			<li>Mandy More</li>
+			</ol>
+		</div>
 		<div id="footer">
 			<span>IT Multiservice Busch</span><span>StId: TBD0000000000000</span>
 			<div class="itmb-hr"></div>

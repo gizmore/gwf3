@@ -1,1 +1,70 @@
-.
+.* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+#pagewrap div {
+	padding: 2em 12.5%;
+}
+
+#pagewrap #header {
+	padding-left: 20em;
+	float: none;
+}
+
+#firstrow {
+	position: relative;
+	height: 22em;
+	width: 100%;
+}
+
+#firstrow img {
+	width: 20em;
+	height: 20em;
+	float: left;
+}
+
+#top-logo {
+	margin: 0.5em;
+	width: 12em;
+	height: 12em;
+}
+
+#header span {
+	padding-left: 1em;
+}
+
+#footer {
+	position: relative;
+	bottom: 0px;
+	background: #f00;
+	height: 22em;
+	width: 100%;
+}
+
+.itmb-hr {
+	background: transparent;
+	height: 0.6em;
+}
+
+#footer span, #header span {
+	font-size: 2.14em;
+	display: block;
+}
+
+#main-content {
+	min-height: 24em;
+	font-family: monospace;
+	font-size: 2.4em;
+}
+
+#topmenu {
+	height: 2em;
+	background: red;
+}
+#topmenu a {
+	padding: 0.14em 1em;
+	font-size: 1.64em;
+}
+
