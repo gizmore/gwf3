@@ -3,8 +3,13 @@
 	padding: 0;
 	box-sizing: border-box;
 }
-
-#pagewrap div {
+.itmb-hr {
+	margin: 2em 12.5%;
+	height: 2.15em;
+	width: 100%;
+	background: black;
+}
+#firstrow, #main-content, #footer {
 	padding: 2em 12.5%;
 }
 
@@ -15,13 +20,13 @@
 
 #firstrow {
 	position: relative;
-	height: 22em;
+	height: 16em;
 	width: 100%;
 }
 
 #firstrow img {
-	width: 20em;
-	height: 20em;
+	width: 17em;
+	height: 17em;
 	float: left;
 }
 

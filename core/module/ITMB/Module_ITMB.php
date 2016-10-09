@@ -8,6 +8,12 @@ final class Module_ITMB extends GWF_Module
 	##################
 	### GWF_Module ###
 	##################
+	private static final $instance;
+	public static function instance()
+	{
+		return self::$instance;
+	}
+	
 	public function getVersion() { return 1.00; }
 	public function getDefaultPriority() { return 64; }
 // 	public function getClasses() { return array('GWF_Guestbook', 'GWF_GuestbookMSG'); }
@@ -40,6 +46,25 @@ final class Module_ITMB extends GWF_Module
 //		}
 //		return '';
 //	}	
+	public function onStartup()
+	{
+		self::$instance = $this;
+		if ($clickPath = ($this->getClickCounterPath()))
+		{
+			GWF_CachedCounter::getAndCount($clickPath);
+		}
+	}
 	
+	private function getClickCounterPath()
+	{
+		if (isset($_GET['mo']))
+		{
+			$mo = Common::getGetString('mo');
+			$me = Common::getGetString('me');
+			$mo += str_repeat('_', 20 - strlen($mo));
+			return sprintf("CLICK_%s=>%me", $mo, $me);
+		}
+		return null;
+	}
 	
 }

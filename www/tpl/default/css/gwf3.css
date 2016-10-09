@@ -4,7 +4,7 @@
 * { margin: 0; padding: 0; text-decoration: none; }
 a img { border: 0; }
 ul, ol { list-style: none; }
-a, img, li, span { display: inline-block; }
+/* a, img, li, span { display: inline-block; } */
 
 /* COMMON */
 .gwf_num { font-family: monospace; text-align: right; padding-right: 3px; }
