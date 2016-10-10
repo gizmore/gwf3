@@ -21,7 +21,7 @@
     <polyline points="77,0  160,0  160,110  77,0" fill="#00f8"  />
 
 	<!-- Diamond shield. Clockwise from bottom star -->
-    <polyline points="80,150  31.4,75  31.4,42.8  54,24  114,24  137,42.8  137,75  80,150" fill="#f42c" stroke="#f33f" stroke-width="1" />
+    <polyline points="80,150  31.4,75  31.4,42.8  54,24  114,24  137,42.8  137,75  80,150" fill="#b42c" stroke="#f33f" stroke-width="1" />
     
     <!-- IT -->
     <text class="font-it" x="54" y="80" fill="#ffee" font-size="48" font-family="'Times', bold">I</text>

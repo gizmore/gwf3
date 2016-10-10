@@ -12,12 +12,16 @@ final class ReadPage extends GWF_Method
 	
 	public function execute()
 	{
-		if (false !== ($error = $this->validate())) {
+		if (false !== ($error = $this->validate()))
+		{
 			return $error;
 		}
+		
+		$this->countClick($this->book, $this->page);
 	}
 	
-	private function validate() {
+	private function validate()
+	{
 		if (false === ($this->book = Common::getGetInt('book'))) {
 			return $this->module->error('err_no_book');
 		}
@@ -25,6 +29,11 @@ final class ReadPage extends GWF_Method
 			return $this->module->error('err_no_page');
 		}
 		return false;
+	}
+	
+	private function countClick()
+	{
+		GWF_CachedCounter::getAndCount($this->getClickCounterPath());
 	}
 	
 }
