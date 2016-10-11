@@ -5,6 +5,49 @@
  */
 final class Module_Wanda extends GWF_Module
 {
+	private static $WANDA_IMAGES = array(
+		'1.1.1' => array(23,17),
+		'1.2.1' => array(21,17),
+		'1.2.2' => array(18,12),
+		'1.3.1' => array(19,15),
+		'1.3.2' => array(12,14),
+		'1.3.3' => array(19,11),
+		'1.4.1' => array(18, 9),
+		'1.5.1' => array(19,14),
+		'1.5.2' => array(14, 6),
+		'1.6.1' => array(32,12),
+		'1.6.2' => array(15,15),
+		'1.7.1' => array(18,18),
+		'1.8.1' => array(18,18),
+		'1.9.1' => array(30,16),
+		'1.10.1' => array(24,15),
+		'1.11.1' => array(13,16),
+		'1.12.1' => array(17,13),
+		'1.13.1' => array(15,19),
+		'1.14.1' => array(33,11),
+		'1.15.1' => array(19,11),
+		'1.16.1' => array(16,13),
+		'1.17.1' => array(13,11),
+		'1.18.1' => array(14,13),
+		'1.19.1' => array(14,12),
+		'1.20.1' => array(13,13),
+		'1.20.2' => array(32, 8),
+		'1.21.1' => array(15,13),
+		'1.21.2' => array(13,14),
+		'1.22.1' => array(16,11),
+		'1.23.1' => array(14,12),
+		'1.24.1' => array(14,12),
+		'1.25.1' => array(33,14), # Largest!
+		'1.26.1' => array(12,13),
+		'1.26.2' => array(18,17),
+		'1.27.1' => array(17,13),
+		'1.28.1' => array(14,13),
+		'1.29.1' => array(14,15),
+		'1.30.1' => array(18,15),
+		'1.31.1' => array(17,15),
+	);
+	
+	
 	##################
 	### GWF_Module ###
 	##################
@@ -18,7 +61,7 @@ final class Module_Wanda extends GWF_Module
 	public function getDefaultPriority() { return 64; }
 // 	public function getClasses() { return array('GWF_Guestbook', 'GWF_GuestbookMSG'); }
 // 	public function onInstall($dropTable) { require_once 'GWF_GuestbookInstall.php'; return GWF_GuestbookInstall::onInstall($this, $dropTable); }
-	public function onLoadLanguage() { return $this->loadLanguage('lang/itmb'); }
+	public function onLoadLanguage() { return $this->loadLanguage('lang/wanda'); }
 	##############
 	### Config ###
 	##############
@@ -41,8 +84,12 @@ final class Module_Wanda extends GWF_Module
 		self::$instance = $this;
 	}
 	
-	public function wandimage($book, $page, $image)
+	public function wandaImage($book, $page, $image)
 	{
-		
+		$key = sprintf('%d.%d.%d', $book, $page, $image);
+		$w_h = self::$WANDA_IMAGES[$key];
+		$w = $w_h[0]; $h = $w_h[1];
+		$src = sprintf('%s/module/Wanda/content/images/%d_%d_%d.png', GWF_CORE_PATH, $book, $page, $image);
+		return sprintf('<img src="%s" style="width: %dem; height: %dem" />', $src, $w, $h);
 	}
 }

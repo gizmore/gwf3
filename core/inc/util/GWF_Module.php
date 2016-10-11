@@ -150,10 +150,15 @@ class GWF_Module extends GDO
 	public function templatePHP($file, $tVars=array())
 	{
 		$name = $this->getName();
+		return $this->coreTemplatePHP(GWF_WWW_PATH."tpl/%DESIGN%/module/{$name}/{$file}", $tVars);
+	}
+	
+	public function coreTemplatePHP($file, $tVars=array()) {
 		$tVars['lang'] = $this->lang;
 		$tVars['module'] = $this;
-		return GWF_Template::templatePHPMain("module/{$name}/{$file}", $tVars);
+		return GWF_Template::templatePHPRaw($file, $tVars);
 	}
+	
 
 	##############
 	### Loader ###

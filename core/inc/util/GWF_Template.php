@@ -22,7 +22,8 @@ final class GWF_Template
 
 	public static function templatePHPMain($file, $tVars=NULL) { return self::templatePHP(GWF_WWW_PATH.'tpl/%DESIGN%/'.$file, $tVars); }
 	public static function templateMain($file, $tVars=NULL) { return self::template(GWF_WWW_PATH.'tpl/%DESIGN%/'.$file, $tVars); }
-
+	public static function templatePHPRaw($file, $tVars=NULL) { return self::templatePHP($file, $tVars); }
+	
 	/**
 	 * Get the Smarty instance and create if not exists
 	 * @return Smarty

@@ -1,5 +1,5 @@
 <?php
-final class ReadPage extends GWF_Method
+final class Wanda_ReadPage extends GWF_Method
 {
 	private $book;
 	private $page;
@@ -18,6 +18,8 @@ final class ReadPage extends GWF_Method
 		}
 		
 		$this->countClick($this->book, $this->page);
+		
+		return $this->renderBookPage($this->book, $this->page);
 	}
 	
 	private function validate()
@@ -34,6 +36,28 @@ final class ReadPage extends GWF_Method
 	private function countClick()
 	{
 		GWF_CachedCounter::getAndCount($this->getClickCounterPath());
+	}
+	
+	private function getClickCounterPath() {
+		return sprintf('WB%sP%s', $this->book, $this->page);
+	}
+	
+	############
+	### Read ###
+	############
+	private function renderBookPage($book, $page)
+	{
+		$tVars = array(
+			'text' => $this->renderContent($book, $page),
+		);
+		return $this->module->templatePHP('page.php', $tVars);
+	}
+	
+	private function renderContent($book, $page)
+	{
+		$iso = GWF_Language::getCurrentISO();
+		$file = sprintf('%s/module/Wanda/content/book%d/%s/page%d.php', GWF_CORE_PATH, $book, $iso, $page);
+		return $this->module->coreTemplatePHP($file);
 	}
 	
 }
