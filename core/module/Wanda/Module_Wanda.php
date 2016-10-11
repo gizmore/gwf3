@@ -45,6 +45,28 @@ final class Module_Wanda extends GWF_Module
 		'1.29.1' => array(14,15),
 		'1.30.1' => array(18,15),
 		'1.31.1' => array(17,15),
+			
+		'2.1.1' => array(),
+		'2.2.1' => array(),
+		'2.3.1' => array(),
+		'2.4.1' => array(),
+		'2.5.1' => array(),
+		'2.6.1' => array(),
+		'2.7.1' => array(),
+		'2.8.1' => array(),
+		'2.9.1' => array(),
+		'2.10.1' => array(),
+		'2.11.1' => array(),
+		'2.12.1' => array(),
+		'2.13.1' => array(),
+		'2.14.1' => array(),
+		'2.15.1' => array(),
+		'2.16.1' => array(),
+		'2.17.1' => array(),
+		'2.18.1' => array(),
+		'2.19.1' => array(),
+		'2.20.1' => array(),
+		'2.21.1' => array(),
 	);
 	
 	
