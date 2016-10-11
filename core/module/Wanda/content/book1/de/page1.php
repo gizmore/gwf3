@@ -1,5 +1,3 @@
-<h4>Wanda, die kleine Heuschrecke</h4>
-
 <h5>Vorwort</h5>
 
 <div id="vorwort">

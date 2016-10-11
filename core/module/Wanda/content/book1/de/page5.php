@@ -1,5 +1,3 @@
-<h4>Wanda, die kleine Heuschrecke</h4>
-
 <p>
 Von der Ernte hat Wanda schon viel erzählt bekommen.
 Helfen musste sie aber noch nie.

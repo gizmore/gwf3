@@ -1,5 +1,3 @@
-<h4>Wanda, die kleine Heuschrecke</h4>
-
 <p>
 Die Löwen <em>wachen</em> über die Oasen, die Gnus und Zebras, und beschützen die Steppe.
 Mit den anderen Tieren dürfen Heuschrecken nicht sprechen.

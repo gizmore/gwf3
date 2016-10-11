@@ -1,5 +1,3 @@
-<h4>Wanda, die kleine Heuschrecke</h4>
-
 <p>
 Das einzige, woran sich Wanda, und ihr Stamm erinnern, wurde in den alten Kammern und Liedern festgehalten.
 </p>

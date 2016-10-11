@@ -1,5 +1,3 @@
-<h4>Wanda, die kleine Heuschrecke</h4>
-
 <p>
 «Was ist dieser Steppenbrand?»
 «Fressen Geier wirklich 1000 Heuschrecken pro Stunde?»
