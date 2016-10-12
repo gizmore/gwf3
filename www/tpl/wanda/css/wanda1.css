@@ -1,0 +1,78 @@
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	text-decoration: none;
+	font-family: serif;
+}
+
+html, body, #pagewrap, #content, #wanda-acessoirs {
+	height: 90%;
+}
+
+body, html, #pagewrap, #content {
+	min-height: 100%;
+}
+
+/** Top Menu **/
+
+#topmenu {
+	text-align: center;
+}
+
+#topmenu a {
+	padding-left: 0.31em;
+	padding-right: 0.31em;
+}
+
+#topmenu, #topmenu a, #topmenu a:visited {
+	color: white;
+	background: purple;
+	font-size: 1.2em;
+	line-height: 3em;
+	vertical-align: middle;
+}
+
+/** Bottom menu **/
+
+
+/** Accessoirs **/
+.palme {
+	position: absolute;
+	height: 100%;
+	width: 12.5%;
+	background: red;
+	top: 0px;
+}
+.palme.palme-left {
+	left: 0px;
+}
+.palme.palme-right {
+	right: 0px;
+}
+
+.coconut {
+	position: absolute;
+	background: brown;
+	border-radius: 10px;
+	width: 1.0em;
+	height: 1.0em;
+		
+}
+.coconut.palme-left-c1 {
+	left: 3em;
+	bottom: 60%;
+	
+}
+.coconut.palme-left-c2 {
+	left: 4em;
+	bottom: 64%;
+	
+}
+.coconut.palme-right-c1 {
+	right: 4em;
+	bottom: 65%;
+}
+		
+
+

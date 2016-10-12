@@ -1,6 +1,7 @@
 <div id="topmenu">
 		{* Both *}
 		<a href="{$root}news">News{GWF_Notice::getUnreadNews($user)}</a>
+		<a href="{$root}download">Download</a>
 
 		{* Member *}
 		{if $user->isLoggedIn()}
