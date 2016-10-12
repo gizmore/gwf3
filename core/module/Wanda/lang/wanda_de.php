@@ -7,7 +7,7 @@ $lang = array(
 	'book2' => 'Wanda – Ameisen sind unter uns',
 		
 	'home_title' => 'Wanda, die kleine Heuschrecke',
-	'home_para1' => 'Willkommen auf der Internetseite von Wanda, der kleinen Heuschrecke.<br/>Die Website ist interaktiv. Viel Spaß beim klicken.',
+	'home_para1' => 'Willkommen auf der Internetseite von Wanda, der kleinen Heuschrecke.<br/>Diese Website ist interaktiv. Viel Spaß beim klicken.',
 		
 	'about_wanda_title' => 'Wie entstand diese Fabel?',
 	'about_wanda_para1' => '',

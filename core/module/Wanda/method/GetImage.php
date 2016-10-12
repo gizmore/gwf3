@@ -12,9 +12,13 @@ final class Wanda_GetImage extends GWF_Method
 	
 	public function execute()
 	{
-		if (false !== ($error = $this->validate())) {
+		if (false !== ($error = $this->validate()))
+		{
 			return $error;
 		}
+		$filename = sprintf('%smodule/Wanda/content/images/Book%dPage%02dImage%d.png', GWF_CORE_PATH, $this->book, $this->page, $this->image);
+		header("Content-Type: image/png");
+		die(file_get_contents($filename));
 	}
 	
 	private function validate() {
@@ -34,3 +38,24 @@ final class Wanda_GetImage extends GWF_Method
 	}
 	
 }
+/*
+
+
+public function sendTheFile(GWF_Download $dl)
+{
+	GWF3::setConfig('store_last_url', false);
+
+	$realpath = $dl->getCustomDownloadPath();
+	# http header
+	$mime = $dl->getVar('dl_mime'); # currently i am looking for pecl filetype?
+	$mime = 'application/octet-stream'; # not sure about...
+	//		$name = $dl->getVar('dl_filename'); # filename is sane. No " is allowed in filename.
+	$name = $dl->getCustomDownloadName();
+	header("Content-Disposition: attachment; filename=\"$name\""); # drop attachment?
+	$size = filesize($realpath);
+	header("Content-Length: $size");
+	# Print file and die
+	echo file_get_contents($realpath);
+	die(0);
+}
+*/

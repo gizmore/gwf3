@@ -6,8 +6,12 @@
 	<!-- gotta cry now for a minute :') -->
 </div>
 
+<hr/><br/>
+
+<h3>Wanda die kleine Heuschrecke</h3>
+
 <p>
-<b>Wanda</b>, die kleine Heuschrecke, wurde jung geboren.
+<b>Wanda</b>, die kleine Heuschrecke, wurde jung geboren.<br/>
 In Afrika gibt es viele Heuschrecken.
 Unheimlich viele.
 Heuschrecken leben um zu fressen und sich fortzupflanzen.

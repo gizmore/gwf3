@@ -43,6 +43,7 @@ final class Module_Wanda extends GWF_Module
 		'1.27.1' => array(17,13),
 		'1.28.1' => array(14,13),
 		'1.29.1' => array(14,15),
+			
 		'1.30.1' => array(18,15),
 		'1.31.1' => array(17,15),
 			
@@ -110,8 +111,11 @@ final class Module_Wanda extends GWF_Module
 	{
 		$key = sprintf('%d.%d.%d', $book, $page, $image);
 		$w_h = self::$WANDA_IMAGES[$key];
-		$w = $w_h[0]; $h = $w_h[1];
-		$src = sprintf('%s/module/Wanda/content/images/%d_%d_%d.png', GWF_CORE_PATH, $book, $page, $image);
+		$scale = 1.5;
+		$w = $w_h[0] * $scale;
+		$h = $w_h[1] * $scale;
+		
+		$src = sprintf("%swanda/image/book/%d/page/%d/image/%d", GWF_WEB_ROOT_NO_LANG, $book, $page, $image);
 		return sprintf('<img src="%s" style="width: %dem; height: %dem" />', $src, $w, $h);
 	}
 }

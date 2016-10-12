@@ -15,9 +15,9 @@ Sie hielten sich immer an die Regeln des Stammes, <em>ohne</em> diese in Frage z
 In ihren jungen Jahren interessierte dies Wanda alles noch nicht.
 Sie kümmerte sich lieber um das Spielen mit ihren Freunden.
 Wanda hat einen schönen grünen Hautpanzer und lernt gerne von den anderen das Zirpen, wie man über die Felder geht, und wie man den Gefahren der Steppe begegnet.
-Sie hörte immer zu, wenn sie mit den Älteren sprach, und nahm sich freundliches Zirpen zu Herzen.
-Schrillen begegnete sie zu dieser Zeit noch mit Angst.
-Am meisten Angst machten ihr jedoch die Warnungen der Alten.
+Sie hört immer zu, wenn sie mit den Älteren spricht, und nimmt sich freundliches Zirpen zu Herzen.
+Schrillen begegnet sie zu dieser Zeit noch mit Angst.
+Am meisten Angst machen ihr jedoch die Warnungen der Alten…
 </p>
 
 <?php echo $tVars['module']->wandaImage(1, 2, 2); ?>
