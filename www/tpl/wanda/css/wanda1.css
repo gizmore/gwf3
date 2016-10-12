@@ -8,6 +8,7 @@
 
 html, body, #pagewrap, #content, #wanda-acessoirs {
 	height: 90%;
+	overflow: hidden;
 }
 
 body, html, #pagewrap, #content {
@@ -33,10 +34,31 @@ body, html, #pagewrap, #content {
 	vertical-align: middle;
 }
 
+/** Content **/
+#content {
+	position: absolute;
+	top: 0;
+	margin: 5em 14.5% 2em;
+    overflow: auto;
+    width: 71%;
+    height: 81%;
+	min-height: 81%;
+}
+
+#content > p {
+	font-size: 1.4em;
+}
+
 /** Bottom menu **/
 
 
 /** Accessoirs **/
+.wanda-accesoirs {
+	position: absolute;
+}
+
+
+
 .palme {
 	position: absolute;
 	height: 100%;
