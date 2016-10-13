@@ -1,0 +1,13 @@
+.gwf_newsbox_title .fr {
+	padding-top: 3em;
+	padding-right: 4em;
+}
+
+.gwf_newsbox_item {
+	background: #ff83;
+	border: 2px ridge aliceblue;	
+}
+
+.gwf_newsbox_message {
+	padding: 1em;
+}

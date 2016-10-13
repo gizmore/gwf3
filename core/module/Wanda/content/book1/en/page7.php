@@ -1,15 +1,15 @@
 <p>
-Wanda friert und wird mit ihren Freunden wach.
-Kalter Tau überzieht die Steppe und den Heuspeicher.
+Wanda shivers and awakes near her friends.
+Cold dew is putting the steppe and the haystack to gloom.
 </p>
 
 <?php echo $tVars['module']->wandaImage(1, 7, 1); ?>
 
 <p>
-Schnell huschen die vier Freunde in ihren Bau.
-Die Gedanken vom Vortag kreisen noch immer in Wanda's Kopf.
-Sie wünschte, sie könnte noch einmal so feiern, wie gestern, so ungezwungen, und dann Abends mit ihren Freunden unter den Sternen einschlafen.
-Veronica sieht das genau so.
+Quickly, the four friends are heading to the lair.
+Wanda's head is spinning with the thoughts from yesterday.
+She wished she could celebrate again, like yesterday, so freely, until one fells asleep with their friends beneath the stars.
+Veronica agrees.
 </p>
 
 <p>
