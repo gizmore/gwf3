@@ -127,4 +127,10 @@ final class Module_Wanda extends GWF_Module
 	{
 		return self::$WANDA__PAGES[$book-1];
 	}
+
+	public function getBookTitle($book)
+	{
+		return $this->lang("book$book");
+	}
+	
 }

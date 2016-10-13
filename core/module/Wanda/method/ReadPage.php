@@ -56,6 +56,9 @@ final class Wanda_ReadPage extends GWF_Method
 			'text' => $this->renderContent($book, $page),
 			'prev' => $this->getPrevHREF($book, $page),
 			'next' => $this->getNextHREF($book, $page),
+			'book' => $book,
+			'page' => $page,
+			'booktitle' => $this->module->getBookTitle($book),
 		);
 		return $this->module->templatePHP('page.php', $tVars);
 	}
