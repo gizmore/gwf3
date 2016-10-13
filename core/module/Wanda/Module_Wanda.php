@@ -115,12 +115,12 @@ final class Module_Wanda extends GWF_Module
 	{
 		$key = sprintf('%d.%d.%d', $book, $page, $image);
 		$w_h = self::$WANDA_IMAGES[$key];
-		$scale = 1.5;
+		$scale = 30;
 		$w = $w_h[0] * $scale;
 		$h = $w_h[1] * $scale;
 		
 		$src = sprintf("%swanda/image/book/%d/page/%d/image/%d", GWF_WEB_ROOT_NO_LANG, $book, $page, $image);
-		return sprintf('<img src="%s" style="width: %dem; height: %dem" />', $src, $w, $h);
+		return sprintf('<img src="%s" width=%d height=%d />', $src, $w, $h);
 	}
 	
 	public function getWandaPagecount($book)

@@ -2,6 +2,7 @@
 		{* Both *}
 		<a href="{$root}news">News{GWF_Notice::getUnreadNews($user)}</a>
 		<a href="{$root}downloads">Download</a>
+		<a href="{$root}wanda/book/1/page/1">The Book</a>
 
 		{* Member *}
 		{if $user->isLoggedIn()}
