@@ -35,6 +35,13 @@ body, html, #pagewrap, #content {
 }
 
 /** Content **/
+#content h1 { font-size: 3.0em; padding: 1em; }
+#content h2 { font-size: 2.8em; padding: 1em; }
+#content h3 { font-size: 2.6em; padding: 1em; }
+#content h4 { font-size: 2.4em; padding: 1em; }
+#content h5 { font-size: 2.2em; padding: 1em; }
+#content h6 { font-size: 2.0em; padding: 1em; }
+
 #content {
 	position: absolute;
 	top: 0;
@@ -45,12 +52,25 @@ body, html, #pagewrap, #content {
 	min-height: 81%;
 }
 
-#content > p {
-	font-size: 1.4em;
+#content > p, #wanda-content-page p, #wanda-home > p {
+	font-size: 1.6em;
+	padding-bottom: 1em;
 }
 
 /** Bottom menu **/
+#wanda-menu-bottom {
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+}
 
+#wanda-menu-bottom a {
+	color: white;
+	background: purple;
+	font-size: 1.2em;
+	line-height: 3em;
+	vertical-align: middle;	
+}
 
 /** Accessoirs **/
 .wanda-accesoirs {
