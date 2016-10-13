@@ -42,6 +42,10 @@ body, html, #pagewrap, #content {
 #content h5 { font-size: 2.2em; padding: 1em; }
 #content h6 { font-size: 2.0em; padding: 1em; }
 
+.gwf_table table {
+	width: 100%;
+}
+
 #content {
 	position: absolute;
 	top: 0;
@@ -96,17 +100,21 @@ body, html, #pagewrap, #content {
 
 /** Bottom menu **/
 #wanda-menu-bottom {
-	position: absolute;
-	bottom: 0px;
-	left: 0px;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    background: purple;
+    width: 100%;
+    height: 3em;
+    text-align: center;
 }
 
 #wanda-menu-bottom a {
 	color: white;
-	background: purple;
-	font-size: 1.2em;
-	line-height: 3em;
-	vertical-align: middle;	
+    font-size: 1.2em;
+    line-height: 2.6;
+    vertical-align: middle;
+    padding: 0 1em;
 }
 
 /** Accessoirs **/
