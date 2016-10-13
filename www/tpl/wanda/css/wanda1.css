@@ -137,6 +137,12 @@ body, html, #pagewrap, #content {
 	right: 4em;
 	bottom: 65%;
 }
+
+
+/** PDF **/
+div.pdf-page {
+	height: 100%;
+}
 		
 
 

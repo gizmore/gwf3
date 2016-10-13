@@ -111,6 +111,13 @@ final class Module_Wanda extends GWF_Module
 		self::$instance = $this;
 	}
 	
+	public function validateBookId($bookId)
+	{
+		$bookId = (int)$bookId;
+		return (($bookId < 1) || ($bookId > 2)) ? false : $bookId;
+	}
+	
+	
 	public function wandaImage($book, $page, $image)
 	{
 		$key = sprintf('%d.%d.%d', $book, $page, $image);
