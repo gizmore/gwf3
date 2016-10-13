@@ -16,7 +16,7 @@ final class Wanda_GetImage extends GWF_Method
 		{
 			return $error;
 		}
-		$filename = sprintf('%smodule/Wanda/content/images/Book%dPage%02dImage%d.png', GWF_CORE_PATH, $this->book, $this->page, $this->image);
+		$filename = sprintf('%smodule/Wanda/content/images_medium/images/Book%dPage%02dImage%d.png', GWF_CORE_PATH, $this->book, $this->page, $this->image);
 		header("Content-Type: image/png");
 		die(file_get_contents($filename));
 	}

@@ -1,10 +1,14 @@
 <?php
 /**
+ * 
+ * find images -type f -exec convert {} -resize "50%" images_medium/{}  \;
+ * 
  * @author gizmore
  * @version 1.0
  */
 final class Module_Wanda extends GWF_Module
 {
+	private static $WANDA__PAGES = array(29, 20);
 	private static $WANDA_IMAGES = array(
 		'1.1.1' => array(23,17),
 		'1.2.1' => array(21,17),
@@ -117,5 +121,10 @@ final class Module_Wanda extends GWF_Module
 		
 		$src = sprintf("%swanda/image/book/%d/page/%d/image/%d", GWF_WEB_ROOT_NO_LANG, $book, $page, $image);
 		return sprintf('<img src="%s" style="width: %dem; height: %dem" />', $src, $w, $h);
+	}
+	
+	public function getWandaPagecount($book)
+	{
+		return self::$WANDA__PAGES[$book-1];
 	}
 }

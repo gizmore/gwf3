@@ -10,6 +10,11 @@ final class Wanda_ReadPage extends GWF_Method
 		return 'RewriteRule ^wanda/book/([0-9]+)/page/([0-9]+)/?$ index.php?mo=Wanda&me=ReadPage&book=$1&page=$2'.PHP_EOL;
 	}
 	
+	public function getPageURL($book, $page)
+	{
+		return sprintf(GWF_WEB_ROOT.'wanda/book/%s/page/%s', $book, $page);
+	}
+	
 	public function execute()
 	{
 		if (false !== ($error = $this->validate()))
@@ -49,6 +54,8 @@ final class Wanda_ReadPage extends GWF_Method
 	{
 		$tVars = array(
 			'text' => $this->renderContent($book, $page),
+			'prev' => $this->getPrevHREF($book, $page),
+			'next' => $this->getNextHREF($book, $page),
 		);
 		return $this->module->templatePHP('page.php', $tVars);
 	}
@@ -58,6 +65,51 @@ final class Wanda_ReadPage extends GWF_Method
 		$iso = GWF_Language::getCurrentISO();
 		$file = sprintf('%s/module/Wanda/content/book%d/%s/page%d.php', GWF_CORE_PATH, $book, $iso, $page);
 		return $this->module->coreTemplatePHP($file);
+	}
+	
+	private function getPrevHREF($book, $page)
+	{
+		if (($book == 1) && ($page == 1))
+		{
+			return null;
+		}
+		else if ($page == 1)
+		{
+			$book -= 1; // One book down
+			$page = $this->module->getWandaPagecount($book); // last page
+		}
+		else
+		{
+			$page -= 1;	
+		}
+		
+		return $this->getPageURL($book, $page);
+	}
+	
+	private function getNextHREF($book, $page)
+	{
+		if ($this->isTotalLastPage($book, $page))
+		{
+			return null;
+		}
+		
+		$pages = $this->module->getWandaPagecount($book);
+		if ($page == $pages)
+		{
+			$book += 1;
+			$page = 1;
+		}
+		else
+		{
+			$page += 1;
+		}
+	
+		return $this->getPageURL($book, $page);
+	}
+	
+	private function isTotalLastPage($book, $page)
+	{
+		return $page == 29;
 	}
 	
 }
