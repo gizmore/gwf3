@@ -1,23 +1,23 @@
 <p>
-Die Ernte ist eingefahren, und obwohl es gewaltig Ärger für die vier Freunde gab, gibt es nun auch viel zu feiern.
+The harvest has been a success, and although there has been given trouble to our four friends, there is a lot to celebrate now.
 </p>
 
 <?php echo $tVars['module']->wandaImage(1, 6, 1); ?>
 
 <p>
-Alle im Stamm schlagen sich die Bäuche voll, trinken das Wasser der Erde, und lachen über die anderen Tiere.
-Wanda schlägt sich mit ihren Freunden den Wanst voll, lacht mit, und unterhält sich wieder mit allen ihren Freunden und Bekannten.
-Nichts bleibt unausgesprochen.
-Später gingen Wanda, Maice, Olivia und Veronica wieder zum Heuspeicher.
+All in the tribe fill their waists, drink the water of the earth, and laugh about the other animals.
+Wanda does the same with her friends, her family and their comrades.
+Nothing is kept unspoken.
+Later, Wanda, Marcy and Olivia walk to the heystack again.
 </p>
 
 <?php echo $tVars['module']->wandaImage(1, 6, 2); ?>
 
 <p>
-Das gemalte wurde davongewaschen, doch das machte nichts.
-Was sie diesen Sommer erlebten würden sie nie wieder vergessen.
-Also legten sie sich auf die Steine, beobachteten den Himmel, und träumten gemeinsam.
-Wanda muss plötzlich an die Ameisen denken, und dann auch an die Zebras.
-«Was fressen die eigentlich?» – Der Heuspeicher ächzt vor Fülle.
-Ein schöner Sommer.
+That what has been painted has been washed away, but that didn't matter.
+What they had experienced this summer, they would never ever forget.
+So they laid down to the stones, watched the sky and dreamed together.
+Wanda, suddenly had to think of the ants, and then on the zebras.
+«What do they even eat?» – The haystack is groaning under the harvest.
+A beautiful summer.
 </p>

@@ -1,29 +1,26 @@
 <p>
-Von der Ernte hat Wanda schon viel erzählt bekommen.
-Helfen musste sie aber noch nie.
-Allerdings ist sie gut vorbereitet.
-Dieses Jahr darf sie zum ersten mal helfen, und vor Freude kann sie kaum schlafen.
-Müde fühlt sie sich überhaupt nicht.
-Es gibt auch keine Probleme in ihrem Leben, und nun kommt ihr größter Tag.
+Wanda had been told about the harvest a lot, but she never needed to help.
+Although she is prepared well, her help is required the first time in her life, and she almost can't sleep of joy.
+Neither she is tired only a tiny bit.
+There are no problems in her life, and now her greatest day will come…
 </p>
 <p>
-Ihre erste Aufgabe ist einfach;
-Mit ihren Freunden soll sie das kleine Feld in dert Mitte abernten.
+Her first task is easy;
+She and her friends shall harvest the little field in the center of the harvest area.
 </p>
 
 <?php echo $tVars['module']->wandaImage(1, 5, 1); ?>
 
 <p>
-Frohmütig gehen sie an die Arbeit.
-Das Gerstenfeld glänzt goldgelb.
-Veronica kümmert sich um die kleinen Blätter, Olivia und Maice zerschneiden die dicken Halme, und Wanda sammelt brav die Arbeit der anderen für ihren Stamm, beobachtete ihre Umgebung, und sah Tiere, die ihr vorher nicht aufgefallen waren.
-Sie hatten sechs Beine, zwei Fühler, waren schwarz, und hatten einen willenlosen Blick in den Augen.
+Happily they lope to work in the golden shiny fields.
+Veronica is taking care of the small leaves, Olivia and Marcy cut the thicker stalks, and Wanda kindly is picking up the work of the others, watching her environment and spectated animals she never noticed before.
+It had six legs, two antennas, was black, and had cold mindless look in the eyes.
 </p>
 
 <?php echo $tVars['module']->wandaImage(1, 5, 2); ?>
 
 <p>
-Für einen Moment fühlte sich Wanda verloren.
-Bevor sie sich versah war der Tag vorbei, die Steppe kahl, und das einzige Feld weit und breit was nicht abgeerntet war, war das der Jungen.
-Das wird Ärger geben.
+For a moment, Wanda felt lost.
+Before the friends were finished, the day was over, the steppe cut, and the only field that hadn't been harvest throughout the land, was that of the youngsters.
+This means trouble.
 </p>
