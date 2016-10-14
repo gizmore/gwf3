@@ -246,7 +246,7 @@ final class GWF_InstallConfig
 			array('text', 'Database', 'GWF_DB_USER', '', 'Database username. Example: \'some_sql_username\'.'),
 			array('text', 'Database', 'GWF_DB_PASSWORD', '', 'Database password.'),
 			array('text', 'Database', 'GWF_DB_DATABASE', '', 'Database db-name.'),
-			array('text', 'Database', 'GWF_DB_TYPE', 'mysql', 'Database type. Currently only \'mysql\' is supported.'),
+			array('text', 'Database', 'GWF_DB_TYPE', 'mysqli', 'Database type. Currently only \'mysql\' is supported.'),
 			array('text', 'Database', 'GWF_DB_ENGINE', 'myIsam', 'Default database table type. Either \'innoDB\' or \'myIsam\'.'),
 			array('text', 'Database', 'GWF_TABLE_PREFIX', 'gwf_', 'Database table prefix. Example: \'gwf3_\'.'),
 			

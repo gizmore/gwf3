@@ -41,7 +41,7 @@ final class GWF_AutoConfig
 		define('GWF_DB_USER', '');
 		define('GWF_DB_PASSWORD', '');
 		define('GWF_DB_DATABASE', 'GWF');
-		define('GWF_DB_TYPE', 'mysql');
+		define('GWF_DB_TYPE', 'mysqli');
 		define('GWF_DB_ENGINE', 'myIsam');
 		define('GWF_TABLE_PREFIX', 'gwf3_');
 

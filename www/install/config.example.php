@@ -68,7 +68,7 @@ define('GWF_DB_HOST', 'localhost'); # Database host. Usually localhost.
 define('GWF_DB_USER', 'wechall'); # Database username. Example: 'some_sql_username'.
 define('GWF_DB_PASSWORD', 'wechall'); # Database password.
 define('GWF_DB_DATABASE', 'wechall'); # Database db-name.
-define('GWF_DB_TYPE', 'mysql'); # Database type. Currently only 'mysql' is supported.
+define('GWF_DB_TYPE', 'mysqli'); # Database type. Currently only 'mysql' is supported.
 define('GWF_DB_ENGINE', 'myIsam'); # Default database table type. Either 'innoDB' or 'myIsam'.
 define('GWF_TABLE_PREFIX', 'kd_'); # Database table prefix. Example: 'gwf3_'.
 

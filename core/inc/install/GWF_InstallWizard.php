@@ -209,7 +209,7 @@ final class GWF_InstallWizard
 		$user = isset($pv['GWF_DB_USER']) ? $pv['GWF_DB_USER'] : '';
 		$pass = isset($pv['GWF_DB_PASSWORD']) ? $pv['GWF_DB_PASSWORD'] : '';
 		$db = isset($pv['GWF_DB_DATABASE']) ? $pv['GWF_DB_DATABASE'] : '';
-		$type = isset($pv['GWF_DB_TYPE']) ? $pv['GWF_DB_TYPE'] : 'mysql';
+		$type = isset($pv['GWF_DB_TYPE']) ? $pv['GWF_DB_TYPE'] : 'mysqli';
 
 		if (false !== ($db = gdo_db_instance($host, $user, $pass, $db, $type, 'utf8', false)))
 		{
