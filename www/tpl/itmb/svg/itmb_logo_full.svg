@@ -15,13 +15,13 @@
     <rect x="0" y="0" width="160" height="160" stroke="#ffff" stroke-width="1" />
 
     <!-- Upper left blue rect -->
-    <rect x="0" y="0" width="77" height="56" fill="#00f8" stroke-width="1" />
+    <rect x="0" y="0" width="77" height="56" fill="#00f6" stroke-width="1" />
 
 	<!-- Upper right triangle -->
-    <polyline points="77,0  160,0  160,110  77,0" fill="#00f8"  />
+    <polyline points="77,0  160,0  160,110  77,0" fill="#00f6"  />
 
 	<!-- Diamond shield. Clockwise from bottom star -->
-    <polyline points="80,150  31.4,75  31.4,42.8  54,24  114,24  137,42.8  137,75  80,150" fill="#b42c" stroke="#f33f" stroke-width="1" />
+    <polyline points="81,150  31.4,75  31.4,42.8  54,24  114,24  137,42.8  137,75  81,150" fill="#b429" stroke="#f339" stroke-width="1" />
     
     <!-- IT -->
     <text class="font-it" x="54" y="80" fill="#ffee" font-size="48" font-family="'Times', bold">I</text>

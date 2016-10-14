@@ -1,3 +1,24 @@
+.gwf_button {
+	margin: 0.5em;
+}
+
+.gwf_button span {
+	font-size: 1.2em;
+}
+
+.box {
+	width: auto;
+	padding: 1em;
+	border: 2px solid black;
+	border-radius: 7px;
+	margin: 1em 0;
+}
+
+.box .box_c {
+	line-height: 1.8em;
+	font-size: 1.2em;
+}
+
 .gwf_newsbox_title .fr {
 	padding-top: 3em;
 	padding-right: 4em;

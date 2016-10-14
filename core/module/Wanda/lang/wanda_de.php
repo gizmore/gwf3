@@ -9,7 +9,7 @@ $lang = array(
 	'home_title' => 'Wanda, die kleine Heuschrecke',
 	'home_para1' => 'Willkommen auf der Internetseite von Wanda, der kleinen Heuschrecke.<br/>Diese Website ist interaktiv. Viel Spaß beim klicken.',
 		
-	'download_info' => 'Please note that the <b>original scan zip is handled as donation</b>.<br/>Please note that the pdf might be outdated.<br/>It is also possible to <a href="%s">read all the HTML</a> at once</a>.',
+	'download_info' => 'Please note that the <b>original scans</b> have only collectors value, and help us to pay painting artists.<br/>It is also possible to <a href="%s">read all the HTML</a> at once</a>.',
 		
 	'about_wanda_title' => 'Wie entstand diese Fabel?',
 	'about_wanda_para1' => 'Das ist eine verdammt lange Geschichte.',

@@ -7,7 +7,8 @@ if ($tVars['may_upload']) {
 $wanda = GWF_ModuleLoader::loadModuleFS('Wanda');
 $wanda->onLoadLanguage();
 $hrefBook1 = GWF_WEB_ROOT.'index.php?mo=Wanda&amp;me=GetBookHTML&amp;book=1';
-echo $wanda->lang('download_info', array($hrefBook1));
+
+echo GWF_Box::box($wanda->lang('download_info', array($hrefBook1)));
 
 $user = GWF_Session::getUser();
 
