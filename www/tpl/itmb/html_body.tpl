@@ -6,6 +6,9 @@
 				<span>Programming, Architecture, Support</span>
 				<div class="itmb-hr"></div>
 				<span>+49 176 59 59 88 44</span>
+				<br/>
+				<span><a href="mailto:service@busch-peine.de">service@busch-peine.de</a></span>
+				<span><a href="mailto:gizmore@gizmore.org">gizmore@gizmore.org</a></span>
 			</div>
 		</div>
 
