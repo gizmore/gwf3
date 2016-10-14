@@ -262,3 +262,5 @@
 /www/tpl/konz/img
 /www/tpl/konz/presse
 
+www/install/.htaccess
+www/protected/db_backup.sh

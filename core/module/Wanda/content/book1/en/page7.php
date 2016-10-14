@@ -13,9 +13,13 @@ Veronica agrees.
 </p>
 
 <p>
-Nach der täglichen Arbeit beschliessen sie wieder den Heuspeicher aufzusuchen.
-Sie untersuchen ihn, und stellen fest, daß er an einer Seite ganz schön brüchig ist.
-Was sollen die vier Freunde tun?
+After the daily work they decide to visit the haystack again.
+Wanda examins it, and notices quite some brittle on one of the sides.
+What should the four friends do?
+
+
+
+
 Den Schaden melden?
 Letztendlich beschliessen sie eigene Felder zu suchen, und so erkunden sie die Steppe gemeinsam.
 Die Löwen schauen böse, und die Geier kreisen.

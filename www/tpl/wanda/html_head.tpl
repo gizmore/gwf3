@@ -5,6 +5,7 @@
 	{$meta}
 	<meta name="generator" content="GWFv{$smarty.const.GWF_CORE_VERSION}" />
 	<link rel="stylesheet" type="text/css" href="{$root}tpl/default/css/gwf3.css" />
+	<link rel="stylesheet" type="text/css" href="{$root}tpl/wanda/css/credits.css" />
 	<link rel="stylesheet" type="text/css" href="{$root}tpl/wanda/css/wanda1.css" />
 	<link rel="stylesheet" type="text/css" href="{$root}tpl/wanda/css/wanda2.css" />
 
