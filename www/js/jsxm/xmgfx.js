@@ -6,66 +6,38 @@ window.XMGFX.elements = {};
  * Init.
  */
 window.XMGFX.init = function(){
-
-};
-
-window.XMGFX.addElement = function(id) {
-	if (window.XMGFX.elements[id]) {
-		return window.XMGFX.elements[id];
-	}
-	var xmgfxe = XMGFXE(id);
-	if (xmgfxe) {
-		window.XMGFX.elements[id] = xmf;
-	}
-	return xmgfxe;
-};
-
-window.XMGFX.getElement = function(id) {
-	if (window.XMGFX.elements[id]) {
-		return window.XMGFX.elements[id];
-	}
-	return undefined;
-};
-
-window.XMGFX.removeElement = function(id) {
-	if (window.XMGFX.elements[id]) {
-		var element = window.XMGFX.elements[id];
-		delete window.XMGFX.elements[id];
-		return element;
-	}
-	return undefined;
+	window.XMGFX.pattern = -1;
 };
 
 
 
 window.XMGFX.onNewRow = function(row) {
-//	console.log("New row: "+row);
-	window.XMGFX.execNewRow(row);
+	if (row == 0) {
+		window.XMGFX.pattern++;
+	}
+	window.XMGFX.execNewRow(window.XMGFX.pattern, row);
 };
 window.XMGFX.onNewTrigger = function(row, col, note) {
 	if (note) {
 		note = String.fromCharCode(note);
-		window.XMGFX.execNewTrigger(row, col, note);
+		window.XMGFX.execNewTrigger(window.XMGFX.pattern, row, col, note);
 	}
-		
-//	console.log("New trigger: "+row+" "+col+" "+note);
 };
 window.XMGFX.onNewRelease = function(row, col) {
-//	console.log("New Release: "+row+" "+col);
-	window.XMGFX.execNewRelease(row, col);
+	window.XMGFX.execNewRelease(window.XMGFX.pattern, row, col);
 };
 
 window.XMGFX.onNewValue = function(row, col, value) {
-//	console.log("New Value: "+row+" "+col+" "+value);
 	if (value) {
-		window.XMGFX.execNewValue(row, col, value);
+		window.XMGFX.execNewValue(window.XMGFX.pattern, row, col, value);
 	}
 };
 
-window.XMGFX.execNewRow = function(row) {};
-window.XMGFX.execNewTrigger = function(row, col, note) {};
-window.XMGFX.execNewRelease = function(row, col) {};
-window.XMGFX.execNewValue = function(row, col, value) {};
+window.XMGFX.execNewPattern = function(pattern, row) {};
+window.XMGFX.execNewRow = function(pattern, row) {};
+window.XMGFX.execNewTrigger = function(pattern, row, col, note) {};
+window.XMGFX.execNewRelease = function(pattern, row, col) {};
+window.XMGFX.execNewValue = function(pattern, row, col, value) {};
 
 // Kickstart
 document.ready = function() {
