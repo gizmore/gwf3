@@ -1,7 +1,9 @@
 window.CC = window.CC ? window.CC : {};
 window.CC.lineHeight = 32;
 window.CC.scrollTop = 110.0;
-window.CC.timeout = 6;
+window.CC.timeout = 2;
+window.CC.effectRow = -1;
+window.CC.effectY = 600;
 
 window.CC.initElements = function(){
 	var crid = window.CC.maindiv = $('<div id="crid"></div>');
@@ -66,11 +68,18 @@ window.CC.blitzEffect = function(opacity, duration) {
 };
 
 window.XMGFX.execNewPattern = function(pattern) {
-	window.CC.blitzEffect('0.999', 520);
+	window.CC.blitzEffect('0.999', 482);
+	window.CC.scroll(window.CC.lineHeight * 64)
+};
+window.CC.scroll = function(scrollPixels) {
+	window.CC.scrollTop -= scrollPixels;
+	window.CC.scrolldiv.animate({top: window.CC.scrollTop+'px'}, 10);
 };
 window.XMGFX.execNewRow = function(pattern, row) {
-	window.CC.scrollTop -= window.CC.lineHeight / 4;
-	window.CC.scrolldiv.animate({top: window.CC.scrollTop+'px'}, 20);
+	window.CC.scroll(window.CC.lineHeight / 12)
+
+	
+	
 };
 window.XMGFX.execNewTrigger = function(pattern, row, col, note) {
 //	console.log("Triggered row: "+row+" col: "+col+ " Note:"+note);
