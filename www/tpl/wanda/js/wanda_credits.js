@@ -56,7 +56,7 @@ window.CC.initScreen = function() {
 
 window.XMGFX.execNewRow = function(row) {
 	window.CC.scrollTop -= window.CC.lineHeight / 4;
-	window.CC.scrolldiv.animate({top: window.CC.scrollTop+'px'}, 50);
+	window.CC.scrolldiv.animate({top: window.CC.scrollTop+'px'}, 20);
 };
 window.XMGFX.execNewTrigger = function(row, col, note) {
 	
