@@ -1,24 +1,25 @@
 <p>
-Der Winter ist bitterkalt, und der Bau ist fast schon zu klein für die vielen Heuschrecken.
-«Zum Glück!», sagt Wanda's Großmutter, «so können wir uns warm halten.»
-Wanda bereitet das kopfzerbrechen.
+The winter is bitterly cold, and the hideout is almost too small for that many grasshoppers.
+«Luckily!», says Wanda's grandma, «this way we can keep each other warm.»
+This thought gives Wanda a headache.
 </p>
 
 <p>
-Immer mehr Heuschrecken, und der Stamm bekommt immer mehr Bauten, aber keiner denkt an den Heuspeicher?
-Am Nachmittag hüpfen Veronica und Wanda noch einmal dorthin, um nachzusehen.
-Die kleinen Risse sind noch da, und der Heuspeicher ist gut gefüllt.
+More and more grasshoppers, and more and more hideout, but nobody thinks of the haystack.
+In the afternoon Veronica and Wanda hopple back to look at the haystack's damage again.
+The small crackles are still there and the haystack is well filled.
 </p>
 
 <?php echo $tVars['module']->wandaImage(1, 11, 1); ?>
 
 <p>
-Zum herumliegen ist es heute zu kalt, also treffen sich die vier Freunde wieder, und lesen gemeinsam die Zeichnungen, die von den Alten vorgegeben wurden.
-Das Lesen bereitet allen viel Freude.
-Bald schon liegt Wanda im Bett und liest ihr erstes dickes Buch ganz alleine.
-Sie liebt die  Herausforderung  und je mehr sie liest, um so leichter fällt es ihr.
-Ihre Eltern sind sehr stolz auf Wanda, und sie fühlt sich auch Pudelwohl in ihrer Rolle.
-«Hach… wenn es nur allen so gut gehen könnte…» – denkt Wanda.
-Sie fragt sich, wie es bei den Ameisen ist.
-Aber mit den bösen Ameisen darf sie nicht sprechen.
+Today for lazy lying it is too cold, so the four gather at home and read the paintings which are required by the elderly.
+The reading is enjoyed by all of them.
+Soon, Wanda is lying in bed, reading her first big book, all on her own.
+She loves the challenge, and the more she reads, the easier it becomes.
+Her parents are very proud of Wanda, and she feels great in her role.
+
+«Oh my, if only all animals could feel this good…» – thinks Wanda.
+She ponders, how it would be, to be an ant.
+But she is not allowed to talk to evil ants.
 </p>
