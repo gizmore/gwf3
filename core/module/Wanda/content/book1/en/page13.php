@@ -1,23 +1,23 @@
 <p>
-Heute ist es soweit.
-Zum ersten mal in diesem Frühjahr erkunden die vier wieder die Steppe.
-Wanda ist erstaunt.
-Soweit das Auge reicht, es ist alles abgeerntet.
-Tote Tiere lassen sich hier und da erblicken, und Wanda weiss nicht, was sie davon halten soll.
-Heute trauen sie sich sehr weit raus.
-Weit entfernt treffen sie auf riesige Gebilde.
-Solche hatte Wanda noch nie zu Gesicht bekommen.
+Today is the day.
+The first time this spring, the four explore the steppe again.
+Wanda is excited.
+As far as the eye can look, everything is harvested.
+Dead animals can be found here and there, and Wanda does not know what she should think of that.
+Today they do not walk far.
+They stop as they see huge buildings.
+Such has never been seen before.
 </p>
 
 <?php echo $tVars['module']->wandaImage(1, 13, 1); ?>
 
 <p>
-Die Gebilde sehen aus wie Heuspeicher, laufen aber spitz zu.
-Halme sind nicht darin, so sieht es aus der Ferne aus, aber es erklingen Geräusche wie die eines hungrigen Löwen.
-Ängstlich machen die Freunde kehrt.
-Auf dem Rückweg sehen sie ein junges Zebra.
-Es ist sehr mager, und in der Ferne heult eine Hyäne.
-Und Wanda…
-hält vergeblich ausschau…
-nach einer Ameise.
+The buildings look like haystacks, but get very thin at the top. 
+Stalks are not in there, as it seems from far behind, but there are sounds like those from a hungry lion.
+Freightened the friends turn around and walk home.
+On their way home they see a young zebra.
+It is very thin. A harpy is crying in the distance.
+And Wanda…
+uselessly looks out…
+for an ant.
 </p>

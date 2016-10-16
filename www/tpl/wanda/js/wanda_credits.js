@@ -16,11 +16,9 @@ window.CC.initElements = function(){
 	var CC = window.CC;
 	var txt = window.CC.scrollText;
 	for (var y = 0; y < CC.height; y++) {
-		var row = $('<div id="crow_"'+y+' class="crow"></div>');
+		var substring = txt.substr(y * CC.width, CC.width);
+		var row = $('<div class="crow">'+substring+'</div>');
 		window.CC.textRows.push(row);
-		for (var x = 0; x < CC.width; x++) {
-			row.append($('<div id="clet_'+y+'_'+x+'" class="clet">'+txt.charAt(y*CC.width+x)+'</div>'));
-		}
 		content.append(row);
 	}
 	$(document.body).append(crid);
@@ -58,7 +56,7 @@ window.CC.initMusic = function() {
 window.CC.initScreen = function() {
 	var w = window.CC.screenWidth = $(document).width();
 	var h = window.CC.screenHeight = $(document).height();
-	window.CC.effectY = h;
+	window.CC.effectY = h + 15;
 };
 
 window.CC.currentRow = function() {
@@ -72,8 +70,8 @@ window.CC.nextRow = function() {
 // --- Effects --- //
 
 window.CC.bumpEffect = function(pixels, duration) {
-	pixels = pixels || '87';
-	duration = duration || 424;
+	pixels = pixels || '88';
+	duration = duration || 666;
 	var row = window.CC.currentRow();
 	if (!row) {
 		return;
