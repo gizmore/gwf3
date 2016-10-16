@@ -16,15 +16,13 @@ Veronica agrees.
 After the daily work they decide to visit the haystack again.
 Wanda examins it, and notices quite some brittle on one of the sides.
 What should the four friends do?
-
-
-
-
-Den Schaden melden?
-Letztendlich beschliessen sie eigene Felder zu suchen, und so erkunden sie die Steppe gemeinsam.
-Die Löwen schauen böse, und die Geier kreisen.
-Doch gemeinsam haben Veronica und Wanda keine Angst.
-Trotzdem geben sie nach einigen Stunden auf.
-Felder finden sie nicht.
-Wanda wünschte es wäre jeden Tag Sommer.
+Notify the others of the damage?
+Ultimately they decide to search for own fields, and so they started to explore the steppe together.
+</p>
+<p>
+The lions look angry, and the vultures circle,
+but together, Veronica and Wanda have no fear.
+Anyway, after a few hours they give up.
+Fields are not to be found.
+Wanda wished it would be summer every day.
 </p>

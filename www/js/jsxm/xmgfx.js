@@ -12,7 +12,7 @@ window.XMGFX.init = function(){
 
 
 window.XMGFX.onNewRow = function(row) {
-	if (row == 0) {
+	if (row == 1) {
 		window.XMGFX.pattern++;
 	}
 	window.XMGFX.execNewRow(window.XMGFX.pattern, row);

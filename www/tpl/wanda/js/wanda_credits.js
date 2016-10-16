@@ -69,14 +69,14 @@ window.CC.blitzEffect = function(opacity, duration) {
 
 window.XMGFX.execNewPattern = function(pattern) {
 	window.CC.blitzEffect('0.999', 482);
-	window.CC.scroll(window.CC.lineHeight * 64)
+//	window.CC.scroll(window.CC.lineHeight * 64)
 };
 window.CC.scroll = function(scrollPixels) {
 	window.CC.scrollTop -= scrollPixels;
 	window.CC.scrolldiv.animate({top: window.CC.scrollTop+'px'}, 10);
 };
 window.XMGFX.execNewRow = function(pattern, row) {
-	window.CC.scroll(window.CC.lineHeight / 12)
+	window.CC.scroll(window.CC.lineHeight / 4)
 
 	
 	
