@@ -1,9 +1,12 @@
 window.CC = window.CC ? window.CC : {};
-window.CC.lineHeight = 32;
-window.CC.scrollTop = 110.0;
+
+window.CC.scrollTop = 0;
 window.CC.timeout = 2;
+window.CC.lineHeight = 32;
+
 window.CC.effectRow = -1;
 window.CC.effectY = 600;
+window.CC.textRows = [];
 
 window.CC.initElements = function(){
 	var crid = window.CC.maindiv = $('<div id="crid"></div>');
@@ -14,6 +17,7 @@ window.CC.initElements = function(){
 	var txt = window.CC.scrollText;
 	for (var y = 0; y < CC.height; y++) {
 		var row = $('<div id="crow_"'+y+' class="crow"></div>');
+		window.CC.textRows.push(row);
 		for (var x = 0; x < CC.width; x++) {
 			row.append($('<div id="clet_'+y+'_'+x+'" class="clet">'+txt.charAt(y*CC.width+x)+'</div>'));
 		}
@@ -54,7 +58,38 @@ window.CC.initMusic = function() {
 window.CC.initScreen = function() {
 	var w = window.CC.screenWidth = $(document).width();
 	var h = window.CC.screenHeight = $(document).height();
-	console.log("InitScreen width: "+w+" height: "+h);
+	window.CC.effectY = h;
+};
+
+window.CC.currentRow = function() {
+	return window.CC.textRows[window.CC.effectRow];
+};
+
+window.CC.nextRow = function() {
+	return window.CC.textRows[window.CC.effectRow + 1];
+};
+
+// --- Effects --- //
+
+window.CC.bumpEffect = function(pixels, duration) {
+	pixels = pixels || '87';
+	duration = duration || 424;
+	var row = window.CC.currentRow();
+	if (!row) {
+		return;
+	}
+	row.css('left', pixels+'px');
+	setTimeout(function(){
+		row.animate({'left':'-'+pixels+'px'}, {
+			easing: 'swing',
+			done: function() {
+				row.animate({'left':'0px'}, {
+					easing: 'swing',
+				});
+			},
+		});
+	}, window.CC.timeout);
+	
 };
 
 window.CC.blitzEffect = function(opacity, duration) {
@@ -67,19 +102,31 @@ window.CC.blitzEffect = function(opacity, duration) {
 	}, window.CC.timeout);
 };
 
+window.CC.scroll = function(scrollPixels, duration) {
+	duration = duration || 10;
+	window.CC.scrollTop -= scrollPixels;
+	// Detect current scanline row
+	window.CC.scrolldiv.animate({top: window.CC.scrollTop+'px'}, {
+		done: function() {
+			var nextRow = window.CC.nextRow();
+			var rowY = nextRow.offset().top;
+			if (rowY <= window.CC.effectY) {
+				window.CC.effectRow += 1;
+				console.log('EffectRow: '+window.CC.effectRow);
+			}
+		},
+		duration: duration,
+		easing: 'linear'
+	});
+};
+
+// --- XMGFX Events --- //
 window.XMGFX.execNewPattern = function(pattern) {
 	window.CC.blitzEffect('0.999', 482);
 //	window.CC.scroll(window.CC.lineHeight * 64)
 };
-window.CC.scroll = function(scrollPixels) {
-	window.CC.scrollTop -= scrollPixels;
-	window.CC.scrolldiv.animate({top: window.CC.scrollTop+'px'}, 10);
-};
 window.XMGFX.execNewRow = function(pattern, row) {
 	window.CC.scroll(window.CC.lineHeight / 4)
-
-	
-	
 };
 window.XMGFX.execNewTrigger = function(pattern, row, col, note) {
 //	console.log("Triggered row: "+row+" col: "+col+ " Note:"+note);
@@ -88,25 +135,28 @@ window.XMGFX.execNewRelease = function(pattern, row, col) {
 //	console.log("Release for row: "+row+" col: "+col);
 };
 window.XMGFX.execNewValue = function(pattern, row, col, value) {
-	if ((col == 2) && (value == 14)) {
+	if ((col == 1) && (value == 12)) {
+		window.CC.bumpEffect();
+	}
+	else if ((col == 2) && (value == 4)) {
+	}
+	else if ((col == 2) && (value == 14)) {
 		window.CC.blitzEffect('0.425', 70);
 	}
-//	else if ((col == 3) && (value == 6)) {
-//	}
-//	else if ((col == 12) && (value == 14)) {
-////		window.CC.blitzEffect('0.50', 50);
-//	}
+	else if ((col == 3) && (value == 6)) {
+	}
+	else if ((col == 13) && (value == 14)) {
+	}
+	else if ((col == 12) && (value == 14)) {
+	}
 	else {
 //		console.log("Value for row: "+row+" col: "+col+" val: "+value);
 	}
 };
 
-
+// --- Init --- //
 
 $(function(){
-//	console.log("INIT");
-	console.log(window.CC.scrollText);
-	
 	window.CC.initScreen();
 	window.CC.initElements();
 	window.CC.initMusic();
