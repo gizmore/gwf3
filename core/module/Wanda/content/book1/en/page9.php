@@ -5,18 +5,17 @@ For her most important questions she always gets the same boring answers.
 
 <p>
 
-«Warum darf ich den Affen nicht zusehen?» – überlegt Wanda – «Und warum darf ich nicht mit den Zebras sprechen?»
-Affen sind schmutzig, und Zebras treten auf dich drauf, heisst es dann immer.
-Und wenn Wanda fragt, warum die Heuschrecken den anderen immer alles wegfressen, dann lautet die Antwort oftmals:
-«Kind, die Dinge sind nunmal so, wie sie sind!»
+«Why aren't i allowed to watch the apes?» – ponders Wanda – «And why can't i talk to the zebras?»
+Apes are dirty, and zebras step on your head, is the answer.
+And when Wanda asks, why the grasshoppers always eat all of the fields, then the answer is mostly:
+«Darling, things are the way they are!»
 </p>
 
 <?php echo $tVars['module']->wandaImage(1, 9, 1); ?>
 
 <p>
-Nur von ihrer Familie, und den engsten Freunden, wird sie ernst genommen.
-Ihre Ideen allerdings nicht.
-Wanda muss wieder an die Augen ihrer Ameisen denken,
-und bekommt Hunger…
+Only her family and closest friends take her serious.
+Sadly, her ideas not.
+Wanda has to think of the eyes of the ants again,
+and gets hungry…
 </p>
-
