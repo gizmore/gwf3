@@ -1,28 +1,28 @@
 <p>
-Der Frühling kündigt sich an, und Wanda kann es kaum abwarten die Steppe weiter zu erkunden.
-Natürlich hofft sie, eine Ameise zu sehen.
-«Heute dürft ihr nicht hinaus!», schimpft Veronica's Mutter.
-Veronica und Wanda geben klein bei.
-Morgen ist auch noch ein Tag, und auch drinnen gibt es immer viel zu tun.
-Allerdings ist es schon etwas ärgerlich, daß Veronica's Mutter immer so streng mit ihnen ist.
-Wie soll Veronica denn die Steppe kennenlernen?!
+Spring announces itself, and Wanda can hardly wait to explore the steppe further.
+Of course, she hopes to see an ant again.
+«You must not go out today,» Veronica's mother scolds.
+Veronica and Wanda give up.
+Tomorrow is another day, and there is plenty to do elseway.
+However, it is a bit annoying that Veronica's mother is always so strict with them.
+How is Veronica supposed to get to know the steppe?
 </p>
 
 <?php echo $tVars['module']->wandaImage(1, 12, 1); ?>
 
 <p>
-Und wie groß ist die Sahelzone eigentlich?
-«Wie weit würde Veronica morgen mitgehen, falls sie raus dürfen?» – überlegt Wanda.
-Der Winter ging schnell Vorbei, also hoffen Wanda und der Stamm auf einen langen Frühling.
+Huh... how big is the Sahel anyway?
+«How far would Veronica go, if they were allowed to, tommorow?» – thinks Wanda.
+The winter passed quickly, so Wanda and her tribe hope for a long spring.
 </p>
 
 <p>
-Wanda geht früh zu Bett und hat einen Traum;
-Sie träumt, daß die Ameise hungrig ist.
-Als sie aufwacht will sie sofort in die Steppe, eine Ameise treffen, und sie ausfragen.
-Wanda hat den Kopf immer voller Fragen.
-«Nerv mich nicht.», hat ihre Mutter oft gesagt.
-Aber nerven will Wanda nicht.
-Allerdings… keine Fragen stellen…
-Das kommt für Wanda nicht in Frage!
+Wanda goes to bed early and has a dream that night;
+She dreams of a hungry ant.
+When she wakes up, she immediately wants to go out in the steppe, meet an and, and ask her lots of questions.
+Wanda's head is always full of questions.
+«Don't annoy me.», her mother often said.
+But Wanda does not want to annoy.
+Although… not asking questions…
+This is no option for Wanda!
 </p>
