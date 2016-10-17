@@ -1,29 +1,28 @@
 <p>
-Der Frühling neigt sich dem Ende zu, und die Alten verbringen ihre Tage in gewohnter Weise.
-Die Frauen kümmern sich um die Versorgung des Stammes und die Männer pflegen den Bau und unterichten die Kinder.
-Wanda und ihre Freunde üben für die nächste Ernte an den Halmen des vorigen Jahres.
-Die Halme sind schwer zu schneiden, so trocken sind sie mittlerweile.
-Maice verletzt ihre linke Klaue, als sie unachtsam auf eine Halmverdickung drückt.
-Veronica und Olivia müssen lachen, und auch Wanda muss kichern.
-Wanda fragt nach, wie sich Maice verletzt hat, und merkt sich, wie der Unfall passiert war.
-
+Spring is coming to an end, and the ancients spend their days in the usual way.
+The women take care of the supply of the tribe, and the men cultivate and educate the children.
+Wanda and her friends practice the next harvest on the stalks of the previous year.
+The stalks are hard to cut, so dry they are, now.
+Marcy hurts her left claw, as she presses carelessly on a stalk thickening.
+Veronica and Olivia have to laugh, and Wanda must giggle.
+Wanda asks how Maice has injured herself and how the accident happened.
 </p>
 
 <?php echo $tVars['module']->wandaImage(1, 17, 1); ?>
 
 <p>
-Der Lehrer, der die Situation bemerkt, schlüpft in seine Rolle:
-«Man lacht nicht über andere!»
-«Maice, Du darfst die Halme nicht genau an den Knoten schneiden!»
-«Reißt euch doch mal zusammen!»
+The teacher, who is noticing the situation, plays his role.
+«Thy don't laugh over others!»
+«Marcy, you may not cut the stalks at the knots!»
+«Pull yourselves together!»
 </p>
 
 <p>
-Die Kinder beruhigen sich, doch Wanda ist immer noch neugierig.
-«Und wenn man ganz vorsichtig am Knoten quetscht?», fragt sie…
-Der Lehrer schaut sie böse an.
+The kids calm down, but Wanda is still curious.
+«And if we be really careful cutting the knots??», she asks…
+The teacher gifts her an evil glare.
 </p>
 
 <p>
-«Wenn wir nur unser eigenes Feld hätten…» – denkt Wanda.
+«If only we had our own field…» – Wanda thinks.
 </p>

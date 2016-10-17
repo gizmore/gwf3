@@ -5,8 +5,7 @@ The only thing Wanda and her tribe remember is kept in the old chambers and song
 <?php echo $tVars['module']->wandaImage(1, 2, 1); ?>
 
 <p>
-Wanda can not understand all this yet.
-Wanda is one of many children.
+Wanda can not understand all this yet and is one of many children.
 Her parents are very honest and life-loving grasshoppers.
 </p>
 

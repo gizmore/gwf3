@@ -1,26 +1,26 @@
 <p>
-Wanda muss jemandem erzählen, was sie eben gesehen hat.
-Zu eindrucksvoll war der Anblick der <em>Ameisenstraße</em>, so nennt man es wohl, was sie gesehen hatte.
-Also geht Wanda zu ihrer Mutter und berichtet aufgeregt.
+Wanda has to report to someone what she had seen.
+What she has seen was way too impressive.
+So Wanda runs to her mother and reports excitedly.
 </p>
 
 <p>
-«Du warst wieder alleine in der Steppe?!», schimpft ihre Mutter, «Was bildest Du dir ein?!»
-«Ameisen?!» – «Kind! Ich sagte Dir doch, daß Du dich von den Ameisen fernhalten sollst!»
-«Die haben nichts gutes im Sinn!»
+«You have been in the steppe again? alone?!», shouts her mother, «Who do you think you are?!»
+«Ants?!» – «Child! Haven't i told you that you shall stay away from the ants?!»
+«Ants are a bad company!»
 </p>
 
 <?php echo $tVars['module']->wandaImage(1, 16, 1); ?>
 
 <p>
-Wanda glaubt ihrer Mutter, und später erzählt sie es auch Olivia.
-Olivia erklärt, daß Ameisen so auf Futtersuche gehen.
-Sie orientieren sich am Geruch der anderen Ameisen, und legen so eine Spur, der die anderen Ameisen folgen.
-Wanda nickt.
+Wanda believes what her mom says and later tells it to Olivia.
+Olivia explains that ants look for food that way.
+They orientate on the scent of other ants, lay a trail, which other ants follow.
+Wanda nicks.
 </p>
 
 <p>
-Was die Ameisen mit ihrem Futter machen, und was sie fressen, interessiert sie auch.
-Aber Olivia redet so viel, daß Wanda nicht mehr zum Fragen kommt.
-Diesen Tag hat Wanda wieder viel gelernt.
+What ants do with their food, and what they eat, is also of interest to her.
+But Olivia talks so much that Wanda has no opportunity to ask.
+This day Wanda learnt a lot.
 </p>
