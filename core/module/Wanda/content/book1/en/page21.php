@@ -1,30 +1,30 @@
 <p>
-Die Steppe ist weit und staubig, aber zu heiss ist es noch nicht.
-Im Süden steht die Gerste schon fast zur Ernte bereit, doch die beiden kennen diese Gegend schon.
-Veronica ahnt, wonach Wanda ausschau hält.
-Wortlos suchen ihre kleinen Augen die Steppe ab.
-Die Oase scheint seit dem letzten Sommer etwas kleiner geworden zu sein.
+The steppe is wide and dusty, but it is not too sunny.
+In the south the barley is almost ready for harvest, but the two already know this area.
+Veronica knows what Wanda is looking for.
+Without a word, her little eyes scan the steppe.
+The oasis seems to have become somewhat smaller since last summer.
 </p>
 
 <?php echo $tVars['module']->wandaImage(1, 21, 1); ?>
 
 <p>
-«Ob man auch hier etwas tun kann?» – Wanda denkt wieder an den Heuspeicher – «Ob die Ältesten bereits wissen, was überall vor sich geht?»
+«If we should do something about that?» – Wanda thinks of the haystack again – «If the elderly already know what happens everywhere?»
 </p>
 
 <p>
-Veronica hält weiter ausschau.
-Während Wanda in Gedanken ist sieht Veronica etwas, das wie eine Ameise aussieht.
-Veronica zirpt Wanda leicht in's Ohr, um sie aufmerksam zu machen.
-Aber als Wanda hochschreckt, muss sich die Ameise bereits versteckt haben, denn als beide hinsehen ist die Ameise verschwunden.
+Veronica keeps watching out.
+There, while Wanda is in thoughts, Veronica spotted something that looks like an ant.
+Veronica silently chirps in Wanda's ear, to alert her.
+But as Wanda shriks, the ant must have hidden itself already, because as they both look, it is gone.
 </p>
 
 <p>
-Wanda fragt, ob sie umkehren sollen.
-«Ich weiss nicht», sagt Veronica.
-Zögerlich machen die beiden kehrt.
-Auf dem Rückweg wird ihnen wohler.
-Sie verbringen auch diesen Abend bei ihren Familien.
+Wanda asks if they should turn around.
+«I don't know», says Veronica.
+Carefully both turn around and walk home.
+On their way back they feel better.
+This evening, too, is spent at their families.
 </p>
 
 <?php echo $tVars['module']->wandaImage(1, 21, 2); ?>
