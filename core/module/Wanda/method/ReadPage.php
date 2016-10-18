@@ -112,7 +112,7 @@ final class Wanda_ReadPage extends GWF_Method
 	
 	private function isTotalLastPage($book, $page)
 	{
-		return $page == 29;
+		return (($book >= 2)&&($page >= 2));
 	}
 	
 }
