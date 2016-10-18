@@ -9,7 +9,7 @@ final class ITMB_Home extends GWF_Method
 	
 	public function getHTAccess()
 	{
-		return 'RewriteRule ^itmb/home/?$ index.php?mo=Guestbook&me=Moderate&gbid=$1'.PHP_EOL;
+		return 'RewriteRule ^itmb/home/?$ index.php?mo=ITMB&me=Home'.PHP_EOL;
 	}
 	
 	public function execute()
