@@ -1,6 +1,7 @@
 <div id="topmenu">
 		{* Both *}
 		<a href="{$root}news">News{GWF_Notice::getUnreadNews($user)}</a>
+		<a href="{$root}itmb/offers">Offers</a>
 		<a href="{$root}contact">Contact</a>
 		<a href="{$root}irc_chat_fullscreen">Chat</a>
 		<a href="https://forum.busch-peine.de/">Forum</a>

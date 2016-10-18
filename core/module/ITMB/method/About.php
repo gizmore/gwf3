@@ -17,6 +17,4 @@ final class ITMB_About extends GWF_Method
 		$tVars = array();
 		return $this->module->templatePHP('about.php', $tVars);
 	}
-
-
 }
