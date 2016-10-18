@@ -11,11 +11,16 @@
 }
 
 th, .itmb-hr, #footer, #topmenu {
-	background: #b42c;
+	background: #b42;
+	opacity: 0.65;
 }
 
 #firstrow, #main-content, #footer {
 	padding: 2em 12.5%;
+}
+
+#main-content {
+	background: #eee;
 }
 
 #main-content > * {
@@ -32,6 +37,8 @@ th, .itmb-hr, #footer, #topmenu {
 	position: relative;
 	height: 16em;
 	width: 100%;
+	background: beige;
+	opacity: 0.84;
 }
 
 #firstrow img {
@@ -55,11 +62,17 @@ th, .itmb-hr, #footer, #topmenu {
 	bottom: 0px;
 	height: 22em;
 	width: 100%;
+	background: beige;
 }
 
 #footer span, #header span {
 	font-size: 2.14em;
 	display: block;
+}
+
+#footer span {
+	color: #000;
+	opacity: 0.89;
 }
 
 #main-content {
@@ -70,12 +83,14 @@ th, .itmb-hr, #footer, #topmenu {
 
 #topmenu {
 	height: 2em;
+
 }
 #topmenu a {
 	padding: 0.14em 1em;
 	font-size: 1.64em;
 	text-decoration: none;
-	color: #ffff;
+	color: #fff;
+	opacity: 1.0;
 }
 
 .gwf3_formY table {

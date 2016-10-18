@@ -1,4 +1,5 @@
 <p>
+
 Wanda's Eltern warten schon ungeduldig, daß sie nach Hause kommt.
 Aus der Ferne sehen sie wütend und ungeduldig aus, doch je näher sie dem Bau kommen, um so fröhlicher wirken sie.
 Erleichterung.

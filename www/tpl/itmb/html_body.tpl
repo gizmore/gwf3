@@ -1,7 +1,7 @@
 <body>
 	<div id="pagewrap">
 		<div id="firstrow">
-		    <a href="{$root}"><img class="itmb-logo" type="image/svg" src="tpl/itmb/svg/itmb_logo_full.svg" /></a>
+		    <a href="{$root}"><img class="itmb-logo" type="image/png" src="tpl/itmb/svg/logo272.png" /></a>
 			<div id="header">
 				<span>Programming, Architecture, Support</span>
 				<div class="itmb-hr"></div>
