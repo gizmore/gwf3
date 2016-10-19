@@ -1,25 +1,25 @@
 <p>
-Es ist Hochsommer.
-Die sieben Freunde haben fleissig für die bevorstehende Ernte geübt.
-Wanda meint, daß Veronica geradezu eine Meisterin im Gersteschneiden geworden ist.
-Die Blätter rascheln wild, wenn sie den Halm auf und ab klettert.
-Olivia und Maice sind ebenfalls ein gutes Team, wenn es daran geht, den kahlen Halm zu zerlegen.
-Wanda's Idee die Halme zu falten hat sich nicht bewährt.
-Dafür war das Experiment mit dem 'Flechten', so nennt ihre Großmutter das, beim Stapeln der Halme gut.
-Es dauert zwar etwas länger wie bei den Erwachsenen, dafür können Alexandra, Caroline und Michelle die Stapel so problemlos transportieren.
+It is midsummer.
+The seven friends had trained studiously for the upcoming harvest.
+Wanda thinks that Veronica eventually became a master in cutting bigg.
+The leafs loudly rustle when she climbs the stalk up and down.
+Olivia and Marcy are also a good team, if you have to cut a plain stalk into smaller pieces.
+Wanda's idea with folding the stalks was not a good one,
+but the experiment with the braiding, so her grandma calls it, has been quite succesful for stacking the stalks.
+It takes some time, but Alexandra, Caroline and Michelle can transport the stalks without problems.
 </p>
 
 <?php echo $tVars['module']->wandaImage(1, 23, 1); ?>
 
 <p>
-Beim Ernten sollte es dieses Jahr für die kleinen besser laufen, so denken die Sieben.
-Sie sind gut eingespielt, und alle freuen sich auf die Herausforderung.
-Wanda überlegt, warum sich die Männchen nur mit dem Ausbau beschäftigen, und nicht mit der Ernte.
-Zum Abtransport wären ein paar kräftige Männchen gut zu gebrauchen.
-Veronica lässt ein paar Blätter regnen…
-«Träum nicht schon wieder, Wanda!», ruft sie hinunter.
+The harvest should turn out better this year for the kids, so the seven do think.
+They are working well together and are looking forward to the challenge.
+Wanda considers why males strictly have to build the hideeout and don't have to help during the harvest.
+For the transportation, a few strong males would be of use.
+Veronica lets rain a few leaves.…
+«Don't dream again, Wanda!», she shouts from above.
 </p>
 
 <p>
-Wanda sieht nach oben und lächelt.
+Wanda looks up and smiles.
 </p>
