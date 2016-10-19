@@ -1,21 +1,22 @@
 <p>
-Die Kleinen haben nun viel Freizeit.
-Die Ernte ist eingefahren, und fast alle Heuschrecken schlafen die meiste Zeit des Tages.
-Michelle, Carolin und Alexandra treffen sich mittlerweile mit Jungs, da sie Wanda's Transportplan besprechen wollen.
-Diesen Sommmer gehen Veronica, Olivia, Maice und Wanda oft <em>raus</em>, wie sie es nennen.
-Das Wanda nach Ameisen sucht, und Veronica bis zur Oase laufen möchte, verraten sie nicht.
-«Wir gehen spielen», sagen die vier, und ihre Eltern sind einverstanden.
+The little ones have lots of free time now.
+The harvest has been carried in, and almost all grasshoppers sleep the most of the day.
+Michelle, Carolin and Alexandra now meet guys, as they want to discuss Wanda's transport plan.
+This summer, Veronica, Olivia, Maice and Wanda often 'go out', so they call it.
+That Wanda is looking for ants, and Veronica wants to walk to the oasis, they do not reveal.
+«We're going to play outside», say the four, and their parents agree.
 </p>
 
 <?php echo $tVars['module']->wandaImage(1, 27, 1); ?>
 
 <p>
-Maice und Olivia sind zufrieden damit, daß sie die Clique unterstützen können.
-Mittlerweile wagen sich die vier sehr weit hinaus.
-Vorbei an den Dünen, bewachsenen weissen Skeletten, und einigen Blumen hier und da.
-Die Oase ist trotzdem noch weit entfernt.
-Große Kornspeicher, die Menschenhütten, gibt es nur noch wenige.
-Es dringen auch keine Geräusche mehr heraus.
-«Wo die Menschen jetzt wohl sind?» – überlegt Wanda, die nun leicht verärgert ist, da sie nicht eine einzige Ameise gesehen hat.
-Ob sie fort sind?
+Marcy and Olivia are satisfied that they can support the clique.
+Meanwhile, the four venture out far.
+Past the dunes, overgrown white skeletons, and some flowers here and there.
+The oasis is still far away.
+Big haystacks, the human hideouts, are rare meanwhile.
+No more noise is heard out of them.
+Where are the people now?
+Wanda, who is now slightly annoyed, thinks that she has not seen a single ant.
+Whether they are gone?
 </p>
