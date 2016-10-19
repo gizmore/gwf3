@@ -66,8 +66,19 @@ final class Wanda_ReadPage extends GWF_Method
 	private function renderContent($book, $page)
 	{
 		$iso = GWF_Language::getCurrentISO();
-		$file = sprintf('%s/module/Wanda/content/book%d/%s/page%d.php', GWF_CORE_PATH, $book, $iso, $page);
+		$file = $this->getBestFileForISO($iso);
 		return $this->module->coreTemplatePHP($file);
+	}
+	
+	private function getBestFileForISO($iso)
+	{
+		$file = sprintf('%s/module/Wanda/content/book%d/%s/page%d.php', GWF_CORE_PATH, $this->book, $iso, $this->page);
+		if (!file_exists($file)) {
+			if ($iso != 'en') {
+				return $this->getBestFileForISO('en');
+			}
+		}
+		return $file;
 	}
 	
 	private function getPrevHREF($book, $page)
