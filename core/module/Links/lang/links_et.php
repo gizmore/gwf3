@@ -144,6 +144,9 @@ $lang = array(
 	'permtext_member' => 'This link is only for members',
 	'permtext_group' => 'You need to be in the %s group to see this link',
 	'cfg_show_permitted' => 'Show forbidden links reason?',
-);
 
-?>
+	# v3.00 (fixes)
+	'cfg_link_check_amt' => 'UpDownChecker Amount',
+	'cfg_link_check_int' => 'UpDownChecker Interval',
+	'th_link_lang' => 'Language',
+);

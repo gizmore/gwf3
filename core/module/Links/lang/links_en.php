@@ -149,7 +149,7 @@ $lang = array(
 	# v3.00 (fixes)
 	'cfg_link_check_amt' => 'UpDownChecker Amount',
 	'cfg_link_check_int' => 'UpDownChecker Interval',
-		
+	'th_link_lang' => 'Language',
 );
 
 ?>

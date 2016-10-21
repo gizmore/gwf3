@@ -58,7 +58,9 @@ foreach ($tVars['links'] as $link)
 	
 	if ($permitted && ('' !== ($perm_text = $link->getPermissionText($module, $user))))
 	{
-		echo '<td class="gwf_num">'.$linkid.'</td>';
+		$mayEdit = $wv ? $link->mayEdit($user, $staff) : false;
+		echo '<td class="gwf_num">'.($mayEdit?GWF_Button::edit($link->hrefEdit(), $t_edit):$linkid).'</td>';
+// 		echo '<td class="gwf_num">'.$linkid.'</td>';
 		echo '<td colspan="2" class="ri"><em>['.$perm_text.']</em></td>';
 		echo '<td class="gwf_num">'.$link->getVar('link_favcount').'</td>';
 		echo '<td class="gwf_num">'.$link->getVar('link_clicks').'</td>';

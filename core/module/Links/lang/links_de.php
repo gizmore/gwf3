@@ -145,5 +145,8 @@ $lang = array(
 	'permtext_group' => 'Du musst in Gruppe %s sein, um diesen Link ansehen zu können',
 	'cfg_show_permitted' => 'Zeige Begründung für verweigerte Links?',
 		
+	# v3.00 (fixes)
+	'cfg_link_check_amt' => 'UpDownChecker Amount',
+	'cfg_link_check_int' => 'UpDownChecker Interval',
+	'th_link_lang' => 'Sprache',
 );
-?>

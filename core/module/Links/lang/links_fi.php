@@ -145,6 +145,8 @@ $lang = array(
 	'permtext_group' => 'sinun pitää olla %s ryhmässä nähdäksesi linkin',
 	'cfg_show_permitted' => 'Näytä kiellettyjen linkkejä syy?',
 		
+	# v3.00 (fixes)
+	'cfg_link_check_amt' => 'UpDownChecker Amount',
+	'cfg_link_check_int' => 'UpDownChecker Interval',
+	'th_link_lang' => 'Language',
 );
-
-?>
