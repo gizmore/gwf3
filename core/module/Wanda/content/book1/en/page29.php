@@ -1,56 +1,56 @@
 <p>
-Dieser Herbst sollte der schlimmste in der <em>Geschichte des Fravier Stammes</em> werden. <!-- 3564020356 -->
+This autumn shall be the worst in <em>the history of the Fravier tribe</em> . <!-- 3564020356 -->
 </p>
 
 <p>
-Angekündigt hat er sich durch immer heissere und heulende Winde.
-Angst bei schlechtem Wetter hatte Wanda schon immer.
-«Du brauchst keine Angst vor Blitz und Donner haben.», sagte Fritz Wandamann des öfteren. <!-- R.I.P my oldest father. -->
-Doch es war nicht der Blitz oder der Donner.
-Es war der Wind.
-Einfach nur Wind, der sogar in Kreisen über die Kornspeicher hinwegfegte, sie zeriss, und die ganze Ernte verteilte.
+The foresigns were more and more hotter and howling winds.
+Wanda always was afraid of heavy weather.
+«You don't need to be afraid of flash and thunder.», said Frederic Wandaman often. <!-- R.I.P my oldest father. -->
+But it wasn't flash and thunder.
+It was the wind.
+Just the wind, which in circles ran over the haystacks, ripped them in parts and threw all the harvest over the Sahel.
 </p>
 
 <?php echo $tVars['module']->wandaImage(1, 29, 1); ?>
 
 <p>
-Wanda hat es ebenfalls hart getroffen.
-Alleine draußen sucht sie Schutz unter einem Sandhügel.
-Der Wind pfeift so scharf, daß sie die Augen schliessen muss, und nur auf das Überleben hofft…
-Dann versinkt sie langsam im Sand und spürt den Wind kaum noch…
+Wanda also got hit hard.
+Alone in the outside she searches for shelter under a sandhill.
+The wind was so strong, Wanda only closed her eyes and hoped of survival…
+Then she slowly sinks into the sand and almost does not feel the wind anymore…
 </p>
 
 <p>
-Benommen blickt sie auf… in die Augen einer Ameise!
-Wanda erstarrt.
+Stunned she looks up… in the eyes of an ant.
+Wanda freezes.
 </p>
 
 
 <p>
-Noch vor wenigen Tagen, da brannten ihr die Fragen geradezu auf ihren Chitin-Lippen.
-Nun, wo sie die Augen so plötzlich und nah vor sich sieht, stellt sie sich nur noch eine Frage…
-«Soll ich weglaufen?… Wohin?… Wo bin ich?!»
-</p>
-<p>
-Die Ameise weicht ein kleines Stück zurück…
+Only a few days before the questions were burning on her chitin lips.
+Now, with these eyes so sudden and close before her, there is only one question left…
+«Shall i run?… Where?… Where am i?!»
 </p>
 
+<p>
+The ant backs up a little bit…
+</p>
 
 
 
 
 <pre>
-Nachwort:
-Diese 29 Seiten widme ich allen meinen Freunden.
-Zu viele sind es, die ich nun aufzählen muss.
-Wer spass mit diesem ersten Band hatte, der darf uns gerne etwas Spenden.
-Auch wenn wir das meiste verfeiern werden, so erreicht es doch zu 100% die Künstler hinter diesem Werk.
-Ein zweiter Teil befindet sich in Arbeit.
+Preamble:
+I dedicate these 29 pages to all my friends.
+Too many to get listed.
+Who enjoyed the first band, may buy some scans to support us.
+Even though we will only party from that money, so it will reach 100% the artists behind this.
+A second part is under construction.
 
-PS: Die Bilder sind von Anja Ingwersen, Danziger Str. 64 Cremlingen.
-DANKE!
+PS: The images are from Anja Ingwersen, Danziger Str. 64 Cremlingen.
+THANKS!
 
-PPS: Dank an den Richter, der alles für mich bewahrte :)
+PPS: Thanks to Mr. Richter, who kept the book for me :)
 
 Christian Busch
 Am Bauhof 15

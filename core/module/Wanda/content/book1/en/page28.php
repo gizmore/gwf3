@@ -1,25 +1,25 @@
 <p>
-Von den großen Heuspeichern der Menschen lassen sich die vier heute nicht aufhalten.
-Veronica bestimmt; es geht weiter in Richtung Oase.
-Langsam gehen die vier weiter.
-Immer wieder sieht Wanda zurück, doch mit vier Leuten dreht man nicht einfach um.
-Entscheidungen treffen sich fast wie von selbst, und bei schwierigen Dingen berät man sich.
-Vorsichtig aber fröhlich hüpfen sie weiter.
-Am Rande entdecken sie wieder etwas neues.
-Kleine bis mittelgroße Hügel, die wie Ringe auf dem Sand erscheinen.
+The four friends do not let them get stopped by the human haystacks this time.
+Veronica determines; They are going into oasis direction.
+Slowly the four walk further.
+Again and again Wanda looks back, but with four people you don't simply turn around.
+Decisions are almost done by itself, and in difficult things you talk about it thoroughly.
+Careful but happy the hopple on.
+By the way the discover something new.
+Small to medium sized hills, who appear like rings on the sand.
 </p>
 
 <?php echo $tVars['module']->wandaImage(1, 28, 1); ?>
 
 <p>
-Olivia erinnert sich, so etwas schon einmal erzählt bekommen zu haben, und rät, lieber kehrt zu machen.
-Alle stimmen zu, und auf dem Rückweg halten nun alle Ausschau nach Ameisen.
-Es ist ein unausgesprochenes Geheimnis, was sie nun teilen.
-Zu sehen gibt es die Ameisen immer noch nicht.
-Vom sprechen ganz zu schweigen.
+Olivia remembers someone told her about that, and advises to turn around.
+All agree and on the way back, all look out for ants,
+It is an unspoken secret they now share.
+There aren't any ants to be seen.
+Far from talking to one.
 </p>
 
 <p>
-«Wo mögen sie hin sein? Warum sind sie fort?», fragt sich Wanda.
-Am späten Nachmittag machen sie schliesslich kehrt und treffen abends erschöpft zu Hause ein.
+«Where might they be gone? Why are all gone?», Wanda questions herself.
+At the late afternoon they finally stop and be at home late and exhausted.
 </p>
