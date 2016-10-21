@@ -89,7 +89,7 @@ foreach ($tVars['links'] as $link)
 		{
 			echo sprintf('<td class="gwf_num"><span%s>%s</span></td>', $idc, $votecount);
 			echo sprintf('<td class="gwf_num"><span%s>%.02f%%</span></td>', $ida, $voteperc);
-			echo '<td class="nowrap">'.$vote->displayButtons().'</td>';
+			echo '<td class="nowrap gwf_votebuttons">'.$vote->displayButtons().'</td>';
 		}
 		else
 		{
@@ -101,8 +101,8 @@ foreach ($tVars['links'] as $link)
 		
 		if ($user !== false && $wv)
 		{
-			echo sprintf('<td>%s</td>', $link->displayFavButton($t_fav));
-			echo sprintf('<td>%s</td>', $link->displayUnFavButton($t_unfav));
+			echo sprintf('<td class="gwf_tablebutton">%s</td>', $link->displayFavButton($t_fav));
+			echo sprintf('<td class="gwf_tablebutton">%s</td>', $link->displayUnFavButton($t_unfav));
 		}
 		else
 		{

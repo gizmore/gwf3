@@ -4,7 +4,7 @@ if ($tVars['new_link_count'] > 0) {
 	echo '<div class="gwf_buttons_outer">'.PHP_EOL;
 	echo '<div class="gwf_buttons">'.PHP_EOL;
 	if (GWF_Session::isLoggedIn()) {
-		echo GWF_Button::checkmark(true, $tLang->lang('btn_mark_read'), $tVars['href_mark_read']);
+		echo GWF_Button::generic($tLang->lang('btn_mark_read'), $tVars['href_mark_read']);
 	}
 	echo GWF_Button::bell($tVars['href_new_links'], $tLang->lang('btn_new_links'));
 	echo $tLang->lang('info_newlinks', array( $tVars['new_link_count']));

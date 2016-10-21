@@ -8,9 +8,12 @@
 	<link rel="stylesheet" type="text/css" href="{$root}tpl/wanda/css/credits.css" />
 	<link rel="stylesheet" type="text/css" href="{$root}tpl/wanda/css/wanda1.css" />
 	<link rel="stylesheet" type="text/css" href="{$root}tpl/wanda/css/wanda2.css" />
+	<link rel="stylesheet" type="text/css" href="{$root}tpl/wanda/css/wanda_gwf3.css" />
 
 	<script type="text/javascript" src="{$root}js/jquery-3.1.0.min.js"></script>
 	<script type="text/javascript" src="{$root}js/gwf3.js?v=1"></script>
+	<script type="text/javascript" src="{$root}js/gwf3bb.js?v=1"></script>
+	<script type="text/javascript" src="{$root}js/php.js?v=1"></script>
 
 	{$js}
 	{$head_links}

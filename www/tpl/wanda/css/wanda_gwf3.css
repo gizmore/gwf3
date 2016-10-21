@@ -1,0 +1,63 @@
+/** Tables **/
+.gwf_table {
+	
+}
+
+.gwf_table td {
+	position: relative;
+	background: beige;
+}
+
+.gwf_table tr {
+	padding: 1em;
+}
+
+#content .gwf_table .gwf_votebtn img {
+	padding: 1em 0.3em;
+	padding-bottom: 1em;
+}
+
+.gwf_table td > a {
+	width: 100%;
+	height: 100%;
+	display: inline-block;
+	padding: 0.666em 0.999em;
+}
+
+.gwf_table td.gwf_num {
+	padding-right: 0.666em;
+}
+.gwf_votebuttons, .gwf_tablebutton {
+	text-align: center;
+}
+
+
+/** Buttons **/
+a.gwf_button .gwf_btn_generic {
+	padding: 0em 0.6em 0em 0.4em;
+	text-decoration: underline;
+	font-size: 1em;
+	color: #222;
+}
+
+.gwf_buttons {
+	padding: 1em 0.41em;
+	background: #eee;
+	opacity: 0.9;
+}
+
+.gwf_buttons .gwf_button {
+	float: left;
+	display: block;
+}
+
+.gwf_buttons .gwf_button span {
+}
+
+a.gwf_button > span {
+}
+
+.gwf_button span {
+	min-width: 2em;
+	min-height: 2em;
+}
