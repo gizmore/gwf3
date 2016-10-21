@@ -151,5 +151,3 @@ $lang = array(
 	'cfg_link_check_int' => 'UpDownChecker Interval',
 	'th_link_lang' => 'Language',
 );
-
-?>
