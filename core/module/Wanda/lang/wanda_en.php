@@ -3,6 +3,19 @@ $lang = array(
 	'err_no_book' => 'book not ratificated.',
 	'err_no_page' => 'page carrier responds with 404.',
 		
+	'menu_admin' => 'Admin',
+	'menu_news' => 'News',
+	'menu_links' => 'Links',
+	'menu_download' => 'Download',
+	'menu_book' => 'The Book',
+	'menu_login' => 'Login',
+	'menu_logout' => 'Logout',
+	'menu_register' => 'Register',
+	'menu_read' => 'Read',
+	'menu_chat' => 'Chat',
+	'menu_forum' => 'Forum',
+	'menu_credits' => 'Credits',
+	
 	'book1' => 'Wanda – die kleine Heuschrecke',
 	'book2' => 'Wanda – Ameisen sind unter uns',
 		

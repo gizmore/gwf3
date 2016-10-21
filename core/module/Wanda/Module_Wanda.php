@@ -8,6 +8,8 @@
  */
 final class Module_Wanda extends GWF_Module
 {
+	public function getDefaultAutoLoad() { return true; }
+	
 	private static $WANDA__PAGES = array(29, 20);
 	private static $WANDA_IMAGES = array(
 		'1.1.1' => array(23,17),
@@ -106,6 +108,7 @@ final class Module_Wanda extends GWF_Module
 	public function onStartup()
 	{
 		self::$instance = $this;
+		$this->onLoadLanguage();
 	}
 	
 	public function validateBookId($bookId)
