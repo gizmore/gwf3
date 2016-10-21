@@ -32,3 +32,9 @@
 .gwf_newsbox_message {
 	padding: 1em;
 }
+
+
+#content img.gwf_tooltip {
+	padding-top: 2px;
+	padding-bottom: 0px;
+}
