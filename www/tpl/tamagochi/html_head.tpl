@@ -3,9 +3,11 @@
 	<title>{$page_title}</title>
 	<meta name="robots" content="index, follow" />
   	<meta name="viewport" content="width=device-width, initial-scale=1">
-  	<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
   	{$meta}
 	<meta name="generator" content="GWFv{$smarty.const.GWF_CORE_VERSION}" />
+
+  	<link rel="stylesheet" href="{$root}tpl/tamagochi/bower_components/angular-ui/build/angular-ui.css">
+  	<link rel="stylesheet" href="{$root}tpl/tamagochi/bower_components/angular-material/angular-material.css">
 
 	{$js}
 	{$head_links}

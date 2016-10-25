@@ -16,7 +16,7 @@ final class TGC_Const
 	const EXPLORE = 'explore';
 	public static $MODES = array(ATTACK, DEFEND, EXPLORE);
 	
-	const WIZARD = 'fighter';
+	const FIGHTER = 'fighter';
 	const NINJA = 'ninja';
 	const PRIEST = 'priest';
 	const WIZARD = 'wizard';
@@ -47,4 +47,5 @@ final class TGC_Const
 	const MON_MASTER = 'mon_master';
 	
 	public static $LEVELS = array(NEOPHYTE, NOVICE, AMATEUR, APPRENTICE, ADEPT, EXPERT, LO_MASTER, UM_MASTER, ON_MASTER, EE_MASTER, PA_MASTER, MON_MASTER);
+	
 }

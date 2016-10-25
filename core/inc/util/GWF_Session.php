@@ -259,6 +259,14 @@ final class GWF_Session extends GDO
 		}
 	}
 	
+	public static function getCookieValue()
+	{
+		$id = self::getSessSID();
+		$uid = self::$USER ? self::$USER->getID() : 0;
+		$sid = self::getSessID();
+		return $id."-".$uid.'-'.$sid;
+	}
+	
 	##############
 	### Commit ###
 	##############

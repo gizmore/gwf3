@@ -13,7 +13,11 @@ final class Tamagochi_Home extends GWF_Method
 	
 	private function templateHome()
 	{
-		$tVars = array();
+		$tVars = array(
+			'user' => GWF_Session::getUser(),
+			'player' => TGC_Player::getCurrent(),
+			'cookie' => GWF_Session::getCookieValue(),
+		);
 		return $this->module->templatePHP('home.php', $tVars);
 	}
 }

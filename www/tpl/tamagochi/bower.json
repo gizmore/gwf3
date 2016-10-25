@@ -1,0 +1,27 @@
+{
+  "name": "tamagochi",
+  "homepage": "https://github.com/gizmore/gwf3",
+  "authors": [
+    "gizmore <gizmore@wechall.net>"
+  ],
+  "description": "game",
+  "main": "index.html",
+  "moduleType": [],
+  "keywords": [
+    "game"
+  ],
+  "license": "PROPERITARY",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-material": "^1.1.1",
+    "angular-ui": "^0.4.0",
+    "angular-ui-router": "^0.3.1"
+  }
+}
