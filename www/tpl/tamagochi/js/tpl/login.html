@@ -1,9 +1,28 @@
 <div ng-controller="LoginCtrl" layout="column">
   <section layout="row" flex>
     <md-content flex layout-padding>
-      <div layout="column" layout-align="top center">
-		<p>Welcome, please authenticate.</p>
-      </div>
+      <form name="LoginForm">
+        <md-input-container class="md-block">
+          <label>Username</label>
+          <input md-maxlength="32" required md-no-asterisk name="username" ng-model="data.username">
+          <div ng-messages="projectForm.description.$error">
+            <div ng-message="required">This is required.</div>
+            <div ng-message="md-maxlength">The username must be less than 32 characters long.</div>
+          </div>
+        </md-input-container>
+        <md-input-container class="md-block">
+          <label>password</label>
+          <input md-minlength="4" required md-no-asterisk name="password" ng-model="data.password">
+          <div ng-messages="projectForm.description.$error">
+            <div ng-message="required">This is required.</div>
+            <div ng-message="md-maxlength">The password must be at least 4 characters long.</div>
+          </div>
+        </md-input-container>
+        <md-input-container>
+          <md-button class="md-raised md-cornered" ng-click="login();">Login</md-button>
+          <md-button class="md-raised md-cornered" ng-click="register();">Register</md-button>
+        </md-input-container>
+      </form>
     </md-content>
   </section>
 </div>

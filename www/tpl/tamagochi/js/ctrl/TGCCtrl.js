@@ -1,6 +1,6 @@
 'use strict';
 var TGC = angular.module('tgc');
-TGC.controller('TGCCtrl', function($scope, $mdSidenav) {
+TGC.controller('TGCCtrl', function($scope, $mdSidenav, PlayerSrvc) {
 	
 	$scope.data = {
 		
@@ -24,5 +24,9 @@ TGC.controller('TGCCtrl', function($scope, $mdSidenav) {
 		$mdSidenav('right').toggle();
 	};
 	
+	
+	$scope.logout = function() {
+		
+	};
 
 });

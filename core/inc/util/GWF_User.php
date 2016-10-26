@@ -74,6 +74,7 @@ final class GWF_User extends GDO
 		);
 	}
 	public function getID() { return $this->getVar('user_id'); }
+	public function getGender() { return $this->getVar('user_gender'); }
 	public function hasAvatar() { return $this->isOptionEnabled(self::HAS_AVATAR); }
 	public function hasCountry() { return $this->getVar('user_countryid') !== '0'; }
 

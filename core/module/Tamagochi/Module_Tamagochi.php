@@ -1,5 +1,6 @@
 <?php
 require_once 'util/TGC_AvatarNames.php';
+require_once 'util/TGC_Rand.php';
 require_once 'util/TGC_Combat.php';
 require_once 'util/TGC_Const.php';
 require_once 'util/TGC_Global.php';

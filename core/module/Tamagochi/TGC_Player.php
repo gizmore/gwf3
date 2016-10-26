@@ -6,15 +6,15 @@ final class TGC_Player extends GDO
 	public function getColumnDefines()
 	{
 		return array(
-			'p_uid' => array(GDO::PRIMARY_KEY|GDO::UNSIGNED),
+			'p_uid' => array(GDO::PRIMARY_KEY|GDO::UINT),
 			'p_name' => array(GDO::VARCHAR|GDO::ASCII|GDO::CASE_I|GDO::UNIQUE, GDO::NOT_NULL, 63),
 			'p_active_avatar' => array(GDO::UINT, GDO::NULL),
-			'p_active_color' => array(GDO::ENUM, TGC_Globals::BLACK, TGC_Const::$COLORS),
-			'p_active_element' => array(GDO::ENUM, TGC_Globals::EARTH, TGC_Const::$ELEMENTS),
-			'p_active_skill' => array(GDO::ENUM, TGC_Globals::FIGHTER, TGC_Const::$SKILLS),
-			'p_active_mode' => array(GDO::ENUM, TGC::DEFEND, TGC_Const::$MODES),
+			'p_active_color' => array(GDO::ENUM, TGC_Const::BLACK, TGC_Const::$COLORS),
+			'p_active_element' => array(GDO::ENUM, TGC_Const::EARTH, TGC_Const::$ELEMENTS),
+			'p_active_skill' => array(GDO::ENUM, TGC_Const::FIGHTER, TGC_Const::$SKILLS),
+			'p_active_mode' => array(GDO::ENUM, TGC_Const::DEFEND, TGC_Const::$MODES),
 			'users' => array(GDO::JOIN, GDO::NOT_NULL, array('GWF_User', 'p_uid', 'user_id')),
-			'avatar' => array(GDO::JOIN, GDO::NOT_NULL, array('TGC_AVATAR', 'p_active_avatar', 'a_id')),
+			'avatar' => array(GDO::JOIN, GDO::NOT_NULL, array('TGC_Avatar', 'p_active_avatar', 'a_id')),
 		);
 	}
 	
@@ -24,16 +24,16 @@ final class TGC_Player extends GDO
 			'p_uid' => $user->getID(),
 			'p_name' => $name,
 			'p_active_avatar' => GDO::NULL,
-			'p_active_color' => TGC_Globals::BLACK,
-			'p_active_element' => TGC_Globals::EARTH,
-			'p_active_skill' => TGC_Globals::FIGHTER,
-			'p_active_mode' => TGC_Globals::EXPLORE,
+			'p_active_color' => TGC_Const::BLACK,
+			'p_active_element' => TGC_Const::EARTH,
+			'p_active_skill' => TGC_Const::FIGHTER,
+			'p_active_mode' => TGC_Const::EXPLORE,
 		));
 		$player->replace();
 		return $player;
 	}
 	
-	public static function getCurrent()
+	public static function getCurrent($create=false)
 	{
 		if (1 >= ($uid = GWF_Session::getUserID())) {
 			return false;
@@ -41,19 +41,21 @@ final class TGC_Player extends GDO
 		if ($player = self::table(__CLASS__)->selectFirstObject('*', "p_uid=$uid")) {
 			return $player;
 		}
-		
-		$name = TGC_AvatarNames::randomPlayerName();
-		while (self::isNameTaken($name))
-		{
-			$name = TGC_AvatarNames::randomPlayerName();
+		if ($create) {
+			$name = TGC_AvatarNames::randomPlayerName(GWF_Session::getUser());
+			while (self::isNameTaken($name))
+			{
+				$name = TGC_AvatarNames::randomPlayerName(GWF_Session::getUser());
+			}
+			
+			return self::createPlayer(GWF_Session::getUser(), $name);
 		}
-		
-		return self::createPlayer(GWF_Session::getUser(), $name);
+		return false;
 	}
 	
 	public static function isNameTaken($name)
 	{
-		return self::table(__CLASS__)->selectColumn('COUNT(*)', "name='$name'") !== false;
+		return self::table(__CLASS__)->countRows("p_name='$name'") > 0;
 	}
 	
 	public function rehash()

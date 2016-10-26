@@ -6,7 +6,7 @@ final class TGC_Avatar extends GDO
 	public function getColumnDefines()
 	{
 		return array(
-				'a_id' => array(GDO::PRIMARY_KEY|GDO::UNSIGNED),
+				'a_id' => array(GDO::PRIMARY_KEY|GDO::UINT|GDO::AUTO_INCREMENT),
 				'a_name' => array(GDO::VARCHAR|GDO::ASCII|GDO::CASE_I|GDO::UNIQUE, GDO::NOT_NULL, 63),
 				'a_exp' => array(GDO::UINT, 0),
 				'a_hp' => array(GDO::UINT, 0),

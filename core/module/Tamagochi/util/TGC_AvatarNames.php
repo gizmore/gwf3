@@ -8,12 +8,19 @@ final class TGC_AvatarNames
 	
 	public static function randomName($gender=TGC_Const::MALE)
 	{
+		$name = '';
 		$syllables = self::syllables($gender);
+		$syllablecount = GWF_Random::rand(2,5);
+		for ($i = 0; $i < $syllablecount; $i++)
+		{
+			$name .= GWF_Random::arrayItem($syllables);
+		}
+		return $name;
 	}
 	
 	public static function syllables($gender)
 	{
-		return $gender === 'male' ? self::maleSyllables() : self::femaleSyllables();
+		return $gender === TGC_Const::MALE ? self::maleSyllables() : self::femaleSyllables();
 		
 	}
 	

@@ -14,16 +14,26 @@ final class Login_Form extends GWF_Method
 	
 	public function execute()
 	{
+		$isAjax = isset($_GET['ajax']);
 		GWF_Website::setPageTitle($this->module->lang('pt_login'));
-		
+		$result = $this->executeMethod();
+		if ($isAjax) die($result);
+		return $result;
+	}
+	
+	public function executeMethod()
+	{
 		if (false !== GWF_Session::getUser())
 		{
 			return $this->module->error('err_already_logged_in');
 		}
-
 		if (false !== Common::getPost('login'))
 		{
 			return $this->onLogin();
+		}
+		if (isset($_GET['ajax']))
+		{
+			return "{error: \"Missing post var: login\"}";
 		}
 		return $this->form();
 	}

@@ -1,37 +1,44 @@
 <?php
 final class TGC_Const
 {
+	const GPS_INACCURACY = 100;
+	
 	const NONE = 'none';
 	const NO_SKILL = -1;
 	const NO_AVATAR = -1;
 	
-	const GPS_INACCURACY = 100;
-	
 	const MALE = 'male';
 	const FEMALE = 'female';
-	public static $GENDERS = array(MALE, FEMALE);
+	public static $GENDERS = array(self::MALE, self::FEMALE);
 	
 	const ATTACK = 'attack';
 	const DEFEND = 'defend';
 	const EXPLORE = 'explore';
-	public static $MODES = array(ATTACK, DEFEND, EXPLORE);
+	public static $MODES = array(self::ATTACK, self::DEFEND, self::EXPLORE);
 	
 	const FIGHTER = 'fighter';
 	const NINJA = 'ninja';
 	const PRIEST = 'priest';
 	const WIZARD = 'wizard';
-	public static $SKILLS = array(WIZARD, NINJA, PRIEST, WIZARD);
+	public static $SKILLS = array(self::FIGHTER, self::NINJA, self::PRIEST, self::WIZARD);
 	
 	const BLACK = 'black';
 	const RED = 'red';
 	const GREEN = 'green';
 	const BLUE = 'blue';
-	public static $COLORS = array(BLACK, RED, GREEN, BLUE);
+	public static $COLORS = array(self::BLACK, self::RED, self::GREEN, self::BLUE);
 	
 	const STEPPE = 'steppe';
 	const FOREST = 'forest';
 	const HILLS = 'hills';
 	const MOUNTAINS = 'mountains';
+	public static $TERRAINS = array(self::STEPPE, self::FOREST, self::HILLS, self::MOUNTAINS);
+	
+	const FIRE = 'fire';
+	const WATER = 'water';
+	const WIND = 'wind';
+	const EARTH = 'earth';
+	public static $ELEMENTS = array(self::FIRE, self::WATER, self::WIND, self::EARTH);
 	
 	const NEOPHYTE = 'neophyte';
 	const NOVICE = 'novice';
@@ -45,7 +52,6 @@ final class TGC_Const
 	const EE_MASTER = 'ee_master';
 	const PA_MASTER = 'pa_master';
 	const MON_MASTER = 'mon_master';
-	
-	public static $LEVELS = array(NEOPHYTE, NOVICE, AMATEUR, APPRENTICE, ADEPT, EXPERT, LO_MASTER, UM_MASTER, ON_MASTER, EE_MASTER, PA_MASTER, MON_MASTER);
+	public static $LEVELS = array(self::NEOPHYTE, self::NOVICE, self::AMATEUR, self::APPRENTICE, self::ADEPT, self::EXPERT, self::LO_MASTER, self::UM_MASTER, self::ON_MASTER, self::EE_MASTER, self::PA_MASTER, self::MON_MASTER);
 	
 }
