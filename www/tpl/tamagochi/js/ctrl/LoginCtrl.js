@@ -12,18 +12,36 @@ TGC.controller('LoginCtrl', function($scope, $state, RequestSrvc, PingSrvc) {
 		$scope.data.password = '';
 	};
 	
+	
 	$scope.login = function() {
-		RequestSrvc.login($scope.data.username, $scope.data.password).then($scope.loginSuccess).finally($scope.reset);
+		console.log('LoginCtrl.login()');
+		RequestSrvc.login($scope.data.username, $scope.data.password).then($scope.loginSuccess, $scope.loginFailure)['finally']($scope.reset);
 	};
 
+	
 	$scope.register = function() {
-		RequestSrvc.register($scope.data.username, $scope.data.password).then($scope.loginSuccess).finally($scope.reset);
+		RequestSrvc.register($scope.data.username, $scope.data.password).then($scope.registerSuccess, $scope.registerFailure)['finally']($scope.reset);
 	};
+
 	
 	$scope.loginSuccess = function(data) {
-		PingSrvc.ping();
+		setTimeout(PingSrvc.ping, 10);
+	};
+
+	
+	$scope.loginFailure = function(data) {
+		
 	};
 	
+	
+	$scope.registerSuccess = function(data) {
+		setTimeout(PingSrvc.ping, 10);
+	};
+	
+	
+	$scope.registerFailure = function(data) {
+		
+	};
 	
 
 });

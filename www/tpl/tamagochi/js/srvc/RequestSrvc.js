@@ -20,11 +20,6 @@ TGC.service('RequestSrvc', function($http) {
 		});
 	};
 	
-	RequestSrvc.ping = function() {
-		return RequestSrvc.send('tgc/ping');
-	};
-	
-	
 	RequestSrvc.login = function(username, password) {
 		return RequestSrvc.send('/index.php?mo=Login&me=Form&ajax=1', {username: username, password: password, login: 1})
 	};

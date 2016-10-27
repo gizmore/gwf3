@@ -17,7 +17,6 @@ final class Login_Form extends GWF_Method
 		$isAjax = isset($_GET['ajax']);
 		GWF_Website::setPageTitle($this->module->lang('pt_login'));
 		$result = $this->executeMethod();
-		if ($isAjax) die($result);
 		return $result;
 	}
 	

@@ -23,19 +23,28 @@ final class TGC_Player extends GDO
 		$player = new self(array(
 			'p_uid' => $user->getID(),
 			'p_name' => $name,
-			'p_active_avatar' => GDO::NULL,
+			'p_active_avatar' => null,
 			'p_active_color' => TGC_Const::BLACK,
 			'p_active_element' => TGC_Const::EARTH,
 			'p_active_skill' => TGC_Const::FIGHTER,
 			'p_active_mode' => TGC_Const::EXPLORE,
 		));
-		$player->replace();
+		$player->insert();
 		return $player;
+	}
+	
+	public static function getJSONUser()
+	{
+		if (0 == ($uid = GWF_Session::getUserID())) {
+			return false;
+		}
+		return self::table('GWF_User')->selectFirst("user_id, user_regdate, user_gender, user_lastlogin, user_lastactivity, user_birthdate, user_countryid, user_langid, user_langid2", "user_id=$uid");
 	}
 	
 	public static function getCurrent($create=false)
 	{
-		if (1 >= ($uid = GWF_Session::getUserID())) {
+		$uid = GWF_Session::getUserID();
+		if ($uid == 0) {
 			return false;
 		}
 		if ($player = self::table(__CLASS__)->selectFirstObject('*', "p_uid=$uid")) {

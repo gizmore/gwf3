@@ -8,16 +8,16 @@ final class Tamagochi_Ping extends GWF_Method
 	
 	public function execute()
 	{
-		$user = GWF_Session::getUser();
-		$player = $user ? TGC_Player::getCurrent(true) : false;
-		$authed = $player ? true : false;
+		$user = TGC_Player::getJSONUser();
+		$player = $user !== false ? TGC_Player::getCurrent(true) : false;
+		$authed = $player !== false;
 		$tVars = array(
-			'user' => $user ? $user->getGDOData() : array(),
-			'player' => $player ? $player->getGDOData() : array(),
+			'user' => $user !== false ? $user: false,
+			'player' => $player !== false ? $player->getGDOData() : false,
 			'cookie' => GWF_Session::getCookieValue(),
 			'authed' => $authed,
 		);
-		$code = $authed ? 200 : $player ? 403 : 405;
+		$code = ($authed === true) ? 200 : ($player ? 403 : 405);
 		http_response_code($code);
 		die(json_encode($tVars));
 	}	
