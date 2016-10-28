@@ -17,6 +17,8 @@
 
 	<script src="{$root}tpl/tamagochi/js/tamagochi.js"></script>
 
+	<script src="{$root}tpl/tamagochi/js/config/ConstSrvc.js"></script>
+
 	<script src="{$root}tpl/tamagochi/js/model/Avatar.js"></script>
 	<script src="{$root}tpl/tamagochi/js/model/GWFMessage.js"></script>
 	<script src="{$root}tpl/tamagochi/js/model/Player.js"></script>

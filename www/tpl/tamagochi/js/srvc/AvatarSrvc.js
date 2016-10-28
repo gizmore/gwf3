@@ -17,7 +17,7 @@ TGC.service('AvatarSrvc', function(RequestSrvc) {
 	
 	AvatarSrvc.requestCache = function(player) {
 		console.log('AvatarSrvc.requestCache()', player);
-		return RequestSrvc.send('tgc/avtar_cache?player='+player.id());
+		return RequestSrvc.send('/index.php?mo=Tamagochi&me=Avatars&uid='+player.id());
 	};
 	
 	AvatarSrvc.requestCacheSuccess = function(data) {

@@ -6,18 +6,21 @@ TGC.config(function($urlRouterProvider, $stateProvider) {
 		url: '/home',
 		controller: 'HomeCtrl',
 		templateUrl: '/tpl/tamagochi/js/tpl/home.html',
+		pageTitle: 'Loading'
 	});
 	$stateProvider.state({
 		name: 'login',
 		url: '/login',
 		controller: 'LoginCtrl',
 		templateUrl: '/tpl/tamagochi/js/tpl/login.html',
+		pageTitle: 'Authenticate'
 	});
 	$stateProvider.state({
 		name: 'game',
 		url: '/game',
 		controller: 'TGCCtrl',
 		templateUrl: '/tpl/tamagochi/js/tpl/game.html',
+		pageTitle: 'Tamagochi',
 	});
 	$urlRouterProvider.otherwise('/home');
 });

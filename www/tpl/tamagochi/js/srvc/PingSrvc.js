@@ -1,9 +1,12 @@
 'use strict';
 var TGC = angular.module('tgc');
-TGC.service('PingSrvc', function($state, RequestSrvc, PlayerSrvc) {
+TGC.service('PingSrvc', function($state, RequestSrvc, PlayerSrvc, ConstSrvc) {
+
 	var PingSrvc = this;
+	
 	PingSrvc.ping = function() {
 		console.log('PingSrvc.ping()');
+		ConstSrvc.inLogin(true);
 		return RequestSrvc.send('tgc/ping').then(function(data) {
 			PlayerSrvc.pingData(data.data);
 			$state.go('game');
@@ -14,4 +17,5 @@ TGC.service('PingSrvc', function($state, RequestSrvc, PlayerSrvc) {
 			}
 		});
 	};
+
 });

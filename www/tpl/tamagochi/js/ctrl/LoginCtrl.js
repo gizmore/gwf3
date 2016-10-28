@@ -1,6 +1,6 @@
 'use strict';
 var TGC = angular.module('tgc');
-TGC.controller('LoginCtrl', function($scope, $state, RequestSrvc, PingSrvc) {
+TGC.controller('LoginCtrl', function($scope, $state, RequestSrvc, PingSrvc, ConstSrvc) {
 	
 	$scope.data = {
 		username: '',
@@ -25,12 +25,13 @@ TGC.controller('LoginCtrl', function($scope, $state, RequestSrvc, PingSrvc) {
 
 	
 	$scope.loginSuccess = function(data) {
+		console.log('LoginCtrl.loginSuccess()', data);		
 		setTimeout(PingSrvc.ping, 10);
 	};
 
 	
 	$scope.loginFailure = function(data) {
-		
+		console.log('LoginCtrl.loginFailure()', data);
 	};
 	
 	

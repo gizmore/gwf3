@@ -13,6 +13,8 @@ TGC.controller('DashboardCtrl', function($scope, AvatarSrvc, PlayerSrvc) {
 			return false;
 		}
 	};
+	
+	
 
 	$scope.reallySetPlayer = function(player) {
 		console.log('DashboardCtrl.reallySetPlayer', player);
