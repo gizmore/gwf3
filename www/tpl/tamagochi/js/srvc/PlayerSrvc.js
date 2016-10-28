@@ -7,12 +7,16 @@ TGC.service('PlayerSrvc', function() {
 	PlayerSrvc.CACHE = null;
 
 	PlayerSrvc.cache = function(newcache) {
+		console.log("PlayerSrc.cache()", newcache);
 		PlayerSrvc.CACHE = newcache ? newcache : PlayerSrvc.CACHE;
 		return PlayerSrvc.CACHE;
 	};
 
 	PlayerSrvc.pingData = function(data) {
-		PlayerSrvc.OWN = data;
+		console.log("PlayerSrc.pingData()", data);
+		PlayerSrvc.OWN = new window.TGC.Player(data);
 	};
+	
+	
 	
 });

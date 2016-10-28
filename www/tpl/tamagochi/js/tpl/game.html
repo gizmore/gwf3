@@ -1,36 +1,46 @@
-<div ng-controller="TGCCtrl" layout="column" style="height: 500px;">
-	<section layout="row" flex>
+<div ng-controller="TGCCtrl" layout="column" id="MAINDIV">
+	<section layout="row" flex id="MAINSECTION">
 
 		<md-sidenav class="md-sidenav-left" md-component-id="left" md-disable-backdrop md-whiteframe="4">
-			<md-toolbar class="md-theme-indigo">
+			<div class="tgc-sidebar-menu-toggles">
+				<md-button ng-click="toggleLeftMenu()" class="tgc-left-toggle md-raised" aria-label="Close Left Menu"><i class="icon-list-ul"></i></md-button>
+			</div>
+			<md-toolbar class="md-theme-indigo"layout-align="right">
 				<h1 class="md-toolbar-tools">Disabled Backdrop</h1>
 			</md-toolbar>
 			<md-content layout-margin>
 				<p>This sidenav is not showing any backdrop, where users can click on it, to close the sidenav.</p>
 				<md-button ng-click="toggleLeftMenu()" class="md-accent">Close this Sidenav</md-button>
 			</md-content>
-		</md-sidenav>
-
-		<md-sidenav class="md-sidenav-right" md-component-id="right" md-disable-backdrop md-whiteframe="4">
-			<md-toolbar class="md-theme-indigo">
-				<h1 class="md-toolbar-tools">Disabled Backdrop</h1>
-			</md-toolbar>
-			<md-content layout-margin>
-				<p>This sidenav is not showing any backdrop, where users can click on it, to close the sidenav.</p>
-				<md-button ng-click="toggleRightMenu()" class="md-accent">Close this Sidenav</md-button>
+			<md-content ng-controller="DashboardCtrl">
+				<h1 class="md-toolbar-tools">Dashboard</h1>
+				<md-button ng-click="createAvatar()" class="md-accent">Close this Sidenav</md-button>
+				<md-button ng-click="setAvatar()" class="md-accent">Close this Sidenav</md-button>
+				<md-button ng-click="setElement()" class="md-accent">Close this Sidenav</md-button>
+				<md-button ng-click="setMode()" class="md-accent">Close this Sidenav</md-button>
+				<md-button ng-click="set()" class="md-accent">Close this Sidenav</md-button>
 			</md-content>
 		</md-sidenav>
 
-<!-- CONTENT -->
-
-		<md-content flex layout-padding>
-			<div layout="column" layout-align="top center">
-				<p>Developers can also disable the backdrop of the sidenav.<br/>This will disable the functionality to click outside to close the sidenav.</p>
-				<div>
-					<md-button ng-click="toggleLeftMenu()" class="md-raised">Toggle left Sidenav</md-button>
-					<md-button ng-click="toggleRightMenu()" class="md-accent">Toggle right Sidenav</md-button>
-				</div>
+		<md-sidenav class="md-sidenav-right" md-component-id="right" md-disable-backdrop md-whiteframe="4">
+			<div class="tgc-sidebar-menu-toggles">
+				<md-button ng-click="toggleRightMenu()" class="tgc-right-toggle md-raised" aria-label="Close Right Menu"><i class="icon-list-ul"></i></md-button>
 			</div>
+			<md-toolbar class="md-theme-indigo">
+				<h1 class="md-toolbar-tools">Avatars</h1>
+			</md-toolbar>
+			<md-content layout-margin>
+			</md-content>
+		</md-sidenav>
+
+		<!-- CONTENT -->
+
+		<md-content flex layout-padding id="MAPCONTENT">
+			<div class="tgc-content-menu-toggles">
+				<md-button ng-click="toggleLeftMenu()" class="tgc-left-toggle md-raised" aria-label="Open Left Menu"><i class="icon-list-ul"></i></md-button>
+				<md-button ng-click="toggleRightMenu()" class="tgc-right-toggle md-raised" aria-label="Open Right Menu"><i class="icon-list-ol"></i></md-button>
+			</div>
+			<div id="TGCMAP" layout="column" layout-align="top center" ng-controller="MapCtrl"></div>
 		</md-content>
 	</section>
 </div>

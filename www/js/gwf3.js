@@ -210,6 +210,7 @@ String.prototype.endsWith = function(s) { return this.match(new RegExp(s+'$', 'i
 String.prototype.contains = function(s) { return this.match(new RegExp(s, 'i')) !== null; };
 String.prototype.substrFrom = function(s, d) { var i = this.indexOf(s); return i === -1 ? d : this.substr(i+s.length); };
 String.prototype.substrUntil = function(s, d) { var i = this.indexOf(s); return i === -1 ? d : this.substring(0, i); };
+String.prototype.nibbleUntil = function(s) { var r = this.substrUntil(s); if (r !== undefined) this.replace(this.substrFrom(s)); return r; };
 
 /**
  * escape the three most dangerous html chars.

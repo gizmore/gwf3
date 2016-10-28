@@ -1,0 +1,40 @@
+
+/** FULLSCREEN **/
+HTML, BODY, #MAINDIV, #MAINSECTION, #MAPCONTENT, #TGCMAP, #MAINVIEW {
+	height: 100%;
+	min-height: 100%;
+}
+
+
+/** MENU TOGGLES **/ 
+.tgc-content-menu-toggles .tgc-left-toggle {
+	position: absolute;
+	top: 1em;
+	left: 1em;
+}
+
+.tgc-content-menu-toggles .tgc-right-toggle {
+	position: absolute;
+	top: 1em;
+	right: 1em;
+}
+
+
+.tgc-sidebar-menu-toggles .tgc-left-toggle {
+	position: absolute;
+	z-index: 100!important;
+	top: 0.5em;
+	right: 0.5em;
+}
+
+.tgc-sidebar-menu-toggles .tgc-right-toggle {
+	position: absolute;
+	z-index: 100!important;
+	top: 0.5em;
+	right: 0.5em;
+}
+
+
+/** **/
+
+
