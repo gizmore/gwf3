@@ -4,7 +4,8 @@ TGC.config(function($urlRouterProvider, $stateProvider) {
 	$stateProvider.state({
 		name: 'home',
 		url: '/home',
-		templateURL: '/tpl/tamagochi/js/tpl/home.html',
+		controller: 'HomeCtrl',
+		templateUrl: '/tpl/tamagochi/js/tpl/home.html',
 	});
 	$stateProvider.state({
 		name: 'login',
@@ -15,8 +16,8 @@ TGC.config(function($urlRouterProvider, $stateProvider) {
 	$stateProvider.state({
 		name: 'game',
 		url: '/game',
-		templateURL: '/tpl/tamagochi/js/tpl/game.html',
-		parent: null,
+		controller: 'TGCCtrl',
+		templateUrl: '/tpl/tamagochi/js/tpl/game.html',
 	});
 	$urlRouterProvider.otherwise('/home');
 });

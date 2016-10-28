@@ -11,12 +11,18 @@
 
 	<script src="{$root}tpl/tamagochi/js/tamagochi.js"></script>
 
+	<script src="{$root}tpl/tamagochi/js/model/Avatar.js"></script>
+	<script src="{$root}tpl/tamagochi/js/model/Player.js"></script>
+	<script src="{$root}tpl/tamagochi/js/model/User.js"></script>
+
+	<script src="{$root}tpl/tamagochi/js/srvc/AvatarSrvc.js"></script>
 	<script src="{$root}tpl/tamagochi/js/srvc/ErrorSrvc.js"></script>
 	<script src="{$root}tpl/tamagochi/js/srvc/PingSrvc.js"></script>
 	<script src="{$root}tpl/tamagochi/js/srvc/PlayerSrvc.js"></script>
 	<script src="{$root}tpl/tamagochi/js/srvc/RequestInterceptor.js"></script>
 	<script src="{$root}tpl/tamagochi/js/srvc/RequestSrvc.js"></script>
 
+	<script src="{$root}tpl/tamagochi/js/ctrl/HomeCtrl.js"></script>
 	<script src="{$root}tpl/tamagochi/js/ctrl/LoginCtrl.js"></script>
 	<script src="{$root}tpl/tamagochi/js/ctrl/TGCCtrl.js"></script>
 	

@@ -1,4 +1,9 @@
 <?php
+/**
+ * Ping and current char at the same time.
+ * @author gizmore
+ * @license properitary
+ */
 final class Tamagochi_Ping extends GWF_Method
 {
 	public function getHTAccess()

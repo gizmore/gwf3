@@ -4,14 +4,17 @@ TGC.service('ErrorSrvc', function() {
 	
 	var ErrorSrvc = this;
 	
+	ErrorSrvc.showError = function(text, title) {
+		console.log(text);
+		console.err(text);
+	};
+	
 	ErrorSrvc.showNetworkError = function(error) {
-		console.log(error);
-		console.err(error);
+		ErrorSrvc.showError(error, 'Netz doof');
 	};
 
 	ErrorSrvc.showServerError = function(error) {
-		console.log(error);
-		console.err(error);
+		ErrorSrvc.showError(error, 'Server dppf')
 	};
 	
 
