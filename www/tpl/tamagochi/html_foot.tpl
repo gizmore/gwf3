@@ -1,6 +1,7 @@
 	<div ui-view id="MAINVIEW"></div>
 	
 	<!-- FastLoaders Ninja -->
+	<script src="http://maps.google.com/maps/api/js?key=AIzaSyBrEK28--B1PaUlvpHXB-4MzQlUjNPBez0"></script>
 	
 	<script src="{$root}tpl/tamagochi/bower_components/angular/angular.js"></script>
 	<script src="{$root}tpl/tamagochi/bower_components/angular-animate/angular-animate.js"></script>
@@ -9,9 +10,12 @@
 	<script src="{$root}tpl/tamagochi/bower_components/angular-ui/build/angular-ui.js"></script>
 	<script src="{$root}tpl/tamagochi/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
 	<script src="{$root}tpl/tamagochi/bower_components/angular-material/angular-material.js"></script>
+	<script src="{$root}tpl/tamagochi/bower_components/ngmap/build/scripts/ng-map.js"></script>
 
 
 	<!-- All hail to the hypnotoad 0-o -->
+
+	<script src="{$root}tpl/tamagochi/js/config/tamagochi.conf.js"></script>
 	
 	<script src="{$root}tpl/tamagochi/js/util/StringUtil.js"></script>
 

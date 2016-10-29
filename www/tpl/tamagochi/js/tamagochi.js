@@ -1,4 +1,4 @@
-var TGC = angular.module('tgc', ['ngMaterial', 'ui.router']);
+var TGC = angular.module('tgc', ['ngMaterial', 'ui.router', 'ngMap']);
 
 TGC.config(function($urlRouterProvider, $stateProvider) {
 	$stateProvider.state({
@@ -28,6 +28,3 @@ TGC.config(function($urlRouterProvider, $stateProvider) {
 TGC.run(function(PingSrvc, $state) {
 	PingSrvc.ping();
 });
-
-
-

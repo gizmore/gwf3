@@ -1,23 +1,19 @@
 'use strict';
 var TGC = angular.module('tgc');
-TGC.controller('DashboardCtrl', function($scope, AvatarSrvc, PlayerSrvc) {
+TGC.controller('DashboardCtrl', function($rootScope, $scope, AvatarSrvc, PlayerSrvc) {
 	$scope.reset = function() {
+		$scope.data = {
+				setColor: false,
+				setGender: false,
+				createAvatar: false,
+				setMode: false,
+				setSkill: false,
+				setElement: false,
+		};
 	};
-	
+
 	$scope.setPlayer = function(player) {
 		console.log('DashboardCtrl.setPlayer', player);
-		if (player) {
-			$scope.reallySetPlayer(player);
-			return true;
-		} else {
-			return false;
-		}
-	};
-	
-	
-
-	$scope.reallySetPlayer = function(player) {
-		console.log('DashboardCtrl.reallySetPlayer', player);
 		$scope.data = {
 				setColor: player.color() == 'black',
 				setGender: player.gender() == 'none',
@@ -25,9 +21,14 @@ TGC.controller('DashboardCtrl', function($scope, AvatarSrvc, PlayerSrvc) {
 				setMode: AvatarSrvc.hasAvatar(),
 				setSkill: AvatarSrvc.hasAvatar(),
 				setElement: AvatarSrvc.hasAvatar(),
-			};
+		};
 		
 	};
 
+	
+	$rootScope.$on('tgc-own-player-loaded', function(event, player) {
+		$scope.setPlayer(player);
+	});
+	
 	$scope.reset();
 });

@@ -1,6 +1,9 @@
 
 /** FULLSCREEN **/
-HTML, BODY, #MAINDIV, #MAINSECTION, #MAPCONTENT, #TGCMAP, #MAINVIEW {
+HTML, BODY, #TGCMAP {
+	width: 100%;
+}
+HTML, BODY, #MAINDIV, #MAINSECTION, #MAPCONTENT, #TGCMAPDIV, #TGCMAP, #MAINVIEW {
 	height: 100%;
 	min-height: 100%;
 }
@@ -34,7 +37,10 @@ HTML, BODY, #MAINDIV, #MAINSECTION, #MAPCONTENT, #TGCMAP, #MAINVIEW {
 	right: 0.5em;
 }
 
+/** TODO: ugly button position :( **/
+.tgc-content-menu-toggles i.material-icons, .tgc-sidebar-menu-toggles i.material-icons  {
+	margin-top: 0.50em;
+}
+
 
 /** **/
-
-

@@ -3,7 +3,7 @@
 
 		<md-sidenav class="md-sidenav-left" md-component-id="left" md-disable-backdrop md-whiteframe="4">
 			<div class="tgc-sidebar-menu-toggles">
-				<md-button ng-click="toggleLeftMenu()" class="tgc-left-toggle md-raised" aria-label="Close Left Menu"><i class="icon-list-ul"></i></md-button>
+				<md-button ng-click="toggleLeftMenu()" class="tgc-left-toggle md-raised" aria-label="Close Left Menu"><i class="material-icons">account_circle</i></md-button>
 			</div>
 			<md-toolbar class="md-theme-indigo"layout-align="right">
 				<h1 class="md-toolbar-tools">Disabled Backdrop</h1>
@@ -14,17 +14,17 @@
 			</md-content>
 			<md-content ng-controller="DashboardCtrl">
 				<h1 class="md-toolbar-tools">Dashboard</h1>
-				<md-button ng-click="createAvatar()" class="md-accent">Close this Sidenav</md-button>
-				<md-button ng-click="setAvatar()" class="md-accent">Close this Sidenav</md-button>
+				<md-button ng-visible="data.createAvatar" ng-click="createAvatar()" class="md-accent">Create Avatar</md-button>
+				<md-button ng-click="setAvatar()" class="md-accent">Change Avatar</md-button>
 				<md-button ng-click="setElement()" class="md-accent">Close this Sidenav</md-button>
 				<md-button ng-click="setMode()" class="md-accent">Close this Sidenav</md-button>
-				<md-button ng-click="set()" class="md-accent">Close this Sidenav</md-button>
+				<md-button ng-click="setSkill()" class="md-accent">Close this Sidenav</md-button>
 			</md-content>
 		</md-sidenav>
 
 		<md-sidenav class="md-sidenav-right" md-component-id="right" md-disable-backdrop md-whiteframe="4">
 			<div class="tgc-sidebar-menu-toggles">
-				<md-button ng-click="toggleRightMenu()" class="tgc-right-toggle md-raised" aria-label="Close Right Menu"><i class="icon-list-ul"></i></md-button>
+				<md-button ng-click="toggleRightMenu()" class="tgc-right-toggle md-raised" aria-label="Close Right Menu"><i class="material-icons">android</i></md-button>
 			</div>
 			<md-toolbar class="md-theme-indigo">
 				<h1 class="md-toolbar-tools">Avatars</h1>
@@ -37,10 +37,12 @@
 
 		<md-content flex layout-padding id="MAPCONTENT">
 			<div class="tgc-content-menu-toggles">
-				<md-button ng-click="toggleLeftMenu()" class="tgc-left-toggle md-raised" aria-label="Open Left Menu"><i class="icon-list-ul"></i></md-button>
-				<md-button ng-click="toggleRightMenu()" class="tgc-right-toggle md-raised" aria-label="Open Right Menu"><i class="icon-list-ol"></i></md-button>
+				<md-button ng-click="toggleLeftMenu()" class="tgc-left-toggle md-raised" aria-label="Open Left Menu"><i class="material-icons">account_circle</i></md-button>
+				<md-button ng-click="toggleRightMenu()" class="tgc-right-toggle md-raised" aria-label="Open Right Menu"><i class="material-icons">android</i></md-button>
 			</div>
-			<div id="TGCMAP" layout="column" layout-align="top center" ng-controller="MapCtrl"></div>
+			<div id="TGCMAPDIV" layout="column" layout-align="top center" ng-controller="MapCtrl" map-lazy-load="https://maps.google.com/maps/api/js" map-lazy-load-params="">
+				<ng-map id="TGCMAP"></ng-map>
+			</div>
 		</md-content>
 	</section>
 </div>

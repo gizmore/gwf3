@@ -21,5 +21,16 @@ final class Tamagochi_Avatars extends GWF_Method
 		if (false === ($this->requested = Common::getGetArray('avatars'))) {
 			return $this->module->error('err_api_no_avatars');
 		}
+		
+// 		foreach ($uid  $this->requested) {
+// 			if (false !== ($error = $this->validateAvatarUID($uid))) {
+// 				return $error;
+// 			}
+// 		}
+	}
+	
+	private function validateAvatarUID($uid)
+	{
+		
 	}
 }
