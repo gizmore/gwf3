@@ -14,6 +14,12 @@ interface IWebSocketServerObserver{
 	public function onAdminMessage(IWebSocketConnection $user, IWebSocketMessage $msg);
 }
 
+interface GWF_WSI {
+	public function setConnected($connected);
+}
+
+
+
 
 /**
  * WebSocketServer
@@ -158,11 +164,10 @@ class WebSocketServer implements WebSocketObserver{
 		return $handler;
 	}
 
-
 	/**
 	 * Start the server
 	 */
-	public function run(DOG_IRCWS $ircws){
+	public function run(GWF_WSI $gwf_wsi){
 
 		error_reporting(E_ALL);
 		set_time_limit(0);
@@ -195,7 +200,7 @@ class WebSocketServer implements WebSocketObserver{
 
 		$this->sockets->attach(new WebSocketSocket($this, $this->master));
 
-		$ircws->connected = true;
+		$gwf_wsi->setConnected(true);
 		
 		while(true){
 

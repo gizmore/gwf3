@@ -1,7 +1,7 @@
 <?php
 require_once(GWF_CORE_PATH.'inc/3p/phpws/websocket.server.php');
 
-final class Dog_IRCWS implements IWebSocketServerObserver, Dog_IRC
+final class Dog_IRCWS implements IWebSocketServerObserver, Dog_IRC, GWF_WSI
 {
 	public static $PARENT_PID = -1;
 	
@@ -22,6 +22,11 @@ final class Dog_IRCWS implements IWebSocketServerObserver, Dog_IRC
 	private $queue_out = NULL;
 	
 	public function alive() { return $this->isConnected(); }
+	
+	public function setConnected($connected)
+	{
+		$this->connected = $connected;
+	}
 	
 	public function isConnected()
 	{

@@ -69,8 +69,23 @@ final class TGC_Player extends GDO
 		return self::table(__CLASS__)->countRows("p_name='$name'") > 0;
 	}
 	
+	
+	###########
+	### API ###
+	###########
+	public function cacheAvatars()
+	{
+	
+	}
+
+	public function reload()
+	{
+	
+	}
+
 	public function rehash()
 	{
-		
+	
 	}
+	
 }
