@@ -25,6 +25,11 @@ TGC.config(function($urlRouterProvider, $stateProvider) {
 	$urlRouterProvider.otherwise('/home');
 });
 
-TGC.run(function(PingSrvc, $state) {
-	PingSrvc.ping();
+
+TGC.run(function($state, PositionSrvc, PingSrvc) {
+
+//	$state.go('home').then(function() {
+		PositionSrvc.bootstrap().then(PingSrvc.ping);
+//	});
+
 });
