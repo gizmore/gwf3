@@ -13,7 +13,7 @@ TGC.controller('DashboardCtrl', function($rootScope, $scope, AvatarSrvc, PlayerS
 	};
 
 	$scope.setPlayer = function(player) {
-		console.log('DashboardCtrl.setPlayer', player);
+		console.log('DashboardCtrl.setPlayer()', player);
 		$scope.data = {
 				setColor: player.color() == 'black',
 				setGender: player.gender() == 'none',
@@ -26,7 +26,7 @@ TGC.controller('DashboardCtrl', function($rootScope, $scope, AvatarSrvc, PlayerS
 	};
 
 	
-	$rootScope.$on('tgc-own-player-loaded', function(event, player) {
+	$rootScope.$on('tgc-own-player-loaded', function($event, player) {
 		$scope.setPlayer(player);
 	});
 	

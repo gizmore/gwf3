@@ -1,3 +1,6 @@
+/**
+ * 
+ */
 var TGC = angular.module('tgc', ['ngMaterial', 'ui.router', 'ngMap']);
 
 TGC.config(function($urlRouterProvider, $stateProvider) {

@@ -17,11 +17,12 @@
 
 	<script src="{$root}tpl/tamagochi/js/config/tamagochi.conf.js"></script>
 	
-	<script src="{$root}tpl/tamagochi/js/util/StringUtil.js"></script>
-
 	<script src="{$root}tpl/tamagochi/js/tamagochi.js"></script>
 
 	<script src="{$root}tpl/tamagochi/js/config/ConstSrvc.js"></script>
+
+	<script src="{$root}tpl/tamagochi/js/util/MapUtil.js"></script>
+	<script src="{$root}tpl/tamagochi/js/util/StringUtil.js"></script>
 
 	<script src="{$root}tpl/tamagochi/js/model/Avatar.js"></script>
 	<script src="{$root}tpl/tamagochi/js/model/GWFMessage.js"></script>
