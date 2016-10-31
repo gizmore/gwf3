@@ -212,7 +212,10 @@ class WebSocketServer implements WebSocketObserver{
 
 			//$this->debug("Blocking on socket_select()");
 			
-			$this->populateFromQueue();
+			if (defined('DOG_WS_QUEUE'))
+			{
+				$this->populateFromQueue();
+			}
 
 			// Retreive sockets which are 'Changed'
 			$changed = $this->getResources();

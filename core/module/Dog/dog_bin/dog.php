@@ -2,6 +2,8 @@
 chdir(dirname(__FILE__));
 chdir('../');
 
+define('DOG_WS_QUEUE', true);
+
 # Require config
 $config_file = $argv[1];
 require_once '../../../www/protected/'.$config_file;

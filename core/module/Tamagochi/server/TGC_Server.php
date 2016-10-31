@@ -38,13 +38,13 @@ class TGC_Server implements IWebSocketServerObserver, GWF_WSI
 	{
 		$this->server = new WebSocketServer("ssl://0.0.0.0:12345", 'iliketamagnochi');
 		$this->server->addObserver($this);
-// 		$this->server->addUriHandler("echo", new TGC_PositionHandler());
+		$this->server->addUriHandler("echo", new TGC_PositionHandler());
 		$this->setupSSL();
 	}
 
 	public function setConnected($connected) { $this->connected = $connected; }
 	public function isConnected() { return $this->connected; }
-	public function getPEMFilename() { return 'protected/websocket.pem'; }
+	public function getPEMFilename() { return 'protected/tgc.gizmore.org.pem'; }
 
 	public function setupSSL()
 	{
@@ -82,7 +82,7 @@ class TGC_Server implements IWebSocketServerObserver, GWF_WSI
 		$user->sendFrame($frame);
 	}
 
-	public function say($msg)
+	public function say($msg = '')
 	{
 		echo "$msg \r\n";
 	}
