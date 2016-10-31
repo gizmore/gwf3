@@ -36,6 +36,10 @@ while (false !== ($row = $db->fetchAssoc($result)))
 		continue;
 	}
 	
+	if ($username == 'wheel') {
+		$username .= '2';
+	}
+	
 	$create = false;
 	$crypt_pass = escapeshellarg($row['password']);
 	
