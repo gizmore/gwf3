@@ -7,7 +7,7 @@ TGC.service('PositionSrvc', function($rootScope, $q, ErrorSrvc) {
 	
 	var PositionSrvc = this;
 	
-	PositionSrvc.CURRENT = null;
+	PositionSrvc.CURRENT = { coords: { latitude: 52.13, longitude: 10.37 } };
 	
 	PositionSrvc.HIGH_PRECISION = false;
 	
@@ -31,12 +31,21 @@ TGC.service('PositionSrvc', function($rootScope, $q, ErrorSrvc) {
 	
 	PositionSrvc.geoSuccess = function(position) {
 		console.log('PositionSrvc.geoSuccess()', position);
+		PositionSrvc.CURRENT = position;
 		$rootScope.$broadcast('tgc-position-changed', position);
 	};
 	
 	PositionSrvc.geoFailure = function(error) {
 		console.log('PositionSrvc.geoFailure()', error);
 		
+	};
+	
+	PositionSrvc.latitude = function() {
+		return PositionService.CURRENT.coords.latitude;
+	};
+	
+	PositionSrvc.longitude = function() {
+		return PositionService.CURRENT.coords.longitude;
 	};
 	
 	

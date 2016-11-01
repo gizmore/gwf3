@@ -40,8 +40,8 @@
 				<md-button ng-click="toggleLeftMenu()" class="tgc-left-toggle md-raised" aria-label="Open Left Menu"><i class="material-icons">account_circle</i></md-button>
 				<md-button ng-click="toggleRightMenu()" class="tgc-right-toggle md-raised" aria-label="Open Right Menu"><i class="material-icons">android</i></md-button>
 			</div>
-			<div id="TGCMAPDIV" layout="column" layout-align="top center" ng-controller="MapCtrl" map-lazy-load="https://maps.google.com/maps/api/js" map-lazy-load-params="">
-				<ng-map id="TGCMAP"></ng-map>
+			<div id="TGCMAPDIV" layout="column" layout-align="top center" ng-controller="MapCtrl">
+				<div id="TGCMAP"></div>
 			</div>
 		</md-content>
 	</section>

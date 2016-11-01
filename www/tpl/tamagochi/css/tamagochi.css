@@ -8,6 +8,10 @@ HTML, BODY, #MAINDIV, #MAINSECTION, #MAPCONTENT, #TGCMAPDIV, #TGCMAP, #MAINVIEW 
 	min-height: 100%;
 }
 
+#TGCMAPDIV {
+	position: relative;
+	top: 3em;
+}
 
 /** MENU TOGGLES **/ 
 .tgc-content-menu-toggles .tgc-left-toggle {
