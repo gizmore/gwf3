@@ -3,9 +3,8 @@ final class TGC_Const
 {
 	const GPS_INACCURACY = 100;
 	const RADAR_SQUARE = 5000;
-	const MAX_AVATARS = 5;
-	const MAX_AVATAR_SIZE = 2048;
 	
+	const SECRET_CUT = 33;
 
 	const NONE = 'none';
 	const MALE = 'male';

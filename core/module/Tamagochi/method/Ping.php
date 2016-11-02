@@ -19,11 +19,17 @@ final class Tamagochi_Ping extends GWF_Method
 		$tVars = array(
 			'user' => $user ? $user: false,
 			'player' => $player ? $player->getGDOData() : false,
-			'secret' => $player ? TGC_Logic::getUserSecret(GWF_Session::getUser()) : false,
+			'secret' => $player ? $this->getUserSecret(GWF_Session::getUser()) : false,
 			'authed' => $authed,
 		);
 		$code = ($authed === true) ? 200 : ($player ? 403 : 405);
 		http_response_code($code);
 		die(json_encode($tVars));
-	}	
+	}
+	
+	private function getUserSecret(GWF_User $user)
+	{
+		return sprintf("%s:%s:%s", $user->getID(), $user->getVar('user_name'), substr($user->getVar('user_password'), TGC_Const::SECRET_CUT));
+	}
+	
 }

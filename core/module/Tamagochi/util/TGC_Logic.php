@@ -1,23 +1,19 @@
 <?php
 final class TGC_Logic
 {
-	public static function getAvatarLevelForXP($xp)
+	public static function getLevelForXP($xp)
 	{
-		return TGC_Const::NEOPHYTE;
+		return $xp < 5 ? 0 : ceil(sqrt($xp-4));
 	}
 	
-	public static function getSessionUserSecret()
+	public static function arePlayersNearEachOther(TGC_Player $a, TGC_Player $b)
 	{
-		return self::getUserSecret(GWF_Session::getUser());
+		return self::arePositionsNearEachOther($a->lat(), $a->lng(), $b->lat(), $b->lng());
 	}
 	
-	public static function getUserSecret(GWF_User $user)
+	public static function arePositionsNearEachOther($latA, $lngA, $latB, $lngB)
 	{
-		return sprintf("%s:%s:%s", $user->getID(), $user->getVar('user_name'), substr($user->getVar('user_password'), 33));
+		return false;
 	}
 	
-	public static function compareUserSecret(GWF_User $user, $secret)
-	{
-		return $secret === self::getUserSecret($user);
-	}
 }

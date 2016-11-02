@@ -1,45 +1,45 @@
 <?php
 final class TGC_Global
 {
-	private $players;
+	public static $PLAYERS = array();
 	
-	public function __construct()
+	public static function addPlayer(TGC_Player $player)
 	{
-		$this->players = array();
+		self::$PLAYERS[$player->getName()] = $player;
 	}
 	
-	public function init()
+	public static function removePlayer(TGC_Player $player, $reason='NO_REASON')
 	{
-		GWF_Log::logMessage('TGC_Global::init()');
-	}
-	
-	
-	public function getPlayer($playername)
-	{
-		return isset($this->players[$username]) ? $this->players[$username] : false;
-	}
-	
-	public function getOrLoadUser($username)
-	{
-		if (false !== ($user = $this->getUser($username))) {
-			return $user;
+		if (!isset(self::$PLAYERS[$player->getName()])) {
+			return false;
 		}
-		return $this->loadUser($username);
+		
+		$player->disconnect($reason);
+		unset(self::$PLAYERS[$player->getName()]);
+		return true;
+	}
+	
+	public static function getPlayer($name)
+	{
+		return isset(self::$PLAYERS[$name]) ? self::$PLAYERS[$name] : false;
+	}
+	
+	public static function getOrLoadPlayer($name)
+	{
+		if (false !== ($player = self::getPlayer($name))) {
+			return $player;
+		}
+		return self::loadPlayer($name);
 	}
 	
 
 	###############
 	### Private ###
 	###############
-	private function loadUser($username)
+	private function loadPlayer($name)
 	{
-		$eusername = GDO::escapeS($username);
-		if ($user = GDO::table('TGC_Player')->selectFirstObject('*', "p_name='$eusername'")) {
-			$this->users[$username] = $user;
-			$user->cacheAvatars();
-			return $user;
-		}
-		return false;
+		$ename = GDO::escapeS($name);
+		return GDO::table('TGC_Player')->selectFirstObject('*', "user_name='$ename'", '', '', array('user'));
 	}
 	
 }
