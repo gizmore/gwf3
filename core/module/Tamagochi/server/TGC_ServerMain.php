@@ -4,6 +4,8 @@
 */
 # Security headers
 
+require_once '../vendor/autoload.php';
+
 # Load config
 require_once 'protected/config.php'; # <-- You might need to adjust this path.
 
@@ -11,7 +13,6 @@ require_once 'protected/config.php'; # <-- You might need to adjust this path.
 require_once '../gwf3.class.php';
 
 # Websockets
-require_once("../core/inc/3p/phpws/websocket.server.php");
 
 GWF_HTML::init();
 GWF_Debug::setDieOnError(false);

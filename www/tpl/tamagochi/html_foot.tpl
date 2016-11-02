@@ -10,8 +10,6 @@
 	<script src="{$root}tpl/tamagochi/bower_components/angular-ui/build/angular-ui.js"></script>
 	<script src="{$root}tpl/tamagochi/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
 	<script src="{$root}tpl/tamagochi/bower_components/angular-material/angular-material.js"></script>
-	<script src="{$root}tpl/tamagochi/bower_components/ngmap/build/scripts/ng-map.js"></script>
-
 
 	<!-- All hail to the hypnotoad 0-o -->
 
@@ -21,6 +19,7 @@
 
 	<script src="{$root}tpl/tamagochi/js/config/ConstSrvc.js"></script>
 
+	<script src="{$root}tpl/tamagochi/js/util/GameUtil.js"></script>
 	<script src="{$root}tpl/tamagochi/js/util/MapUtil.js"></script>
 	<script src="{$root}tpl/tamagochi/js/util/StringUtil.js"></script>
 
@@ -36,6 +35,7 @@
 	<script src="{$root}tpl/tamagochi/js/srvc/PositionSrvc.js"></script>
 	<script src="{$root}tpl/tamagochi/js/srvc/RequestInterceptor.js"></script>
 	<script src="{$root}tpl/tamagochi/js/srvc/RequestSrvc.js"></script>
+	<script src="{$root}tpl/tamagochi/js/srvc/WebsocketSrvc.js"></script>
 
 	<script src="{$root}tpl/tamagochi/js/ctrl/DashboardCtrl.js"></script>
 	<script src="{$root}tpl/tamagochi/js/ctrl/HomeCtrl.js"></script>

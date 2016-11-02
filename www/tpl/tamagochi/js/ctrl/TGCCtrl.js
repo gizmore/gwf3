@@ -1,6 +1,6 @@
 'use strict';
 var TGC = angular.module('tgc');
-TGC.controller('TGCCtrl', function($rootScope, $scope, $mdSidenav, PlayerSrvc, AvatarSrvc, ConstSrvc) {
+TGC.controller('TGCCtrl', function($rootScope, $scope, $mdSidenav, PlayerSrvc, AvatarSrvc, ConstSrvc, WebsocketSrvc) {
 	
 	$scope.data = {
 		
@@ -34,7 +34,13 @@ TGC.controller('TGCCtrl', function($rootScope, $scope, $mdSidenav, PlayerSrvc, A
 			console.log('TGCCtrl$on-tgc-own-player-loaded', player);
 			ConstSrvc.inLogin(false);
 			AvatarSrvc.initCache(player);
+			WebsocketSrvc.connect().then($scope.connected);
 		}
 	});
+	
+	$scope.connected = function() {
+		console.log('TGCCtrl.connected()');
+		WebsocketSrvc.send(PlayerSrvc.OWN.secret());
+	};
 
 });

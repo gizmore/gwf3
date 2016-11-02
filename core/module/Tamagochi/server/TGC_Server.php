@@ -1,103 +1,46 @@
 <?php
-/**
- * This demo resource handler will respond to all messages sent to /echo/ on the socketserver below
- *
- * All this handler does is echoing the responds to the user
- * @author Chris
- *
- */
-class TGC_PositionHandler extends WebSocketUriHandler {
-	public function onMessage(IWebSocketConnection $user, IWebSocketMessage $msg) {
-		$this->say("[ECHO] {$msg->getData()}");
-		// Echo
-		$user->sendMessage($msg);
-	}
+use Ratchet\MessageComponentInterface;
+use Ratchet\ConnectionInterface;
+use Ratchet\Server\IoServer;
+use Ratchet\Http\HttpServer;
+use Ratchet\WebSocket\WsServer;
 
-	public function onAdminMessage(IWebSocketConnection $user, IWebSocketMessage $obj){
-		$this->say("[DEMO] Admin TEST received!");
-
-		$frame = WebSocketFrame::create(WebSocketOpcode::PongFrame);
-		$user->sendFrame($frame);
-	}
-}
-
-/**
- * Demo socket server. Implements the basic eventlisteners and attaches a resource handler for /echo/ urls.
- *
- *
- * @author Chris
- *
- */
-class TGC_Server implements IWebSocketServerObserver, GWF_WSI
+final class TGC_Server implements MessageComponentInterface
 {
-	protected $server;
-	protected $connected;
+	private $server;
 	
-
-	public function __construct()
-	{
-		$this->server = new WebSocketServer("ssl://0.0.0.0:12345", 'iliketamagnochi');
-		$this->server->addObserver($this);
-		$this->server->addUriHandler("echo", new TGC_PositionHandler());
-		$this->setupSSL();
-	}
-
-	public function setConnected($connected) { $this->connected = $connected; }
-	public function isConnected() { return $this->connected; }
-	public function getPEMFilename() { return 'protected/tgc.gizmore.org.pem'; }
-
-	public function setupSSL()
-	{
-		$context = stream_context_create();
-
-		// local_cert must be in PEM format
-		stream_context_set_option($context, 'ssl', 'local_cert', $this->getPEMFilename());
-
-		stream_context_set_option($context, 'ssl', 'allow_self_signed', true);
-		stream_context_set_option($context, 'ssl', 'verify_peer', false);
-
-		$this->server->setStreamContext($context);
-	}
-
-	public function onConnect(IWebSocketConnection $user)
-	{
-		$this->say("[DEMO] {$user->getId()} connected");
-	}
-
-	public function onMessage(IWebSocketConnection $user, IWebSocketMessage $msg)
-	{
-		$this->say("[DEMO] {$user->getId()} says '{$msg->getData()}'");
-	}
-
-	public function onDisconnect(IWebSocketConnection $user)
-	{
-		$this->say("[DEMO] {$user->getId()} disconnected");
-	}
-
-	public function onAdminMessage(IWebSocketConnection $user, IWebSocketMessage $msg)
-	{
-		$this->say("[DEMO] Admin Message received!");
-
-		$frame = WebSocketFrame::create(WebSocketOpcode::PongFrame);
-		$user->sendFrame($frame);
-	}
-
-	public function say($msg = '')
-	{
-		echo "$msg \r\n";
-	}
-
 	public function mainloop()
 	{
-		$this->server->run($this);
+		GWF_Log::logMessage("TGC_Server::mainloop()");
+		$this->server->run();
 	}
-
+	
+	###############
+	### Ratchet ###
+	###############
+	public function onOpen(ConnectionInterface $conn) {
+		GWF_Log::logCron(sprintf("TGC_Server::onOpen()"));
+	}
+	
+	public function onMessage(ConnectionInterface $from, $msg) {
+		GWF_Log::logCron(sprintf("TGC_Server::onMessage(): %s", $msg));
+	}
+	
+	public function onClose(ConnectionInterface $conn) {
+		GWF_Log::logCron(sprintf("TGC_Server::onClose()"));
+	}
+	
+	public function onError(ConnectionInterface $conn, \Exception $e) {
+		GWF_Log::logCron(sprintf("TGC_Server::onError()"));
+	}
+	
 	############
 	### Init ###
 	############
 	public function initTamagochiServer()
 	{
-		GWF_Log::logMessage("TGC_Server::initTamagochiServer");
+		GWF_Log::logMessage("TGC_Server::initTamagochiServer()");
+		$this->server = IoServer::factory(new HttpServer(new WsServer($this)), 34543);
 		return true;
 	}
 }

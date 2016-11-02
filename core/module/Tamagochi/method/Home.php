@@ -17,10 +17,8 @@ final class Tamagochi_Home extends GWF_Method
 		$tVars = array(
 			'user' => GWF_Session::getUser(),
 			'player' => TGC_Player::getCurrent(),
-			'cookie' => GWF_Session::getCookieValue(),
-			'api_key' => $this->module->cfgMapsApiKey(),
-			'max_avatars' => $this->module->cfgMaxAvatars(),
-			'max_avatar_size' => $this->module->cfgMaxAvatarSize(),
+// 			'api_key' => $this->module->cfgMapsApiKey(),
+			'ws_url' => $this->module->cfgWebsocketUrl(),
 		);
 		return $this->module->templatePHP('home.php', $tVars);
 	}

@@ -267,3 +267,5 @@ www/install/.htaccess
 www/protected/db_backup.sh
 www/gwf_cronjob.php
 www/tpl/tamagochi/bower_components
+vendor
+

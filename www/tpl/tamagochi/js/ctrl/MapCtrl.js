@@ -1,6 +1,6 @@
 'use strict';
 var TGC = angular.module('tgc');
-TGC.controller('MapCtrl', function($rootScope, $scope, NgMap, MapUtil) {
+TGC.controller('MapCtrl', function($rootScope, $scope, MapUtil) {
 
 	$scope.data = {
 		position: null,

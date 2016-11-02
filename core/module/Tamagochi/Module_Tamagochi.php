@@ -16,5 +16,6 @@ final class Module_Tamagochi extends GWF_Module
 	
 	public function cfgMaxAvatars() { return $this->getModuleVarInt('max_avatars', 3); }
 	public function cfgMaxAvatarSize() { return $this->getModuleVarInt('max_avatar_size', 2048); }
-	public function cfgMapsApiKey() { return 'AIzaSyBrEK28--B1PaUlvpHXB-4MzQlUjNPBez0'; $this->getModuleVar('maps_api_key', ''); }
+	public function cfgMapsApiKey() { return $this->getModuleVar('maps_api_key', ''); }
+	public function cfgWebsocketURL() { return sprintf('ws://giz.org:34543'); }
 }

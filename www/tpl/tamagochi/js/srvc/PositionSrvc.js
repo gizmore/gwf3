@@ -3,7 +3,7 @@
  * --unsafely-treat-insecure-origin-as-secure="http://giz.org" 
  */
 var TGC = angular.module('tgc');
-TGC.service('PositionSrvc', function($rootScope, $q, ErrorSrvc) {
+TGC.service('PositionSrvc', function($rootScope, $q, ErrorSrvc, WebsocketSrvc) {
 	
 	var PositionSrvc = this;
 	
