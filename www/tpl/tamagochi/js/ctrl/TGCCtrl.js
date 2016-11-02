@@ -33,14 +33,13 @@ TGC.controller('TGCCtrl', function($rootScope, $scope, $mdSidenav, PlayerSrvc, A
 		if (ConstSrvc.inLogin()) {
 			console.log('TGCCtrl$on-tgc-own-player-loaded', player);
 			ConstSrvc.inLogin(false);
-			AvatarSrvc.initCache(player);
 			WebsocketSrvc.connect().then($scope.connected);
 		}
 	});
 	
 	$scope.connected = function() {
 		console.log('TGCCtrl.connected()');
-		WebsocketSrvc.send(PlayerSrvc.OWN.secret());
+		WebsocketSrvc.sendCommand('ping', '1.0.0');
 	};
 
 });

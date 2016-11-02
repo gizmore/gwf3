@@ -60,6 +60,7 @@ final class TGC_Player extends GDO
 			'p_wizard_level' => '0',
 		));
 		$player->insert();
+		$player->setVar('user_name', $user->getVar('user_name'));
 		return $player;
 	}
 	
@@ -73,7 +74,13 @@ final class TGC_Player extends GDO
 	
 	private function getSecret()
 	{
-		return substr(self::table(__CLASS__)->selectFirstColumn('user_password'), TGC_Const::SECRET_CUT);
+		$uid = $this->getVar('p_uid');
+		return substr(self::table('GWF_User')->selectVar('user_password', "user_id=$uid"), TGC_Const::SECRET_CUT);
+	}
+	
+	public function getName()
+	{
+		return $this->getVar('user_name');
 	}
 	
 	public static function getCurrent($create=false)
@@ -82,7 +89,7 @@ final class TGC_Player extends GDO
 		if ($uid == 0) {
 			return false;
 		}
-		if ($player = self::table(__CLASS__)->selectFirstObject('*', "p_uid=$uid")) {
+		if ($player = self::table(__CLASS__)->selectFirstObject('*, user_name', "p_uid=$uid", '', '', array('user'))) {
 			return $player;
 		}
 		if ($create) {
@@ -90,12 +97,6 @@ final class TGC_Player extends GDO
 		}
 		return false;
 	}
-	
-	public static function isNameTaken($name)
-	{
-		return self::table(__CLASS__)->countRows("p_name='$name'") > 0;
-	}
-	
 	
 	##################
 	### Connection ###
@@ -125,12 +126,12 @@ final class TGC_Player extends GDO
 		return $this->connectionInterface !== null;
 	}
 	
-	public function hasCoordinates()
+	public function hasPosition()
 	{
 		return $this->lat !== null;
 	}
 	
-	public function setCoordinates($lat, $lng)
+	public function setPosition($lat, $lng)
 	{
 		if ($lat && $lng) {
 			$this->lat = $lat;
@@ -138,7 +139,7 @@ final class TGC_Player extends GDO
 		}
 	}
 	
-	public function setConnectionInterface(ConnectionInterface $conn)
+	public function setConnectionInterface($conn)
 	{
 		if ($this->isConnected()) {
 			$this->disconnect();
@@ -160,7 +161,7 @@ final class TGC_Player extends GDO
 	
 	public function forNearMe($callback)
 	{
-		foreach (TGC_Globals:$PLAYERS as $name=> $player) {
+		foreach (TGC_Globals::$PLAYERS as $name=> $player) {
 			if ($this->isNearMe($player)) {
 				call_user_func($callback, $player);
 			}
@@ -170,14 +171,28 @@ final class TGC_Player extends GDO
 	###########
 	### API ###
 	###########
-	public function moveTo($lat, $lng)
+	public function moveTo($newLat, $newLng)
 	{
+		$oldLat = $this->lat;
+		$oldLng = $this->lng;
+
+		$this->setPosition($newLat, $newLng);
 		
-	}
-	
-	public function a()
-	{
-		
+		foreach (TGC_Globals::$PLAYERS as $name=> $player) {
+			$oldNear = $player->isNearPosition($oldLat, $oldLng);
+			$newNear = $player->isNearPosition($newLat, $newLng);
+			if ($oldNear != $newNear) {
+				if ($newNear === true) {
+					$player->send(sprintf('APPEAR:%s:%.06f:%.06f', $this->getName(), $this->lat, $this->lng));
+				}
+				else {
+					$player->send(sprintf('DISAPPEAR:%s:%.06f:%.06f', $this->getName(), $this->lat, $this->lng));
+				}
+			}
+			else if ($newNear === true) {
+				$player->send(sprintf('POS:%s:%.06f:%.06f', $this->getName(), $this->lat, $this->lng));
+			}
+		}
 	}
 	
 	##############
@@ -206,7 +221,7 @@ final class TGC_Player extends GDO
 		$newLevel = TGC_Logic::levelForXP($xp);
 		if ($oldLevel !== $newLevel) {
 			$this->setVar($levelvar, $newLevel.'');
-			$this->onLevelChanged();
+			$this->onLevelChanged($skill, $oldLevel, $newLevel);
 		}
 	}
 	
@@ -222,6 +237,13 @@ final class TGC_Player extends GDO
 		if ($this->secret === null) {
 			$this->secret = $this->getSecret();
 		}
+	}
+	
+	private function onLevelChanged($skill, $oldLevel, $newLevel)
+	{
+		self::forNearMe(function($player) {
+			$player->send(sprintf('LVLUP:%s:%s:%s', $skill, $oldLevel, $newLevel));
+		});
 	}
 	
 }

@@ -38,6 +38,7 @@
 	<script src="{$root}tpl/tamagochi/js/srvc/WebsocketSrvc.js"></script>
 
 	<script src="{$root}tpl/tamagochi/js/ctrl/DashboardCtrl.js"></script>
+	<script src="{$root}tpl/tamagochi/js/ctrl/DebugCtrl.js"></script>
 	<script src="{$root}tpl/tamagochi/js/ctrl/HomeCtrl.js"></script>
 	<script src="{$root}tpl/tamagochi/js/ctrl/LoginCtrl.js"></script>
 	<script src="{$root}tpl/tamagochi/js/ctrl/MapCtrl.js"></script>

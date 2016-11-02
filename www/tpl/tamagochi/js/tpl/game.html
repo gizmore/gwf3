@@ -1,12 +1,14 @@
 <div ng-controller="TGCCtrl" layout="column" id="MAINDIV">
 	<section layout="row" flex id="MAINSECTION">
 
+		<!-- LEFT -->
+
 		<md-sidenav class="md-sidenav-left" md-component-id="left" md-disable-backdrop md-whiteframe="4">
 			<div class="tgc-sidebar-menu-toggles">
 				<md-button ng-click="toggleLeftMenu()" class="tgc-left-toggle md-raised" aria-label="Close Left Menu"><i class="material-icons">account_circle</i></md-button>
 			</div>
 			<md-toolbar class="md-theme-indigo"layout-align="right">
-				<h1 class="md-toolbar-tools">Disabled Backdrop</h1>
+				<h1 class="md-toolbar-tools">Account</h1>
 			</md-toolbar>
 			<md-content layout-margin>
 				<p>This sidenav is not showing any backdrop, where users can click on it, to close the sidenav.</p>
@@ -22,12 +24,19 @@
 			</md-content>
 		</md-sidenav>
 
+		<!-- RIGHT -->
+
 		<md-sidenav class="md-sidenav-right" md-component-id="right" md-disable-backdrop md-whiteframe="4">
 			<div class="tgc-sidebar-menu-toggles">
 				<md-button ng-click="toggleRightMenu()" class="tgc-right-toggle md-raised" aria-label="Close Right Menu"><i class="material-icons">android</i></md-button>
 			</div>
 			<md-toolbar class="md-theme-indigo">
-				<h1 class="md-toolbar-tools">Avatars</h1>
+				<h1 class="md-toolbar-tools">Debug</h1>
+				<div ng-controller="DebugCtrl">
+					<input ng-model="data.fixPosition" type="checkbox" />
+					<input ng-model="data.fixLatitude" type="number" step="0.001" />
+					<input ng-model="data.fixLongitude" type="number" step="0.001" />
+				</div>
 			</md-toolbar>
 			<md-content layout-margin>
 			</md-content>
@@ -44,5 +53,6 @@
 				<div id="TGCMAP"></div>
 			</div>
 		</md-content>
+
 	</section>
 </div>

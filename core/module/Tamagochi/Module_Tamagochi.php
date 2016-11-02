@@ -1,8 +1,6 @@
 <?php
-require_once 'util/TGC_AvatarNames.php';
 require_once 'util/TGC_Combat.php';
 require_once 'util/TGC_Const.php';
-require_once 'util/TGC_Global.php';
 require_once 'util/TGC_Logic.php';
 
 final class Module_Tamagochi extends GWF_Module

@@ -44,7 +44,11 @@ if (false === ($tgc = GWF_Module::loadModuleDB("Tamagochi", true, true, true))) 
 	die('Module not found.');
 }
 
-require '../core/module/Tamagochi/server/TGC_Server.php';
+require_once 'TGC_Global.php';
+require_once 'TGC_ServerUtil.php';
+require_once 'TGC_Commands.php';
+
+require_once '../core/module/Tamagochi/server/TGC_Server.php';
 
 $server = new TGC_Server();
 $server->initTamagochiServer();

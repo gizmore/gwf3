@@ -1,10 +1,14 @@
 'use strict';
 var TGC = angular.module('tgc');
-TGC.service('WebsocketSrvc', function($rootScope, $q) {
+TGC.service('WebsocketSrvc', function($rootScope, $q, PlayerSrvc) {
 	
 	var WebsocketSrvc = this;
 	
 	WebsocketSrvc.SOCKET = null;
+	
+	WebsocketSrvc.QUEUE = [];
+	WebsocketSrvc.QUEUE_INTERVAL = null;
+	WebsocketSrvc.QUEUE_SEND_MILLIS = 250;
 	
 	WebsocketSrvc.connect = function() {
 		return $q(function(resolve, reject){
@@ -12,7 +16,7 @@ TGC.service('WebsocketSrvc', function($rootScope, $q) {
 			if (WebsocketSrvc.SOCKET == null) {
 				var ws = WebsocketSrvc.SOCKET = new WebSocket(window.TGCConfig.ws_url);
 				ws.onopen = function() {
-			    	console.log("here");
+					WebsocketSrvc.startQueue();
 			    	resolve();
 			    	$rootScope.$broadcast('tgc-ws-open');
 				};
@@ -21,7 +25,8 @@ TGC.service('WebsocketSrvc', function($rootScope, $q) {
 			    	$rootScope.$broadcast('tgc-ws-close');
 			    };
 			    ws.onerror = function(error) {
-			    	console.log(error);
+			    	console.error(error);
+			    	$rootScope.$broadcast('tgc-ws-error', error);
 					reject();
 			    };
 			    ws.onmessage = function(message) {
@@ -33,6 +38,13 @@ TGC.service('WebsocketSrvc', function($rootScope, $q) {
 			}
 		});
 	};
+	
+	WebsocketSrvc.startQueue = function() {
+		console.log('WebsocketSrvc.startQueue()');
+		if (WebsocketSrvc.QUEUE_INTERVAL === null) {
+			WebsocketSrvc.QUEUE_INTERVAL = setInterval(WebsocketSrvc.flushQueue, WebsocketSrvc.QUEUE_SEND_MILLIS);
+		}
+	};
 
 	WebsocketSrvc.disconnect = function() {
 		console.log('WebsocketSrvc.disconnect()');
@@ -42,7 +54,22 @@ TGC.service('WebsocketSrvc', function($rootScope, $q) {
 		}
 	};
 	
+	WebsocketSrvc.connected = function() {
+		return SOCKET !== null;
+	};
+
 	
+	WebsocketSrvc.sendCommand = function(command, payload, nonqueued) {
+		console.log('WebsocketSrvc.sendCommand()', command, payload);
+		if (PlayerSrvc.OWN) {
+			var messageText = PlayerSrvc.OWN.secret()+":"+command+":"+payload;
+			if (WebsocketSrvc.connected()) {
+				WebsocketSrvc.send(messageText);
+			} else {
+				WebsocketSrvc.QUEUE.push(messageText);
+			}
+		}
+	};
 	
 	WebsocketSrvc.send = function(messageText) {
 		console.log('WebsocketSrvc.send()', messageText);
