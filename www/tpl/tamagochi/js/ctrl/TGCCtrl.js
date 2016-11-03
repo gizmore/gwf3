@@ -1,9 +1,11 @@
 'use strict';
 var TGC = angular.module('tgc');
-TGC.controller('TGCCtrl', function($rootScope, $scope, $mdSidenav, PlayerSrvc, AvatarSrvc, ConstSrvc, WebsocketSrvc) {
+TGC.controller('TGCCtrl', function($rootScope, $scope, $mdSidenav, PlayerSrvc, ConstSrvc, WebsocketSrvc, CommandSrvc) {
 	
 	$scope.data = {
-		
+		lastReceived: null,
+		lastStamp: null,
+		version: ''
 	};
 	
 	$scope.reset = function() {
@@ -40,6 +42,24 @@ TGC.controller('TGCCtrl', function($rootScope, $scope, $mdSidenav, PlayerSrvc, A
 	$scope.connected = function() {
 		console.log('TGCCtrl.connected()');
 		WebsocketSrvc.sendCommand('ping', '1.0.0');
+	};
+
+	$rootScope.$on('tgc-ws-message', function($event, message) {
+//		console.log('TGCCtrl.$on-tgc-ws-message', message.data);
+		var messageText = message.data;
+		if ($scope.data.lastReceived != messageText) {
+			$scope.data.lastReceived = messageText;
+			$scope.processMessage(messageText);
+		}
+	});
+	
+	$scope.processMessage = function(messageText) {
+		console.log('TGCCtrl.processMessage()', messageText);
+		var command = messageText.nibbleUntil(':');
+		if (CommandSrvc[command]) {
+			CommandSrvc[command]($scope, messageText);
+			$scope.$apply();
+		}
 	};
 
 });

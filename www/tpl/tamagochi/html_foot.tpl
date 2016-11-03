@@ -23,12 +23,14 @@
 	<script src="{$root}tpl/tamagochi/js/util/MapUtil.js"></script>
 	<script src="{$root}tpl/tamagochi/js/util/StringUtil.js"></script>
 
+	<script src="{$root}tpl/tamagochi/js/directives/ngEnter.js"></script>
+
 	<script src="{$root}tpl/tamagochi/js/model/Avatar.js"></script>
 	<script src="{$root}tpl/tamagochi/js/model/GWFMessage.js"></script>
 	<script src="{$root}tpl/tamagochi/js/model/Player.js"></script>
 	<script src="{$root}tpl/tamagochi/js/model/User.js"></script>
 
-	<script src="{$root}tpl/tamagochi/js/srvc/AvatarSrvc.js"></script>
+	<script src="{$root}tpl/tamagochi/js/srvc/CommandSrvc.js"></script>
 	<script src="{$root}tpl/tamagochi/js/srvc/ErrorSrvc.js"></script>
 	<script src="{$root}tpl/tamagochi/js/srvc/PingSrvc.js"></script>
 	<script src="{$root}tpl/tamagochi/js/srvc/PlayerSrvc.js"></script>
@@ -37,6 +39,7 @@
 	<script src="{$root}tpl/tamagochi/js/srvc/RequestSrvc.js"></script>
 	<script src="{$root}tpl/tamagochi/js/srvc/WebsocketSrvc.js"></script>
 
+	<script src="{$root}tpl/tamagochi/js/ctrl/ChatSendCtrl.js"></script>
 	<script src="{$root}tpl/tamagochi/js/ctrl/DashboardCtrl.js"></script>
 	<script src="{$root}tpl/tamagochi/js/ctrl/DebugCtrl.js"></script>
 	<script src="{$root}tpl/tamagochi/js/ctrl/HomeCtrl.js"></script>

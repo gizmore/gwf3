@@ -3,7 +3,7 @@
 HTML, BODY, #TGCMAP {
 	width: 100%;
 }
-HTML, BODY, #MAINDIV, #MAINSECTION, #MAPCONTENT, #TGCMAPDIV, #TGCMAP, #MAINVIEW {
+HTML, BODY, .MAINDIV, .MAINSECTION, #MAPCONTENT, #HOMECONTENT, #TGCMAPDIV, #TGCMAP, #MAINVIEW {
 	height: 100%;
 	min-height: 100%;
 }
@@ -48,3 +48,14 @@ HTML, BODY, #MAINDIV, #MAINSECTION, #MAPCONTENT, #TGCMAPDIV, #TGCMAP, #MAINVIEW 
 
 
 /** **/
+#tgc-chat-input input {
+	margin-left: 7em;
+}
+
+/** **/
+#VERSION {
+	display: block;
+	position: absolute;
+	bottom: 2em;
+	right: 2em;
+}

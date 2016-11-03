@@ -1,6 +1,6 @@
 'use strict';
 var TGC = angular.module('tgc');
-TGC.controller('DashboardCtrl', function($rootScope, $scope, AvatarSrvc, PlayerSrvc) {
+TGC.controller('DashboardCtrl', function($rootScope, $scope, PlayerSrvc) {
 	$scope.reset = function() {
 		$scope.data = {
 				setColor: false,
@@ -15,12 +15,12 @@ TGC.controller('DashboardCtrl', function($rootScope, $scope, AvatarSrvc, PlayerS
 	$scope.setPlayer = function(player) {
 		console.log('DashboardCtrl.setPlayer()', player);
 		$scope.data = {
-				setColor: player.color() == 'black',
-				setGender: player.gender() == 'none',
-				createAvatar: AvatarSrvc.canCreateAvatar(),
-				setMode: AvatarSrvc.hasAvatar(),
-				setSkill: AvatarSrvc.hasAvatar(),
-				setElement: AvatarSrvc.hasAvatar(),
+//				setColor: player.color() == 'black',
+//				setGender: player.gender() == 'none',
+//				createAvatar: AvatarSrvc.canCreateAvatar(),
+//				setMode: AvatarSrvc.hasAvatar(),
+//				setSkill: AvatarSrvc.hasAvatar(),
+//				setElement: AvatarSrvc.hasAvatar(),
 		};
 		
 	};

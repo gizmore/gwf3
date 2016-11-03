@@ -1,5 +1,5 @@
-<div ng-controller="TGCCtrl" layout="column" id="MAINDIV">
-	<section layout="row" flex id="MAINSECTION">
+<div ng-controller="TGCCtrl" layout="column" class="MAINDIV">
+	<section layout="row" flex class="MAINSECTION">
 
 		<!-- LEFT -->
 
@@ -45,6 +45,11 @@
 		<!-- CONTENT -->
 
 		<md-content flex layout-padding id="MAPCONTENT">
+			<div id="tgc-chat-input" ng-controller="ChatSendCtrl">
+				<md-input-container md-no-float class="md-block">
+					<input ng-model="data.input" type="text" ng-enter="sendMessage($event)" />
+				</md-input-container>
+			</div>
 			<div class="tgc-content-menu-toggles">
 				<md-button ng-click="toggleLeftMenu()" class="tgc-left-toggle md-raised" aria-label="Open Left Menu"><i class="material-icons">account_circle</i></md-button>
 				<md-button ng-click="toggleRightMenu()" class="tgc-right-toggle md-raised" aria-label="Open Right Menu"><i class="material-icons">android</i></md-button>
@@ -55,4 +60,5 @@
 		</md-content>
 
 	</section>
+	<div id="VERSION">{{data.version}}</div>
 </div>

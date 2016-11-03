@@ -75,7 +75,7 @@ final class TGC_Player extends GDO
 	private function getSecret()
 	{
 		$uid = $this->getVar('p_uid');
-		return substr(self::table('GWF_User')->selectVar('user_password', "user_id=$uid"), TGC_Const::SECRET_CUT);
+		return substr(self::table('GWF_User')->selectVar('user_password', "user_id=$uid", '', array('user')), TGC_Const::SECRET_CUT);
 	}
 	
 	public function getName()
@@ -101,9 +101,15 @@ final class TGC_Player extends GDO
 	##################
 	### Connection ###
 	##################
+	public function sendCommand($command, $payload)
+	{
+		return $this->send("$command:$payload");
+	}
+	
 	public function send($messageText)
 	{
 		if ($this->isConnected()) {
+			GWF_Log::logCron(sprintf('%s << %s', $this->getName(), $messageText));
 			$this->connectionInterface->send($messageText);
 		}
 	}
@@ -146,6 +152,11 @@ final class TGC_Player extends GDO
 		}
 		$this->connectionInterface = $conn;
 		$this->rehash();
+	}
+	
+	public function getInterfaceConnection()
+	{
+		return $this->connectionInterface;
 	}
 	
 	###################

@@ -45,6 +45,22 @@ TGC.service('WebsocketSrvc', function($rootScope, $q, PlayerSrvc) {
 			WebsocketSrvc.QUEUE_INTERVAL = setInterval(WebsocketSrvc.flushQueue, WebsocketSrvc.QUEUE_SEND_MILLIS);
 		}
 	};
+	
+	WebsocketSrvc.flushQueue = function() {
+		if (!WebsocketSrvc.connected()) {
+			// TODO: Recon?
+		}
+		else {
+			WebsocketSrvc.sendQueue();
+		}
+	};
+	
+	WebsocketSrvc.sendQueue = function() {
+		if (WebsocketSrvc.QUEUE.length > 0) {
+			console.log('WebsocketSrvc.sendQueue()');
+		}
+	};
+	
 
 	WebsocketSrvc.disconnect = function() {
 		console.log('WebsocketSrvc.disconnect()');
@@ -55,7 +71,7 @@ TGC.service('WebsocketSrvc', function($rootScope, $q, PlayerSrvc) {
 	};
 	
 	WebsocketSrvc.connected = function() {
-		return SOCKET !== null;
+		return WebsocketSrvc.SOCKET !== null;
 	};
 
 	
