@@ -55,9 +55,9 @@ TGC.controller('TGCCtrl', function($rootScope, $scope, $mdSidenav, PlayerSrvc, C
 	
 	$scope.processMessage = function(messageText) {
 		console.log('TGCCtrl.processMessage()', messageText);
-		var command = messageText.nibbleUntil(':');
+		var command = messageText.substrUntil(':');
 		if (CommandSrvc[command]) {
-			CommandSrvc[command]($scope, messageText);
+			CommandSrvc[command]($scope, messageText.substrFrom(':'));
 			$scope.$apply();
 		}
 	};

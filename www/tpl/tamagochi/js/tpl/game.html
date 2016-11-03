@@ -33,9 +33,9 @@
 			<md-toolbar class="md-theme-indigo">
 				<h1 class="md-toolbar-tools">Debug</h1>
 				<div ng-controller="DebugCtrl">
-					<input ng-model="data.fixPosition" type="checkbox" />
-					<input ng-model="data.fixLatitude" type="number" step="0.001" />
-					<input ng-model="data.fixLongitude" type="number" step="0.001" />
+					<input ng-model="data.fixPosition" type="checkbox"  ng-change="changeDebugPosition($event)">Fix</input>
+					<input ng-model="data.fixLatitude" type="number" step="0.001" ng-change="changeDebugPosition($event)"></input>
+					<input ng-model="data.fixLongitude" type="number" step="0.001" ng-change="changeDebugPosition($event)"></input>
 				</div>
 			</md-toolbar>
 			<md-content layout-margin>
@@ -60,5 +60,5 @@
 		</md-content>
 
 	</section>
-	<div id="VERSION">{{data.version}}</div>
+	<div id="VERSION">TGC {{data.version}}</div>
 </div>

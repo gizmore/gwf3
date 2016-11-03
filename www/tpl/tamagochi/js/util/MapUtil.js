@@ -6,6 +6,7 @@ TGC.service('MapUtil', function() {
 	
 	MapUtil.MAP = null;
 	MapUtil.MAP_ID = 'TGCMAP';
+	MapUtil.MARKERS = {};
 
 	MapUtil.OPTIONS = {
 //			backgroundColor: '#0008',
@@ -60,6 +61,29 @@ TGC.service('MapUtil', function() {
 			}
 		}
 		return MapUtil.MAP;
+	};
+	
+	/////////////
+	// Markers //
+	/////////////
+	MapUtil.markerForPlayer = function(player) {
+		
+	};
+
+	MapUtil.addMarkerForPlayer = function(player) {
+		
+	};
+	
+	MapUtil.initPlayers = function(players) {
+		
+	};
+	
+	MapUtil.addPlayer = function(player) {
+		
+	};
+	
+	MapUtil.movePlayer = function(player) {
+		
 	};
 	
 });

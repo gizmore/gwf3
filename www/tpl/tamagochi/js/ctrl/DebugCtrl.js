@@ -5,27 +5,30 @@ TGC.controller('DebugCtrl', function($rootScope, $scope, PlayerSrvc, PositionSrv
 	$scope.data = {
 		fixPosition: true,
 		fixLatitude: 52.141568,
-		fixLongitude: 10.111213
+		fixLongitude: 10.111213,
+		lock: null
 	};
 	
-	$scope.onFixCoordinates = function(position) {
-		console.log('DebugCtrl.onFixCoordinates()', $scope.data, position);
+	$rootScope.$on('tgc-position-changed', function($event, position) {
 		if ($scope.data.fixPosition) {
 			PositionSrvc.setLatLng($scope.data.fixLatitude, $scope.data.fixLongitude);
 		}
+	});
+
+	$scope.changeDebugPosition = function($event) {
+		if ($scope.data.fixPosition) {
+			if ($scope.data.lock === null) {
+				$scope.data.lock = setTimeout($scope.onChangeDebugPosition, 500);
+			}
+		}
 		else {
-			$scope.data.fixLatitude = position.coords.latitude;
-			$scope.data.fixLongitude = position.coords.longitude;
+			$scope.data.lock = null;
 		}
 	};
-
 	
-	$rootScope.$on('tgc-position-changed', function($event, position) {
-		$scope.onFixCoordinates(position);
-	});
-	
-	$scope.onChange = function() {
-		
+	$scope.onChangeDebugPosition = function() {
+		console.log('DebugCtrl.onChangeDebugPosition()');
+		$scope.data.lock = null;
 	};
 	
 });

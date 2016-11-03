@@ -1,9 +1,6 @@
 'use strict';
-/**
- * --unsafely-treat-insecure-origin-as-secure="http://giz.org" 
- */
 var TGC = angular.module('tgc');
-TGC.service('PositionSrvc', function($rootScope, $q, ErrorSrvc, WebsocketSrvc) {
+TGC.service('PositionSrvc', function($rootScope, $q, ErrorSrvc, CommandSrvc) {
 	
 	var PositionSrvc = this;
 	
@@ -24,15 +21,31 @@ TGC.service('PositionSrvc', function($rootScope, $q, ErrorSrvc, WebsocketSrvc) {
 			timeout: 57000
 	};
 	
+	PositionSrvc.latitude = function() {
+		return PositionService.CURRENT.coords.latitude;
+	};
+	
+	PositionSrvc.longitude = function() {
+		return PositionService.CURRENT.coords.longitude;
+	};
+	
 	PositionSrvc.setLatLng = function(lat, lng) {
 		console.log('PositionSrvc.setLatLng()', lat, lng);
-		PositionSrvc.CURRENT = { coords: { latitude: lat, longitude: lng } };
+		PositionSrvc.geoSuccess(PositionSrvc.getPosition(lat, lng));
+	};
+
+	PositionSrvc.getLatLng = function(lat, lng) {
+		return new google.maps.LatLng({lat: lat, lng: lng});
+	};
+
+	PositionSrvc.getPosition = function(lat, lng) {
+		return { coords: { latitude: lat, longitude: lng } };
 	};
 	
 	PositionSrvc.start = function() {
 		console.log('PositionSrvc.start()');
 		if (PositionSrvc.TIMER === null) {
-			PositionSrvc.TIMER = navigator.geolocation.watchPosition(PositionSrvc.geoSuccess, PositionSrvc.geoFailure, PositionSrvc.OPTIONS);	
+			PositionSrvc.TIMER = navigator.geolocation.watchPosition(PositionSrvc.watchSuccess, PositionSrvc.geoFailure, PositionSrvc.OPTIONS);	
 		}
 		if (PositionSrvc.INTERVAL === null) {
 			PositionSrvc.INTERVAL = setInterval(PositionSrvc.intervalCalled, PositionSrvc.INTERVAL_MILLIS);
@@ -56,26 +69,26 @@ TGC.service('PositionSrvc', function($rootScope, $q, ErrorSrvc, WebsocketSrvc) {
 		}
 	};
 	
+	PositionSrvc.watchSuccess = function(position) {
+		console.log('PositionSrvc.watchSuccess()', position);
+		PositionSrvc.geoSuccess(position);
+		PositionSrvc.broadcast();
+	};
+
+	PositionSrvc.broadcast = function() {
+		$rootScope.$broadcast('tgc-position-changed', PositionSrvc.CURRENT);
+	};
+	
+
 	PositionSrvc.geoSuccess = function(position) {
-		console.log('PositionSrvc.geoSuccess()', position);
 		PositionSrvc.CURRENT = position;
 		PositionSrvc.CURRENT_STAMP = new Date().getTime();
-		$rootScope.$broadcast('tgc-position-changed', PositionSrvc.CURRENT);
+		CommandSrvc.pos($rootScope, position);
 	};
 	
 	PositionSrvc.geoFailure = function(error) {
 		console.log('PositionSrvc.geoFailure()', error);
-		
 	};
-	
-	PositionSrvc.latitude = function() {
-		return PositionService.CURRENT.coords.latitude;
-	};
-	
-	PositionSrvc.longitude = function() {
-		return PositionService.CURRENT.coords.longitude;
-	};
-	
 	
 	///////////////////////////////////
 	PositionSrvc.bootstrap = function() {
@@ -94,9 +107,10 @@ TGC.service('PositionSrvc', function($rootScope, $q, ErrorSrvc, WebsocketSrvc) {
 			
 			navigator.geolocation.getCurrentPosition(function(position){
 				PositionSrvc.geoSuccess(position);
+				PositionSrvc.broadcast();
+				PositionSrvc.start();
 				resolve();
 			}, function(error){
-				console.log("REJ");
 				reject();
 			}, options);
 			

@@ -74,8 +74,12 @@ TGC.service('WebsocketSrvc', function($rootScope, $q, PlayerSrvc) {
 		return WebsocketSrvc.SOCKET !== null;
 	};
 
+	WebsocketSrvc.sendJSONCommand = function(command, object) {
+		console.log('WebsocketSrvc.sendJSONCommand()', command, object);
+		WebsocketSrvc.sendCommand(command, JSON.stringify(object));
+	};
 	
-	WebsocketSrvc.sendCommand = function(command, payload, nonqueued) {
+	WebsocketSrvc.sendCommand = function(command, payload) {
 		console.log('WebsocketSrvc.sendCommand()', command, payload);
 		if (PlayerSrvc.OWN) {
 			var messageText = PlayerSrvc.OWN.secret()+":"+command+":"+payload;

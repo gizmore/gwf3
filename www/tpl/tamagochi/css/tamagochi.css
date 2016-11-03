@@ -49,13 +49,16 @@ HTML, BODY, .MAINDIV, .MAINSECTION, #MAPCONTENT, #HOMECONTENT, #TGCMAPDIV, #TGCM
 
 /** **/
 #tgc-chat-input input {
-	margin-left: 7em;
+	padding-left: 7.5em;
+	padding-right: 7.5em;
+	color: #333;
 }
 
 /** **/
 #VERSION {
 	display: block;
 	position: absolute;
-	bottom: 2em;
-	right: 2em;
+	bottom: 1em;
+	right: 3em;
+	opacity: 0.4137;
 }
