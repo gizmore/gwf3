@@ -10,6 +10,11 @@ TGC.service('PlayerSrvc', function($rootScope) {
 	PlayerSrvc.OWN = null;
 	PlayerSrvc.CACHE = {};
 
+	PlayerSrvc.getOrAddPlayer = function(name, player) {
+		console.log("PlayerSrc.getOrAddPlayer()", name);
+		return PlayerSrvc.hasPlayer(name) ? PlayerSrvc.getPlayer(name) : PlayerSrvc.addPlayer(player);
+	};
+
 	PlayerSrvc.getPlayer = function(name) {
 		console.log("PlayerSrc.getPlayer()", name);
 		return PlayerSrvc.CACHE[name];
@@ -23,12 +28,13 @@ TGC.service('PlayerSrvc', function($rootScope) {
 	PlayerSrvc.addPlayer = function(player) {
 		console.log("PlayerSrc.getPlayer()", player);
 		PlayerSrvc.CACHE[name] = player;
-		return PlayerSrvc;
+		return player;
 	};
 
 	PlayerSrvc.removePlayer = function(player) {
 		console.log("PlayerSrc.removePlayer()", player);
-		delete PlayerSrvc.CACHE(name);
+		delete PlayerSrvc.CACHE(player.name());
+		return player;
 	};
 
 	//////////

@@ -45,9 +45,18 @@ TGC.service('CommandSrvc', function($rootScope, MapUtil, PlayerSrvc, WebsocketSr
 	CommandSrvc.POS = function($scope, payload) {
 		console.log('CommandSrvc.POS()', payload);
 		var data = JSON.parse(payload);
-		var player = new window.TGC.Player(data.player, data.user, null);
-		PlayerSrvc.addPlayer(player);
-		MapUtil.movePlayer(player, data.position);
+		var name = data.player.name;
+		var player = null;
+		if (PlayerSrvc.hasPlayer(name)) {
+			player = PlayerSrvc.getPlayer(name);
+		}
+		else {
+			player = new window.TGC.Player(data.player, null, null);
+			PlayerSrvc.addPlayer(player);
+			MapUtil.addPlayer(player);
+		}
+		player.move(data.pos)
+		MapUtil.movePlayer(data.pos);
 		return player;
 	};
 	

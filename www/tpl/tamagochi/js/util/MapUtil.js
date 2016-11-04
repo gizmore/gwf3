@@ -67,22 +67,18 @@ TGC.service('MapUtil', function() {
 	// Markers //
 	/////////////
 	MapUtil.markerForPlayer = function(player) {
-		
 	};
 
 	MapUtil.addMarkerForPlayer = function(player) {
-		
-	};
-	
-	MapUtil.initPlayers = function(players) {
-		
+		MapUtil.MARKERS[player] = new google.maps.Marker(player.latLng())
 	};
 	
 	MapUtil.addPlayer = function(player) {
-		
+		console.error('MapUtil.addPlayer', player);
+		MapUtil.addMarkerForPlayer(player);
 	};
 	
-	MapUtil.movePlayer = function(player) {
+	MapUtil.movePlayer = function(player, latLng) {
 		
 	};
 	

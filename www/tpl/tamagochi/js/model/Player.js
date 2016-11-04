@@ -8,9 +8,12 @@ window.TGC.Player = function(json, userJSON, secret) {
 	this.USER = userJSON;
 	this.SECRET = secret;
 	
-	this.lat = function() { return this.latitude; };
-	this.lon = function() { return this.longitude; };
-	this.move = function(lat, lng) { this.latitude = lat; this.longitude = lng; };
+	this.position = { lat: null, lng: null };
+	
+	this.lat = function() { return this.position.lat; };
+	this.lon = function() { return this.position.lng; };
+	this.move = function(lat, lng) { this.position = new google.maps.LatLng({lat: lat, lng: lng}); };
+	this.latLng = function() { return this.position; };
 	
 	this.user = function() { return this.USER; };
 	this.secret = function() { return this.SECRET; };
