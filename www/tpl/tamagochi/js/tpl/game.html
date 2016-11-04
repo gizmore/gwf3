@@ -54,7 +54,7 @@
 		<md-content flex layout-padding id="MAPCONTENT">
 			<div id="tgc-chat-input" ng-controller="ChatSendCtrl">
 				<md-input-container md-no-float class="md-block">
-					<input ng-model="data.input" type="text" ng-enter="sendMessage($event)" />
+					<input ng-model="data.input" type="text" ng-enter="sendMessage($event)" aria-label="Enter global chat message" />
 				</md-input-container>
 			</div>
 			<div class="tgc-content-menu-toggles">

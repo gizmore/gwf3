@@ -51,7 +51,7 @@ final class TGC_Commands
 		$player->moveTo($coords->lat, $coords->lng);
 		
 		$payload = json_encode(array(
-			'player' => array_merge(array('user_name' => $player->getName(), 'user_gender' => $player->getGender()), $player->playerDTO()),
+			'player' => array_merge(array('name' => $player->getName(), 'gender' => $player->getGender()), $player->playerDTO()),
 			'pos' => array(
 				'lat' => $coords->lat,
 				'lng' => $coords->lng,

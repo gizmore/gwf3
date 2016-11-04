@@ -55,8 +55,8 @@ TGC.service('CommandSrvc', function($rootScope, MapUtil, PlayerSrvc, WebsocketSr
 			PlayerSrvc.addPlayer(player);
 			MapUtil.addPlayer(player);
 		}
-		player.move(data.pos)
-		MapUtil.movePlayer(data.pos);
+		player.moveTo(data.pos.lat, data.pos.lng)
+		MapUtil.movePlayer(player);
 		return player;
 	};
 	

@@ -42,7 +42,7 @@ final class TGC_Player extends GDO
 	
 	public function fullPlayerDTO(GWF_User $user)
 	{
-		return array_merge($this->playerDTO(), $this->ownPlayerDTO(), array('user_name' => $user->getVar('user_name'), 'user_gender' => $user->getVar('user_gender')));
+		return array_merge($this->playerDTO(), $this->ownPlayerDTO(), array('name' => $user->getVar('user_name'), 'gender' => $user->getVar('user_gender')));
 	}
 	
 	public function playerDTO()

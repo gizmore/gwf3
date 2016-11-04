@@ -66,20 +66,32 @@ TGC.service('MapUtil', function() {
 	/////////////
 	// Markers //
 	/////////////
-	MapUtil.markerForPlayer = function(player) {
+	MapUtil.addMarkerForPlayer = function(player) {
+		player.marker = new google.maps.Marker({
+		    position: player.latLng(),
+		    map: MapUtil.map(),
+		    title: player.name()
+		});
+		MapUtil.MARKERS[player] = player.marker;
+		return player.marker;
 	};
 
-	MapUtil.addMarkerForPlayer = function(player) {
-		MapUtil.MARKERS[player] = new google.maps.Marker(player.latLng())
-	};
+	MapUtil.removeMarkerForPlayer = function(player) {
+		player.marker = undefined;
+		delete MapUtil.MARKERS(player);
+	}
 	
 	MapUtil.addPlayer = function(player) {
-		console.error('MapUtil.addPlayer', player);
-		MapUtil.addMarkerForPlayer(player);
+		console.log('MapUtil.addPlayer', player);
 	};
 	
 	MapUtil.movePlayer = function(player, latLng) {
-		
+		var marker = player.marker ? player.marker : MapUtil.addMarkerForPlayer(player);
+		MapUtil.styleMarkerForPlayer(player);
 	};
 	
+	MapUtil.styleMarkerForPlayer = function(player) {
+		
+	};
+
 });
