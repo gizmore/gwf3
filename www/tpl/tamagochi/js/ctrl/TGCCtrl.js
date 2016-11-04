@@ -31,18 +31,6 @@ TGC.controller('TGCCtrl', function($rootScope, $scope, $mdSidenav, PlayerSrvc, C
 		
 	};
 	
-	$rootScope.$on('tgc-own-player-loaded', function(event, player) {
-		if (ConstSrvc.inLogin()) {
-			console.log('TGCCtrl$on-tgc-own-player-loaded', player);
-			ConstSrvc.inLogin(false);
-			WebsocketSrvc.connect().then($scope.connected);
-		}
-	});
-	
-	$scope.connected = function() {
-		console.log('TGCCtrl.connected()');
-		WebsocketSrvc.sendCommand('ping', '1.0.0');
-	};
 
 	$rootScope.$on('tgc-ws-message', function($event, message) {
 //		console.log('TGCCtrl.$on-tgc-ws-message', message.data);

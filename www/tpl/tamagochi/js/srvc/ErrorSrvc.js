@@ -6,8 +6,7 @@ TGC.service('ErrorSrvc', function($mdDialog) {
 	
 	ErrorSrvc.showError = function(text, title) {
 		console.log(title, text);
-		console.error(text);
-		$mdDialog.show(
+		return $mdDialog.show(
 				$mdDialog.alert()
 //				.parent(angular.element(document.querySelector('#popupContainer')))
 				.clickOutsideToClose(false)
@@ -29,11 +28,11 @@ TGC.service('ErrorSrvc', function($mdDialog) {
 	};
 	
 	ErrorSrvc.showNetworkError = function(error) {
-		ErrorSrvc.showError(error, 'Netz doof');
+		return ErrorSrvc.showError(error, 'Netz doof');
 	};
 
 	ErrorSrvc.showServerError = function(error) {
-		ErrorSrvc.showError(error, 'Server doof')
+		return ErrorSrvc.showError(error, 'Server doof')
 	};
 	
 

@@ -32,15 +32,15 @@
 			</div>
 			<md-toolbar class="md-theme-indigo">
 				<h1 class="md-toolbar-tools">Debug</h1>
-				<div ng-controller="DebugCtrl">
+				<md-content layout-margin ng-controller="DebugCtrl" class="tgc-debug">
 					<input ng-model="data.fixPosition" type="checkbox"  ng-change="changeDebugPosition($event)">Fix</input>
 					<input ng-model="data.fixLatitude" type="number" step="0.001" ng-change="changeDebugPosition($event)"></input>
 					<input ng-model="data.fixLongitude" type="number" step="0.001" ng-change="changeDebugPosition($event)"></input>
-				</div>
+				</md-content>
 				<h1 class="md-toolbar-tools">Stats</h1>
 				<md-content layout-margin ng-controller="StatsCtrl" class="tgc-stats">
-					<p>CPU: <span class="tgc-number">{{data.stats.cpu}}</span></p>
 					<p>Memory: <span class="tgc-number">{{data.stats.memory}}</span></p>
+					<p>MemPeak: <span class="tgc-number">{{data.stats.peak}}</span></p>
 					<p>Players: <span class="tgc-number">{{data.stats.players}}</span></p>
 					<md-button ng-click="refreshStats()" class="tgc-sidebar-button" aria-label="Refresh server statistics">Refresh</md-button>
 				</md-content>

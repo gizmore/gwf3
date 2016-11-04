@@ -25,9 +25,7 @@ TGC.service('WebsocketSrvc', function($rootScope, $q, PlayerSrvc) {
 			    	$rootScope.$broadcast('tgc-ws-close');
 			    };
 			    ws.onerror = function(error) {
-			    	console.error(error);
-			    	$rootScope.$broadcast('tgc-ws-error', error);
-					reject();
+					reject(error);
 			    };
 			    ws.onmessage = function(message) {
 			    	$rootScope.$broadcast('tgc-ws-message', message);

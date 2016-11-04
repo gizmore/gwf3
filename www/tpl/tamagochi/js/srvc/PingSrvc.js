@@ -9,7 +9,7 @@ TGC.service('PingSrvc', function($state, RequestSrvc, PlayerSrvc, ConstSrvc) {
 		ConstSrvc.inLogin(true);
 		return RequestSrvc.send('tgc/ping').then(function(data) {
 			PlayerSrvc.pingData(data.data);
-			$state.go('game');
+			$state.go('connect');
 		}, function(response) {
 			var code = response.status;
 			if ((code == 403) || (code == 405)) {

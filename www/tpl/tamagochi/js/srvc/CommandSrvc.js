@@ -9,6 +9,9 @@ TGC.service('CommandSrvc', function($rootScope, MapUtil, PlayerSrvc, WebsocketSr
 	/////////////////////
 	// Client commands //
 	/////////////////////
+	CommandSrvc.ping = function($scope, version) {
+		return WebsocketSrvc.sendCommand('ping', version);
+	};
 	
 	CommandSrvc.pos = function($scope, position) {
 		console.log('CommandSrvc.pos()', position);

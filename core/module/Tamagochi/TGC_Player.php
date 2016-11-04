@@ -169,7 +169,7 @@ final class TGC_Player extends GDO
 	###################
 	public function isNearMe(TGC_Player $player)
 	{
-		if (($player == $this) || (!$this->hasCoordinates() || (!$player->hasCoordinates()))) {
+		if ( (!$this->hasCoordinates()) || (!$player->hasCoordinates()) ) {
 			return false;
 		}
 		return TGC_Logic::arePlayersNearEachOther($this, $player);
@@ -177,7 +177,7 @@ final class TGC_Player extends GDO
 	
 	public function forNearMe($callback)
 	{
-		foreach (TGC_Globals::$PLAYERS as $name=> $player) {
+		foreach (TGC_Global::$PLAYERS as $name=> $player) {
 			if ($this->isNearMe($player)) {
 				call_user_func($callback, $player);
 			}
