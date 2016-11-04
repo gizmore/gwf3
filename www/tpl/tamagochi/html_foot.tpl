@@ -25,10 +25,8 @@
 
 	<script src="{$root}tpl/tamagochi/js/directives/ngEnter.js"></script>
 
-	<script src="{$root}tpl/tamagochi/js/model/Avatar.js"></script>
 	<script src="{$root}tpl/tamagochi/js/model/GWFMessage.js"></script>
 	<script src="{$root}tpl/tamagochi/js/model/Player.js"></script>
-	<script src="{$root}tpl/tamagochi/js/model/User.js"></script>
 
 	<script src="{$root}tpl/tamagochi/js/srvc/CommandSrvc.js"></script>
 	<script src="{$root}tpl/tamagochi/js/srvc/ErrorSrvc.js"></script>

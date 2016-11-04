@@ -13,7 +13,9 @@ final class TGC_Player extends GDO
 	{
 		return array(
 			'p_uid' => array(GDO::PRIMARY_KEY|GDO::UINT),
-
+				
+			'p_last_slap' => array(GDO::DATE, GDO::NULL, 14),
+				
 			'p_active_color' => array(GDO::ENUM, TGC_Const::NONE, TGC_Const::$COLORS),
 			'p_active_element' => array(GDO::ENUM, TGC_Const::NONE, TGC_Const::$ELEMENTS),
 			'p_active_skill' => array(GDO::ENUM, TGC_Const::NONE, TGC_Const::$SKILLS),
@@ -35,6 +37,40 @@ final class TGC_Player extends GDO
 			'p_wizard_level' => array(GDO::UINT, 0),
 				
 			'user' => array(GDO::JOIN, GDO::NOT_NULL, array('GWF_User', 'p_uid', 'user_id')),
+		);
+	}
+	
+	public function fullPlayerDTO(GWF_User $user)
+	{
+		return array_merge($this->playerDTO(), $this->ownPlayerDTO(), array('user_name' => $user->getVar('user_name'), 'user_gender' => $user->getVar('user_gender')));
+	}
+	
+	public function playerDTO()
+	{
+		return array(
+			'c' => $this->getVar('p_active_color'),
+			'e' => $this->getVar('p_active_element'),
+			's' => $this->getVar('p_active_skill'),
+			'm' => $this->getVar('p_active_mode'),
+			'fl' => $this->getVar('p_fighter_level'),
+			'nl' => $this->getVar('p_ninja_level'),
+			'pl' => $this->getVar('p_priest_level'),
+			'wl' => $this->getVar('p_wizard_level'),
+		);
+	}
+	
+	public function ownPlayerDTO()
+	{
+		return array(
+			'p_uid' => $this->getVar('p_uid'),
+			'cc' => $this->getVar('p_last_color_change'),
+			'ec' => $this->getVar('p_last_element_change'),
+			'sc' => $this->getVar('p_last_skill_change'),
+			'mc' => $this->getVar('p_last_mode_change'),
+			'fx' => $this->getVar('p_fighter_xp'),
+			'nx' => $this->getVar('p_ninja_xp'),
+			'px' => $this->getVar('p_priest_level'),
+			'wx' => $this->getVar('p_wizard_xp'),
 		);
 	}
 	
@@ -83,13 +119,28 @@ final class TGC_Player extends GDO
 		return $this->getVar('user_name');
 	}
 	
+	public function getGender()
+	{
+		return $this->getVar('user_gender');
+	}
+	
+	public function lat()
+	{
+		return $this->lat;
+	}
+	
+	public function lng()
+	{
+		return $this->lng;
+	}
+	
 	public static function getCurrent($create=false)
 	{
 		$uid = GWF_Session::getUserID();
 		if ($uid == 0) {
 			return false;
 		}
-		if ($player = self::table(__CLASS__)->selectFirstObject('*, user_name', "p_uid=$uid", '', '', array('user'))) {
+		if ($player = self::table(__CLASS__)->selectFirstObject('*, user_name, user_gender', "p_uid=$uid", '', '', array('user'))) {
 			return $player;
 		}
 		if ($create) {
@@ -169,7 +220,7 @@ final class TGC_Player extends GDO
 	###################
 	public function isNearMe(TGC_Player $player)
 	{
-		if ( (!$this->hasCoordinates()) || (!$player->hasCoordinates()) ) {
+		if ( ($player == $this) || (!$this->hasPosition()) || (!$player->hasPosition()) ) {
 			return false;
 		}
 		return TGC_Logic::arePlayersNearEachOther($this, $player);
@@ -189,10 +240,11 @@ final class TGC_Player extends GDO
 	###########
 	public function moveTo($newLat, $newLng)
 	{
-		$oldLat = $this->lat;
+		$this->setPosition($newLat, $newLng);
+		
+		/*$oldLat = $this->lat;
 		$oldLng = $this->lng;
 
-		$this->setPosition($newLat, $newLng);
 		
 		foreach (TGC_Globals::$PLAYERS as $name=> $player) {
 			$oldNear = $player->isNearPosition($oldLat, $oldLng);
@@ -208,7 +260,7 @@ final class TGC_Player extends GDO
 			else if ($newNear === true) {
 				$player->send(sprintf('POS:%s:%.06f:%.06f', $this->getName(), $this->lat, $this->lng));
 			}
-		}
+		}*/
 	}
 	
 	##############

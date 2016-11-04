@@ -2,6 +2,7 @@
 require_once 'util/TGC_Combat.php';
 require_once 'util/TGC_Const.php';
 require_once 'util/TGC_Logic.php';
+require_once 'util/TGC_Position.php';
 
 final class Module_Tamagochi extends GWF_Module
 {

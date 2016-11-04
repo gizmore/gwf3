@@ -18,7 +18,7 @@ final class Tamagochi_Ping extends GWF_Method
 		$authed = $player !== false;
 		$tVars = array(
 			'user' => $user ? $user: false,
-			'player' => $player ? $player->getGDOData() : false,
+			'player' => $player ? $player->fullPlayerDTO(GWF_Session::getUser()) : false,
 			'secret' => $player ? $this->getUserSecret(GWF_Session::getUser()) : false,
 			'authed' => $authed,
 		);

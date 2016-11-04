@@ -41,12 +41,27 @@ final class TGC_Commands
 		$player->forNearMe(function($p){
 			$p->sendCommand('CHAT', $payload);
 		});
+		$player->sendCommand('CHAT', $payload);
 	}
-	
 	
 	public static function cmd_pos(TGC_Player $player, $payload)
 	{
-	
+		$coords = json_decode($payload);
+		
+		$player->moveTo($coords->lat, $coords->lng);
+		
+		$payload = json_encode(array(
+			'player' => array_merge(array('user_name' => $player->getName(), 'user_gender' => $player->getGender()), $player->playerDTO()),
+			'pos' => array(
+				'lat' => $coords->lat,
+				'lng' => $coords->lng,
+			),
+		));
+
+		$player->sendCommand('POS', $payload);
+		$player->forNearMe(function($p) {
+			$p->sendCommand('POS', $payload);
+		});
 	}
 	
 	public static function cmd_slap(TGC_Player $player, $payload)

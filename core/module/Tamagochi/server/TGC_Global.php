@@ -39,7 +39,7 @@ final class TGC_Global
 	private static function loadPlayer($name)
 	{
 		$ename = GDO::escape($name);
-		return GDO::table('TGC_Player')->selectFirstObject('*', "user_name='$ename'", '', '', array('user'));
+		return GDO::table('TGC_Player')->selectFirstObject('*, user_name, user_gender', "user_name='$ename'", '', '', array('user'));
 	}
 	
 }

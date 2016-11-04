@@ -13,7 +13,7 @@ final class TGC_Logic
 	
 	public static function arePositionsNearEachOther($latA, $lngA, $latB, $lngB)
 	{
-		return false;
+		return TGC_Position:: distanceCalculation($latA, $lngA, $latB, $lngB);
 	}
 	
 }

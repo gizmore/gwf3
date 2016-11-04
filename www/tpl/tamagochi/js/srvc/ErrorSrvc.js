@@ -1,21 +1,20 @@
 'use strict';
 var TGC = angular.module('tgc');
-TGC.service('ErrorSrvc', function($mdDialog) {
+TGC.service('ErrorSrvc', function($q, $mdDialog) {
 	
 	var ErrorSrvc = this;
 	
 	ErrorSrvc.showError = function(text, title) {
 		console.log(title, text);
 		return $mdDialog.show(
-				$mdDialog.alert()
-//				.parent(angular.element(document.querySelector('#popupContainer')))
-				.clickOutsideToClose(false)
-				.title(title)
-				.textContent(text)
-				.ariaLabel(title)
-				.ok("Aww")
-//				.targetEvent(ev)
-				);
+					$mdDialog.alert()
+//					.parent(angular.element(document.querySelector('#popupContainer')))
+					.clickOutsideToClose(false)
+					.title(title)
+					.textContent(text)
+					.ariaLabel(title)
+					.ok("Aww")
+					);
 	};
 	
 	ErrorSrvc.showGWFMessage = function(message) {
