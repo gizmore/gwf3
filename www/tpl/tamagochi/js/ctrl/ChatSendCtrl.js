@@ -1,6 +1,6 @@
 'use strict';
 var TGC = angular.module('tgc');
-TGC.controller('ChatSendCtrl', function($rootScope, $scope, WebsocketSrvc) {
+TGC.controller('ChatSendCtrl', function($rootScope, $scope, CommandSrvc) {
 
 	$scope.data = {
 		input: '',
@@ -18,6 +18,14 @@ TGC.controller('ChatSendCtrl', function($rootScope, $scope, WebsocketSrvc) {
 	
 	$scope.sendMessage = function($event) {
 		console.log('ChatSendCtrl.sendMessage()', $scope.data.input);
+		CommandSrvc.chat($scope, $scope.data.input).then($scope.messageSent);
 	};
+	
+	$scope.messageSent = function() {
+		console.log('ChatSendCtrl.messageSent()');
+		$scope.data.history.push($scope.data.input);
+		$scope.clearInput();
+	};
+
 
 });

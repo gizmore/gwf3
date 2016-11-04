@@ -25,14 +25,22 @@ final class TGC_Commands
 		$player->sendCommand('PONG', $version);
 	}
 	
-	public static function cmd_join(TGC_Player $player, $payload)
+	public static function cmd_stats(TGC_Player $player, $payload)
 	{
-	
+		$stats = array(
+			'players' => count(TGC_Global::$PLAYERS),
+			'memory' => memory_get_usage(),
+			'peak' => memory_get_peak_usage(true),
+			'cpu' => 1.00,
+		);
+		$player->sendJSONCommand('STATS', $stats);
 	}
 	
-	public static function cmd_say(TGC_Player $player, $payload)
+	public static function cmd_chat(TGC_Player $player, $payload)
 	{
-		
+		$player->forNearMe(function($p){
+			$p->sendCommand('CHAT', $payload);
+		});
 	}
 	
 	

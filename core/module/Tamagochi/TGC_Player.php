@@ -101,6 +101,11 @@ final class TGC_Player extends GDO
 	##################
 	### Connection ###
 	##################
+	public function sendJSONCommand($command, $object)
+	{
+		return $this->sendCommand($command, json_encode($object));
+	}
+	
 	public function sendCommand($command, $payload)
 	{
 		return $this->send("$command:$payload");

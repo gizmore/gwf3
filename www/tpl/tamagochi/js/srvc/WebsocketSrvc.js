@@ -76,19 +76,27 @@ TGC.service('WebsocketSrvc', function($rootScope, $q, PlayerSrvc) {
 
 	WebsocketSrvc.sendJSONCommand = function(command, object) {
 		console.log('WebsocketSrvc.sendJSONCommand()', command, object);
-		WebsocketSrvc.sendCommand(command, JSON.stringify(object));
+		return WebsocketSrvc.sendCommand(command, JSON.stringify(object));
 	};
 	
 	WebsocketSrvc.sendCommand = function(command, payload) {
 		console.log('WebsocketSrvc.sendCommand()', command, payload);
-		if (PlayerSrvc.OWN) {
-			var messageText = PlayerSrvc.OWN.secret()+":"+command+":"+payload;
-			if (WebsocketSrvc.connected()) {
-				WebsocketSrvc.send(messageText);
-			} else {
-				WebsocketSrvc.QUEUE.push(messageText);
+		return $q(function(resolve, reject) {
+			if (PlayerSrvc.OWN) {
+				var messageText = PlayerSrvc.OWN.secret()+":"+command+":"+payload;
+				if (WebsocketSrvc.connected()) {
+					WebsocketSrvc.send(messageText);
+					resolve();
+				} else {
+					WebsocketSrvc.QUEUE.push(messageText);
+					reject();
+				}
 			}
-		}
+			else {
+				reject();
+			}
+			
+		});
 	};
 	
 	WebsocketSrvc.send = function(messageText) {

@@ -46,6 +46,7 @@
 	<script src="{$root}tpl/tamagochi/js/ctrl/LoginCtrl.js"></script>
 	<script src="{$root}tpl/tamagochi/js/ctrl/MapCtrl.js"></script>
 	<script src="{$root}tpl/tamagochi/js/ctrl/PlayerCtrl.js"></script>
+	<script src="{$root}tpl/tamagochi/js/ctrl/StatsCtrl.js"></script>
 	<script src="{$root}tpl/tamagochi/js/ctrl/TGCCtrl.js"></script>
 	
 	
