@@ -12,7 +12,7 @@ final class Register_Form extends GWF_Method
 
 		if (false !== GWF_Session::getUser())
 		{
-			return $this->module->error('ERR_ALREADY_REDISTERED');
+			return $this->module->error('ERR_ALREADY_REGISTERED');
 		}
 
 		if (false !== (Common::getPost('register')))

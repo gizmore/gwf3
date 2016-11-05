@@ -4,6 +4,9 @@ TGC.service('WebsocketSrvc', function($rootScope, $q, PlayerSrvc) {
 	
 	var WebsocketSrvc = this;
 	
+	WebsocketSrvc.NEXT_MID = 1;
+	WebsocketSrvc.SYNC_MSGS = {};
+	
 	WebsocketSrvc.SOCKET = null;
 	
 	WebsocketSrvc.QUEUE = [];
@@ -29,13 +32,37 @@ TGC.service('WebsocketSrvc', function($rootScope, $q, PlayerSrvc) {
 					reject(error);
 			    };
 			    ws.onmessage = function(message) {
-			    	$rootScope.$broadcast('tgc-ws-message', message);
+			    	if (message.data.indexOf(':MID:') >= 0) {
+			    		if (!syncMessage(message.data)) {
+			    			$rootScope.$broadcast('tgc-ws-message', message);
+			    		}
+			    	} else {
+		    			$rootScope.$broadcast('tgc-ws-message', message);
+			    	}
 			    };
 			}
 			else {
 				reject();
 			}
 		});
+	};
+
+	WebsocketSrvc.nextMid = function() {
+		return sprintf('%07d', WebsocketSrvc.NEXT_MID++);
+	};
+
+	WebsocketSrvc.syncMessage = function(messageText) {
+		var parts = messageText.split(':', 4);
+		var cmd = parts[0];
+		if (parts[1] !== 'MID') {
+			return false;
+		}
+		var mid = parts[2];
+		var payload = parts[3];
+		
+		WebsocketSrvc.SYNC_MSGS[mid].resolve(payload);
+		
+		return true;
 	};
 	
 	WebsocketSrvc.startQueue = function() {
@@ -73,29 +100,45 @@ TGC.service('WebsocketSrvc', function($rootScope, $q, PlayerSrvc) {
 		return WebsocketSrvc.SOCKET ? true : false;
 	};
 
-	WebsocketSrvc.sendJSONCommand = function(command, object) {
+	WebsocketSrvc.sendJSONCommand = function(command, object, async=true) {
 //		console.log('WebsocketSrvc.sendJSONCommand()', command, object);
-		return WebsocketSrvc.sendCommand(command, JSON.stringify(object));
+		return WebsocketSrvc.sendCommand(command, JSON.stringify(object), async);
 	};
 	
-	WebsocketSrvc.sendCommand = function(command, payload) {
+	WebsocketSrvc.sendCommand = function(command, payload, async=true) {
 //		console.log('WebsocketSrvc.sendCommand()', command, payload);
-		return $q(function(resolve, reject) {
-			if (PlayerSrvc.OWN) {
-				var messageText = PlayerSrvc.OWN.secret()+":"+command+":"+payload;
-				if (WebsocketSrvc.connected()) {
-					WebsocketSrvc.send(messageText);
-					resolve();
-				} else {
-					WebsocketSrvc.QUEUE.push(messageText);
-					reject();
-				}
-			}
-			else {
-				reject();
+		var d = $q.defer();
+		if (!PlayerSrvc.OWN) {
+			d.reject();
+		}
+		else if (!WebsocketSrvc.connected()) {
+//			WebsocketSrvc.QUEUE.push(messageText);
+			d.reject();
+		}
+		else {
+
+			if (!async) {
+				var mid = WebsocketSrvc.NEXT_MID++;
+				WebsocketSrvc.SYNC_MSGS[mid].push(d);
+				payload = sprintf('MID:%s:%s', mid, payload);
 			}
 			
-		});
+			var messageText = PlayerSrvc.OWN.secret()+":"+command+":"+payload;
+			
+//			if (!async) {
+//				var mid = WebsocketSrvc.NEXT_MID++;
+//				WebsocketSrvc.SYNC_MSGS[mid].push(d);
+//				messageText = sprintf('MID:%s:%s', mid, messageText);
+//			}
+
+			WebsocketSrvc.send(messageText);
+			
+			if (async) {
+				d.resolve();
+			}
+		}
+		
+		return d.promise;
 	};
 	
 	WebsocketSrvc.send = function(messageText) {

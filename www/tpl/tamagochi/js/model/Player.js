@@ -22,6 +22,7 @@ window.TGC.Player = function(json, userJSON, secret) {
 	this.id = function(id) { if (id) this.JSON.p_uid = id; return this.JSON.p_uid; };
 	this.isOwn = function() { return this.id() > 0; };
 
+	this.hash = function(hash) { if (hash) this.JSON.hash = hash; return this.JSON.hash; };
 	this.name = function(name) { if (name) this.JSON.name = name; return this.JSON.name; };
 	this.gender = function(gender) { if (gender) this.JSON.gender = gender; return this.JSON.gender; };
 

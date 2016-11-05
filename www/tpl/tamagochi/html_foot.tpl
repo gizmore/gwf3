@@ -1,4 +1,4 @@
-{if $mo eq 'Tamagochi'}
+{if $mo eq 'Tamagochi' AND $me eq 'Home' }
 	<div ui-view id="MAINVIEW"></div>
 	
 	<!-- FastLoaders Ninja -->
@@ -11,6 +11,7 @@
 	<script src="{$root}tpl/tamagochi/bower_components/angular-ui/build/angular-ui.js"></script>
 	<script src="{$root}tpl/tamagochi/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
 	<script src="{$root}tpl/tamagochi/bower_components/angular-material/angular-material.js"></script>
+	<script src="{$root}tpl/tamagochi/bower_components/jquery/dist/jquery.js"></script>
 
 	<!-- All hail to the hypnotoad 0-o -->
 
@@ -20,6 +21,7 @@
 
 	<script src="{$root}tpl/tamagochi/js/config/ConstSrvc.js"></script>
 
+	<script src="{$root}tpl/tamagochi/js/util/ColorUtil.js"></script>
 	<script src="{$root}tpl/tamagochi/js/util/GameUtil.js"></script>
 	<script src="{$root}tpl/tamagochi/js/util/MapUtil.js"></script>
 	<script src="{$root}tpl/tamagochi/js/util/StringUtil.js"></script>
@@ -54,5 +56,7 @@
 	<!-- Let's boot it -->
 	
 	<script>angular.element(document).ready(function() { angular.bootstrap(document.body, ['tgc']); });</script>
+{else}
+	{include file='tpl/tamagochi/menu_bottom.tpl'}
 {/if}
 </body>

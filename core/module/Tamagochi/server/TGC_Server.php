@@ -23,7 +23,11 @@ final class TGC_Server implements MessageComponentInterface
 	}
 	
 	public function onMessage(ConnectionInterface $from, $msg) {
-		GWF_Log::logCron(sprintf("TGC_Server::onMessage(): %s", $msg));
+// 		GWF_Log::logCron(sprintf("TGC_Server::onMessage(): %s", $msg));
+		if (strlen($msg) > 511) {
+			$from->send('ERR:ERR_MSG_LENGTH_EXCEED:511');
+			return;
+		}
 		$player = TGC_ServerUtil::getPlayerForMessage($msg);
 		if ($player instanceof TGC_Player) {
 			if (!$player->isConnected()) {
@@ -41,7 +45,7 @@ final class TGC_Server implements MessageComponentInterface
 	public function onClose(ConnectionInterface $conn) {
 		GWF_Log::logCron(sprintf("TGC_Server::onClose()"));
 		if ($player = TGC_ServerUtil::getPlayerForConnection($conn)) {
-			$player->disconnect();
+			TGC_Commands::disconnect($player);
 		}
 	}
 	

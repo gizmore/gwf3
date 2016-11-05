@@ -57,6 +57,7 @@ TGC.service('CommandSrvc', function($rootScope, MapUtil, ChatSrvc, PlayerSrvc, W
 		}
 		player.moveTo(data.pos.lat, data.pos.lng)
 		MapUtil.movePlayer(player);
+		PlayerSrvc.updateCacheForPlayer(player, data);
 		return player;
 	};
 	

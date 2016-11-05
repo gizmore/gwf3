@@ -226,11 +226,11 @@ final class TGC_Player extends GDO
 		return TGC_Logic::arePlayersNearEachOther($this, $player);
 	}
 	
-	public function forNearMe($callback)
+	public function forNearMe($callback, $payload)
 	{
 		foreach (TGC_Global::$PLAYERS as $name=> $player) {
 			if ($this->isNearMe($player)) {
-				call_user_func($callback, $player);
+				call_user_func($callback, $player, $payload);
 			}
 		}
 	}
@@ -262,6 +262,14 @@ final class TGC_Player extends GDO
 			}
 		}*/
 	}
+	
+	public function getStatsHash()
+	{
+		$g = substr($this->getVar('user_gender'), 0, 1);
+		$sum = $this->getVar('p_fighter_level') + $this->getVar('p_ninja_level') + $this->getVar('p_priest_level') + $this->getVar('p_wizard_level');
+		return sprintf('%s%d', $g, $sum);
+	}
+	
 	
 	##############
 	### Rehash ###

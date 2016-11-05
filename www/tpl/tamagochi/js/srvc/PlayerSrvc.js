@@ -36,6 +36,11 @@ TGC.service('PlayerSrvc', function($rootScope) {
 		delete PlayerSrvc.CACHE(player.name());
 		return player;
 	};
+	
+	PlayerSrvc.updateCacheForPlayer = function(player, newData) {
+		player.recache = newData.hash != player.hash();
+	};
+	
 
 	//////////
 	// Auth //
@@ -43,7 +48,9 @@ TGC.service('PlayerSrvc', function($rootScope) {
 	PlayerSrvc.pingData = function(data) {
 		console.log("PlayerSrc.pingData()", data);
 		if (data.authed) {
-			PlayerSrvc.login(data);
+			if (!PlayerSrvc.OWN) {
+				PlayerSrvc.login(data);
+			}
 		}
 	};
 	
@@ -60,6 +67,15 @@ TGC.service('PlayerSrvc', function($rootScope) {
 		PlayerSrvc.removePlayer(PlayerSrvc.OWN);
 		$rootScope.$broadcast('tgc-own-player-removed', PlayerSrvc.OWN);
 		PlayerSrvc.OWN = null;
+	};
+	
+	PlayerSrvc.requestStats = function(player) {
+		
+		
+		
+		return CommandSrvc.player(player).then(function(){
+			
+		});
 	};
 	
 });

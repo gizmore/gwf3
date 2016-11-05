@@ -3,7 +3,7 @@ final class Tamagochi_Home extends GWF_Method
 {
 	public function getHTAccess()
 	{
-		return 'RewriteRule ^tgc/home/?$ index.php?mo=Tamagochi&me=Home'.PHP_EOL;
+		return 'RewriteRule ^tgc-game/?$ index.php?mo=Tamagochi&me=Home'.PHP_EOL;
 	}
 	
 	public function execute()
@@ -19,6 +19,7 @@ final class Tamagochi_Home extends GWF_Method
 			'player' => TGC_Player::getCurrent(),
 // 			'api_key' => $this->module->cfgMapsApiKey(),
 			'ws_url' => $this->module->cfgWebsocketUrl(),
+			'levels' => GWF_Javascript::toJavascriptArray(TGC_Const::$LEVELS),
 		);
 		return $this->module->templatePHP('home.php', $tVars);
 	}

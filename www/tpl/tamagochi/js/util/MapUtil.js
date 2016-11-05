@@ -1,6 +1,6 @@
 'use strict';
 var TGC = angular.module('tgc');
-TGC.service('MapUtil', function() {
+TGC.service('MapUtil', function(ColorUtil) {
 	
 	var MapUtil = this;
 	
@@ -65,6 +65,12 @@ TGC.service('MapUtil', function() {
 	
 	MapUtil.playerChat = function(player, message) {
 		console.log('MapUtil.playerChat()', player, message);
+		if (player.marker) {
+			player.marker.setLabel(player.name()+': '+message);
+			setTimeout(function(){
+				player.marker.setLabel(player.name());
+			}, 5000);
+		};
 	};
 
 	/////////////
@@ -110,6 +116,9 @@ TGC.service('MapUtil', function() {
 	MapUtil.styleMarkerForPlayer = function(player) {
 		var marker = player.marker;
 		marker.setPosition(player.latLng());
+		jQuery(marker).animate({
+			color: ColorUtil.colorForPlayer(player),
+		}, 5000);
 	};
 
     MapUtil.imageForPlayer = function(player) {

@@ -1,17 +1,12 @@
 <?php
 final class TGC_Const
 {
+	const NONE = 'none';
 	const GPS_INACCURACY = 100;
 	const RADAR_SQUARE = 5000;
 	
 	const SECRET_CUT = 33;
 
-	const NONE = 'none';
-	const MALE = 'male';
-	const FEMALE = 'female';
-	public static $GENDERS = array(self::NONE, self::MALE, self::FEMALE);
-	
-	
 	const ATTACK = 'attack';
 	const DEFEND = 'defend';
 	public static $MODES = array(self::NONE, self::ATTACK, self::DEFEND);

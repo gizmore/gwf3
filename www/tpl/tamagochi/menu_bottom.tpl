@@ -1,7 +1,5 @@
-<div id="wanda-menu-bottom">
-	<a href="{$root}links">{Module_Wanda::instance()->lang('menu_links')}</a>
-	<a href="{$root}wanda/read/on">{Module_Wanda::instance()->lang('menu_read')}</a>
-	<a href="{$root}irc_chat_fullscreen">{Module_Wanda::instance()->lang('menu_chat')}</a>
-	<a href="https://forum.busch-peine.de/forumdisplay.php?fid=6">{Module_Wanda::instance()->lang('menu_forum')}</a>
-	<a href="{$root}wanda/credits">{Module_Wanda::instance()->lang('menu_credits')}</a>
+<div class="tgc-foot-menu">
+	<div><a href="/contact">{Module_Tamagochi::instance()->lang('menu_contact')}</a></div>
+	<div><a href="/impressum">{Module_Tamagochi::instance()->lang('menu_impressum')}</a></div>
+	<div><a href="/tos">{Module_Tamagochi::instance()->lang('menu_tos')}</a></div>
 </div>

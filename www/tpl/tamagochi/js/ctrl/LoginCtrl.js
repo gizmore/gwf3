@@ -20,7 +20,7 @@ TGC.controller('LoginCtrl', function($scope, $state, RequestSrvc, PingSrvc, Cons
 
 	
 	$scope.register = function() {
-		RequestSrvc.register($scope.data.username, $scope.data.password).then($scope.registerSuccess, $scope.registerFailure)['finally']($scope.reset);
+		window.location.href='/register';
 	};
 
 	
