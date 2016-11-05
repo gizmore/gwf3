@@ -1,10 +1,17 @@
 'use strict';
 var TGC = angular.module('tgc');
-TGC.service('WebsocketSrvc', function($rootScope, $q, PlayerSrvc) {
+TGC.service('WebsocketSrvc', function($rootScope, $q, $injector) {
 	
 	var WebsocketSrvc = this;
 	
-	WebsocketSrvc.NEXT_MID = 1;
+	WebsocketSrvc.getPlayerSrvc = function() {
+		if (!WebsocketSrvc.PLAYERSERVICE) {
+			WebsocketSrvc.PLAYERSERVICE = $injector.get('PlayerSrvc');
+		}
+		return WebsocketSrvc.PLAYERSERVICE;
+	};
+	
+	WebsocketSrvc.NEXT_MID = 1000000;
 	WebsocketSrvc.SYNC_MSGS = {};
 	
 	WebsocketSrvc.SOCKET = null;
@@ -33,7 +40,7 @@ TGC.service('WebsocketSrvc', function($rootScope, $q, PlayerSrvc) {
 			    };
 			    ws.onmessage = function(message) {
 			    	if (message.data.indexOf(':MID:') >= 0) {
-			    		if (!syncMessage(message.data)) {
+			    		if (!WebsocketSrvc.syncMessage(message.data)) {
 			    			$rootScope.$broadcast('tgc-ws-message', message);
 			    		}
 			    	} else {
@@ -48,11 +55,11 @@ TGC.service('WebsocketSrvc', function($rootScope, $q, PlayerSrvc) {
 	};
 
 	WebsocketSrvc.nextMid = function() {
-		return sprintf('%07d', WebsocketSrvc.NEXT_MID++);
+		return sprintf('%7d', WebsocketSrvc.NEXT_MID++);
 	};
 
 	WebsocketSrvc.syncMessage = function(messageText) {
-		var parts = messageText.split(':', 4);
+		var parts = explode(':', messageText, 4);
 		var cmd = parts[0];
 		if (parts[1] !== 'MID') {
 			return false;
@@ -106,6 +113,8 @@ TGC.service('WebsocketSrvc', function($rootScope, $q, PlayerSrvc) {
 	};
 	
 	WebsocketSrvc.sendCommand = function(command, payload, async=true) {
+		
+		var PlayerSrvc = WebsocketSrvc.getPlayerSrvc();
 //		console.log('WebsocketSrvc.sendCommand()', command, payload);
 		var d = $q.defer();
 		if (!PlayerSrvc.OWN) {
@@ -119,7 +128,7 @@ TGC.service('WebsocketSrvc', function($rootScope, $q, PlayerSrvc) {
 
 			if (!async) {
 				var mid = WebsocketSrvc.NEXT_MID++;
-				WebsocketSrvc.SYNC_MSGS[mid].push(d);
+				WebsocketSrvc.SYNC_MSGS[mid] = d;
 				payload = sprintf('MID:%s:%s', mid, payload);
 			}
 			

@@ -1,6 +1,6 @@
 'use strict';
 var TGC = angular.module('tgc');
-TGC.controller('MapCtrl', function($rootScope, $scope, MapUtil, CommandSrvc) {
+TGC.controller('MapCtrl', function($rootScope, $scope, MapUtil, CommandSrvc, PositionSrvc) {
 
 	$scope.data = {
 		position: null,
@@ -16,6 +16,7 @@ TGC.controller('MapCtrl', function($rootScope, $scope, MapUtil, CommandSrvc) {
 		$scope.data.position = position;
 		var map = MapUtil.map('TGCMAP');
 		map.setCenter(MapUtil.positionToLatLng(position));
+		CommandSrvc.pos($rootScope, PositionSrvc.CURRENT);
 	};
 	$scope.$on('tgc-position-changed', $scope.positionChanged);
 

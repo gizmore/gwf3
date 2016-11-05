@@ -1,6 +1,6 @@
 'use strict';
 var TGC = angular.module('tgc');
-TGC.service('MapUtil', function(ColorUtil) {
+TGC.service('MapUtil', function(ColorUtil, PlayerDlg, PlayerSrvc) {
 	
 	var MapUtil = this;
 	
@@ -78,7 +78,7 @@ TGC.service('MapUtil', function(ColorUtil) {
 	/////////////
 	MapUtil.playerForMarker = function(marker) {
 		for (var player in MapUtil.MARKERS) {
-			if (MapUtil.MARKERS[player] == marker) {
+			if (MapUtil.MARKERS[player] === marker) {
 				return player;
 			}
 		}
@@ -94,7 +94,10 @@ TGC.service('MapUtil', function(ColorUtil) {
 		    size: MapUtil.sizeForPlayer(player),
 //		    image: MapUtil.imageForPlayer(player),
 		});
+		player.marker.addListener('click', PlayerDlg.open.bind(PlayerDlg, player));
+		
 		MapUtil.MARKERS[player] = player.marker;
+
 		return player.marker;
 	};
 

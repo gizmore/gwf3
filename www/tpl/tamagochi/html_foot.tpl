@@ -35,6 +35,7 @@
 	<script src="{$root}tpl/tamagochi/js/srvc/CommandSrvc.js"></script>
 	<script src="{$root}tpl/tamagochi/js/srvc/ErrorSrvc.js"></script>
 	<script src="{$root}tpl/tamagochi/js/srvc/PingSrvc.js"></script>
+	<script src="{$root}tpl/tamagochi/js/srvc/PlayerDlg.js"></script>
 	<script src="{$root}tpl/tamagochi/js/srvc/PlayerSrvc.js"></script>
 	<script src="{$root}tpl/tamagochi/js/srvc/PositionSrvc.js"></script>
 	<script src="{$root}tpl/tamagochi/js/srvc/RequestInterceptor.js"></script>

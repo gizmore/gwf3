@@ -1,10 +1,24 @@
 'use strict';
 var TGC = angular.module('tgc');
-TGC.service('CommandSrvc', function($rootScope, MapUtil, ChatSrvc, PlayerSrvc, WebsocketSrvc) {
+TGC.service('CommandSrvc', function($rootScope, $injector, WebsocketSrvc) {
 	
 	var CommandSrvc = this;
 	
 	CommandSrvc.statsScope = null;
+	
+	CommandSrvc.getMapUtil = function() {
+		if (!CommandSrvc.MAPUTIL) {
+			CommandSrvc.MAPUTIL = $injector.get('MapUtil');
+		}
+		return CommandSrvc.MAPUTIL;
+	};
+	
+	CommandSrvc.getPlayerSrvc = function() {
+		if (!CommandSrvc.PLAYERSERVICE) {
+			CommandSrvc.PLAYERSERVICE = $injector.get('PlayerSrvc');
+		}
+		return CommandSrvc.PLAYERSERVICE;
+	};
 	
 	/////////////////////
 	// Client commands //
@@ -32,6 +46,10 @@ TGC.service('CommandSrvc', function($rootScope, MapUtil, ChatSrvc, PlayerSrvc, W
 		console.log('CommandSrvc.slap()', name);
 		return WebsocketSrvc.sendCommand('slap', name);
 	};
+	
+	CommandSrvc.player = function(player) {
+		return WebsocketSrvc.sendCommand('player', player.name(), false);
+	};
 
 	/////////////////////
 	// Server commands //
@@ -47,6 +65,10 @@ TGC.service('CommandSrvc', function($rootScope, MapUtil, ChatSrvc, PlayerSrvc, W
 		var data = JSON.parse(payload);
 		var name = data.player.name;
 		var player = null;
+		
+		var MapUtil = CommandSrvc.getMapUtil();
+		var PlayerSrvc = CommandSrvc.getPlayerSrvc();
+
 		if (PlayerSrvc.hasPlayer(name)) {
 			player = PlayerSrvc.getPlayer(name);
 		}

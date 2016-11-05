@@ -1,6 +1,6 @@
 'use strict';
 var TGC = angular.module('tgc');
-TGC.service('PositionSrvc', function($rootScope, $q, ErrorSrvc, CommandSrvc) {
+TGC.service('PositionSrvc', function($rootScope, $q, ErrorSrvc) {
 	
 	var PositionSrvc = this;
 	
@@ -78,7 +78,6 @@ TGC.service('PositionSrvc', function($rootScope, $q, ErrorSrvc, CommandSrvc) {
 
 	PositionSrvc.broadcast = function() {
 		$rootScope.$broadcast('tgc-position-changed', PositionSrvc.CURRENT);
-		CommandSrvc.pos($rootScope, PositionSrvc.CURRENT);
 	};
 	
 

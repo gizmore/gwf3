@@ -12,8 +12,8 @@ final class TGC_Commands
 		$payload = $parts[4];
 		$mid = self::DEFAULT_MID;
 		if (substr($payload, 0, 4) === 'MID:') {
-			$mid = substr($payload, 5, self::MID_LENGTH);
-			$payload = substr($payload, 13);
+			$mid = substr($payload, 4, self::MID_LENGTH);
+			$payload = substr($payload, 12);
 		}
 		return call_user_func(array(__CLASS__, $methodName), $player, $payload, $mid);
 	}
@@ -28,13 +28,13 @@ final class TGC_Commands
 		$payload = self::payload($player->getName());
 		$player->forNearMe(function($p, $payload) {
 			$p->sendCommand('QUIT', $payload);
-		});
+		}, $payload);
 		TGC_Global::removePlayer($player);
 	}
 	
 	protected static function payload($payload, $mid=self::DEFAULT_MID)
 	{
-		return $mid === self::DEFAULT_MID ? $payload : sprintf('MID:%07s:%s', $mid, $payload);
+		return $mid === self::DEFAULT_MID ? $payload : sprintf('MID:%7s:%s', $mid, $payload);
 	}
 	
 	################
@@ -90,12 +90,12 @@ final class TGC_Commands
 	
 	public static function cmd_player(TGC_Player $player, $payload, $mid)
 	{
+		var_dump($payload);
+		if (!($p = TGC_ServerUtil::getPlayerForName($payload))) {
+			return $player->sendError('ERR_UNKNOWN_PLAYER');
+		}
 		$payload = json_encode(array(
-			'player' => array_merge(array('name' => $player->getName(), 'hash' => $player->getStatsHash()), $player->playerDTO()),
-			'pos' => array(
-				'lat' => $player->lat(),
-				'lng' => $player->lng(),
-			),
+			'player' => array_merge(array('name' => $p->getName(), 'hash' => $p->getStatsHash()), $p->playerDTO()),
 		));
 		$player->sendCommand('PLAYER', self::payload($payload, $mid));
 	}

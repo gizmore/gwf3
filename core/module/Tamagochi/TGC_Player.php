@@ -152,6 +152,12 @@ final class TGC_Player extends GDO
 	##################
 	### Connection ###
 	##################
+	public function sendError($i18nKey)
+	{
+		GWF_Log::logCron(sprintf("%s: %s", $this->getName(), $i18nKey));
+		return $this->sendCommand('ERR', $i18nKey);
+	}
+	
 	public function sendJSONCommand($command, $object)
 	{
 		return $this->sendCommand($command, json_encode($object));

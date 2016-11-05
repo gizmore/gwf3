@@ -1,6 +1,6 @@
 'use strict';
 var TGC = angular.module('tgc');
-TGC.service('PlayerSrvc', function($rootScope) {
+TGC.service('PlayerSrvc', function($rootScope, CommandSrvc) {
 	
 	var PlayerSrvc = this;
 	
@@ -11,34 +11,40 @@ TGC.service('PlayerSrvc', function($rootScope) {
 	PlayerSrvc.CACHE = {};
 
 	PlayerSrvc.getOrAddPlayer = function(name, player) {
-		console.log("PlayerSrc.getOrAddPlayer()", name);
+		console.log("PlayerSrvc.getOrAddPlayer()", name);
 		return PlayerSrvc.hasPlayer(name) ? PlayerSrvc.getPlayer(name) : PlayerSrvc.addPlayer(player);
 	};
 
 	PlayerSrvc.getPlayer = function(name) {
-		console.log("PlayerSrc.getPlayer()", name);
+		console.log("PlayerSrvc.getPlayer()", name);
 		return PlayerSrvc.CACHE[name];
 	};
 
 	PlayerSrvc.hasPlayer = function(name) {
-		console.log("PlayerSrc.hasPlayer()", name);
+		console.log("PlayerSrvc.hasPlayer()", name);
 		return PlayerSrvc.CACHE[name] ? true : false;
 	};
 	
 	PlayerSrvc.addPlayer = function(player) {
-		console.log("PlayerSrc.getPlayer()", player);
+		console.log("PlayerSrvc.getPlayer()", player);
 		PlayerSrvc.CACHE[player.name()] = player;
 		return player;
 	};
 
 	PlayerSrvc.removePlayer = function(player) {
-		console.log("PlayerSrc.removePlayer()", player);
+		console.log("PlayerSrvc.removePlayer()", player);
 		delete PlayerSrvc.CACHE(player.name());
 		return player;
 	};
 	
 	PlayerSrvc.updateCacheForPlayer = function(player, newData) {
-		player.recache = newData.hash != player.hash();
+		console.log("PlayerSrvc.updateCacheForPlayer()", player);
+		if (!player.recache) {
+			player.recache = newData.hash != player.hash();
+			if (player.recache) {
+				player.hash(newData.hash);
+			}
+		}
 	};
 	
 
@@ -46,7 +52,7 @@ TGC.service('PlayerSrvc', function($rootScope) {
 	// Auth //
 	//////////
 	PlayerSrvc.pingData = function(data) {
-		console.log("PlayerSrc.pingData()", data);
+		console.log("PlayerSrvc.pingData()", data);
 		if (data.authed) {
 			if (!PlayerSrvc.OWN) {
 				PlayerSrvc.login(data);
@@ -55,7 +61,7 @@ TGC.service('PlayerSrvc', function($rootScope) {
 	};
 	
 	PlayerSrvc.login = function(data) {
-		console.log("PlayerSrc.login()", data);
+		console.log("PlayerSrvc.login()", data);
 		var player = PlayerSrvc.OWN = new window.TGC.Player(data.player, data.user, data.secret);
 		PlayerSrvc.addPlayer(player);
 		$rootScope.$broadcast('tgc-own-player-loaded', PlayerSrvc.OWN);
@@ -63,18 +69,17 @@ TGC.service('PlayerSrvc', function($rootScope) {
 	
 	
 	PlayerSrvc.logout = function() {
-		console.log("PlayerSrc.logout()");
+		console.log("PlayerSrvc.logout()");
 		PlayerSrvc.removePlayer(PlayerSrvc.OWN);
 		$rootScope.$broadcast('tgc-own-player-removed', PlayerSrvc.OWN);
 		PlayerSrvc.OWN = null;
 	};
 	
-	PlayerSrvc.requestStats = function(player) {
-		
-		
-		
-		return CommandSrvc.player(player).then(function(){
-			
+	PlayerSrvc.withStats = function(player) {
+		return CommandSrvc.player(player).then(function(payload){
+			console.log(payload);
+			player.JSON = JSON.parse(payload).player;
+			return player;
 		});
 	};
 	
