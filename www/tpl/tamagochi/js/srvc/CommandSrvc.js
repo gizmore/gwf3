@@ -13,6 +13,13 @@ TGC.service('CommandSrvc', function($rootScope, $injector, WebsocketSrvc) {
 		return CommandSrvc.MAPUTIL;
 	};
 	
+	CommandSrvc.getChatSrvc = function() {
+		if (!CommandSrvc.CHATSERVICE) {
+			CommandSrvc.CHATSERVICE = $injector.get('ChatSrvc');
+		}
+		return CommandSrvc.CHATSERVICE;
+	};
+	
 	CommandSrvc.getPlayerSrvc = function() {
 		if (!CommandSrvc.PLAYERSERVICE) {
 			CommandSrvc.PLAYERSERVICE = $injector.get('PlayerSrvc');
@@ -85,6 +92,9 @@ TGC.service('CommandSrvc', function($rootScope, $injector, WebsocketSrvc) {
 	
 	CommandSrvc.CHAT = function($scope, payload) {
 		console.log('CommandSrvc.CHAT()', payload);
+		var MapUtil = CommandSrvc.getMapUtil();
+		var ChatSrvc = CommandSrvc.getChatSrvc();
+		var PlayerSrvc = CommandSrvc.getPlayerSrvc();
 		var name = payload.substrUntil(':');
 		var text = payload.substrFrom(':');
 		var player = PlayerSrvc.getPlayer(name);
@@ -101,5 +111,21 @@ TGC.service('CommandSrvc', function($rootScope, $injector, WebsocketSrvc) {
 		console.log('CommandSrvc.STATS()', payload);
 		CommandSrvc.statsScope.data.stats = JSON.parse(payload);
 	};
+	
+	CommandSrvc.QUIT = function($scope, payload) {
+		console.log('CommandSrvc.QUIT()', payload);
+		var MapUtil = CommandSrvc.getMapUtil();
+		var PlayerSrvc = CommandSrvc.getPlayerSrvc();
+		var name = payload;
+		var player = PlayerSrvc.getPlayer(name);
+		if (player) {
+			MapUtil.removeMarkerForPlayer(player);
+			PlayerSrvc.removePlayer(player);
+		}
+		else {
+			console.error('Player not found: '+name);
+		}
+	};
+
 
 });

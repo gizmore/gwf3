@@ -1,6 +1,6 @@
 'use strict';
 var TGC = angular.module('tgc');
-TGC.service('ShapeUtil', function(ConstSrvc) {
+TGC.service('ShapeUtil', function(ConstSrvc, ColorUtil) {
 	
 	var ShapeUtil = this;
 	
@@ -13,17 +13,17 @@ TGC.service('ShapeUtil', function(ConstSrvc) {
 	ShapeUtil.initShape = function(player, map) {
 		console.log('ShapeUtil.initShape()', player.name());
 		
+		if (!player.hasStats()) {
+			return;
+		}
+
 		if (player.shape) {
 			player.shape.setMap(null);
 			player.shape = undefined;
 		}
 		
-		if (player)
-		
 		var lat = player.lat(), lng = player.lng();
 
-		var maxLevel = ConstSrvc.maxLevel();
-		
 		var latMin = ConstSrvc.SKILL_SHAPE_RADIUS_LAT_MIN;
 		var latMax = ConstSrvc.SKILL_SHAPE_RADIUS_LAT_MAX;
 		var latRange = latMax - latMin;
@@ -32,8 +32,8 @@ TGC.service('ShapeUtil', function(ConstSrvc) {
 		var lngMax = ConstSrvc.SKILL_SHAPE_RADIUS_LNG_MAX;
 		var lngRange = lngMax - lngMin;
 		
-		var latPerLevel = latRange / maxLevel;
-		var lngPerLevel = lngRange / maxLevel;
+		var latPerLevel = latRange / ConstSrvc.MAX_LEVEL;
+		var lngPerLevel = lngRange / ConstSrvc.MAX_LEVEL;
 
 		var f = player.fighterLevel();
 		var n = player.ninjaLevel();
@@ -47,7 +47,7 @@ TGC.service('ShapeUtil', function(ConstSrvc) {
 			{lat: lat, lng: lng - w * lngPerLevel}];
 			
 		player.shape = new google.maps.Polyline({
-			path: flightPlanCoordinates,
+			path: path,
 			geodesic: true,
 			strokeColor: ColorUtil.colorForPlayer(player),
 			strokeOpacity: ColorUtil.opacityForPlayer(player),

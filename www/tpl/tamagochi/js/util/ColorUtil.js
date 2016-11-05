@@ -5,7 +5,12 @@ TGC.service('ColorUtil', function() {
 	var ColorUtil = this;
 	
 	ColorUtil.colorForPlayer = function(player) {
-		return '#000';
+		return '#000000';
 	};
-	
+
+	ColorUtil.opacityForPlayer = function(player) {
+		return 0.75;
+	} 
+	 
+	 
 });

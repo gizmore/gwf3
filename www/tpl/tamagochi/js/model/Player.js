@@ -11,10 +11,11 @@ window.TGC.Player = function(json, userJSON, secret) {
 	this.position = null;
 	
 	this.lat = function() { return this.position.lat; };
-	this.lon = function() { return this.position.lng; };
+	this.lng = function() { return this.position.lng; };
 	this.moveTo = function(lat, lng) { this.position = new google.maps.LatLng({lat: lat, lng: lng}); };
 	this.latLng = function() { return this.position; };
 	this.hasPosition = function() { return this.position !== null; };
+	this.hasStats = function() { return this.JSON.fl !== undefined; };
 	
 	this.user = function() { return this.USER; };
 	this.secret = function() { return this.SECRET; };

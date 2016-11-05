@@ -100,6 +100,8 @@ TGC.service('WebsocketSrvc', function($rootScope, $q, $injector) {
 		if (WebsocketSrvc.SOCKET != null) {
 			WebsocketSrvc.SOCKET.close();
 			WebsocketSrvc.SOCKET = null;
+			WebsocketSrvc.NEXT_MID = 1000000;
+			WebsocketSrvc.SYNC_MSGS = {};
 		}
 	};
 	

@@ -24,6 +24,7 @@
 	<script src="{$root}tpl/tamagochi/js/util/ColorUtil.js"></script>
 	<script src="{$root}tpl/tamagochi/js/util/GameUtil.js"></script>
 	<script src="{$root}tpl/tamagochi/js/util/MapUtil.js"></script>
+	<script src="{$root}tpl/tamagochi/js/util/ShapeUtil.js"></script>
 	<script src="{$root}tpl/tamagochi/js/util/StringUtil.js"></script>
 
 	<script src="{$root}tpl/tamagochi/js/directives/ngEnter.js"></script>

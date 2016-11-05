@@ -1,6 +1,6 @@
 'use strict';
 var TGC = angular.module('tgc');
-TGC.service('MapUtil', function(ColorUtil, PlayerDlg, PlayerSrvc) {
+TGC.service('MapUtil', function(ColorUtil, PlayerDlg, PlayerSrvc, ShapeUtil) {
 	
 	var MapUtil = this;
 	
@@ -102,8 +102,14 @@ TGC.service('MapUtil', function(ColorUtil, PlayerDlg, PlayerSrvc) {
 	};
 
 	MapUtil.removeMarkerForPlayer = function(player) {
-		player.marker.setMap(null);
-		player.marker = undefined;
+		if (player.marker) {
+			player.marker.setMap(null);
+			player.marker = undefined;
+		}
+		if (player.shape) {
+			player.shape.setMap(null);
+			player.shape = undefined;
+		}
 		delete MapUtil.MARKERS(player);
 	}
 	
@@ -114,6 +120,7 @@ TGC.service('MapUtil', function(ColorUtil, PlayerDlg, PlayerSrvc) {
 	MapUtil.movePlayer = function(player, latLng) {
 		var marker = player.marker ? player.marker : MapUtil.addMarkerForPlayer(player);
 		MapUtil.styleMarkerForPlayer(player);
+		ShapeUtil.initShape(player);
 	};
 	
 	MapUtil.styleMarkerForPlayer = function(player) {

@@ -33,6 +33,9 @@ TGC.service('PlayerSrvc', function($rootScope, CommandSrvc) {
 
 	PlayerSrvc.removePlayer = function(player) {
 		console.log("PlayerSrvc.removePlayer()", player);
+		if (PlayerSrvc.OWN === player) {
+			PlayerSrvc.OWN = null;
+		}
 		delete PlayerSrvc.CACHE(player.name());
 		return player;
 	};
