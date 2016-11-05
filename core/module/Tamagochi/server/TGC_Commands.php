@@ -38,6 +38,7 @@ final class TGC_Commands
 	
 	public static function cmd_chat(TGC_Player $player, $payload)
 	{
+		$payload = $player->getName().':'.$payload;
 		$player->forNearMe(function($p){
 			$p->sendCommand('CHAT', $payload);
 		});

@@ -21,10 +21,11 @@ TGC.service('WebsocketSrvc', function($rootScope, $q, PlayerSrvc) {
 			    	$rootScope.$broadcast('tgc-ws-open');
 				};
 			    ws.onclose = function() {
-			    	WebsocketSrvc.SOCKET = null;
+			    	WebsocketSrvc.disconnect();
 			    	$rootScope.$broadcast('tgc-ws-close');
 			    };
 			    ws.onerror = function(error) {
+			    	WebsocketSrvc.disconnect();
 					reject(error);
 			    };
 			    ws.onmessage = function(message) {
@@ -55,7 +56,7 @@ TGC.service('WebsocketSrvc', function($rootScope, $q, PlayerSrvc) {
 	
 	WebsocketSrvc.sendQueue = function() {
 		if (WebsocketSrvc.QUEUE.length > 0) {
-			console.log('WebsocketSrvc.sendQueue()');
+//			console.log('WebsocketSrvc.sendQueue()');
 		}
 	};
 	
@@ -69,16 +70,16 @@ TGC.service('WebsocketSrvc', function($rootScope, $q, PlayerSrvc) {
 	};
 	
 	WebsocketSrvc.connected = function() {
-		return WebsocketSrvc.SOCKET !== null;
+		return WebsocketSrvc.SOCKET ? true : false;
 	};
 
 	WebsocketSrvc.sendJSONCommand = function(command, object) {
-		console.log('WebsocketSrvc.sendJSONCommand()', command, object);
+//		console.log('WebsocketSrvc.sendJSONCommand()', command, object);
 		return WebsocketSrvc.sendCommand(command, JSON.stringify(object));
 	};
 	
 	WebsocketSrvc.sendCommand = function(command, payload) {
-		console.log('WebsocketSrvc.sendCommand()', command, payload);
+//		console.log('WebsocketSrvc.sendCommand()', command, payload);
 		return $q(function(resolve, reject) {
 			if (PlayerSrvc.OWN) {
 				var messageText = PlayerSrvc.OWN.secret()+":"+command+":"+payload;
@@ -99,9 +100,7 @@ TGC.service('WebsocketSrvc', function($rootScope, $q, PlayerSrvc) {
 	
 	WebsocketSrvc.send = function(messageText) {
 		console.log('WebsocketSrvc.send()', messageText);
-		if (WebsocketSrvc.SOCKET != null) {
-			WebsocketSrvc.SOCKET.send(messageText);
-		}
+		WebsocketSrvc.SOCKET.send(messageText);
 	};
 
 });

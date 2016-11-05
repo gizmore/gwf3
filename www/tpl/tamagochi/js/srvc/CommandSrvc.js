@@ -1,6 +1,6 @@
 'use strict';
 var TGC = angular.module('tgc');
-TGC.service('CommandSrvc', function($rootScope, MapUtil, PlayerSrvc, WebsocketSrvc) {
+TGC.service('CommandSrvc', function($rootScope, MapUtil, ChatSrvc, PlayerSrvc, WebsocketSrvc) {
 	
 	var CommandSrvc = this;
 	
@@ -62,6 +62,16 @@ TGC.service('CommandSrvc', function($rootScope, MapUtil, PlayerSrvc, WebsocketSr
 	
 	CommandSrvc.CHAT = function($scope, payload) {
 		console.log('CommandSrvc.CHAT()', payload);
+		var name = payload.substrUntil(':');
+		var text = payload.substrFrom(':');
+		var player = PlayerSrvc.getPlayer(name);
+		if (player) {
+			MapUtil.playerChat(player, text);
+			ChatSrvc.playerChat(player, text);
+		}
+		else {
+			console.error('Player not found: '+name);
+		}
 	};
 
 	CommandSrvc.STATS = function($scope, payload) {

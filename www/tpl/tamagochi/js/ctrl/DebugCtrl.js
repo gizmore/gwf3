@@ -3,7 +3,7 @@ var TGC = angular.module('tgc');
 TGC.controller('DebugCtrl', function($rootScope, $scope, PlayerSrvc, PositionSrvc) {
 	
 	$scope.data = {
-		fixPosition: true,
+		fixPosition: false,
 		fixLatitude: 52.141568,
 		fixLongitude: 10.111213,
 		lock: null

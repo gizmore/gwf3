@@ -53,11 +53,12 @@ TGC.service('PositionSrvc', function($rootScope, $q, ErrorSrvc, CommandSrvc) {
 	};
 	
 	PositionSrvc.intervalCalled = function() {
-		console.log('PositionSrvc.intervalCalled()');
+//		console.log('PositionSrvc.intervalCalled()');
 		var now = new Date().getTime();
 		var age = now - PositionSrvc.CURRENT_STAMP;
 		if (age >= PositionSrvc.FORCE_POSITION_MILLIS) {
 			PositionSrvc.geoSuccess(PositionSrvc.CURRENT);
+			PositionSrvc.broadcast();
 		}
 	};
 	
@@ -77,13 +78,13 @@ TGC.service('PositionSrvc', function($rootScope, $q, ErrorSrvc, CommandSrvc) {
 
 	PositionSrvc.broadcast = function() {
 		$rootScope.$broadcast('tgc-position-changed', PositionSrvc.CURRENT);
+		CommandSrvc.pos($rootScope, PositionSrvc.CURRENT);
 	};
 	
 
 	PositionSrvc.geoSuccess = function(position) {
 		PositionSrvc.CURRENT = position;
 		PositionSrvc.CURRENT_STAMP = new Date().getTime();
-		CommandSrvc.pos($rootScope, position);
 	};
 	
 	PositionSrvc.geoFailure = function(error) {

@@ -27,7 +27,7 @@ TGC.service('PlayerSrvc', function($rootScope) {
 	
 	PlayerSrvc.addPlayer = function(player) {
 		console.log("PlayerSrc.getPlayer()", player);
-		PlayerSrvc.CACHE[name] = player;
+		PlayerSrvc.CACHE[player.name()] = player;
 		return player;
 	};
 

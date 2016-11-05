@@ -10,7 +10,7 @@ HTML, BODY, .MAINDIV, .MAINSECTION, #MAPCONTENT, #HOMECONTENT, #TGCMAPDIV, #TGCM
 
 #TGCMAPDIV {
 	position: relative;
-	top: 3em;
+	top: -4em;
 }
 
 /** MENU TOGGLES **/ 

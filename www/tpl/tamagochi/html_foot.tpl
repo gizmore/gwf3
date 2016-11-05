@@ -1,3 +1,4 @@
+{if $mo eq 'Tamagochi'}
 	<div ui-view id="MAINVIEW"></div>
 	
 	<!-- FastLoaders Ninja -->
@@ -28,6 +29,7 @@
 	<script src="{$root}tpl/tamagochi/js/model/GWFMessage.js"></script>
 	<script src="{$root}tpl/tamagochi/js/model/Player.js"></script>
 
+	<script src="{$root}tpl/tamagochi/js/srvc/ChatSrvc.js"></script>
 	<script src="{$root}tpl/tamagochi/js/srvc/CommandSrvc.js"></script>
 	<script src="{$root}tpl/tamagochi/js/srvc/ErrorSrvc.js"></script>
 	<script src="{$root}tpl/tamagochi/js/srvc/PingSrvc.js"></script>
@@ -52,5 +54,5 @@
 	<!-- Let's boot it -->
 	
 	<script>angular.element(document).ready(function() { angular.bootstrap(document.body, ['tgc']); });</script>
-
+{/if}
 </body>

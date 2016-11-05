@@ -12,17 +12,15 @@ TGC.service('PingSrvc', function($state, RequestSrvc, PlayerSrvc, ConstSrvc) {
 			PingSrvc.RUNNING = true;
 			ConstSrvc.inLogin(true);
 			return RequestSrvc.send('tgc/ping').then(function(data) {
-				PingSrvc.RUNNING = false;
 				PlayerSrvc.pingData(data.data);
-//				if ($state.name !== 'game') {
-					$state.go('connect');
-//				}
-			}, function(response) {
+				$state.go('connect');
 				PingSrvc.RUNNING = false;
+			}, function(response) {
 				var code = response.status;
 				if ((code == 403) || (code == 405)) {
 					$state.go('login');
 				}
+				PingSrvc.RUNNING = false;
 			});
 		}
 	};

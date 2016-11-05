@@ -1,6 +1,6 @@
 'use strict';
 var TGC = angular.module('tgc');
-TGC.controller('TGCCtrl', function($rootScope, $scope, $mdSidenav, PlayerSrvc, ConstSrvc, WebsocketSrvc, CommandSrvc) {
+TGC.controller('TGCCtrl', function($rootScope, $scope, $state, $mdSidenav, PlayerSrvc, ConstSrvc, WebsocketSrvc, CommandSrvc, PositionSrvc) {
 	
 	$scope.data = {
 		lastReceived: null,
@@ -12,10 +12,16 @@ TGC.controller('TGCCtrl', function($rootScope, $scope, $mdSidenav, PlayerSrvc, C
 		
 	};
 
-	$scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
-//		if (angular.isDefined(toState.data.pageTitle)) {
-//			$scope.pageTitle = toState.data.pageTitle + ' | Angualar Material' ;
-//		}
+	$scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
+		console.log('TGCCtrl.$on-stateChangeSuccess', toState);
+		if (toState.name === 'game') {
+			if (fromState.name === 'connect') {
+				CommandSrvc.pos($scope, PositionSrvc.CURRENT);
+			}
+			else {
+				$state.go('home');
+			}
+		}
 	});
 
 	$scope.toggleLeftMenu = function() {

@@ -30,6 +30,11 @@ window.TGC.Player = function(json, userJSON, secret) {
 	this.skill = function(skill) { if (skill) this.JSON.s = skill; return this.JSON.s; };
 	this.element = function(element) { if (element) this.JSON.e = element; return this.JSON.e; };
 	
+	this.fighterLevel = function(level) { if (level) this.JSON.fl = level; return this.JSON.fl; };
+	this.ninjaLevel = function(level) { if (level) this.JSON.nl = level; return this.JSON.nl; };
+	this.priestLevel = function(level) { if (level) this.JSON.pl = level; return this.JSON.pl; };
+	this.wizardLevel = function(level) { if (level) this.JSON.wl = level; return this.JSON.wl; };
+	
 	this.lastModeChange = function(lastChange) { if (lastChange) this.JSON.mc = lastChange; return this.JSON.mc };
 	this.lastColorChange = function(lastChange) { if (lastChange) this.JSON.cc = lastChange; return this.JSON.cc };
 	this.lastSkillChange = function(lastChange) { if (lastChange) this.JSON.sc = lastChange; return this.JSON.sc };

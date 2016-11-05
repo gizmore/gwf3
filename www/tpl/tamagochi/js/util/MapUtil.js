@@ -63,26 +63,43 @@ TGC.service('MapUtil', function() {
 		return MapUtil.MAP;
 	};
 	
+	MapUtil.playerChat = function(player, message) {
+		console.log('MapUtil.playerChat()', player, message);
+	};
+
 	/////////////
 	// Markers //
 	/////////////
+	MapUtil.playerForMarker = function(marker) {
+		for (var player in MapUtil.MARKERS) {
+			if (MapUtil.MARKERS[player] == marker) {
+				return player;
+			}
+		}
+		return undefined;
+	};
+	
 	MapUtil.addMarkerForPlayer = function(player) {
 		player.marker = new google.maps.Marker({
 		    position: player.latLng(),
 		    map: MapUtil.map(),
-		    title: player.name()
+		    title: player.name(),
+		    label: player.name(),
+		    size: MapUtil.sizeForPlayer(player),
+//		    image: MapUtil.imageForPlayer(player),
 		});
 		MapUtil.MARKERS[player] = player.marker;
 		return player.marker;
 	};
 
 	MapUtil.removeMarkerForPlayer = function(player) {
+		player.marker.setMap(null);
 		player.marker = undefined;
 		delete MapUtil.MARKERS(player);
 	}
 	
 	MapUtil.addPlayer = function(player) {
-		console.log('MapUtil.addPlayer', player);
+		return player;
 	};
 	
 	MapUtil.movePlayer = function(player, latLng) {
@@ -91,7 +108,15 @@ TGC.service('MapUtil', function() {
 	};
 	
 	MapUtil.styleMarkerForPlayer = function(player) {
-		
+		var marker = player.marker;
+		marker.setPosition(player.latLng());
 	};
 
-});
+    MapUtil.imageForPlayer = function(player) {
+    };
+
+    MapUtil.sizeForPlayer = function(player) {
+    	return 41.13 + player.fighterLevel() + player.ninjaLevel() + player.priestLevel() + player.wizardLevel(); 
+    };
+
+   });

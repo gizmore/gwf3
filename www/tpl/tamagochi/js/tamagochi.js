@@ -42,5 +42,7 @@ TGC.config(function($urlRouterProvider, $stateProvider) {
 
 
 TGC.run(function($state, PositionSrvc, PingSrvc) {
-	PositionSrvc.bootstrap().then(PingSrvc.ping);
+//	$state.go('home').then(function(){
+		PositionSrvc.bootstrap().then(PingSrvc.ping);
+//	});
 });
