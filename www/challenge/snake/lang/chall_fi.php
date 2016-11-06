@@ -21,7 +21,7 @@ $lang = array(
 		'- Huumeiden käyttöä ei ole hyväksi mielenterveydelle.<br/>'.
 		'<br/>'.
 		'<b>Credits</b>:<br/>'.
-		'- 3D hedelmät kehitti ystäväni<i>Lazer/Olli</i>.<br/>'.
+		'- 3D hedelmät kehitti ystäväni<i>Lazer</i>.<br/>'.
 		'- Hamppu ääni otettiin luvalla<i>Kapt`n Olga - Molkerei auf der Bounty:stä</i>.<br/>'.
 		'-  Gulp syöminen ääni tehtiin ilman lupaa <i>FTL`s Dungeon Master:stä</i>.<br/>'.
 		'- Livinskull (ja muut) haasten testaamisesta.<br/>',

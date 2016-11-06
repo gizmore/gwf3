@@ -4,18 +4,14 @@ TGC.service('PlayerDlg', function($q, PlayerSrvc) {
 	
 	var PlayerDlg = this;
 	
-	PlayerDlg.player = null;
-	
 	PlayerDlg.open = function(player) {
-		console.log('PlayerDlg.show()', player);
 		var d = $q.defer();
 		if (PlayerDlg.player) {
 			d.reject();
 		}
 		else {
-//			PlayerDlg.player = player;
-			PlayerSrvc.withStats(player).then(function(player){
-				console.log('HIIII', player);
+			PlayerSrvc.withStats(player).then(function(player) {
+				PlayerDlg.show(player, defer);
 			});
 			d.resolve();
 		}
@@ -23,7 +19,6 @@ TGC.service('PlayerDlg', function($q, PlayerSrvc) {
 	};
 
 	PlayerDlg.show = function(defer) {
-		
 		function DialogController($scope, $mdDialog, player) {
 			$scope.player = player;
 			$scope.closeDialog = function() {
@@ -31,7 +26,6 @@ TGC.service('PlayerDlg', function($q, PlayerSrvc) {
 				defer.resolve();
 			}
 		}
-		
 		var parentEl = angular.element(document.body);
 		$mdDialog.show({
 			parent: parentEl,

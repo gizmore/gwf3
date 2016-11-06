@@ -21,7 +21,7 @@ $lang = array(
 		'- (Ab)usare di droghe non fa bene alla tua salute mentale.<br/>'.
 		'<br/>'.
 		'<b>Crediti</b>:<br/>'.
-		'- I frutti 3D sono stati creati dal mio amico <i>Lazer/Olli</i>.<br/>'.
+		'- I frutti 3D sono stati creati dal mio amico <i>Lazer</i>.<br/>'.
 		'- Il suono della canapa è stato preso, con permesso, da <i>Kapt`n Olga - Molkerei auf der Bounty</i>.<br/>'.
 		'- Il suono dell\'ingoioè stato preso, con permesso, da <i>FTL`s Dungeon Master</i>.<br/>'.
 		'- livinskull (e altri) per aver testato la sfida.<br/>',

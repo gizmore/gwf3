@@ -54,6 +54,7 @@ TGC.service('MapUtil', function(ColorUtil, PlayerDlg, PlayerSrvc, ShapeUtil) {
 	};
 
 	MapUtil.map = function(id) {
+		id = id || MapUtil.MAP_ID;
 		if (!MapUtil.MAP) {
 			MapUtil.MAP = new google.maps.Map(MapUtil.canvas(), MapUtil.OPTIONS);
 			if (!MapUtil.MAP) {
@@ -120,7 +121,7 @@ TGC.service('MapUtil', function(ColorUtil, PlayerDlg, PlayerSrvc, ShapeUtil) {
 	MapUtil.movePlayer = function(player, latLng) {
 		var marker = player.marker ? player.marker : MapUtil.addMarkerForPlayer(player);
 		MapUtil.styleMarkerForPlayer(player);
-		ShapeUtil.initShape(player);
+		ShapeUtil.initShape(player, MapUtil.map());
 	};
 	
 	MapUtil.styleMarkerForPlayer = function(player) {

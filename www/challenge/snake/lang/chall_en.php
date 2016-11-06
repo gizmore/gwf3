@@ -21,7 +21,7 @@ $lang = array(
 		'- (Ab)using drugs is not good for your mental health.<br/>'.
 		'<br/>'.
 		'<b>Credits</b>:<br/>'.
-		'- 3D fruits were created by my friend <i>Lazer/Olli</i>.<br/>'.
+		'- 3D fruits were created by my friend <i>Lazer</i>.<br/>'.
 		'- Hemp sound was taken with permission from <i>Kapt`n Olga - Molkerei auf der Bounty</i>.<br/>'.
 		'- Gulp eating sound was taken without permission from <i>FTL`s Dungeon Master</i>.<br/>'.
 		'- livinskull (and others) for testing the challenge.<br/>',

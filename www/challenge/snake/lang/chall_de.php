@@ -21,7 +21,7 @@ $lang = array(
 		'- Drogen missbrauchen ist nicht gut für Dein geistiges Wohlbefinden.<br/>'.
 		'<br/>'.
 		'<b>Credits</b>:<br/>'.
-		'- 3D Früchte wurden von <i>Olli, aka. Lazer</i> erstellt.<br/>'.
+		'- 3D Früchte wurden von <i>Lazer</i> erstellt.<br/>'.
 		'- Der Hanf-Sound stammt mit freundlicher Genehmigung von <i>Kapt`n Olga - Molkerei auf der Bounty</i>.<br/>'.
 		'- Der Mampf-Sound stammt ohne Genehmigung aus <i>FTL`s Dungeon Master</i>.<br/>'.
 		'- livinskull (und andere) für das testen der Challenge.<br/>',
