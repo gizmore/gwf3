@@ -44,7 +44,7 @@
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background: #fff;
+	background: gold;
 	opacity: 0;
 }
 
@@ -69,7 +69,14 @@ i {
 }
 
 code {
-	color: white;
+	color: blue;
+	background: green;
+	opacity: 0.612;
+	font-weight: bolder;
+}
+
+mysql {
+	
 }
 
 fire {
@@ -79,4 +86,16 @@ fire {
 bomb {
 	color: red;
 	opacity: 0.8;
+}
+
+flash {
+	
+}
+
+french {
+	
+}
+
+korean {
+	
 }

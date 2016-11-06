@@ -1,3 +1,6 @@
+/**
+ * License MIT
+ */
 window.CC = window.CC ? window.CC : {};
 
 window.CC.scrollTop = 0;
@@ -147,7 +150,8 @@ window.XMGFX.execNewValue = function(pattern, row, col, value) {
 	else if ((col == 12) && (value == 14)) {
 	}
 	else {
-//		console.log("Value for row: "+row+" col: "+col+" val: "+value);
+		// Find new cool events fitting the line.
+		console.log("Value for row: "+row+" col: "+col+" val: "+value);
 	}
 };
 
