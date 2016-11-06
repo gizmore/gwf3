@@ -90,7 +90,7 @@ window.CC.bumpEffect = function(pixels, duration) {
 };
 
 window.CC.blitzEffect = function(opacity, duration) {
-	opacity = opacity || '0.999';
+	opacity = opacity || '0.713';
 	duration = duration || 80;
 	setTimeout(function(){
 		var be = window.CC.blitzdiv;
