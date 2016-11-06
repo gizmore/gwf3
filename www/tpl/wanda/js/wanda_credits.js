@@ -14,10 +14,9 @@ window.CC.initElements = function(){
 	crid.append(content);
 	
 	var CC = window.CC;
-	var txt = window.CC.scrollText;
-	for (var y = 0; y < CC.height; y++) {
-		var substring = txt.substr(y * CC.width, CC.width);
-		var row = $('<div class="crow">'+substring+'</div>');
+	var txt = window.CC.scrollText.split("\n");
+	for (var i in txt) {
+		var row = $('<div class="crow">'+txt[i]+'</div>');
 		window.CC.textRows.push(row);
 		content.append(row);
 	}

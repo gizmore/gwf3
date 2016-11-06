@@ -47,3 +47,23 @@
 	background: #fff;
 	opacity: 0;
 }
+
+
+titanic {
+	float: none; // ;oel
+}
+
+b {
+	manowar: cool;
+	font-weight: normal;
+	color: #612;
+	opacity: 0.612;
+}
+
+i {
+	text-decoration: none;
+	text-transform: uppercase;
+	text-align: justify;
+	elevation: true;
+	color: black;
+}
