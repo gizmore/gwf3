@@ -39,8 +39,9 @@ $lang = array(
 	'menu_7' => 'Esempi',
 	'menu_8' => 'HTAccess ',
 	'menu_9' => 'Admins ',
-	'menu_10' => 'Cache ',
-	'menu_11' => 'Proteggi',
+	'menu_10' => 'Backup ',
+	'menu_11' => 'Cache ',
+	'menu_12' => 'Proteggi',
 
 	'title_long' => 'Framework per Siti Web di Space &amp; Gizmore',
 	'title_step' => 'Installazione guidata - Passo %d',
@@ -106,12 +107,14 @@ $lang = array(
 
 	'step_9' => 'Create account amministrativi',
 
-	'step_10' => 'Ripulisci la Cache',
-	'step_10_0' => 'L\'installazione è finita.<br/>Tutte le cache sono state ripulite.<br/>Puoi effettuare il login ora o migliorare la protezione della cartella di installazione.',
-		
-	'step_11' => 'Proteggi la cartella di installazione',
-	'step_11_0' => 'La tua cartella di installazione dovrebbe essere protetta, rispondendo con errori 404 ad ogni richiesta.',
+	'step_10' => 'Create Backup Folders',
+	'step_10_0' => 'You should add the following to your crontab:<br/><br/>%s<br/>%s<br/><br/>You will find data here: %s.<br/><br/>Backup strategy is important!',
+
+	'step_11' => 'Ripulisci la Cache',
+	'step_11_0' => 'L\'installazione è finita.<br/>Tutte le cache sono state ripulite.<br/>Puoi effettuare il login ora o migliorare la protezione della cartella di installazione.',
+
+	'step_12' => 'Proteggi la cartella di installazione',
+	'step_12_0' => 'La tua cartella di installazione dovrebbe essere protetta, rispondendo con errori 404 ad ogni richiesta.',
 	
 	'msg_all_done' => 'Congratulazioni, la tua installazione è completa!<br/>Grazie per aver scelto GWF3<br/>Speriamo che sia di tuo gradimento.<br/><br/>gizmore e spaceone',
 );
-?>

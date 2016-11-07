@@ -1,24 +1,25 @@
 'use strict';
 var TGC = angular.module('tgc');
-TGC.service('PlayerDlg', function($q, PlayerSrvc) {
+TGC.service('PlayerDlg', function($q, $mdDialog, PlayerSrvc) {
 	
 	var PlayerDlg = this;
 	
-	PlayerDlg.open = function(player) {
-		var d = $q.defer();
+	PlayerDlg.open = function($event, player) {
+		console.log('PlayerDlg.open()', player);
+		var defer = $q.defer();
 		if (PlayerDlg.player) {
-			d.reject();
+			defer.reject();
 		}
 		else {
 			PlayerSrvc.withStats(player).then(function(player) {
-				PlayerDlg.show(player, defer);
+				PlayerDlg.show(player, defer, $event);
 			});
-			d.resolve();
+			defer.resolve();
 		}
-		return d.promise;
+		return defer.promise;
 	};
 
-	PlayerDlg.show = function(defer) {
+	PlayerDlg.show = function(player, defer, $event) {
 		function DialogController($scope, $mdDialog, player) {
 			$scope.player = player;
 			$scope.closeDialog = function() {
@@ -28,11 +29,11 @@ TGC.service('PlayerDlg', function($q, PlayerSrvc) {
 		}
 		var parentEl = angular.element(document.body);
 		$mdDialog.show({
-			parent: parentEl,
+			parent: document.getElementById(''),
 			targetEvent: $event,
 			templateUrl: '/tpl/tamagochi/js/tpl/player_dialog.html',
 			locals: {
-				player: $scope.items
+				player: player
 			},
 			controller: DialogController
 		});

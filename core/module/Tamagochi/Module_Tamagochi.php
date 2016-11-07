@@ -21,7 +21,7 @@ final class Module_Tamagochi extends GWF_Module
 	
 	public function cfgMapsApiKey() { return $this->getModuleVar('maps_api_key', ''); }
 	public function cfgWebsocketURL() { return sprintf('ws://%s:34543', GWF_DOMAIN); }
-	public function cfgWebsocketTLSURL() { return sprintf('wss://%s:61221', GWF_DOMAIN); }
+	public function cfgWebsocketTLSURL() { return sprintf('wss://%s/wss2', $_SERVER['SERVER_ADDR']); }
 	
 	public function onStartup()
 	{

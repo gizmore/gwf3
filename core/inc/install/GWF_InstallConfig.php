@@ -252,7 +252,7 @@ final class GWF_InstallConfig
 			
 			# Session
 			array('text',  'Session', 'GWF_SESS_NAME', 'GWF', 'Cookie Prefix. Example: \'GWF\'.'),
-			array('int10', 'Session', 'GWF_SESS_LIFETIME', 8*60*60 'Session lifetime in seconds.'),
+			array('int10', 'Session', 'GWF_SESS_LIFETIME', 8*60*60, 'Session lifetime in seconds.'),
 			array('int10',  'Session', 'GWF_SESS_PER_USER', '2', 'Number of allowed simultanous sessions per user. Example: 1'),
 			
 			# IP

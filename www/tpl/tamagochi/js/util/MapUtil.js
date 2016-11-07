@@ -95,7 +95,9 @@ TGC.service('MapUtil', function(ColorUtil, PlayerDlg, PlayerSrvc, ShapeUtil) {
 		    size: MapUtil.sizeForPlayer(player),
 //		    image: MapUtil.imageForPlayer(player),
 		});
-		player.marker.addListener('click', PlayerDlg.open.bind(PlayerDlg, player));
+		player.marker.addListener('click', function(event) {
+			PlayerDlg.open(event, player);
+		});
 		
 		MapUtil.MARKERS[player] = player.marker;
 

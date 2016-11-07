@@ -81,7 +81,7 @@ final class GWF_LanguageData
 			'48' => array('Croatia', 'cro', 'eu', 'HR', 4486881),
 			'62' => array('Cuba', 'spa', 'ma', 'CU', 11477459),
 			'76' => array('Cyprus', 'gre:tur', 'eu', 'CY', 1102677),
-			'20' => array('Czech Republic', 'cze', 'eu', 'CZ', 10201707),
+			'20' => array('Czech Republic', 'cze', 'eu', 'CS', 10201707),
 			'21' => array('Denmark', 'dan', 'eu', 'DK', 5515575),
 			'135' => array('Djibouti', 'ara:fre:afa:som', 'af', 'DJ', 740528),
 			'136' => array('Dominica', 'eng', 'ma', 'DM', 72813),

@@ -7,7 +7,7 @@ final class News_Delete extends GWF_Method
 	{
 		if (!$news->delete())
 		{
-			return GWF_HTML::err()
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		return true;
 	}
@@ -38,7 +38,7 @@ final class News_Delete extends GWF_Method
 		}
 		
 		if (true !== ($result = $this->deleteNewsByID($this->newsID))) {
-			return GWF_HTML::err()
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
 		if (!isset($_GET['ajax'])) {

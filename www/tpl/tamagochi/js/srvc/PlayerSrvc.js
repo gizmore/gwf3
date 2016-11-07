@@ -78,6 +78,9 @@ TGC.service('PlayerSrvc', function($rootScope, CommandSrvc) {
 		PlayerSrvc.OWN = null;
 	};
 	
+	//////////
+	// Lazy //
+	//////////
 	PlayerSrvc.withStats = function(player) {
 		return CommandSrvc.player(player).then(function(payload){
 			console.log(payload);

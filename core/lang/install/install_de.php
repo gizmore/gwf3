@@ -39,8 +39,9 @@ $lang = array(
 	'menu_7' => 'Beispiele',
 	'menu_8' => 'HTAccess',
 	'menu_9' => 'Admins',
-	'menu_10' => 'Cache',
-	'menu_11' => 'Protect',
+	'menu_10' => 'Backup',
+	'menu_11' => 'Cache',
+	'menu_12' => 'Protect',
 		
 	'title_long' => 'Space &amp; Gizmore Website Framework',
 	'title_step' => 'Installations-Assistent - Schritt %d',
@@ -107,11 +108,14 @@ $lang = array(
 
 	'step_9' => 'Administratoren erzeugen',
 
-	'step_10' => 'Cache leeren',
-	'step_10_0' => 'Die Installation ist abgeschlossen.<br/>Alle caches wurden geleert.<br/>Sie können sich nun einloggen oder den &quot;install&quot; Ordner besser schützen.',
-
-	'step_11' => 'Installationsordner schützen',
-	'step_11_0' => 'Ihr Installationsordner sollte nun geschützt sein und mit 404 Fehlern antworten.',
+	'step_10' => 'Create Backup Folders',
+	'step_10_0' => 'You should add the following to your crontab:<br/><br/>%s<br/>%s<br/><br/>You will find data here: %s.<br/><br/>Backup strategy is important!',
+	
+	'step_11' => 'Clear Caches',
+	'step_11_0' => 'Install has been finished.<br/>All caches have been cleared.<br/>You can login now or enhance the protection of your install folder.',
+	
+	'step_12' => 'Protect the install folder',
+	'step_12_0' => 'Your install folder should now be protected by throwing 404 errors.',
 	
 	'msg_all_done' => 'Glückwunsch, Ihre Installation ist abgeschlossen!<br/>Vielen Dank das Sie sich für GWF3 entschieden haben.<br/>Wir wünschen viel Spass damit.<br/><br/>gizmore und spaceone',
 );

@@ -51,7 +51,7 @@ $tVars = array(
 	'gwfwebpath' => GWF_WWW_PATH, 
 	'step' => GWF_STEP, 
 	'il' => $il, 
-	'steps' => 11,
+	'steps' => 12,
 	'timings' => GWF_DebugInfo::getTimings(),
 );
 GWF_Template::addMainTvars($tVars);
@@ -85,6 +85,7 @@ else switch(GWF_STEP)
 	case '9': $page = GWF_InstallWizard::wizard_9(); break; # Create admins
 	case '10': $page = GWF_InstallWizard::wizard_10(); break; # Clear Caches
 	case '11': $page = GWF_InstallWizard::wizard_11(); break; # Protect install folder
+	case '12': $page = GWF_InstallWizard::wizard_12(); break; # Protect install folder
 	
 	default:
 	case '0': $page = GWF_InstallWizard::wizard_0(); break; # List Status

@@ -607,7 +607,7 @@ final class GWF_InstallWizard
 	}
 
 	/**
-	 * Clear smarty cache.
+	 * Backup strategy
 	 */
 	public static function wizard_10()
 	{
@@ -616,21 +616,25 @@ final class GWF_InstallWizard
 			return $error;
 		}
 		
+		GWF_File::createDir(GWF_WWW_PATH.'protected/db_backups');
+		GWF_File::createDir(GWF_WWW_PATH.'protected/db_backups_old');
+		GWF_File::createDir(GWF_WWW_PATH.'protected/zipped');
+
 		$back = self::wizard_h2('10');
+
+		$backupScript = '20  4   *   *   *       '.GWF_PATH.'www/protected/db_backup.sh';
+		$cronjobScript = '*  *   *   *   *       '.GWF_PATH.'www/gwf_cronjob.sh';
+		$backupFolder = GWF_PATH.'www/protected';
 		
-		$template_cache = GWF_SMARTY_DIRS.'tplc';
-		if (false === GWF_File::removeDir($template_cache, true, true, false)) # FIXME: remove only .php or dont remove .git and .svn
-		{
-			$back .= self::wizard_error('err_clear_smarty');
-		}
+		$back .= sprintf('<p>%s</p>', self::$gwfil->lang('step_10_0', array($backupScript, $cronjobScript, $backupFolder)));
 		
-		$back .= sprintf('<p>%s</p>', self::$gwfil->lang('step_10_0'));
 		$back .= self::wizard_btn('11');
+	
 		return $back;
 	}
-
+	
 	/**
-	 * Protect install folder.
+	 * Clear smarty cache.
 	 */
 	public static function wizard_11()
 	{
@@ -641,12 +645,35 @@ final class GWF_InstallWizard
 		
 		$back = self::wizard_h2('11');
 		
+		$template_cache = GWF_SMARTY_DIRS.'tplc';
+		if (false === GWF_File::removeDir($template_cache, true, true, false)) # FIXME: remove only .php or dont remove .git and .svn
+		{
+			$back .= self::wizard_error('err_clear_smarty');
+		}
+		
+		$back .= sprintf('<p>%s</p>', self::$gwfil->lang('step_11_0'));
+		$back .= self::wizard_btn('12');
+		return $back;
+	}
+
+	/**
+	 * Protect install folder.
+	 */
+	public static function wizard_12()
+	{
+		if (false !== ($error = self::wizard_check_cfg_quick()))
+		{
+			return $error;
+		}
+		
+		$back = self::wizard_h2('12');
+		
 		if (false === GWF_HTAccess::protect404(GWF_WWW_PATH.'install'))
 		{
 			return $back . GWF_HTML::err('ERR_WRITE_FILE', array('install/.htaccess'));
 		}
 		
-		$back .= sprintf('<p>%s</p>', self::$gwfil->lang('step_11_0'));
+		$back .= sprintf('<p>%s</p>', self::$gwfil->lang('step_12_0'));
 		
 		$back .= sprintf('<p>%s</p>', self::$gwfil->lang('msg_all_done'));
 		

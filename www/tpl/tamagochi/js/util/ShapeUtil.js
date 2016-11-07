@@ -13,7 +13,7 @@ TGC.service('ShapeUtil', function(ConstSrvc, ColorUtil) {
 	ShapeUtil.initShape = function(player, map) {
 		console.log('ShapeUtil.initShape()', player.name());
 		
-		if (!player.hasStats()) {
+		if ((!player.hasStats()) || (!player.hasPosition())) {
 			return;
 		}
 

@@ -90,7 +90,6 @@ final class TGC_Commands
 	
 	public static function cmd_player(TGC_Player $player, $payload, $mid)
 	{
-		var_dump($payload);
 		if (!($p = TGC_ServerUtil::getPlayerForName($payload))) {
 			return $player->sendError('ERR_UNKNOWN_PLAYER');
 		}
@@ -102,7 +101,13 @@ final class TGC_Commands
 	
 	public static function cmd_slap(TGC_Player $player, $payload, $mid)
 	{
+		if (!($p = TGC_ServerUtil::getPlayerForName($payload))) {
+			return $player->sendError('ERR_UNKNOWN_PLAYER');
+		}
 		
+		$attack = new TGC_Attack($player, $p);
+		$p->sendJSONCommand('SLAP', $attack->jsonPayload($attack->jsonPayload($p, $mid)));
+		$player->sendJSONCommand('SLAP', self::payload($attack->jsonPayload($player, $mid)));
 	}
 	
 	

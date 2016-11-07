@@ -2,7 +2,7 @@
 	<div ui-view id="MAINVIEW"></div>
 	
 	<!-- FastLoaders Ninja -->
-	<script src="http://maps.google.com/maps/api/js?sensors=true&key=AIzaSyBrEK28--B1PaUlvpHXB-4MzQlUjNPBez0"></script>
+	<script src="https://maps.google.com/maps/api/js?sensors=true&key=AIzaSyBrEK28--B1PaUlvpHXB-4MzQlUjNPBez0"></script>
 	
 	<script src="{$root}tpl/tamagochi/bower_components/angular/angular.js"></script>
 	<script src="{$root}tpl/tamagochi/bower_components/angular-animate/angular-animate.js"></script>
