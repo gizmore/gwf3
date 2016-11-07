@@ -285,7 +285,7 @@ final class GWF_News extends GDO
 		{
 			return GWF_HTML::lang('no_category');
 		}
-		return $cat->getTranslatedText($langid);
+		return $cat->getTranslation($langid);
 	}
 	
 	public function displayCategory()
@@ -348,7 +348,7 @@ final class GWF_News extends GDO
 			
 			$cat->loadTranslations();
 			
-			$back[] = $cat->getTranslatedText($langid);
+			$back[] = $cat->getTranslation($langid);
 		}
 		return $back;
 	}

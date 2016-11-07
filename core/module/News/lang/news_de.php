@@ -127,6 +127,8 @@ $lang = array(
 	# V3.00 (fixes)
 	'rss_img_title' => GWF_SITENAME.'  Logo',
 	'cfg_news_comments' => 'Kommentare aktivieren',
+		
+	# v3.01 (deletion)
+	'msg_deleted' => 'Die News wurde als gelöscht markiert.',
+	'err_newsid' => 'Der newsid Parameter wird erwarten.',
 );
-
-?>

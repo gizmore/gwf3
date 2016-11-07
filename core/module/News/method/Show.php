@@ -50,7 +50,7 @@ final class News_Show extends GWF_Method
 			$this->catTitle = GWF_HTML::lang('no_category');
 		} else {
 			$this->catid = $this->cat->getID();
-			$this->catTitle = $this->cat->getTranslatedText();
+			$this->catTitle = $this->cat->getTranslation();
 		}
 		
 		$news = GDO::table('GWF_News');

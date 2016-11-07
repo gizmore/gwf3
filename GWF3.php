@@ -1,6 +1,14 @@
 <?php
 define('GWF_DEBUG_TIME_START', microtime(true));
-define('GWF_CORE_VERSION', '3.04-2012.Apr.1');
+define('GWF_CORE_VERSION', '4.00-2016.Nov.7');
+
+# Easy autoconfig and removed from installer.
+if (!defined('GWF_LANG_ADMIN')) define('GWF_LANG_ADMIN', 'en');
+if (!defined('GWF_ERRORS_TO_SMARTY')) define('GWF_ERRORS_TO_SMARTY', true);
+if (!defined('GWF_ICON_SET')) define('GWF_ICON_SET', 'default');
+if (!defined('GWF_SMARTY_PATH')) define('GWF_SMARTY_PATH', GWF_CORE_PATH.'inc/3p/smarty/Smarty.class.php');
+if (!defined('GWF_SMARTY_DIRS')) define('GWF_SMARTY_DIRS', GWF_PATH.'extra/temp/smarty/');
+if (!defined('GWF_SUPPORTED_LANGS')) define('GWF_SUPPORTED_LANGS', 'en;de;fr;it;pl;hu;es;bs;et;fi;ur;tr;sq;nl;ru;cs;sr;lv');
 
 /**
  * Mini GWF3 loader.
@@ -74,4 +82,3 @@ class GWF3
 		define('GWF_WEB_ROOT', $root);
 	}
 }
-?>

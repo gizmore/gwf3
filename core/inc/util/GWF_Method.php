@@ -18,6 +18,7 @@ abstract class GWF_Method
 
 	public function __construct(GWF_Module $module) { $this->module = $module; return $this; }
 	public abstract function execute();
+	public function executeAjax() {}
 	public function getModule() { return $this->module; }
 	public function getLang() { return $this->module->getLang(); }
 	public function getUserGroups() { return NULL; }
@@ -43,8 +44,7 @@ abstract class GWF_Method
 			return $cache;
 		}
 
-
-		return $this->execute();
+		return $_REQUEST['_ajax'] ? $this->executeAjax() : $this->execute();
 	}
 
 	public function getETag() { return false; }

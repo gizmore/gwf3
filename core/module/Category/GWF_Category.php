@@ -153,7 +153,7 @@ final class GWF_Category extends GWF_Tree
 //		foreach ($cats as $cat)
 //		{
 //			$catid = $cat->getID();
-//			$text = $cat->getTranslatedText($langid);
+//			$text = $cat->getTranslation($langid);
 //			$sel = $value === $catid ? ' selected="selected"' : '';
 //			$back .= sprintf('<option value="%s"%s>%s</option>', $catid, $sel, $text);
 //		}
@@ -161,20 +161,6 @@ final class GWF_Category extends GWF_Tree
 //		$back .= '</select>';
 //		return $back;
 //	}
-	
-	public function getTranslatedText($langid=0)
-	{
-		$langid = (string) $langid;
-		if ($langid === '0') {
-			$langid = (string) GWF_Language::getCurrentID();
-		}
-		if (isset($this->gdo_data['translations'][$langid])) {
-			return $this->gdo_data['translations'][$langid]['cl_translation'];
-		}
-		else {
-			return $this->getVar('key for '.$langid);
-		}
-	}
 	
 	public static function categoryExists($catid)
 	{

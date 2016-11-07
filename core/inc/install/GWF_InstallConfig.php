@@ -208,35 +208,35 @@ final class GWF_InstallConfig
 		$temp = array(
 			# Main
 			array('text',   'Main', 'GWF_DOMAIN', $domain, 'Example: \'www.foobar.com\'.'),
-			array('text',   'Main', 'GWF_SITENAME', 'Gizmore Website Framework', 'Your Site`s name. htmlspecialchars() it yourself.'),
+			array('text',   'Main', 'GWF_SITENAME', 'GWF', 'Your Site`s name. htmlspecialchars() it yourself.'),
 			array('text',   'Main', 'GWF_WEB_ROOT_NO_LANG', $self, 'Add trailing and leading slash. Example: \'/\' or \'/mywebdir/\'.'),
 			array('text',   'Main', 'GWF_DEFAULT_DOCTYPE', 'html5', 'Set the default html-doctype for gwf. Modules can change it.'),
 			array('int10',  'Main', 'GWF_LOG_BITS', 0xfff, 'bitmask for logging: NONE = 0; GWF_WARNING = 0x01; GWF_MESSAGE = 0x02; GWF_ERROR = 0x04; GWF_CRITICAL = 0x08; PHP_ERROR = 0x10; DB_ERROR = 0x20; SMARTY = 0x40; HTTP_ERROR = 0x80; HTTP_GET = 0x100; HTTP_POST = 0x200; IP = 0x400;'),
 
 			# 3rd Party
-			array('text', '3rd Party', 'GWF_SMARTY_PATH', GWF_SMARTY_PATH, 'Path to Smarty.class.php. Smarty replaced the GWF template engine and has to be available.'),
-			array('text', '3rd Party', 'GWF_JPGRAPH_PATH', '/opt/php/jphraph/jpgraph.php', 'Path to jpgraph.php. JPGraph is a library to draw graphs with php. It is available under the GPL.'),
+#			array('text', '3rd Party', 'GWF_SMARTY_PATH', GWF_SMARTY_PATH, 'Path to Smarty.class.php. Smarty replaced the GWF template engine and has to be available.'),
+#			array('text', '3rd Party', 'GWF_JPGRAPH_PATH', '/opt/php/jphraph/jpgraph.php', 'Path to jpgraph.php. JPGraph is a library to draw graphs with php. It is available under the GPL.'),
 			array('text', '3rd Party', 'GWF_GESHI_PATH', '/opt/php/geshi/geshi.php', 'Path to geshi.php. GeSHi is a GPL licensed Syntax highlighter.'),
 
 			# Smarty
-			array('text', 'Smarty', 'GWF_SMARTY_DIRS', $path.'extra/temp/smarty/', 'Path to smarty directories for cache, config and compiling. With trailing slash.'),
-			array('bool', 'Smarty', 'GWF_ERRORS_TO_SMARTY', true, 'Errors and Messsages are added to a smarty templatevar. If not set it is added before Pagecontent.'),
+#			array('text', 'Smarty', 'GWF_SMARTY_DIRS', $path.'extra/temp/smarty/', 'Path to smarty directories for cache, config and compiling. With trailing slash.'),
+#			array('bool', 'Smarty', 'GWF_ERRORS_TO_SMARTY', true, 'Errors and Messsages are added to a smarty templatevar. If not set it is added before Pagecontent.'),
 
 			# Defaults
 			array('text', 'Defaults', 'GWF_DEFAULT_LANG', 'en', 'Fallback language. Should be \'en\'.'),
-			array('text', 'Defaults', 'GWF_DEFAULT_MODULE', 'GWF', '1st visit module. Example: \'MyModule\'.'),
+			array('text', 'Defaults', 'GWF_DEFAULT_MODULE', 'GWF', '1st visit module. Example: \'Wanda\'.'),
 			array('text', 'Defaults', 'GWF_DEFAULT_METHOD', 'About', '1st visit method. Example: \'Home\'.'),
-			array('text', 'Defaults', 'GWF_DEFAULT_DESIGN', 'default', 'Default design. Example: \'default\'.'),
-			array('text', 'Defaults', 'GWF_ICON_SET', 'default', 'Default Icon-Set. Example: \'default\'.'),
+			array('text', 'Defaults', 'GWF_DEFAULT_DESIGN', 'default', 'Default design. Example: \'wanda\'.'),
+#			array('text', 'Defaults', 'GWF_ICON_SET', 'default', 'Default Icon-Set. Example: \'default\'.'),
 			array('text', 'Defaults', 'GWF_DOWN_REASON', 'Converting the database atm. should be back within 45 minutes.', 'The Message if maintainance-mode is enabled.'),
 			
 			# Language
-			array('text', 'Language', 'GWF_LANG_ADMIN', 'en', 'Admins language. Should be \'en\'.'),
-			array('text', 'Language', 'GWF_SUPPORTED_LANGS', 'en;de;fr;it;pl;hu;es;bs;et;fi;ur;tr;sq;nl;ru;cs;sr;lv', 'Separate 2 char ISO codes by semicolon. Currently (partially) Supported: en;de;fr;it;pl;hu;es;bs;et;fi;ur;tr;sq;nl;ru;cs;sr'),
+#			array('text', 'Language', 'GWF_LANG_ADMIN', 'en', 'Admins language. Should be \'en\'.'),
+#			array('text', 'Language', 'GWF_SUPPORTED_LANGS', 'en;de;fr;it;pl;hu;es;bs;et;fi;ur;tr;sq;nl;ru;cs;sr;lv', 'Separate 2 char ISO codes by semicolon. Currently (partially) Supported: en;de;fr;it;pl;hu;es;bs;et;fi;ur;tr;sq;nl;ru;cs;sr'),
 			
 			# Various
-			array('int10', 'Various', 'GWF_ONLINE_TIMEOUT', 60, 'A request will mark you online for N seconds.'),
-			array('int10', 'Various', 'GWF_CRONJOB_BY_WEB', 0, 'Chance in permille to trigger cronjob by www clients (0-1000)'),
+			array('int10', 'Various', 'GWF_ONLINE_TIMEOUT', 300, 'A request will mark you online for N seconds.'),
+			array('int10', 'Various', 'GWF_CRONJOB_BY_WEB', 1, 'Chance in permille to trigger cronjob by www clients (0-1000)'),
 			array('bool',  'Various', 'GWF_USER_STACKTRACE', true, 'Show stacktrace to the user on error? Example: true.' ),
 			
 			# Database
@@ -252,15 +252,15 @@ final class GWF_InstallConfig
 			
 			# Session
 			array('text',  'Session', 'GWF_SESS_NAME', 'GWF', 'Cookie Prefix. Example: \'GWF\'.'),
-			array('int10', 'Session', 'GWF_SESS_LIFETIME', 60*240, 'Session lifetime in seconds.'),
-			array('int10',  'Session', 'GWF_SESS_PER_USER', '1', 'Number of allowed simultanous sessions per user. Example: 1'),
+			array('int10', 'Session', 'GWF_SESS_LIFETIME', 8*60*60 'Session lifetime in seconds.'),
+			array('int10',  'Session', 'GWF_SESS_PER_USER', '2', 'Number of allowed simultanous sessions per user. Example: 1'),
 			
 			# IP
 			array('text',  'IP', 'GWF_IP_QUICK', 'hash_32_1', 'Hashed IP Duplicates. See core/inc/util/GWF_IP6.php'),
 			array('text',  'IP', 'GWF_IP_EXACT', 'bin_32_128', 'Complete IP storage. See core/inc/util/GWF_IP6.php'),
 			
 			# EMail
-			array('int10', 'EMail', 'GWF_DEBUG_EMAIL', 15, 'Send Mail on errors? 0=NONE, 1=DB ERRORS, 2=PHP_ERRORS, 4=404, 8=403, 16=MailToScreen)'),
+			array('int10', 'EMail', 'GWF_DEBUG_EMAIL', 15, 'Send Mail on errors? 0=NONE, 1=DB ERRORS, 2=PHP_ERRORS, 4=404, 8=403, 16=MailToScreen, 31=DEBUG)'),
 			array('text',  'EMail', 'GWF_BOT_EMAIL', 'robot@'.$domain, 'Robot sender email. Example: robot@www.site.com.'),
 			array('text',  'EMail', 'GWF_ADMIN_EMAIL', isset($_SERVER['SERVER_ADMIN']) ? $_SERVER['SERVER_ADMIN'] : 'admin@'.$domain, 'Hardcoded admin mail. Example: admin@www.site.com.'),
 			array('text',  'EMail', 'GWF_SUPPORT_EMAIL', 'support@'.$domain, 'Support email. Example: support@www.site.com.'),

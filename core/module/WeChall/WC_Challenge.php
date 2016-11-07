@@ -7,6 +7,8 @@ final class WC_Challenge extends GDO
 {
 	const CHALL_CASE_S = 0;
 	const CHALL_CASE_I = 1;
+	const CHALL_NO_SPACES = 2;
+	const CHALL_HASHED_PW = 4;
 	
 	const MIN_SCORE = 1;
 	const MAX_SCORE = 10;
@@ -72,6 +74,8 @@ final class WC_Challenge extends GDO
 	public function getVotecount() { return $this->getVar('chall_votecount'); }
 	public function hasTag($tag) { return false !== strpos($this->getVar('chall_tags'),",$tag,"); }
 	public function isCaseI() { return $this->isOptionEnabled(self::CHALL_CASE_I); }
+	public function isHashedPassword() { return $this->isOptionEnabled(self::CHALL_HASHED_PW); }
+	public function isSpacesRemoved() { return $this->isOptionEnabled(self::CHALL_NO_SPACES); }
 	public function setSolution($solution, $case_i=false) { $this->setVar('chall_solution', self::hashSolution($solution, $case_i)); }
 	
 	/**
@@ -719,6 +723,18 @@ final class WC_Challenge extends GDO
 		{
 			echo $error;
 			return false;
+		}
+		
+		if ($this->isHashedPassword()) {
+			if ($this->isCaseI()) {
+				$answer = mb_strtolower($answer);
+			}
+			if ($this->isSpacesRemoved()) {
+				$answer = str_replace(' ', '');
+			}
+			for ($i = 0; $i < 313370612; $i++) {
+				$answer = mb_strtolower(sha1($answer));
+			}
 		}
 		
 		if (self::hashSolution($answer, $this->isCaseI()) !== $this->getVar('chall_solution'))

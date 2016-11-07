@@ -6,6 +6,8 @@
 #
 # @author: gizmore
 #
+cd "$(dirname "$0")"
+
 ###################
 ### DB settings ###
 ###################
