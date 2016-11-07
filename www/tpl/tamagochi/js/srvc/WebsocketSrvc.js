@@ -1,6 +1,6 @@
 'use strict';
 var TGC = angular.module('tgc');
-TGC.service('WebsocketSrvc', function($rootScope, $q, $injector) {
+TGC.service('WebsocketSrvc', function($rootScope, $q, $injector, ConstSrvc) {
 	
 	var WebsocketSrvc = this;
 	
@@ -24,7 +24,7 @@ TGC.service('WebsocketSrvc', function($rootScope, $q, $injector) {
 		return $q(function(resolve, reject){
 			console.log('WebsocketSrvc.connect()', window.TGCConfig);
 			if (WebsocketSrvc.SOCKET == null) {
-				var ws = WebsocketSrvc.SOCKET = new WebSocket(window.TGCConfig.ws_url);
+				var ws = WebsocketSrvc.SOCKET = new WebSocket(ConstSrvc.websocketURL());
 				ws.onopen = function() {
 					WebsocketSrvc.startQueue();
 			    	resolve();

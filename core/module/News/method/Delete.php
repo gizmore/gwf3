@@ -3,15 +3,14 @@ final class News_Delete extends GWF_Method
 {
 	private $newsID;
 	
-	private function validate()
+	public function deleteNews($news)
 	{
-		if (false === ($this->newsID = Common::getPostString('newsid')))
+		if (!$news->delete())
 		{
-			return $this->module->error('err_newsid');
+			return GWF_HTML::err()
 		}
+		return true;
 	}
-		
-	
 	
 	public function deleteNewsByID($newsid)
 	{
@@ -23,13 +22,14 @@ final class News_Delete extends GWF_Method
 		return $this->deleteNews($news);
 	}
 		
-	public function deleteNews($news)
-	{
-		if (!$news->delete()) {
-		}
-		return true;
-	}
 	
+	private function validate()
+	{
+		if (false === ($this->newsID = Common::getPostString('newsid')))
+		{
+			return $this->module->error('err_newsid');
+		}
+	}
 	
 	public function execute()
 	{
@@ -38,11 +38,12 @@ final class News_Delete extends GWF_Method
 		}
 		
 		if (true !== ($result = $this->deleteNewsByID($this->newsID))) {
-			
+			return GWF_HTML::err()
 		}
 		
-		
-		GWF_Website::redirect('/news');
+		if (!isset($_GET['ajax'])) {
+			GWF_Website::redirect('/news');
+		}
 	}
 	
 	public function executeAjax()

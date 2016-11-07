@@ -20,8 +20,9 @@ final class Module_Tamagochi extends GWF_Module
 	public function onInstall($dropTable) { require_once 'TGC_Install.php'; return TGC_Install::onInstall($this, $dropTable); }
 	
 	public function cfgMapsApiKey() { return $this->getModuleVar('maps_api_key', ''); }
-	public function cfgWebsocketURL() { return sprintf('ws://giz.org:34543'); }
-
+	public function cfgWebsocketURL() { return sprintf('ws://%s:34543', GWF_DOMAIN); }
+	public function cfgWebsocketTLSURL() { return sprintf('wss://%s:61221', GWF_DOMAIN); }
+	
 	public function onStartup()
 	{
 		self::$instance = $this;

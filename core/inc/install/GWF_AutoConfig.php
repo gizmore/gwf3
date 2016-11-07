@@ -13,7 +13,7 @@ final class GWF_AutoConfig
 		$self = substr($_SERVER['REQUEST_URI'], 0, strrpos($_SERVER['REQUEST_URI'], '/install/')+1);
 		
 		define('GWF_DOMAIN', $_SERVER['HTTP_HOST']);
-		define('GWF_SITENAME', 'GWF install script');
+		define('GWF_SITENAME', 'GWF');
 		define('GWF_WEB_ROOT_NO_LANG', $self);
 		define('GWF_LOG_BITS', 0xfff);
 		

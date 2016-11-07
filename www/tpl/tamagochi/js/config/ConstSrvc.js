@@ -24,5 +24,10 @@ TGC.service('ConstSrvc', function() {
 	};
 	
 	ConstSrvc.initLevels(window.TGCConfig.levels);
+	
+	ConstSrvc.websocketURL = function() {
+		return TGCConfig.wss_url;
+	};
+	
 
 });
