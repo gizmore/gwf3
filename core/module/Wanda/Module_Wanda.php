@@ -121,7 +121,7 @@ final class Module_Wanda extends GWF_Module
 	public function wandaImage($book, $page, $image)
 	{
 		if (Common::getGetString('me') === 'GeneratePDF') {
-			return $this->wandaImageInline($book, $page, $image);
+			return $this->wandaImageSinglePage($book, $page, $image);
 		}
 		else {
 			return $this->wandaImageSinglePage($book, $page, $image);
@@ -130,9 +130,16 @@ final class Module_Wanda extends GWF_Module
 
 	public function wandaImageInline($book, $page, $image)
 	{
-		$image = sprintf("%smodule/Wanda/content/images_medium/images/Book%dPage%02dImage%d.png");
-		$image = 
-		return 
+		$imagePath = sprintf("%smodule/Wanda/content/images_medium/images/Book%dPage%02dImage%d.png", GWF_CORE_PATH, $book, $page, $image);
+		$imageData = base64_encode(file_get_contents($imagePath));
+		
+		$key = sprintf('%d.%d.%d', $book, $page, $image);
+		$w_h = self::$WANDA_IMAGES[$key];
+		$scale = 30; $w = $w_h[0] * $scale; $h = $w_h[1] * $scale;
+		
+		$dataURL = 'data: '.mime_content_type($imagePath).';base64,'.$imageData;
+		
+		return sprintf('<img src="%s" width=%d height=%d />', $dataURL, $w, $h);
 	}
 	
 	public function wandaImageSinglePage($book, $page, $image)
