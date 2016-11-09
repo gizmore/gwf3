@@ -19,10 +19,15 @@ final class Tamagochi_Home extends GWF_Method
 			'player' => TGC_Player::getCurrent(),
 // 			'api_key' => $this->module->cfgMapsApiKey(),
 			'ws_url' => $this->module->cfgWebsocketUrl(),
-			'wss_url' => $this->module->cfgWebsocketTLSUrl(),
+			'wss_url' => $this->getWSSURl(),
 			'levels' => GWF_Javascript::toJavascriptArray(TGC_Const::$LEVELS),
 		);
 		return $this->module->templatePHP('home.php', $tVars);
+	}
+	
+	private function getWSSURl()
+	{
+		return GWF_DOMAIN === 'giz.org' ? $this->module->cfgWebsocketUrl() : $this->module->cfgWebsocketTLSUrl();
 	}
 
 	private function googleAPIKey()

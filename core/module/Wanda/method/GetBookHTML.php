@@ -43,7 +43,7 @@ final class Wanda_GetBookHTML extends GWF_Method
 		return $this->module->templatePHP('page.php', $tVars);
 	}
 	
-	private function generatePageContents($book, $nPages)
+	public function generatePageContents($book, $nPages)
 	{
 		$content = '';
 		for ($page = 1; $page <= $nPages; $page++)
