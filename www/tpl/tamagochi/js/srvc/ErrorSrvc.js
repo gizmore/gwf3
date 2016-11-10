@@ -3,6 +3,17 @@ var TGC = angular.module('tgc');
 TGC.service('ErrorSrvc', function($q, $mdDialog) {
 	
 	var ErrorSrvc = this;
+
+	ErrorSrvc.showMessage = function(text, title) {
+		return $mdDialog.show(
+				$mdDialog.alert()
+				.clickOutsideToClose(true)
+				.title(title)
+				.textContent(text)
+				.ariaLabel(title)
+				.ok("OK")
+				);
+	};
 	
 	ErrorSrvc.showError = function(text, title) {
 		console.log(title, text);

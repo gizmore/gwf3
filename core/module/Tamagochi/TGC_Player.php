@@ -52,10 +52,10 @@ final class TGC_Player extends GDO
 			'e' => $this->getVar('p_active_element'),
 			's' => $this->getVar('p_active_skill'),
 			'm' => $this->getVar('p_active_mode'),
-			'fl' => $this->getVar('p_fighter_level'),
-			'nl' => $this->getVar('p_ninja_level'),
-			'pl' => $this->getVar('p_priest_level'),
-			'wl' => $this->getVar('p_wizard_level'),
+			'fl' => (int)$this->getVar('p_fighter_level'),
+			'nl' => (int)$this->getVar('p_ninja_level'),
+			'pl' => (int)$this->getVar('p_priest_level'),
+			'wl' => (int)$this->getVar('p_wizard_level'),
 		);
 	}
 	
@@ -67,10 +67,10 @@ final class TGC_Player extends GDO
 			'ec' => $this->getVar('p_last_element_change'),
 			'sc' => $this->getVar('p_last_skill_change'),
 			'mc' => $this->getVar('p_last_mode_change'),
-			'fx' => $this->getVar('p_fighter_xp'),
-			'nx' => $this->getVar('p_ninja_xp'),
-			'px' => $this->getVar('p_priest_level'),
-			'wx' => $this->getVar('p_wizard_xp'),
+			'fx' => (int)$this->getVar('p_fighter_xp'),
+			'nx' => (int)$this->getVar('p_ninja_xp'),
+			'px' => (int)$this->getVar('p_priest_level'),
+			'wx' => (int)$this->getVar('p_wizard_xp'),
 		);
 	}
 	

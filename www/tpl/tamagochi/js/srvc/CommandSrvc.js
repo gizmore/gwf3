@@ -49,9 +49,9 @@ TGC.service('CommandSrvc', function($rootScope, $injector, WebsocketSrvc) {
 		return WebsocketSrvc.sendCommand('chat', messageText);
 	};
 	
-	CommandSrvc.slap = function($scope, name) {
-		console.log('CommandSrvc.slap()', name);
-		return WebsocketSrvc.sendCommand('slap', name);
+	CommandSrvc.slap = function(player) {
+		console.log('CommandSrvc.slap()', player);
+		return WebsocketSrvc.sendCommand('slap', player.name(), false);
 	};
 	
 	CommandSrvc.player = function(player) {

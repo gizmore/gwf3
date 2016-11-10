@@ -1,6 +1,6 @@
 'use strict';
 var TGC = angular.module('tgc');
-TGC.service('PlayerDlg', function($q, $mdDialog, PlayerSrvc) {
+TGC.service('PlayerDlg', function($q, $mdDialog, ErrorSrvc, CommandSrvc, PlayerSrvc) {
 	
 	var PlayerDlg = this;
 	
@@ -25,11 +25,19 @@ TGC.service('PlayerDlg', function($q, $mdDialog, PlayerSrvc) {
 			$scope.closeDialog = function() {
 				$mdDialog.hide();
 				defer.resolve();
-			}
+			};
+			$scope
+			$scope.slap = function() {
+				CommandSrvc.slap(player).then(function(result) {
+					$mdDialog.hide();
+					ErrorSrvc.showMessage($scope.slapMessage(result), $scope.slapTitle(result));
+				});
+			};
+			
 		}
 		var parentEl = angular.element(document.body);
 		$mdDialog.show({
-			parent: document.getElementById(''),
+			parent: document.getElementById('TGCMAP'),
 			targetEvent: $event,
 			templateUrl: '/tpl/tamagochi/js/tpl/player_dialog.html',
 			locals: {

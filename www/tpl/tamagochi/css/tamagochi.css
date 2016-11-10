@@ -62,3 +62,8 @@ HTML, BODY, .MAINDIV, .MAINSECTION, #MAPCONTENT, #HOMECONTENT, #TGCMAPDIV, #TGCM
 	right: 3em;
 	opacity: 0.4137;
 }
+
+/** **/
+md-dialog-content > p {
+	padding: 2em 1.5em 0;
+}

@@ -3,6 +3,8 @@ require_once 'util/TGC_Combat.php';
 require_once 'util/TGC_Const.php';
 require_once 'util/TGC_Logic.php';
 require_once 'util/TGC_Position.php';
+
+require_once 'TGC_Attack.php';
 /**
  * @author gizmore
  * @license properitary

@@ -7,10 +7,10 @@ TGC.service('ConstSrvc', function() {
 	ConstSrvc.IN_LOGIN = false;
 	ConstSrvc.inLogin = function(bool) { if (bool !== undefined) ConstSrvc.IN_LOGIN = bool; return ConstSrvc.IN_LOGIN };
 	
-	ConstSrvc.SKILL_SHAPE_RADIUS_LAT_MIN = 0.005;
-	ConstSrvc.SKILL_SHAPE_RADIUS_LNG_MIN = 0.005;
-	ConstSrvc.SKILL_SHAPE_RADIUS_LAT_MAX = 0.100;
-	ConstSrvc.SKILL_SHAPE_RADIUS_LNG_MAX = 0.100;
+	ConstSrvc.SKILL_SHAPE_RADIUS_LAT_MIN = 0.025;
+	ConstSrvc.SKILL_SHAPE_RADIUS_LNG_MIN = 0.025;
+	ConstSrvc.SKILL_SHAPE_RADIUS_LAT_MAX = 0.200;
+	ConstSrvc.SKILL_SHAPE_RADIUS_LNG_MAX = 0.200;
 
 	ConstSrvc.LEVELS = ['none'];
 	ConstSrvc.MAX_LEVEL = 0;

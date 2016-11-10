@@ -32,7 +32,7 @@ final class TGC_Commands
 		TGC_Global::removePlayer($player);
 	}
 	
-	protected static function payload($payload, $mid=self::DEFAULT_MID)
+	public static function payload($payload, $mid=self::DEFAULT_MID)
 	{
 		return $mid === self::DEFAULT_MID ? $payload : sprintf('MID:%7s:%s', $mid, $payload);
 	}
@@ -105,9 +105,18 @@ final class TGC_Commands
 			return $player->sendError('ERR_UNKNOWN_PLAYER');
 		}
 		
-		$attack = new TGC_Attack($player, $p);
-		$p->sendJSONCommand('SLAP', $attack->jsonPayload($attack->jsonPayload($p, $mid)));
-		$player->sendJSONCommand('SLAP', self::payload($attack->jsonPayload($player, $mid)));
+		$attack = new TGC_Attack($player, $p, $mid);
+		$attack->dice();
+	}
+	
+	public static function cmd_cast(TGC_Player $player, $payload, $mid)
+	{
+		if (!($p = TGC_ServerUtil::getPlayerForName($payload))) {
+			return $player->sendError('ERR_UNKNOWN_PLAYER');
+		}
+		
+		$spell = new TGC_Spell($player, $p, $runes, $mid);
+		$spell->cast();
 	}
 	
 	
