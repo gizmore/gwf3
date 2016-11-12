@@ -26,18 +26,50 @@ TGC.service('PlayerDlg', function($q, $mdDialog, ErrorSrvc, CommandSrvc, PlayerS
 				$mdDialog.hide();
 				defer.resolve();
 			};
-			$scope
-			$scope.slap = function() {
-				CommandSrvc.slap(player).then(function(result) {
-					$mdDialog.hide();
-					ErrorSrvc.showMessage($scope.slapMessage(result), $scope.slapTitle(result));
+			$scope.slapTitle = function(data) {
+				switch (data.type) {
+				case 'fighter': return "Fight";
+				case 'ninja': return "Attack";
+				case 'priest': return "Potion";
+				case 'wizard': return "Spell";
+				}
+			};
+			$scope.slapMessage = function(data) {
+				return sprintf('%s %s %s with %s %s', data.attacker, data.adverb, data.verb, data.defender, data.adjective, data.noun);
+			}
+			$scope.fight = function() {
+				CommandSrvc.fight(player).then(function(result) {
+					console.log(result);
+					$scope.closeDialog();
+					if (result.data && result.startsWith('ERR')) {
+						ErrorSrvc.showUserError(result);
+					}
+					else {
+						var data = JSON.parse(result);
+						ErrorSrvc.showMessage($scope.slapMessage(data), $scope.slapTitle(data));
+					}
 				});
+			};
+			$scope.attack = function() {
+				CommandSrvc.attack(player).then(function(result) {
+					$scope.closeDialog();
+					if (result.data && result.data.startsWith('ERR')) {
+						ErrorSrvc.showUserError(result.data);
+					}
+					else {
+						ErrorSrvc.showMessage($scope.slapMessage(result), $scope.slapTitle(result));
+					}
+				});
+			};
+			$scope.brew = function() {
+			};
+			$scope.cast = function() {
 			};
 			
 		}
 		var parentEl = angular.element(document.body);
 		$mdDialog.show({
-			parent: document.getElementById('TGCMAP'),
+//			parent: document.getElementById('TGCMAP'),
 			targetEvent: $event,
 			templateUrl: '/tpl/tamagochi/js/tpl/player_dialog.html',
 			locals: {

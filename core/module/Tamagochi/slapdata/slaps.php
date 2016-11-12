@@ -110,7 +110,7 @@ return array(
 	array('an unholy', 66),
 ),
 
-'items' => array(
+'nouns' => array(
 	array('railgun' , 75), 
 	array('vacuum cleaner' , 35),
 	array('trout' , 25),

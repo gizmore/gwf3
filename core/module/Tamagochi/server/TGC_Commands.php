@@ -99,22 +99,43 @@ final class TGC_Commands
 		$player->sendCommand('PLAYER', self::payload($payload, $mid));
 	}
 	
-	public static function cmd_slap(TGC_Player $player, $payload, $mid)
+	public static function cmd_fight(TGC_Player $player, $payload, $mid)
 	{
 		if (!($p = TGC_ServerUtil::getPlayerForName($payload))) {
 			return $player->sendError('ERR_UNKNOWN_PLAYER');
 		}
-		
 		$attack = new TGC_Attack($player, $p, $mid);
-		$attack->dice();
+		$attack->dice('fighter');
+	}
+	
+	public static function cmd_attack(TGC_Player $player, $payload, $mid)
+	{
+		if (!($p = TGC_ServerUtil::getPlayerForName($payload))) {
+			return $player->sendError('ERR_UNKNOWN_PLAYER');
+		}
+	
+		$attack = new TGC_Attack($player, $p, $mid);
+		$attack->dice('ninja');
+	}
+	
+	public static function cmd_brew(TGC_Player $player, $payload, $mid)
+	{
+		$data = json_decode($payload);
+		if (!($p = TGC_ServerUtil::getPlayerForName($payload))) {
+			return $player->sendError('ERR_UNKNOWN_PLAYER');
+		}
+	
+		$spell = new TGC_Spell($player, $p, $runes, $mid);
+		$spell->cast();
 	}
 	
 	public static function cmd_cast(TGC_Player $player, $payload, $mid)
 	{
+		$data = json_decode($payload);
 		if (!($p = TGC_ServerUtil::getPlayerForName($payload))) {
 			return $player->sendError('ERR_UNKNOWN_PLAYER');
 		}
-		
+	
 		$spell = new TGC_Spell($player, $p, $runes, $mid);
 		$spell->cast();
 	}

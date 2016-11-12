@@ -44,8 +44,13 @@ TGC.service('ErrorSrvc', function($q, $mdDialog) {
 	ErrorSrvc.showServerError = function(error) {
 		return ErrorSrvc.showError(error, 'Server doof')
 	};
+	
+	ErrorSrvc.showUserError = function(error) {
+		ErrorSrvc.showError(error, "User error");
+	}
 
 	window.onerror = function(message, filename, lineno, colno, error) {
+		alert(1);
 		console.log(message);
 	};
 

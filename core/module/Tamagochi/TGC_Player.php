@@ -302,9 +302,9 @@ final class TGC_Player extends GDO
 		$oldLevel = (int) $this->getVar($levelvar);
 		$newLevel = TGC_Logic::levelForXP($xp);
 		if ($oldLevel !== $newLevel) {
-			$this->setVar($levelvar, $newLevel.'');
-			$this->onLevelChanged($skill, $oldLevel, $newLevel);
+			return $this->saveVar($levelvar, $newLevel.'');
 		}
+		return false;
 	}
 	
 	private function rehashJSONUser()
@@ -321,11 +321,29 @@ final class TGC_Player extends GDO
 		}
 	}
 	
-	private function onLevelChanged($skill, $oldLevel, $newLevel)
+	private function onLevelChanged($skill, $mid)
 	{
-		self::forNearMe(function($player) {
-			$player->send(sprintf('LVLUP:%s:%s:%s', $skill, $oldLevel, $newLevel));
-		});
+		$newLevel = $this->getVar('p_'.$skill.'_level');
+		
+		$payload = array(
+			'name' => $this->getName(),
+			'level' => $newLevel,
+			'skill' => $skill,
+		);
+		
+		$payload = TGC_Commands::payload($payload, $mid);
+		
+		self::forNearMe(function($player, $payload) {
+			$player->sendCommand('LVLUP', $payload);
+		}, $payload);
+	}
+	
+	public function giveXP($skill, $xp, $mid)
+	{
+		$this->increase('p_'.$skill.'_xp', $xp);
+		if ($this->rehashSkill($skill)) {
+			$this->onLevelChanged($skill, $mid);
+		}
 	}
 	
 }

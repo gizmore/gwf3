@@ -15,7 +15,7 @@ final class TGC_Attack
 	}
 	
 	
-	public function dice()
+	public function dice($skill)
 	{
 		if ($this->attacker === $this->defender) {
 			return $this->attacker->sendError(TGC_Commands::payload('ERR_ATTACK_SELF', $this->mid));
@@ -28,7 +28,47 @@ final class TGC_Attack
 		$ac = $a->getVar('p_active_color'); $dc = $d->getVar('p_active_color');
 		$ae = $a->getVar('p_active_element'); $de = $d->getVar('p_active_element');
 		
-		$adverb = 1;
+		$slaps = require(GWF_CORE_PATH.'module/Tamagochi/slapdata/slaps.php');
 		
+		$adverb = $this->randomItem($slaps['adverbs']);
+		$verb = $this->randomItem($slaps['verbs']);
+		$adjective = $this->randomItem($slaps['adjectives']);
+		$noun = $this->randomItem($slaps['nouns']);
+		$adverbName = $adverb[0];
+		$adverbPower = $adverb[1];
+		$verbName = $verb[0];
+		$verbPower = $verb[1];
+		$adjectiveName = $adjective[0];
+		$adjectivePower = $adjective[1];
+		$nounName = $noun[0];
+		$nounPower = $noun[1];
+		
+		$power = 100 * $adverbPower * $verbPower * $adjectivePower * $nounPower;
+		
+		$payload = array(
+			'adverb' => $adverbName,
+			'verb' => $verbName,
+			'adjective' => $adjectiveName,
+			'nounPower' => $nounName,
+			'adverbPower' => $adverbPower,
+			'verbPower' => $verbPower,
+			'adjectivePower' => $adjectivePower,
+			'noun' => $nounName,
+			'power' => $power,
+			'type' => $skill,
+			'attacker' => $a->getName(),
+			'defender' => $d->getName(),
+		);
+		$payload = TGC_Commands::payload(json_encode($payload), $this->mid);
+		
+		$a->sendCommand('SLAP', $payload);
+		$d->sendCommand('SLAP', $payload);
+		
+		$a->giveXP($skill, $power, $this->mid);
+	}
+	
+	private function randomItem($slaps)
+	{
+		return $slaps[array_rand($slaps)];
 	}
 }

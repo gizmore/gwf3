@@ -44,20 +44,25 @@ TGC.service('CommandSrvc', function($rootScope, $injector, WebsocketSrvc) {
 		return WebsocketSrvc.sendCommand('stats');
 	};
 
+	CommandSrvc.player = function(player) {
+		return WebsocketSrvc.sendCommand('player', player.name(), false);
+	};
+	
 	CommandSrvc.chat = function($scope, messageText) {
 		console.log('CommandSrvc.chat()', messageText);
 		return WebsocketSrvc.sendCommand('chat', messageText);
 	};
 	
-	CommandSrvc.slap = function(player) {
-		console.log('CommandSrvc.slap()', player);
-		return WebsocketSrvc.sendCommand('slap', player.name(), false);
-	};
-	
-	CommandSrvc.player = function(player) {
-		return WebsocketSrvc.sendCommand('player', player.name(), false);
+	CommandSrvc.fight = function(player) {
+		console.log('CommandSrvc.fight()', player);
+		return WebsocketSrvc.sendCommand('fight', player.name(), false);
 	};
 
+	CommandSrvc.attack = function(player) {
+		console.log('CommandSrvc.attack()', player);
+		return WebsocketSrvc.sendCommand('attack', player.name(), false);
+	};
+	
 	/////////////////////
 	// Server commands //
 	/////////////////////
