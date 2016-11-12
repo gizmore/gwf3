@@ -35,35 +35,28 @@ TGC.service('PlayerDlg', function($q, $mdDialog, ErrorSrvc, CommandSrvc, PlayerS
 				}
 			};
 			$scope.slapMessage = function(data) {
-				return sprintf('%s %s %s with %s %s', data.attacker, data.adverb, data.verb, data.defender, data.adjective, data.noun);
+				return sprintf('%s %s %s with %s %s %s.<br/>%s Damage!', data.attacker, data.adverb, data.verb, data.defender, data.adjective, data.noun, data.power);
 			}
+			$scope.afterFight = function(result) {
+				if (result.data && result.startsWith('ERR')) {
+					ErrorSrvc.showUserError(result);
+				}
+				else {
+					var data = JSON.parse(result);
+					ErrorSrvc.showMessage($scope.slapMessage(data), $scope.slapTitle(data));
+				}
+			};
 			$scope.fight = function() {
-				CommandSrvc.fight(player).then(function(result) {
-					console.log(result);
-					$scope.closeDialog();
-					if (result.data && result.startsWith('ERR')) {
-						ErrorSrvc.showUserError(result);
-					}
-					else {
-						var data = JSON.parse(result);
-						ErrorSrvc.showMessage($scope.slapMessage(data), $scope.slapTitle(data));
-					}
-				});
+				CommandSrvc.fight(player).then($scope.afterFight);
 			};
 			$scope.attack = function() {
-				CommandSrvc.attack(player).then(function(result) {
-					$scope.closeDialog();
-					if (result.data && result.data.startsWith('ERR')) {
-						ErrorSrvc.showUserError(result.data);
-					}
-					else {
-						ErrorSrvc.showMessage($scope.slapMessage(result), $scope.slapTitle(result));
-					}
-				});
+				CommandSrvc.attack(player).then($scope.afterFight);
 			};
 			$scope.brew = function() {
+				SpellDlg.show(player);
 			};
 			$scope.cast = function() {
+				SpellDlg.show(player);
 			};
 			
 		}

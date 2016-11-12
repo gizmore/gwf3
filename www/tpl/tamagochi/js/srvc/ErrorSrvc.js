@@ -50,8 +50,7 @@ TGC.service('ErrorSrvc', function($q, $mdDialog) {
 	}
 
 	window.onerror = function(message, filename, lineno, colno, error) {
-		alert(1);
-		console.log(message);
+		ErrorSrvc.showError(message, 'Javascript error');
 	};
 
 });

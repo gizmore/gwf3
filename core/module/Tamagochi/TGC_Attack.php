@@ -43,8 +43,18 @@ final class TGC_Attack
 		$nounName = $noun[0];
 		$nounPower = $noun[1];
 		
-		$power = 100 * $adverbPower * $verbPower * $adjectivePower * $nounPower;
+		$power = round(100 * ($adverbPower/100.0) * ($verbPower/100.0) * ($adjectivePower/100.0) * ($nounPower/100.0));
 		
+		$crit = $this->isCriticalHit($a, $d);
+		if ($crit) {
+			$power *= 2;
+		}
+		
+		$power *= $this->modePowerMultiplier($a, $d);
+		$power *= $this->skillPowerMultiplier($a, $d);
+		$power *= $this->colorPowerMultiplier($a, $d);
+		$power *= $this->elementPowerMultiplier($a, $d);
+
 		$payload = array(
 			'adverb' => $adverbName,
 			'verb' => $verbName,
@@ -58,6 +68,7 @@ final class TGC_Attack
 			'type' => $skill,
 			'attacker' => $a->getName(),
 			'defender' => $d->getName(),
+			'critical' => $crit,
 		);
 		$payload = TGC_Commands::payload(json_encode($payload), $this->mid);
 		
@@ -66,9 +77,34 @@ final class TGC_Attack
 		
 		$a->giveXP($skill, $power, $this->mid);
 	}
-	
+
 	private function randomItem($slaps)
 	{
 		return $slaps[array_rand($slaps)];
 	}
+	private function isCriticalHit(TGC_Player $attacker, TGC_Player $defender)
+	{
+		return false;
+	}
+
+	private function modePowerMultiplier(TGC_Player $attacker, TGC_Player $defender)
+	{
+		return 1.0;
+	}
+
+	private function skillPowerMultiplier(TGC_Player $attacker, TGC_Player $defender)
+	{
+		return 1.0;
+	}
+
+	private function colorPowerMultiplier(TGC_Player $attacker, TGC_Player $defender)
+	{
+		return 1.0;
+	}
+
+	private function elementPowerMultiplier(TGC_Player $attacker, TGC_Player $defender)
+	{
+		return 1.0;
+	}
+	
 }

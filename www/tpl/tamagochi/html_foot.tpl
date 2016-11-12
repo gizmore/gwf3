@@ -41,6 +41,7 @@
 	<script src="{$root}tpl/tamagochi/js/srvc/PositionSrvc.js"></script>
 	<script src="{$root}tpl/tamagochi/js/srvc/RequestInterceptor.js"></script>
 	<script src="{$root}tpl/tamagochi/js/srvc/RequestSrvc.js"></script>
+	<script src="{$root}tpl/tamagochi/js/srvc/SpellDlg.js"></script>
 	<script src="{$root}tpl/tamagochi/js/srvc/WebsocketSrvc.js"></script>
 
 	<script src="{$root}tpl/tamagochi/js/ctrl/ChatSendCtrl.js"></script>

@@ -4,39 +4,29 @@ TGC.service('SpellDlg', function($q, $mdDialog, ErrorSrvc, CommandSrvc, PlayerSr
 	
 	var SpellDlg = this;
 	
-	SpellDlg.open = function($event, player) {
+	SpellDlg.open = function(player) {
 		console.log('SpellDlg.open()', player);
 		var defer = $q.defer();
-		PlayerSrvc.withStats(player).then(function(player) {
-			SpellDlg.show(player, defer, $event);
-		});
+		SpellDlg.show(player, defer);
 		return defer.promise;
 	};
 
-	PlayerDlg.show = function(player, defer, $event) {
+	SpellDlg.show = function(player, defer) {
 		function DialogController($scope, $mdDialog, player) {
 			$scope.player = player;
 			$scope.closeDialog = function() {
 				$mdDialog.hide();
 				defer.resolve();
 			};
-			$scope.fight = function() {
-				CommandSrvc.fight(player).then(function(result) {
-					ErrorSrvc.showMessage($scope.slapMessage(result), $scope.slapTitle(result));
-				});
-				$scope.closeDialog();
-			};
-			$scope.attack = function() {
-				CommandSrvc.attack(player).then(function(result) {
-					ErrorSrvc.showMessage($scope.slapMessage(result), $scope.slapTitle(result));
-				});
+			$scope.afterCast = function(result) {
+				ErrorSrvc.showMessage($scope.slapMessage(result), $scope.slapTitle(result));
 				$scope.closeDialog();
 			};
 			$scope.brew = function() {
-				$scope.closeDialog();
+				CommandSrvc.brew(player, spelltxt).then($scope.afterCast);
 			};
 			$scope.cast = function() {
-				$scope.closeDialog();
+				CommandSrvc.cast(player, spelltxt).then($scope.afterCast);
 			};
 			
 		}

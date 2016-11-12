@@ -331,7 +331,7 @@ final class TGC_Player extends GDO
 			'skill' => $skill,
 		);
 		
-		$payload = TGC_Commands::payload($payload, $mid);
+		$payload = TGC_Commands::payload(json_encode($payload), $mid);
 		
 		self::forNearMe(function($player, $payload) {
 			$player->sendCommand('LVLUP', $payload);
