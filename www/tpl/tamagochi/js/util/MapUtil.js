@@ -7,6 +7,8 @@ TGC.service('MapUtil', function(ColorUtil, PlayerDlg, PlayerSrvc, ShapeUtil) {
 	MapUtil.MAP = null;
 	MapUtil.MAP_ID = 'TGCMAP';
 	MapUtil.MARKERS = {};
+	MapUtil.PAN_TIMER = null;
+	MapUtil.PAN_TIMEOUT = 1337;
 
 	MapUtil.OPTIONS = {
 //			backgroundColor: '#0008',
@@ -59,9 +61,21 @@ TGC.service('MapUtil', function(ColorUtil, PlayerDlg, PlayerSrvc, ShapeUtil) {
 			MapUtil.MAP = new google.maps.Map(MapUtil.canvas(), MapUtil.OPTIONS);
 			if (!MapUtil.MAP) {
 				console.error('Can not find map with id: '+id);
+				return undefined;
 			}
+			MapUtil.MAP.addListener('center_changed', MapUtil.panBack);
 		}
 		return MapUtil.MAP;
+	};
+	
+	MapUtil.panBack = function() {
+		if (MapUtil.PAN_TIMER) {
+			clearTimeout(MapUtil.PAN_TIMER);
+			MapUtil.PAN_TIMER = null;
+		}
+		MapUtil.PAN_TIMER = window.setTimeout(function() {
+			MapUtil.MAP.panTo(PlayerSrvc.OWN.latLng());
+		}, MapUtil.PAN_TIMEOUT);
 	};
 	
 	MapUtil.playerChat = function(player, message) {

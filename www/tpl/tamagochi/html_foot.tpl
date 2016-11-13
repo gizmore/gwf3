@@ -29,6 +29,8 @@
 
 	<script src="{$root}tpl/tamagochi/js/directives/ngEnter.js"></script>
 
+	<script src="{$root}tpl/tamagochi/js/filters/Regdate.js"></script>
+
 	<script src="{$root}tpl/tamagochi/js/model/GWFMessage.js"></script>
 	<script src="{$root}tpl/tamagochi/js/model/Player.js"></script>
 

@@ -43,7 +43,7 @@ final class TGC_Attack
 		$nounName = $noun[0];
 		$nounPower = $noun[1];
 		
-		$power = round(100 * ($adverbPower/100.0) * ($verbPower/100.0) * ($adjectivePower/100.0) * ($nounPower/100.0));
+		$power = round(1 * ($adverbPower/10.0) * ($verbPower/10.0) * ($adjectivePower/10.0) * ($nounPower/10.0));
 		
 		$crit = $this->isCriticalHit($a, $d);
 		if ($crit) {
@@ -84,17 +84,43 @@ final class TGC_Attack
 	}
 	private function isCriticalHit(TGC_Player $attacker, TGC_Player $defender)
 	{
-		return false;
+		return TGC_Logic::dice(1, 20) === 20;
 	}
 
 	private function modePowerMultiplier(TGC_Player $attacker, TGC_Player $defender)
 	{
-		return 1.0;
+		$am = $a->getVar('p_active_mode'); $dm = $d->getVar('p_active_mode');
+		if ($am == $dm) {
+			return 1.00;
+		}
+		else if ($am == 'attacker') {
+			return 1.05;
+		}
+		else {
+			return 0.95;
+		}
 	}
 
-	private function skillPowerMultiplier(TGC_Player $attacker, TGC_Player $defender)
+	private function skillPowerMultiplier(TGC_Player $attacker, TGC_Player $defender, $skill)
 	{
 		return 1.0;
+		$af = $attacker->getVar('p_fighter_level'); $df = $defender->getVar('p_fighter_level');
+		$an = $attacker->getVar('p_ninja_level'); $dn = $defender->getVar('p_ninja_level');
+		$ap = $attacker->getVar('p_priest_level'); $dp = $defender->getVar('p_priest_level');
+		$aw = $attacker->getVar('p_wizard_level'); $dw = $defender->getVar('p_wizard_level');
+		
+		switch ($skill)
+		{
+		case 'fighter':
+			$atotal = $af + $an;
+			$dtotal = $df + $dn;
+		case 'ninja':
+			
+		case 'priest':
+			
+		case 'wizard':
+			
+		}
 	}
 
 	private function colorPowerMultiplier(TGC_Player $attacker, TGC_Player $defender)

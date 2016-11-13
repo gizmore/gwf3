@@ -1,6 +1,6 @@
 'use strict';
 var TGC = angular.module('tgc');
-TGC.service('PlayerDlg', function($q, $mdDialog, ErrorSrvc, CommandSrvc, PlayerSrvc) {
+TGC.service('PlayerDlg', function($q, $mdDialog, ErrorSrvc, CommandSrvc, PlayerSrvc, SpellDlg) {
 	
 	var PlayerDlg = this;
 	
@@ -38,7 +38,7 @@ TGC.service('PlayerDlg', function($q, $mdDialog, ErrorSrvc, CommandSrvc, PlayerS
 				return sprintf('%s %s %s with %s %s %s.<br/>%s Damage!', data.attacker, data.adverb, data.verb, data.defender, data.adjective, data.noun, data.power);
 			}
 			$scope.afterFight = function(result) {
-				if (result.data && result.startsWith('ERR')) {
+				if (result && result.startsWith('ERR')) {
 					ErrorSrvc.showUserError(result);
 				}
 				else {
@@ -64,7 +64,7 @@ TGC.service('PlayerDlg', function($q, $mdDialog, ErrorSrvc, CommandSrvc, PlayerS
 		$mdDialog.show({
 //			parent: document.getElementById('TGCMAP'),
 			targetEvent: $event,
-			templateUrl: '/tpl/tamagochi/js/tpl/player_dialog.html',
+			templateUrl: '/tpl/tamagochi/js/tpl/player_dlg.html',
 			locals: {
 				player: player
 			},
