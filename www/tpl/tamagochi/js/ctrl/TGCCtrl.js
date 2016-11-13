@@ -22,6 +22,19 @@ TGC.controller('TGCCtrl', function($rootScope, $scope, $state, $mdSidenav, Playe
 				$state.go('home');
 			}
 		}
+		else if (toState.name === 'connect') {
+			console.log(fromState);
+		}
+		else if (toState.name === 'game') {
+			if (fromState !== 'connect') {
+				$state.go('home');
+			}
+		}
+		else if (toState.name === 'login') {
+			if (fromState !== 'home') {
+				$state.go('home');
+			}
+		}
 	});
 
 	$scope.toggleLeftMenu = function() {

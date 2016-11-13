@@ -1,8 +1,54 @@
 <md-dialog aria-label="Spell dialog">
-	<md-dialog-content>
+	<md-dialog-content layout-padding>
+	
+		<div class="spell-row spell-row-0" ng-if="data.runes.length >= 0">
+			<ol>
+				<li ng-click="spell($event, 0, 'LO')">LO</li>
+				<li ng-click="spell($event, 0, 'UM')">UM</li>
+				<li ng-click="spell($event, 0, 'ON')">ON</li>
+				<li ng-click="spell($event, 0, 'EE')">EE</li>
+				<li ng-click="spell($event, 0, 'PAR')">PAR</li>
+				<li ng-click="spell($event, 0, 'MON')">MON</li>
+			</ol>
+		</div>
+	
+		<div class="spell-row spell-row-1" ng-if="data.runes.length >= 1">
+			<ol>
+				<li ng-click="spell($event, 1, 'RI')">RI</li>
+				<li ng-click="spell($event, 1, 'GO')">GO</li>
+				<li ng-click="spell($event, 1, 'OL')">OL</li>
+				<li ng-click="spell($event, 1, 'LI')">LI</li>
+				<li ng-click="spell($event, 1, 'OP')">OP</li>
+				<li ng-click="spell($event, 1, 'PE')">PE</li>
+			</ol>
+		</div>
+
+		<div class="spell-row spell-row-2" ng-if="data.runes.length >= 2">
+			<ol>
+				<li ng-click="spell($event, 2, 'INA')">INA</li>
+				<li ng-click="spell($event, 2, 'GUN')">GUN</li>
+				<li ng-click="spell($event, 2, 'DAN')">DAN</li>
+				<li ng-click="spell($event, 2, 'MAN')">MAN</li>
+				<li ng-click="spell($event, 2, 'DYN')">DYN</li>
+				<li ng-click="spell($event, 2, 'HAN')">HAN</li>
+			</ol>
+		</div>
+
+		<div class="spell-row spell-row-3" ng-if="data.runes.length >= 3">
+			<ol>
+				<li ng-click="spell($event, 3, 'QUAN')">QUAN</li>
+				<li ng-click="spell($event, 3, 'FLEM')">FLEM</li>
+				<li ng-click="spell($event, 3, 'KEND')">KEND</li>
+				<li ng-click="spell($event, 3, 'EPOK')">EPOK</li>
+				<li ng-click="spell($event, 3, 'STEW')">STEW</li>
+				<li ng-click="spell($event, 3, 'ERIK')">ERIK</li>
+			</ol>
+		</div>
+	
 	</md-dialog-content>
 	<md-dialog-actions>
-		<md-button ng-click="cast()" class="md-primary" aria-label="Cast">Cast</md-button>
+		<md-button ng-if="data.type=='brew'" ng-click="brew()" class="md-primary" aria-label="Brew">Brew</md-button>
+		<md-button ng-if="data.type=='cast'" ng-click="cast()" class="md-primary" aria-label="Cast">Cast</md-button>
 		<md-button ng-click="closeDialog()" class="md-primary" aria-label="Close dialog">Close Dialog</md-button>
 	</md-dialog-actions>
 </md-dialog>

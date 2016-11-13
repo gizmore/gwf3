@@ -53,10 +53,10 @@ TGC.service('PlayerDlg', function($q, $mdDialog, ErrorSrvc, CommandSrvc, PlayerS
 				CommandSrvc.attack(player).then($scope.afterFight);
 			};
 			$scope.brew = function() {
-				SpellDlg.show(player);
+				SpellDlg.show(player, 'brew');
 			};
 			$scope.cast = function() {
-				SpellDlg.show(player);
+				SpellDlg.show(player, 'cast');
 			};
 			
 		}

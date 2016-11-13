@@ -114,26 +114,6 @@ final class TGC_Player extends GDO
 		return substr(self::table('GWF_User')->selectVar('user_password', "user_id=$uid", '', array('user')), TGC_Const::SECRET_CUT);
 	}
 	
-	public function getName()
-	{
-		return $this->getVar('user_name');
-	}
-	
-	public function getGender()
-	{
-		return $this->getVar('user_gender');
-	}
-	
-	public function lat()
-	{
-		return $this->lat;
-	}
-	
-	public function lng()
-	{
-		return $this->lng;
-	}
-	
 	public static function getCurrent($create=false)
 	{
 		$uid = GWF_Session::getUserID();
@@ -149,6 +129,27 @@ final class TGC_Player extends GDO
 		return false;
 	}
 	
+	###############
+	### Getters ###
+	###############
+	public function getName() { return $this->getVar('user_name'); }
+	public function getGender() { return $this->getVar('user_gender'); }
+	public function lat() { return $this->lat; }
+	public function lng() { return $this->lng; }
+	
+	public function level($skill) { return (int) $this->getVar('p_'.$skill.'_level'); }
+	public function sumLevel() { return $this->fighterLevel() + $this->ninjaLevel() + $this->priestLevel() + $this->wizardLevel(); }
+	public function fighterLevel() { return $this->level('fighter'); }
+	public function ninjaLevel() { return $this->level('ninja'); }
+	public function priestLevel() { return $this->level('priest'); }
+	public function wizardLevel() { return $this->level('wizard'); }
+	
+	public function xp($skill) { return (int) $this->getVar('p_'.$skill.'_xp'); }
+	public function fighterXP() { return $this->xp('fighter'); }
+	public function ninjaXP() { return $this->xp('ninja'); }
+	public function priestXP() { return $this->xp('priest'); }
+	public function wizardXP() { return $this->xp('wizard'); }
+
 	##################
 	### Connection ###
 	##################
@@ -247,26 +248,6 @@ final class TGC_Player extends GDO
 	public function moveTo($newLat, $newLng)
 	{
 		$this->setPosition($newLat, $newLng);
-		
-		/*$oldLat = $this->lat;
-		$oldLng = $this->lng;
-
-		
-		foreach (TGC_Globals::$PLAYERS as $name=> $player) {
-			$oldNear = $player->isNearPosition($oldLat, $oldLng);
-			$newNear = $player->isNearPosition($newLat, $newLng);
-			if ($oldNear != $newNear) {
-				if ($newNear === true) {
-					$player->send(sprintf('APPEAR:%s:%.06f:%.06f', $this->getName(), $this->lat, $this->lng));
-				}
-				else {
-					$player->send(sprintf('DISAPPEAR:%s:%.06f:%.06f', $this->getName(), $this->lat, $this->lng));
-				}
-			}
-			else if ($newNear === true) {
-				$player->send(sprintf('POS:%s:%.06f:%.06f', $this->getName(), $this->lat, $this->lng));
-			}
-		}*/
 	}
 	
 	public function getStatsHash()

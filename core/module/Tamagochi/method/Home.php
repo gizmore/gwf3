@@ -17,10 +17,10 @@ final class Tamagochi_Home extends GWF_Method
 		$tVars = array(
 			'user' => GWF_Session::getUser(),
 			'player' => TGC_Player::getCurrent(),
-// 			'api_key' => $this->module->cfgMapsApiKey(),
 			'ws_url' => $this->module->cfgWebsocketUrl(),
 			'wss_url' => $this->getWSSURl(),
 			'levels' => GWF_Javascript::toJavascriptArray(TGC_Const::$LEVELS),
+			'runes' => json_encode(TGC_Const::$RUNES),
 		);
 		return $this->module->templatePHP('home.php', $tVars);
 	}

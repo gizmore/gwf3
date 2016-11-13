@@ -124,8 +124,7 @@ final class TGC_Commands
 		if (!($p = TGC_ServerUtil::getPlayerForName($payload))) {
 			return $player->sendError('ERR_UNKNOWN_PLAYER');
 		}
-	
-		$spell = new TGC_Spell($player, $p, $runes, $mid);
+		$potion = TGC_Potion::factory($player, $p, 'brew', $data->runes, $mid);
 		$spell->cast();
 	}
 	
@@ -135,10 +134,7 @@ final class TGC_Commands
 		if (!($p = TGC_ServerUtil::getPlayerForName($payload))) {
 			return $player->sendError('ERR_UNKNOWN_PLAYER');
 		}
-	
-		$spell = new TGC_Spell($player, $p, $runes, $mid);
+		$spell = TGC_Spell::factory($player, $p, 'cast', $data->runes, $mid);
 		$spell->cast();
 	}
-	
-	
 }

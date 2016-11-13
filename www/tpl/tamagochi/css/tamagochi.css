@@ -67,3 +67,20 @@ HTML, BODY, .MAINDIV, .MAINSECTION, #MAPCONTENT, #HOMECONTENT, #TGCMAPDIV, #TGCM
 md-dialog-content > p {
 	padding: 2em 1.5em 0;
 }
+
+/** Spell Dialog **/
+.spell-row {
+	
+}
+
+.spell-row ol {
+	list-style: none;
+}
+
+.spell-row li {
+	display: inline-block;
+}
+
+.spell-row li.selected_rune {
+	background: red;
+}

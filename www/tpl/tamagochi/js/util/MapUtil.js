@@ -26,8 +26,8 @@ TGC.service('MapUtil', function(ColorUtil, PlayerDlg, PlayerSrvc, ShapeUtil) {
 //			mapTypeControl: false, // The initial enabled/disabled state of the Map type control.
 //			mapTypeControlOptions: // Type:  MapTypeControlOptions – The initial display options for the Map type control.
 //			mapTypeId: 'ROADMAP' // Type:  MapTypeId
-			maxZoom: 18,
-			minZoom: 8,
+			maxZoom: 16,
+			minZoom: 9,
 //			noClear: true,
 //			panControl: true,
 //			panControlOptions: // Type:  PanControlOptions The display options for the Pan control.
@@ -73,9 +73,11 @@ TGC.service('MapUtil', function(ColorUtil, PlayerDlg, PlayerSrvc, ShapeUtil) {
 			clearTimeout(MapUtil.PAN_TIMER);
 			MapUtil.PAN_TIMER = null;
 		}
-		MapUtil.PAN_TIMER = window.setTimeout(function() {
-			MapUtil.MAP.panTo(PlayerSrvc.OWN.latLng());
-		}, MapUtil.PAN_TIMEOUT);
+		if (PlayerSrvc.OWN && PlayerSrvc.OWN.hasPosition()) {
+			MapUtil.PAN_TIMER = window.setTimeout(function() {
+				MapUtil.MAP.panTo(PlayerSrvc.OWN.latLng());
+			}, MapUtil.PAN_TIMEOUT);
+		}
 	};
 	
 	MapUtil.playerChat = function(player, message) {
@@ -102,12 +104,12 @@ TGC.service('MapUtil', function(ColorUtil, PlayerDlg, PlayerSrvc, ShapeUtil) {
 	
 	MapUtil.addMarkerForPlayer = function(player) {
 		player.marker = new google.maps.Marker({
-		    position: player.latLng(),
-		    map: MapUtil.map(),
-		    title: player.name(),
-		    label: player.name(),
-		    size: MapUtil.sizeForPlayer(player),
-//		    image: MapUtil.imageForPlayer(player),
+			position: player.latLng(),
+			map: MapUtil.map(),
+			title: player.name(),
+			label: player.name(),
+			size: MapUtil.sizeForPlayer(player),
+//			image: MapUtil.imageForPlayer(player),
 		});
 		player.marker.addListener('click', function(event) {
 			PlayerDlg.open(event, player);
@@ -148,11 +150,11 @@ TGC.service('MapUtil', function(ColorUtil, PlayerDlg, PlayerSrvc, ShapeUtil) {
 		}, 5000);
 	};
 
-    MapUtil.imageForPlayer = function(player) {
-    };
+	MapUtil.imageForPlayer = function(player) {
+	};
 
-    MapUtil.sizeForPlayer = function(player) {
-    	return 41.13 + player.fighterLevel() + player.ninjaLevel() + player.priestLevel() + player.wizardLevel(); 
-    };
+	MapUtil.sizeForPlayer = function(player) {
+		return 41.13 + player.fighterLevel() + player.ninjaLevel() + player.priestLevel() + player.wizardLevel(); 
+	};
 
-   });
+});

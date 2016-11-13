@@ -87,7 +87,7 @@ final class TGC_Attack
 		return TGC_Logic::dice(1, 20) === 20;
 	}
 
-	private function modePowerMultiplier(TGC_Player $attacker, TGC_Player $defender)
+	private function modePowerMultiplier(TGC_Player $a, TGC_Player $d)
 	{
 		$am = $a->getVar('p_active_mode'); $dm = $d->getVar('p_active_mode');
 		if ($am == $dm) {
