@@ -63,6 +63,18 @@ TGC.service('CommandSrvc', function($rootScope, $injector, WebsocketSrvc) {
 		return WebsocketSrvc.sendCommand('attack', player.name(), false);
 	};
 	
+	CommandSrvc.brew = function(player, runes) {
+		console.log('CommandSrvc.brew()', player, runes);
+		return WebsocketSrvc.sendJSONCommand('brew', { target: player.name(), runes: runes }, false);
+	};
+	
+	CommandSrvc.cast = function(player, runes) {
+		console.log('CommandSrvc.cast()', player, runes);
+		return WebsocketSrvc.sendJSONCommand('cast', { target: player.name(), runes: runes }, false);
+	};
+	
+	
+	
 	/////////////////////
 	// Server commands //
 	/////////////////////

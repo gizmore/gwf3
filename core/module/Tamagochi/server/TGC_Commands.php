@@ -121,20 +121,20 @@ final class TGC_Commands
 	public static function cmd_brew(TGC_Player $player, $payload, $mid)
 	{
 		$data = json_decode($payload);
-		if (!($p = TGC_ServerUtil::getPlayerForName($payload))) {
+		if (!($p = TGC_ServerUtil::getPlayerForName($data->target))) {
 			return $player->sendError('ERR_UNKNOWN_PLAYER');
 		}
-		$potion = TGC_Potion::factory($player, $p, 'brew', $data->runes, $mid);
+		$potion = TGC_Potion::factory($player, $p, 'BREW', $data->runes, $mid);
 		$spell->cast();
 	}
 	
 	public static function cmd_cast(TGC_Player $player, $payload, $mid)
 	{
 		$data = json_decode($payload);
-		if (!($p = TGC_ServerUtil::getPlayerForName($payload))) {
+		if (!($p = TGC_ServerUtil::getPlayerForName($data->target))) {
 			return $player->sendError('ERR_UNKNOWN_PLAYER');
 		}
-		$spell = TGC_Spell::factory($player, $p, 'cast', $data->runes, $mid);
+		$spell = TGC_Spell::factory($player, $p, 'CAST', $data->runes, $mid);
 		$spell->cast();
 	}
 }

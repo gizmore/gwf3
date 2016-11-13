@@ -9,19 +9,26 @@
 			</div>
 			<md-toolbar class="md-theme-indigo"layout-align="right">
 				<h1 class="md-toolbar-tools">Account</h1>
+				<md-content layout-margin ng-controller="AccountCtrl" class="tgc-account">
+				</md-content>
 			</md-toolbar>
-			<md-content layout-margin>
-				<p>This sidenav is not showing any backdrop, where users can click on it, to close the sidenav.</p>
-				<md-button ng-click="toggleLeftMenu()" class="md-accent">Close this Sidenav</md-button>
-			</md-content>
-			<md-content ng-controller="DashboardCtrl">
-				<h1 class="md-toolbar-tools">Dashboard</h1>
-				<md-button ng-visible="data.createAvatar" ng-click="createAvatar()" class="md-accent">Create Avatar</md-button>
-				<md-button ng-click="setAvatar()" class="md-accent">Change Avatar</md-button>
-				<md-button ng-click="setElement()" class="md-accent">Close this Sidenav</md-button>
-				<md-button ng-click="setMode()" class="md-accent">Close this Sidenav</md-button>
-				<md-button ng-click="setSkill()" class="md-accent">Close this Sidenav</md-button>
-			</md-content>
+
+			<md-toolbar class="md-theme-indigo"layout-align="right">
+				<h1 class="md-toolbar-tools">Settings</h1>
+				<md-content layout-margin ng-controller="SettingsCtrl" class="tgc-account">
+				</md-content>
+			</md-toolbar>
+
+			<md-toolbar class="md-theme-indigo"layout-align="right">
+				<h1 class="md-toolbar-tools">Level</h1>
+				<md-content layout-margin ng-controller="LevelCtrl" class="tgc-levels">
+					<div><i>Fighter</i>: <b>{{data.player.fighterLevelName()}}</b></div>
+					<div><i>Ninja</i>: <b>{{data.player.ninjaLevelName()}}</b></div>
+					<div><i>Priest</i>: <b>{{data.player.priestLevelName()}}</b></div>
+					<div><i>Wizard</i>: <b>{{data.player.wizardLevelName()}}</b></div>
+				</md-content>
+			</md-toolbar>
+
 		</md-sidenav>
 
 		<!-- RIGHT -->

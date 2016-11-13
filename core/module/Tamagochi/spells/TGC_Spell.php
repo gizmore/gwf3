@@ -13,16 +13,16 @@ class TGC_Spell
 	public function canTargetOther() { return false; }
 	public function valid() { return $this->runes !== false; }
 	
-	public function getSpellName() { return strtoupper(implode('', $this->runes)); }
+	public function getSpellName() { return implode('', $this->runes); }
 	
 	###############
 	### Factory ###
 	###############
 	public static function factory(TGC_Player $player, TGC_Player $target, $type, $runes, $mid)
 	{
-		$runes = preg_replace($runes, '[^a-z]', '');
+		$runes = preg_replace($runes, '[^A-Z]', '');
 		var_dump($runes);
-		$classname = strtoupper($runes);
+		$classname = $runes;
 		$filename = GWF_CORE_PATH."module/Tamagochi/spells/$classname.php";
 		if (file_exists($filename) && is_file($filename))
 		{
@@ -63,7 +63,7 @@ class TGC_Spell
 		$runes = '';
 		foreach (explode(',', $runes) as $rune)
 		{
-			if (false === ($level = $this->validRune(strtoupper($rune), $row)))
+			if (false === ($level = $this->validRune($rune, $row)))
 			{
 				return false;
 			}
@@ -106,14 +106,14 @@ class TGC_Spell
 	public function nothingHappens()
 	{
 		$payload = $this->defaultPayload(array('FAIL' => true));
-		$this->player->sendCommand(strtoupper($this->type), TGC_Commands::payload($payload, $mid));
+		$this->player->sendCommand($this->type, TGC_Commands::payload($payload, $mid));
 	}
 	
 	public function defaultCast($json)
 	{
 		$payload = $this->defaultPayload($json);
-		$this->target->sendCommand(strtoupper($this->type), TGC_Commands::payload($payload, $mid));
-		$this->player->sendCommand(strtoupper($this->type), TGC_Commands::payload($payload, $mid));
+		$this->target->sendCommand($this->type, TGC_Commands::payload($payload, $mid));
+		$this->player->sendCommand($this->type, TGC_Commands::payload($payload, $mid));
 	}
 	
 	private function defaultPayload($json)
@@ -134,7 +134,7 @@ class TGC_Spell
 		{
 			if (!$this->canTargetSelf())
 			{
-				$this->player->sendError('ERR_'.strtoupper($this->type).'_SELF');
+				$this->player->sendError('ERR_'.$this->type.'_SELF');
 			}
 			else
 			{
@@ -145,7 +145,7 @@ class TGC_Spell
 		{
 			if (!$this->canTargetOther())
 			{
-				$this->player->sendError('ERR_'.strtoupper($this->type).'_OTHER');
+				$this->player->sendError('ERR_'.$this->type.'_OTHER');
 			}
 			else
 			{

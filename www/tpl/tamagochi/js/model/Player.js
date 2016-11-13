@@ -37,10 +37,19 @@ window.TGC.Player = function(json, userJSON, secret) {
 	this.priestLevel = function(level) { if (level) this.JSON.pl = level; return this.JSON.pl; };
 	this.wizardLevel = function(level) { if (level) this.JSON.wl = level; return this.JSON.wl; };
 	
+	this.fighterLevelName = function() { return this.levelName(this.fighterLevel()); };
+	this.ninjaLevelName = function() { return this.levelName(this.ninjaLevel()); };
+	this.priestLevelName = function() { return this.levelName(this.priestLevel()); };
+	this.wizardLevelName = function() { return this.levelName(this.wizardLevel()); };
+
 	this.lastModeChange = function(lastChange) { if (lastChange) this.JSON.mc = lastChange; return this.JSON.mc };
 	this.lastColorChange = function(lastChange) { if (lastChange) this.JSON.cc = lastChange; return this.JSON.cc };
 	this.lastSkillChange = function(lastChange) { if (lastChange) this.JSON.sc = lastChange; return this.JSON.sc };
 	this.lastElementChange = function(lastChange) { if (lastChange) this.JSON.ec = lastChange; return this.JSON.ec };
+	
+	this.levelName = function(level) {
+		return window.TGCConfig.levels[level];
+	};
 	
 	this.lastSlap = function() {};
 };

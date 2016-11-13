@@ -46,15 +46,17 @@
 	<script src="{$root}tpl/tamagochi/js/srvc/SpellDlg.js"></script>
 	<script src="{$root}tpl/tamagochi/js/srvc/WebsocketSrvc.js"></script>
 
+	<script src="{$root}tpl/tamagochi/js/ctrl/AccountCtrl.js"></script>
 	<script src="{$root}tpl/tamagochi/js/ctrl/ChatSendCtrl.js"></script>
 	<script src="{$root}tpl/tamagochi/js/ctrl/ConnectCtrl.js"></script>
-	<script src="{$root}tpl/tamagochi/js/ctrl/DashboardCtrl.js"></script>
 	<script src="{$root}tpl/tamagochi/js/ctrl/DebugCtrl.js"></script>
 	<script src="{$root}tpl/tamagochi/js/ctrl/HomeCtrl.js"></script>
+	<script src="{$root}tpl/tamagochi/js/ctrl/LevelCtrl.js"></script>
 	<script src="{$root}tpl/tamagochi/js/ctrl/LoginCtrl.js"></script>
 	<script src="{$root}tpl/tamagochi/js/ctrl/MapCtrl.js"></script>
 	<script src="{$root}tpl/tamagochi/js/ctrl/PlayerCtrl.js"></script>
 	<script src="{$root}tpl/tamagochi/js/ctrl/StatsCtrl.js"></script>
+	<script src="{$root}tpl/tamagochi/js/ctrl/SettingsCtrl.js"></script>
 	<script src="{$root}tpl/tamagochi/js/ctrl/TGCCtrl.js"></script>
 	
 	
