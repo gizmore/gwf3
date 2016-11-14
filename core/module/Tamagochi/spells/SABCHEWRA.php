@@ -6,6 +6,10 @@
  */
 class SABRECHEWRA extends TGC_Spell
 {
+	public function getCodename() { return 'Hawk'; }
+
+	public function getMinPower() { return 5; }
+	
 	public function canTargetSelf() { return true; }
 	public function canTargetOther() { return true; }
 	

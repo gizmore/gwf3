@@ -7,6 +7,8 @@ class CAYOTOTHSUN extends TGC_Spell
 {
 	public function getCodename() { return 'Bunny'; }
 	
+	public function getMinPower() { return 10; }
+	
 	public function canTargetSelf() { return true; }
 	public function canTargetOther() { return false; }
 	

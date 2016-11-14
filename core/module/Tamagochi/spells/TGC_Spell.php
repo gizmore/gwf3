@@ -18,6 +18,8 @@ abstract class TGC_Spell
 	#################
 	public abstract function getCodename(); # %1$s SpellName
 
+	public function getMinPower() { return 1; }
+	
 	public function getCode() { return ''; } # JS Code
 
 	public function canTargetSelf() { return false; }
@@ -126,7 +128,8 @@ abstract class TGC_Spell
 	#################
 	private function failedOfDifficulty()
 	{
-		$minPower = 20 * $this->level;
+		$minPower = (int) Common::Clamp($this->getMinPower(), 1);
+		$minPower = 20 * $this->level + $minPower;
 		echo "LEVEL: $this->level\n";
 		echo "POWER: $this->power\n";
 		echo "MIN POWER: $minPower\n";
