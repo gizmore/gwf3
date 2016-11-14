@@ -51,7 +51,7 @@ TGC.controller('TGCCtrl', function($rootScope, $scope, $state, $mdSidenav, Playe
 	};
 	
 
-	$rootScope.$on('tgc-ws-message', function($event, message) {
+	$scope.$on('tgc-ws-message', function($event, message) {
 //		console.log('TGCCtrl.$on-tgc-ws-message', message.data);
 		var messageText = message.data;
 		if ($scope.data.lastReceived != messageText) {
@@ -63,7 +63,8 @@ TGC.controller('TGCCtrl', function($rootScope, $scope, $state, $mdSidenav, Playe
 	$scope.processMessage = function(messageText) {
 		console.log('TGCCtrl.processMessage()', messageText);
 		var command = messageText.substrUntil(':');
-		if (CommandSrvc[command]) {
+		if (CommandSrvc[command])
+		{
 			CommandSrvc[command]($scope, messageText.substrFrom(':'));
 			$scope.$apply();
 		}

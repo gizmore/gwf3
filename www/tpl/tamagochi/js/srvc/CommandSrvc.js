@@ -1,6 +1,6 @@
 'use strict';
 var TGC = angular.module('tgc');
-TGC.service('CommandSrvc', function($rootScope, $injector, WebsocketSrvc) {
+TGC.service('CommandSrvc', function($rootScope, $injector, ErrorSrvc, WebsocketSrvc) {
 	
 	var CommandSrvc = this;
 	
@@ -65,12 +65,12 @@ TGC.service('CommandSrvc', function($rootScope, $injector, WebsocketSrvc) {
 	
 	CommandSrvc.brew = function(player, runes) {
 		console.log('CommandSrvc.brew()', player, runes);
-		return WebsocketSrvc.sendJSONCommand('brew', { target: player.name(), runes: runes }, false);
+		return WebsocketSrvc.sendJSONCommand('brew', { target: player.name(), runes: runes });
 	};
 	
 	CommandSrvc.cast = function(player, runes) {
 		console.log('CommandSrvc.cast()', player, runes);
-		return WebsocketSrvc.sendJSONCommand('cast', { target: player.name(), runes: runes }, false);
+		return WebsocketSrvc.sendJSONCommand('cast', { target: player.name(), runes: runes });
 	};
 	
 	
@@ -78,6 +78,10 @@ TGC.service('CommandSrvc', function($rootScope, $injector, WebsocketSrvc) {
 	/////////////////////
 	// Server commands //
 	/////////////////////
+	CommandSrvc.ERR = function($scope, message)
+	{
+		return ErrorSrvc.showError(message, "User Error");
+	}
 	
 	CommandSrvc.PONG = function($scope, payload) {
 		console.log('CommandSrvc.PONG()', payload);
@@ -141,6 +145,23 @@ TGC.service('CommandSrvc', function($rootScope, $injector, WebsocketSrvc) {
 		}
 		else {
 			console.error('Player not found: '+name);
+		}
+	};
+	
+	CommandSrvc.CAST = function($scope, payload) {
+		var MapUtil = CommandSrvc.getMapUtil();
+		var ChatSrvc = CommandSrvc.getChatSrvc();
+		var PlayerSrvc = CommandSrvc.getPlayerSrvc();
+		var data = JSON.parse(payload);
+		console.log(data);
+		var OWN = PlayerSrvc.OWN;
+//		if (data.failed) {
+//		}
+		if (data.code) {
+			eval(data.code);
+		}
+		if (data.message) {
+			ErrorSrvc.showMessage(data.message, 'Casting');
 		}
 	};
 

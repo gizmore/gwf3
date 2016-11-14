@@ -6,25 +6,19 @@ TGC.service('PlayerDlg', function($q, $mdDialog, ErrorSrvc, CommandSrvc, PlayerS
 	
 	PlayerDlg.open = function($event, player) {
 		console.log('PlayerDlg.open()', player);
-		var defer = $q.defer();
-		if (PlayerDlg.player) {
-			defer.reject();
-		}
-		else {
+		return $q(function(resolve, reject){
 			PlayerSrvc.withStats(player).then(function(player) {
-				PlayerDlg.show(player, defer, $event);
+				PlayerDlg.show(player, resolve, reject);
 			});
-			defer.resolve();
-		}
-		return defer.promise;
+		});
 	};
 
-	PlayerDlg.show = function(player, defer, $event) {
+	PlayerDlg.show = function(player, resolve, reject) {
 		function DialogController($scope, $mdDialog, player) {
 			$scope.player = player;
 			$scope.closeDialog = function() {
 				$mdDialog.hide();
-				defer.resolve();
+				resolve();
 			};
 			$scope.slapTitle = function(data) {
 				switch (data.type) {
@@ -35,13 +29,11 @@ TGC.service('PlayerDlg', function($q, $mdDialog, ErrorSrvc, CommandSrvc, PlayerS
 				}
 			};
 			$scope.slapMessage = function(data) {
-				return sprintf('%s %s %s with %s %s %s.<br/>%s Damage!', data.attacker, data.adverb, data.verb, data.defender, data.adjective, data.noun, data.power);
+				return sprintf('%s %s %s with %s %s %s.\n%s Damage!', data.attacker, data.adverb, data.verb, data.defender, data.adjective, data.noun, data.power);
 			}
 			$scope.afterFight = function(result) {
-				if (result && result.startsWith('ERR')) {
-					ErrorSrvc.showUserError(result);
-				}
-				else {
+				if (!result.startsWith('ERR')) {
+					$scope.closeDialog();
 					var data = JSON.parse(result);
 					ErrorSrvc.showMessage($scope.slapMessage(data), $scope.slapTitle(data));
 				}
@@ -53,9 +45,11 @@ TGC.service('PlayerDlg', function($q, $mdDialog, ErrorSrvc, CommandSrvc, PlayerS
 				CommandSrvc.attack(player).then($scope.afterFight);
 			};
 			$scope.brew = function() {
+				$scope.closeDialog();
 				SpellDlg.show(player, 'brew');
 			};
 			$scope.cast = function() {
+				$scope.closeDialog();
 				SpellDlg.show(player, 'cast');
 			};
 			
@@ -63,7 +57,7 @@ TGC.service('PlayerDlg', function($q, $mdDialog, ErrorSrvc, CommandSrvc, PlayerS
 		var parentEl = angular.element(document.body);
 		$mdDialog.show({
 //			parent: document.getElementById('TGCMAP'),
-			targetEvent: $event,
+//			targetEvent: $event,
 			templateUrl: '/tpl/tamagochi/js/tpl/player_dlg.html',
 			locals: {
 				player: player

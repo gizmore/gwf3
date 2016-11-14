@@ -1,8 +1,8 @@
 'use strict';
 var TGC = angular.module('tgc');
-TGC.controller('ConnectCtrl', function($rootScope, $scope, $state, PingSrvc, ConstSrvc, ErrorSrvc, CommandSrvc, WebsocketSrvc) {
+TGC.controller('ConnectCtrl', function($scope, $state, PingSrvc, ConstSrvc, ErrorSrvc, CommandSrvc, WebsocketSrvc) {
 
-	$rootScope.$on('tgc-own-player-loaded', function(event, player) {
+	$scope.$on('tgc-own-player-loaded', function(event, player) {
 		if (ConstSrvc.inLogin()) {
 			console.log('ConnectCtrl.$on-tgc-own-player-loaded', player);
 			ConstSrvc.inLogin(false);
@@ -11,7 +11,7 @@ TGC.controller('ConnectCtrl', function($rootScope, $scope, $state, PingSrvc, Con
 	});
 
 	var closeTimeout = null;
-	$rootScope.$on('tgc-ws-close', function($event, reason) {
+	$scope.$on('tgc-ws-close', function($event, reason) {
 		console.log('ConnectCtrl.$on-tgc-ws-close', reason);
 		$state.go('connect');
 		if (closeTimeout === null) {

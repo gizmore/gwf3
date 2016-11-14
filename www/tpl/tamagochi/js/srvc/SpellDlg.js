@@ -5,47 +5,39 @@ TGC.service('SpellDlg', function($q, $mdDialog, ErrorSrvc, CommandSrvc, PlayerSr
 	var SpellDlg = this;
 	
 	SpellDlg.open = function(player, type) {
-		console.log('SpellDlg.open()', player);
-		var defer = $q.defer();
-		SpellDlg.show(player, type, defer);
-		return defer.promise;
+		return $q(function(resolve, reject){
+			SpellDlg.show(player, type, resolve, reject);
+		});
 	};
 
-	SpellDlg.show = function(player, type, defer) {
-		function DialogController($scope, $mdDialog, player, type) {
+	SpellDlg.show = function(player, type, resolve, reject) {
+		function DialogController($scope, $mdDialog, player, type, resolve) {
 			$scope.data = {
 				player: player,
 				type: type,
-				runes: [],
+				runes: window.TGCConfig.runes,
+				selected: [],
+				selectedIDs: [],
 			}
 			$scope.closeDialog = function() {
 				$mdDialog.hide();
-				defer.resolve();
-			};
-			$scope.castMessage = function(result) {
-				return $scope.data.type;
-			};
-			$scope.castTitle = function(result) {
-				return $scope.data.type;
-			};
-			$scope.afterCast = function(result) {
-				ErrorSrvc.showMessage($scope.castMessage(result), $scope.castTitle(result));
-				$scope.closeDialog();
+//				resolve();
 			};
 			$scope.brew = function() {
-				CommandSrvc.brew(player, $scope.spelltext()).then($scope.afterCast);
+				CommandSrvc.brew(player, $scope.spelltext()).then($scope.closeDialog);
 			};
 			$scope.cast = function() {
-				CommandSrvc.cast(player, $scope.spelltext()).then($scope.afterCast);
+				CommandSrvc.cast(player, $scope.spelltext()).then($scope.closeDialog);
 			};
 			$scope.spelltext = function() {
-				return $scope.data.runes.join(',');
+				return $scope.data.selected.join(',');
 			};
-			$scope.spell = function($event, row, rune) {
-				var li = jQuery($event.srcElement);
-				console.log('spell()', $event, li);
-				$scope.data.runes = $scope.data.runes.slice(0, row);
-				$scope.data.runes.push(rune);
+			$scope.spell = function($event, row, col) {
+				var rune = window.TGCConfig.runes[row][col]
+				$scope.data.selected = $scope.data.selected.slice(0, row);
+				$scope.data.selected.push(rune);
+				$scope.data.selectedIDs = $scope.data.selectedIDs.slice(0, row);
+				$scope.data.selectedIDs.push(col);
 			};
 		}
 		var parentEl = angular.element(document.body);
@@ -53,7 +45,8 @@ TGC.service('SpellDlg', function($q, $mdDialog, ErrorSrvc, CommandSrvc, PlayerSr
 			templateUrl: '/tpl/tamagochi/js/tpl/spell_dlg.html',
 			locals: {
 				player: player,
-				type: type
+				type: type,
+				resolve: resolve,
 			},
 			controller: DialogController
 		});

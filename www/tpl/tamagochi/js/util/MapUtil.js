@@ -54,7 +54,7 @@ TGC.service('MapUtil', function(ColorUtil, PlayerDlg, PlayerSrvc, ShapeUtil) {
 	MapUtil.canvas = function() {
 		return document.getElementById(MapUtil.MAP_ID);
 	};
-
+	
 	MapUtil.map = function(id) {
 		id = id || MapUtil.MAP_ID;
 		if (!MapUtil.MAP) {
@@ -73,7 +73,7 @@ TGC.service('MapUtil', function(ColorUtil, PlayerDlg, PlayerSrvc, ShapeUtil) {
 			clearTimeout(MapUtil.PAN_TIMER);
 			MapUtil.PAN_TIMER = null;
 		}
-		if (PlayerSrvc.OWN && PlayerSrvc.OWN.hasPosition()) {
+		if ( (PlayerSrvc.OWN) && (PlayerSrvc.OWN.hasPosition()) && (!PlayerSrvc.OWN.NO_SCROLL_LOCK) ) {
 			MapUtil.PAN_TIMER = window.setTimeout(function() {
 				MapUtil.MAP.panTo(PlayerSrvc.OWN.latLng());
 			}, MapUtil.PAN_TIMEOUT);

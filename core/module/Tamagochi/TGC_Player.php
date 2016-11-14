@@ -319,7 +319,7 @@ final class TGC_Player extends GDO
 		}, $payload);
 	}
 	
-	public function giveXP($skill, $xp, $mid)
+	public function giveXP($skill, $xp, $mid=TGC_Commands::DEFAULT_MID)
 	{
 		$this->increase('p_'.$skill.'_xp', $xp);
 		if ($this->rehashSkill($skill)) {

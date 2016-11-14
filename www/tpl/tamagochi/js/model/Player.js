@@ -52,4 +52,10 @@ window.TGC.Player = function(json, userJSON, secret) {
 	};
 	
 	this.lastSlap = function() {};
+	
+	/** SPELLS **/
+	this.NO_SCROLL_LOCK = undefined;
+	this.EXTEND_MIN_ZOOM = 0;
+	this.EXTEND_MAX_ZOOM = 0;
+	this.DRUNK = undefined;
 };

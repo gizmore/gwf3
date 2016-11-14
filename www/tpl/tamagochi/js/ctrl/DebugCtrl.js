@@ -1,6 +1,6 @@
 'use strict';
 var TGC = angular.module('tgc');
-TGC.controller('DebugCtrl', function($rootScope, $scope, PlayerSrvc, PositionSrvc) {
+TGC.controller('DebugCtrl', function($scope, PlayerSrvc, PositionSrvc) {
 	
 	$scope.data = {
 		fixPosition: false,
@@ -9,7 +9,7 @@ TGC.controller('DebugCtrl', function($rootScope, $scope, PlayerSrvc, PositionSrv
 		lock: null
 	};
 	
-	$rootScope.$on('tgc-position-changed', function($event, position) {
+	$scope.$on('tgc-position-changed', function($event, position) {
 		if ($scope.data.fixPosition) {
 			PositionSrvc.setLatLng($scope.data.fixLatitude, $scope.data.fixLongitude);
 		}

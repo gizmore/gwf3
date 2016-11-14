@@ -51,7 +51,7 @@ final class TGC_Attack
 		}
 		
 		$power *= $this->modePowerMultiplier($a, $d);
-		$power *= $this->skillPowerMultiplier($a, $d);
+		$power *= $this->skillPowerMultiplier($a, $d, $skill);
 		$power *= $this->colorPowerMultiplier($a, $d);
 		$power *= $this->elementPowerMultiplier($a, $d);
 

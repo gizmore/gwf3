@@ -90,7 +90,8 @@ final class TGC_Commands
 	
 	public static function cmd_player(TGC_Player $player, $payload, $mid)
 	{
-		if (!($p = TGC_ServerUtil::getPlayerForName($payload))) {
+		if (!($p = TGC_ServerUtil::getPlayerForName($payload)))
+		{
 			return $player->sendError('ERR_UNKNOWN_PLAYER');
 		}
 		$payload = json_encode(array(
@@ -101,7 +102,8 @@ final class TGC_Commands
 	
 	public static function cmd_fight(TGC_Player $player, $payload, $mid)
 	{
-		if (!($p = TGC_ServerUtil::getPlayerForName($payload))) {
+		if (!($p = TGC_ServerUtil::getPlayerForName($payload)))
+		{
 			return $player->sendError('ERR_UNKNOWN_PLAYER');
 		}
 		$attack = new TGC_Attack($player, $p, $mid);
@@ -110,7 +112,8 @@ final class TGC_Commands
 	
 	public static function cmd_attack(TGC_Player $player, $payload, $mid)
 	{
-		if (!($p = TGC_ServerUtil::getPlayerForName($payload))) {
+		if (!($p = TGC_ServerUtil::getPlayerForName($payload)))
+		{
 			return $player->sendError('ERR_UNKNOWN_PLAYER');
 		}
 	
@@ -121,20 +124,26 @@ final class TGC_Commands
 	public static function cmd_brew(TGC_Player $player, $payload, $mid)
 	{
 		$data = json_decode($payload);
-		if (!($p = TGC_ServerUtil::getPlayerForName($data->target))) {
+		if (!($p = TGC_ServerUtil::getPlayerForName($data->target)))
+		{
 			return $player->sendError('ERR_UNKNOWN_PLAYER');
 		}
-		$potion = TGC_Potion::factory($player, $p, 'BREW', $data->runes, $mid);
-		$spell->cast();
+		if ($potion = TGC_Potion::factory($player, $p, 'BREW', $data->runes, $mid))
+		{
+			$potion->brew();
+		}
 	}
 	
 	public static function cmd_cast(TGC_Player $player, $payload, $mid)
 	{
 		$data = json_decode($payload);
-		if (!($p = TGC_ServerUtil::getPlayerForName($data->target))) {
+		if (!($p = TGC_ServerUtil::getPlayerForName($data->target)))
+		{
 			return $player->sendError('ERR_UNKNOWN_PLAYER');
 		}
-		$spell = TGC_Spell::factory($player, $p, 'CAST', $data->runes, $mid);
-		$spell->cast();
+		if ($spell = TGC_Spell::factory($player, $p, 'CAST', $data->runes, $mid))
+		{
+			$spell->cast();
+		}
 	}
 }

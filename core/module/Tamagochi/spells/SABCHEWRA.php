@@ -1,23 +1,28 @@
 <?php
 /**
- * Turn off MapCenterPan for 600 seconds.
+ * Extend Min Zoom by 1 for Duration Seconds;
  * @author gizmore
  *
  */
 class SABRECHEWRA extends TGC_Spell
 {
-	public function canTargetSelf()
+	public function canTargetSelf() { return true; }
+	public function canTargetOther() { return true; }
+	
+	public function beforeCast()
 	{
-		return true;
+		$this->effect = 1;
 	}
 	
-	public function doCast()
+	public function getCode()
 	{
-		$this->defaultCast(array('duration', $this->calculateDuration()));
+		$duration = $this->duration * 1000;
+		return "PlayerSrvc.OWN.EXTEND_MIN_ZOOM += 1; setTimeout(function(){ PlayerSrvc.OWN.EXEND_MIN_ZOOM -= 1; }, $duration); ";
 	}
 	
-	public function calculateDuration()
+	public function executeSpell()
 	{
-		return 600;
+		$this->executeDefaultCast();
 	}
+	
 }

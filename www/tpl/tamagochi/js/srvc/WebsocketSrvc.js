@@ -1,6 +1,6 @@
 'use strict';
 var TGC = angular.module('tgc');
-TGC.service('WebsocketSrvc', function($rootScope, $q, $injector, ConstSrvc) {
+TGC.service('WebsocketSrvc', function($rootScope, $q, $injector, ConstSrvc, ErrorSrvc) {
 	
 	var WebsocketSrvc = this;
 	
@@ -39,7 +39,10 @@ TGC.service('WebsocketSrvc', function($rootScope, $q, $injector, ConstSrvc) {
 					reject(error);
 			    };
 			    ws.onmessage = function(message) {
-			    	if (message.data.indexOf(':MID:') >= 0) {
+			    	if (message.data.indexOf('ERR') === 0) {
+			    		ErrorSrvc.showError(message.data, 'User Error');
+			    	}
+			    	else if (message.data.indexOf(':MID:') >= 0) {
 			    		if (!WebsocketSrvc.syncMessage(message.data)) {
 			    			$rootScope.$broadcast('tgc-ws-message', message);
 			    		}
@@ -67,7 +70,9 @@ TGC.service('WebsocketSrvc', function($rootScope, $q, $injector, ConstSrvc) {
 		var mid = parts[2];
 		var payload = parts[3];
 		
-		WebsocketSrvc.SYNC_MSGS[mid].resolve(payload);
+		if (WebsocketSrvc.SYNC_MSGS[mid]) {
+			WebsocketSrvc.SYNC_MSGS[mid].resolve(payload);
+		}
 		
 		return true;
 	};

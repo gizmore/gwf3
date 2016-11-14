@@ -81,6 +81,10 @@ md-dialog-content > p {
 	display: inline-block;
 }
 
-.spell-row li.selected_rune {
+.spell-row li.selected-rune  {
 	background: red;
+}
+
+.spell-row li button {
+	background: gray;
 }
