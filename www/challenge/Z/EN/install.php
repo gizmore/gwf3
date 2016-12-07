@@ -1,22 +1,17 @@
 <?php
-chdir('../../');
+chdir('../../../');
 require_once('challenge/html_head.php');
-define('GWF_PAGE_TITLE', 'World of Wonders');
-
+define('GWF_PAGE_TITLE', 'Zen');
 html_head('Install: '.GWF_PAGE_TITLE);
-
-if (!GWF_User::isAdminS())
-{
-	return htmlSendToLogin('Better be admin !');
-}
+if (!GWF_User::isAdminS()) { return htmlSendToLogin('Better be admin !'); }
 
 
 $title = GWF_PAGE_TITLE;
 $solution = '';
-$score = 7;
-$url = 'challenge/world_of_wonders/index.php';
+$score = 2;
+$url = 'challenge/Z/EN/index.php';
 $creators = 'Gizmore';
-$tags = 'Fun,Stegano';
+$tags = 'Special,Crypto';
 $verbose = true;
 $options = WC_Challenge::CASE_I|WC_Challenge::NO_SPACES|WC_Challenge::HASHED_PASSWORD;
 
