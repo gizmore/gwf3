@@ -7,14 +7,14 @@ if (!GWF_User::isAdminS()) { return htmlSendToLogin('Better be admin !'); }
 
 
 $title = GWF_PAGE_TITLE;
-$solution = '';
-$score = 2;
+$solution = false;
+$score = 5;
 $url = 'challenge/Z/EN/index.php';
 $creators = 'Gizmore';
 $tags = 'Special,Crypto';
 $verbose = true;
-$options = WC_Challenge::CASE_I|WC_Challenge::NO_SPACES|WC_Challenge::HASHED_PASSWORD;
+// $options = WC_Challenge::CHALL_CASE_I|WC_Challenge::CHALL_NO_SPACES|WC_Challenge::CHALL_HASHED_PW;
 
-WC_Challenge::installChallenge($title, $solution, $score, $url, $creators, $tags, $verbose, $options);
+WC_Challenge::installChallenge($title, $solution, $score, $url, $creators, $tags, $verbose);
 
 require_once('challenge/html_foot.php');
