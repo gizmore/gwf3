@@ -3,6 +3,7 @@
 
 # gizmore eclipse
 /.project
+/nbproject/
 /.buildpath
 /.settings
 
