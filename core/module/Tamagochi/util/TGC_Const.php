@@ -53,7 +53,7 @@ final class TGC_Const
 	const PA_MASTER = 'pa_master';
 	const MON_MASTER = 'mon_master';
 	const JEZH_MASTER = 'jezh_master';
-	public static $LEVELS = array(self::NONE, self::NEOPHYTE, self::NOVICE, self::AMATEUR, self::APPRENTICE, self::ADEPT, self::EXPERT, self::MASTER, self::LO_MASTER, self::UM_MASTER, self::ON_MASTER, self::EE_MASTER, self::PA_MASTER, self::MON_MASTER. self::JEZH_MASTER);
+	public static $LEVELS = array(self::NONE, self::NEOPHYTE, self::NOVICE, self::AMATEUR, self::APPRENTICE, self::ADEPT, self::EXPERT, self::MASTER, self::LO_MASTER, self::UM_MASTER, self::ON_MASTER, self::EE_MASTER, self::PA_MASTER, self::MON_MASTER, self::JEZH_MASTER);
 
 
 	public static $RUNES = array(
