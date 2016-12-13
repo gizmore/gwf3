@@ -188,7 +188,7 @@ final class GWF_Prime
 			case 4: case 2:
 				# Good Enough :)
 				$the_value = '1';
-				while ($the_value < self::HI_MAX)
+				while ( ($the_value < $lo) || ($the_value) > $hi)
 				{
 					$the_value = gmp_strval(gmp_nextprime(gmp_random(2)));
 				}
