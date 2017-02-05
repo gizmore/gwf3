@@ -7,6 +7,22 @@
  */
 final class GWF_Upload
 {
+	public static function stream($path)
+	{
+		if ($fh = fopen($path, 'rb'))
+		{
+			while (!feof($fh))
+			{
+				echo fread($fh, 1024*1024);
+				ob_flush();
+				flush();
+			}
+			fclose($fh);
+			return true;
+		}
+		return false;
+	}
+	
 	/**
 	 * Get a file from a post request, if successfully submitted. Return the file array from $_FILES on success. The returned array contains: error, size, type, name, tmp_name.
 	 * @param $var is the name of the $_FILES[key]

@@ -83,8 +83,7 @@ final class Download_Download extends GWF_Method
 		header("Content-Disposition: attachment; filename=\"$name\""); # drop attachment?
 		$size = filesize($realpath);
 		header("Content-Length: $size");
-		# Print file and die
-		echo file_get_contents($realpath);
+		GWF_Upload::stream($realpath);
 		die(0);
 	}
 	
