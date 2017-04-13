@@ -197,7 +197,7 @@ $lang = array(
     'lp_language' => 'Idioma',
 
     # Footer
-    'footer_1' => '©2008 - %s por WeChall.net; <a href="'.GWF_WEB_ROOT.'wechall.zip">Todo el código</a> está bajo los términos de la <a href="'.GWF_WEB_ROOT.'wechall_license">Licencia pública WeChall</a>; Puedes <a href="'.GWF_WEB_ROOT.'contact">contactar con nosotros aquí</a>.',
+    'footer_1' => '©2008 - %s por WeChall.net; <a href="%s">Todo el código</a> está bajo los términos de la <a href="'.GWF_WEB_ROOT.'wechall_license">Licencia pública WeChall</a>; Puedes <a href="'.GWF_WEB_ROOT.'contact">contactar con nosotros aquí</a>.',
     'footer_2' => '%s usuarios estaban en línea el %s<br/>%s páginas han sido mostradas hasta ahora',
 
 
