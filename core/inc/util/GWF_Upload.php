@@ -9,12 +9,15 @@ final class GWF_Upload
 {
 	public static function stream($path)
 	{
+		$ob = ob_get_level() > 0;
 		if ($fh = fopen($path, 'rb'))
 		{
 			while (!feof($fh))
 			{
 				echo fread($fh, 1024*1024);
-				ob_flush();
+				if ($ob) {
+					ob_flush();
+				}
 				flush();
 			}
 			fclose($fh);
