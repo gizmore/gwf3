@@ -716,18 +716,20 @@ final class Module_WeChall extends GWF_Module
 		if (false === ($result = $db->queryRead($query))) {
 			return '';
 		}
-		$i = 0;
+		$items_on_line = 0;
 		while (false !== ($row = $db->fetchRow($result)))
 		{
 			if (0.05 > ($solved = floatval($row[1]))) {
 				continue;
 			}
-			if ((++$i % 5) === 0) {
+			if ($items_on_line === 5) {
 				$back .= '<br/>'.PHP_EOL;
+				$items_on_line = 0;
 			}
 			$siteid = (int) $row[0];
 			$site = WC_Site::getByID($siteid);
 			$back .= $site->displayLogoUN($user->getVar('user_name'), $solved, 6, 28, true).PHP_EOL;
+			$items_on_line++;
 		}
 		
 		$db->free($result);
