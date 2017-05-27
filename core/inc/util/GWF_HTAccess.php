@@ -29,8 +29,8 @@ final class GWF_HTAccess
 // 			'  Deny from all'.PHP_EOL.
 // 			'</LimitExcept>'.PHP_EOL.
 			PHP_EOL.
-			'# No dot files'.PHP_EOL.
-			'RedirectMatch 404 /\..*$'.PHP_EOL.
+			'# No dot files (except for Let\'s Encrypt verification)'.PHP_EOL.
+			'RedirectMatch 404 /\.(?!well-known\/acme-challenge\/).*$'.PHP_EOL.
 			PHP_EOL.
 			'# Custom error pages'.PHP_EOL.
 			'ErrorDocument 400 '.GWF_WEB_ROOT_NO_LANG.'index.php?mo=GWF&me=ShowError&code=400'.PHP_EOL.

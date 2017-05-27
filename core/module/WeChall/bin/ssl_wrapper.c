@@ -69,7 +69,7 @@ static void init()
 
     if (cert_path != NULL)
     {
-      if (!SSL_CTX_use_certificate_file(ssl_ctx, cert_path, SSL_FILETYPE_PEM))
+      if (!SSL_CTX_use_certificate_chain_file(ssl_ctx, cert_path))
       {
         ERR_print_errors_fp(stdout);
         SSL_CTX_free(ssl_ctx);
