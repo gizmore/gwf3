@@ -74,6 +74,17 @@ final class Profile_Form extends GWF_Method
 			'poi_white' => array(GWF_Form::CHECKBOX, $profile->isPOIWhitelisting(), $this->l('th_poi_white', $href_poi_white), $this->l('tt_poi_white')),
 			'edit' => array(GWF_Form::SUBMIT, $this->module->lang('btn_edit')),
 		);
+		
+		$user = GWF_User::getStaticOrGuest();
+		if ($user->getLevel() < $this->module->cfgLevelAbout())
+		{
+			unset($data['about_me']);
+		}
+		if ($user->getLevel() < $this->module->cfgLevelWebsite())
+		{
+			unset($data['website']);
+		}
+		
 		return new GWF_Form($this, $data);
 	}
 

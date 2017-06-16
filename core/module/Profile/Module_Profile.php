@@ -21,6 +21,8 @@ final class Module_Profile extends GWF_Module
 	public function cfgAllowHide() { return $this->getModuleVarBool('prof_hide', '1'); }
 	public function cfgMaxAboutLen() { return $this->getModuleVarInt('prof_max_about', 512); }
 	public function cfgLevelGB() { return $this->getModuleVarInt('prof_level_gb', 0); }
+	public function cfgLevelAbout() { return $this->getModuleVarInt('prof_level_about', 0); }
+	public function cfgLevelWebsite() { return $this->getModuleVarInt('prof_level_website', 0); }
 	public function cfgMinPOIs() { return $this->getModuleVarInt('min_pois', 0); }
 	public function cfgMaxPOIs() { return $this->getModuleVarInt('max_pois', 10); }
 	public function cfgPntPOIs() { return $this->getModuleVarInt('pnt_pois', 0); }
