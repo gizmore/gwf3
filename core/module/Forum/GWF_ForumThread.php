@@ -409,18 +409,13 @@ final class GWF_ForumThread extends GDO
 	public function getPostPage($count, $page, $in_mod=false)
 	{
 		$tid = $this->getID();
-//		$options = GDO::table('GWF_ForumOptions');
 		$posts = GDO::table('GWF_ForumPost');
+		$exclude_mask = GWF_ForumPost::DELETED;
 		if (!$in_mod)
 		{
-			$mod = GWF_ForumPost::IN_MODERATION;
-			$in_mod = "post_options&$mod=0";
+			$exclude_mask |= GWF_ForumPost::IN_MODERATION;
 		}
-		else
-		{
-			$in_mod = '1';
-		}
-		$condition = "post_tid=$tid AND ($in_mod)";
+		$condition = "post_tid=$tid AND (post_options&$exclude_mask=0)";
 		return $posts->selectObjects('*', $condition, "post_date ASC", $count, GWF_PageMenu::getFrom($page, $count));
 	}
 
