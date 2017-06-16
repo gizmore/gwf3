@@ -45,7 +45,7 @@ final class GWF_Session extends GDO
 	public static function getSessID() { return self::$SESSION->getVar('sess_sid'); }
 	public static function getSessSID() { return self::$SESSION->getVar('sess_id'); }
 	public static function getSession() { return self::$SESSION; }
-	public static function haveCookies() { return self::getSessSID() > 0; }
+	public static function haveCookies() { return self::$SESSION ? self::getSessSID() > 0 : false; }
 	public static function set($var, $value) { self::$SESSDATA[$var] = $value; }
 	public static function exists($var) { return isset(self::$SESSDATA[$var]); }
 	public static function remove($var) { unset(self::$SESSDATA[$var]); }

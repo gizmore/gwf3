@@ -22,12 +22,12 @@ final class GWF_HTML
 	#################
 	### Lang File ###
 	#################
-	public static function init() { self::$trans = new GWF_LangTrans(GWF_CORE_PATH.'lang/base/base'); }
+	public static function init() { if (!self::$trans) self::$trans = new GWF_LangTrans(GWF_CORE_PATH.'lang/base/base'); }
 	public static function &getLang() { return self::$trans; }
-	public static function lang($key, $args=NULL) { return self::$trans->lang($key, $args); }
-	public static function langAdmin($key, $args=NULL) { return self::$trans->langAdmin($key, $args); }
-	public static function langISO($iso, $key, $args=NULL) { return self::$trans->langISO($iso, $key, $args); }
-	public static function langUser(GWF_User $user, $key, $args=NULL) { return self::$trans->langUser($user, $key, $args); }
+	public static function lang($key, $args=NULL) { self::init(); return self::$trans->lang($key, $args); }
+	public static function langAdmin($key, $args=NULL) { self::init(); return self::$trans->langAdmin($key, $args); }
+	public static function langISO($iso, $key, $args=NULL) { self::init(); return self::$trans->langISO($iso, $key, $args); }
+	public static function langUser(GWF_User $user, $key, $args=NULL) { self::init(); return self::$trans->langUser($user, $key, $args); }
 
 	##############
 	### Errors ###

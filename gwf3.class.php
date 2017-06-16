@@ -197,7 +197,7 @@ class GWF3
 			$this->onSessionCommit(self::getConfig('store_last_url'));
 		}
 		
-		if ( self::getConfig('load_module') && self::$MODULE->isEnabled() )
+		if ( self::getConfig('load_module') && self::$MODULE && self::$MODULE->isEnabled() )
 		{
 			$db = gdo_db();
 			GWF_CachedCounter::persist();
