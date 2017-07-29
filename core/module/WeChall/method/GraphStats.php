@@ -389,13 +389,14 @@ final class WeChall_GraphStats extends GWF_Method
 		
 
 		$nColors = count(self::$COLORS);
+		$nStyles = count(self::$STYLES);
 		
 		$style = intval($inc / $nColors);
-		$style = self::$STYLES[$style];
+		$style = self::$STYLES[$style % $nStyles];
 		
 		$color = $site->getVar('site_color');
 		if ($color === NULL) {
-			$color = self::$COLORS[$inc%$nColors];
+			$color = self::$COLORS[$inc % $nColors];
 		}
 
 		$inc++;
