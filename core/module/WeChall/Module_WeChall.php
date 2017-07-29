@@ -212,7 +212,8 @@ final class Module_WeChall extends GWF_Module
 	
 	public function hookRenameUser(GWF_User $user, array $args)
 	{
-		list($oldname, $newname) = $args;
+		require_once 'WC_RegAt.php';
+		list($newname) = $args;
 		$newname = GDO::escape($newname);
 		$uid = $user->getID();
 		$sid = WC_Site::getWeChall()->getID();
