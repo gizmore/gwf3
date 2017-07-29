@@ -29,7 +29,7 @@ final class GWF_Website
 
 	public static function init($init_language=true)
 	{
-		if(isset($_GET['plain']))
+		if(isset($_GET['plain']) || isset($_GET['ajax']))
 		{
 			self::plaintext();
 		}

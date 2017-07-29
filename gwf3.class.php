@@ -472,7 +472,6 @@ class GWF3
 		# Display the page
 		if (true === isset($_GET['ajax']))
 		{
-			GWF_Website::plaintext();
 			return self::$page;
 		}
 		else

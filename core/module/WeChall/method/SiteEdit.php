@@ -65,6 +65,7 @@ final class WeChall_SiteEdit extends GWF_Method
 			'form_site_admin' => $form_sitemin->templateX($this->module->lang('ft_edit_site_admin', array($site->displayName()))),
 			'href_edit_descr' => $this->module->getMethodURL('SiteDescr', '&siteid='.$site->getVar('site_id')),
 			'href_edit_boxes' => $this->module->getMethodURL('Warboxes', '&siteid='.$site->getVar('site_id')),
+			'site' => $site,
 		);
 		return $this->module->templatePHP('site_edit.php', $tVars);
 	}
