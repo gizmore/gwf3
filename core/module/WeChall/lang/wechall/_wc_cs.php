@@ -127,7 +127,7 @@ $lang = array(
 	'pt_graveyard' => 'Hřbitov',
 	'pi_graveyard' => 'Tyto stránky byly v minulosti aktivní, ale bohužel už nejsou provozovány.',
 	'pi_login_link' => '<a href="%s">Klikni zde pro návrat na poslední lokaci: %s</a>',
-	'pi_site_urls' => 'Url skriptů nahrazují %USERNAME%, %EMAIL%% a %AUTHKEY%%.',
+	'pi_site_urls' => 'Url skriptů nahrazují %USERNAME%, %EMAIL% a %AUTHKEY%.',
 	'pi_ug_info' => '%s je zakladatelem skupiny &quot;%s&quot; která má %s členů.',
 	'pi_ug_join' => 'Zde se můžeš <a href="%s">připojit ke skupině</a>.',
 	'pi_ug_register' => 'Nejprve se musíš <a href="%s">zaregistrovat</a> teprve potom se můžeš připojit ke skupině.',

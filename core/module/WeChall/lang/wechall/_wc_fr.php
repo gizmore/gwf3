@@ -130,7 +130,7 @@ $lang = array(
 	'pt_graveyard' => 'Cimetière',
 	'pi_graveyard' => 'Ces sites furent actifs mais ne sont malheureusement plus avec nous.',
 	'pi_login_link' => '<a href="%s">Cliquez ici pour retourner à votre dernier emplacement: %s</a>',
-	'pi_site_urls' => 'Les urls du script remplacent %USERNAME%, %EMAIL%% et %AUTHKEY%%.',
+	'pi_site_urls' => 'Les urls du script remplacent %USERNAME%, %EMAIL% et %AUTHKEY%.',
 	'pi_ug_info' => '%s est le créateur du groupe &quot;%s&quot;, contenant %s membres.',
 	'pi_ug_join' => 'Vous pouvez <a href="%s">rejoindre un groupe en cliquant ici</a>.',
 	'pi_ug_register' => 'Vous devez vous <a href="%s">enregistrer</a> pour rejoindre des groupes.',

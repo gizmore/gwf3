@@ -126,7 +126,7 @@ $lang = array(
 	'pt_graveyard' => 'Temető',
 	'pi_graveyard' => 'Az alábbi oldalak korábban aktívak voltak, de már sajnos nincsenek velünk.',
 	'pi_login_link' => '<a href="%s">Kattints ide, hogy visszatérj az előzőleg látogatott oldalra: %s</a>',
-	'pi_site_urls' => 'A szkript URL-ek behelyettesítik a %Felhasználó_név%, %EMAIL%% and %AUTHKEY%% szavakat.',
+	'pi_site_urls' => 'A szkript URL-ek behelyettesítik a %USERNAME%, %EMAIL% and %AUTHKEY% szavakat.',
 	'pi_ug_info' => '%s az alapítója a &quot;%s&quot; csoportnak, amelynek %s tagja van.',
 	'pi_ug_join' => 'Itt <a href="%s">tudsz csatlakozni a csoporthoz</a>.',
 	'pi_ug_register' => '<a href="%s">Regisztrálnod kell ahhoz</a>, hogy csatlakozhass a csoporthoz.',

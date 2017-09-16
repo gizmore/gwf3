@@ -126,7 +126,7 @@ $lang = array(
 	'pt_graveyard' => 'Friedhof',
 	'pi_graveyard' => 'Diese Seiten weilen leider nicht mehr unter uns.',
 	'pi_login_link' => '<a href="%s">Hier klicken um zur vorherigen Seite zurückzukehren: %s</a>',
-	'pi_site_urls' => 'The script urls substitute %USERNAME%, %EMAIL%% and %AUTHKEY%%.', # ??
+	'pi_site_urls' => 'The script urls substitute %USERNAME%, %EMAIL% and %AUTHKEY%.', # ??
 	'pi_ug_info' => '%s hat die Gruppe &quot;%s&quot; mit aktuell  %s Mitgliedern erstellt.',
 	'pi_ug_join' => 'Sie können der Gruppe beitreten indem Sie <a href="%s">hier</a> klicken.',
 	'pi_ug_register' => 'Sie müssen sich <a href="%s">registrieren</a> um Gruppen beitreten zu können.',

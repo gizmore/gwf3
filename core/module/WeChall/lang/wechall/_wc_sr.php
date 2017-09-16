@@ -127,7 +127,7 @@ $lang = array(
 	'pt_graveyard' => 'Неактивни Сајтови',
 	'pi_graveyard' => 'Ови сајтови су били активни у прошлости али нажалост нису више са нама.',
 	'pi_login_link' => '<a href="%s">Кликните овде да се вратите на почетну локацију: %s</a>',
-	'pi_site_urls' => 'The script urls substitute %USERNAME%, %EMAIL%% and %AUTHKEY%%.',
+	'pi_site_urls' => 'The script urls substitute %USERNAME%, %EMAIL% and %AUTHKEY%.',
 	'pi_ug_info' => '%s је оснивач групе &quot;%s&quot; која има %s чланова.',
 	'pi_ug_join' => 'Можете се <a href="%s">придружити групи ако кликнете овде</a>.',
 	'pi_ug_register' => 'Морате се <a href="%s">регистровати</a> да се придружите групи.',
