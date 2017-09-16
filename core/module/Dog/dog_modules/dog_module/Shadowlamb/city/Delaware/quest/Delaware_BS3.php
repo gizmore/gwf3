@@ -12,7 +12,17 @@ final class Quest_Delaware_BS3 extends SR_Quest
 	{
 		$have_before = $this->getAmount();
 		$need = $this->getNeededAmount();
-		$have_after = $this->giveQuesties($player, $npc, 'Rune', $have_before, $need);
+
+		$have_after = $have_before;
+		foreach ($player->getInventory()->getItemsByClass(SR_Rune, $need-$have_before) as $item)
+		{
+			$player->deleteFromInventory($item);
+			$have_after++;
+			if ($have_after >= $need) {
+				break;
+			}
+		}
+
 		$this->saveAmount($have_after);
 		if ($have_after >= $need)
 		{
