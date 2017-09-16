@@ -420,7 +420,7 @@ class SR_Player extends GDO
 	### Remote ###
 	##############
 	private $remote_pid = 0;
-	public function setRemotePlayer(SR_Player $player) { $this->remote_pid = $player->getID(); } 
+	public function setRemotePlayer(SR_Player $player) { $pid = $player->getID(); $this->remote_pid = $pid === $this->getID() ? 0 : $pid; }
 	public function unsetRemotePlayer() { $this->remote_pid = 0; }
 	public function getRemotePlayer() { return $this->remote_pid === 0 ? false : Shadowrun4::getPlayerByPID($this->remote_pid); }
 	
