@@ -43,19 +43,20 @@ final class Usergroups_AvatarGallery extends GWF_Method
 		$db = gdo_db();
 		$users = GWF_TABLE_PREFIX.'user';
 		$ag = GWF_TABLE_PREFIX.'user_avatar_g';
+		$del = GWF_User::DELETED;
 		$has_av = GWF_User::HAS_AVATAR;
 		$usert = GDO::table('GWF_User');
 		
 		$num_x = $this->module->cfgAvatarsX();
 		$num_y = $this->module->cfgAvatarsY();
 		$ipp = $num_x * $num_y;
-		$nItems = $usert->countRows("user_options&$has_av>0");
+		$nItems = $usert->countRows("(user_options&$has_av>0) AND (user_options&$del=0)");
 		$nPages = GWF_PageMenu::getPagecount($ipp, $nItems);
 		$page = Common::clamp(intval(Common::getGet('page', 1)), 1, $nPages);
 		$from = GWF_PageMenu::getFrom($page, $ipp);
 		$limit = $usert->getLimit($ipp, $from);
 		
-		$query = "SELECT user_id,user_name,user_avatar_v,ag_hits,user_level FROM $users LEFT JOIN $ag ON ag_uid=user_id AND ag_version=user_avatar_v WHERE user_options&$has_av>0  ORDER BY ag_hits DESC, user_level DESC $limit";
+		$query = "SELECT user_id,user_name,user_avatar_v,ag_hits,user_level FROM $users LEFT JOIN $ag ON ag_uid=user_id AND ag_version=user_avatar_v WHERE (user_options&$has_av>0) AND (user_options&$del=0) ORDER BY ag_hits DESC, user_level DESC $limit";
 		
 		GWF_Website::setPageTitle($this->module->lang('pt_avatars'));
 		GWF_Website::setMetaDescr($this->module->lang('md_avatars'));
