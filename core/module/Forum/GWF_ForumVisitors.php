@@ -26,7 +26,7 @@ final class GWF_ForumVisitors extends GDO
 		# Insert current spectator
 //		GDO::table(__CLASS__);
 		$row = new self(array(
-			'fowa_sess' => GWF_Session::getSessID(),
+			'fowa_sess' => substr(GWF_Session::getSessID(), 0, GWF_Session::SESS_ENTROPY),
 			'fowa_time' => time(),
 			'fowa_tid' => $tid,
 		));
