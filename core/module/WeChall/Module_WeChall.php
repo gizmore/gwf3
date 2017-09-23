@@ -168,7 +168,7 @@ final class Module_WeChall extends GWF_Module
 			'regat_options' => 0,
 			'regat_langid' => $site->getLangID(),
 			'regat_tagbits' => $site->getTagBits(),
-			'regat_linkdate' => GWF_Time::getDate(),
+			'regat_linkdate' => GWF_Time::getDate(GWF_Date::LEN_DAY),
 		));
 		if (false === ($regat->insert())) {
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
