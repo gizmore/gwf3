@@ -40,27 +40,29 @@ final class News_ShowComments extends GWF_Method
 	{
 		$ipp = 10;
 		$cid = $comments->getID();
-		$nItems = $comments->getVar('cmts_count');
-		$nPages = GWF_PageMenu::getPagecount($ipp, $nItems);
-		$page = Common::clamp(Common::getGetInt('cpage'), 1, $nPages);
-		$from = GWF_PageMenu::getFrom($page, $ipp);
 		
 		// Method
 		$me = $mod_c->getMethod('Reply');
 		$me instanceof Comments_Reply;
 		
 		$where = "cmt_cid={$cid}";
-		$with_perms = !GWF_User::isInGroupS('moderator');
-		if ($with_perms)
+
+		if ( GWF_User::isInGroupS('moderator') )
 		{
-			$visible = GWF_Comment::VISIBLE;
-			$deleted = GWF_Comment::DELETED;
-			$flags = $visible|$deleted;
-			$where .= " cmt_options & {$flags} = {$visible}";
+			$flag_mask = GWF_Comment::DELETED;
+			$wanted_flags = 0;
+		} else {
+			$flag_mask = GWF_Comment::VISIBLE | GWF_Comment::DELETED;
+			$wanted_flags = GWF_Comment::VISIBLE;
 		}
+		$where .= " AND cmt_options & {$flag_mask} = {$wanted_flags}";
 		
+		$nItems = GDO::table('GWF_Comment')->countRows($where);
+		$nPages = GWF_PageMenu::getPagecount($ipp, $nItems);
+		$page = Common::clamp(Common::getGetInt('cpage'), 1, $nPages);
+		$from = GWF_PageMenu::getFrom($page, $ipp);
 		
-		$c = GDO::table('GWF_Comment')->selectObjects('*', 'cmt_cid='.$comments->getID(), 'cmt_date ASC', $ipp, $from);
+		$c = GDO::table('GWF_Comment')->selectObjects('*', $where, 'cmt_date ASC', $ipp, $from);
 		
 		$href = GWF_WEB_ROOT.'news-comments-'.$news->getID().'-'.$news->displayTitle().'-page-'.$page.'.html';
 		$hrefp = GWF_WEB_ROOT.'news-comments-'.$news->getID().'-'.$news->displayTitle().'-page-%PAGE%.html';

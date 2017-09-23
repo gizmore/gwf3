@@ -13,11 +13,12 @@
 		{if $can_mod}
 		<div class="gwf_buttons gwf_buttons_outer">
 			{if $c->isVisible()}
-			{button type="delete" url=$c->hrefHide() title=$lang->lang('btn_hide')}
+			{button type="sub" url=$c->hrefHide() title=$lang->lang('btn_hide')}
 			{else}
 			{button type="add" url=$c->hrefShow() title=$lang->lang('btn_show')}
 			{/if}
 			{button type="edit" url=$c->hrefEdit() title=$lang->lang('btn_edit')}
+			{button type="delete" url=$c->hrefDelete() title=$lang->lang('btn_delete')}
 		</div>
 		{/if}
 	</div>

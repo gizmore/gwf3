@@ -29,6 +29,8 @@ $lang = array(
 
 	'btn_edit' => 'Edit',
 
+	'btn_delete' => 'Delete',
+
 	'th_message' => 'Your message',
 	'th_www' => 'Your website',
 	'th_email' => 'Your email',

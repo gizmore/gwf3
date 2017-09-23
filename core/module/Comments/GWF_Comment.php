@@ -118,7 +118,7 @@ final class GWF_Comment extends GDO
 			return false;
 		}
 		
-		if (false === $this->saveOption(self::DELETED, $bool))
+		if (false === $this->saveOption(self::DELETED, 1))
 		{
 			return false;
 		}
