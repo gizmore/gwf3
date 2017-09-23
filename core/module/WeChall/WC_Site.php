@@ -76,8 +76,8 @@ class WC_Site extends WC_SiteBase
 			'site_vote_fun' => array(GDO::UINT, 0),#OBJECT, GDO::NOT_NULL, array('GWF_VoteScore', 'site_vote_fun')), # votes
 		
 			'site_maxscore' => array(GDO::UINT, 0), # OnSiteScore/MaxScore
-			'site_challcount' => array(GDO::UINT, 0),
-			'site_usercount' => array(GDO::UINT, 0),
+			'site_challcount' => array(GDO::INT, 0),
+			'site_usercount' => array(GDO::INT, 0),
 			'site_linkcount' => array(GDO::UINT, 0),
 		
 			'site_visit_in' => array(GDO::UINT, 0), # How many visitors go that site 
