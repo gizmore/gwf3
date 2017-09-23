@@ -123,7 +123,7 @@ final class GWF_PageMenu
 			$letter = $default;
 		}
 		
-		$back = '';
+		$back = array();
 		foreach ($whitelist as $l)
 		{
 			if ($l === $letter) {
