@@ -16,8 +16,8 @@ final class WC_HistorySite extends GDO
 			'sitehist_sid' => array(GDO::UINT|GDO::INDEX, GDO::NOT_NULL),
 			'sitehist_date' => array(GDO::UINT|GDO::INDEX, GDO::NOT_NULL), #, GWF_Date::LEN_SECOND),
 			'sitehist_score' => array(GDO::UINT, GDO::NOT_NULL),
-			'sitehist_usercount' => array(GDO::UINT, GDO::NOT_NULL),
-			'sitehist_challcount' => array(GDO::UINT, GDO::NOT_NULL),
+			'sitehist_usercount' => array(GDO::INT, GDO::NOT_NULL),
+			'sitehist_challcount' => array(GDO::INT, GDO::NOT_NULL),
 			'sitehist_comment' => array(GDO::TEXT|GDO::UTF8|GDO::CASE_I),
 		);
 	}
