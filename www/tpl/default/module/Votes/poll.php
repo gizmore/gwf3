@@ -29,13 +29,13 @@ foreach($o as $i => $opt)
 		$format = '%s';
 	}
 	
-	if ($total == 0) {
+	if ( ($total == 0) || ($count === '???') ) {
 		$percent2 = 0;
 	}
 	else {
 		$percent2 = round($count/$total*100);
 	}
-	$percent = ($count === '?' || $count == 0)  ? 0 : round($count/$total*$tVars['pixels']);
+	$percent = ($count === '???' || $count == 0)  ? 0 : round($count/$total*$tVars['pixels']);
 	$color = GWF_Color::interpolatBound(0, $tVars['pixels'], $percent, 0xff0000, 0x00ff00);
 	$onclick = "return gwfVoteMulti($pid);";
 	$checked = ($voterow !== false && $voterow->hasVotedOption($i)) ? ' checked="checked"' : '';
