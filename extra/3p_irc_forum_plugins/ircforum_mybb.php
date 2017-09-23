@@ -14,7 +14,6 @@ if ($limit > 10 || $limit < 1) {
 	die('Error: Limit has to be between 1 and 10.');
 }
 $date = getd(14, $_GET['datestamp']);
-// $date = mysql_real_escape_string($date);
 
 if ( (!isset($_GET['datestamp'])) || (!is_string($_GET['datestamp'])) )
 {

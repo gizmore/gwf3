@@ -17,7 +17,7 @@ foreach ($_GET as $k => $v) { $$k = $v; }
 # Send request?
 if (isset($_POST['password']) && isset($_POST['username']) && is_string($_POST['password']) && is_string($_POST['username']) )
 {
-	$uname = mysql_real_escape_string($_POST['username']);
+	$uname = GDO::escape($_POST['username']);
 	$pass = md5($_POST['password']);
 	$query = "SELECT level FROM ".GWF_TABLE_PREFIX."wc_chall_reg_glob WHERE username='$uname' AND password='$pass'";
 	$db = gdo_db();

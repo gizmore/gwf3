@@ -68,7 +68,7 @@ function noesc_voteup($who)
 
 
 	$db = noesc_db();
-	$who = mysql_real_escape_string($who);
+	$who = GDO::escape($who);
 	$query = "UPDATE noescvotes SET `$who`=`$who`+1 WHERE id=1";
 	if (false !== $db->queryWrite($query)) {
 		echo GWF_HTML::message('No Escape', 'Vote counted for '.GWF_HTML::display($who), false);
