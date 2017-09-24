@@ -52,7 +52,7 @@ function wcProfileRegats(array $regats, $sort_url, $priv=false, $hide_score=fals
 		array(WC_HTML::lang('th_regat_lastdate'), 'regat_lastdate'),
 	);
 	echo '<table>';
-	echo GWF_Table::displayHeaders1($headers);
+	echo GWF_Table::displayHeaders1($headers, $sort_url);
 	foreach ($regats as $regat)
 	{
 		$regat instanceof WC_RegAt;
