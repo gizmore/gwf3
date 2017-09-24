@@ -29,7 +29,7 @@ final class GWF_Session extends GDO
 			'sess_data' => array(GDO::BLOB),
 			'sess_time' => array(GDO::UINT|GDO::INDEX),
 			'sess_ip' => GWF_IP6::gdoDefine(GWF_IP_EXACT, GDO::NULL),
-			'sess_lasturl' => array(GDO::VARCHAR|GDO::ASCII|GDO::CASE_S, GDO::NULL, 255),
+			'sess_lasturl' => array(GDO::VARCHAR|GDO::UTF8|GDO::CASE_S, GDO::NULL, 255),
 			'user' => array(GDO::JOIN, 0, array('GWF_User', 'sess_user', 'user_id')),
 		);
 	}

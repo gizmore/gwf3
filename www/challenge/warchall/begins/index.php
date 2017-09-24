@@ -158,7 +158,7 @@ function warchall1createAccountB(WC_Challenge $chall)
 	
 	$user = GWF_Session::getUser();
 	$username = $db->escape(strtolower($user->getVar('user_name')));
-	$pass = $db->escape(crypt($_POST['password1']));
+	$pass = $db->escape(@crypt($_POST['password1']));
 	if (false === $db->queryWrite("REPLACE INTO war_audit_add_user VALUES('{$username}', '{$pass}')"))
 	{
 		return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
