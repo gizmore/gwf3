@@ -26,7 +26,7 @@ $lang = array(
 	'err_hidden' => 'Dieses Benutzerprofil ist nicht öffentlich einsehbar.',
 	'err_firstname' => 'Ihr Vorname ist fehlerhaft. Maximale Länge: %s Zeichen.',
 	'err_lastname' => 'Ihr Nachname ist fehlerhaft. Maximale Länge: %s Zeichen.',
-	'err_street' => 'Ihre Strasse ist fehlerhaft. Maximale Länge: %s Zeichen.',
+	'err_street' => 'Ihre Straße ist fehlerhaft. Maximale Länge: %s Zeichen.',
 	'err_zip' => 'Ihre Postleitzahl ist fehlerhaft. Maximale Länge: %s Zeichen.',
 	'err_city' => 'Ihre Stadt ist fehlerhaft. Maximale Länge: %s Zeichen.',
 	'err_tel' => 'Ihre Telefonnummer ist fehlerhaft. Maximale Länge: 24 Zahlen oder Leerstellen.',
@@ -91,7 +91,7 @@ $lang = array(
 
 	# v2.02 (fixes)
 	'err_level_all' => 'Der minimale Benutzer-Level um Ihr Profil einzusehen ist fehlerhaft.',
-	'err_level_contact' => 'Der minimale Benutzer-Level um ihre Kontaktdaten zu sehen ist fehlerhaft.',
+	'err_level_contact' => 'Der minimale Benutzer-Level um Ihre Kontaktdaten zu sehen ist fehlerhaft.',
 
 	# v2.03 (fixes2)
 	'title_about_me' => 'Über %s',
@@ -111,7 +111,7 @@ $lang = array(
 	# v2.07 (IRC+Robots)
 	'th_irc' => 'IRC',
 	'th_hiderobot' => 'Vor Suchmaschinen verstecken?',
-	'tt_hiderobot' => 'Aktivieren Sie diese Option wenn Sie nicht wollen das Suchmaschinen Ihr Profil indizieren.',
+	'tt_hiderobot' => 'Aktivieren Sie diese Option, wenn Sie nicht wollen, dass Suchmaschinen Ihr Profil indizieren.',
 	'err_no_spiders' => 'Dieses Profil ist vor Suchmaschinen versteckt.',
 
 	# monnino fixes
@@ -128,7 +128,7 @@ $lang = array(
 	'err_self_whitelist' => 'Sie können sich nicht selbst auf Ihre Whitelist setzen.',
 	'prompt_rename' => 'Bitte geben Sie eine Beschreibung ein.',
 	'prompt_delete' => 'Möchten Sie diesen Ort löschen?',
-	'th_poi_score' => 'Benötiger Nutzerlevel für Ihre POI',
+	'th_poi_score' => 'Benötigter Nutzerlevel für Ihre POI',
 	'tt_poi_score' => 'Sie können Ihre Points of Interest vor Nutzern mit einem niedrigen Level verstecken.',
 	'th_poi_white' => '<a href="%s">Whitelist</a> für POI nutzen',
 	'tt_poi_white' => 'Anstatt Nutzerlevel eine persönliche Whitelist verwenden.',
@@ -139,7 +139,7 @@ $lang = array(
 	'btn_clear_white' => 'Whitelist leeren!',
 	'btn_add_whitelist' => 'Nutzer hinzufügen',
 	'btn_rem_whitelist' => 'Nutzer entfernen',
-	'poi_info' => 'Auf dieser Seite werden die POI der Nutzer angezeigt.<br/>Sie dürfern noch %s/%s POI hinzufügen.<br/>Sie können Ihre POI vor anderen Nutzern verstecken indem Sie einen <a href="%s">Mindest-User-Level</a> setzen oder eine <a href="%s">persönliche Whitelist konfigurieren.</a>.<br/>Standardmäßig sind die POI öffentlich einsehbar.',
+	'poi_info' => 'Auf dieser Seite werden die POI der Nutzer angezeigt.<br/>Sie dürfen noch %s/%s POI hinzufügen.<br/>Sie können Ihre POI vor anderen Nutzern verstecken indem Sie einen <a href="%s">Mindest-User-Level</a> setzen oder eine <a href="%s">persönliche Whitelist konfigurieren.</a>.<br/>Standardmäßig sind die POI öffentlich einsehbar.',
 	'poi_usage' => 'Nutzung',
 	'poi_usage_data' => array(
 		'Ein Klick in einen leeren Platz auf der Karte erzeugt einen neuen POI.',
@@ -155,5 +155,5 @@ $lang = array(
 	'poi_privacy_t' => 'Datenschutzhinweise',
 	'poi_privacy' => 'Ich nehmen an Sie sind besorgt über Ihre Privatsphäre und nutzen diese Anwendung nur ungerne.<br/>Ihre abgerufenen Kartenabschnitte tauchen in den Server und Webseitenlogs auf.<br/>Google selbst wird vermutlich Ihre Anfragen sammeln und eventuell zuordnen können.<br/>Neben diesen bedenklichen Probleme versucht diese Webseite keinen Zusammenhang zu Ihrem Standort permanent herzustellen.<br/>Die Webseiten-Logfiles werden regelmäßig auf einen anderen Rechner verschoben. Die Webserver logfiles können nur eine Verknüpfung zwischen Ihrer IP und den abgerufenen Kartenabschnitten herstellen.<br/>Die POI Datenbank speichert nur die eingegebenen POI Daten und nichts weiter.',
 	'poi_stats_t' => 'POI Statistik',
-	'poi_stats' => 'In der Datenbank befinden sich %s POI von denen Sie %s auf der Karte sehen können.',
+	'poi_stats' => 'In der Datenbank befinden sich %s POI, von denen Sie %s auf der Karte sehen können.',
 );
