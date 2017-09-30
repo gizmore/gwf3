@@ -13,6 +13,7 @@ echo GWF_Button::generic($tLang->lang('btn_warboxes'), $tVars['href_edit_boxes']
 echo $tVars['form'];
 echo $tVars['form_logo'];
 echo $tVars['form_site_admin'];
+
 // Quick way to allow API testing
 if (false !== ($user = GWF_Session::getUser()) && $user->isAdmin())
 {
