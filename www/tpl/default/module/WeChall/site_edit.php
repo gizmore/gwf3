@@ -13,7 +13,6 @@ echo GWF_Button::generic($tLang->lang('btn_warboxes'), $tVars['href_edit_boxes']
 echo $tVars['form'];
 echo $tVars['form_logo'];
 echo $tVars['form_site_admin'];
-
 // Quick way to allow API testing
 if (false !== ($user = GWF_Session::getUser()) && $user->isAdmin())
 {
@@ -34,7 +33,7 @@ $api_test_default_mail = $user->getVar('user_email');
 <tr><td>E-Mail</td><td><input id="api_test_email" value="<?=htmlspecialchars($api_test_default_mail)?>"></td></tr>
 <tr><td colspan="2" style="text-align: left;">
 <br>
-<?
+<?php
 echo GWF_Button::generic('Test Mail URL','javascript:api_test_mail();');
 echo GWF_Button::generic('Test Score URL','javascript:api_test_score();');
 ?>
@@ -92,6 +91,6 @@ function api_test_score()
 }
 </script>
 </div>
-<?
+<?php
 }
 ?>
