@@ -27,7 +27,7 @@ final class WC_RegAt extends GDO
 			'regat_challcount' => array(GDO::UINT, 0),
 			'regat_challsolved' => array(GDO::INT, -1),
 			'regat_options' => array(GDO::UINT|GDO::INDEX, 0),
-			'regat_lastdate' => array(GDO::DATE|GDO::INDEX, GWF_Date::LEN_SECOND),
+			'regat_lastdate' => array(GDO::DATE|GDO::INDEX, GDO::NOT_NULL, GWF_Date::LEN_SECOND),
 			'regat_linkdate' => array(GDO::DATE|GDO::INDEX, GDO::NOT_NULL, GWF_Date::LEN_DAY),
 			
 			# Cache Scoring v4, these values have been dropped from WC3, or are completely new.
