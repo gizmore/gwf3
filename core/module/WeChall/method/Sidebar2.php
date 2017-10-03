@@ -94,8 +94,9 @@ final class WeChall_Sidebar2 extends GWF_Method
 			'<div><a href="'.GWF_WEB_ROOT.'active_sites">'.$this->module->lang('rp_sitecount', array(count(WC_Site::getActiveSites()))).'</a></div>'.PHP_EOL.
 			'<div><a href="'.GWF_WEB_ROOT.'challs">'.$this->module->lang('rp_challcount', array(GDO::table('WC_Challenge')->countRows())).'</a></div>'.PHP_EOL.
 			'<div><a href="'.GWF_WEB_ROOT.'forum">'.$this->module->lang('rp_postcount', array($postcount)).'</a></div>'.PHP_EOL.
-			'<div><a href="'.GWF_WEB_ROOT.'users">'.$this->module->lang('rp_usercount', array(GDO::table('GWF_User')->countRows())).'</a></div>'.PHP_EOL;
-		return
+			'<div><a href="'.GWF_WEB_ROOT.'users">'.$this->module->lang('rp_usercount', array(GDO::table('GWF_User')->countRows())).'</a></div>'.PHP_EOL.
+			'<div><a href="'.GWF_WEB_ROOT.'donations">0 donations</a></div>'.PHP_EOL;
+			return
 			$this->sidebox($this->module->lang('rp_stats').$btn, $box);
 	}
 	
