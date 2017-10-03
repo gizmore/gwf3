@@ -115,8 +115,8 @@ final class Profile_Form extends GWF_Method
 		$profile->saveOption(GWF_Profile::POI_WHITELIST, isset($_POST['poi_white']));
 		
 		if (false === $profile->saveVars(array(
-			'prof_website' => $_POST['website'],
-			'prof_about_me' => $_POST['about_me'],
+			'prof_website' => Common::getPostString('website'),
+			'prof_about_me' => Common::getPostString('about_me'),
 			'prof_firstname' => $_POST['firstname'],
 			'prof_lastname' => $_POST['lastname'],
 			'prof_street' => $_POST['street'],
