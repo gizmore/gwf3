@@ -15,13 +15,13 @@ GWF_Website::addInlineCSS($css);
 <?php if (isset($_GET['thx'])) : ?>
 <div class="box">
 Thank you very much!<br/>
-We will probably contact you any soon, for saying thanks and if you would like to be mentioned here.
+We will probably contact you any time soon, for saying thanks.
 </div>
 <?php endif; ?>
 
 <div class="box">
-You are reading right; We are accepting <?= $tVars['paybutton']; ?>'s now.<br/>
-It would be awesome, if some people would donate something, as the rent for <a href="http://warchall.net">box0</a> and <a href="https://www.wechall.net">box2</a> is due in nov/december.<br/>
+You are reading it right, we are accepting donations now: <?= $tVars['paybutton']; ?><br/>
+It would be awesome if some people would donate something, as the rent for <a href="http://warchall.net">box0</a> and <a href="https://www.wechall.net">box2</a> is due in nov/december.<br/>
 We will give an overview here of the donations, manually updated.<br/>
 </div>
 <div class="box">
@@ -49,7 +49,7 @@ We currently have the following ca. expenses for WeChall:<br/>
 <hr>
 
 <div class="box">
-If you donate you <em>can</em> get an entry here. (tell us what you would like to write on this wall).<br/>
+If you donate you <em>can</em> get an entry here. (Tell us what you would like to write on this wall).<br/>
 <br/>
 THANKS!
 <br/>
