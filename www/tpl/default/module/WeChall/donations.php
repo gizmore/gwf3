@@ -25,8 +25,8 @@ It would be awesome if some people would donate something, as the rent for <a hr
 We will give an overview here of the donations, manually updated.<br/>
 </div>
 <div class="box">
-<pre>Donors:       1
-Sum:    € 50,00
+<pre>Donors:       2
+Sum:    €100,00
 Goal:   €250,00
 </pre>
 </div>
@@ -45,7 +45,6 @@ We currently have the following ca. expenses for WeChall:<br/>
 <hr>
 
 <h2>Hall of purchased Fame :)</h2>
-
 <hr>
 
 <div class="box">
