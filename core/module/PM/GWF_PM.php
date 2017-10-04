@@ -1,6 +1,13 @@
 <?php
 final class GWF_PM extends GDO # implements GDO_Searchable
 {
+	# PMs are stored twice in database, once for the sender, once for the
+	# recipient. Why? God/Giz only knows.
+	#
+	# The owner (pm_owner) of the message is stored separately from the
+	# sender (pm_from) and the recipient (pm_to). So for the sender, we have
+	# that pm_owner == pm_from and for the recipient pm_owner == pm_to.
+
 	# Constants
 	const INBOX = 1;
 	const INBOX_NAME = 'Incoming';
@@ -10,8 +17,8 @@ final class GWF_PM extends GDO # implements GDO_Searchable
 	###############
 	### Options ###
 	###############
-	const READ = 0x1; // this pm got read
-	const OTHER_READ = 0x2; // the other pm got read
+	const READ = 0x1; // this pm got read by owner
+	const OTHER_READ = 0x2; // the pm got read by other (non-owner)
 	const STICKY = 0x2; // unused
 	const SMILEYS = 0x4; // allow smileys in bbdecode
 	const OWNER_DELETED = 0x10; // trashcan
@@ -67,7 +74,6 @@ final class GWF_PM extends GDO # implements GDO_Searchable
 	public function isSender() { return $this->getVar('pm_from') === $this->getVar('pm_owner'); }	
 	public function isRecipient() { return $this->getVar('pm_to') === $this->getVar('pm_owner'); }	
 	
-//	public function getReceiver() { return false === ($user = $this->getVar('pm_to', false)) ? GWF_Guest::getGuest() : $user; }
 	public function getFromID() { return $this->getSender()->getID(); }
 	public function getToID() { return $this->getReceiver()->getID(); }
 	public function displayDate() { return GWF_Time::displayDate($this->getVar('pm_date')); }
@@ -198,23 +204,19 @@ final class GWF_PM extends GDO # implements GDO_Searchable
 		if ($user === false) {
 			return false;
 		}
-		
-		if ($this->isRead()) {
+
+		if ($this->getOwnerID() !== $user->getID()) {
+			return false;
+		}
+
+		if (!$this->isSender()) {
 			return false;
 		}
 		
-//		return ($this->getOwnerID() === $user->getID()) {
-//			return true;
-//		}
-//		if ('0' === ($from = $this->getSender()->getID())) {
-//			return false;
-//		}
-//		if ($from !== $user->getID()) {
-//			return false;
-//		}
-//		if ($this->isRead()) {
-//			return false;
-//		}
+		if ($this->isOtherRead()) {
+			return false;
+		}
+		
 		return true;
 	}
 	

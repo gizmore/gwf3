@@ -35,11 +35,12 @@ final class PM_Edit extends GWF_Method
 		if (false === ($this->pm = GWF_PM::getByID(Common::getGet('pmid')))) {
 			return $this->module->error('err_pm');
 		}
-		if ($this->pm->isRead()) {
-			return $this->module->error('err_pm_read');
-		}
-		if (false === $this->pm->canEdit(GWF_Session::getUser())) {
+		$user = GWF_Session::getUser();
+		if ($this->pm->getOwnerID() !== $user->getID()) {
 			return $this->module->error('err_perm_write');
+		}
+		if (false === $this->pm->canEdit($user)) {
+			return $this->module->error('err_pm_read');
 		}
 		return false;
 	}
