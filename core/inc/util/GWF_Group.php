@@ -53,7 +53,8 @@ final class GWF_Group extends GDO
 	public function getVisibleMode() { return $this->getVar('group_options') & self::VIEW_FLAGS; }
 	public function getJoinMode() { return $this->getVar('group_options') & self::JOIN_FLAGS; }
 	public function isAskToJoin() { return ($this->getJoinMode() & (self::MODERATE|self::FREE)) > 0; }
-
+	public function displayName() { return $this->display('group_name'); }
+	
 	/**
 	 * @param int $gid
 	 * @return GWF_Group
