@@ -26,8 +26,8 @@ We will give an overview here of the donations, manually updated.<br/>
 </div>
 <div class="box">
 <pre>Donors:       2
-Sum:    €100,00
-Goal:   €250,00
+Sum:    €150,00
+Goal:   €350,00
 </pre>
 </div>
 
@@ -36,6 +36,7 @@ We currently have the following ca. expenses for WeChall:<br/>
 <ul>
 <li>- Box0 (warchall.net) €110/y</li>
 <li>- Box2 (wechall.net) €100/y</li>
+<li>- Box3 (irc.wechall.net) €100/y</li>
 <li>- Domain costs €30/y</li>
 <li>-&nbsp;</li>
 <li>- Wishlist; A better server?</li>
@@ -45,10 +46,14 @@ We currently have the following ca. expenses for WeChall:<br/>
 <hr>
 
 <h2>Hall of purchased Fame :)</h2>
+<ol>
+<li><em>&quot;I challenge you to donate more than I did :)!&quot;</em> – ???</li>
+</ol>
+
 <hr>
 
 <div class="box">
-If you donate you <em>can</em> get an entry here. (Tell us what you would like to write on this wall).<br/>
+If you donate you <em>can</em> get an entry here. Just tell us what you would like to write on this wall.<br/>
 <br/>
 THANKS!
 <br/>
