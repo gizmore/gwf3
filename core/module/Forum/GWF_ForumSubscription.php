@@ -109,7 +109,7 @@ final class GWF_ForumSubscription extends GDO
 		$back = array();
 		foreach ($rows as $uid)
 		{
-			if (false !== ($user = GWF_User::getByID($uid)))
+			if (false !== ($user = GWF_User::getByID($uid)) && !$user->isDeleted())
 			{
 				$back["S_$uid"] = $user;
 			}
