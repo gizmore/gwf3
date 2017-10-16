@@ -1,4 +1,4 @@
-<?
+<?php
 # Only allow these ID's
 $whitelist = array(1, 2, 3);
 
