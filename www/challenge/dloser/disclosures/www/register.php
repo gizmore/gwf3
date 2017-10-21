@@ -22,6 +22,14 @@ function dldc_reqister($username, $password, $email, $firstname, $lastname)
 	{
 		dldc_error('Please fill in an email address.');
 	}
+	elseif (DLDC_User::existsUsername($username))
+	{
+		dldc_error('Username already registered.');
+	}
+	elseif (DLDC_User::existsEMail($email))
+	{
+		dldc_error('E-mail already used for another account.');
+	}
 	else
 	{
 		dldc_cleanup(); # DELETE YOUR OLD "PLAYER"!

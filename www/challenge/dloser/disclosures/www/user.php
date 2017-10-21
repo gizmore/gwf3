@@ -23,6 +23,20 @@ class DLDC_User extends GDO
 		return preg_match('/^[a-z][a-z0-9_]{2,23}$/iD', $username);
 	}
 	
+	public static function existsUsername($username)
+	{
+		$table = self::table(__CLASS__);
+		$username = $table->escape($username);
+		return 0 !== $table->countRows("username='$username'");
+	}
+	
+	public static function existsEMail($email)
+	{
+		$table = self::table(__CLASS__);
+		$email = $table->escape($email);
+		return 0 !== $table->countRows("email='$email'");
+	}
+	
 	public static function hashPassword($password)
 	{
 		return md5($password, true);
