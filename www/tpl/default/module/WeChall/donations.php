@@ -25,7 +25,7 @@ It would be awesome if some people would donate something, as the rent for <a hr
 We will give an overview here of the donations, manually updated.<br/>
 </div>
 <div class="box">
-<pre>Donors:       3
+<pre>Donors:       4
 Sum:    €170,00
 Goal:   €350,00
 </pre>
