@@ -39,7 +39,7 @@ if ($box !== '') {
 	</div>
 	
 	<div class="gwf_pm_body">
-		<div class="gwf_pm_msg" id="<?php echo $transid; ?>"><?php echo $tVars['translated'] === '' ? $pm->displayMessage() : $tVars['translated']; ?></div>
+		<div class="gwf_pm_msg" id="<?php echo $transid; ?>"><?php echo (empty($tVars['translated']) ? $pm->displayMessage() : $tVars['translated']); ?></div>
 		<div class="gwf_pm_sig"><?php echo $pm->displaySignature(); ?></div>
 	</div>
 	
