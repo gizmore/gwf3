@@ -7,7 +7,7 @@ div.donation-page form {
 display: inline-block;
 }
 span.donor {
-color: #eee;
+color: gold;
 font-weight: bold;
 }
 CSS;
