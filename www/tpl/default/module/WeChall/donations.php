@@ -6,6 +6,10 @@ padding: 8px;
 div.donation-page form {
 display: inline-block;
 }
+span.donor {
+color: #eee;
+font-weight: bold;
+}
 CSS;
 GWF_Website::addInlineCSS($css);
 ?>
@@ -25,8 +29,8 @@ It would be awesome if some people would donate something, as the rent for <a hr
 We will give an overview here of the donations, manually updated.<br/>
 </div>
 <div class="box">
-<pre>Donors:       5 (6 donations)
-Sum:    €270,00
+<pre>Donors:       6 (7 donations)
+Sum:    €300,00
 Goal:   €350,00
 </pre>
 </div>
@@ -50,7 +54,8 @@ We currently have the following ca. expenses for WeChall:<br/>
 <ol>
 <li>3.Oct.2017 – <em>&quot;I challenge you to donate more than I did :)!&quot;</em> – ???</li>
 <li>8.Nov.2017 – <em>&quot;When in doubt, .slap dloser&quot;</em> – ???</li>
-<li>3.Dec.2017 – <em>&quot;I feel great to can contribute to this great project and know many people with same interests&quot;</em> – spnow</li>
+<li>3.Dec.2017 – <em>&quot;I feel great to can contribute to this great project and know many people with same interests&quot;</em> – <span class="donor">spnow</span></li>
+<li>8.Dec.2017 – <em>&quot;Awesome work guys - glad to be part of the community!&quot;</em> – <span class="donor">benito255</span></li>
 </ol>
 </div>
 
