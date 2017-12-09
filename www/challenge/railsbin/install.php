@@ -9,7 +9,7 @@ if (!GWF_User::isAdminS()) {
 }
 $title = GWF_PAGE_TITLE;
 #$solution = "test";
-$score = 5;
+$score = 3;
 $url = "challenge/railsbin/index.php";
 $creators = "Gizmore";
 $tags = 'Exploit';
