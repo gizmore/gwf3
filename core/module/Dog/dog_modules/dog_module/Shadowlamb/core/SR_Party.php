@@ -693,11 +693,14 @@ final class SR_Party extends GDO
 			return false;
 		}
 		
+		$was_leader = $this->isLeader($player);
+
 		unset($this->members[$pid]);
 		unset($this->distance[$pid]);
 		if ($update === true)
 		{
 			$this->updateMembers();
+
 			if ($this->getMemberCount() === 0)
 			{
 				if ( $this->isFighting() )
@@ -705,6 +708,26 @@ final class SR_Party extends GDO
 					$this->getEnemyParty()->onFightDone();
 				}
 				$this->deleteParty();
+
+			} else if ($was_leader)
+			{
+				$first_human = NULL;
+				$human_is_leader = true;
+				foreach ($this->members as $pid => $player)
+				{
+					if ($player->isHuman())
+					{
+						$first_human = $player;
+						break;
+					} else if ($human_is_leader)
+					{
+						$human_is_leader = false;
+					}
+				}
+				if (!$human_is_leader && isset($first_human))
+				{
+					$this->setLeader($first_human);
+				}
 			}
 		}
 		return true;
