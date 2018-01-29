@@ -39,7 +39,9 @@ abstract class SR_HireNPC extends SR_TalkingNPC
 	
 	public function onHireC(SR_Player $player, $time)
 	{
-		$player->getParty()->addUser($this, true);
+		$party = $player->getParty();
+		$party->addUser($this, true);
+		$party->ntice('5136', array($this->getName()));
 		$this->onSetHireTime($time);
 	}
 	
