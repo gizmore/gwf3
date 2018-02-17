@@ -57,7 +57,7 @@ if (count($tVars['warboxes']) > 0)
 	}
 	$boxes_out .= GWF_Table::end();
 }
-echo GWF_Box::box($boxes_out.$tLang->lang('info_warboxes', array($tVars['port'], $tVars['netcat_cmd'], GWF_WEB_ROOT.'linked_sites', GWF_WEB_ROOT.'index.php?mo=WeChall&amp;me=JoinUs&amp;section=warbox')), $tLang->lang('title_warboxes'));
+echo GWF_Box::box($boxes_out.$tLang->lang('info_warboxes', array($tVars['otw_cmd'], $tVars['v1_cmd'], $tVars['v2_cmd'], GWF_WEB_ROOT.'linked_sites', GWF_WEB_ROOT.'index.php?mo=WeChall&amp;me=JoinUs&amp;section=warbox')), $tLang->lang('title_warboxes'));
 
 
 echo GWF_Box::box($tLang->lang('info_warcredits', array($epoch)), $tLang->lang('title_warcredits'));
