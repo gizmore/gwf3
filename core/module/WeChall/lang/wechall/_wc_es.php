@@ -684,6 +684,7 @@ $lang = array(
     'pi_warboxes' => 'Configuración WarBox - Para consolas sin manejo de usuarios',
     'on_warbox_on' => 'Modo WarBox ha sido habilitado. Enlazamiento y puntuación es dirigida ahora a %s.',
     'on_warbox_off' => 'Modo WarBox ha sido deshabilitado.',
+    'info_see_below' => 'See below',
 
     # v5.03 (AWESOME_WARBOXES)
     'ft_add_warbox' => 'Agregar un WarBox',

@@ -683,6 +683,7 @@ $lang = array(
 	'pi_warboxes' => 'Warbox установлен - Для оболочки коробки без обращения пользователя',
 	'on_warbox_on' => 'Warbox режим был включен. Соединение и набор очков перемещено  %s теперь.',
 	'on_warbox_off' => 'Warbox режим был отключен.',
+	'info_see_below' => 'See below',
 
 	# v5.03 (AWESOME_WARBOXES)
 	'ft_add_warbox' => 'Добавить Warbox',

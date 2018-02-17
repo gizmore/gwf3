@@ -685,6 +685,7 @@ $lang = array(
 	'pi_warboxes' => 'Warbox Einrichtung - Für shell challenges ohne Benutzerkonten',
 	'on_warbox_on' => 'Warbox Modus aktiviert. Linking ist jetzt zu %s umgeleitet.',
 	'on_warbox_off' => 'Warbox Modus deaktiviert.',
+	'info_see_below' => 'See below',
 
 	# v5.03 (AWESOME_WARBOXES)
 	'ft_add_warbox' => 'Eine Warbox hinzufügen',

@@ -684,6 +684,7 @@ $lang = array(
 	'pi_warboxes' => 'Warbox setup - For shell boxes without user handling',
 	'on_warbox_on' => 'Warbox mode has been enabled. Linking and scoring is directed to %s now.',
 	'on_warbox_off' => 'Warbox mode has been disabled.',
+	'info_see_below' => 'See below',
 
 	# v5.03 (AWESOME_WARBOXES)
 	'ft_add_warbox' => 'Add a Warbox',
