@@ -1146,6 +1146,8 @@ class WC_Site extends WC_SiteBase
 			return new GWF_Result(GWF_HTML::lang('ERR_DATABASE', array(__FILE__, __LINE__)), true);
 		}
 
+		WC_PushNotification::pushUserScoreUpdate($user, $this, $old_score, $new_score);
+
 		require_once 'WC_SiteMaster.php';
 		if ($solved >= 1.0)
 		{

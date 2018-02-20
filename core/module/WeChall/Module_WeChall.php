@@ -68,7 +68,7 @@ final class Module_WeChall extends GWF_Module
 	public function getDefaultPriority() { return 60; } # 50 is default
 	public function getVersion() { return 5.07; }
 	public function onInstall($dropTable) { require_once 'GWF_WeChallInstall.php'; return GWF_WeChallInstall::onInstall($this, $dropTable); }
-	public function getClasses() { return array('WC_SiteMaster', 'WC_Site', 'WC_Challenge', 'WC_Warbox'); }
+	public function getClasses() { return array('WC_SiteMaster', 'WC_Site', 'WC_Challenge', 'WC_Warbox', 'WC_PushNotification'); }
 	public function onLoadLanguage() { return $this->loadLanguage('lang/wechall/_wc'); }
 	public function getDefaultAutoLoad() { return true; }
 	public function onCronjob() { require_once 'WC_Cronjob.php'; }
