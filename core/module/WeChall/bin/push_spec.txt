@@ -1,7 +1,7 @@
 WeChall Push Notification Protocol (WePNoP)
 
 Specification version: 0.1
-Document version: 0.1
+Document version: 0.2
 
 
 This protocol provides a way to send push notifications from WeChall to, likely
@@ -11,7 +11,8 @@ non-WeChall, clients (e.g. IRC bots).
 
 Service
 
-WeChall runs a WePNoP server on wechall.net at TCP port 53452 using SSL.
+WeChall runs a WePNoP server on wechall.net at TCP port 53452 using SSL. The
+availability of this service and notification delivery by it are not guaranteed.
 
 
 
@@ -150,8 +151,10 @@ with periods ('.', hex: 2e).
 
 If an event e is of the form x.y, then we say that e is a subevent of x. This is
 mainly used in order to be able to subscribe to all events starting with some
-prefix. For example, subscribing to "user.score" will also show subevents like
-"user.score.update".
+prefix. For example, subscribing to "user.site" will also show subevents like
+"user.site.update".
+
+Suggested convention of event naming is "subject.object.verb".
 
 
 
@@ -159,15 +162,66 @@ Supported Events
 
 The following events are supported:
 
-user.score.update
-  Occurs when a user's score changes for a registered site on WeChall.
-  
+site.join
+  Occurs when a new site is added to WeChall.
+
   Event properties:
-    user_name:   name of user whose score has changed.
-    site_name:   name of site on which the score changed.
-    old_score:   the score of the user before the change.
-    new_score:   the score of the user after the change.
-    max_score:   the current maximum possible score for this site.
+    site_id:              id ("class" name) of site on which the score changed.
+    site_name:            name of the site.
+    site_url:             site's location on the internet.
+
+site.score.update
+  Occurs when a site's scoring details change. Note that this might mean that
+  user scores have been adjusted. No events are triggered for those changes.
+
+  Event properties:
+    site_id:              id ("class" name) of site on which the score changed.
+    before:               scoring details before the update. (optional; absence
+                          indicates site has joined)
+      linked_users        number of WeChall users that are have linked the site.
+      site_max_challs     number challenges available on the site. (optional)
+      site_max_score      maximum possible score on the site.
+      site_users          number of users registered on the site. (optional)
+      wechall_max_score   maximum possible score on WeChall for the site.
+    after:                scoring details after the update.
+                          this property has the same structure as 'before'.
+
+user.site.link
+  Occurs when a user links a site on WeChall.
+
+  Event properties:
+    user_name:            name of user whose score has changed.
+    site_id:              id ("class" name) of site on which the score changed.
+
+user.site.unlink
+  Occurs when a user unlinks a site on WeChall.
+
+  Event properties:
+    user_name:            name of user whose score has changed.
+    site_id:              id ("class" name) of site on which the score changed.
+
+user.site.update
+  Occurs when a user's score changes for a registered site on WeChall.
+
+  Event properties:
+    user_name:            name of user whose score has changed.
+    site_id:              id ("class" name) of site on which the score changed.
+    site_max_challs:      current number of challenges available on this site.
+                          (optional)
+    site_max_score:       current maximum possible score for this site.
+    wechall_max_score:    maximum possible score on WeChall for this site.
+    before:               user score details before update. (optional; absence
+                          indicates site was linked)
+      site_challs         number of challenges solved by this user on the site.
+                          (optional)
+      site_rank           users's ranking on the site. (optional)
+      site_score          users's score on the site.
+      wechall_site_rank   users's ranking for the site on WeChall.
+      wechall_site_score  users's score for the site on WeChall.
+      wechall_rank        users's ranking on WeChall.
+      wechall_score       users's score on WeChall.
+    after:                user score details after update.
+                          this property has the same structure as 'before'.
 
 
 
@@ -175,9 +229,11 @@ Example Interaction
 
 CLIENT: {"command": "AUTHENTICATE", "key": "ABC"}
 SERVER: {"result": "OK"}
-CLIENT: {"command": "SUBSCRIBE", "event": "user.score"}
+CLIENT: {"command": "SUBSCRIBE", "event": "user.site"}
 SERVER: {"result": "OK"}
-SERVER: {"event": {"site_name": "OverTheWire.org", "type": "user.score.update", "new_score": 12, "max_site_score": 165, "user_name": "neetx", "old_score": "11"}}
+...
+SERVER: {"type":"user.site.update","user_name":"dimooz","site_id":"BQ","site_max_score":1150,"wechall_max_score":71977,"after":{"site_score":157,"wechall_site_rank":125,"wechall_site_score":8264,"wechall_rank":301,"wechall_score":65823,"site_rank":1152},"before":{"site_score":155,"wechall_site_rank":128,"wechall_site_score":8150,"wechall_rank":301,"wechall_score":65709,"site_rank":1170},"site_max_challs":1150}
+...
 CLIENT: {"command": "QUIT"}
 SERVER: {"result": "OK"}
 
@@ -185,12 +241,10 @@ SERVER: {"result": "OK"}
 
 Open Issues/Questions
 
-1. Add rank to user.score.update
-2. Add site vs. wechall score/rank to user.score.update
-3. Add timestamps?
-4. Implement filters (e.g. only specific users)
-4b. Filter on user groups?
-5. Special access keys to otherwise hidden data (like API)? (Probably not a good idea.)
+1. Add timestamps?
+2. Implement filters (e.g. only specific users)
+2b. Filter on user groups?
+3. Special access keys to otherwise hidden data (like API)?
 
 
 
@@ -229,7 +283,7 @@ if recv()['result'] != 'OK':
   print 'authentication failed!'
   sys.exit(1)
 
-send({'command': 'SUBSCRIBE', 'event': 'user.score'})
+send({'command': 'SUBSCRIBE', 'event': 'user.site'})
 if recv()['result'] != 'OK':
   print 'could not subscribe!'
   sys.exit(1)
@@ -240,10 +294,10 @@ while True:
     continue
 
   event = msg['event']
-  if event['type'] == 'user.score.update':
+  if event['type'] == 'user.site.update':
     print '{0} scored {1} points on {2} and now has a total of {3} points.'.format(
                event['user_name'],
-               event['new_score'] - event['old_score'],
-               event['site_name'],
-               event['new_score'])
+               event['after']['site_score'] - event.get('before',{'site_score':0})['site_score'],
+               event['site_id'],
+               event['after']['site_score'])
 

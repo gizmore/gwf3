@@ -31,7 +31,7 @@ if recv()['result'] != 'OK':
   print 'authentication failed!'
   sys.exit(1)
 
-send({'command': 'SUBSCRIBE', 'event': 'user.score'})
+send({'command': 'SUBSCRIBE', 'event': 'user.site'})
 if recv()['result'] != 'OK':
   print 'could not subscribe!'
   sys.exit(1)
@@ -42,9 +42,9 @@ while True:
     continue
   
   event = msg['event']
-  if event['type'] == 'user.score.update':
+  if event['type'] == 'user.site.update':
     print '{0} scored {1} points on {2} and now has a total of {3} points.'.format(
                event['user_name'],
-               event['new_score'] - event['old_score'],
-               event['site_name'],
-               event['new_score'])
+               event['after']['site_score'] - event.get('before',{'site_score':0})['site_score'],
+               event['site_id'],
+               event['after']['site_score'])

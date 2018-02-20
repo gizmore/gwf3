@@ -1007,7 +1007,24 @@ class WC_Site extends WC_SiteBase
 		if (false === ($regat = WC_RegAt::getRegatRow($user->getID(), $this->getID()))) {
 			return new GWF_Result(WC_HTML::lang('err_not_linked', array($this->displayName())), true);
 		}
-		
+
+		# Collect before information for push notification
+		if ($onlink)
+		{
+			$before = NULL;
+		} else {
+			$before = array(
+				'site_challs' => $regat->getVar('regat_challsolved'),
+				'site_rank' => $regat->getOnsiteRank(),
+				'site_score' => $regat->getOnsiteScore(),
+				'wechall_site_rank' => WC_RegAt::calcExactSiteRank($user, $this->getID()),
+				# 'wechall_site_score' is calculated in onUpdateUserB
+				'wechall_rank' => WC_RegAt::calcExactRank($user),
+				'wechall_score' => $user->getVar('user_level'),
+				);
+		}
+
+		# Get new stats
 		$url = $this->getScoreURL($regat->getVar('regat_onsitename'));
 		
 		if ($this->isNoV1())
@@ -1063,7 +1080,7 @@ class WC_Site extends WC_SiteBase
 		// if onlink is false and we have a 0 score, do not update further.
 		if ( ($new_score != $regat->getOnsiteScore()) || ($onlink === true && $new_score==0 ) ) {
 			// do update events...
-			return $site->onUpdateUserB($user, $regat, $new_score, $recalc_scores, $onlink, $challs_solved);
+			return $site->onUpdateUserB($user, $regat, $new_score, $recalc_scores, $onlink, $challs_solved, $before);
 		}
 		
 		return new GWF_Result(WC_HTML::lang('msg_no_change'), false);
@@ -1108,9 +1125,10 @@ class WC_Site extends WC_SiteBase
 	 * @param int $new_score
 	 * @param boolean $recalc_scores
 	 * @param boolean $onlink
+	 * @param array $before contains information for push notification; should be NULL iff $onlink
 	 * @return GWF_Result
 	 */
-	public function onUpdateUserB(GWF_User $user, $regat, $new_score, $recalc_scores=true, $onlink=false, $challs_solved=-1)
+	public function onUpdateUserB(GWF_User $user, $regat, $new_score, $recalc_scores=true, $onlink=false, $challs_solved=-1, $before=NULL)
 	{
 		$old_score = $regat->getOnsiteScore();
 		$old_totalscore = $this->calcScore($regat);
@@ -1146,8 +1164,6 @@ class WC_Site extends WC_SiteBase
 			return new GWF_Result(GWF_HTML::lang('ERR_DATABASE', array(__FILE__, __LINE__)), true);
 		}
 
-		WC_PushNotification::pushUserScoreUpdate($user, $this, $old_score, $new_score);
-
 		require_once 'WC_SiteMaster.php';
 		if ($solved >= 1.0)
 		{
@@ -1158,6 +1174,23 @@ class WC_Site extends WC_SiteBase
 			WC_SiteMaster::unmarkSiteMaster($user->getID(), $this->getID(), $solved);
 		}
 		
+		# Send push notification
+		require_once 'WC_PushNotification.php';
+		if (isset($before))
+		{
+			$before['wechall_site_score'] = $old_totalscore;
+		}
+		$after = array(
+			'site_challs' => $challs_solved,
+			'site_rank' => $regat->getOnsiteRank(),
+			'site_score' => $new_score,
+			'wechall_site_rank' => WC_RegAt::calcExactSiteRank($user, $this->getID()),
+			'wechall_site_score' => $new_totalscore,
+			'wechall_rank' => WC_RegAt::calcExactRank($user),
+			'wechall_score' => $user->getVar('user_level'),
+			);
+		WC_PushNotification::pushUserSiteUpdate($user, $this, $before, $after);
+
 		return new GWF_Result(GWF_HTML::lang('You').' '.GWF_HTML::display($comment), false);
 	}
 	

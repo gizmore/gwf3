@@ -6,7 +6,7 @@ notify_addr = '0.0.0.0'
 notify_port = 53452
 
 supported_events = [
-  'user.score.update'
+  'user.site.update',
   ]
 
 if len(sys.argv) != 2:
