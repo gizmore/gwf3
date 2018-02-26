@@ -35,11 +35,12 @@ class GWF_PushNotification
 
 		} catch (Exception $e) {
 			// ignore
-		} finally {
-			if ($socket !== NULL)
-			{
-				socket_close($socket);
-			}
+		}
+
+		// finally (but not for PHP 5.3...)
+		if ($socket !== NULL)
+		{
+			socket_close($socket);
 		}
 	}
 }
