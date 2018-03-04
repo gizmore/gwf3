@@ -407,6 +407,7 @@ $lang = array(
 	'btn_quickjump' => 'Gyorsugrás',
 	'btn_ranking' => 'Ranglista',
 	'btn_global_rank' => 'Globális ranglista',
+	'btn_active_rank' => 'ActiveSites Ranking',
 	'btn_lang_rank' => 'Nyelv szerinti ranglista',
 	'btn_country_rank' => 'Országos ranglista',
 	'btn_tag_rank' => 'Kategória ranglista',

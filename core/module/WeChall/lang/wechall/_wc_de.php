@@ -411,6 +411,7 @@ $lang = array(
 	'btn_quickjump' => 'Quickjump',		# ?
 	'btn_ranking' => 'Rangliste',
 	'btn_global_rank' => 'Globale Rangliste',
+	'btn_active_rank' => 'Aktive Seiten Ranking',
 	'btn_lang_rank' => 'Rangliste nach Sprache',
 	'btn_country_rank' => 'Rangliste nach Land',
 	'btn_tag_rank' => 'Rangliste nach Kategorie',

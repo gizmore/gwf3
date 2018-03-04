@@ -408,6 +408,7 @@ $lang = array(
 	'btn_quickjump' => 'Quickjump',
 	'btn_ranking' => 'Ранг',
 	'btn_global_rank' => 'Глобални Ранг',
+	'btn_active_rank' => 'ActiveSites Ranking',
 	'btn_lang_rank' => 'Рангирање по Језику',
 	'btn_country_rank' => 'Рангирање по Држави',
 	'btn_tag_rank' => 'Рангирање по Категоријама',

@@ -408,6 +408,7 @@ $lang = array(
 	'btn_quickjump' => 'Quickjump',
 	'btn_ranking' => 'Žebříček',
 	'btn_global_rank' => 'Celkový žebříček',
+	'btn_active_rank' => 'ActiveSites Ranking',
 	'btn_lang_rank' => 'Žebříček jazyků',
 	'btn_country_rank' => 'Žebříček států',
 	'btn_tag_rank' => 'Žebříček kategorií',

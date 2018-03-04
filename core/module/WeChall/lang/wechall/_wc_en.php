@@ -407,6 +407,7 @@ $lang = array(
 	'btn_quickjump' => 'Quickjump',
 	'btn_ranking' => 'Ranking',
 	'btn_global_rank' => 'Global Ranking',
+	'btn_active_rank' => 'ActiveSites Ranking',
 	'btn_lang_rank' => 'Language Ranking',
 	'btn_country_rank' => 'Country Ranking',
 	'btn_tag_rank' => 'Category Ranking',

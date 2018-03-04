@@ -608,7 +608,7 @@ final class WC_HTML
 	{
 		switch (Common::getGet('me',''))
 		{
-			case 'Ranking': case 'RankingCountry': case 'RankingLang': case 'ScoringFaq': case 'SiteRankings': case 'SiteMasters':
+			case 'Ranking': case 'RankingActive': case 'RankingCountry': case 'RankingLang': case 'ScoringFaq': case 'SiteRankings': case 'SiteMasters':
 				$sel = true; break;
 			default:
 				$sel = false; break;
@@ -819,6 +819,7 @@ final class WC_HTML
 		echo '<div class="gwf_buttons_outer">'.PHP_EOL;
 		echo '<div class="gwf_buttons">'.PHP_EOL;
 		echo GWF_Button::generic(self::lang('btn_global_rank'), GWF_WEB_ROOT.'ranking', 'generic', '', Common::getGet('me')==='Ranking');
+		echo GWF_Button::generic(self::lang('btn_active_rank'), GWF_WEB_ROOT.'ranking_active', 'generic', '', Common::getGet('me')==='RankingActive');
 		echo GWF_Button::generic(self::lang('btn_site_rank'), GWF_WEB_ROOT.'site/ranking/for/1/WeChall', 'generic', '', Common::getGet('me')==='SiteRankings');
 		echo GWF_Button::generic(self::lang('btn_lang_rank'), GWF_WEB_ROOT.'lang_ranking/en', 'generic', '', Common::getGet('me')==='RankingLang');
 		echo GWF_Button::generic(self::lang('btn_country_rank'), GWF_WEB_ROOT.'country_ranking', 'generic', '', Common::getGet('me')==='RankingCountry');
