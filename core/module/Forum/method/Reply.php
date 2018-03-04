@@ -149,7 +149,7 @@ final class Forum_Reply extends GWF_Method
 	{
 		$tVars = array(
 			'thread' => $this->thread,
-			'posts' => $this->getLastPosts($this->module->getLastPostsReply()),
+			'posts' => $this->thread->getLastVisiblePosts(),
 			'pagemenu' => '',
 			'actions' => false,
 			'title' => true,
@@ -160,12 +160,6 @@ final class Forum_Reply extends GWF_Method
 			'term' => array(),
 		);
 		return $this->module->templatePHP('show_thread.php', $tVars);
-	}
-	
-	private function getLastPosts($count)
-	{
-		$tid = $this->thread->getID();
-		return array_reverse(GDO::table('GWF_ForumPost')->selectObjects('*', "post_tid=$tid", "post_date DESC", $count));
 	}
 	
 	###############

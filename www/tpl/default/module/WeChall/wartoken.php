@@ -30,6 +30,7 @@ if (count($tVars['warboxes']) > 0)
 				array('Levels'),
 				array('Status'),
 				array('Flags'),
+				array('Update'),
 			);
 			
 			$boxes_out .= GWF_Table::displayHeaders1($headers);
@@ -43,6 +44,7 @@ if (count($tVars['warboxes']) > 0)
 		$boxes_out .= GWF_Table::column($box->display('wb_pass'));
 		$boxes_out .= GWF_Table::column($box->displayLevels(), 'gwf_num');
 		$boxes_out .= GWF_Table::column(WC_HTML::lang('wb_'.$box->getVar('wb_status')), 'gwf_num');
+		$boxes_out .= GWF_Table::column(GWF_Button::forward($box->hrefFlags()));
 		
 		if ($box->hasWarFlags())
 		{
@@ -50,14 +52,14 @@ if (count($tVars['warboxes']) > 0)
 		}
 		else
 		{
-			$boxes_out .= GWF_Table::column();
+			$boxes_out .= GWF_Table::column(WC_HTML::lang('info_see_below'));
 		}
 		
 		$boxes_out .= GWF_Table::rowEnd();
 	}
 	$boxes_out .= GWF_Table::end();
 }
-echo GWF_Box::box($boxes_out.$tLang->lang('info_warboxes', array($tVars['port'], $tVars['netcat_cmd'], GWF_WEB_ROOT.'linked_sites', GWF_WEB_ROOT.'index.php?mo=WeChall&amp;me=JoinUs&amp;section=warbox')), $tLang->lang('title_warboxes'));
+echo GWF_Box::box($boxes_out.$tLang->lang('info_warboxes', array($tVars['otw_cmd'], $tVars['v1_cmd'], $tVars['v2_cmd'], GWF_WEB_ROOT.'linked_sites', GWF_WEB_ROOT.'index.php?mo=WeChall&amp;me=JoinUs&amp;section=warbox')), $tLang->lang('title_warboxes'));
 
 
 echo GWF_Box::box($tLang->lang('info_warcredits', array($epoch)), $tLang->lang('title_warcredits'));

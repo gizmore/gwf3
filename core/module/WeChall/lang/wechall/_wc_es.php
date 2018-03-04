@@ -676,15 +676,16 @@ $lang = array(
     'btn_warboxes' => 'WarBoxes',
     'err_warbox_nick' => 'No puedes, y no necesitas elegir un nombre de usuario diferente en un WarBox.',
     'title_wartoken' => 'WarTokens',
-    'info_wartoken' => ' En muchos WarBoxes, cuentas de usuario individuales no existen.<br/>%s hizo posible puntuar más fácil con %s, un wrapper de autenticación para identd.',
+    'info_wartoken' => 'On many Warboxes, individual user accounts do not exist. Instead you can identify yourself from a Warbox to WeChall using a "WarToken".<br/><br/>Note that you do still have to link the site on your accounts page (with your default info).<br/><br/>%s first made it possible to score warboxes using ident. Later extensions were made to also allow situations where ident is not (easily) possible.',
     'title_warboxes' => 'WarBoxes soportadas',
-    'info_warboxes' => 'Simplemente resuelve un reto en un WarBox; cuando estés conectado como la respuesta, ejecuta netcat al puerto %s:<br/><br/><i>%s</i><br/><br/>Eso es todo!<br/><br/>Puedes <a href="%s">enlazar un WarBox</a> como un sitio regular.<br/><br/><a href="%s">Tengo un nuevo WarBox, ¿cómo lo puedo agregar?</a>',
+    'info_warboxes' => 'Simply solve a chall on a Warbox. When logged in using the password/flag, run one of the following commands:<br/><br/>Some sites (like <a href="http://overthewire.org/help/wechall.html">OTW</a>) may provide custom commands. E.g.:<br/><i>%s</i><br/><br/>Ident method (no longer supported for OTW):<br/><i>%s</i><br/><br/>Non-ident method over SSL:<br/><i>%s</i><br/><br/>That´s it!<br/><br/>You can <a href="%s">link a Warbox</a> like a regular site.<br/><br/><a href="%s">I have a new Warbox, how to add it?</a>',
     'title_your_wartoken' => 'Tu WarToken actual',
     'title_warcredits' => 'Idea WarBox',
     'info_warcredits' => 'Muchas gracias a %s por esta fabulosa idea e implementación!',
     'pi_warboxes' => 'Configuración WarBox - Para consolas sin manejo de usuarios',
     'on_warbox_on' => 'Modo WarBox ha sido habilitado. Enlazamiento y puntuación es dirigida ahora a %s.',
     'on_warbox_off' => 'Modo WarBox ha sido deshabilitado.',
+    'info_see_below' => 'See below',
 
     # v5.03 (AWESOME_WARBOXES)
     'ft_add_warbox' => 'Agregar un WarBox',

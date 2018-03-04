@@ -150,7 +150,7 @@ final class Module_Forum extends GWF_Module
 	public function isGuestPostModerated() { return true; }# $this->getModerationTime() > 0; }
 //	public function getModerationTime() { return $this->getModuleVarInt('mod_guest_time', GWF_Time::ONE_DAY); }
 	public function isSearchAllowed() { return $this->getModuleVarBool('search', '1'); }
-	public function getLastPostsReply() { return $this->getPostsPerThread() - 1; }
+	public function getNumLastPostsForReply() { return $this->getPostsPerThread() - 1; }
 	public function getModerationSender() { return $this->getModuleVar('mod_sender', GWF_BOT_EMAIL); }
 	public function getModerationReceiver() { return $this->getModuleVar('mod_receiver', GWF_SUPPORT_EMAIL); }
 	public function isUnreadThreadsEnabled() { return $this->getModuleVarBool('unread', '1'); }

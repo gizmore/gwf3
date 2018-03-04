@@ -62,7 +62,9 @@ final class WeChall_Warbox extends GWF_Method
 			'token' => $token,
 			'port' => $port,
 			'host' => $host,
-			'netcat_cmd' => sprintf('(echo -e "%s\n%s"; cat) | nc %s %s', $user->displayUsername(), $token, $ip, $port),
+			'v1_cmd' => sprintf('(echo -e "%s\n%s"; cat) | nc %s %s', $user->displayUsername(), $token, $ip, $port),
+			'v2_cmd' => sprintf('echo -n \'Enter level password: \'; read password; { echo -e \'\nWARSOLVEv2\n{"wechall_username":"%s", "wechall_token":"%s", "warbox_level":"\'`whoami`\'", "warbox_password":"\'"$password"\'"}\'; cat; } | openssl s_client -connect wc2.wechall.net:4142', $user->displayUsername(), $token),
+			'otw_cmd' => sprintf('WECHALLUSER="%s" WECHALLTOKEN="%s" wechall', $user->displayUsername(), $token),
 		);
 		return $this->module->templatePHP('wartoken.php', $tVars);
 	}
