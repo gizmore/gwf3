@@ -77,43 +77,45 @@ final class WeChall_RankingActive extends GWF_Method
 		if ($user === false || $user->isWebspider() || $user->isOptionEnabled(0x10000000)) {
 			return array(1, 1);
 		}
-		$rank = $this->calcExactRank($user);
-		$page = GWF_PageMenu::getPageForPos($rank, $ipp);
-		return array($page, $rank);
+		return array(1,1); # FIX SLOW
+		
+// 		$rank = $this->calcExactRank($user);
+// 		$page = GWF_PageMenu::getPageForPos($rank, $ipp);
+// 		return array($page, $rank);
 	}
 			
 			
-	private function calcScore(GWF_User $user)
-	{
-		$db = gdo_db();
-		$regat = GDO::table('WC_RegAt')->getTableName();
-		$sites = GDO::table('WC_Site')->getTableName();
-		$query = "SELECT SUM(regat_score) AS sum ".
-				"FROM $regat R ".
-				"JOIN $sites S ON S.site_id = R.regat_sid ".
-				"WHERE regat_uid={$user->getID()} AND site_status='up'";
-		$result = $db->queryFirst($query);
-		return $result['sum'];
-	}
+// 	private function calcScore(GWF_User $user)
+// 	{
+// 		$db = gdo_db();
+// 		$regat = GDO::table('WC_RegAt')->getTableName();
+// 		$sites = GDO::table('WC_Site')->getTableName();
+// 		$query = "SELECT SUM(regat_score) AS sum ".
+// 				"FROM $regat R ".
+// 				"JOIN $sites S ON S.site_id = R.regat_sid ".
+// 				"WHERE regat_uid={$user->getID()} AND site_status='up'";
+// 		$result = $db->queryFirst($query);
+// 		return $result['sum'];
+// 	}
 	
-	private function calcExactRank(GWF_User $user)
-	{
-		$score = $this->calcScore($user);
+// 	private function calcExactRank(GWF_User $user)
+// 	{
+// 		$score = $this->calcScore($user);
 		
-		$db = gdo_db();
-		$regat = GDO::table('WC_RegAt')->getTableName();
-		$sites = GDO::table('WC_Site')->getTableName();
+// 		$db = gdo_db();
+// 		$regat = GDO::table('WC_RegAt')->getTableName();
+// 		$sites = GDO::table('WC_Site')->getTableName();
 		
-		$query = "SELECT regat_uid, SUM(regat_score) AS sum".
-				" FROM $regat AS B".
-				" JOIN $sites AS S ON B.regat_sid = S.site_id".
-				" WHERE site_status = 'up'".
-				" GROUP by regat_uid".
-				" HAVING sum>$score".
-				"";
-		$result = $db->queryRead($query);
-		return $db->numRows($result) + 1;
-	}
+// 		$query = "SELECT regat_uid, SUM(regat_score) AS sum".
+// 				" FROM $regat AS B".
+// 				" JOIN $sites AS S ON B.regat_sid = S.site_id".
+// 				" WHERE site_status = 'up'".
+// 				" GROUP by regat_uid".
+// 				" HAVING sum>$score".
+// 				"";
+// 		$result = $db->queryRead($query);
+// 		return $db->numRows($result) + 1;
+// 	}
 	
 	/**
 	 * Select Users For Global Ranking.
@@ -136,8 +138,9 @@ final class WeChall_RankingActive extends GWF_Method
 		" FROM $regat AS B".
 		" JOIN $sites AS S ON B.regat_sid = S.site_id".
 		" JOIN $users AS U ON B.regat_uid = U.user_id".
-		" WHERE site_status = 'up'".
+		" WHERE site_status = 'up' AND U.user_level > 0".
 		" GROUP by user_id".
+// 		" HAVING user_level > 0".
 		" ORDER BY user_level DESC, user_id ASC".
 		" LIMIT $from, $count";
 		$back = array();
