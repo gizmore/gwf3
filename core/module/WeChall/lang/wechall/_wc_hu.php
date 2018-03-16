@@ -733,4 +733,7 @@ $lang = array(
 	#5.10 SiteRSS
 	'siterss_title' => 'Recent activity on %s',
 	'siterssi_title' => '%s activity',
+
+	#5.11 ActiveSiteRanking
+	'pi_activerank' => 'This new ranking only sums active sites. It has a reduced functionality at the moment, for example no correct highlighting, and no profile or other pages link here.',
 );
