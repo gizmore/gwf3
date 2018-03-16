@@ -1,0 +1,98 @@
+### ID: GRFC-1
+### Version: 1
+### Status: DRAFT
+### Date: 2018-03-15
+### Title: Britcoin Cryptocurrency
+
+### Table of Contents
+
+0. Terminology
+0.0 The words "must", "shall", "could" and "will" all mean the same.
+0.0.0.1 bc - britcoin - Not to be confused with the official britcoin. Britcoin is a parody on sabretooth's origin.
+0.0.0.2 mbc - microbritcoin; The smallest/unit of bc you can transfer 
+0.0.1 POW - Prove Of Work
+0.0.1.1 hash - SKEIN512 hash. Rounds use the uppercase hex representation as string of the previous round.
+0.0.2 NounceZero - The previous block's signature as initial trust
+0.0.2.1 InitialTrust - The POW of the previous block, or null for the very first block.
+0.0.3 tbd - to be discussed/decided/dumped/done
+-
+1. Blocks (tbd)
+1.1 Transactions (tbd)
+1.2 Guarantee of delivery(tbd)
+-
+2. The britshash
+2.1. Prove of work
+2.1.1 Difficulty settings
+-
+3. Mesh Networking (tbd)
+3.1 More ideas here... (tbd)
+-
+4.1 Examples (tbd)
+4.1.1 Skein Assembly Implementation for SOCs (tbd)
+4.1.2 Reference Vectors (tbd)
+----------------------
+----------------------
+----------------------
+1. Blocks (To be done)
+
+A block can vary in size and is processed at last after 15 minute or when it reached it's max size of 1024KB.
+A block is an array of transactions in json format. Additionally, the previos pow or null as InitialTrust is contained.
+Null is only accepted for the first block.
+
+A block consists of:
+{
+"initial_trust": hash||null,
+"transactions": Transaction[],
+(optional 00padding for making transactions crash override via main cryptocurrency central server)(TBD)
+----------------------
+1.1 Transactions (tbd)
+A Transaction consists of these fields:
+{
+"from": "sendername"||null
+"to": "receivername"
+"amt": Amount of britcoins in mbc
+"note": A max 255 chars of message for this transaction
+}
+If "from" is null, it is a new generated bc. Yay. 
+----------------------
+1.2 Guarantee of delivery (tbd)
+
+When a block is not processed after 15 minutes, it is paddedd with null bytes, which is a forbidden char in block dat. <-- xxx crap ntbd)
+### TODO: Talk about this bullocks idea, also it's not decentralized anymore but whatever
+-----------------------
+2. The brithash (TBD)
+
+Brithash uses the skein512 hash algorithm in hex representation as it's only hash algorithm.
+All hex representations are uppercase. Always. In rounds and mining. etc.
+----------------------
+2.1. Prove of work
+
+The Blocks json content is hashed to generate the initial NounceZero.
+The prove of work is a hash of this NounceZero with a 32 hex uppercase chars long nounce which results in a hash value below the difficulty.
+This prove of work is the next initial_trust.
+----------------------
+2.1.1 Difficulty settings (TBD)
+
+The difficulty setting is a value between 0 and hash max value.
+The prove of work has to be smaller than max-value - difficulty
+The initial difficulty is 2^(512-16????), which requires 0x0000...(4 leading zeroes) # @Caesum: Please math!
+Difficulty can be increased linearly in future (tbd)
+----------------------
+3. Mesh Networking (tbd)
+----------------------
+4.1 Examples
+In this section you find various examples.
+----------------------
+4.1.1 Skein Assembly Implementation for SOCs and gfxcards and webjs and all (tbd by livinskull)
+TBD
+----------------------
+4.1.2 Reference Vectors (tbd)
+
+BlockData: livinskull
+nounce-zero: 05113B96005C00ABE1BC67C7108EBDAA5B030A03F3FB2DB3279A1730D96E41C4B1D43DF46BAF31B367A960005B9A7BFF48168722E336A0A900181861F55A88F4
+
+nounce-zero+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA: CF5B8E3B2ED168745854D73CAA71A259AC9AECA0B9AE2056D3B1B7011BF9CA7A4D8592CDD264485EC3EB9F5D5B0B16EA3857F941E83E17E11EE79CD47FBBCDAC
+
+Your job is to find a nounce that produces a hash that fulfils the difficulty settings of 2^(512-16) (TBD: check math for 4 leading zeroes)
+----------------------
+EOC
