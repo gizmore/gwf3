@@ -43,7 +43,7 @@ final class WeChall_RankingActive extends GWF_Method
 			list($page, $rank) = $this->getPageForSession($ipp, $user);
 		} else {
 			$page = Common::clamp(intval($page), 1, $nPages);
-			$rank = $user === false || $user->isOptionEnabled(0x10000000) ? 1 : $this->calcExactRank($user);
+// 			$rank = $user === false || $user->isOptionEnabled(0x10000000) ? 1 : $this->calcExactRank($user);
 		}
 		
 //		var_dump($page);
@@ -59,7 +59,7 @@ final class WeChall_RankingActive extends GWF_Method
 		
 		$tVars = array(
 			'rank' => $from+1,
-			'highlight_rank' => $rank,
+			'highlight_rank' => 1,
 			'sites' => $this->getSites(),
 			'userdata' => $userdata,
 			'page_menu' => GWF_PageMenu::display($page, $nPages, $href),
