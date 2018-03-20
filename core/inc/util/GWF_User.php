@@ -77,6 +77,7 @@ final class GWF_User extends GDO
 	public function getGender() { return $this->getVar('user_gender'); }
 	public function hasAvatar() { return $this->isOptionEnabled(self::HAS_AVATAR); }
 	public function hasCountry() { return $this->getVar('user_countryid') !== '0'; }
+	public function wantsAdult() { return $this->isOptionEnabled(self::WANTS_ADULT); }
 
 	/**
 	 * Get a user by ID.

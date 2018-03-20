@@ -407,6 +407,7 @@ $lang = array(
 	'btn_quickjump' => 'Быстрый переход',
 	'btn_ranking' => 'Рейтинг',
 	'btn_global_rank' => 'Глобальный рейтинг',
+	'btn_active_rank' => 'ActiveSites Ranking',
 	'btn_lang_rank' => 'Рейтинг по языкам',
 	'btn_country_rank' => 'Рейтинг по странам',
 	'btn_tag_rank' => 'Рейтинг по категориям',
@@ -674,15 +675,16 @@ $lang = array(
 	'btn_warboxes' => 'WarBoxes',
 	'err_warbox_nick' => 'Вы не можете, и не нужно, выберите другое прозвище на Warbox.',
 	'title_wartoken' => 'WarTokens',
-	'info_wartoken' => 'На многих Warboxes, отдельные учетные записи пользователей не существует.<br/>%s Позволили забить их легко с %s, суперобложкой идентификации.',
+	'info_wartoken' => 'On many Warboxes, individual user accounts do not exist. Instead you can identify yourself from a Warbox to WeChall using a "WarToken".<br/><br/>Note that you do still have to link the site on your accounts page (with your default info).<br/><br/>%s first made it possible to score warboxes using ident. Later extensions were made to also allow situations where ident is not (easily) possible.',
 	'title_warboxes' => 'Помощь Warboxes',
-	'info_warboxes' => 'Просто решить задание на Warbox; когда вошли как флагом, нужно постучать в Netcat в порт %s:<br/><br/><i>%s</i><br/><br/>Что? это!<br/><br/>Вы можете <a href="%s">ссылка на Warbox</a> как обычный сайт.<br/><br/><a href="%s">У меня есть новый Warbox, как добавить его?</a>',
+	'info_warboxes' => 'Simply solve a chall on a Warbox. When logged in using the password/flag, run one of the following commands:<br/><br/>Some sites (like <a href="http://overthewire.org/help/wechall.html">OTW</a>) may provide custom commands. E.g.:<br/><i>%s</i><br/><br/>Ident method (no longer supported for OTW):<br/><i>%s</i><br/><br/>Non-ident method over SSL:<br/><i>%s</i><br/><br/>That´s it!<br/><br/>You can <a href="%s">link a Warbox</a> like a regular site.<br/><br/><a href="%s">I have a new Warbox, how to add it?</a>',
 	'title_your_wartoken' => 'Ваш текущий WarToken',
 	'title_warcredits' => 'Warbox идея',
 	'info_warcredits' => 'Большое спасибо %s для этой сказочной идеи и её реализации!',
 	'pi_warboxes' => 'Warbox установлен - Для оболочки коробки без обращения пользователя',
 	'on_warbox_on' => 'Warbox режим был включен. Соединение и набор очков перемещено  %s теперь.',
 	'on_warbox_off' => 'Warbox режим был отключен.',
+	'info_see_below' => 'See below',
 
 	# v5.03 (AWESOME_WARBOXES)
 	'ft_add_warbox' => 'Добавить Warbox',
@@ -734,4 +736,8 @@ $lang = array(
 	#5.10 SiteRSS
 	'siterss_title' => 'Последняя активность %s',
 	'siterssi_title' => '%s активность',
+
+	#5.11 ActiveSiteRanking
+	'pi_activerank' => 'This new ranking only sums active sites. It has a reduced functionality at the moment, for example no correct highlighting, and no profile or other pages link here.',
+	
 );

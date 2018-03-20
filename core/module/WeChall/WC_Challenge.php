@@ -951,10 +951,14 @@ final class WC_Challenge extends GDO
 		}
 		
 		$div = '&nbsp;|&nbsp;'.PHP_EOL; // divider space
+		$href_votes = $this->hrefVotes();
 		
 		echo '<div class="chall_head box box_c">'.PHP_EOL;
-		echo '<span>'.$this->displayBoardLinks(true, $isSolved).$this->displayVoteLink().'</span>'.PHP_EOL.$div;
+		echo '<span>'.$this->displayBoardLinks(true, $isSolved).'</span>'.PHP_EOL.$div;
 		echo '<span>'.WC_HTML::lang('score').': '.$this->getVar('chall_score').'</span>'.PHP_EOL.$div;
+		echo '<span class="gwf_num" title="'.WC_HTML::lang('th_dif').'">'.sprintf('<a class="gwf_num" href="%s">%s</a>', $href_votes, $this->displayDif()).'</td>'.PHP_EOL;
+		echo '<span class="gwf_num" title="'.WC_HTML::lang('th_edu').'">'.sprintf('<a class="gwf_num" href="%s">%s</a>', $href_votes, $this->displayEdu()).'</td>'.PHP_EOL;
+		echo '<span class="gwf_num" title="'.WC_HTML::lang('th_fun').'">'.sprintf('<a class="gwf_num" href="%s">%s</a>', $href_votes, $this->displayFun()).'</td>'.$div.PHP_EOL;
 		echo '<span>'.GWF_HTML::anchor($this->hrefSolvers(), WC_HTML::lang('chall_solvecount', array($this->getVar('chall_solvecount')))).'</span>'.PHP_EOL.$div;
 		echo '<span>'.$this->getVar('chall_views').' '.WC_HTML::lang('views').'</span>'.PHP_EOL.$div;
 		echo '<span>'.WC_HTML::lang('chall_added').' '.GWF_Time::displayDate($this->getVar('chall_date')).'</span>';

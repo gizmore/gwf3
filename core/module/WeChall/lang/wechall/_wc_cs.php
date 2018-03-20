@@ -408,6 +408,7 @@ $lang = array(
 	'btn_quickjump' => 'Quickjump',
 	'btn_ranking' => 'Žebříček',
 	'btn_global_rank' => 'Celkový žebříček',
+	'btn_active_rank' => 'ActiveSites Ranking',
 	'btn_lang_rank' => 'Žebříček jazyků',
 	'btn_country_rank' => 'Žebříček států',
 	'btn_tag_rank' => 'Žebříček kategorií',
@@ -675,15 +676,16 @@ $lang = array(
 	'btn_warboxes' => 'WarBoxes',
 	'err_warbox_nick' => 'You cannot, and do not need to, choose a different nickname on a Warbox.',
 	'title_wartoken' => 'WarTokens',
-	'info_wartoken' => 'On many Warboxes, individual useraccounts do not exist.<br/>%s made it possible to score them easily with %s, an identd authentication wrapper.',
+	'info_wartoken' => 'On many Warboxes, individual user accounts do not exist. Instead you can identify yourself from a Warbox to WeChall using a "WarToken".<br/><br/>Note that you do still have to link the site on your accounts page (with your default info).<br/><br/>%s first made it possible to score warboxes using ident. Later extensions were made to also allow situations where ident is not (easily) possible.',
 	'title_warboxes' => 'Supported Warboxes',
-	'info_warboxes' => 'Simply solve a chall on a Warbox; when logged in as the flag, do netcat to port %s:<br/><br/><i>%s</i><br/><br/>That´s it!<br/><br/>You can <a href="%s">link a Warbox</a> like a regular site.<br/><br/><a href="%s">I have a new Warbox, how to add it?</a>',
+	'info_warboxes' => 'Simply solve a chall on a Warbox. When logged in using the password/flag, run one of the following commands:<br/><br/>Some sites (like <a href="http://overthewire.org/help/wechall.html">OTW</a>) may provide custom commands. E.g.:<br/><i>%s</i><br/><br/>Ident method (no longer supported for OTW):<br/><i>%s</i><br/><br/>Non-ident method over SSL:<br/><i>%s</i><br/><br/>That´s it!<br/><br/>You can <a href="%s">link a Warbox</a> like a regular site.<br/><br/><a href="%s">I have a new Warbox, how to add it?</a>',
 	'title_your_wartoken' => 'Your current WarToken',
 	'title_warcredits' => 'Warbox idea',
 	'info_warcredits' => 'Big big thanks to %s for this fabulous idea and implementation!',
 	'pi_warboxes' => 'Warbox setup - For shell boxes without user handling',
 	'on_warbox_on' => 'Warbox mode has been enabled. Linking and scoring is directed to %s now.',
 	'on_warbox_off' => 'Warbox mode has been disabled.',
+	'info_see_below' => 'See below',
 
 	# v5.03 (AWESOME_WARBOXES)
 	'ft_add_warbox' => 'Add a Warbox',
@@ -735,4 +737,7 @@ $lang = array(
 	#5.10 SiteRSS
 	'siterss_title' => 'Recent activity on %s',
 	'siterssi_title' => '%s activity',
+
+	#5.11 ActiveSiteRanking
+	'pi_activerank' => 'This new ranking only sums active sites. It has a reduced functionality at the moment, for example no correct highlighting, and no profile or other pages link here.',
 );

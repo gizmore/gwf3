@@ -326,7 +326,7 @@ final class News_Edit extends GWF_Method
 				}
 				else
 				{
-					if (false === ($post = $thread->getFirstPost())) {
+					if (false === ($post = $thread->getFirstPost(true))) {
 						return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
 					}
 					if (false === $post->saveVar('post_message', $message)) {

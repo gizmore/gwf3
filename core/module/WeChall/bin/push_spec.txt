@@ -1,0 +1,303 @@
+WeChall Push Notification Protocol (WePNoP)
+
+Specification version: 0.1
+Document version: 0.2
+
+
+This protocol provides a way to send push notifications from WeChall to, likely
+non-WeChall, clients (e.g. IRC bots).
+
+
+
+Service
+
+WeChall runs a WePNoP server on wechall.net at TCP port 53452 using SSL. The
+availability of this service and notification delivery by it are not guaranteed.
+
+
+
+Communication
+
+The server and connected clients communicate through messages. All messages, in
+both directions, are single lines of JSON data followed by a new-line byte
+(hex: 0a). To be clear, the JSON data itself may not contain any (unescaped)
+new-lines.
+
+Clients are required to authenticate before further communication is allowed.
+
+
+Clients can send commands to the server. Commands have the following JSON
+structure:
+
+  {
+    "id": n              (optional)
+    "command": "CMD"     (required)
+    ...
+  }
+
+Here "id" n is an optional numeric identifier of the command. It should hold
+that 0 <= n < 2^32. This id can be used to correlate server responses to the
+corresponding command. It is up to the client to enforce additional properties
+(e.g. increment and uniqueness) on ids if so desired. The server will not
+perform any additional checks besides the range check.
+
+CMD is one of the commands specified in the Commands sections below. Some
+command require additional properties in the JSON structure as parameters.
+
+
+The server can send two types of messages to the client: responses to commands
+and events. Responses are of the following structure:
+
+  {
+    "id": n              (optional)
+    "result": "RES"      (required)
+    ...
+  }
+
+An id is only included when the corresponding command contained one and will
+be identitical.
+
+The result RES is either OK, in case the command was executed successfully, or
+some other value in case an error occurred. Again, additional properties might
+be present depending on the command and reponse.
+
+The following general errors may be returned. Specific commands can return other
+errors as specified in the Commands section.
+
+  ERROR               if an unexpected exception occurred in the server.
+  NOT_AUTHENTICATED   if the client tries to execute a command before
+                      authenticating itself.
+  UNKNOWN_COMMAND     if the client's command is not recognised.
+
+
+Events have the following structure:
+
+  {
+    "event": {           (required)
+       "type": "EVENT",
+       ...
+       }
+  }
+
+Here EVENT is an event specification as described in the section Event
+Specification.
+
+Events of a given type are only received when a client has subscribed to such
+events.
+  
+
+  
+Commands
+
+The following commands are supported:
+
+AUTHENTICATE
+  Authenticates the client with the server. Keys are supplied by the WeChall
+  admins on request.
+
+  Additional command properties:
+    key: "k"  where k is the client's authentication key.
+
+  Possible errors:
+    ALREADY_AUTHENTICATED   if the client was already authenticated.
+    INVALID_KEY             if no key is supplied or the supplied key is not
+                            recognised.
+
+PING
+  Does nothing but give a OK response. Can be use to test the connection or as
+  keep-alive mechanism.
+
+SUBSCRIBE
+  Subscribes the client (or more specific: the current connection of the client)
+  to an event and any subevents.
+  
+  Additional command properties:
+    event: "e"  where e is an event specification.
+
+  Possible errors:
+    INVALID_EVENT   if no event is supplied or the supplied event is
+                    syntactically incorrect.
+    UNKNOWN_EVENT   if the supplied event is not a supported event.
+
+UNSUBSCRIBE
+  Unsubscribes the client (or more specific: the current connection of the
+  client) to an event and any subevents. Subevents that were separately
+  subscribed to will remain.
+  
+  Additional command properties:
+    event: "e"  where e is an event specification.
+
+  Possible errors:
+    INVALID_EVENT
+    NOT_SUBSCRIBED
+
+VERSION
+  Returns the protocol version that the server is using.
+  
+  Additional response properties:
+    version:  "n.m"  where n is the major version and m the minor version.
+
+QUIT
+  Closes the connection from the server's side.
+
+
+
+Event Specification
+
+An event is identified by a sequence of terms. Each term is a string consisting
+of alphanumeric and underscore characters, where the first character is always
+alphabetic. Sequences are represented by concatenating terms, separating them
+with periods ('.', hex: 2e).
+
+If an event e is of the form x.y, then we say that e is a subevent of x. This is
+mainly used in order to be able to subscribe to all events starting with some
+prefix. For example, subscribing to "user.site" will also show subevents like
+"user.site.update".
+
+Suggested convention of event naming is "subject.object.verb".
+
+
+
+Supported Events
+
+The following events are supported:
+
+site.join
+  Occurs when a new site is added to WeChall.
+
+  Event properties:
+    site_id:              id ("class" name) of site on which the score changed.
+    site_name:            name of the site.
+    site_url:             site's location on the internet.
+
+site.score.update
+  Occurs when a site's scoring details change. Note that this might mean that
+  user scores have been adjusted. No events are triggered for those changes.
+
+  Event properties:
+    site_id:              id ("class" name) of site on which the score changed.
+    before:               scoring details before the update. (optional; absence
+                          indicates site has joined)
+      linked_users        number of WeChall users that are have linked the site.
+      site_max_challs     number challenges available on the site. (optional)
+      site_max_score      maximum possible score on the site.
+      site_users          number of users registered on the site. (optional)
+      wechall_max_score   maximum possible score on WeChall for the site.
+    after:                scoring details after the update.
+                          this property has the same structure as 'before'.
+
+user.site.link
+  Occurs when a user links a site on WeChall.
+
+  Event properties:
+    user_name:            name of user whose score has changed.
+    site_id:              id ("class" name) of site on which the score changed.
+
+user.site.unlink
+  Occurs when a user unlinks a site on WeChall.
+
+  Event properties:
+    user_name:            name of user whose score has changed.
+    site_id:              id ("class" name) of site on which the score changed.
+
+user.site.update
+  Occurs when a user's score changes for a registered site on WeChall.
+
+  Event properties:
+    user_name:            name of user whose score has changed.
+    site_id:              id ("class" name) of site on which the score changed.
+    site_max_challs:      current number of challenges available on this site.
+                          (optional)
+    site_max_score:       current maximum possible score for this site.
+    wechall_max_score:    maximum possible score on WeChall for this site.
+    before:               user score details before update. (optional; absence
+                          indicates site was linked)
+      site_challs         number of challenges solved by this user on the site.
+                          (optional)
+      site_rank           users's ranking on the site. (optional)
+      site_score          users's score on the site.
+      wechall_site_rank   users's ranking for the site on WeChall.
+      wechall_site_score  users's score for the site on WeChall.
+      wechall_rank        users's ranking on WeChall.
+      wechall_score       users's score on WeChall.
+    after:                user score details after update.
+                          this property has the same structure as 'before'.
+
+
+
+Example Interaction
+
+CLIENT: {"command": "AUTHENTICATE", "key": "ABC"}
+SERVER: {"result": "OK"}
+CLIENT: {"command": "SUBSCRIBE", "event": "user.site"}
+SERVER: {"result": "OK"}
+...
+SERVER: {"type":"user.site.update","user_name":"dimooz","site_id":"BQ","site_max_score":1150,"wechall_max_score":71977,"after":{"site_score":157,"wechall_site_rank":125,"wechall_site_score":8264,"wechall_rank":301,"wechall_score":65823,"site_rank":1152},"before":{"site_score":155,"wechall_site_rank":128,"wechall_site_score":8150,"wechall_rank":301,"wechall_score":65709,"site_rank":1170},"site_max_challs":1150}
+...
+CLIENT: {"command": "QUIT"}
+SERVER: {"result": "OK"}
+
+
+
+Open Issues/Questions
+
+1. Add timestamps?
+2. Implement filters (e.g. only specific users)
+2b. Filter on user groups?
+3. Special access keys to otherwise hidden data (like API)?
+
+
+
+Example Client (Python 2.7)
+
+import socket, json
+
+auth_key = 'ABC'
+host = 'wechall.net'
+port = 53452
+
+sock = socket.socket()
+sock.connect((host, port))
+
+def send(data):
+  sock.send(json.dumps(data) + '\n')
+
+recv_buf = ''
+def recv():
+  global recv_buf
+
+  while not '\n' in recv_buf:
+    data = sock.recv(4096)
+    if data == '':
+      print 'EOF on socket!'
+      sys.exit(1)
+
+    recv_buf += data
+
+  data, recv_buf = recv_buf.split('\n', 1)
+
+  return json.loads(data)
+
+send({'command': 'AUTHENTICATE', 'key': auth_key})
+if recv()['result'] != 'OK':
+  print 'authentication failed!'
+  sys.exit(1)
+
+send({'command': 'SUBSCRIBE', 'event': 'user.site'})
+if recv()['result'] != 'OK':
+  print 'could not subscribe!'
+  sys.exit(1)
+
+while True:
+  msg = recv()
+  if not 'event' in msg:
+    continue
+
+  event = msg['event']
+  if event['type'] == 'user.site.update':
+    print '{0} scored {1} points on {2} and now has a total of {3} points.'.format(
+               event['user_name'],
+               event['after']['site_score'] - event.get('before',{'site_score':0})['site_score'],
+               event['site_id'],
+               event['after']['site_score'])
+

@@ -52,7 +52,7 @@ final class Forum_Moderate extends GWF_Method
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
-		if (false === $thread->getFirstPost()->saveOption(GWF_ForumPost::IN_MODERATION, false)) {
+		if (false === $thread->getFirstPost(true)->saveOption(GWF_ForumPost::IN_MODERATION, false)) {
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 

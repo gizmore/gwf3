@@ -79,6 +79,8 @@ body, html, #pagewrap, #content {
 }
 #wanda-content-page p {
 	line-height: 1.5em;
+	padding-right: 32px;
+	text-align: justify;
 }
 #wanda-content-page > p:FIRST-CHILD {
 	padding-top: 1.5em;

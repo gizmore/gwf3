@@ -1,9 +1,11 @@
 <?php
 /**
- *username:rank:userscore:maxscore:challssolved:challcount:usercount
+ *######username:rank:userscore:maxscore:challssolved:challcount:usercount
+ *changed to defaults
  */
 class WCSite_Root extends WC_Site
 {
+/**
 	public function parseStats($url)
 	{
 		if (false === ($result = GWF_HTTP::getFromURL($url, false))) {
@@ -29,5 +31,6 @@ class WCSite_Root extends WC_Site
 		
 		return array($onsitescore, $rank, $challssolved, $maxscore, $usercount, $challcount);
 	}
+**/
 }
 ?>

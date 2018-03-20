@@ -3,7 +3,7 @@ $lang = array(
 
 	'title' => 'Crypto - Caesar I',
 	'info' =>
-		'Wie auf vielen Challengeseiten existieren Cryptos für Anfänger. Meistens beginnt die Aufgabe mit dem guten alten <a href="http://de.wikipedia.org/wiki/Caesar-Verschl%%C3%%BCsselung">Caesar Chiffre</a>.<br/>'.
+		'Wie auf vielen Challengeseiten existieren Cryptos für Anfänger. Meistens beginnt die Aufgabe mit dem guten alten <a href="http://de.wikipedia.org/wiki/Caesar-Verschlüsselung">Caesar Chiffre</a>.<br/>'.
 		'Ich begrüße dich zu den Trainings-Aufgaben im Stil von WeChall :)<br/>'.
 		'<br/>'.
 		'Viel Spaß!',

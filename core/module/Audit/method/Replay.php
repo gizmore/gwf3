@@ -6,7 +6,7 @@ final class Audit_Replay extends Audit_ViewLog
 	public function getHTAccess()
 	{
 // 		return 'RewriteRule ^warplay/([^/_]+)_([^/_]+)_(\\d+)_([a-zA-Z0-9]+)\.html$ index.php?mo=Audit&me=Replay&user=$1&euser=$2&id=$3&token=$4'.PHP_EOL;
-		return 'RewriteRule ^warplay/(.+)_(\1)_(\d+)_([a-zA-Z0-9]+)\.html$ index.php?mo=Audit&me=Replay&user=$1&euser=$2&id=$3&token=$4'.PHP_EOL;
+		return 'RewriteRule ^warplay/(.+)_(.+)_(\d+)_([a-zA-Z0-9]+)\.html$ index.php?mo=Audit&me=Replay&user=$1&euser=$2&id=$3&token=$4'.PHP_EOL;
 	} 
 	
 	public function execute()

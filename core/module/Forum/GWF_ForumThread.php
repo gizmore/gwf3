@@ -348,7 +348,7 @@ final class GWF_ForumThread extends GDO
 				return true;
 			}
 				
-			if (false === ($fp = $this->getFirstPost())) {
+			if (false === ($fp = $this->getFirstPost(true))) {
 				return false;
 			}
 				
@@ -476,23 +476,41 @@ final class GWF_ForumThread extends GDO
 		));
 	}
 
-	#####################
-	### Get Last Post ###
-	#####################
+	########################
+	### Get/Update Posts ###
+	########################
+	private function getPostsWhere($include_deleted = false)
+	{
+		$exclusion_mask = $include_deleted ? 0: self::DELETED;
+		$tid = $this->getID();
+		return "post_options & $exclusion_mask = 0 AND post_tid = $tid";
+	}
+
 	/**
 	* @return GWF_ForumPost
 	*/
-	public function getFirstPost()
+	public function getFirstPost($include_deleted = false)
 	{
-		return self::table('GWF_ForumPost')->selectFirstObject('*', 'post_tid='.$this->getID(), "post_date ASC");
+		return self::table('GWF_ForumPost')->selectFirstObject('*', $this->getPostsWhere($include_deleted), "post_date ASC");
 	}
 
 	/**
 	 * @return GWF_ForumPost
 	 */
-	public function getLastPost()
+	public function getLastPost($include_deleted = false)
 	{
-		return self::table('GWF_ForumPost')->selectFirstObject('*', 'post_tid='.$this->getID(), "post_date DESC");
+		return self::table('GWF_ForumPost')->selectFirstObject('*', $this->getPostsWhere($include_deleted), "post_date DESC");
+	}
+
+	public function getLastVisiblePosts($count = -1)
+	{
+		if ($count === -1)
+		{
+			$module = Module_Forum::getInstance();
+			$count = $module->getNumLastPostsForReply();
+		}
+
+		return array_reverse(GDO::table('GWF_ForumPost')->selectObjects('*', $this->getPostsWhere(), "post_date DESC", $count));
 	}
 
 	/**
@@ -501,7 +519,7 @@ final class GWF_ForumThread extends GDO
 	 */
 	public function updateLastPost()
 	{
-		$firstpost = $this->getFirstPost();
+		$firstpost = $this->getFirstPost(true);
 		$lastpost = $this->getLastPost();
 		return $this->saveVars(array(
 			'thread_firstposter' => $firstpost ? $firstpost->getPosterName() : '',
@@ -661,7 +679,7 @@ final class GWF_ForumThread extends GDO
 
 		
 		# Do we have a post?
-		if (false !== ($post = $this->getFirstPost()))
+		if (false !== ($post = $this->getFirstPost(true)))
 		{
 			if ($mail_out === true)
 			{
