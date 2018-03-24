@@ -1,7 +1,7 @@
 <?php
 $lang = array(
 	'en' => array(
-		'help' => 'Usage: %CMD% <email> <passwort>. Login with your facebook account.',
+		'help' => 'Usage: %CMD% <email> <password>. Login with your facebook account.',
 		'err_login' => 'Your username/password combination is unknown.',
 	),
 	'de' => array(
