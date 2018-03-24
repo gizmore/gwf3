@@ -40,7 +40,7 @@ final class Votes_Button extends GWF_Method
 		$cs = $this->size;
 		$cx = $cy = round($this->size/2);
 		if (false === ($image = imagecreatetruecolor($cs, $cs))) { # FIXME: {gizmore} define in bootstrap? check if function exists?
-			return GWF_HTML::err('ERR_GENERAL');
+			return GWF_HTML::err('ERR_GENERAL', array( __FILE__, __LINE__));
 		}
 		imagealphablending($image, true);
 		$background = imagecolorallocatealpha($image, 0x00, 0x00, 0x00, 0x00);

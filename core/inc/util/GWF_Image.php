@@ -14,7 +14,7 @@ final class GWF_Image
 	{
 		if (0 >= ($width = imagesx($image)) || 0 >= ($height = imagesy($image)))
 		{
-			echo GWF_HTML::err('ERR_GENERAL', __FILE__, __LINE__);
+			echo GWF_HTML::err('ERR_GENERAL', array(__FILE__, __LINE__));
 			return false;
 		}
 		
@@ -88,21 +88,21 @@ final class GWF_Image
 		
 		if ($new_height <= 0 || $new_width <= 0)
 		{
-			echo GWF_HTML::err('ERR_GENERAL', __FILE__, __LINE__);
+			echo GWF_HTML::err('ERR_GENERAL', array(__FILE__, __LINE__));
 			return false;
 		}
 	
 		# Create new Image
 		if (false === ($resized_img = imagecreatetruecolor($new_width, $new_height)))
 		{
-			echo GWF_HTML::err('ERR_GENERAL', __FILE__, __LINE__);
+			echo GWF_HTML::err('ERR_GENERAL', array(__FILE__, __LINE__));
 			return false;
 		}
 	
 		# Resize into it
 		if (false === imagecopyresized($resized_img, $image, 0, 0, 0, 0, $new_width, $new_height, $width, $height))
 		{
-			echo GWF_HTML::err('ERR_GENERAL', __FILE__, __LINE__);
+			echo GWF_HTML::err('ERR_GENERAL', array(__FILE__, __LINE__));
 			return false;
 		}
 		

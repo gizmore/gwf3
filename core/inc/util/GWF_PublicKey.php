@@ -50,7 +50,7 @@ final class GWF_PublicKey extends GDO
 		$gpg = gnupg_init();
 		if (false === ($result = gnupg_import($gpg, $file_content))) {
 			GWF_Log::logCritical('gnupg_import() failed');
-			GWF_Log::logCritical(GWF_HTML::lang('ERR_GENERAL', __FILE__, __LINE__));
+			GWF_Log::logCritical(GWF_HTML::lang('ERR_GENERAL', array(__FILE__, __LINE__)));
 			return false;
 		}
 		if ( ($result['imported']+$result['unchanged']) === 0 ) {

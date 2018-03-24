@@ -229,7 +229,7 @@ final class GWF_Upload
 	private static function resizeImageB($image, array $file, $max_width, $max_height, $min_width=1, $min_height=1)
 	{
 		if (0 === ($width = imagesx($image)) || 0 === ($height = imagesy($image))) {
-			echo GWF_HTML::err('ERR_GENERAL', __FILE__, __LINE__);
+			echo GWF_HTML::err('ERR_GENERAL', array(__FILE__, __LINE__));
 			return false;
 		}
 
@@ -262,13 +262,13 @@ final class GWF_Upload
 		$new_width = round($scale_x * $width);
 		$new_height = round($scale_y * $height);
 		if ($new_height <= 0 || $new_width <= 0) {
-			echo GWF_HTML::err('ERR_GENERAL', __FILE__, __LINE__);
+			echo GWF_HTML::err('ERR_GENERAL', array(__FILE__, __LINE__));
 			return false;
 		}
 	
 		# Create new Image
 		if (false === ($resized_img = imagecreatetruecolor($new_width, $new_height))) {
-			echo GWF_HTML::err('ERR_GENERAL', __FILE__, __LINE__);
+			echo GWF_HTML::err('ERR_GENERAL', array(__FILE__, __LINE__));
 			return false;
 		}
 
@@ -280,11 +280,11 @@ final class GWF_Upload
 				$back = true;
 			}
 			else {
-				echo GWF_HTML::err('ERR_GENERAL', __FILE__, __LINE__);
+				echo GWF_HTML::err('ERR_GENERAL', array(__FILE__, __LINE__));
 			}
 		}
 		else {
-			echo GWF_HTML::err('ERR_GENERAL', __FILE__, __LINE__);
+			echo GWF_HTML::err('ERR_GENERAL', array(__FILE__, __LINE__));
 		}
 		# Destroy the img.
 		imagedestroy($resized_img);

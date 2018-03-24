@@ -25,7 +25,7 @@ final class Forum_Thanks extends GWF_Method
 		}
 		
 		if (false === ($user = GWF_Session::getUser())) {
-			return GWF_HTML::err('ERR_GENERAL', __FILE__, __LINE__);
+			return GWF_HTML::err('ERR_GENERAL', array(__FILE__, __LINE__));
 		}
 		
 		if ($post->hasThanked($user)) {
@@ -37,7 +37,7 @@ final class Forum_Thanks extends GWF_Method
 		}
 
 		if (false === $post->onThanks($this->module, $user)) {
-			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
 		if ($this->module->isAjax())

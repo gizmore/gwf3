@@ -327,7 +327,7 @@ final class GWF_InstallWizard
 		$success = true;
 		if (false === ($core = GWF_InstallFunctions::core(false, $success)))
 		{
-			return $core.GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__, true, true);
+			return $core.GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__), true);
 		}
 		else
 		{
@@ -432,7 +432,7 @@ final class GWF_InstallWizard
 		
 		$back = self::wizard_h2('6');
 		if (false === ($modules = GWF_ModuleLoader::loadModulesFS())) {
-			return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__, true, true);
+			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__), true);
 		}
 		$back .= self::wizard_modules_form($modules);
 		return $back;
@@ -512,7 +512,7 @@ final class GWF_InstallWizard
 		$back = self::wizard_h2('7');
 		if (false === GWF_InstallFunctions::copyExampleFiles($back))
 		{
-			echo GWF_HTML::err('ERR_GENERAL', array('Please copy index.example.php => index.php', __FILE__, __LINE__), true, true);
+			echo GWF_HTML::err('ERR_GENERAL', array(__FILE__, __LINE__), true);
 			return $back;
 		}
 		return $back.self::wizard_btn('8');
