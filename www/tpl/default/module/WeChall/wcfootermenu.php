@@ -3,7 +3,7 @@ $module = $tVars['module'];
 echo
 '<nav id="gwf_foot_menu">'.PHP_EOL.
 '<a href="'.GWF_WEB_ROOT.'news">'.$module->lang('menu_news').'</a>'.PHP_EOL.
-'| <a href="'.GWF_WEB_ROOT.'changes.txt">'.$module->lang('menu_changes').'</a>'.PHP_EOL.
+'| <a href="https://github.com/gizmore/gwf3/commits/master">'.$module->lang('menu_changes').'</a>'.PHP_EOL.
 '| <a href="'.GWF_WEB_ROOT.'about_wechall">'.$module->lang('menu_about').'</a>'.PHP_EOL.
 '| <a href="'.GWF_WEB_ROOT.'join_us">'.$module->lang('menu_join').'</a>'.PHP_EOL.
 '| <a href="'.GWF_WEB_ROOT.'links">'.$module->lang('menu_links').'</a>'.PHP_EOL.
