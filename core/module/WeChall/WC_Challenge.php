@@ -916,6 +916,9 @@ final class WC_Challenge extends GDO
 			'chall_board' => 0,
 			'chall_sboard' => 0,
 			'chall_options' => $options,
+			'chall_dif' => '5.0',
+			'chall_edu' => '5.0',
+			'chall_fun' => '5.0',
 		));
 	}
 	
