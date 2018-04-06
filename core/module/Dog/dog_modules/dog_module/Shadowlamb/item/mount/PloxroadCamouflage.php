@@ -13,7 +13,7 @@ final class Item_SportQuattro extends SR_Mount
 		return array(
 			'lock' => '0',
 			'tuneup' => '25.00',
-			'transport' => '2.00',
+			'transport' => '5.00',
 //					because racecar. unused mount capacity will be padded with bratwurst 
 //					to meet minimum weight and handicap regulations. (history fun-fact!)
 		);
