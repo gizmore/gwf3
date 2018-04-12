@@ -82,15 +82,7 @@ class DOGMOD_Translate extends Dog_Module
 
 	private static function googleTranslate($text, $from='auto', $to='de', $return_source_lang=false)
 	{
-		$html = GWF_HTTP::post('https://translate.google.com/', array(
-			'sl' => $from,
-			'tl' => $to,
-			'js' => 'n',
-			'hl' => 'en',
-			'ie' => 'UTF-8',
-			'text' => $text
-		));
-		
+		$html = GWF_HTTP::getFromURL('https://translate.google.com?sl='.$from.'&tl='.$to.'&hl=en&ie=UTF-8&q=' . urlencode($text));
 		if(!preg_match('#<span id=result_box .+?>(.+?)</div>#', $html, $arr)) return false;
 		$translation = html_entity_decode(strip_tags($arr[1]), ENT_QUOTES);
 		if($return_source_lang)
