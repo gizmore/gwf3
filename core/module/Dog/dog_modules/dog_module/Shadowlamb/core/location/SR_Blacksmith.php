@@ -118,11 +118,23 @@ abstract class SR_Blacksmith extends SR_Store
 			return false;
 		}
 
+		// remove first to make sure inventory is updated properly
+		$item_was_equipped = $item->isEquipped($player);
+		$player->removeItem($item);
+
+		// clean
 		if (false === $item->saveVar('sr4it_modifiers', NULL)) {
 			$bot->reply('DB Error!');
 		}
-
 		$item->initModifiersB();
+
+		// give it back
+		$player->giveItem($item);
+		if ($item_was_equipped)
+		{
+			$player->equip($item);
+		}
+
 		$player->modify();
 
 		$bot->rply('5208', array($p, $itemname, $item->displayFullName($player)));
@@ -425,11 +437,23 @@ abstract class SR_Blacksmith extends SR_Store
 		else
 		{
 			$player->pay($price_u);
+
+			// remove first to make sure inventory is updated properly
+			$item_was_equipped = $item->isEquipped($player);
+			$player->removeItem($item);
+
 			$old_name = $item->displayFullName($player);
 			$item->addModifiers($rune->getItemModifiersB(), true);
 			$item->addModifiers($rune->getItemModifiersA($player), true);
 			$bot->rply('5215', array($dpu, $item->displayFullName($player), $old_name, $rune->displayFullName($player)));
 // 			$bot->reply(sprintf('The upgrade succeeded. You pay %s and the smith presents you a fine %s.', $dpu, $item->getItemName()));
+
+			// give it back
+			$player->giveItem($item);
+			if ($item_was_equipped)
+			{
+				$player->equip($item);
+			}
 		}
 			
 		$player->modify();
