@@ -35,7 +35,7 @@ final class HangmanGame {
 	private $finish = true;
 	private $output = '';
 
-	public function HangmanGame($config) {
+	public function __construct($config) {
 		$this->CONFIG = $config;
 	}
 

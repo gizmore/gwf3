@@ -69,7 +69,7 @@ final class Dog_Timer
 		}
 	}
 	
-	public function Dog_Timer($func, $args, $delay, $repeat=true)
+	public function __construct($func, $args, $delay, $repeat=true)
 	{
 		$this->func = $func;
 		$this->args = $args;

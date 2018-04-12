@@ -91,7 +91,7 @@ final class Dog_Plugin
 	private $path;  # file to include
 	private $trans; # lang file
 	
-	public function Dog_Plugin($name, $priv='Pb', $path)
+	public function __construct($name, $priv='Pb', $path)
 	{
 		$this->name = strtolower($name);
 		$this->priv = strtolower($priv[0]);

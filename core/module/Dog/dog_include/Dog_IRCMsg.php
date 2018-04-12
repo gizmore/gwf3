@@ -20,7 +20,7 @@ final class Dog_IRCMsg
 		return strpos($this->raw, '.login') === false && strpos($this->raw, '.register') === false;
 	}
 	
-	public function Dog_IRCMsg($message)
+	public function __construct($message)
 	{
 		$this->raw = $message;
 		
