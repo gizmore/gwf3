@@ -14,5 +14,6 @@ $lang = array(
 	'err_password' => 'La password super-segreta è invalida',
 	'info_unlock' => 'Per impostare un utente come solutore, <a href="%s">clicca qui</a>.',
 	'btn_submit' => 'Invia',
+
+	'new_info' => 'Sadly the website was taken down. You can download a copy from <a href="%s">the download section</a>.',
 );
-?>

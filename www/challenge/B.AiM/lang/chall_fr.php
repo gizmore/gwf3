@@ -9,5 +9,12 @@ $lang = array(
 		'<br/>'.
 		'Bonne chance!'.PHP_EOL.
 		'<!--Translation by grimmjowbo -->'.PHP_EOL,
+
+
+	'form_title' => 'Mark a user as solved',
+	'err_password' => 'The uber-secret-password is invalid',
+	'info_unlock' => 'To mark users as a solver, please <a href="%s">click here</a>.',
+	'btn_submit' => 'Submit',
+	
+	'new_info' => 'Sadly the website was taken down. You can download a copy from <a href="%s">the download section</a>.',
 );
-?>

@@ -26,7 +26,10 @@ if (false === ($u = GWF_User::getByName('BAIM'))) {
 }
 
 $url = 'http://baim.gizmore.org';
+$url2 = '/download/22/B_AiM_uncracked_zip';
+
 echo GWF_Box::box($chall->lang('info', array($baim, $gizmore, $url, $ebaim, $egizmore, GWF_User::getStaticOrGuest()->displayUsername())), $chall->lang('title'));
+echo GWF_Box::box($chall->lang('new_info', array($url2)), $chall->lang('title'));
 
 require_once 'challenge/B.AiM/baim_solve_form.php';
 if (WC_BaimForms::hasPermission()) {

@@ -14,5 +14,6 @@ $lang = array(
 	'err_password' => 'Das Super-Geheime-Passwort ist falsch!',
 	'info_unlock' => 'Um einen benutzer als gelöst zu markieren, <a href="%s">Klicke hier</a>.',
 	'btn_submit' => 'Absenden',
+
+	'new_info' => 'Leider wurde die Webseite vom Netz genommen. Du kannst eine Kopie bei <a href="%s">den Downloads</a> herunterladen.',
 );
-?>
