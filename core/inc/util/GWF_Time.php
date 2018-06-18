@@ -244,14 +244,18 @@ final class GWF_Time
 	 */
 	public static function computeWeekDay($gwf_date)
 	{
-		$century = array('12' => 6, '13' => 4, '14' => 2, '15'=> 0, # <-- not sure if these are correct :(  
-		'16'=>6, '17'=>4, '18'=>2, '19'=>0, '20'=>6, '21'=>4, '22'=>2, '23'=>0); # <-- these are taken from wikipedia
+		static $centurym4 = array(6,4,2,0);
 		static $months = array(array(0,3,3,6,1,4,6,2,5,0,3,5), array(6,2,3,6,1,4,6,2,5,0,3,5));
-		$step1 = $century[substr($gwf_date, 0, 2)];
+		$c = intval(substr($gwf_date, 0, 2));
+		$step1 = $centurym4[$c % 4];
 		$y = intval(substr($gwf_date, 2, 2), 10); // step2
 		$m = intval(substr($gwf_date, 4, 2), 10);
 		$d = intval(substr($gwf_date, 6, 2), 10);
 		$leap = ($y % 4) === 0 ? 1 : 0;
+		if ($y === 0 && ($c % 4) !== 0)
+		{
+			$leap = 0;
+		}
 		$step3 = intval($y / 4);
 		$step4 = $months[$leap][$m-1];
 		$sum = $step1 + $y + $step3 + $step4 + $d;
