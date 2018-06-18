@@ -1,1 +1,2 @@
 IndexIgnore DropDaBass gwf_include.php html_head.php html_foot.php
+AddType text/plain .include
