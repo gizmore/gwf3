@@ -439,15 +439,24 @@ abstract class GDO
 		{
 			return '';
 		}
+
+		$default_order = 'ASC';
 		
 		$back = '';
 		$by = explode(',', $by);
 		$dir = explode(',', $dir);
+
+		# Prevent indexing error in case of different length arrays
+                while (count($dir) < count($by))
+		{
+			$dir[] = $default_order;
+		}
+
 		foreach ($by as $i => $b)
 		{
 			if (false !== ($b = $this->getWhitelistedBy($b, false, $nested, $whitelist)))
 			{
-				$back .= sprintf(',%s %s', $b, self::getWhitelistedDirS($dir[$i], 'ASC'));
+				$back .= sprintf(',%s %s', $b, self::getWhitelistedDirS($dir[$i], $default_order));
 			}
 		}
 		return $back === '' ? '' : substr($back, 1);
