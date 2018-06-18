@@ -40,7 +40,7 @@ function wordpat($pattern)
 function wordpatDigitToDec($digit) {
 	
 	if ($digit == 0) {
-		return (int)(10 + $digit - 'A');
+		return (int)(10 + ord($digit) - ord('A'));
 	}
 	
 	return (int)$digit;
@@ -53,7 +53,7 @@ function wordpatDecToDigit($decimal) {
 		return $decimal + '0';
 	}
 	
-	return 'A' + $decimal - 10;
+	return chr(ord('A') + $decimal - 10);
 
 }
 
