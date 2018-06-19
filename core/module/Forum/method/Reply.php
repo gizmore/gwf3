@@ -71,7 +71,12 @@ final class Forum_Reply extends GWF_Method
 		# Check Permission
 		$user = GWF_Session::getUser();
 		if (!$this->thread->hasReplyPermission($user, $this->module)) {
-			$a = GWF_HTML::display($this->post->getShowHREF());
+			if ($this->post !== false)
+			{
+				$a = GWF_HTML::display($this->post->getShowHREF());
+			} else {
+				$a = GWF_HTML::display($this->thread->getLastPageHREF());
+			}
 			return $this->module->error('err_reply_perm', array($a));
 		}
 		
