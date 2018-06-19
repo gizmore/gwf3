@@ -28,7 +28,7 @@ final class WeChall_WarboxDetails extends GWF_Method
 		
 		if (false === ($this->box = WC_Warbox::getByID(Common::getGetString('boxid'))))
 		{
-			return $this->module->error('err_warboxa', array($_GET['boxid']));
+			return $this->module->error('err_warboxa', array(GWF_HTML::display(Common::getGetString('boxid'))));
 		}
 		
 		if ('' !== ($answer = Common::getPostString('password_solution', '')))
