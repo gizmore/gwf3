@@ -48,6 +48,7 @@ $lang = array(
 	'err_del_twice' => 'Sa oled juba kustutanud selle PS\'i.',
 	'err_folder' => 'Kaust on tundmatu.',
 	'err_pm_read' => 'Sinu PS on juba saadetud, enam ei saa Sa seda muuta.',
+	'err_not_logged_in' => 'You have to be logged in to perform this operation.',
 
 	# Messages
 	'msg_sent' => 'Su PS on edukalt saadetud. Sa saad seda muuta, kuni see pole veel loetud..',

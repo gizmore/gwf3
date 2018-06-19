@@ -1,6 +1,8 @@
 <?php
 final class PM_FolderAction extends GWF_Method
 {
+	private $user;
+
 	public function getPageMenuLinks()
 	{
 		return array(
@@ -26,9 +28,8 @@ final class PM_FolderAction extends GWF_Method
 	{
 		# Permission
 		$folderid = (int) $folderid;
-		$user = GWF_Session::getUser();
 		if ( (false === ($folder = GWF_PMFolder::getByID($folderid)))
-			|| ($folder->getVar('pmf_uid') !== $user->getID()) ) 
+			|| ($folder->getVar('pmf_uid') !== $this->user->getID()) ) 
 		{
 			return $this->module->error('err_folder_perm');
 		}
@@ -36,7 +37,7 @@ final class PM_FolderAction extends GWF_Method
 		# Delete PMs$result
 		$count = 0;
 		$pms = GDO::table('GWF_PM');
-		$uid = $user->getVar('user_id');
+		$uid = $this->user->getVar('user_id');
 		$fid = "$folderid";
 		$del = GWF_PM::OWNER_DELETED;
 		if (false === ($result = $pms->update("pm_options=pm_options|$del", "pm_owner=$uid AND pm_folder=$fid"))) {
@@ -65,6 +66,11 @@ final class PM_FolderAction extends GWF_Method
 	##
 	private function onDeleteFolders()
 	{
+		if (false === ($this->user = GWF_Session::getUser()))
+		{
+			return $this->module->error('err_not_logged_in');
+		}
+
 		if (false !== ($error = GWF_Form::validateCSRF_WeakS())) {
 			return GWF_HTML::error('PM', $error, false);
 		}

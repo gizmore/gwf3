@@ -48,6 +48,7 @@ $lang = array(
 	'err_del_twice' => 'Usunąłeś już to PW.',
 	'err_folder' => 'Folder jest nieznany.',
 	'err_pm_read' => 'Twoje PW zostało już przeczytane, więc nie możesz go już edytować.',
+	'err_not_logged_in' => 'You have to be logged in to perform this operation.',
 
 	# Messages
 	'msg_sent' => 'Twoje PW zostało pomyślnie wysłane. Wciąż możesz je edytować, dopóki nie zostanie przeczytane przez odbiorcę.',

@@ -49,6 +49,7 @@ $lang = array(
 	'err_del_twice' => 'Sie haben diese PN bereits gelöscht.',
 	'err_folder' => 'Der Ordner ist unbekannt.',
 	'err_pm_read' => 'Ihre Nachricht wurde bereits gelesen. Sie können diese nun nicht mehr ändern.',
+	'err_not_logged_in' => 'You have to be logged in to perform this operation.',
 
 	# Messages
 	'msg_sent' => 'Ihre Nachricht wurde erfolgreich gesendet. Sie können diese immer noch bearbeiten, bis sie gelesen wurde.',

@@ -47,6 +47,7 @@ $lang = array(
 	'err_del_twice' => 'You already have deleted this PM.',
 	'err_folder' => 'The Folder is unknown.',
 	'err_pm_read' => 'Your PM has been read already, so you can not edit it anymore.',
+	'err_not_logged_in' => 'You have to be logged in to perform this operation.',
 
 	# Messages
 	'msg_sent' => 'Your PM has been successfully sent. You can still edit it, until it has been read.',

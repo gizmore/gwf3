@@ -50,6 +50,7 @@ $lang = array(
 	'err_del_twice' => 'Ju keni fshirë PN tashmë.',
 	'err_folder' => 'Dosje është i panjohur.',
 	'err_pm_read' => 'Mesazhi juaj u lexuar. Ju nuk mund të ndryshojë tani.',
+	'err_not_logged_in' => 'You have to be logged in to perform this operation.',
 
 	# Messages
 	'msg_sent' => 'Mesazhi juaj është dërguar me sukses. Ju mund të redaktoni deri sa u lexuar.',

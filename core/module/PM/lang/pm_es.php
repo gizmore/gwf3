@@ -48,6 +48,7 @@ $lang = array(
 	'err_del_twice' => 'Ya ha borrado este PM.',
 	'err_folder' => 'Carpeta desconocida.',
 	'err_pm_read' => 'El PM ya ha sido borrado, así que ya no puedes editarlo.',
+	'err_not_logged_in' => 'You have to be logged in to perform this operation.',
 
 	# Messages
 	'msg_sent' => 'Su PM fue enviado correctamente. Puede todavía editarlo, hasta que sea leído.',

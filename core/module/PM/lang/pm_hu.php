@@ -48,6 +48,7 @@ $lang = array(
 	'err_del_twice' => 'Már törölted ezt a privát üzenetet.',
 	'err_folder' => 'Ismeretlen mappa.',
 	'err_pm_read' => 'A privát üzenetedet már elolvasták, így már nem tudod módosítani azt.',
+	'err_not_logged_in' => 'You have to be logged in to perform this operation.',
 
 	# Messages
 	'msg_sent' => 'A privát üzeneted sikeresen el lett küldve. Mindaddig szerkesztheted, amíg el nem olvassák.',

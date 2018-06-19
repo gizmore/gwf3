@@ -48,6 +48,7 @@ $lang = array(
 	'err_del_twice' => 'Olet jo poistanut tämän yksityisviestin.',
 	'err_folder' => 'Tuntematon kansio.',
 	'err_pm_read' => 'Yksityisviesti on jo luettu, joten et voi enää muokata sitä.',
+	'err_not_logged_in' => 'You have to be logged in to perform this operation.',
 
 	# Messages
 	'msg_sent' => 'Yksityisviestisi on lähetetty onnistuneesti. Voit vielä muokata sitä ennen kuin se luetaan.',

@@ -47,6 +47,7 @@ $lang = array(
 	'err_del_twice' => 'Ha già cancellato questo PM.',
 	'err_folder' => 'La cartella è sconosciuta.',
 	'err_pm_read' => 'Il suo PM è già stato letto, per cui non può più essere modificato.',
+	'err_not_logged_in' => 'You have to be logged in to perform this operation.',
 
 	# Messages
 	'msg_sent' => 'Il Pm è stato inviato con successo. Può ancora modificarlo, fino a che non sarà letto.',
