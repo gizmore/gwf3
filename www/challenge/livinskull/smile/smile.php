@@ -188,7 +188,7 @@ class LivinForm
 
 		# Like this :)
 		LIVIN_Smile::onAddSmiley($pattern, $path);
-		return GWF_HTML::message('Smile', array($chall->lang('msg_rule_added')));
+		return GWF_HTML::message('Smile', $chall->lang('msg_rule_added'));
 	}
 }
 
