@@ -137,7 +137,7 @@ function warscore_debug($message)
 function warscore_send($socket, $message)
 {
 	warscore_debug('SENDING: '.$message);
-	fwrite($socket, $message);
+	@fwrite($socket, $message);
 	fclose($socket);
 	die(0);
 }
@@ -189,6 +189,10 @@ function warscore_function($socket, $pid)
 
 	$client_addr = stream_socket_get_name($socket, true);
 	warscore_debug("client_addr: $client_addr");
+	if ($client_addr === false)
+	{
+		warscore_error($socket, 'Cannot determine remote address!');
+	}
 	$client_addr = explode(':', $client_addr);
 	$client_ip = $client_addr[0];
 	$client_port = $client_addr[1];
@@ -549,7 +553,7 @@ function warscore_check_level_password($socket, $box, $user, $level, $password_h
 warscore_debug('ENTERING MAIN LOOP');
 while(true)
 {
-	$client_socket = stream_socket_accept($server_socket, -1);
+	$client_socket = @stream_socket_accept($server_socket, -1);
 
 	if ($client_socket === false)
 	{
