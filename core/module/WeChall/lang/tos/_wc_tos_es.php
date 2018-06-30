@@ -6,8 +6,8 @@ $lang = array(
 		array(
 			'General' => 'Este documento describe <i>Acuerdos y Licencias</i> del sitio <i>WeChall</i>, el cual será referenciado de ahora en adelante como el <i>sitio</i>. Además encontrará los <i>Términos de uso</i> y algunas notas sobre su <i>Privacidad</i>.',
 			'Licencia del código fuente' => 
-				'El código fuente de este sitio es propiedad de su autor, Gizmore.<br/>'.
-				'WeChall4 está basado en <a href="%s">GWF2</a>, en el cuál también se debe respetar los derechos de autor de la esencia del sitio.<br/>'.
+				'El código fuente de este sitio es propiedad de su autor, Gizmore et dloser.<br/>'.
+				'WeChall está basado en <a href="%s">GWF3</a>, en el cuál también se debe respetar los derechos de autor de la esencia del sitio.<br/>'.
 //				'WeChall4 is a GWF2 module, compatible with the GPL license. GWF2 core is available under a BSD like license.<br/>'.
 				'Está abiertamente visible a todos <a href="%s">acá</a> (<a href="%s">changelog</a>) y puede ser reusado en partes, pero no para el mismo <i>propósito</i>.<br/>'.
 				'No puede empezar sitios similares con partes del código de WeChall.<br/>'.
@@ -38,6 +38,13 @@ $lang = array(
 				'Si usted necesita enviar contenido realmente privado a cualquier otro miembro, sugerimos que use otro medio de comunicación.',
 			'Contenido enlazado' => 
 				'WeChall no es responsable por cualquier contenido enlazado desde este sitio.<br/>',
+			'Extended Privacy Explaination' =>
+				'<i>Data Collection</i><br/>'.
+				'We log every request and data you send.<br/>'.
+				'We log your IP adresses and every request data, on every request, except password data.<br/>'.
+				'The log files are occasionally copied by the admins to their local machines.<br/>'.
+				'We *DO NOT* cooperate with anyone else. We do not sell any data, and we generally try to protect you.<br/>'.
+				'<i>Cookie Storage</i><br/>'.
+				'We store a cookie or two to be able to provide our services.<br/>',
 		),
 );
-?>

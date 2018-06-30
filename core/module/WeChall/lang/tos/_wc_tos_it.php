@@ -8,9 +8,8 @@ $lang = array(
 				da qui in poi vi si potrà riferire anche con <i>il sito</i>. Inoltre troverete, 
 				su questa pagina, i <i>Termini di Utilizzo</i> e alcune note sulla <i>Privacy</i>.',
 			'Licenza per il codice sorgente' => 
-				'Il codice sorgente di questo sito è proprietà dell\'autore, Gizmore.<br/>'.
-				'WeChall4 è basato su <a href="%s">GWF2</a>, per cui dovrete rispettare anche il copyright sul nucleo del sito (ovvero GWF2).<br/>'.
-//				'WeChall4 is a GWF2 module, compatible with the GPL license. GWF2 core is available under a BSD like license.<br/>'.
+				'Il codice sorgente di questo sito è proprietà dell\'autore, Gizmore et dloser.<br/>'.
+				'WeChall è basato su <a href="%s">GWF3</a>, per cui dovrete rispettare anche il copyright sul nucleo del sito.<br/>'.
 				'Il codice è pubblico ed è visibile <a href="%s">qui</a> (<a href="%s">Log dei cambiamenti</a>) e può essere riutilizzando in parte, ma non per lo stesso <i>scopo</i>.<br/>'.
 				'Non è consentito creare un sito simile a WeChall utilizzando parti di WeChall.<br/>'.
 				'Ci riserviamo il diritto di cambiare la licenza e/o i sorgenti forniti in qualsiasi momento, senza notifica alcuna, e potremmo decidere di escludere certi file dai sorgenti pubblicati.<br/>'.
@@ -40,6 +39,13 @@ $lang = array(
 				'Se vi è la necessità di inviare qualcosa di veramente privato ad un altro utente, consigliamo di utilizzare un altro metodo di comunicazione.',
 			'Contenuti linkati' => 
 				'WeChall non è responsabile per qualsiasi contenuto che viene linkato all\'interno del sito.<br/>',
+			'Extended Privacy Explaination' =>
+				'<i>Data Collection</i><br/>'.
+				'We log every request and data you send.<br/>'.
+				'We log your IP adresses and every request data, on every request, except password data.<br/>'.
+				'The log files are occasionally copied by the admins to their local machines.<br/>'.
+				'We *DO NOT* cooperate with anyone else. We do not sell any data, and we generally try to protect you.<br/>'.
+				'<i>Cookie Storage</i><br/>'.
+				'We store a cookie or two to be able to provide our services.<br/>',
 		),
 );
-?>

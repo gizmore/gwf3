@@ -6,9 +6,8 @@ $lang = array(
 		array(
 			'General' => 'This document describes <i>Agreements and Licensing</i> of the site <i>WeChall</i>, which may be further titled as <i>the site</i>. Also you will find the <i>Terms of Use</i> and some notes about your <i>Privacy</i> on this page.',
 			'Sourcecode license' => 
-				'The sourcecode of this site is property of its author, Gizmore.<br/>'.
-				'WeChall4 is based on <a href="%s">GWF2</a>, whereas you have also respect it\'s particular copyright for the site\'s core.<br/>'.
-//				'WeChall4 is a GWF2 module, compatible with the GPL license. GWF2 core is available under a BSD like license.<br/>'.
+				'The sourcecode of this site is property of its author, Gizmore and dloser.<br/>'.
+				'WeChall is based on <a href="%s">GWF3</a>, whereas you have also respect it\'s particular copyright for the site\'s core.<br/>'.
 				'It is openly viewable to everyone <a href="%s">here</a> (<a href="%s">changelog</a>) and may be reused in parts, but not for the same <i>purpose</i>.<br/>'.
 				'You may not start a similar site with parts of the WeChall code.<br/>'.
 				'We reserve the right to change the license or the provided source anytime, without notice anybody, also we may decide to exclude certain files from the sourcecode publishment.<br/>'.
@@ -33,11 +32,20 @@ $lang = array(
 				'Your password is stored as an obfuscated and salted SHA1 hash, and is censored in the WeChall logs.<br/>'.
 				'Though we don\'t know the plaintext of your password, in theory it would be possible to crack the hashes if someone gained access to the database and the secret salt.<br/>'.
 				'Thus we encourage you to not use your WeChall password on another site, and choose a password that is strong enough to not get cracked.<br/>',
+				
 			'Private Messages (PM)' =>
 				'Private messages currently occurwe in the logs, and thus can be read by administrators of this site.<br/>'.
 				'If you need to send really private stuff to some member, we suggest to use another way of communication.',
 			'Linked Content' => 
 				'WeChall is not responsible for any content that is linked within the site.<br/>',
+
+			'Extended Privacy Explaination' =>
+				'<i>Data Collection</i><br/>'.
+				'We log every request and data you send.<br/>'.
+				'We log your IP adresses and every request data, on every request, except password data.<br/>'.
+				'The log files are occasionally copied by the admins to their local machines.<br/>'.
+				'We *DO NOT* cooperate with anyone else. We do not sell any data, and we generally try to protect you.<br/>'.
+				'<i>Cookie Storage</i><br/>'.
+				'We store a cookie or two to be able to provide our services.<br/>',
 		),
 );
-?>
