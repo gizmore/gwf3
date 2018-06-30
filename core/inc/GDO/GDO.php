@@ -54,6 +54,11 @@ function gdo_db_instance($host, $user, $pass, $database, $type='mysqli', $charse
 		return false;
 	}
 	
+	if (false === $db->setupConnection())
+	{
+		return false;
+	}
+	
 	return $db;
 }
 

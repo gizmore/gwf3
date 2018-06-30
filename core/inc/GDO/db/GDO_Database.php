@@ -54,6 +54,7 @@ abstract class GDO_Database
 	public abstract function disconnect();
 	public abstract function setCharset($charset);
 	public abstract function useDatabase($db);
+	public abstract function setupConnection(); 
 	
 	public abstract function transactionStart();
 	public abstract function transactionEnd();

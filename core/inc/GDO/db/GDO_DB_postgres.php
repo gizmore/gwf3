@@ -4,6 +4,7 @@ final class GDO_DB_postgres extends GDO_Database
 	public function connect($host, $user, $pass) {}
 	public function setCharset($charset) {}
 	public function useDatabase($db) {}
+	public function setupConnection() {}
 	
 	public function queryRead($query) {}
 	public function queryWrite($query) {}
