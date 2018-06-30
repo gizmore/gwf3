@@ -385,10 +385,8 @@ final class GWF_Session extends GDO
 	
 	public static function getOnlineSessions()
 	{
-// 		var_dump('getSess', self::$SESSION);
 		$cut = time() - GWF_ONLINE_TIMEOUT;
 		$sid = self::$SESSION->getSessSID();
-// 		return array_merge(array(self::$SESSION), self::table(__CLASS__)->selectObjects('*, COUNT(*) as num_online', "sess_time>{$cut} AND sess_sid!='{$sid}'", 'user_name ASC', -1, -1, 'sess_user'));
 		$sessions = self::table(__CLASS__)->selectObjects('*, COUNT(1) as sessioncount', "sess_time>{$cut} OR sess_id={$sid}", 'user_name ASC', -1, -1, 'sess_user');
 		if (!self::haveCookies()) # || !self::$SESSION->isOnline())
 		{
