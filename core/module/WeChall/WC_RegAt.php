@@ -232,7 +232,7 @@ final class WC_RegAt extends GDO
 		$userid = $user->getVar('user_id');
 		$siteid = (int)$siteid;
 		$table = GDO::table('WC_RegAt');
-		if (false === ($myscore = $table->selectVar('regat_solved', "regat_sid=$siteid AND regat_uid=$userid")))
+		if ((false === ($myscore = $table->selectVar('regat_solved', "regat_sid=$siteid AND regat_uid=$userid"))) || ($myscore == NULL) )
 		{
 			$myscore = '0';
 		}
