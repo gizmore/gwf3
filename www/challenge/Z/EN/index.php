@@ -13,7 +13,6 @@ $chall->showHeader();
 
 WC_CryptoChall::checkSolution($chall, 'TheBookCipherIsLikeNothing', true, true);
 
-$chall->onCheckSolution();
 $numbers = generate_zen_numbers();
 echo GWF_Box::box($chall->lang('info', array($numbers)), $chall->lang('title').' – '.$chall->lang('subtitle'));
 
