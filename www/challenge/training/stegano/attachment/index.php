@@ -8,7 +8,7 @@ if (false === ($chall = WC_Challenge::getByTitle(GWF_PAGE_TITLE))) {
 	$chall = WC_Challenge::dummyChallenge(GWF_PAGE_TITLE, 2, '/challenge/training/stegano/attachment/index.php', false);
 }
 $chall->showHeader();
-WC_CryptoChall::checkSolution($chall, 'YouLikeAttachmentEh', true, false);
+WC_CryptoChall::checkSolution($chall, require_once 'challenge/training/stegano/attachment/secret.php', true, false);
 echo GWF_Box::box($chall->lang('info', array('attachment.php')), $chall->lang('title'));
 formSolutionbox($chall);
 echo $chall->copyrightFooter();

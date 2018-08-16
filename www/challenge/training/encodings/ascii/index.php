@@ -8,10 +8,11 @@ if (false === ($chall = WC_Challenge::getByTitle(GWF_PAGE_TITLE))) {
 }
 $chall->showHeader();
 
+$SOLUTION = require_once 'challenge/training/encodings/ascii/secret.php';
 require_once GWF_CORE_PATH.'module/WeChall/WC_CryptoChall.php';
-WC_CryptoChall::checkSolution($chall, 'OHNOASCII', true, true);
+WC_CryptoChall::checkSolution($chall, $SOLUTION, true, true);
 
-$solution = WC_CryptoChall::generateSolution('OHNOASCII', true, true);
+$solution = WC_CryptoChall::generateSolution($SOLUTION, true, true);
 $msg = $chall->lang('message', array($solution));
 
 $message = '';

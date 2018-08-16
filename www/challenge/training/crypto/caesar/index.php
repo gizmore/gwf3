@@ -9,7 +9,9 @@ if (false === ($chall = WC_Challenge::getByTitle(GWF_PAGE_TITLE))) {
 }
 $chall->showHeader();
 
-WC_CryptoChall::checkSolution($chall, 'The Foo The Bar The Lee', true, true);
+$SOLUTION = require_once 'challenge/training/crypto/caesar/secret.php';
+
+WC_CryptoChall::checkSolution($chall, $SOLUTION, true, true);
 
 echo GWF_Box::box($chall->lang('info'), $chall->lang('title'));
 
@@ -25,7 +27,7 @@ function crypto_caesar_1_ciphertext(WC_Challenge $chall)
 {
 	WC_CryptoChall::checkPlaintext(strtoupper($chall->lang('plaintext')));
 	
-	$solution = WC_CryptoChall::generateSolution('The Foo The Bar The Lee', true, true);
+	$solution = WC_CryptoChall::generateSolution($SOLUTION, true, true);
 	$pt = $chall->lang('plaintext', array($solution));
 	$pt = strtoupper($pt);
 	$pt = preg_replace('/[^A-Z ]/', '', $pt);

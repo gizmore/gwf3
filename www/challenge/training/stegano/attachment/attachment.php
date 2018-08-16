@@ -25,7 +25,7 @@ require_once GWF_CORE_PATH.'module/WeChall/WC_CryptoChall.php';
 $jpg_path = 'challenge/training/stegano/attachment/the.jpg';
 $jpg_file = file_get_contents($jpg_path);
 
-$solution = WC_CryptoChall::generateSolution('YouLikeAttachmentEh', true, false);
+$solution = WC_CryptoChall::generateSolution(require_once 'challenge/training/stegano/attachment/secret.php', true, false);
 
 $zip_path = GWF_PATH.'extra/temp/steganoattach/'.GWF_Session::getSessID().'.zip';
 $zip = new GWF_ZipArchive();

@@ -13,9 +13,10 @@ $chall->showHeader();
 if (isset($_POST['answer']) && is_string($_POST['answer'])) {
 	$_POST['answer'] = strtoupper($_POST['answer']);
 }
-WC_CryptoChall::checkSolution($chall, 'YouAreNotLeanorado!', true, false);
+$SOLUTION = require_once 'challenge/training/stegano/LSB/secret.php';
+WC_CryptoChall::checkSolution($chall, $SOLUTION, true, false);
 
-$solution = WC_CryptoChall::generateSolution('YouAreNotLeanorado!', true, false);
+$solution = WC_CryptoChall::generateSolution($SOLUTION, true, false);
 
 $path = lsb_gen_image($solution);
 

@@ -1,6 +1,5 @@
 <?php
-$SOLUTION = 'IKnowWhatYouDidThere';
-if (isset($_POST['answer']) && is_string($_POST['answer']) && $_POST['answer'] === $SOLUTION)
+if (isset($_POST['answer']) && is_string($_POST['answer']) && $_POST['answer'] === require_once './secret1.php')
 {
 	header('Location: stageTWO222.php');
 	die(0);

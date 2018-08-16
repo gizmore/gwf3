@@ -5,10 +5,11 @@ require_once('challenge/html_head.php');
 require_once GWF_CORE_PATH.'module/WeChall/WC_CryptoChall.php';
 require_once GWF_CORE_PATH.'module/WeChall/solutionbox.php';
 if (false === ($chall = WC_Challenge::getByTitle(GWF_PAGE_TITLE))) {
-	$chall = WC_Challenge::dummyChallenge(GWF_PAGE_TITLE, 2, '/challenge/training/crypto/gpg/index.php', false);
+	$chall = WC_Challenge::dummyChallenge(GWF_PAGE_TITLE, 2, 'challenge/training/crypto/gpg/index.php', false);
 }
 $chall->showHeader();
-WC_CryptoChall::checkSolution($chall, 'OHOYOUGOTGPG!', true, false);
+$SOLUTION = require_once 'challenge/training/crypto/gpg/secret.php';
+WC_CryptoChall::checkSolution($chall, $SOLUTION, true, false);
 
 if (false !== Common::getPost('send'))
 {
@@ -52,7 +53,7 @@ function wccgpg_doit(WC_Challenge $chall, $user)
 		return;
 	}
 	
-	$solution = WC_CryptoChall::generateSolution('OHOYOUGOTGPG!', true, false);
+	$solution = WC_CryptoChall::generateSolution($SOLUTION, true, false);
 	$mail = new GWF_Mail();
 	$mail->setSubject($chall->lang('mail_s'));
 	$mail->setSender(GWF_BOT_EMAIL);

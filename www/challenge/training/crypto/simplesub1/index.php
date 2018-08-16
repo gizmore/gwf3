@@ -9,7 +9,8 @@ if (false === ($chall = WC_Challenge::getByTitle(GWF_PAGE_TITLE))) {
 }
 $chall->showHeader();
 
-WC_CryptoChall::checkSolution($chall, 'The_GHEEEEZZ', true, true);
+$SOLUTION = require_once 'challenge/training/crypto/simplesub1/secret.php';
+WC_CryptoChall::checkSolution($chall, $SOLUTION, true, true);
 
 echo GWF_Box::box($chall->lang('info'), $chall->lang('title'));
 
@@ -25,7 +26,7 @@ function crypto_sub1_ciphertext(WC_Challenge $chall)
 {
 	WC_CryptoChall::checkPlaintext(strtolower($chall->lang('plaintext')), true, true);
 	
-	$solution = WC_CryptoChall::generateSolution('The_GHEEEEZZ', true);
+	$solution = WC_CryptoChall::generateSolution($SOLUTION, true);
 //	var_dump($solution);
 	$chars1 = array('A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z');
 	$chars2 = array('A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z');

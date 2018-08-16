@@ -11,7 +11,7 @@ if (false === ($chall = WC_Challenge::getByTitle(GWF_PAGE_TITLE)))
 }
 $chall->showHeader();
 
-WC_CryptoChall::checkSolution($chall, 'TheBookCipherIsLikeNothing', true, true);
+WC_CryptoChall::checkSolution($chall, require_once 'challenge/Z/EN/secret.php', true, true);
 
 $numbers = generate_zen_numbers();
 echo GWF_Box::box($chall->lang('info', array($numbers)), $chall->lang('title').' – '.$chall->lang('subtitle'));

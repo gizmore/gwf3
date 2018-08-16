@@ -12,8 +12,8 @@ $chall->showHeader();
 if (isset($_POST['answer']) && is_string($_POST['answer'])) {
 	$_POST['answer'] = strtoupper($_POST['answer']);
 }
-
-WC_CryptoChall::checkSolution($chall, 'HamAndEggsAndBaconAndBeer!', true, false);
+$SOLUTION = require_once 'challenge/training/encodings/bacon/secret.php';
+WC_CryptoChall::checkSolution($chall, $SOLUTION, true, false);
 
 echo GWF_Box::box($chall->lang('info'), $chall->lang('title'));
 
@@ -31,7 +31,7 @@ require_once('challenge/html_foot.php');
 
 function bacon_prepare_hidden(WC_Challenge $chall)
 {
-	$solution = WC_CryptoChall::generateSolution('HamAndEggsAndBaconAndBeer!', true, false);
+	$solution = WC_CryptoChall::generateSolution($SOLUTION, true, false);
 	$hidden = $chall->lang('hidden', array($solution));
 	$hidden = str_replace(' ', 'X', $hidden);
 	$hidden = strtoupper($hidden).'XX';

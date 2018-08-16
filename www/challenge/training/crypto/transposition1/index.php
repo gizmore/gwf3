@@ -9,7 +9,8 @@ if (false === ($chall = WC_Challenge::getByTitle(GWF_PAGE_TITLE))) {
 }
 $chall->showHeader();
 
-WC_CryptoChall::checkSolution($chall, 'The_GHSUBBBBEEEEZZ', true, true);
+$SOLUTION = require_once 'challenge/training/crypto/transposition1/secret.php';
+WC_CryptoChall::checkSolution($chall, $SOLUTION, true, true);
 
 echo GWF_Box::box($chall->lang('info'), $chall->lang('title'));
 
@@ -25,7 +26,7 @@ function crypto_trans1_ciphertext(WC_Challenge $chall)
 {
 	WC_CryptoChall::checkPlaintext($chall->lang('plaintext'), true, true);
 	
-	$solution = WC_CryptoChall::generateSolution('The_GHSUBBBBEEEEZZ', true, true);
+	$solution = WC_CryptoChall::generateSolution($SOLUTION, true, true);
 	$pt = $chall->lang('plaintext', array($solution));
 	$ct = crypto_trans1_encrypt($pt);
 	$ct = str_replace(' ', '&nbsp;', $ct);
