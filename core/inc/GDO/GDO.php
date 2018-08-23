@@ -13,7 +13,7 @@ function gdo_db()
 	global $SINGLE_GDO_DB;
 	if ($SINGLE_GDO_DB === null)
 	{
-		if (false !== ($SINGLE_GDO_DB = gdo_db_instance(GWF_DB_HOST, GWF_DB_USER, GWF_DB_PASSWORD, GWF_DB_DATABASE, GWF_DB_TYPE)))
+		if (false !== ($SINGLE_GDO_DB = gdo_db_instance(GWF_DB_HOST, GWF_DB_USER, GWF_DB_PASSWORD, GWF_DB_DATABASE, GWF_DB_TYPE, GWF_DB_CHARSET)))
 		{
 			GDO::setCurrentDB($SINGLE_GDO_DB);
 		}

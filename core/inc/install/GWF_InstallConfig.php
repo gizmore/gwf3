@@ -248,6 +248,7 @@ final class GWF_InstallConfig
 			array('text', 'Database', 'GWF_DB_DATABASE', '', 'Database db-name.'),
 			array('text', 'Database', 'GWF_DB_TYPE', 'mysqli', 'Database type. Currently only \'mysql\' is supported.'),
 			array('text', 'Database', 'GWF_DB_ENGINE', 'myIsam', 'Default database table type. Either \'innoDB\' or \'myIsam\'.'),
+			array('text', 'Database', 'GWF_DB_CHARSET', 'utf8mb4', 'UTF8 encoding. Either utf8 or utf8mb4.'),
 			array('text', 'Database', 'GWF_TABLE_PREFIX', 'gwf_', 'Database table prefix. Example: \'gwf3_\'.'),
 			
 			# Session

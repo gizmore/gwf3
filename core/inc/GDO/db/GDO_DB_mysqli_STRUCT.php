@@ -228,8 +228,8 @@ final class GDO_DB_mysqli_STRUCT
 		}
 		elseif ($type & GDO::UTF8)
 		{
-			if ($type & GDO::CASE_I) { return ' CHARACTER SET utf8 COLLATE utf8_general_ci'; }
-			elseif ($type & GDO::CASE_S) { return ' CHARACTER SET utf8 COLLATE utf8_bin'; }
+			if ($type & GDO::CASE_I) { return ' CHARACTER SET '.GWF_DB_CHARSET.' COLLATE '.GWF_DB_CHARSET.'_general_ci'; }
+			elseif ($type & GDO::CASE_S) { return ' CHARACTER SET '.GWF_DB_CHARSET.' COLLATE '.GWF_DB_CHARSET.'_bin'; }
 			else { return false; }
 		}
 		else

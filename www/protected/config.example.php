@@ -70,6 +70,7 @@ define('GWF_DB_USER', 'dog');
 define('GWF_DB_PASSWORD', 'dog');
 define('GWF_DB_DATABASE', 'dog');
 define('GWF_DB_TYPE', 'mysqli'); # currently only mysql is supported
+define('GWF_DB_CHARSET', 'utf8mb4'); # utf8 or utf8mb4
 define('GWF_DB_ENGINE', 'myISAM'); # innoDB or myISAM
 define('GWF_TABLE_PREFIX', ''); # Change at will, dual install possible.
 
