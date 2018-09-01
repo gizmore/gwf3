@@ -251,7 +251,22 @@ final class Dog_Server extends GDO
 	
 	public function getMessage()
 	{
-		return $this->connection->alive() ? $this->connection->receive() : false;
+		if ($this->connection->alive())
+		{
+			if (false !== ($raw_msg = $this->connection->receive()))
+			{
+				$charsets = array("UTF-8", "ISO-8859-15", "Windows-1252", "ASCII");
+				foreach ($charsets as $in_charset)
+				{
+					if (false !== ($msg = @iconv($in_charset, "UTF-8//TRANSLIT", $raw_msg)))
+					{
+						return $msg;
+					}
+				}
+				echo "ignoring undecodable raw_msg: " . $raw_msg . PHP_EOL;
+			}
+		}
+		return false;
 	}
 	
 	private function getReplyTarget()
