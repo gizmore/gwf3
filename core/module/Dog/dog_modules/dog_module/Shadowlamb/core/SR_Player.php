@@ -151,7 +151,7 @@ class SR_Player extends GDO
 			'sr4pl_sid' => array(GDO::UINT, 0),
 			'sr4pl_partyid' => array(GDO::UINT|GDO::INDEX, GDO::NOT_NULL),
 			'sr4pl_classname' => array(GDO::VARCHAR|GDO::ASCII|GDO::CASE_S, GDO::NULL, 63),
-			'sr4pl_name' => array(GDO::VARCHAR|GDO::ASCII|GDO::CASE_S, GDO::NULL, 63),
+			'sr4pl_name' => array(GDO::VARCHAR|GDO::UTF8|GDO::CASE_I, GDO::NULL, 63),
 			'sr4pl_title' => array(GDO::VARCHAR|GDO::ASCII|GDO::CASE_S, GDO::NULL, 63),
 			'sr4pl_race' => array(GDO::VARCHAR|GDO::ASCII|GDO::CASE_S, 'human', 63),
 			'sr4pl_gender' => array(GDO::VARCHAR|GDO::ASCII|GDO::CASE_S, 'male', 63),
