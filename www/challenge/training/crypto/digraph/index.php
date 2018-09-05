@@ -9,7 +9,7 @@ if (false === ($chall = WC_Challenge::getByTitle(GWF_PAGE_TITLE))) {
 }
 $chall->showHeader();
 
-$SOLUTION = require_once 'training/crypto/digraph/secret.php';
+$SOLUTION = require_once 'challenge/training/crypto/digraph/secret.php';
 WC_CryptoChall::checkSolution($chall, $SOLUTION, true, true);
 
 echo GWF_Box::box($chall->lang('info'), $chall->lang('title'));
@@ -24,6 +24,8 @@ require_once("challenge/html_foot.php");
 <?php 
 function crypto_dig1_ciphertext(WC_Challenge $chall)
 {
+	global $SOLUTION;
+	
 	WC_CryptoChall::checkPlaintext($chall->lang('plaintext'), true);
 	
 	$solution = WC_CryptoChall::generateSolution($SOLUTION, true,  true);

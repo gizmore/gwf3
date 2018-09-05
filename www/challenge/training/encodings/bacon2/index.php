@@ -30,6 +30,8 @@ require_once('challenge/html_foot.php');
 
 function bacon2_prepare_hidden(WC_Challenge $chall)
 {
+	global $SOLUTION;
+	
 	$solution = WC_CryptoChall::generateSolution($SOLUTION, true, false);
 	$hidden = $chall->lang('hidden', array($solution));
 	$hidden = str_replace(' ', 'X', $hidden);

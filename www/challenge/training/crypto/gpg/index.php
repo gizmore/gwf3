@@ -31,6 +31,8 @@ require_once('challenge/html_foot.php');
 
 function wccgpg_doit(WC_Challenge $chall, $user)
 {
+	global $SOLUTION;
+	
 	if ($user === false) {
 		echo GWF_HTML::error('GPG', $chall->lang('err_login'), false);
 		return;

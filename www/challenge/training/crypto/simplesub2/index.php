@@ -24,6 +24,8 @@ require_once("challenge/html_foot.php");
 <?php 
 function crypto_sub2_ciphertext(WC_Challenge $chall)
 {
+	global $SOLUTION;
+	
 	WC_CryptoChall::checkPlaintext($chall->lang('plaintext'), true);
 	
 	$solution = WC_CryptoChall::generateSolution($SOLUTION, true, true);
