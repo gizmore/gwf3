@@ -4,7 +4,7 @@ $lang = array(
 	'info' =>
 		'Wir haben erfolgreich die FREMEN Gruppe unterwandert und können <a href="%2$s">Ihre Nachrichten mitlesen</a>.<br/>'.PHP_EOL.
 		'Unsere Steganographieexperten vermuten Sie tauschen %1$s Bit Schlüssel mit einer bislang unbekannten Methode aus.<br/>'.PHP_EOL.
-		'Deine Aufgabe ist es an einen geheimen Schlüssel zu gelangen, so das wir weiteres Material entschlüsseln können.<br/>'.PHP_EOL.
+		'Deine Aufgabe ist es an einen geheimen Schlüssel zu gelangen, so dass wir weiteres Material entschlüsseln können.<br/>'.PHP_EOL.
 		'<br/>'.PHP_EOL.
 		'Als Lösung, sende den kompletten %1$s Bit Schlüssel als Hexadezimalzahl. Besipiel: 0xdb213449933ddf9ba2d41b8224a43292.'.
 		'<br/>'.PHP_EOL.
