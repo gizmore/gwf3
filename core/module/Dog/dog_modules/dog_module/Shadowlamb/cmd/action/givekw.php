@@ -34,6 +34,10 @@ final class Shadowcmd_givekw extends Shadowcmd_givekp
 			$word = $args[0];
 			$targets = $player->getParty()->getMembers();
 		}
+
+		if (is_numeric($word)) {
+			$word = $player->getKnowledgeByID('words', $word) || $word;
+		}
 		
 		if (false === $player->hasKnowledge('words', $word))
 		{
