@@ -8,9 +8,9 @@
  */
 final class GWF_Javascript
 {
-	##################
-	### HTTP Stram ###
-	##################
+	###################
+	### HTTP Stream ###
+	###################
 	/**
 	 * Boundary magic string
 	 * @var string
@@ -26,7 +26,7 @@ final class GWF_Javascript
 		$boundary = self::BOUNDARY;
 		GWF_HTTP::noCache();
 		header("Content-type: multipart/x-mixed-replace;boundary=$boundary");
-		echo "\n--$boundary\n";
+		echo "--$boundary\r\n";
 	}
 
 	/**
@@ -36,20 +36,22 @@ final class GWF_Javascript
 	 */
 	public static function newSection($type='text/plain')
 	{
-		print "Content-type: $type\n\n";
+		if (0 === ob_get_level()) {
+			ob_start();
+		}
+		print "Content-type: $type\r\n\r\n";
 	}
 
 	/**
 	 * End section.
-	 * @param unknown_type $content_type
-	 * @return unknown_type
+	 * @param boolean $last
+	 * @return void
 	 */
-	public static function endSection()
+	public static function endSection($last=false)
 	{
 		$boundary = self::BOUNDARY;
-		echo "--$boundary\n";
-		ob_flush(); # XXX WTF needed sometimes, sometimes not Oo
-		flush();
+		echo $last ? "\r\n--$boundary--\r\n" : "\r\n--$boundary\r\n";
+		self::flush();
 	}
 
 	/**
@@ -58,16 +60,14 @@ final class GWF_Javascript
 	 */
 	public static function flush()
 	{
-// 		echo(str_repeat(' ',256));
-		echo self::BOUNDARY.PHP_EOL;
-
 		if (ob_get_length())
 		{
-			ob_flush();
-			flush();
 			ob_end_flush();
+			flush();
 		}
-		ob_start();
+		if (0 === ob_get_level()) {
+			ob_start();
+		}
 	}
 
 	############
