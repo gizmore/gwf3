@@ -12,7 +12,7 @@ final class TTR2_Form
 			'email' => array(GWF_Form::STRING, '', $chall->lang('th_email')),
 			'reset' => array(GWF_Form::SUBMIT, $chall->lang('btn_reset')),
 		);
-		return new GWF_Form($this, $data, GWF_Form::METHOD_POST, GWF_FORM::CSRF_OFF);
+		return new GWF_Form($this, $data, GWF_Form::METHOD_POST, GWF_Form::CSRF_OFF);
 	}
 }
 ?>

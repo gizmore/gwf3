@@ -30,7 +30,7 @@ final class VersionClient_Update extends GWF_Method
 			'clean_update' => $module->lang('btn_cleanupdate'),
 		);
 		$data = array(
-			'buttons' => array(GWF_FORM::SUBMITS, $buttons),
+			'buttons' => array(GWF_Form::SUBMITS, $buttons),
 		);
 		return new GWF_Form($this, $data);
 	}
