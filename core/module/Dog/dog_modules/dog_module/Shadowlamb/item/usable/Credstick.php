@@ -60,7 +60,7 @@ class Item_Credstick extends SR_Usable
 		$bank = $player->getBankNuyen();
 		if ($amount <= 0)
 		{
-			$message = sprintf("Your bank account is {$b}%s Nuyen{$b}. You carry %s Nuyen. In total you have %s Nuyen.", $player->displayBankNuyen(), $player->displayNuyen(), Shadowfunc::displayNuyen($bank+$have));
+			$message = sprintf("Your bank account is {$b}%s{$b}. You carry %s. In total you have %s.", $player->displayBankNuyen(), $player->displayNuyen(), Shadowfunc::displayNuyen($bank+$have));
 			return $this->reply($player, $message);
 		}
 		
@@ -69,13 +69,13 @@ class Item_Credstick extends SR_Usable
 		
 		if ($bank < $need)
 		{
-			$this->reply($player, sprintf("You want to pop %s(+%s)=%s Nuyen from your bank account, but you only have %s.", $amount, $cost, $need, $bank));
+			$this->reply($player, sprintf("You want to pop %s(+%s)=%s from your bank account, but you only have %s.", Shadowfunc::displayNuyen($amount), Shadowfunc::displayNuyen($cost), Shadowfunc::displayNuyen($need), Shadowfunc::displayNuyen($bank)));
 			return false;
 		}
 			
 		$player->giveNuyen($amount);
 		$player->increase('sr4pl_bank_nuyen', -$need);
-		$this->reply($player, sprintf("You booked %s(+%s)=%s Nuyen from your bank account (%s left). You now carry %s.", $amount, $cost, $need, $player->getBankNuyen(), $player->displayNuyen()));
+		$this->reply($player, sprintf("You booked %s(+%s)=%s from your bank account (%s left). You now carry %s.", Shadowfunc::displayNuyen($amount), Shadowfunc::displayNuyen($cost), Shadowfunc::displayNuyen($need), $player->displayBankNuyen(), $player->displayNuyen()));
 	}
 	
 	public function onItemUsePush(SR_Player $player, $amount)
@@ -84,19 +84,19 @@ class Item_Credstick extends SR_Usable
 		$cost = $this->getTransactionCost();
 		
 		if ($amount <= $cost) {
-			$this->reply($player, "You want to send {$amount} Nuyen to your Bank account, but that's below the cost per transaction of {$cost}.");
+			$this->reply($player, sprintf("You want to send %s to your Bank account, but that's below the cost per transaction of %s.", Shadowfunc::displayNuyen($amount), Shadowfunc::displayNuyen($cost)));
 			return false;
 		}
 
 		if ($have < $amount)
 		{
-			$this->reply($player, sprintf("You want to send %s Nuyen to your bank account, but you only have %s.", $amount, $have));
+			$this->reply($player, sprintf("You want to send %s to your bank account, but you only have %s.", Shadowfunc::displayNuyen($amount), Shadowfunc::displayNuyen($have)));
 			return false;
 		}
 		
 		$player->giveNuyen(-$amount);
 		$player->increase('sr4pl_bank_nuyen', $amount-$cost);
-		$this->reply($player, sprintf("You send %s(+%s)=%s Nuyen to your bank account (%s now). You now carry %s.", $amount-$cost, $cost, $amount, $player->getBankNuyen(), $player->displayNuyen()));
+		$this->reply($player, sprintf("You send %s(+%s)=%s to your bank account (%s now). You now carry %s.", Shadowfunc::displayNuyen($amount-$cost), Shadowfunc::displayNuyen($cost), Shadowfunc::displayNuyen($amount), $player->displayBankNuyen(), $player->displayNuyen()));
 		return true;
 	}
 	
