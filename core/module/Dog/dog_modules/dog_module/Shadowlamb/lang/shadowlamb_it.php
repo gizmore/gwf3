@@ -122,7 +122,6 @@ $lang = array(
 'ring' => 'Anello',
 'shield' => 'Scudo',
 'weapon' => 'Arma',
-'mount' => 'Mezzo',
 'gloves' => 'Guanti',
 'belt' => 'Cintura',
 'piercing' => 'Piercing',
