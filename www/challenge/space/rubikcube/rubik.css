@@ -1,12 +1,12 @@
 #cube-container{
-	position:absolute;
-	right: 16%;
-	bottom: 0;
 	cursor: -webkit-grab;
 	cursor: grab;
 }
 
 #cube-viewport{
+	height: 480px;
+	padding: 32px;
+	
 	-webkit-perspective: 800px;
 	-moz-perspective: 800px;
 	-o-perspective: 800px;
