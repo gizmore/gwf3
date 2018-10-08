@@ -164,7 +164,7 @@ YUI.add('rubik', function (Y) {
 	var map = ['U', 'L', 'F', 'R', 'B', 'D'];
 	var pos = ['1', '4', '7', '2', '5', '8', '3', '6', '9'];
 	var posB = ['9', '6', '3', '8', '5', '2', '7', '4', '1'];
-	var colors = ['white', 'red', 'blue', 'orange', 'green', 'yellow'];
+	var colors = ['green', 'red', 'white', 'orange', 'yellow', 'blue'];
 	var fcolors = {}, rcolor = {};
 	for (var i = 0; i < colors.length; i++) {
 		fcolors[i + 1] = colors[i];

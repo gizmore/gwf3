@@ -27,7 +27,7 @@ $c = $cube->getCube();
 
 $info = $chall->lang('info');
 $info .= '<div id="answers">' . $msg . '<noscript id="cubestring">' . $c . '</noscript></div>
-<div id="rotation" style="cursor: grab;">Press "r" to rotate the cube!</div>
+<div id="rotation" style="cursor: grab;">Press "R" once and drag the cursor to move the cube!</div>
 <noscript>
 Please enable javascript to see a 3D version!
 <div style="white-space: pre; unicode-bidi: embed; font-family: monospace;">
