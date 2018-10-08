@@ -1,6 +1,7 @@
 #cube-container{
 	cursor: -webkit-grab;
 	cursor: grab;
+	display: inline-block;
 }
 
 #cube-viewport{
