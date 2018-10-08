@@ -161,34 +161,22 @@ YUI.add('rubik', function (Y) {
 		}
 	};
 
-	//Match the sides with css .class
-	var INIT_CONFIG = {
-		"front":"blue",
-		"back":"green",
-		"up":"white",
-		"down":"yellow",
-		"left":"red",
-		"right":"orange"
-	};
-
 	var map = ['U', 'L', 'F', 'R', 'B', 'D'];
 	var pos = ['1', '4', '7', '2', '5', '8', '3', '6', '9'];
 	var posB = ['9', '6', '3', '8', '5', '2', '7', '4', '1'];
+	var colors = ['white', 'red', 'blue', 'orange', 'green', 'yellow'];
+	var fcolors = {}, rcolor = {};
+	for (var i = 0; i < colors.length; i++) {
+		fcolors[i + 1] = colors[i];
+		fcolors[colors[i]] = i + 1;
+	}
 	setCube = function(cube) {
-		var colors = {
-			1: 'green',
-			2: 'red',
-			3: 'yellow',
-			4: 'orange',
-			5: 'white',
-			6: 'blue'
-		};
 		for (var i=0; i < cube.length; i++) {
 			var name = map[Math.floor(i / 9)];
 			name += (name === 'B') ? (posB[i % 9]): (pos[i % 9]);
 			var l = Y.one('.' + name + ' > div');
 			l.removeClass(l.getAttribute('class'));
-			l.addClass(colors[cube[i].toLowerCase()]);
+			l.addClass(fcolors[cube[i].toLowerCase()]);
 			//l.setContent(l.getContent() + '<span>(' + cube[i] + ')</span>');
 		}
 	};
@@ -196,14 +184,6 @@ YUI.add('rubik', function (Y) {
 		setCube(Y.one('noscript#cubestring').getContent());
 	};
 	getCube = function() {
-		var rcolor = {
-			'green': 1,
-			'red': 2,
-			'yellow': 3,
-			'orange': 4,
-			'white': 5,
-			'blue': 6
-		};
 		var cube = '';
 		for (var i=0; i < map.length; i++) {
 			for (var n=0; n < 9; n++) {
@@ -255,9 +235,6 @@ YUI.add('rubik', function (Y) {
 		   this._container.on('gesturestart',this._multiTouchStart,this);
 		   this._container.on('gesturechange',this._multiTouchMove,this);
 		   this._container.on('gestureend',this._multiTouchEnd,this);
-
-//		   this._undo.on('gesturemovestart',this._undoMove,{preventDefault:true},this);
-//		   this._redo.on('gesturemovestart',this._redoMove,{preventDefault:true},this);
 
 		   if (Y.UA.mobile) {
 				//this._rotation.on('gesturestart',this._onRotationFocus,this);
@@ -336,11 +313,6 @@ YUI.add('rubik', function (Y) {
 
 			this._cubeXY = pos;
 			this._tempXY = pos;
-		},
-		_setInitialColors: function (){
-			for(var face in INIT_CONFIG){
-				Y.all('.' +face + ' > div').addClass(INIT_CONFIG[face]);
-			}
 		},
 		_endTransition: function (evt) {
 			if (this._expectingTransition){
