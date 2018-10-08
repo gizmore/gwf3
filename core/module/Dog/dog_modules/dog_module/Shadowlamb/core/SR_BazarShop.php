@@ -20,7 +20,7 @@ final class SR_BazarShop extends GDO
 	public static function fixAllItemCounts()
 	{
 		$items = GWF_TABLE_PREFIX.'sr4_bazar';
-		return self::table(__CLASS__)->update("sr4bs_itemcount=(SELECT SUM(sr4ba_iamt) FROM $items WHERE sr4ba_pname=sr4bs_pname)");
+		return self::table(__CLASS__)->update("sr4bs_itemcount = IFNULL( (SELECT SUM(sr4ba_iamt) FROM $items WHERE sr4ba_pname=sr4bs_pname), 0 )");
 	}
 	
 	public function fixItemCount()
