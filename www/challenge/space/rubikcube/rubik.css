@@ -1,10 +1,16 @@
+.rubiknoscript, .rubiknoscript span {
+	white-space: pre;
+	unicode-bidi: embed;
+	font-family: monospace;
+}
+
 #cube-container{
 	cursor: -webkit-grab;
 	cursor: grab;
 	display: inline-block;
 }
-
 #cube-viewport{
+	display: none;
 	height: 480px;
 	padding: 32px;
 	

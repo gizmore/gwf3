@@ -30,7 +30,7 @@ $info .= '<div id="answers">' . $msg . '<noscript id="cubestring">' . $c . '</no
 <div id="rotation" style="cursor: grab;">Press "R" once and drag the cursor to move the cube!</div>
 <noscript>
 Please enable javascript to see a 3D version!
-<div style="white-space: pre; unicode-bidi: embed; font-family: monospace;">
+<div class="rubiknoscript">
 ' . Cube::cube2Text($c, false, true) . '
 </div>
 Rotate:

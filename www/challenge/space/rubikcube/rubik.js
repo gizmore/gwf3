@@ -165,10 +165,10 @@ YUI.add('rubik', function (Y) {
 	var pos = ['1', '4', '7', '2', '5', '8', '3', '6', '9'];
 	var posB = ['9', '6', '3', '8', '5', '2', '7', '4', '1'];
 	var colors = ['green', 'red', 'white', 'orange', 'yellow', 'blue'];
-	var fcolors = {}, rcolor = {};
+	var fcolors = {}, rcolors = {};
 	for (var i = 0; i < colors.length; i++) {
 		fcolors[i + 1] = colors[i];
-		fcolors[colors[i]] = i + 1;
+		rcolors[colors[i]] = i + 1;
 	}
 	setCube = function(cube) {
 		for (var i=0; i < cube.length; i++) {
@@ -187,7 +187,7 @@ YUI.add('rubik', function (Y) {
 		var cube = '';
 		for (var i=0; i < map.length; i++) {
 			for (var n=0; n < 9; n++) {
-				cube += rcolor[(Y.one('.' + map[i] + (map[i] === 'B' ? posB[n] : pos[n]) + ' > div').getAttribute('class') + ' ').substrUntil(' ')];
+				cube += rcolors[(Y.one('.' + map[i] + (map[i] === 'B' ? posB[n] : pos[n]) + ' > div').getAttribute('class') + ' ').substrUntil(' ')];
 			}
 		}
 		return cube;
@@ -211,6 +211,7 @@ YUI.add('rubik', function (Y) {
 	Rubik.prototype = {
 		_init: function (cfg) {
 			this._container = Y.one(cfg.container || '#cube-container');
+			this._viewport = Y.one(cfg.viewport || '#cube-viewport');
 			this._cube = Y.one(cfg.src || '#cube');
 			this._plane = Y.Node.create('<div id="plane"></div>');
 			this._rotation = Y.one(cfg.controls || '#rotation');
@@ -225,6 +226,7 @@ YUI.add('rubik', function (Y) {
 		*/
 		_bind: function () {
 			//TODO: Fix YUI bug to abstract transitionEnd
+			this._viewport.setStyles({'display': 'block'});
 		   this._cube.on('transitionend',this._endTransition,this);
 		   this._cube.on('webkitTransitionEnd',this._endTransition,this);
 
