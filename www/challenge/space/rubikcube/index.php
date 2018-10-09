@@ -6,7 +6,7 @@ define('GWF_PAGE_TITLE', "Rubik's Cube");
 require_once('challenge/gwf_include.php');
 
 GWF_Website::addCSS('rubik.css');
-GWF_Website::addJavascript('yui-min.js');
+GWF_Website::addJavascript('yui/yui/yui-min.js');
 GWF_Website::addJavascript('rubik.js');
 GWF_Website::addJavascript('message-scroll.js');
 
