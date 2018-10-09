@@ -31,8 +31,9 @@ final class Scrambler
 		return $rand;
 	}
 
-	public static function requires20Moves() {
-		$f_contents = file("challenge/space/rubikcube/random1000.txt");
+	public static function requiresMoves($x=20) {
+		$filename = $x === 24 ? 'random24.txt' : 'random20.txt';
+		$f_contents = file("challenge/space/rubikcube/" . $filename);
 		$line = $f_contents[array_rand($f_contents)];
 		return str_replace('1', ' ', str_replace('3', "' ", str_replace('2', '2 ', $line)));
 	}

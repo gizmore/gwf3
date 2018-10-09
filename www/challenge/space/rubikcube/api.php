@@ -189,7 +189,7 @@ final class CubeChallenge
 		if (!$moves || $moves % 2) {
 			$cube->move(Scrambler::getScrambled());
 		} else {
-			$cube->move(Scrambler::requires20Moves());
+			$cube->move(Scrambler::requiresMoves($moves === 24 ? 24 : 20));
 		}
 		return $cube->cube;
 	}
