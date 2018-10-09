@@ -33,19 +33,18 @@ Please enable javascript to see a 3D version!
 <div class="rubiknoscript">
 ' . Cube::cube2Text($c, false, true) . '
 </div>
-Rotate:
-<a href="?move=X">X</a>
-<a href="?move=Y">Y</a>
-<a href="?move=Z">Z</a>
-<a href="?move=F">Front</a>
-<a href="?move=L">Left</a>
-<a href="?move=R">Right</a>
-<a href="?move=U">Up</a>
-<a href="?move=D">Down</a>
-<a href="?move=B">Back</a>
-<a href="?move=M">Middle</a>
-<a href="?move=S">Standing</a>
-<a href="?move=E">Equatorial</a>
+Rotate:<br/>
+<a href="?move=X">X</a> <a href="?move=Y">Y</a> <a href="?move=Z">Z</a> <a href="?move=F">Front</a>
+<a href="?move=L">Left</a> <a href="?move=R">Right</a> <a href="?move=U">Up</a> <a href="?move=D">Down</a>
+<a href="?move=B">Back</a> <a href="?move=M">Middle</a> <a href="?move=S">Standing</a> <a href="?move=E">Equatorial</a>
+<br/>
+<a href="?move=X\'">X\'</a> <a href="?move=Y\'">Y\'</a> <a href="?move=Z\'">Z\'</a> <a href="?move=F\'">Front\'</a>
+<a href="?move=L\'">Left\'</a> <a href="?move=R\'">Right\'</a> <a href="?move=U\'">Up\'</a> <a href="?move=D\'">Down\'</a>
+<a href="?move=B\'">Back\'</a> <a href="?move=M\'">Middle\'</a> <a href="?move=S\'">Standing\'</a> <a href="?move=E\'">Equatorial\'</a>
+<br/>
+<a href="?move=X2">X2</a> <a href="?move=Y2">Y2</a> <a href="?move=Z2">Z2</a> <a href="?move=F2">Front2</a>
+<a href="?move=L2">Left2</a> <a href="?move=R2">Right2</a> <a href="?move=U2">Up2</a> <a href="?move=D2">Down2</a>
+<a href="?move=B2">Back2</a> <a href="?move=M2">Middle2</a> <a href="?move=S2">Standing2</a> <a href="?move=E2">Equatorial2</a>
 </noscript>
 ';
 
