@@ -24,8 +24,6 @@ final class GWF_TimeConvert
 		if (!is_string($duration)) { return 0; }
 		if (Common::isNumeric($duration)) { return (int)$duration; }
 		$duration = trim(strtolower($duration));
-		if (!preg_match('/^(?:(?:[0-9 ]+[sihdwmy])+)$/', $duration)) { return 0; }
-		
 
 		$multis = array('s' => 1,'i' => 60,'h' => 3600,'d' => 86400,'w' => 604800,'m' => 2592000,'y' => 31536000);
 		$replace = array(
@@ -45,7 +43,9 @@ final class GWF_TimeConvert
 		}
 		$duration = trim($duration, '-');
 		$duration = str_replace(array_keys($replace), array_values($replace), $duration);
-// 		$duration = preg_replace('/[^sihdwmy0-9]/', '', $duration);
+		if (!preg_match('/^(?:(?:[0-9 ]+[sihdwmy])+)$/', $duration)) { return 0; }
+ 		$duration = preg_replace('/[^sihdwmy0-9]/', '', $duration);
+		$duration = preg_replace('/([sihdwmy])/', '$1 ', $duration);
 		$duration = preg_replace('/([sihdwmy])/', '$1 ', $duration);
 		$duration = explode(' ', trim($duration));
 		$back = 0;
