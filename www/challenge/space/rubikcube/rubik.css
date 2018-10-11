@@ -13,6 +13,7 @@
 	display: none;
 	height: 480px;
 	padding: 32px;
+	margin: 32px 16px;
 	
 	-webkit-perspective: 800px;
 	-moz-perspective: 800px;
