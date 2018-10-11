@@ -46,7 +46,6 @@ final class GWF_TimeConvert
 		if (!preg_match('/^(?:(?:[0-9 ]+[sihdwmy])+)$/', $duration)) { return 0; }
  		$duration = preg_replace('/[^sihdwmy0-9]/', '', $duration);
 		$duration = preg_replace('/([sihdwmy])/', '$1 ', $duration);
-		$duration = preg_replace('/([sihdwmy])/', '$1 ', $duration);
 		$duration = explode(' ', trim($duration));
 		$back = 0;
 		foreach ($duration as $d)
