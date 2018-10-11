@@ -5,7 +5,7 @@ final class GWF_PB_Install
 	{
 		return GWF_ModuleLoader::installVars($module, array(
 			'ipp' => array('10', 'int', '1', '100'),
-			'home_page' => array('0', 'int', '0', PHP_INT_MAX),
+			'home_page' => array('0', 'int', '0', /*PHP_INT_MAX*/2147483647),
 			'authors' => array('admin,moderator,publisher', 'text', '0', '1024'),
 			'author_level' => array('0', 'int', '0', '10000000'),
 			'locked_posting' => array(false, 'bool'),

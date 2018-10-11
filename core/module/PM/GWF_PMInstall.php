@@ -13,7 +13,7 @@ final class GWF_PMInstall
 			'pm_captcha' => array(true, 'bool'),
 			'pm_causes_mail' => array(true, 'bool'),
 			'pm_mail_sender' => array(GWF_BOT_EMAIL, 'text', '8', 255),
-			'pm_bot_uid' => array('0', 'int', '0', '2199999999'),
+			'pm_bot_uid' => array('0', 'int', '0', /*'2199999999'*/'2147483647'),
 			'pm_per_page' => array('25', 'int', 1, 255),
 			'pm_sent' => array('0', 'script'),
 			'pm_welcome' => array(true, 'bool'),

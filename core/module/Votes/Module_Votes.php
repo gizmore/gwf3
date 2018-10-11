@@ -25,7 +25,7 @@ final class Module_Votes extends GWF_Module
 			'vote_title_max' => array('255', 'int', '17', '1024'),
 			'vote_option_min' => array('1', 'int', '1', '16'),
 			'vote_option_max' => array('255', 'int', '17', '1024'),
-			'vote_poll_level' => array('0', 'int', '0', PHP_INT_MAX),
+			'vote_poll_level' => array('0', 'int', '0', /*PHP_INT_MAX*/2147483647),
 			'vote_poll_group' => array('moderator', 'text', '0', GWF_Group::NAME_LEN),
 		));
 	}
