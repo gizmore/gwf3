@@ -46,6 +46,7 @@ Rotate:<br/>
 <a href="?move=L2">Left2</a> <a href="?move=R2">Right2</a> <a href="?move=U2">Up2</a> <a href="?move=D2">Down2</a>
 <a href="?move=B2">Back2</a> <a href="?move=M2">Middle2</a> <a href="?move=S2">Standing2</a> <a href="?move=E2">Equatorial2</a>
 </noscript>
+<span style="color: #fee;">https://www.youtube.com/watch?v=xCoH2AORcEQ</span>
 ';
 
 echo GWF_Box::box($info, $chall->lang('title'));
