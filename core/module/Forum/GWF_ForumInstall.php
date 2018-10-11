@@ -192,7 +192,8 @@ final class GWF_ForumInstall
 		
 		foreach ($userids as $userid)
 		{
-			if (false === GWF_UserGroup::addToGroup($userid, 'moderator')) {
+			$modid = GWF_Group::getByName('moderator')->getID();
+			if (false === GWF_UserGroup::addToGroup($userid, $modid)) {
 				return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);
 			}
 		}
