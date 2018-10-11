@@ -165,6 +165,11 @@ final class WC_RegAt extends GDO
 		$maxscore = $site->getVar('site_maxscore');
 		$sitescore = $site->getVar('site_score');
 		
+		if (!$maxscore)
+		{
+			return GWF_HTML::error($site->displayName(), "Scores cannot be caclulated due to a zero maxscore");
+		}
+		
 		# Clamp to max
 // 		$regats->update("regat_onsitescore={$maxscore}", "regat_onsitescore>{$maxscore} and regat_sid={$siteid}");
 		

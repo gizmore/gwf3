@@ -191,12 +191,12 @@ final class WC_Warflag extends GDO
 	
 	public static function getTotalscore(WC_Warbox $box)
 	{
-		return self::table(__CLASS__)->selectVar('SUM(wf_score)', "wf_wbid={$box->getID()}");
+		return self::table(__CLASS__)->selectVar('IFNULL(SUM(wf_score), 0)', "wf_wbid={$box->getID()}");
 	}
 	
 	public static function getTotalscoreForSite(WC_Site $site)
 	{
-		return self::table(__CLASS__)->selectVar('SUM(wf_score)', "wb_sid={$site->getID()}", '', array('warbox', 'site'));
+		return self::table(__CLASS__)->selectVar('IFNULL(SUM(wf_score), 0)', "wb_sid={$site->getID()}", '', array('warbox', 'site'));
 	}
 	
 	public static function getNextOrder(WC_Warbox $box)

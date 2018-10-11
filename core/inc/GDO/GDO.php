@@ -797,7 +797,6 @@ abstract class GDO
 		}
 		$type = $replace ? 'REPLACE' : 'INSERT';
 		$query = sprintf("%s INTO `{$tablename}` (%s) VALUES (%s)", $type, substr($keys,1), substr($vals,1));
-//		echo $query."<br/>\n";
 		return $db->queryWrite($query);
 	}
 	

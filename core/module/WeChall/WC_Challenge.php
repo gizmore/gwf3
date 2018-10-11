@@ -401,11 +401,11 @@ final class WC_Challenge extends GDO
 			'chall_dif' => 5.0,
 			'chall_edu' => 5.0,
 			'chall_fun' => 5.0,
-			'chall_vote_dif' => false,
-			'chall_vote_edu' => false,
-			'chall_vote_fun' => false,
-			'chall_board' => false,
-			'chall_sboard' => false,
+			'chall_vote_dif' => null,
+			'chall_vote_edu' => null,
+			'chall_vote_fun' => null,
+			'chall_board' => null,
+			'chall_sboard' => null,
 			'chall_votecount' => 0,
 			'chall_options' => $options,
 			'chall_token' => GWF_Random::randomKey(8),
@@ -873,7 +873,7 @@ final class WC_Challenge extends GDO
 	
 	public static function getMaxScore()
 	{
-		return self::table(__CLASS__)->selectVar('SUM(chall_score)');
+		return self::table(__CLASS__)->selectVar('IFNULL(SUM(chall_score), 0)');
 	}
 	
 	public static function getChallCount()

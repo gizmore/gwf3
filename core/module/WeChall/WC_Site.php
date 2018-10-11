@@ -1245,7 +1245,7 @@ class WC_Site extends WC_SiteBase
 		else
 		{
 			$sid = $this->getVar('site_id');
-			$avg = GDO::table('WC_RegAt')->selectVar('AVG(regat_onsitescore)', "regat_sid=$sid AND regat_onsitescore>0");
+			$avg = GDO::table('WC_RegAt')->selectVar('IFNULL(AVG(regat_onsitescore),0)', "regat_sid=$sid AND regat_onsitescore>0");
 			$avg /= $max;
 		}
 
@@ -1284,7 +1284,7 @@ class WC_Site extends WC_SiteBase
 			$basescore = intval(round($basescore));
 		}
 		
-		if ($basescore !== $this->getVar('site_score'))
+		if ($basescore != $this->getScore())
 		{
 			require_once 'WC_HistorySite.php';
 			if (false === WC_HistorySite::insertEntry($this->getID(), $this->getScore(), $this->getUsercount(), $this->getChallcount()))
