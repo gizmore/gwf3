@@ -290,9 +290,13 @@ YUI.add('rubik', function (Y) {
 		_onRotationToggle: function ()  {
 			var enabled = this._enableRotation;
 			if (enabled) {
-			   this._rotation.removeClass('pcRotation');
+				this._rotation.removeClass('pcRotation');
+				document.getElementById('indicate_movement').style.fontWeight = 'bolder';
+				document.getElementById('indicate_rotation').style.fontWeight = 'normal';
 			} else {
-				 this._rotation.addClass('pcRotation');
+				this._rotation.addClass('pcRotation');
+				document.getElementById('indicate_movement').style.fontWeight = 'normal';
+				document.getElementById('indicate_rotation').style.fontWeight = 'bolder';
 			}
 			this._enableRotation = !enabled;
 			this._gesture = !enabled;
