@@ -214,25 +214,25 @@ final class GWF_InstallConfig
 			array('int10',  'Main', 'GWF_LOG_BITS', 0xfff, 'bitmask for logging: NONE = 0; GWF_WARNING = 0x01; GWF_MESSAGE = 0x02; GWF_ERROR = 0x04; GWF_CRITICAL = 0x08; PHP_ERROR = 0x10; DB_ERROR = 0x20; SMARTY = 0x40; HTTP_ERROR = 0x80; HTTP_GET = 0x100; HTTP_POST = 0x200; IP = 0x400;'),
 
 			# 3rd Party
-#			array('text', '3rd Party', 'GWF_SMARTY_PATH', GWF_SMARTY_PATH, 'Path to Smarty.class.php. Smarty replaced the GWF template engine and has to be available.'),
+			array('text', '3rd Party', 'GWF_SMARTY_PATH', GWF_SMARTY_PATH, 'Path to Smarty.class.php. Smarty replaced the GWF template engine and has to be available.'),
 #			array('text', '3rd Party', 'GWF_JPGRAPH_PATH', '/opt/php/jphraph/jpgraph.php', 'Path to jpgraph.php. JPGraph is a library to draw graphs with php. It is available under the GPL.'),
 			array('text', '3rd Party', 'GWF_GESHI_PATH', '/opt/php/geshi/geshi.php', 'Path to geshi.php. GeSHi is a GPL licensed Syntax highlighter.'),
 
 			# Smarty
-#			array('text', 'Smarty', 'GWF_SMARTY_DIRS', $path.'extra/temp/smarty/', 'Path to smarty directories for cache, config and compiling. With trailing slash.'),
-#			array('bool', 'Smarty', 'GWF_ERRORS_TO_SMARTY', true, 'Errors and Messsages are added to a smarty templatevar. If not set it is added before Pagecontent.'),
+			array('text', 'Smarty', 'GWF_SMARTY_DIRS', $path.'extra/temp/smarty/', 'Path to smarty directories for cache, config and compiling. With trailing slash.'),
+			array('bool', 'Smarty', 'GWF_ERRORS_TO_SMARTY', true, 'Errors and Messsages are added to a smarty templatevar. If not set it is added before Pagecontent.'),
 
 			# Defaults
 			array('text', 'Defaults', 'GWF_DEFAULT_LANG', 'en', 'Fallback language. Should be \'en\'.'),
 			array('text', 'Defaults', 'GWF_DEFAULT_MODULE', 'GWF', '1st visit module. Example: \'Wanda\'.'),
 			array('text', 'Defaults', 'GWF_DEFAULT_METHOD', 'About', '1st visit method. Example: \'Home\'.'),
 			array('text', 'Defaults', 'GWF_DEFAULT_DESIGN', 'default', 'Default design. Example: \'wanda\'.'),
-#			array('text', 'Defaults', 'GWF_ICON_SET', 'default', 'Default Icon-Set. Example: \'default\'.'),
+			array('text', 'Defaults', 'GWF_ICON_SET', 'default', 'Default Icon-Set. Example: \'default\'.'),
 			array('text', 'Defaults', 'GWF_DOWN_REASON', 'Converting the database atm. should be back within 45 minutes.', 'The Message if maintainance-mode is enabled.'),
 			
 			# Language
 #			array('text', 'Language', 'GWF_LANG_ADMIN', 'en', 'Admins language. Should be \'en\'.'),
-#			array('text', 'Language', 'GWF_SUPPORTED_LANGS', 'en;de;fr;it;pl;hu;es;bs;et;fi;ur;tr;sq;nl;ru;cs;sr;lv', 'Separate 2 char ISO codes by semicolon. Currently (partially) Supported: en;de;fr;it;pl;hu;es;bs;et;fi;ur;tr;sq;nl;ru;cs;sr'),
+			array('text', 'Language', 'GWF_SUPPORTED_LANGS', 'en;de;fr;it;pl;hu;es;bs;et;fi;ur;tr;sq;nl;ru;cs;sr;lv', 'Separate 2 char ISO codes by semicolon. Currently (partially) Supported: en;de;fr;it;pl;hu;es;bs;et;fi;ur;tr;sq;nl;ru;cs;sr'),
 			
 			# Various
 			array('int10', 'Various', 'GWF_ONLINE_TIMEOUT', 300, 'A request will mark you online for N seconds.'),
