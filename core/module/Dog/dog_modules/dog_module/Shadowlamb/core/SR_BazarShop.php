@@ -26,7 +26,7 @@ final class SR_BazarShop extends GDO
 	public function fixItemCount()
 	{
 		$epname = self::escape($this->getVar('sr4bs_pname'));
-		if (false === ($count = GDO::table('SR_BazarItem')->selectVar('SUM(sr4ba_iamt)', "sr4ba_pname='$epname'")))
+		if (false === ($count = GDO::table('SR_BazarItem')->selectVar('IFNULL( SUM(sr4ba_iamt ), 0)', "sr4ba_pname='$epname'")))
 		{
 			return false;
 		}
