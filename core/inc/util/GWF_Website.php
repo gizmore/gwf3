@@ -44,8 +44,6 @@ final class GWF_Website
 		}
 		GWF_HTML::init();
 
-		self::$xhtml = (self::isHTML() ? '>' : ' />') . "\n\t";
-
 		self::addLink(GWF_WEB_ROOT.'favicon.ico', 'img/x-icon', 'shortcut icon');
 		self::addMeta(array('Content-Type', 'text/html; charset=utf-8', 1));
 	}
