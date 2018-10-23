@@ -36,6 +36,10 @@ final class WeChall_Admin extends GWF_Method
 			return $this->onHardlink().$this->templateAdmin();
 		}
 		
+		if (false !== Common::getGet('condense_graphs')) {
+			return $this->onCondenseGraphs().$this->templateAdmin();
+		}
+		
 		return $this->templateAdmin();
 	}
 	
@@ -54,6 +58,7 @@ final class WeChall_Admin extends GWF_Method
 			'href_fix_irc' => $this->module->getMethodURL('Admin', '&fix_irc=yes'),
 			'form_hardlink' => $formHardlink->templateY($this->module->lang('ft_hardlink')),
 			'href_siteminmail' => $this->module->getMethodURL('Admin', '&siteminmail=yes'),
+			'href_condense' => $this->module->getMethodURL('Admin', '&condense_graphs=yes'),
 		);
 		return $this->module->templatePHP('admin.php', $tVars);
 	}
@@ -288,6 +293,12 @@ final class WeChall_Admin extends GWF_Method
 		
 		return $this->module->message('msg_hardlinked', array($user->displayUsername(), $site->displayName(), GWF_HTML::display($onsitename)));
 	}
+	
+	private function onCondenseGraphs()
+	{
+		$this->module->includeClass('WC_GraphCondenser');
+		$condenser = new WC_GraphCondenser();
+		$condenser->condenseAllGraphs();
+		return $condenser->condenseResultText();
+	}
 }
-
-?>

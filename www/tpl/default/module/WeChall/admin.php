@@ -9,6 +9,7 @@ echo GWF_Button::generic('Fix IRC', $tVars['href_fix_irc']);
 echo GWF_Button::generic('Recalc Everything', $tVars['href_recalc_all']);
 echo GWF_Button::generic('Freeze User', $tVars['href_freeze']);
 echo GWF_Button::generic('BIGMail', $tVars['href_siteminmail']);
+echo GWF_Button::generic('Condense Graphs', $tVars['href_condense']);
 echo '</div>'.PHP_EOL;
 echo '</div>'.PHP_EOL;
 
