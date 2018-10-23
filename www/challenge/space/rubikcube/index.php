@@ -31,7 +31,7 @@ $info .= '<div id="answers">' . $msg . '<noscript id="cubestring">' . $c . '</no
 <noscript>
 Please enable javascript to see a 3D version!
 <div class="rubiknoscript">
-' . Cube::cube2Text($c, false, true) . '
+' . ($c ? Cube::cube2Text($c, false, true) : 'No cube available. Please reload the page!') . '
 </div>
 Rotate:<br/>
 <a href="?move=X">X</a> <a href="?move=Y">Y</a> <a href="?move=Z">Z</a> <a href="?move=F">Front</a>
