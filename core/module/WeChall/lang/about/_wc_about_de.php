@@ -43,8 +43,8 @@ $lang = array(
 		'WeChall ist außerdem mein &quot;Spielplatz zum Programmieren&quot; :)',
 	'Kender' =>
 		'Naja, ich hatte diesen Server im Datencenter, der nicht viel zu tun hatte... :)<br/>'.
-		'Und wie eine menge Leute dachte ich über eine übergreifende Statistikseite für Challengeseiten nach.<br/>'.
-		'Ich hoffe, dass wir mehr Leuten das spielen auf Challengeseiten näher bringen und ihnen einen Einstiegspunkt bieten können, auf denen sie weitere Seiten entdecken.',
+		'Und wie eine Menge anderer Leute dachte ich über eine übergreifende Statistikseite für Challenge-Seiten nach.<br/>'.
+		'Ich hoffe, dass wir mehr Leuten das Spielen auf Challenge-Seiten näher bringen und ihnen einen Einstiegspunkt bieten können, auf denen sie weitere Seiten entdecken.',
 	),
 );
 ?>
