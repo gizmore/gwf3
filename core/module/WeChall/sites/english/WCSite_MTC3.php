@@ -9,7 +9,6 @@ class WCSite_MTC3 extends WC_Site
 		}
 		
 		$stats = explode(':', $result);
-		var_dump($stats);
 		if (count($stats) != 7)
 		{
 			return htmlDisplayError(WC_HTML::lang('err_response', array(GWF_HTML::display($result), $this->displayName())));
