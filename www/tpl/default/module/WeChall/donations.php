@@ -35,13 +35,13 @@ Sum:    €300,00
 Goal:   €350,00
 </pre>
 
-<pre>Donations 2018:    5 donations
-Sum:    €644,00
+<pre>Donations 2018:    6 donations
+Sum:    €694,00
 Goal:   €350,00
 </pre>
 
-<pre>Totals:           12 donations
-Sum:    €944,00
+<pre>Totals:           13 donations
+Sum:    €994,00
 Goal:   €700,00
 </pre>
 
@@ -53,6 +53,7 @@ We currently have the following ca. expenses for WeChall:<br/>
 <li>- Box0 (warchall.net) €100/y</li>
 <li>- Box2 (wechall.net) €120/y</li>
 <li>- Box3 (irc.wechall.net) €100/y</li>
+<li>- Box4 (wanda.gizmore.org) €0/y</li>
 <li>- Domain costs €30/y</li>
 <li>-&nbsp;</li>
 <li>- Wishlist; A better server for www only. Tear mailserver and maybe some challs apart.</li>
