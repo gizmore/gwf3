@@ -31,7 +31,7 @@ final class GWF_Notice
 			$links = GWF_Module::loadModuleDB('Links');
 			$links instanceof Module_Links;
 
-			if (0 < ((int)$unread = $links->countUnread($user)))
+			if ($links && 0 < ((int)$unread = $links->countUnread($user)))
 			{
 				return sprintf($pattern, $unread);
 			}
