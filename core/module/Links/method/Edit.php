@@ -135,6 +135,7 @@ final class Links_Edit extends GWF_Method
 		$this->link->saveOption(GWF_Links::UNAFILIATE, isset($_POST['link_options&'.GWF_Links::UNAFILIATE]));
 		$this->link->saveOption(GWF_Links::MEMBER_LINK, isset($_POST['link_options&'.GWF_Links::MEMBER_LINK]));
 		$this->link->saveOption(GWF_Links::ONLY_PRIVATE, isset($_POST['link_options&'.GWF_Links::ONLY_PRIVATE]));
+		$this->link->saveOption(GWF_Links::DOWN|GWF_Links::DEAD, false);
 		if (GWF_User::isStaffS())
 		{
 			$this->link->saveOption(GWF_Links::STICKY, isset($_POST['link_options&'.GWF_Links::STICKY]));
