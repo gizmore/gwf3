@@ -8,7 +8,7 @@ final class WC_CryptoChall
 	private static $SEARCH = array('0','1','2','3','4','5','6','7','8','9');
 	private static $REPLACE = array('G','H','I','R','S','L','M','N','O','P');
 	
-	public static function generateSolution($random, $letters_only=false, $lowercase=false, $length=12)
+	public static function generateSolution($random, $letters_only=false, $lowercase=false, $length=12, $salt=NULL)
 	{
 		if (false === ($user = GWF_Session::getUser()))
 		{
@@ -19,7 +19,10 @@ final class WC_CryptoChall
 			$username = $user->getVar('user_name');
 		}
 		
-		$md5 = strtoupper(md5($random.$random.$username.$random.$random));
+		if ($salt === NULL) {
+			$salt = GWF_CHALLENGE_SALT;
+		}
+		$md5 = strtoupper(md5($random . $random . $username . $random . $salt . $random));
 		if ($letters_only === true)
 		{
 			$md5 = str_replace(self::$SEARCH, self::$REPLACE, $md5);
@@ -33,14 +36,14 @@ final class WC_CryptoChall
 		return substr($md5, 2, $length);
 	}
 	
-	public static function checkSolution(WC_Challenge $chall, $random, $letters_only=false, $lowercase=false, $length=12)
+	public static function checkSolution(WC_Challenge $chall, $random, $letters_only=false, $lowercase=false, $length=12, $salt=NULL)
 	{
 		if (false === ($answer = Common::getPostString('answer', false)))
 		{
 			return;
 		}
 		
-		$solution = self::generateSolution($random, $letters_only, $lowercase, $length);
+		$solution = self::generateSolution($random, $letters_only, $lowercase, $length, $salt);
 		
 		if ($lowercase)
 		{

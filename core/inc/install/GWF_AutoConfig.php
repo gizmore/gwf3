@@ -36,6 +36,7 @@ final class GWF_AutoConfig
 		define('GWF_ERRORS_TO_SMARTY', true);
 
 		define('GWF_SECRET_SALT', 'is_set_later');
+		define('GWF_CHALLENGE_SALT', 'is_set_later');
 		define('GWF_CHMOD', self::getCHMOD());
 		define('GWF_DB_HOST', 'localhost');
 		define('GWF_DB_USER', '');

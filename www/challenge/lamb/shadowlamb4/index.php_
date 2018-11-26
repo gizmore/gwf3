@@ -9,7 +9,7 @@ if (false === ($chall = WC_Challenge::getByTitle(GWF_PAGE_TITLE))) {
 }
 $chall->showHeader();
 
-WC_CryptoChall::checkSolution($chall, 'ThisStringIsOutdated...WhoKnowsMySecrets?', true, true, 16);
+WC_CryptoChall::checkSolution($chall, 'ThisStringIsOutdated...WhoKnowsMySecrets?', true, true, 16, '');
 
 echo GWF_Box::box($chall->lang('info'), $chall->lang('title'));
 echo formSolutionbox($chall);
