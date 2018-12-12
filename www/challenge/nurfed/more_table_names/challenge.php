@@ -40,7 +40,9 @@ if (false !== Common::getGet('login'))
 		}
 		else
 		{
-			echo GWF_HTML::message(GWF_PAGE_TITLE, $chall->lang('on_logged_in', array(GWF_HTML::display($result['username']), GWF_HTML::display($result['message']))));
+			$user = isset($result['username']) ? $result['username'] : '';
+			$message = isset($result['message']) ? $result['message'] : '';
+			echo GWF_HTML::message(GWF_PAGE_TITLE, $chall->lang('on_logged_in', array(GWF_HTML::display($user), GWF_HTML::display($message))));
 		}
 	}
 }
