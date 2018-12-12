@@ -67,7 +67,7 @@ final class GWF_Mail
 
 	public static function sendDebugMail($subject, $body)
 	{
-		return self::sendMailS(GWF_BOT_EMAIL, GWF_ADMIN_EMAIL, GWF_SITENAME.$subject, GWF_Debug::getDebugText($body), false, true);
+		return self::sendMailS(GWF_BOT_EMAIL, Common::getConst('GWF_ERROR_EMAIL', GWF_ADMIN_EMAIL), GWF_SITENAME.$subject, GWF_Debug::getDebugText($body), false, true);
 	}
 	
 // 	private static function br2nl($s, $nl=PHP_EOL)

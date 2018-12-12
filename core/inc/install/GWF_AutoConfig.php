@@ -59,6 +59,7 @@ final class GWF_AutoConfig
 		#############
 		define('GWF_DEBUG_EMAIL', 15);
 		define('GWF_BOT_EMAIL', 'robot@'.$_SERVER['HTTP_HOST']);
+		define('GWF_ERROR_EMAIL', 'errors@'.$_SERVER['HTTP_HOST']);
 		define('GWF_ADMIN_EMAIL', 'admin@'.$_SERVER['HTTP_HOST']);
 		define('GWF_SUPPORT_EMAIL', 'support@'.$_SERVER['HTTP_HOST']);
 		define('GWF_STAFF_EMAILS', '');
