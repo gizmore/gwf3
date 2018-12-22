@@ -35,14 +35,14 @@ Sum:    €300,00
 Goal:   €350,00
 </pre>
 
-<pre>Donations 2018:    6 donations
-Sum:    €694,00
+<pre>Donations 2018:    7 donations
+Sum:    €704,00
 Goal:   €350,00
 </pre>
 
-<pre>Totals:           13 donations
-Sum:    €994,00
-Goal:   €700,00
+<pre>Totals:           14 donations
+Sum:    € 1004,00
+Goal:   €  700,00
 </pre>
 
 </div>
@@ -76,6 +76,14 @@ We currently have the following ca. expenses for WeChall:<br/>
 <li>1.Aug.2018 - <em>&quot;That's nothing but here's some €€€ for this awesome website!&quot;</em> – ???</li>
 <li>8.Aug.2018 - <em>&quot;Thanks for everything so far! btw. what is the solution for shadowlamb 2, 3, &4?&quot;</em> - <a class="donor" href="/profile/space">space</a></li>
 <li>31.Oct.2018 - <em>&quot;coding , a neverending dream greetz to All :-*&quot;</em> – <a class="donor" href="/profile/occasus">occasus</a></li>
+</ol>
+</div>
+
+<div class="box">
+<h2>Hall of purchased Gods</h2>
+<ol>
+<li>----- 2018 -----</li>
+<li>9.Nov.2018 - someone donated €5 as a monthly payment. (unlimited money, we just have to wait)</li>
 </ol>
 </div>
 
