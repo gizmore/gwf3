@@ -76,7 +76,7 @@ final class CubeChallenge
 		$cube = new Cube($cube, $this->getMoves());
 		if (isset($_GET['move']))
 		{
-			$cube->move($_GET['move']);
+			$cube->move((string)$_GET['move']);
 			unset($_GET['move']);
 			$this->setCube($cube->cube, $cube->getMoves());
 		}
