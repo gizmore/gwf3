@@ -384,7 +384,7 @@ class GWF_Module extends GDO
 	public function getMethod($methodname)
 	{
 		$name = $this->getName();
-		$methodname = str_replace('/', '', $methodname); # LFI
+		$methodname = str_replace('/', '', str_replace("\0", '', $methodname)); # LFI
 		$path = GWF_CORE_PATH."module/$name/method/$methodname.php";
 		if (false === Common::isFile($path))
 		{
