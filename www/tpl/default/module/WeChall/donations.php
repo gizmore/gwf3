@@ -40,9 +40,14 @@ Sum:    €704,00
 Goal:   €350,00
 </pre>
 
+<pre>Donations 2019:    0 donations
+Sum:    €  5,00
+Goal:   €350,00
+</pre>
+
 <pre>Totals:           14 donations
-Sum:    € 1004,00
-Goal:   €  700,00
+Sum:    € 1009,00
+Goal:   € 1050,00
 </pre>
 
 </div>
@@ -83,7 +88,7 @@ We currently have the following ca. expenses for WeChall:<br/>
 <h2>Hall of purchased Gods</h2>
 <ol>
 <li>----- 2018 -----</li>
-<li>9.Nov.2018 - someone donated €5 as a monthly payment. (unlimited money, we just have to wait)</li>
+<li>9.Nov.2018 - someone donated €5 as a monthly payment. (unlimited money, we just have to wait) €15 so far.</li>
 </ol>
 </div>
 
