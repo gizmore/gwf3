@@ -110,7 +110,7 @@ abstract class GDO
 //	const RES_0800    = 0x00000800; # Free2
 
 	const JOIN      = 0x00000010;
-	const OBJECT    = 0x01004020;
+	const OBJECT    = 0x01004020; # careful using this, see createObject
 	const GDO_ARRAY = 0x00000040;
 //	const RES_80    = 0x00000080; # Reserved
 
@@ -684,6 +684,14 @@ abstract class GDO
 			$gdo = $d[0];
 			if (($gdo&self::OBJECT) === self::OBJECT)
 			{
+				// N.B.: This statement has issues! Poor statement...
+				// Class is created with all data from join,
+				// which means it includes and stores fields
+				// that don't belong. (Also done elsewhere. :/)
+				// In addition, this function should technically
+				// recurse here to make the object fields
+				// of the new class. Apparently, usages is
+				// currently such that this is not needed.
 				$class->setVar($c, new $d[2][0]($row));
 			}
 			elseif (($gdo&self::GDO_ARRAY) === self::GDO_ARRAY)

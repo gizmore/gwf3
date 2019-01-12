@@ -79,6 +79,19 @@ final class GWF_User extends GDO
 	public function hasCountry() { return $this->getVar('user_countryid') !== '0'; }
 	public function wantsAdult() { return $this->isOptionEnabled(self::WANTS_ADULT); }
 
+	public function __construct($data=NULL)
+	{
+		// Need special check because user_id 0 is used in some places
+		// for deleted users (e.g. forum posts).
+		// Have to check carefully, proper/full data is not always provided :/
+		if ($data && !isset($data['user_id']) and !isset($data['user_name']))
+		{
+			$data = GWF_Guest::getGuest()->getGDOData();
+		}
+
+		parent::__construct($data);
+	}
+
 	/**
 	 * Get a user by ID.
 	 * @param int $userid
