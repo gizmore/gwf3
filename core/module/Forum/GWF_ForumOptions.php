@@ -47,6 +47,7 @@ final class GWF_ForumOptions extends GDO
 	public function isSubscribeNone() { return $this->getVar('fopt_subscr') === self::SUBSCRIBE_NONE; }
 	public static function isValidSubscr($subscr) { return in_array($subscr, self::$SUBSCR_MODES, true); }
 	public function getPostCount() { return $this->getVar('fopt_posts'); }
+	public function getToken() { return $this->getVar('fopt_token'); }
 	public function increasePosts($by=1) { return $this->increase('fopt_posts', $by); }
 	public function displaySignature() { return '<div class="gwf_signature">'.GWF_Message::display($this->getVar('fopt_signature'), true, true).'</div>'; }
 	public function hasSignature() { $o = $this->getVar('fopt_signature'); return  $o !== '' && $o !== NULL; }
