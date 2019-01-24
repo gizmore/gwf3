@@ -129,8 +129,12 @@ $lang = array(
 	'mb_accrm' =>
 		'Estimado Staff'.PHP_EOL.
 		''.PHP_EOL.
-		'El usuario %s acaba de borrar su cuenta y dejó esta nota (puede estar vacía):'.PHP_EOL.PHP_EOL.
+		'El usuario %s acaba de borrar su cuenta y dejó esta nota:'.PHP_EOL.PHP_EOL.
 		'%s',
+	'mb_accrm_empty' =>
+		'Estimado Staff'.PHP_EOL.
+		''.PHP_EOL.
+		'El usuario %s acaba de borrar su cuenta.',
 
 	# v2.03 Email Options
 	'th_email_fmt' => 'Formato de EMail preferido',

@@ -139,8 +139,12 @@ $lang = array(
 	'mb_accrm' =>
 	'Cari membri dello Staff'.PHP_EOL.
 	''.PHP_EOL.
-	'L\'utente %s ha appena cancellato il suo account e lasciato questa nota (può essere vuota):'.PHP_EOL.PHP_EOL.
+	'L\'utente %s ha appena cancellato il suo account e lasciato questa nota:'.PHP_EOL.PHP_EOL.
 	'%s',
+	'mb_accrm_empty' =>
+	'Cari membri dello Staff'.PHP_EOL.
+	''.PHP_EOL.
+	'L\'utente %s ha appena cancellato il suo account',
 
 	# v2.03 Email Options
 	'th_email_fmt' => 'Formato E-Mail preferito',

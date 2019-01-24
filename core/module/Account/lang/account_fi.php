@@ -140,8 +140,12 @@ $lang = array(
 	'mb_accrm' =>
 		'Dear Staff'.PHP_EOL.
 		''.PHP_EOL.
-		'%s on juuri poistanut tilinsö ja jättänyt tämän merkinnän (voi olla tyhjä):'.PHP_EOL.PHP_EOL.
+		'%s on juuri poistanut tilinsö ja jättänyt tämän merkinnän:'.PHP_EOL.PHP_EOL.
 		'%s',
+	'mb_accrm_empty' =>
+		'Dear Staff'.PHP_EOL.
+		''.PHP_EOL.
+		'%s on juuri poistanut tilinsö.',
 
 	# v2.03 Email Options
 	'th_email_fmt' => 'Preferred EMail Format',

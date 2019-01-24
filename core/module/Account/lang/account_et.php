@@ -140,8 +140,12 @@ $lang = array(
 	'mb_accrm' =>
 		'Austatud staff'.PHP_EOL.
 		''.PHP_EOL.
-		'Kasutaja %s kustutas just oma kasutaja ja jättis selle teate (may_be_empty):'.PHP_EOL.PHP_EOL.
+		'Kasutaja %s kustutas just oma kasutaja ja jättis selle teate:'.PHP_EOL.PHP_EOL.
 		'%s',
+	'mb_accrm_empty' =>
+		'Austatud staff'.PHP_EOL.
+		''.PHP_EOL.
+		'Kasutaja %s kustutas just oma kasutaja.',
 
 	# v2.03 Email Options
 	'th_email_fmt' => 'Preferred EMail Format',

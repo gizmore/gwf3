@@ -142,6 +142,10 @@ $lang = array(
 	PHP_EOL.
 	'Kullanıcı %s sadece onun silmiş olabilir ve bu notu:'. PHP_EOL.PHP_EOL.
 	'%s',
+'mb_accrm_empty' =>
+	'Sevgili Çalışanlar'. PHP_EOL.
+	PHP_EOL.
+	'Kullanıcı %s sadece onun silmiş olabilir.',
 
 	
 	# v2.03 Email Options

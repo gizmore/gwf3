@@ -136,8 +136,12 @@ $lang = array(
 	'mb_accrm' =>
 		'Kedves Admin'.PHP_EOL.
 		''.PHP_EOL.
-		'A(z) %s felhasználó törölte a felhasználói fiókját és az alábbi üzenetet hagyta (lehet, hogy üres):'.PHP_EOL.PHP_EOL.
+		'A(z) %s felhasználó törölte a felhasználói fiókját és az alábbi üzenetet hagyta:'.PHP_EOL.PHP_EOL.
 		'%s',
+	'mb_accrm_empty' =>
+		'Kedves Admin'.PHP_EOL.
+		''.PHP_EOL.
+		'A(z) %s felhasználó törölte a felhasználói fiókját',
 
 	# v2.03 Email Options
 	'th_email_fmt' => 'Preferált e-mail formátum',

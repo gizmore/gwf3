@@ -141,9 +141,12 @@ $lang = array(
 	'mb_accrm' =>
 		'Liebes Team'.PHP_EOL.
 		''.PHP_EOL.
-		'Der Benutzer %s hat soeben sein Konto gelöscht und diese Nachricht hinterlassen (kann leer sein):'.PHP_EOL.PHP_EOL.
+		'Der Benutzer %s hat soeben sein Konto gelöscht und diese Nachricht hinterlassen:'.PHP_EOL.PHP_EOL.
 		'%s',
-		
+	'mb_accrm_empty' =>
+		'Liebes Team'.PHP_EOL.
+		''.PHP_EOL.
+		'Der Benutzer %s hat soeben sein Konto gelöscht.',
 
 	# v2.03 Email Options
 	'th_email_fmt' => 'Bevorzugtes EMail Format',

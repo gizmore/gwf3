@@ -137,10 +137,14 @@ $lang = array(
 	'msg_accrm' => 'Llogaria juaj është shënuar si të grisur. Të gjitha referencat ishin të fshihet.<br/>Ata ishin të çregjistrohesh nga sistemi.',
 	'ms_accrm' => GWF_SITENAME.': %s Account te fishiur',
 	'mb_accrm' =>
-		'Liebes Team'.PHP_EOL.
+		'Të nderuar staf'.PHP_EOL.
 		''.PHP_EOL.
-		'Perdoruesi %s ka fshirë vetëm llogarinë e tij dhe e la kete mesazh (mund të jetë bosh):'.PHP_EOL.PHP_EOL.
+		'Perdoruesi %s ka fshirë vetëm llogarinë e tij dhe e la kete mesazh:'.PHP_EOL.PHP_EOL.
 		'%s',
+	'mb_accrm_empty' =>
+		'Të nderuar staf'.PHP_EOL.
+		''.PHP_EOL.
+		'Perdoruesi %s ka fshirë vetëm llogarinë e tij.',
 
 		
 	# v2.03 Email Options

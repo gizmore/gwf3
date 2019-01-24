@@ -71,7 +71,7 @@ final class Account_Delete extends GWF_Method
 		{
 			GWF_AccountDelete::insertNote($user, $note);
 		}
-		$this->onSendEmail($user, $note);			
+		$this->onSendEmail($user, $note);
 		
 		$user->saveOption(GWF_User::DELETED, true);
 		GWF_Hook::call(GWF_Hook::DELETE_USER, $user);
@@ -89,7 +89,11 @@ final class Account_Delete extends GWF_Method
 		$mail->setReceiver(GWF_ADMIN_EMAIL);
 //		$mail->setCC(GWF_STAFF_EMAILS);
 		$mail->setSubject($this->module->langAdmin('ms_accrm', array($user->getVar('user_name'))));
-		$mail->setBody($this->module->langAdmin('mb_accrm', array($user->displayUsername(), $note)));
+		if ($note) {
+			$mail->setBody($this->module->langAdmin('mb_accrm', array($user->displayUsername(), $note)));
+		} else {
+			$mail->setBody($this->module->langAdmin('mb_accrm_empty', array($user->displayUsername())));
+		}
 		return $mail->sendAsHTML(GWF_STAFF_EMAILS);
 	}
 	

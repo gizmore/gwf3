@@ -141,8 +141,12 @@ $lang = array(
 	'mb_accrm' =>
 		'Dear Staff'.PHP_EOL.
 		''.PHP_EOL.
-		'The user %s has just deleted his account and left this note (may_be_empty):'.PHP_EOL.PHP_EOL.
+		'The user %s has just deleted his account and left this note:'.PHP_EOL.PHP_EOL.
 		'%s',
+	'mb_accrm_empty' =>
+		'Dear Staff'.PHP_EOL.
+		''.PHP_EOL.
+		'The user %s has just deleted his account.',
 		
 	# v2.03 Email Options
 	'th_email_fmt' => 'Preferred EMail Format',
