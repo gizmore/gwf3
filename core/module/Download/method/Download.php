@@ -1,9 +1,5 @@
 <?php
-/**
- * WyMY5sx21JH0
- * @author gizmore
- *
- */
+
 final class Download_Download extends GWF_Method
 {
 	public function getHTAccess()
