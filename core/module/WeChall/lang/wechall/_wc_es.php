@@ -134,6 +134,8 @@ $lang = array(
     'pit_ranking' => 'Clasificación global',
     'pi_ranking' => 'Los mejores hackers y resuelve retos del mundo (que estén registrados en WeChall)',
     'pi_viewcount' => 'Esta página ha sido vista %s veces.',
+	'pi_site_masters' => 'All users which currently have 100% on a site.',
+	'pi_site_masters_old' => 'All users which reached 100% on a site once.',
 
     # Header
     'a_title' => 'Puntuación total: %s',

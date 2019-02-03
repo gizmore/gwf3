@@ -134,6 +134,8 @@ $lang = array(
 	'pit_ranking' => 'Celkový žebříček',
 	'pi_ranking' => 'Nejlepší hackeři a řešitelé na světě (registrovaní na wechall)',
 	'pi_viewcount' => 'Tato stránka byla zobrazena %s krát.',
+	'pi_site_masters' => 'All users which currently have 100% on a site.',
+	'pi_site_masters_old' => 'All users which reached 100% on a site once.',
 
 	# Header
 	'a_title' => 'Celkové skóre: %s',

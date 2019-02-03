@@ -133,6 +133,8 @@ $lang = array(
 	'pit_ranking' => 'Classifica globale',
 	'pi_ranking' => 'I migliori hacker e giocatori del mondo (che si sono registrati su WeChall)',
 	'pi_viewcount' => 'Questa pagina è stata visualizzata %s volte.',
+	'pi_site_masters' => 'All users which currently have 100% on a site.',
+	'pi_site_masters_old' => 'All users which reached 100% on a site once.',
 
 	# Header
 	'a_title' => 'Punteggio totale: %s',

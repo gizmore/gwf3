@@ -134,6 +134,8 @@ $lang = array(
 	'pit_ranking' => 'Глобално рангирање',
 	'pi_ranking' => 'The best hackers and challenge solvers in the world, who registered on wechall.',
 	'pi_viewcount' => 'Ова страна је погледана %s пут/пута.',
+	'pi_site_masters' => 'All users which currently have 100% on a site.',
+	'pi_site_masters_old' => 'All users which reached 100% on a site once.',
 
 	# Header
 	'a_title' => 'Укупни Резултат: %s',

@@ -133,6 +133,8 @@ $lang = array(
 	'pit_ranking' => 'Полный рейтниг',
 	'pi_ranking' => 'Лучшие хакеры и решатели заданий во всем мире (которые зарегистрированы на wechall)',
 	'pi_viewcount' => 'Эта страница была просмотрена %s раз.',
+	'pi_site_masters' => 'All users which currently have 100% on a site.',
+	'pi_site_masters_old' => 'All users which reached 100% on a site once.',
 
 	# Header
 	'a_title' => 'Всего очков: %s',

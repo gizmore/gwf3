@@ -133,6 +133,8 @@ $lang = array(
 	'pit_ranking' => 'Globális ranglista',
 	'pi_ranking' => 'A legjobb hackerek és rejtvényfejtők a világon (legalábbis azok, akik regisztráltak a wechall-on)',
 	'pi_viewcount' => 'Ez az oldal %s alkalommal lett letöltve.',
+	'pi_site_masters' => 'All users which currently have 100% on a site.',
+	'pi_site_masters_old' => 'All users which reached 100% on a site once.',
 
 	# Header
 	'a_title' => 'Összpontszám: %s',

@@ -3,8 +3,8 @@ echo GWF_Button::wrapStart();
 echo GWF_Button::generic(WC_HTML::lang('btn_site_masters_old'), GWF_WEB_ROOT.'old_site_masters', 'generic', '', $tVars['old']===true);
 echo GWF_Button::generic(WC_HTML::lang('btn_site_masters'), GWF_WEB_ROOT.'site_masters', 'generic', '', $tVars['old']===false);
 echo GWF_Button::wrapEnd();
-?>
-<?php
+echo GWF_Box::box($tLang->lang($tVars['old'] ? 'pi_site_masters_old' : 'pi_site_masters'));
+
 $headers = array(
 	array('', 'user_countryid'),
 	array($tLang->lang('th_user_name'), 'user_name'),

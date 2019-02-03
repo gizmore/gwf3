@@ -137,6 +137,8 @@ $lang = array(
 	'pit_ranking' => 'Classement Général',
 	'pi_ranking' => 'Les meilleurs hackers et amateurs de challenges à travers le monde (qui sont enregistrés sur wechall)',
 	'pi_viewcount' => 'Cette page a été visualisée %s fois.',
+	'pi_site_masters' => 'All users which currently have 100% on a site.',
+	'pi_site_masters_old' => 'All users which reached 100% on a site once.',
 
 	# Header
 	'a_title' => 'Score Total: %s',
