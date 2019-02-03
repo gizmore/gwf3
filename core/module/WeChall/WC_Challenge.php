@@ -191,7 +191,7 @@ final class WC_Challenge extends GDO
 			$by = GWF_HTML::lang('by');
 		}
 		$title = $this->display('chall_title');
-		return sprintf('<a href="%s" title="%s" class="wc_chall_solved_%s">%s</a> %s %s',$this->getHREF(), $title, $solved ? '1' : '0', $title, $by, $this->displayCreators()); 
+		return sprintf('<a href="%s" title="%s" class="wc_chall_solved_%s">%s</a> %s %s',$this->getHREF(), $title, $solved ? '1' : ($solved === NULL ? '' : '0'), $title, $by, $this->displayCreators());
 //		'<a href="'.$this->getHREF().'">'  GWF_HTML::anchor($this->getHREF(), $this->getVar('chall_title'), "wc_chall_solved_$solved", $chall->displayTitle());
 //		 "$by $creators");
 	}

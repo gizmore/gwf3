@@ -120,7 +120,7 @@ foreach ($challs as $chall)
 	
 	echo GWF_Table::rowStart();
 	echo '<td class="gwf_num">'.$chall->getVar('chall_score').'</td>'.PHP_EOL;
-	echo '<td class="nowrap" colspan="2">'.$edit.$chall->displayLink($solved).'</td>'.PHP_EOL;
+	echo '<td class="nowrap" colspan="2">'.$edit.$chall->displayLink($tVars['show_colors'] ? $solved : NULL).'</td>'.PHP_EOL;
 	echo '<td class="gwf_num"><a href="'.$chall->getSolverHREF().'">'.$chall->getVar('chall_solvecount').'</a></td>'.PHP_EOL;
 	echo '<td class="gwf_date">'.$chall->displayAge().'</td>'.PHP_EOL;
 	echo sprintf('<td class="gwf_num"><a href="%s">%s<img src="%s" title="%s" alt="%s" /></a></td>', $href_votes, $chall->getVar('chall_votecount'), $icon, $alt, $alt).PHP_EOL;

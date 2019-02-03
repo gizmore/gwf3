@@ -50,7 +50,7 @@ final class WeChall_Challs extends GWF_Method
 		return $this->templateChalls($for_userid, $from_userid, $tag, $by, $dir);
 	}
 	
-	public function templateChalls($for_userid=false, $from_userid=false, $tag='', $by='', $dir='', $show_cloud=true, $show_empty=true)
+	public function templateChalls($for_userid=false, $from_userid=false, $tag='', $by='', $dir='', $show_cloud=true, $show_empty=true, $show_colors=true)
 	{
 		require_once GWF_CORE_PATH.'module/WeChall/WC_ChallSolved.php';
 		$challs = GDO::table('WC_Challenge');
@@ -101,6 +101,7 @@ final class WeChall_Challs extends GWF_Method
 			'sel_all' => $solve_filter === '',
 			'sel_solved' => $solve_filter === 'solved',
 			'sel_unsolved' => $solve_filter === 'open',
+			'show_colors' => $show_colors,
 		);
 		return $this->module->templatePHP('challs.php', $tVars);
 	}

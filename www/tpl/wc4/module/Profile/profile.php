@@ -220,7 +220,7 @@ if (WC_Challenge::getScoreForUser($u) > 0)
 	{
 		$method = $wechall->getMethod('Challs');
 		$method instanceof WeChall_Challs;
-		echo $method->templateChalls(false, $u->getID(), '', '', '', false, false);
+		echo $method->templateChalls(false, $u->getID(), '', '', '', false, false, false);
 	}
 }
 
