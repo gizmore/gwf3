@@ -196,5 +196,23 @@ $lang = array(
 	'msg_edit_group' => 'Die Gruppe wurde bearbeitet.',
 	'msg_mod_del' => 'Modul aus der Datenbank gelöscht.',
 	'btn_delete' => 'Löschen',
-); 
-?>
+
+	#monnino fixes
+	'cfg_hide_web_spiders' => 'Hide Webspider',
+	'cfg_install_webspiders' => 'Install Webspider',
+	'btn_add' => 'Add group',
+	
+	#v2.09 (impersonation_alert)
+	'mailt_impersonation' => GWF_SITENAME.': %s logged in as %s',
+	'mailb_impersonation' =>
+		"Dear %s,\n".
+		"\n".
+		"The admin user %s just used ´LoginAs´ to authenticate as %s.\n".
+		"\n".
+		"If you are this user you probably do not have to worry,\n".
+		"especially if you recently reported a problem within ".GWF_SITENAME."\n".
+		"If this is not the case and you are worried, please contact us!\n".
+		"\n".
+		'Kind Regards,'.PHP_EOL.
+		'The '.GWF_SITENAME.' Robot'.PHP_EOL,
+);

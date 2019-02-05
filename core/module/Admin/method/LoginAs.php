@@ -64,12 +64,51 @@ final class Admin_LoginAs extends GWF_Method
 			return GWF_HTML::lang('ERR_UNKNOWN_USER');
 		}
 		
+		# Alert
+		$initiator = GWF_Session::getUser();
+		$this->sendAlertMails($initiator, $user);
+		
+		# Auth
 		GWF_Session::onLogin($user);
 		
 		return $this->module->message('msg_login_as', array($user->displayUsername()));
 	}
 	
+	##################
+	### Alert Mail ###
+	##################
+	private function sendAlertMails(GWF_User $initiator, GWF_User $target)
+	{
+		# Send to target
+		$this->sendAlertMail($initiator, $target, $target);
+
+		# Send to admins
+		$users = GWF_User::getAllInGroup(GWF_Group::ADMIN);
+		foreach ($users as $user)
+		{
+			$user = new GWF_User($user);
+			if ($user->getID() != $target->getID())
+			{
+				$this->sendAlertMail($initiator, $target, $user);
+			}
+		}
+	}
+	
+	private function sendAlertMail(GWF_User $initiator, GWF_User $target, GWF_User $to)
+	{
+		$email = new GWF_Mail();
+		$email->setSender(GWF_BOT_EMAIL);
+		$email->setReceiver($to);
+		$email->setSubject($this->module->langUser($to, 'mailt_impersonation', array(
+			$initiator->displayUsername(),
+			$target->displayUsername()
+		)));
+		$email->setBody($this->module->langUser($to, 'mailb_impersonation', array(
+			$to->displayUsername(),
+			$initiator->displayUsername(),
+			$target->displayUsername()
+		)));
+		$email->sendToUser($to);
+	}
 		
 }
-
-?>
