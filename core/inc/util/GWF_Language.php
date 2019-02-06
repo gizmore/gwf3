@@ -117,6 +117,12 @@ final class GWF_Language extends GDO
 
 	public static function init()
 	{
+		# Inited
+		if (self::$LANG)
+		{
+			return true;
+		}
+		
 		# IN URL
 		if (isset($_SERVER['REQUEST_URI']))
 		{

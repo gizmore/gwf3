@@ -22,7 +22,15 @@ final class GWF_HTML
 	#################
 	### Lang File ###
 	#################
-	public static function init() { if (!self::$trans) self::$trans = new GWF_LangTrans(GWF_CORE_PATH.'lang/base/base'); }
+	public static function init()
+	{
+		if (!self::$trans)
+		{
+			GWF_Language::init();
+			self::$trans = new GWF_LangTrans(GWF_CORE_PATH.'lang/base/base');
+		}
+	}
+
 	public static function &getLang() { return self::$trans; }
 	public static function lang($key, $args=NULL) { self::init(); return self::$trans->lang($key, $args); }
 	public static function langAdmin($key, $args=NULL) { self::init(); return self::$trans->langAdmin($key, $args); }

@@ -27,7 +27,7 @@ final class GWF_Website
 	const NONE=0, SCREEN=1, TTY=2, TV=3, PROJECTION=4, HANDHELP=5, _PRINT=6, BRAILLE=7, AURAL=8, ALL=9; 
 	private static $_media = array('', 'screen','tty','tv','projection','handheld','print','braille','aural','all');
 
-	public static function init($init_language=true)
+	public static function init()
 	{
 		if(isset($_GET['plain']) || isset($_GET['ajax']))
 		{
@@ -38,10 +38,6 @@ final class GWF_Website
 			header('Content-Type: text/html; charset=UTF-8');
 		}
 		
-		if ($init_language)
-		{
-			GWF_Language::init();
-		}
 		GWF_HTML::init();
 
 		self::addLink(GWF_WEB_ROOT.'favicon.ico', 'img/x-icon', 'shortcut icon');
