@@ -373,6 +373,10 @@ final class GWF_ForumPost extends GDO # implements GDO_Searchable
 		{
 			return true;
 		}
+
+		if (!$this->hasViewPermission($user)) {
+			return false;
+		}
 		
 		if ($user->isInGroupName('moderator'))
 		{

@@ -279,6 +279,12 @@ final class GWF_ForumThread extends GDO
 			return false;
 		}
 
+		# Not even read
+		if (!$this->hasPermission($user))
+		{
+			return false;
+		}
+
 		if ($user->isInGroupName('moderator'))
 		{
 			return true;
