@@ -23,7 +23,7 @@ $lang = array(
 	'err_token' => 'kod aktivizimi juaj është i pavlefshëm. Ndoshta ata janë aktivizuar tashmë.',
 	'err_email_invalid' => 'Emaili juaj është i pavlefshëm.',
 	'err_email_taken' => 'Emaili juaj eshte i zene.',
-	'err_activate' => 'Kur ju aktivizoni nje gabim ka ndodhur.',
+	'err_activate' => 'Kur ju aktivizoni nje gabim ka ndodhur. Did you click the activation link twice?',
 
 	'msg_activated' => 'Llogaria juaj është aktivizuar tani, dhe ata mund të identifikohem me të dhënat e tyre të përdoruesit.',
 	'msg_registered' => 'Ju faleminderit per regjistrimin tuaj.',

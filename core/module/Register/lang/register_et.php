@@ -25,7 +25,7 @@ $lang = array(
 	'err_token' => 'Teie aktiveerimiskood on vigane. Võib-olla on teie kasutaja juba aktiveeritud.',
 	'err_email_invalid' => 'Teie e-mail on vigane.',
 	'err_email_taken' => 'Teie e-mail on juba registreeritud.',
-	'err_activate' => 'Aktiveerimisel ilmes viga.',
+	'err_activate' => 'Aktiveerimisel ilmes viga. Did you click the activation link twice?',
 		
 	'msg_activated' => 'Teie kasutaja on nüüd aktiveeritud. Palun proovige nüüd sisse logida.',
 	'msg_registered' => 'Aitäh, et registreerusite.',

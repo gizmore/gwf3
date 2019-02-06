@@ -24,7 +24,7 @@ $lang = array(
 	'err_token' => 'Код активации неверен. Может быть, Ваша учетная запись уже активирована.',
 	'err_email_invalid' => 'Неверный email.',
 	'err_email_taken' => 'Указанный email уже используется.',
-	'err_activate' => 'Произошла ошибка во время активации.',
+	'err_activate' => 'Произошла ошибка во время активации. Did you click the activation link twice?',
 		
 	'msg_activated' => 'Ваша учетная запись теперь активирована. Вы можете войти.',
 	'msg_registered' => 'Спасибо за регистрацию.',

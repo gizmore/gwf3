@@ -23,7 +23,7 @@ $lang = array(
 	'err_token' => 'Ihr aktivierungscode ist ungültig. Möglicherweise sind sie bereits aktiviert.',
 	'err_email_invalid' => 'Ihre EMail ist ungültig.',
 	'err_email_taken' => 'Ihre EMail ist bereits vergeben.',
-	'err_activate' => 'Beim aktivieren ist ein Fehler aufgetreten.',
+	'err_activate' => 'Beim aktivieren ist ein Fehler aufgetreten. Did you click the activation link twice?',
 
 	'msg_activated' => 'Ihr Account ist nun aktiviert und sie können sich mit ihren Benutzerdaten einloggen.',
 	'msg_registered' => 'Vielen Dank für ihre Registrierung.',

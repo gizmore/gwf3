@@ -24,7 +24,7 @@ $lang = array (
 'err_token' => 'Etkinleştirme kodu geçersiz. Belki de zaten aktif hale gelir.',
 'err_email_invalid' => 'E-posta adresiniz geçersiz.',
 'err_email_taken' => 'E-posta adresiniz zaten alınır.',
-'err_activate' => 'Bir hata etkinleştirme sırasında oluştu.',
+'err_activate' => 'Bir hata etkinleştirme sırasında oluştu. Did you click the activation link twice?',
 
 'msg_activated' => 'yoru hesabı artık etkin. Lütfen şimdi giriş çalışın.',
 'msg_registered' => 'Kayıt olduğunuz için teşekkürler.',

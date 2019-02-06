@@ -24,7 +24,7 @@ $lang = array(
 	'err_token' => 'Your activation code is invalid. Maybe you are already activated.',
 	'err_email_invalid' => 'Your email is invalid.',
 	'err_email_taken' => 'Your email is already taken.',
-	'err_activate' => 'An error occured during activation.',
+	'err_activate' => 'An error occured during activation. Did you click the activation link twice?',
 		
 	'msg_activated' => 'Yoru account is now activated. Please try to login now.',
 	'msg_registered' => 'Thank you for registering.',

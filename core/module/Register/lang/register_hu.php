@@ -24,7 +24,7 @@ $lang = array(
 	'err_token' => 'Érvénytelen aktiválási kód. Talán már aktiválva vagy.',
 	'err_email_invalid' => 'Érvénytelen e-mail cím.',
 	'err_email_taken' => 'Ezt az e-mail címet már valaki más használja.',
-	'err_activate' => 'Hiba történt az aktiváció során.',
+	'err_activate' => 'Hiba történt az aktiváció során. Did you click the activation link twice?',
 		
 	'msg_activated' => 'Sikeres aktiválás. Próbálj meg belépni.',
 	'msg_registered' => 'Köszönjük, hogy regisztráltálT.',

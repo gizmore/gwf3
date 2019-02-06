@@ -23,7 +23,7 @@ $lang = array(
 		'err_token' => 'Il codice di attivazione non è valido. Probabilmente l\'account è già stato attivato.',
 		'err_email_invalid' => 'L\'indirizzo E-Mail fornita non è valida.',
 		'err_email_taken' => 'L\'indirizzo E-Mail fornita è già stata utilizzata da un altro utente.',
-		'err_activate' => 'Si è verificato un errore nella registrazione.',
+		'err_activate' => 'Si è verificato un errore nella registrazione. Did you click the activation link twice?',
 
 		'msg_activated' => 'L\'account è stato attivato con successo. E\' ora possibile effettuale l\'accesso.',
 		'msg_registered' => 'Grazie per essersi registrato.',

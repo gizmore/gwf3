@@ -26,7 +26,7 @@ $lang = array(
 	'err_token' => 'Votre code d\'activation est invalide. Votre compte peut être déjà activé.',
 	'err_email_invalid' => 'Votre email est invalide.',
 	'err_email_taken' => 'Votre email est déjà pris.',
-	'err_activate' => 'Une erreur s\'est produit pendant l\'activation.',
+	'err_activate' => 'Une erreur s\'est produit pendant l\'activation. Did you click the activation link twice?',
 		
 	'msg_activated' => 'Votre compte est maintenant activé. Merci d\'essayer de vous connecter.',
 	'msg_registered' => 'Merci de vous êtes enregistré.',

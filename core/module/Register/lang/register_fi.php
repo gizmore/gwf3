@@ -24,7 +24,7 @@ $lang = array(
 	'err_token' => 'Aktivointikoodisi on virheellinen. Ehkä olet jo aktivoinut itsesi.',
 	'err_email_invalid' => 'Sähköpostiosoitteesi on virheellinen.',
 	'err_email_taken' => 'Sähköpostiosoitteesi on jo käytössä.',
-	'err_activate' => 'Aktivoinnin aikana tapahtui virhe.',
+	'err_activate' => 'Aktivoinnin aikana tapahtui virhe. Did you click the activation link twice?',
 		
 	'msg_activated' => 'Tunnuksesi on nyt aktivoitu. Ole hyvä ja yritä kirjautua sisään.',
 	'msg_registered' => 'Kiitos rekisteröitymisestä.',

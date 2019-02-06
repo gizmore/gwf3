@@ -24,7 +24,7 @@ $lang = array(
 	'err_token' => 'Aktivační kód je neplatný. Účet je možná už aktivován.',
 	'err_email_invalid' => 'Zadaný email je neplatný.',
 	'err_email_taken' => 'Zadaný email se už používá.',
-	'err_activate' => 'Během aktivace došlo k chybě.',
+	'err_activate' => 'Během aktivace došlo k chybě. Did you click the activation link twice?',
 		
 	'msg_activated' => 'Tvůj účet je aktivován. Nyní je možné se přihlásit.',
 	'msg_registered' => 'Děkujeme za registraci.',
