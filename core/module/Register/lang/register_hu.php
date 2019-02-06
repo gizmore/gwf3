@@ -91,5 +91,8 @@ $lang = array(
 	'tt_password' => 'Your password can be chosen freely. Please do not re-use important passwords. Consider a short phrase as password.',
 	# v2.05 (Blacklist)
 	'err_domain_banned' => 'Your email provider is on the blacklist.',
+	# v2.06 (Spambot)
+	'th_spambot' => 'Name of this site in reverse (%s letters)',
+	'tt_spambot' => 'For example, if you were registering on Google, you would enter ´elgooG´.',
+	'err_spambot' => 'Invalid site name. Make sure you enter it in reverse!',
 );
-?>

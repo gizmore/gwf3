@@ -93,5 +93,8 @@ $lang = array(
 		# v2.05 (Blacklist)
 		'err_domain_banned' => 'Il suo E-Mail provider è sulla nostra blacklist.',
 
+	# v2.06 (Spambot)
+	'th_spambot' => 'Name of this site in reverse (%s letters)',
+	'tt_spambot' => 'For example, if you were registering on Google, you would enter ´elgooG´.',
+	'err_spambot' => 'Invalid site name. Make sure you enter it in reverse!',
 );
-?>

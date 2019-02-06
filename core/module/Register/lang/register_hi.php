@@ -84,5 +84,8 @@ $lang = array(
 	'tt_password' => 'आपका पासवर्ड स्वतंत्र रूप से चुना जा सकता है है. महत्वपूर्ण पासवर्ड पुनः उपयोग करें. पासवर्ड के रूप में एक छोटे वाक्यांश पर विचार करें.',
 	# v2.05 (Blacklist)
 	'err_domain_banned' => 'आपका ईमेल प्रदाता काला सूची पर है.',
+	# v2.06 (Spambot)
+	'th_spambot' => 'Name of this site in reverse (%s letters)',
+	'tt_spambot' => 'For example, if you were registering on Google, you would enter ´elgooG´.',
+	'err_spambot' => 'Invalid site name. Make sure you enter it in reverse!',
 );
-?>

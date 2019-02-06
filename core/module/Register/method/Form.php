@@ -52,7 +52,7 @@ final class Register_Form extends GWF_Method
 		}
 
 		if ($this->module->wantCaptcha()) {
-			$data['etis'] = array(GWF_Form::STRING, '', 'Name of this site in reverse (7 letters)', 'For example, if you where registering on Google, you would enter "elgooG".');
+			$data['etis'] = array(GWF_Form::STRING, '', $this->module->lang('th_spambot', array(strlen(GWF_SITENAME))), $this->module->lang('tt_spambot'));
 			$data['captcha'] = array(GWF_Form::CAPTCHA);
 		}
 		
@@ -242,7 +242,7 @@ final class Register_Form extends GWF_Method
 	{
 		if ($this->module->wantCaptcha()) {
 			if (!isset($_POST['etis']) || (strrev(strtolower($_POST['etis'])) !== strtolower(GWF_SITENAME))) {
-				return 'Invalid site name. Make sure you enter it in reverse!';
+				return $module->lang('err_spambot');
 			}
 		}
 		return false;
