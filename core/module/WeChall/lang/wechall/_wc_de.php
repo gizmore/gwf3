@@ -133,7 +133,7 @@ $lang = array(
 	'pit_ranking' => 'Globale Rangliste',
 	'pi_ranking' => 'Die besten Hacker und Challenger der Welt (die auf WeChall registriert sind)',
 	'pi_viewcount' => 'Diese Seite wurde %s mal angesehen.',
-	'pi_site_masters' => 'Alle Benutzer die derzeit 100% auf einer Seite erreicht haben.',
+	'pi_site_masters' => 'Alle Benutzer, die derzeit 100% auf einer Seite erreicht haben.',
 	'pi_site_masters_old' => 'Alle Benutzer, die bereits einmal 100% auf einer Seite erreicht haben.',
 
 	# Header
