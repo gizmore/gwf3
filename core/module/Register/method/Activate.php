@@ -65,7 +65,7 @@ final class Register_Activate extends GWF_Method
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
-		if (false === ($ua->deleteWhere(sprintf('username=\'%s\'', self::escape($username)))))
+		if (false === ($ua->deleteWhere(sprintf('username=\'%s\'', GDO::escape($username)))))
 		{
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
