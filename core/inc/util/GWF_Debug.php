@@ -162,15 +162,12 @@ final class GWF_Debug
 			default: $errnostr = 'PHP Unknown Error'; break;
 		}
 
-		$is_html = PHP_SAPI === 'cli' ? false : !isset($_GET['ajax']); 
+		$is_html = PHP_SAPI === 'cli' ? false : !isset($_GET['ajax']);
 
+		$message = $message_plain = sprintf('%s(%s) %s in %s line %s.', $errnostr, $errno, $errstr, $errfile, $errline);
 		if ($is_html)
 		{
 			$message = sprintf('<p>%s(%s):&nbsp;%s&nbsp;in&nbsp;<b style=\"font-size:16px;\">%s</b>&nbsp;line&nbsp;<b style=\"font-size:16px;\">%s</b></p>', $errnostr, $errno, $errstr, $errfile, $errline).PHP_EOL;
-		}
-		else
-		{
-			$message = sprintf('%s(%s) %s in %s line %s.', $errnostr, $errno, $errstr, $errfile, $errline);
 		}
 
 		# Output error
@@ -190,7 +187,7 @@ final class GWF_Debug
 		# Send error to admin
 		if (true === self::$MAIL_ON_ERROR)
 		{
-			self::sendDebugMail(self::backtrace($message, false));
+			self::sendDebugMail(self::backtrace($message_plain, false));
 		}
 
 		if (true === self::$die)
