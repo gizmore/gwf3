@@ -119,10 +119,10 @@ final class Forum_Subscribe extends GWF_Method
 		if (false === ($this->user = GWF_User::getByID(Common::getGet('uid')))) {
 			return false;
 		}
-		if (false === ($options = GWF_ForumOptions::getUserOptions($this->user))) {
+		if (false === ($this->options = GWF_ForumOptions::getUserOptions($this->user))) {
 			return false;
 		}
-		if ($token !== $options->getToken()) {
+		if ($token !== $this->options->getToken()) {
 			return false;
 		}
 		return true;
