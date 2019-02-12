@@ -128,7 +128,9 @@ final class GWF_ForumOptions extends GDO
 		return $row;
 	}
 	
-	
+	public function saveSubscription($subscription) {
+		return $this->saveVar('fopt_subscr', $subscription);
+	}
 	
 	##########################
 	### Subsription Select ###
