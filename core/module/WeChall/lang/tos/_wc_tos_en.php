@@ -34,7 +34,7 @@ $lang = array(
 				'Thus we encourage you to not use your WeChall password on another site, and choose a password that is strong enough to not get cracked.<br/>',
 				
 			'Private Messages (PM)' =>
-				'Private messages currently occurwe in the logs, and thus can be read by administrators of this site.<br/>'.
+				'Private messages currently occur in the logs, and thus can be read by administrators of this site.<br/>'.
 				'If you need to send really private stuff to some member, we suggest to use another way of communication.',
 			'Linked Content' => 
 				'WeChall is not responsible for any content that is linked within the site.<br/>',
