@@ -96,4 +96,15 @@ define('GWF_BOT_EMAIL', 'robot@giz.org');
 define('GWF_ADMIN_EMAIL', 'gizmore@giz.org');
 define('GWF_STAFF_EMAILS', ''); # separate cc plain emails by, (not really used yet)
 define('GWF_SUPPORT_EMAIL', 'support@giz.org'); # all staff members should catch those
+
+##############
+## Security ##
+##############
+define('GWF_CONTENT_TYPE_OPTIONS', 'nosniff');
+define('GWF_CONTENT_SECURITY_POLICY', "default-src 'self'");
+define('GWF_FRAME_OPTIONS', 'DENY');
+define('GWF_XSS_PROTECTION', '1; mode=block');
+define('GWF_CROSS_DOMAIN_POLICY', 'master-only');
+define('GWF_STRICT_TRANSPORT_SECURITY', 'max-age=16070400; includeSubDomains');
+
 ?>

@@ -18,6 +18,7 @@ class GWF3
 		'init' => true, # Init?
 		'bootstrap' => false, # Init GWF_Bootstrap?
 		'website_init' => true, # Init GWF_Website?
+		'security_init' => true, # Init Security?
 		'autoload_modules' => true, # Load modules with autoload flag?
 		'load_module' => true, # Load the requested module?
 		'load_config' => false, # Load the config file? (DEPRECATED) # TODO: REMOVE
@@ -145,6 +146,11 @@ class GWF3
 		{ 
 			$db = gdo_db();
 			GWF_Website::init();
+		}
+
+		if (true === $config['security_init'])
+		{
+			GWF_Website::addSecurityHeader();
 		}
 		
 		if (true === $config['do_logging'])

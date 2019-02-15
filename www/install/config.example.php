@@ -94,6 +94,16 @@ define('GWF_ADMIN_EMAIL', 'admin@giz.org'); # Hardcoded admin mail. Example: adm
 define('GWF_SUPPORT_EMAIL', 'support@giz.org'); # Support email. Example: support@www.site.com.
 define('GWF_STAFF_EMAILS', ''); # CC staff emails seperated by comma. Example: 'staff@foo.bar,staff2@blub.org'.
 
+##############
+## Security ##
+##############
+define('GWF_CONTENT_TYPE_OPTIONS', 'nosniff');
+define('GWF_CONTENT_SECURITY_POLICY', "default-src 'self'");
+define('GWF_FRAME_OPTIONS', 'DENY');
+define('GWF_XSS_PROTECTION', '1; mode=block');
+define('GWF_CROSS_DOMAIN_POLICY', 'master-only');
+define('GWF_STRICT_TRANSPORT_SECURITY', 'max-age=16070400; includeSubDomains');
+
 #####################
 ### Website Down? ###
 #####################

@@ -269,6 +269,13 @@ final class GWF_InstallConfig
 			array('text',  'EMail', 'GWF_SUPPORT_EMAIL', 'support@'.$domain, 'Support email. Example: support@www.site.com.'),
 			array('text',  'EMail', 'GWF_STAFF_EMAILS', '', 'CC staff emails seperated by comma. Example: \'staff@foo.bar,staff2@blub.org\'.'),
 //			array('text',  'EMail', 'GWF_EMAIL_GPG_SIG', '', 'EMail signature for mails sent by GWF2'),
+
+			array('text', 'Security', 'GWF_CONTENT_TYPE_OPTIONS', 'nosniff', 'X-Content-Type-Options HTTP header'),
+			array('text', 'Security', 'GWF_CONTENT_SECURITY_POLICY', "default-src 'self'", 'Content-Security-Policy HTTP header'),
+			array('text', 'Security', 'GWF_FRAME_OPTIONS', 'DENY', 'X-Frame-Options HTTP header'),
+			array('text', 'Security', 'GWF_XSS_PROTECTION', '1; mode=block', 'X-XSS-Protection HTTP header'),
+			array('text', 'Security', 'GWF_CROSS_DOMAIN_POLICY', 'master-only', 'X-Permitted-Cross-Domain-Policies HTTP header'),
+			array('text', 'Security', 'GWF_STRICT_TRANSPORT_SECURITY', 'max-age=16070400; includeSubDomains', 'Content-Security-Policy HTTP header'),
 		);
 		$back = array();
 		foreach ($temp as $t)

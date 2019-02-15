@@ -44,6 +44,27 @@ final class GWF_Website
 		self::addMeta(array('Content-Type', 'text/html; charset=utf-8', 1));
 	}
 
+	public static function addSecurityHeader() {
+		if ($content_type_options = Common::getConst('GWF_CONTENT_TYPE_OPTIONS')) {
+			header(sprintf('X-Content-Type-Options: ', $content_type_options));
+		}
+		if ($frame_options = Common::getConst('GWF_FRAME_OPTIONS')) {
+			header(sprintf('X-Frame-Options: %s', $frame_options));
+		}
+		if ($xss_protection = Common::getConst('GWF_XSS_PROTECTION')) {
+			header(sprintf('X-XSS-Protection: %s', $xss_protection));
+		}
+		if ($cross_domain_policy = Common::getConst('GWF_CROSS_DOMAIN_POLICY')) {
+			header(sprintf('X-Permitted-Cross-Domain-Policies: %s', $cross_domain_policy));
+		}
+		if ($strict_transport_security = Common::getConst('GWF_STRICT_TRANSPORT_SECURITY')) {
+			header(sprintf('Strict-Transport-Security: %s', $strict_transport_security));
+		}
+		if ($csp = Common::getConst('GWF_CONTENT_SECURITY_POLICY')) {
+			header(sprintf('Content-Security-Policy: %s', $csp));
+		}
+	}
+
 	public static function plaintext() { header('Content-Type: text/plain; charset=UTF-8'); }
 	public static function isHTML() { return false === strpos(GWF_DEFAULT_DOCTYPE, 'xhtml'); }
 	public static function getBirthdate() { return GWF_Settings::getSetting('gwf_site_birthdate', date('Ymd')); } //TODO: move to other file
