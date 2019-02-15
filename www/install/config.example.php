@@ -97,12 +97,12 @@ define('GWF_STAFF_EMAILS', ''); # CC staff emails seperated by comma. Example: '
 ##############
 ## Security ##
 ##############
-define('GWF_CONTENT_TYPE_OPTIONS', 'nosniff');
-define('GWF_CONTENT_SECURITY_POLICY', "default-src 'self'");
-define('GWF_FRAME_OPTIONS', 'DENY');
-define('GWF_XSS_PROTECTION', '1; mode=block');
-define('GWF_CROSS_DOMAIN_POLICY', 'master-only');
-define('GWF_STRICT_TRANSPORT_SECURITY', 'max-age=16070400; includeSubDomains');
+if (!defined('GWF_CONTENT_TYPE_OPTIONS')) define('GWF_CONTENT_TYPE_OPTIONS', 'nosniff');
+if (!defined('GWF_CONTENT_SECURITY_POLICY')) define('GWF_CONTENT_SECURITY_POLICY', "default-src 'self'");
+if (!defined('GWF_FRAME_OPTIONS')) define('GWF_FRAME_OPTIONS', 'DENY');
+if (!defined('GWF_XSS_PROTECTION')) define('GWF_XSS_PROTECTION', '1; mode=block');
+if (!defined('GWF_CROSS_DOMAIN_POLICY')) define('GWF_CROSS_DOMAIN_POLICY', 'master-only');
+if (!defined('GWF_STRICT_TRANSPORT_SECURITY')) define('GWF_STRICT_TRANSPORT_SECURITY', 'max-age=16070400; includeSubDomains');
 
 #####################
 ### Website Down? ###
