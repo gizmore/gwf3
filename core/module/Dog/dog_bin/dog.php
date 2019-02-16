@@ -12,6 +12,7 @@ require_once '../../../www/protected/'.$config_file;
 require_once '../../../gwf3.class.php';
 $gwf = new GWF3(NULL, array(
 	'init' => true, # Init?
+	'security_init' => false, # not needed for cli.
 	'bootstrap' => false, # Init GWF_Bootstrap?
 	'website_init' => false, # Init GWF_Website?
 	'autoload_modules' => false, # Load modules with autoload flag?
@@ -31,7 +32,6 @@ $gwf = new GWF3(NULL, array(
 ));
 
 # That´s all of GWF3 we will share with the worker.
-GWF_HTML::init();
 GWF_Debug::setDieOnError(false);
 GWF_Debug::setMailOnError(false);
 $_GET['ajax'] = 1;
