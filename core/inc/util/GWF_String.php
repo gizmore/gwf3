@@ -34,7 +34,7 @@ final class GWF_String
 	}
 
 	/**
-	 * Count the occurance of a string within a string.
+	 * Count the occurrence of a string within a string.
 	 * @param string $s
 	 * @param string $c
 	 */

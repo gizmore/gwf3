@@ -1,7 +1,7 @@
 <?php
 /**
  * GWF_Time helper class.
- * Note: If you want dates display with different dateformats you can try to substr() or str_repeat() your gwf_date to appropiate lengths.
+ * Note: If you want dates display with different dateformats you can try to substr() or str_repeat() your gwf_date to appropriate lengths.
  * TODO: Make ready for applications that don't use base/lang files.
  * TODO: Split to different files. GWF_Date, GWF_Validator, GWF_TimeConvert, GWF_Duration?
  * @author gizmore

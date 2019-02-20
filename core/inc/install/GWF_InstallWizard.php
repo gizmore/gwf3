@@ -646,7 +646,7 @@ final class GWF_InstallWizard
 		$back = self::wizard_h2('11');
 		
 		$template_cache = GWF_SMARTY_DIRS.'tplc';
-		if (false === GWF_File::removeDir($template_cache, true, true, false)) # FIXME: remove only .php or dont remove .git and .svn
+		if (false === GWF_File::removeDir($template_cache, true, true, false)) # FIXME: remove only .php or don't remove .git and .svn
 		{
 			$back .= self::wizard_error('err_clear_smarty');
 		}

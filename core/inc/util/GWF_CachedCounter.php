@@ -22,7 +22,7 @@ final class GWF_CachedCounter extends GDO
 	
 	
 	###################
-	### Convinience ###
+	### Convenience ###
 	###################
 	/**
 	 * Get a counter and count up by one.

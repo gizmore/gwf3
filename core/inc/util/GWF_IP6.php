@@ -35,7 +35,7 @@ final class GWF_IP6
 	public static $TYPES = array(self::INT_32, self::UINT_32, self::HASH_32_1, self::HASH_32_2, self::HASH_32_3, self::HASH_64, self::HEX_128, self::HEX_32_128, self::BIN_128, self::BIN_32_128, self::AS_IS, self::PACK_1, self::PACK_2);
 
 	###################
-	### Convinience ###
+	### Convenience ###
 	###################
 	/**
 	 * Get a GDO Define array.

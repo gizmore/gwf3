@@ -18,7 +18,7 @@ final class GWF_Counter extends GDO
 		);
 	}
 	###################
-	### Convinience ###
+	### Convenience ###
 	###################
 	/**
 	 * Get a counter and count up by one.

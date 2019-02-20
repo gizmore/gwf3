@@ -19,7 +19,7 @@ final class GWF_Pageview extends GDO
 	}
 
 	###################
-	### Convinience ###
+	### Convenience ###
 	###################
 	public static function increaseTodayView($by=1)
 	{

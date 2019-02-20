@@ -23,7 +23,7 @@ while (false !== ($row = $db->fetchAssoc($result)))
 //	$from_opts |= $o&0x01 ? GWF_PM::READ : 0; # other read
 	$from_opts |= GWF_PM::READ; # I probably have read what i wrote :)
 	$from_opts |= $o&0x10 ? GWF_PM::OWNER_DELETED : 0; # sender deleted
-	$from_opts |= $o&0x20 ? GWF_PM::OTHER_DELETED : 0; # reciever deleted
+	$from_opts |= $o&0x20 ? GWF_PM::OTHER_DELETED : 0; # receiver deleted
 //	var_dump($o);
 //	var_dump($from_opts);
 	$from = new GWF_PM(array(
@@ -48,7 +48,7 @@ while (false !== ($row = $db->fetchAssoc($result)))
 	$to_opts |= $o&0x01 ? GWF_PM::READ : 0; # meme read
 	$to_opts |= $o&0x04; # smileys
 	$to_opts |= $o&0x20 ? GWF_PM::OWNER_DELETED : 0; # sender deleted
-	$to_opts |= $o&0x10 ? GWF_PM::OTHER_DELETED : 0; # reciever deleted
+	$to_opts |= $o&0x10 ? GWF_PM::OTHER_DELETED : 0; # receiver deleted
 	$to = new GWF_PM(array(
 		'pm_id' => '0',
 		'pm_date' => $row['pm_date'],

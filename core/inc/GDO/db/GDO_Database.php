@@ -98,7 +98,7 @@ abstract class GDO_Database
 	}
 	
 	/**
-	 * A database error occured.
+	 * A database error occurred.
 	 * @param string $query
 	 * @param int $errno
 	 * @param string $error
@@ -153,7 +153,7 @@ abstract class GDO_Database
 	}
 	
 	###################
-	### Convinience ###
+	### Convenience ###
 	###################
 	/**
 	 * STUPID Lamb!

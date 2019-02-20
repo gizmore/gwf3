@@ -3,7 +3,7 @@
  * This class will get information about unread things for a User
  * ATM this class is trash but useable
  * @author spaceone
- * @todo this class could be usefull for Admin notifications
+ * @todo this class could be useful for Admin notifications
  * @todo langfile
  * @todo rename (GWF_Notifications ?)
  */
@@ -100,7 +100,7 @@ final class GWF_Notice
 
 	public static function getUnreadNews(GWF_User $user, $pattern='[%s]', $default='[0]')
 	{
-		return ''; # doesnt exists ATM
+		return ''; # doesn't exists ATM
 	}
 
 	public static function getUnreadChallenges(GWF_User $user) { return ''; }

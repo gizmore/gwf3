@@ -351,7 +351,7 @@ final class GWF_Debug
 	}
 
 	/**
-	 * Strip full pathes so we don't have a full path disclosure.
+	 * Strip full paths so we don't have a full path disclosure.
 	 * @param string $path
 	 * @return string
 	 */

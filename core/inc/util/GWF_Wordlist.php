@@ -6,7 +6,7 @@
  */
 class GWF_Wordlist
 {
-	# return random words out of a wordlist, dont return the same word more than once.
+	# return random words out of a wordlist, don't return the same word more than once.
 	# @Args: path to wordlist
 	#		number of words
 	# @Back: array of strings

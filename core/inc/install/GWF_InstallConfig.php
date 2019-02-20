@@ -255,7 +255,7 @@ final class GWF_InstallConfig
 			# Session
 			array('text',  'Session', 'GWF_SESS_NAME', 'GWF', 'Cookie Prefix. Example: \'GWF\'.'),
 			array('int10', 'Session', 'GWF_SESS_LIFETIME', 8*60*60, 'Session lifetime in seconds.'),
-			array('int10',  'Session', 'GWF_SESS_PER_USER', '2', 'Number of allowed simultanous sessions per user. Example: 1'),
+			array('int10',  'Session', 'GWF_SESS_PER_USER', '2', 'Number of allowed simultaneous sessions per user. Example: 1'),
 			
 			# IP
 			array('text',  'IP', 'GWF_IP_QUICK', 'hash_32_1', 'Hashed IP Duplicates. See core/inc/util/GWF_IP6.php'),
@@ -267,7 +267,7 @@ final class GWF_InstallConfig
 			array('text',  'EMail', 'GWF_ERROR_EMAIL', 'errors@'.$domain, 'Error email receiver. Example: errors@www.site.com.'),
 			array('text',  'EMail', 'GWF_ADMIN_EMAIL', isset($_SERVER['SERVER_ADMIN']) ? $_SERVER['SERVER_ADMIN'] : 'admin@'.$domain, 'Hardcoded admin mail. Example: admin@www.site.com.'),
 			array('text',  'EMail', 'GWF_SUPPORT_EMAIL', 'support@'.$domain, 'Support email. Example: support@www.site.com.'),
-			array('text',  'EMail', 'GWF_STAFF_EMAILS', '', 'CC staff emails seperated by comma. Example: \'staff@foo.bar,staff2@blub.org\'.'),
+			array('text',  'EMail', 'GWF_STAFF_EMAILS', '', 'CC staff emails separated by comma. Example: \'staff@foo.bar,staff2@blub.org\'.'),
 //			array('text',  'EMail', 'GWF_EMAIL_GPG_SIG', '', 'EMail signature for mails sent by GWF2'),
 
 			array('text', 'Security', 'GWF_CONTENT_TYPE_OPTIONS', 'nosniff', 'X-Content-Type-Options HTTP header'),

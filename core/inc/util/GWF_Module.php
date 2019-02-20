@@ -57,8 +57,8 @@ class GWF_Module extends GDO
 	public function isMethodSelected($method) { return ($_GET['mo'] === $this->getName()) && ($_GET['me'] === $method); }
 
 	/**
-	 * Returns a formated String within loaded modules
-	 * @param string $pattern %1$=modules seperated by comata, %2$=number of loaded modules
+	 * Returns a formatted String within loaded modules
+	 * @param string $pattern %1$=modules separated by comata, %2$=number of loaded modules
 	 */
 	public static function getModulesLoaded($pattern='<a href="#" title="%s">%s</a>')
 	{
