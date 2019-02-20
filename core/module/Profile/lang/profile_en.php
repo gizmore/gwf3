@@ -18,7 +18,7 @@ $lang = array(
 		'To upload an avatar, use the main account settings.<br/>'.
 		'To add a Signature to Forum Posts, use the forum settings.<br/>'.
 		'Also PM and other modules have their own, separate setting pages.<br/>'.
-		'<b>All profile settings here are publicy visible, so do not give too much away of yourself</b>.<br/>'.
+		'<b>All profile settings here are publicly visible, so do not give too much away of yourself</b>.<br/>'.
 		'If you hide your email, double check your account settings, as there is a global EMail flag too.<br/>'.
 		'It is possible to hide your profile from guests or search engines.',
 
@@ -139,10 +139,10 @@ $lang = array(
 	'btn_clear_white' => 'Clear whitelist',
 	'btn_add_whitelist' => 'Add user',
 	'btn_rem_whitelist' => 'Remove user',
-	'poi_info' => 'This page shows POI submitted by users.<br/>You are allowed to add %s/%s Points Of Interest.<br/>You can protect your POI by either <a href="%s">requirering a minimum userlevel</a>, or by using a <a href="%s">personal whitelist</a>.<br/>By default your POI are public.',
+	'poi_info' => 'This page shows POI submitted by users.<br/>You are allowed to add %s/%s Points Of Interest.<br/>You can protect your POI by either <a href="%s">requiring a minimum userlevel</a>, or by using a <a href="%s">personal whitelist</a>.<br/>By default your POI are public.',
 	'poi_usage' => 'Usage',
 	'poi_usage_data' => array(
-		'Click on an umarked location to add a new POI.',
+		'Click on an unmarked location to add a new POI.',
 		'A double click on your own POI deletes them.',
 		'A click on your own POI allows to rename it.',
 		'Adding sensitive information about others is not acceptable.',
