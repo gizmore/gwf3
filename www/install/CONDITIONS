@@ -60,7 +60,7 @@ right: foo( bar() ) || foo($bar)
 wrong: foo(bar())
 right: if(foo())
 
-Comparision:
+Comparison:
 first the constant, then the $variable
 right: if(NULL === $foo)
 wrong: if($foo === NULL)

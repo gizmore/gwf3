@@ -25,7 +25,7 @@ $lang = array(
 	'not_sniffed_yet' => 'Error: you have not sniffed the data yet.',
 
 	'info_2' =>
-		'Good job. Now you have succesfully uploaded the <a href="%1$s">new token data</a> for the victims bank account. The base filename is the serial number for the token, and the seed (secret) is d4e3f9eb36c9ebf3. Please note it is an older format of PSA InsecurID, the newer ones are using digitally signed XML files and longer seeds.<br/>'.
+		'Good job. Now you have successfully uploaded the <a href="%1$s">new token data</a> for the victims bank account. The base filename is the serial number for the token, and the seed (secret) is d4e3f9eb36c9ebf3. Please note it is an older format of PSA InsecurID, the newer ones are using digitally signed XML files and longer seeds.<br/>'.
 		'<br/>'.
 		'After you have uploaded the new token data, you have to generate a valid one time password for that token for 27. of July, 2012 14:24 GMT+1',
 

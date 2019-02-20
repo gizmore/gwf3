@@ -3,7 +3,7 @@ $lang = array(
 	'title' => 'Smile!',
 	'info' =>
 		'We are working hard on a better WeChall, and ask for your help.<br/>'.
-		'In particular we want new smileys beeing added to the bb_decoder.<br/>'.
+		'In particular we want new smileys being added to the bb_decoder.<br/>'.
 		'To add cool smileys, we have coded up a <a href="%5$s">small form</a> to submit them.<br/>'.
 		'<br/>'.
 		'Would be cool if you could add a few smileys and replacing rules for us!<br/>'.

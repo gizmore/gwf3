@@ -53,7 +53,7 @@ I also remember when a famous scene magazine asked for advertised news on wechal
 
 I also remember when i asked project euler to join wechall.
 My mistake was to ask in the public forums, and so euler did never consider to join? :(
-Anyway.... [SPOJ], a similiar site joined a few months afterwards.
+Anyway.... [SPOJ], a similar site joined a few months afterwards.
 
 One funny story to recall is when korean sites started to join... And it felt great to be accepted as a website in the asian market.
 I was excited, and pondered about the countryflags.... The democratic Republic of Korea had not the white and red country flag i think it should have.
@@ -108,7 +108,7 @@ A) I counted the users who joined and are still active.
 // 	}
 // }
 // echo "</table>\n";
-// echo "<p>This gives us a total of around $totalActiveUsers total active users currently... maybe substract 300 for those who will quit soon?</p>\n";
+// echo "<p>This gives us a total of around $totalActiveUsers total active users currently... maybe subtract 300 for those who will quit soon?</p>\n";
 ?>
 
 <hr/>

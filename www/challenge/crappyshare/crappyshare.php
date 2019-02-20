@@ -184,7 +184,7 @@ function htmlTitleBox($title, $text)
 }
 
 /**
- * Upload received by file, call thx. Delete temp file if neccessary.
+ * Upload received by file, call thx. Delete temp file if necessary.
  * @param array $file
  * @return NULL
  */

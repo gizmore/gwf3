@@ -7,7 +7,7 @@ $lang = array(
 		'<a href="%1$s">here</a><br/>'.
 		'<br/>'.
 		'Afterwards, Larry sniffed some traffic when the database made some network backup.<br/>'.
-		'When he realized how important this could be, the agent immediatly forwarded the traffic<br/>'.
+		'When he realized how important this could be, the agent immediately forwarded the traffic<br/>'.
 		'to the headquarter, but unfortunately the transmission was stopped.<br/>'.
 		'We could not make any contact to Larry anymore.<br/>'.
 		'<br/>'.

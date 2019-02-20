@@ -29,13 +29,13 @@ elseif (isset($_POST['mybutton']))
 	blightInit();
 	$answer = Common::getPostString('thehash');
 	$solution = blightGetHash();
-	$attemp = blightAttemp();
+	$attempt = blightAttemp();
 	
 	if (!strcasecmp($answer, $solution))
 	{
-		if ($attemp > (BLIGHT4_ATTEMPS+1) )
+		if ($attempt > (BLIGHT4_ATTEMPS+1) )
 		{
-			echo GWF_HTML::error(GWF_PAGE_TITLE, $chall->lang('err_attemps', array($attemp, (BLIGHT4_ATTEMPS+1))));
+			echo GWF_HTML::error(GWF_PAGE_TITLE, $chall->lang('err_attemps', array($attempt, (BLIGHT4_ATTEMPS+1))));
 		}
 		elseif (blightTimeout())
 		{
@@ -58,7 +58,7 @@ elseif (isset($_POST['mybutton']))
 	}
 	else
 	{
-		echo GWF_HTML::error(GWF_PAGE_TITLE, $chall->lang('err_wrong', array($attemp)));
+		echo GWF_HTML::error(GWF_PAGE_TITLE, $chall->lang('err_wrong', array($attempt)));
 	}
 	
 }
@@ -67,22 +67,22 @@ elseif (isset($_POST['inject']))
 	blightInit();
 	$password = Common::getPostString('injection');
 
-	$attemp = blightAttemp()+1;
-	$success = blightVuln($chall, $password, $attemp);
+	$attempt = blightAttemp()+1;
+	$success = blightVuln($chall, $password, $attempt);
 	
 	
 	echo GWF_HTML::message(GWF_PAGE_TITLE, $success);
 	
 // 	if ($success)
 // 	{
-// 		echo GWF_HTML::message(GWF_PAGE_TITLE, $chall->lang('msg_logged_in', array($attemp)));
+// 		echo GWF_HTML::message(GWF_PAGE_TITLE, $chall->lang('msg_logged_in', array($attempt)));
 // 	}
 // 	else
 // 	{
-// 		echo GWF_HTML::error(GWF_PAGE_TITLE, $chall->lang('err_login', array($attemp)));
+// 		echo GWF_HTML::error(GWF_PAGE_TITLE, $chall->lang('err_login', array($attempt)));
 // 	}
 	
-	blightSetAttempt($attemp);
+	blightSetAttempt($attempt);
 }
 
 $url1 = 'index.php?show=source';

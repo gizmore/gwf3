@@ -7,7 +7,7 @@ $lang = array(
 		'The date is 5th June 1944. The news predicts there will be no invasion for several days.<br/>'.PHP_EOL.
 		'Even your boss is away for vacation. You arrive zur Wehrmacht at 5 a.m., and<br/>'.PHP_EOL.
 		'the night shift collegaues greets you. He gives you the daily codes<br/>'.PHP_EOL.
-		'and leaves immediatly the communication station.<br/>'.PHP_EOL.
+		'and leaves immediately the communication station.<br/>'.PHP_EOL.
 		'He is really a lazy guy and havent established the enigma settings yet.<br/>'.PHP_EOL.
 		'You really think its gonna be a lazy day - alone.<br/>'.PHP_EOL.
 		'You drink some beer and wait for incoming messages. As nothing happens,<br/>'.PHP_EOL. 
@@ -24,7 +24,7 @@ $lang = array(
 		'</pre>'.PHP_EOL.
 		'After the conversation you realise that the keys for today were partially destroyed.<br/>'.PHP_EOL.
 		'You imagine how angry your superior will be after returning,<br/>'.PHP_EOL.
-		'if you don\'t decrypt the message immediatly.<br/>'.PHP_EOL.
+		'if you don\'t decrypt the message immediately.<br/>'.PHP_EOL.
 		'The wasted codebook is here: <a href="%1$s">codebook</a>;<br/>'.PHP_EOL.
 		'<br/>'.PHP_EOL.
 		'Your job is to decipher the encrypted message, and the solution is<br/>'.PHP_EOL.

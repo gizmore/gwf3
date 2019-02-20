@@ -142,7 +142,7 @@ A) I counted the users who joined and are still active.
 <tr><td>Jan</td><td>2018</td><td><b>277</b></td>
 <tr><td>Feb</td><td>2018</td><td><b>75</b></td>
 </table>
-<p>This gives us a total of around 1611 total active users currently... maybe substract 300 for those who will quit soon?</p>
+<p>This gives us a total of around 1611 total active users currently... maybe subtract 300 for those who will quit soon?</p>
 
 </body>
 </html>

@@ -74,8 +74,8 @@ $lang = array(
 		'Now lets focus on the usage:<br/><br/>'.
 		'PoolTool works by creating <b>screenshots</b>. It scans the Balls positions, and can calculate tosses with this information. To take a screenshot you have to press <b>Load Table</b>. Some things have to be visible, to make PoolTool recognize the table and balls. <b>The upper left corner of the Applet has to be visible, as well as the balls to scan</b>.',
 	'tut_5' =>
-		'After the balls have been scanned, you can select a ball and a pocket. The selecting order doesn't matter. The program is kinda intuitive and aims over bounds or N balls, to get the selected ball into the selected pocket. The algorithm can be improved, though.<br/><br/>'.
-		'<b>To select a pocket or a ball, simply click it in PoolTool.</b><br/>'.
+	"After the balls have been scanned, you can select a ball and a pocket. The selecting order doesn't matter. The program is kinda intuitive and aims over bounds or N balls, to get the selected ball into the selected pocket. The algorithm can be improved, though.<br/><br/>'.".
+	'<b>To select a pocket or a ball, simply click it in PoolTool.</b><br/>'.
 		'I am gonna click the green,full Ball in PoolTool. It changes its color to cyan when selected.<br/>',
 	'tut_6' => 'Now I select the target pocket. Simply click it like the ball. Also the pocket changes color to cyan when selected.',
 	'tut_7' =>

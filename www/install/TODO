@@ -23,7 +23,7 @@ This could be changed to %s %s %s %s which might be faster and is more readable.
 
 --------------------------------------------------------------------------------
 
-#5 Currently we are using Common::getGet() a lot, but Common::getGetString/Int/Array is more safe and appropiate.
+#5 Currently we are using Common::getGet() a lot, but Common::getGetString/Int/Array is more safe and appropriate.
 Keep in mind that getGetString returns empty string by default, compared to false for getGet.
 
 --------------------------------------------------------------------------------
@@ -67,7 +67,7 @@ Create a new default template which represent GWF. We need someone with graphic 
 
 #13 GWF should have some JavaScript but there should be an nonJS mode
 implement ajax into the core with JSON (e.g. a page {title: '', content : ''}
-accessable by /ajax/.*
+accessible by /ajax/.*
 
 --------------------------------------------------------------------------------
 

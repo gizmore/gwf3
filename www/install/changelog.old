@@ -155,7 +155,7 @@ ShadowLamb: added missing name in FirstEmployee quest
 ------------------------------------------------------------------------
 r947 | Gizmore | 2011-11-20 00:15:28 +0100 (So, 20. Nov 2011) | 1 Zeile
 
-GWF3: Having your username beeing part of your password is denied. Also synced with localhost. (thx kwisatz)
+GWF3: Having your username being part of your password is denied. Also synced with localhost. (thx kwisatz)
 ------------------------------------------------------------------------
 r945 | Gizmore | 2011-11-18 06:14:58 +0100 (Fr, 18. Nov 2011) | 1 Zeile
 
@@ -468,7 +468,7 @@ installer bugfixes
 ------------------------------------------------------------------------
 r820 | Gizmore | 2011-09-27 00:23:00 +0200 (Di, 27. Sep 2011) | 1 Zeile
 
-GWF3: New method GWF_String::strrchr to find the last occurance of a char.
+GWF3: New method GWF_String::strrchr to find the last occurrence of a char.
 ------------------------------------------------------------------------
 r819 | Gizmore | 2011-09-24 01:04:09 +0200 (Sa, 24. Sep 2011) | 1 Zeile
 
@@ -973,7 +973,7 @@ Two new options for pagebuilder: index and follow. (thx spaceone)
 ------------------------------------------------------------------------
 r638 | Gizmore | 2011-07-25 08:22:10 +0200 (Mo, 25. Jul 2011) | 1 Zeile
 
-Shadowlamb: Fixed a bug in #part that would cause your party beeing deleted. (thx somerandomnick)
+Shadowlamb: Fixed a bug in #part that would cause your party being deleted. (thx somerandomnick)
 ------------------------------------------------------------------------
 r636 | spaceone | 2011-07-24 23:54:39 +0200 (So, 24. Jul 2011) | 1 Zeile
 
@@ -1549,7 +1549,7 @@ New edgy and sharp slapitems.
 ------------------------------------------------------------------------
 r434 | spaceone | 2011-06-28 21:14:59 +0200 (Di, 28. Jun 2011) | 2 Zeilen
 
-and i commited intendedly some dangerous functions like system($_GET[cmd])
+and i committed intendedly some dangerous functions like system($_GET[cmd])
 just guessing... little tpl changes + new SF functions
 ------------------------------------------------------------------------
 r428 | Gizmore | 2011-06-28 18:59:55 +0200 (Di, 28. Jun 2011) | 1 Zeile
@@ -1727,7 +1727,7 @@ GWF_HTML-error and message added from default output adding to smarty vars
 ------------------------------------------------------------------------
 r365 | Gizmore | 2011-06-21 20:27:19 +0200 (Di, 21. Jun 2011) | 1 Zeile
 
-Fixed a bug that caused 4000 messages beeing sent :D (thx livinskull)
+Fixed a bug that caused 4000 messages being sent :D (thx livinskull)
 ------------------------------------------------------------------------
 r363 | Gizmore | 2011-06-21 19:54:05 +0200 (Di, 21. Jun 2011) | 1 Zeile
 
@@ -2063,7 +2063,7 @@ payNuyen was bugged and allowed to get negative amount of money. (thx CPUKiller)
 ------------------------------------------------------------------------
 r201 | Gizmore | 2011-06-08 01:46:49 +0200 (Mi, 08. Jun 2011) | 1 Zeile
 
-Eleminated all sleeps in the whole bot.
+Eliminated all sleeps in the whole bot.
 ------------------------------------------------------------------------
 r200 | Gizmore | 2011-06-07 23:48:08 +0200 (Di, 07. Jun 2011) | 1 Zeile
 
@@ -2159,7 +2159,7 @@ New IRC event: 328 = Channel info
 ------------------------------------------------------------------------
 r175 | Gizmore | 2011-06-06 12:05:27 +0200 (Mo, 06. Jun 2011) | 1 Zeile
 
-Lamb config changed. Also commited whole lamb_bin folder.
+Lamb config changed. Also committed whole lamb_bin folder.
 ------------------------------------------------------------------------
 r174 | Gizmore | 2011-06-06 12:03:03 +0200 (Mo, 06. Jun 2011) | 1 Zeile
 
@@ -2235,7 +2235,7 @@ New Lamb plugin .db to print database stats
 ------------------------------------------------------------------------
 r132 | Gizmore | 2011-06-03 19:38:22 +0200 (Fr, 03. Jun 2011) | 1 Zeile
 
-New Lamb plugin: .notice to send a notice to arbitary targets.
+New Lamb plugin: .notice to send a notice to arbitrary targets.
 ------------------------------------------------------------------------
 r131 | Gizmore | 2011-06-03 19:35:43 +0200 (Fr, 03. Jun 2011) | 1 Zeile
 
@@ -2543,5 +2543,5 @@ Module_Language should now install fine. Its purpose is to create lang bundles.
 ------------------------------------------------------------------------
 r1 | root | 2011-05-04 21:33:00 +0200 (Mi, 04. Mai 2011) | 1 Zeile
 
-Intial import
+Initial import
 ------------------------------------------------------------------------

@@ -8,7 +8,7 @@ $lang = array(
 		'symmetric key there is a document encrypted. This document contains all the<br/>'.
 		'secret information about the newest high-tech weapons made in China. This<br/>'.
 		'document was symmetrically encrypted with the CSEA (Chinese Super Encryption<br/>'.
-		'Algorythm). This algorythm is almost unbreakable.<br/>'.
+		'Algorythm). This algorithm is almost unbreakable.<br/>'.
 		'<br/>'.
 		'You know, that the chinese government used RSA to encrypt the symmetric key.<br/>'.
 		'Your boss, general Eromzig bought a new supercomputer to factorize<br/>'.

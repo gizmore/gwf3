@@ -369,7 +369,7 @@ YUI.add('rubik', function (Y) {
 		* All magic happen here. We have to check how the use flick his finger, in which side,
 		*/
 		_onEndCube:function (evt) {
-			//if gesture we dont do movement
+			//if gesture we don't do movement
 			if (this._gesture || this._moved || !this._tempCubie) {
 				this._gesture = false;
 				this._moved = false;
@@ -380,7 +380,7 @@ YUI.add('rubik', function (Y) {
 				return;
 			}
 			evt.halt();
-			if (!this._deltaX && !this._deltaY) { return; } // if we dont move we dont do nothing
+			if (!this._deltaX && !this._deltaY) { return; } // if we don't move we don't do nothing
 			this._tempXY = {x: this._tempXY.x % 360, y: this._tempXY.y % 360 };// to get controlled the degrees
 			var movement,swap,
 				rotateX = this._deltaX > 0 ? "right" :"left",
@@ -481,7 +481,7 @@ YUI.add('rubik', function (Y) {
 				return;//we cancel if there is some movement going on
 			}
 
-			//save the movement if doesnt came from the queue.
+			//save the movement if doesn't came from the queue.
 			if (!fromQueue){
 				this._queue.add(m);
 			}
@@ -537,11 +537,11 @@ YUI.add('rubik', function (Y) {
 					//we try to find the cube to swap position
 					var destCube = Y.one('.' + changes[cubePos]);
 
-					// if we dont find it, we already swap that cubie, we have to find the original css class in temp.
+					// if we don't find it, we already swap that cubie, we have to find the original css class in temp.
 					var destCubeClass = destCube? destCube.get('className'): tempCubies[changes[cubePos]],
 						cubePosDes = destCubeClass.split(' ',1)[0];
 
-				   //swap position of the cubie acording to the movement.
+				   //swap position of the cubie according to the movement.
 					originCube.set('className', cubePosDes + destCubeClass.substr(3));
 				});
 		},

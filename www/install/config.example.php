@@ -77,7 +77,7 @@ define('GWF_TABLE_PREFIX', 'kd_'); # Database table prefix. Example: 'gwf3_'.
 ###############
 define('GWF_SESS_NAME', 'KD'); # Cookie Prefix. Example: 'GWF'.
 define('GWF_SESS_LIFETIME', 14400); # Session lifetime in seconds.
-define('GWF_SESS_PER_USER', 1); # Number of allowed simultanous sessions per user. Example: 1
+define('GWF_SESS_PER_USER', 1); # Number of allowed simultaneous sessions per user. Example: 1
 
 ##########
 ### IP ###
@@ -92,7 +92,7 @@ define('GWF_DEBUG_EMAIL', 31); # Send Mail on errors? 0=NONE, 1=DB ERRORS, 2=PHP
 define('GWF_BOT_EMAIL', 'robot@giz.org'); # Robot sender email. Example: robot@www.site.com.
 define('GWF_ADMIN_EMAIL', 'admin@giz.org'); # Hardcoded admin mail. Example: admin@www.site.com.
 define('GWF_SUPPORT_EMAIL', 'support@giz.org'); # Support email. Example: support@www.site.com.
-define('GWF_STAFF_EMAILS', ''); # CC staff emails seperated by comma. Example: 'staff@foo.bar,staff2@blub.org'.
+define('GWF_STAFF_EMAILS', ''); # CC staff emails separated by comma. Example: 'staff@foo.bar,staff2@blub.org'.
 
 ##############
 ## Security ##

@@ -5,7 +5,7 @@ $lang = array(
 		'You are now becoming a linux superhacker.<br/>'.PHP_EOL.
 		'<br/>'.PHP_EOL.
 		'Create an SSH account with the form below.<br/>'.PHP_EOL.
-		'Then enter the 6 solutions to level 0-5 seperated by comma.<br/>'.PHP_EOL.
+		'Then enter the 6 solutions to level 0-5 separated by comma.<br/>'.PHP_EOL.
 		'Example: bitwarrior,Solution1,Solution2,Solution3,Solution4,Solution5<br/>'.PHP_EOL.
 		'<br/>'.PHP_EOL.
 		'Proudly presented by the The Warchall(tm) Staff<br/>'.PHP_EOL.

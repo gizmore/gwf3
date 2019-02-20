@@ -1,7 +1,7 @@
 <?php
 /**
  * JUST EXAMPLE
- * MOST PATHES ARE WRONG
+ * MOST PATHS ARE WRONG
  * PATCHING BY HAND IS LAME
  */
 #######################
