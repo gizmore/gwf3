@@ -23,8 +23,8 @@ final class Login_History extends GWF_Method
 		$nPages = GWF_PageMenu::getPagecount($ipp, $nItems);
 		$page = Common::clamp(Common::getGet('page', 1), 1, $nPages);
 		$from = GWF_PageMenu::getFrom($page, $ipp);
-		$by = Common::getGet('by');
-		$dir = Common::getGet('dir');
+		$by = Common::getGet('by', 'loghis_time');
+		$dir = Common::getGet('dir', 'DESC');
 		$orderby = $history->getMultiOrderby($by, $dir);
 		$form = $this->formDelete();
 		

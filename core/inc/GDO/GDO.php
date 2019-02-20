@@ -452,7 +452,7 @@ abstract class GDO
 		$dir = explode(',', $dir);
 
 		# Prevent indexing error in case of different length arrays
-                while (count($dir) < count($by))
+		while (count($dir) < count($by))
 		{
 			$dir[] = $default_order;
 		}
