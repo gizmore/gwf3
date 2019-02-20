@@ -15,7 +15,7 @@ final class Dog_Greeting extends GDO
 	}
 	
 	###################
-	### Convinience ###
+	### Convenience ###
 	###################
 	public static function hasBeenGreeted($user_id, $channel_id)
 	{

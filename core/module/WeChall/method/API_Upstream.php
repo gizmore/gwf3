@@ -1,6 +1,6 @@
 <?php
 /**
- * Very similiar to WC_HistoryUser2.
+ * Very similar to WC_HistoryUser2.
  * Show latest regat activity.  
  * @author gizmore
  */

@@ -28,7 +28,7 @@ $lang = array(
 
 	'msg_bundled' => 'Bundled language files in %s (%s files).',
 
-	'err_zip' => 'An error occured in zip archive in %s line %s.',
+	'err_zip' => 'An error occurred in zip archive in %s line %s.',
 		
 	# v1.01
 	'err_probsum' => 'We found a total of %d errors, %d warnings and %d missing files.',

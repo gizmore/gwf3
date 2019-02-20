@@ -33,7 +33,7 @@ $lang = array(
 	# Errors
 	'err_token' => 'Invalid token.',
 	'err_email_retype' => 'You have to re-type your email correctly.',
-	'err_delete_avatar' => 'An error occured while deleting your Avatar.',
+	'err_delete_avatar' => 'An error occurred while deleting your Avatar.',
 	'err_no_mail_to_approve' => 'You don`t have an email set to approve.',
 	'err_already_approved' => 'Your email is already approved.',
 	'err_no_image' => 'Your uploaded file is not an image, or too small.',

@@ -4,7 +4,7 @@ $lang = array(
 	'descr' => 'Bring %s/%s LongSword, %s/%s BroadSword, %s/%s ShortSword to the Seattle Blacksmith.',
 		
 	'thanks1' => 'Thank you so much, now I can carry on with my business.',
-	'thanks2' => 'Here, I have saved these items from beeing plundered.',
+	'thanks2' => 'Here, I have saved these items from being plundered.',
 	'more' => 'Please bring me also %s LongSword, %s BroadSword and %s ShortSword.',
 
 	'confirm' => 'Could you please help me?',

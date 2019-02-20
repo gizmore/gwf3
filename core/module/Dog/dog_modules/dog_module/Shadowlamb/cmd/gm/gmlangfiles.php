@@ -11,7 +11,7 @@ final class Shadowcmd_gmlangfiles extends Shadowcmd
 		
 		if (false === SR_Install::onCreateLangFiles())
 		{
-			return $bot->reply('An error occured!');
+			return $bot->reply('An error occurred!');
 		}
 		
 		return $bot->reply('Lang files have been recreated. use .langflush to reload.');

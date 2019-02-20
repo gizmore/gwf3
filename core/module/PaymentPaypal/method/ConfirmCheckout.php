@@ -2,7 +2,7 @@
 /**
  * At this point, the buyer has completed in authorizing payment
  * at PayPal.  The script will now call PayPal with the details
- * of the authorization, incuding any shipping information of the
+ * of the authorization, including any shipping information of the
  * buyer.  Remember, the authorization is not a completed transaction
  * at this state - the buyer still needs an additional step to finalize
  * the transaction.

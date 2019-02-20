@@ -2,7 +2,7 @@
 require_once 'Dog_ScumGame.php';
 
 /**
- * Woho teh scum!
+ * Woho the scum!
  * @author gizmore
  */
 final class DOGMOD_Scum extends Dog_Module

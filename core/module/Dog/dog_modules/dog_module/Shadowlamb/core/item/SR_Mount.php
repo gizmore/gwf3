@@ -6,7 +6,7 @@ abstract class SR_Mount extends SR_Equipment
 	const HIJACK_TIME_MAX = 900;
 	const HIJACK_TIME_MAXLVL = 50; # And the level is a percentage in between like 1/50*900.
 	const HIJACK_TIME_BONUS = 20; # - 20 sec rand.
-	const HIJACK_TIME_ADD = 30; # And for every attemp we add N seconds ...
+	const HIJACK_TIME_ADD = 30; # And for every attempt we add N seconds ...
 	const HIJACK_TIME_MULTI = 1.5; # and afterwards multiply by N.
 	const HIJACK_BAD_KARMA = 0.07; # Bad karma for trying.
 	const HIJACK_POLIZIA = 10.0; # Chance polizia in percent.

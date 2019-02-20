@@ -1035,7 +1035,7 @@ final class WC_Challenge extends GDO
 	
 	/**
 	 * Get language bit for a key with current browser language.
-	 * Has arbitary number of arguments, ..., ...
+	 * Has arbitrary number of arguments, ..., ...
 	 * @see LangTrans
 	 * @param string $key
 	 * @return string

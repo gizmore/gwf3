@@ -108,7 +108,7 @@ final class WC_SiteCats extends GDO
 	}
 	
 	###################
-	### Convinience ###
+	### Convenience ###
 	###################
 	public static function getCatForBit($bit)
 	{

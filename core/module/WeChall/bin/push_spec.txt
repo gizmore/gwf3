@@ -59,7 +59,7 @@ be identitical.
 
 The result RES is either OK, in case the command was executed successfully, or
 some other value in case an error occurred. Again, additional properties might
-be present depending on the command and reponse.
+be present depending on the command and response.
 
 The following general errors may be returned. Specific commands can return other
 errors as specified in the Commands section.

@@ -3,7 +3,7 @@
 $lang = array(
 	'en' => array(
 		'help' => 'Usage: %CMD% <page>. Search the Wikipedia. http://www.wikipedia.org/',
-		'nope' => 'Your term doesnt exist.',
+		'nope' => 'Your term doesn't exist.',
 	),
 );
 $plugin = Dog::getPlugin();

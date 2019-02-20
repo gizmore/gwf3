@@ -15,11 +15,11 @@ Gizmore:
 - allow users to create groups ?
 - profile: about me text field
 - online today: maybe also show users from 2 days
-- add dynamic priviledges... like "needs to be linked to site 4", "needs 4 links inserted", etc ?
+- add dynamic privileges... like "needs to be linked to site 4", "needs 4 links inserted", etc ?
 - redesign forum css a little bit (sphinx idea with having reply button on title, and this twice (top and bottom))
 - shoutbox
 - new privildege: challenge creator, bugmaster
-- Dont show links to unknown profiles on other sites
+- Don't show links to unknown profiles on other sites
 - Make 100% logos (Master of) glow in ranking :) 
 - make use of autoupdate field in sites table. (just show that this site is using autoupdate)
 - add is_down to sites table 

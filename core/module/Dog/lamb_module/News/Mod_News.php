@@ -34,9 +34,9 @@ final class DOGMOD_News extends Dog_Module
 	###############
 	### Getters ###
 	###############
-	public function getTriggers($priviledge, $showHidden=true)
+	public function getTriggers($privilege, $showHidden=true)
 	{
-		switch ($priviledge)
+		switch ($privilege)
 		{
 			case 'admin': return array('-feed');
 			case 'halfop': return array('+feed');
@@ -272,8 +272,8 @@ final class DOGMOD_News extends Dog_Module
 				break;
 			case 1: # TODO: Timeout
 			case 2: # fetch
-				while (false !== ($recieved = fgets($this->socket))) {
-					$this->received .= $recieved;
+				while (false !== ($received = fgets($this->socket))) {
+					$this->received .= $received;
 				}
 				if (feof($this->socket)) {
 					$this->runlevel = 3;

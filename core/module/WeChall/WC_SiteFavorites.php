@@ -20,7 +20,7 @@ final class WC_SiteFavorites extends GDO
 	}
 	
 	###################
-	### Convinience ###
+	### Convenience ###
 	###################
 	public static function setFavorite($userid, $siteid, $bool)
 	{

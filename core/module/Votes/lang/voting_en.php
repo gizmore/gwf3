@@ -64,7 +64,7 @@ $lang = array(
 	'err_poll_off' => 'This poll is currently disabled.',
 	
 	'msg_poll_edit' => 'Your poll has been edited successfully.',
-	'msg_mvote_added' => 'Your poll has been added succesfully.',
+	'msg_mvote_added' => 'Your poll has been added successfully.',
 
 	# v2.01 Staff
 	'th_vs_id' => 'ID',

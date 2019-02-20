@@ -19,7 +19,7 @@ final class WC_SiteAdmin extends GDO
 	}
 	
 	###################
-	### Convinience ###
+	### Convenience ###
 	###################
 	/**
 	 * Get the User.

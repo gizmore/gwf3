@@ -176,7 +176,7 @@ final class Dog_Var
 			
 			if ( ('' !== ($e1 = $csv[$i++])) || ('' !== ($e1 = $csv[$i++])) )
 			{
-				Dog_Log::critical('Invalid ####conf format. There have to be three consecutive comma to seperate vars.');
+				Dog_Log::critical('Invalid ####conf format. There have to be three consecutive comma to separate vars.');
 				return $back;
 			}
 			

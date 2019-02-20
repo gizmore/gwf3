@@ -50,17 +50,17 @@ abstract class SR_SearchRoom extends SR_Tower
 	public function on_search(SR_Player $player, array $args)
 	{
 		$key = $this->getTempKey();
-		$attemp = $player->getTemp($key, 0);
+		$attempt = $player->getTemp($key, 0);
 		
-		if ($attemp >= $this->getSearchMaxAttemps())
+		if ($attempt >= $this->getSearchMaxAttemps())
 		{
 			$player->msg('1148');
 // 			$player->message('Not again.');
 			return;
 		}
 		
-		$attemp++;
-		$player->setTemp($key, $attemp);
+		$attempt++;
+		$player->setTemp($key, $attempt);
 
 		$loot = array_merge(Shadowfunc::randLoot($player, $this->getSearchLevel(), array(), $this->getSearchChanceNone()), $this->getSearchLoot($player));
 		

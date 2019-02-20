@@ -25,7 +25,7 @@ $lang = array(
 	'err_lang_dest' => 'The destination language is unknown.',
 	'err_equal_translang' => 'The source and destination language are equal (Both %s).',
 	'err_type' => 'The newsletter format is invalid.',
-	'err_unsign' => 'An error occured.',
+	'err_unsign' => 'An error occurred.',
 
 
 	# Main

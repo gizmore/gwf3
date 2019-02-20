@@ -15,7 +15,7 @@ final class Shadowrun4
 	const SR_SHORTCUT = '#';
 	const KICK_IDLE_TIMEOUT = 1800; # 30min
 	const TICKLEN = 1.0; # 1.0 real second == 1 gametick
-	const SECONDS_PER_TICK = 1; # N game second per gametick (you may want to raise during developement, only full int)
+	const SECONDS_PER_TICK = 1; # N game second per gametick (you may want to raise during development, only full int)
 	public static $CITIES = array('Redmond', 'Seattle', 'Delaware', 'Chicago', 'Vegas', 'WestVegas');
 	
 	################

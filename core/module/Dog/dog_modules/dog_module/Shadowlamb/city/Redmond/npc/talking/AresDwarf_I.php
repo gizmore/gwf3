@@ -49,7 +49,7 @@ final class Redmond_AresDwarf_I extends SR_TalkingNPC
 				$this->rply('quest5');
 // 				$this->reply('You are a newbie runner, eh?');
 // 				$this->reply('Chummer... Listen... We regulary get robbed by the cyberpunks.');
-// 				$this->reply("The worst thing is they keep robbing even cheap things, like unstatted knifes. If you can help us and bring me $num unstatted knifes I would be very happy, as I plan to master the skill of knife-throwing.");
+// 				$this->reply("The worst thing is they keep robbing even cheap things, like unstatted knives. If you can help us and bring me $num unstatted knives I would be very happy, as I plan to master the skill of knife-throwing.");
 // 				$this->reply("You can remove stats from an item at the local blacksmith.");
 // 				$this->reply('If you could help help us we will reward you gracefully.');
 				$player->setTemp('Redmond_AresDwarf_I_sr', true);
@@ -77,7 +77,7 @@ final class Redmond_AresDwarf_I extends SR_TalkingNPC
 		if ($quest1->isDone($player))
 		{
 			return $this->rply('thx2');
-// 			return $this->reply('We have enogh knifes now to play with. Thanks again for your help.');
+// 			return $this->reply('We have enogh knives now to play with. Thanks again for your help.');
 		}
 		
 		$have = $quest1->getAmount();
@@ -91,7 +91,7 @@ final class Redmond_AresDwarf_I extends SR_TalkingNPC
 		else
 		{
 			$this->rply('pls', array($need-$have));
-// 			$this->reply(sprintf('Could you please bring me %d more knifes?', $need));
+// 			$this->reply(sprintf('Could you please bring me %d more knives?', $need));
 		}
 		
 		return true;

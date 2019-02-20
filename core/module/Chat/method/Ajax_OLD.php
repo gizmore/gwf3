@@ -1,5 +1,5 @@
 <?php
-/** @todo onPost doesnt exists */
+/** @todo onPost doesn't exists */
 final class Chat_Ajax_OLD extends GWF_Method
 {
 	private static $SESS_AJAX_PUB = 'GWF_CHAT_AJAX1';

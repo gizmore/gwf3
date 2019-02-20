@@ -56,25 +56,25 @@ final class Paypal_Util
 	}
 	
 	/** This function will take NVPString and convert it to an Associative Array and it will decode the response.
-	  * It is usefull to search for a particular key and displaying arrays.
+	  * It is useful to search for a particular key and displaying arrays.
 	  * @nvpstr is NVPString.
 	  * @nvpArray is Associative Array.
 	  */
 	
 	public static function deformatNVP($nvpstr) {
 	
-		$intial=0;
+		$initial=0;
 	 	$nvpArray = array();
 	
 		while(strlen($nvpstr)) {
 			
-			//postion of Key
+			//position of Key
 			$keypos= strpos($nvpstr,'=');
 			//position of value
 			$valuepos = strpos($nvpstr,'&') ? strpos($nvpstr,'&'): strlen($nvpstr);
 	
 			/*getting the Key and Value values and storing in a Associative Array*/
-			$keyval = substr($nvpstr,$intial,$keypos);
+			$keyval = substr($nvpstr,$initial,$keypos);
 			$valval = substr($nvpstr,$keypos+1,$valuepos-$keypos-1);
 			//decoding the respose
 			$nvpArray[urldecode($keyval)] = urldecode( $valval);

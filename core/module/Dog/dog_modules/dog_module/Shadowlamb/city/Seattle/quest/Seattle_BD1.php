@@ -35,7 +35,7 @@ final class Quest_Seattle_BD1 extends SR_Quest
 // 			$npc->reply('Thank you so much, now I can carry on with my business.');
 			$this->onSolve($player);
 			$npc->reply($this->lang('thanks2'));
-// 			$npc->reply('Here, I have saved these items from beeing plundered.');
+// 			$npc->reply('Here, I have saved these items from being plundered.');
 			$player->giveItems($this->getReward($player), $npc->getName());
 		}
 		else

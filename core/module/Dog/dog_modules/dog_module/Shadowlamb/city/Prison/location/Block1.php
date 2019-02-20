@@ -65,7 +65,7 @@ final class Prison_Block1 extends SR_Location
 		
 		if (count($args) === 0)
 		{
-			$bot->reply('You succesfully wrote nothing on the wall ... does not look too bad, you think to yourself.');
+			$bot->reply('You successfully wrote nothing on the wall ... does not look too bad, you think to yourself.');
 			return false;
 		}
 		

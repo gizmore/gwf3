@@ -14,7 +14,7 @@ December 20 2007:
 	I also removed the requirement to initialize your log 
 	directory. It ignores the -i option, which is left in
 	for compatibility with old install scripts. sudosh will
-	check the logdir for existance and correct permissions
+	check the logdir for existence and correct permissions
 	every time it is run, and create or correct as necessary.
 
 June 12th 2005:
@@ -34,7 +34,7 @@ June 12th 2005:
 	I've also ported sudosh-replay to C.
 
 	I decided to stop supporting old versions of sudosh.  Use
-	the newest release instead.  Anyone using 1.4.3 definately
+	the newest release instead.  Anyone using 1.4.3 definitely
 	needs to upgrade.  The new version of sudosh only works with
 	newer logfiles.
 
@@ -113,7 +113,7 @@ May 7th 2005:
         Sudosh now calls shells as if they were a login shell.  Sudosh
         automatically sets the environment variables LOGNAME, USER, TERM,
         SHELL and PATH.  Changed the way the shell is executed.  Added a
-	dash '-' before the arguement, i.e. -ksh  This allows the shell
+	dash '-' before the argument, i.e. -ksh  This allows the shell
 	to execute as if it were a login shell.
 
         Added a random string to the log files so that non-privileged users
@@ -206,7 +206,7 @@ October 24th 2004:
 	/etc/shells, but during the prepchild I was still using the old
 	SHELL environment variable.
 
-	I went a futher step and used the execle() syscall with an empty
+	I went a further step and used the execle() syscall with an empty
 	(char *) so that shell doesn't inherit any environment variables
 	from the calling user.
 

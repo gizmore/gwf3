@@ -16,7 +16,7 @@ $lang = array(
 	'btn_register' => 'Register',
 	
 
-	'err_register' => 'An error occured during the registration process.',
+	'err_register' => 'An error occurred during the registration process.',
 	'err_name_invalid' => 'Your chosen username is invalid.',
 	'err_name_taken' => 'The username is already taken.',
 	'err_country' => 'Your chosen country is invalid.',
@@ -24,7 +24,7 @@ $lang = array(
 	'err_token' => 'Your activation code is invalid. Maybe you are already activated.',
 	'err_email_invalid' => 'Your email is invalid.',
 	'err_email_taken' => 'Your email is already taken.',
-	'err_activate' => 'An error occured during activation. Did you click the activation link twice?',
+	'err_activate' => 'An error occurred during activation. Did you click the activation link twice?',
 		
 	'msg_activated' => 'Yoru account is now activated. Please try to login now.',
 	'msg_registered' => 'Thank you for registering.',

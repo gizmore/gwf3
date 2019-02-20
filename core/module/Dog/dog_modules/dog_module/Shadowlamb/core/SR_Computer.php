@@ -11,7 +11,7 @@ abstract class SR_Computer
 	
 	public function onFailed(SR_Player $player, $hits, $n)
 	{
-		$message = sprintf('Your %s. Hacking attemp against the %s box failed with %s hits.', $n, $this->getName(), $hits);
+		$message = sprintf('Your %s. Hacking attempt against the %s box failed with %s hits.', $n, $this->getName(), $hits);
 		Dog_Log::debug($message);
 		
 		$player->msg('5022');

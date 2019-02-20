@@ -39,7 +39,7 @@ $lang = array(
 //	'tt_log_404' => '',
 //	'tt_mail_404' => '',
 	'tt_CaptchaBGColor' => 'Captcha background color. 6 hex digits. Example: ffffff',
-	'tt_CaptchaFont' => 'Fontpaths for the GWF_Captcha, seperated by ","',
+	'tt_CaptchaFont' => 'Fontpaths for the GWF_Captcha, separated by ","',
 //	'tt_CaptchaWidth' => '',
 //	'tt_CaptchaHeight' => '',
 

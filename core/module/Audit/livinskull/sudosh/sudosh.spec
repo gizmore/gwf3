@@ -40,7 +40,7 @@ delimiter               = -
 syslog.priority         = LOG_NOTICE
 syslog.facility         = LOG_DAEMON
 
-# Allow Sudosh to execute -c arguements?  If so, what?
+# Allow Sudosh to execute -c arguments?  If so, what?
 -c arg allow = scp
 -c arg allow = sftp
 -c arg allow = /usr/libexec/openssh/sftp-server

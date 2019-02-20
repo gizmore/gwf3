@@ -25,7 +25,7 @@ final class PaymentPaypal_InitCheckout extends GWF_Method
 		   */
 
 		 /* The returnURL is the location where buyers return when a
-			payment has been succesfully authorized.
+			payment has been successfully authorized.
 			The cancelURL is the location buyers are sent to when they hit the
 			cancel button during authorization of payment during the PayPal flow
 		*/
@@ -50,8 +50,8 @@ final class PaymentPaypal_InitCheckout extends GWF_Method
 //		var_dump($nvpstr);
 		
 		 /* Make the call to PayPal to set the Express Checkout token
-			If the API call succeded, then redirect the buyer to PayPal
-			to begin to authorize payment.  If an error occured, show the
+			If the API call succeeded, then redirect the buyer to PayPal
+			to begin to authorize payment.  If an error occurred, show the
 			resulting errors
 			*/
 		$resArray = Paypal_Util::hash_call('SetExpressCheckout', $nvpstr);

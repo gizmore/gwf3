@@ -1,6 +1,6 @@
 <?php
 /**
- * Packed version of #examine for safing bandwith in Shadowclient.
+ * Packed version of #examine for safing bandwidth in Shadowclient.
  * @author gizmore
  */
 final class Shadowcmd_exx extends Shadowcmd

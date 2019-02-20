@@ -112,7 +112,7 @@ class WC_Site extends WC_SiteBase
 	}
 	
 	###################
-	### Convinience ###
+	### Convenience ###
 	###################
 	public function getID() { return $this->getVar('site_id'); }
 	public function isNoV1() { return $this->isOptionEnabled(self::NO_V1_SCRIPTS); }
@@ -943,9 +943,9 @@ class WC_Site extends WC_SiteBase
 	{
 		$classname = 'WCSite_'.$this->getVar('site_classname');
 		
-		$pathes = array('sites', 'sites/english', 'sites/french', 'sites/german', 'sites/korean', 'sites/polish', 'sites/spanish');
+		$paths = array('sites', 'sites/english', 'sites/french', 'sites/german', 'sites/korean', 'sites/polish', 'sites/spanish');
 		
-		foreach ($pathes as $path)
+		foreach ($paths as $path)
 		{
 			$path = sprintf(GWF_CORE_PATH.'module/WeChall/%s/%s.php', $path, $classname);
 			if (file_exists($path))
@@ -1118,7 +1118,7 @@ class WC_Site extends WC_SiteBase
 	}
 	
 	/**
-	 * A score change occured for this site/regat,
+	 * A score change occurred for this site/regat,
 	 * thus we need to recalc all scores influenced by this site. (or skip that part on DDOS)
 	 * @param GWF_User $user
 	 * @param WC_RegAt $regat

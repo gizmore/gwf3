@@ -55,7 +55,7 @@ final class GWF_ForumThread extends GDO
 	}
 
 	###################
-	### Convinience ###
+	### Convenience ###
 	###################
 	public function getPostCount() { return $this->getVar('thread_postcount'); }
 	public function getGroupID() { return $this->getVar('thread_gid'); }

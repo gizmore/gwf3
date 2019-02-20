@@ -593,7 +593,7 @@ abstract class SR_Store extends SR_Location
 		}
 		else
 		{
-			# Oops im beeing watched! :)
+			# Oops im being watched! :)
 			return $this->onStealOops($player, $itemname);
 		}
 		

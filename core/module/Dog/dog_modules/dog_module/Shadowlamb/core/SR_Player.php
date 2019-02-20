@@ -210,7 +210,7 @@ class SR_Player extends GDO
 	public function getNPCModifiersB() { return array(); }
 	
 	###################
-	### Convinience ###
+	### Convenience ###
 	###################
 	public function getID() { return $this->getInt('sr4pl_id'); }
 	public function getUID() { return $this->getVar('sr4pl_uid'); }

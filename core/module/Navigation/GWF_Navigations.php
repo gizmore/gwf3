@@ -8,7 +8,7 @@ final class GWF_Navigations extends GDO
 	const ENABLED = 0x01;
 	const NONPBSITE = 0x02;
 	const LOCKED = 0x04;
-//	const SUBNAVI = 0x08; // needet / maybe usefull for select?
+//	const SUBNAVI = 0x08; // needet / maybe useful for select?
 
 	public function getClassName() { return __CLASS__; }
 	public function getTableName() { return GWF_TABLE_PREFIX.'navigations'; }

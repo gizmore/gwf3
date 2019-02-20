@@ -40,7 +40,7 @@ final class GWF_ForumBoard extends GDO
 		);
 	}
 	
-	# Convinience
+	# Convenience
 	public function getID() { return $this->getVar('board_bid'); }
 	public function getGroupID() { return $this->getVar('board_gid'); }
 	public function getParentID() { return $this->getVar('board_pid'); }

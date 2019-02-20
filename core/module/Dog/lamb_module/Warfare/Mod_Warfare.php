@@ -41,9 +41,9 @@ final class DOGMOD_Warfare extends Dog_Module
 	###############
 	### Getters ###
 	###############
-	public function getTriggers($priviledge, $showHidden=true)
+	public function getTriggers($privilege, $showHidden=true)
 	{
-		switch ($priviledge)
+		switch ($privilege)
 		{
 			case 'admin': return array('probe', 'autoprobe', 'probe_out');
 			default: return array();

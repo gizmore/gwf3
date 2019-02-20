@@ -61,7 +61,7 @@ final class Module_Payment extends GWF_Module
 	public function cfgOrdersPerPage() { return $this->getModuleVarInt('orders_per_page', 50); }
 	
 	###################
-	### Convinience ###
+	### Convenience ###
 	###################
 	public static function displayPrice($price, $currency=true)
 	{

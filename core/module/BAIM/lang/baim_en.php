@@ -54,9 +54,9 @@ The reason that Playray got chosen was a pure accident. I did not know the site 
 		"Hello %s\r\n\r\n".
 		"Thank you very much for your purchase of B.AiM\r\n\r\n".
 		"Introduction:\r\n".
-		"Start B.AiM.exe. Move the window above the table, so the dotted line matches the edges of the pool table (Experiment a bit for your best experience). Alternatively you can click View->Auto_Adjust to snap the windows autmatically. As soon as you placed the white ball, move your mouse away from the table to locate the postion of the balls on table. Afterwards you can start to aim and hit balls. It is recommended to disable shadows for a better rate of scanning the balls!\r\n\r\n".
+		"Start B.AiM.exe. Move the window above the table, so the dotted line matches the edges of the pool table (Experiment a bit for your best experience). Alternatively you can click View->Auto_Adjust to snap the windows autmatically. As soon as you placed the white ball, move your mouse away from the table to locate the position of the balls on table. Afterwards you can start to aim and hit balls. It is recommended to disable shadows for a better rate of scanning the balls!\r\n\r\n".
 		"Known bugs:\r\n".
-		"On some systems it might happend that the game slows down and balls move slowly. This is a known problem of some Java versions and not a bug caused by B.AiM! It should help to install the latest Java Runtime Environment.\r\n\r\n".
+		"On some systems it might happened that the game slows down and balls move slowly. This is a known problem of some Java versions and not a bug caused by B.AiM! It should help to install the latest Java Runtime Environment.\r\n\r\n".
 		"The program is free from any malware! In case your antivirus solution triggers an alert, it is wrong!".
 		"In case you got B.AiM from a different source, you should be careful though.\r\n\r\n".
 		"Have fun with B.AiM\r\n". 

@@ -366,7 +366,7 @@ final class WeChall_LinkedSites extends GWF_Method
 			return '';
 		}
 		
-		// TODO: Replace with appropiate PHP function
+		// TODO: Replace with appropriate PHP function
 		foreach ($array as $siteid => $stub)
 		{
 			break;

@@ -37,7 +37,7 @@ final class Seattle_Hotelier extends SR_TalkingNPC
 			case 'nego':
 				
 				$this->rply('nego1');
-// 				$this->reply('Negotiation. The art of getting better deals by beeing smart in a discussion.');
+// 				$this->reply('Negotiation. The art of getting better deals by being smart in a discussion.');
 				if ($player->getBase('negotiation') < 0)
 				{
 					if (!$player->hasTemp(self::TEMP_WORD2))

@@ -188,7 +188,7 @@ final class Dog_ScumGame
 		# Cards are on table.
 		if (count($cc) > 0)
 		{
-			# Played same ammount of cards:
+			# Played same amount of cards:
 			if (count($cc) !== count($cards)) {
 				return 'You have to play the same number of cards';
 			}

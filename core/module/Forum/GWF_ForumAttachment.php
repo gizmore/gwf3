@@ -57,7 +57,7 @@ final class GWF_ForumAttachment extends GDO
 	}
 	
 	###################
-	### Convinience ###
+	### Convenience ###
 	###################
 	public function isGuestView() { return $this->isOptionEnabled(self::GUEST_VISIBLE); }
 	public function isGuestDown() { return $this->isOptionEnabled(self::GUEST_DOWNLOAD); }

@@ -157,7 +157,7 @@ class GWF_NaviInstall
 		$pm = array(
 		//	'navis_id' => '1', # AUTO INCREMENT
 			'navis_name' => 'PageMenu',
-			'navis_pid' => '0', # dont have parent Navigation
+			'navis_pid' => '0', # don't have parent Navigation
 		//	'navi_position' => '0',
 		//	'navis_gid' => '', # create groupid for PageMenuNavigation?
 		//	'navis_count' => 0, # default
@@ -199,7 +199,7 @@ class GWF_NaviInstall
 			$nid = '1'; # TODO: get $modulename-Navigation ID
 			$i = 0; # counter variable used for position
 
-			# TODO: only check values here, dont insert
+			# TODO: only check values here, don't insert
 			if (is_array($pbmodule))
 			foreach ($pbmodule as $methodname => $methodlinks)
 			{

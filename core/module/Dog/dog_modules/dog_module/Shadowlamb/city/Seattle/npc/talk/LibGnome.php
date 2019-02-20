@@ -151,7 +151,7 @@ final class Seattle_LibGnome extends SR_TalkingNPC
 		$quest instanceof Quest_Delaware_Exams5;
 // 		if (!$quest->isInQuest($player))
 // 		{
-// 			return $this->reply('You came for a pot of fluid Auris? ... I am too busy now. Come back tommorow.');
+// 			return $this->reply('You came for a pot of fluid Auris? ... I am too busy now. Come back tomorrow.');
 // 		}
 		
 		$auris = $player->getInvItemByName('Auris');

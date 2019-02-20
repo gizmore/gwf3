@@ -54,7 +54,7 @@ final class GWF_Order extends GDO implements GWF_Sortable, GWF_Searchable
 		);
 	}
 	###################
-	### Convinience ###
+	### Convenience ###
 	###################
 	public function getOrderID() { return $this->getVar('order_id'); }
 	public function getOrderCartID() { return $this->getVar('order_cartid'); }

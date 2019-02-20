@@ -29,7 +29,7 @@ if ($argc !== 1)
 
 $name = strtolower($argv[0]);
 
-# Block important core plugins from beeing disabled.
+# Block important core plugins from being disabled.
 if (in_array($name, $coreplugs, true))
 {
 	$plugin->rply('core_plugin', array($name));

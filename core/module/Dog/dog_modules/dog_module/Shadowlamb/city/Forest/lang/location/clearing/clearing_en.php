@@ -1,6 +1,6 @@
 <?php
 $lang = array(
-	'found' => 'You found a suprisingly sunny clearing within the forest.',
+	'found' => 'You found a surprisingly sunny clearing within the forest.',
 	'enter' => 'You approach the clearing and spot a big rock in the middle of it. A sword is stuck in the stone and you feel like in a bad movie now.',
 	'enter2' => 'You approach the clearing and spot a big rock in the middle of it. You see a big stone where a sword was stuck.',
 		

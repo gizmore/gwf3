@@ -98,7 +98,7 @@ final class WeChall_RemoteUpdate extends GWF_Method
 		{
 			$width=max($width,strlen($string));
 		}
-		# Create image width dependant on width of the string
+		# Create image width dependent on width of the string
 		$width = imagefontwidth($font_size)*$width + 2*$padding;
 		// Set height to that of the font
 		$height = imagefontheight($font_size)*count($ts) + 2*$padding;

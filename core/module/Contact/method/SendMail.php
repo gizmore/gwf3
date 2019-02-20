@@ -1,6 +1,6 @@
 <?php
 /**
- * Send email to an arbitary user.
+ * Send email to an arbitrary user.
  * @author gizmore
  */
 final class Contact_SendMail extends GWF_Method

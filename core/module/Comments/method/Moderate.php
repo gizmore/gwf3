@@ -1,7 +1,7 @@
 <?php
 /**
  * Moderate the comments.
- * Permission is granted via hashcodes, so we can moderate without beeing logged in.
+ * Permission is granted via hashcodes, so we can moderate without being logged in.
  * @author gizmore
  * @version 3.0
  * @since 3.0

@@ -16,7 +16,7 @@ $lang = array(
 		
 	'sr1' => 'I´ve heard from you, but well... I don´t have a real job.',
 	'sr2' => 'Well... we plan a big Gathering Party this year, and could need some pussy.',
-	'sr3' => "If you could \x02invite\x02 %s beatiful chicks, you´d be of help, at last.",
+	'sr3' => "If you could \x02invite\x02 %s beautiful chicks, you´d be of help, at last.",
 	'confirm' => 'So?',
 	'yes' => 'Great, You will be invited too!',
 	'no' => 'You look like a cow!',

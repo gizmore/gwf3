@@ -4,7 +4,7 @@ $lang = array(
 	'cfg_vserv_sellmode' => 'Show in menu as &quot;Sell Engine&quot;',
 
 	# Errors / Messages
-	'err_zip' => 'An error occured in the ZIP extension in %s Line %s.',
+	'err_zip' => 'An error occurred in the ZIP extension in %s Line %s.',
 	'err_no_zip' => 'The ZIP extension is not available. You need to recompile PHP.',
 	'msg_zipped' => 'The site has been bundled: %s; Size %s - %s files.',
 	

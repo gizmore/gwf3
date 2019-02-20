@@ -25,7 +25,7 @@ final class Chicago_HotelWoman extends SR_TalkingNPC
 			case 'magic': return $this->reply('Most of my friends are not from a magic race.');
 			case 'hire': return $this->reply('I am not interested in anything like that.');
 			case 'blackmarket': return $this->reply('I have no needs for illegal goods.');
-			case 'bounty': return $this->reply('It is illegal to set a price on a human beeing.');
+			case 'bounty': return $this->reply('It is illegal to set a price on a human being.');
 			case 'seattle': return $this->reply('I live in Seattle, i am just here this weekend for my job.');
 			case 'alchemy': return $this->reply('I do not believe in such hocus pocus waters.');
 			case 'invite': return $this->reply('I am not intersted in such things.');

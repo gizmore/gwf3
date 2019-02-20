@@ -18,7 +18,7 @@ final class Seattle_DElve2 extends SR_TalkingNPC
 			case 'experiment':
 			case 'experiments':
 				$this->rply('experiments');
-// 				$this->reply("I am sure in the upper floors of the Renraku building we can find out what exactly happend.");
+// 				$this->reply("I am sure in the upper floors of the Renraku building we can find out what exactly happened.");
 				if (!$quest2->isAccepted($player))
 				{
 					$quest2->accept($player);

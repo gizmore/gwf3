@@ -34,14 +34,14 @@ final class Shadowcmd_party_order extends Shadowcmd
 		if (false === ($a = $party->getMemberByArg($args[0])))
 		{
 			$player->msg('1064');
-// 			$player->message('Your first parameter does not adress a party member.');
+// 			$player->message('Your first parameter does not address a party member.');
 			return false;
 		}
 		
 		if (false === ($b = $party->getMemberByArg($args[1])))
 		{
 			$player->msg('1064');
-// 			$player->message('Your second parameter does not adress a party member.');
+// 			$player->message('Your second parameter does not address a party member.');
 			return false;
 		}
 		

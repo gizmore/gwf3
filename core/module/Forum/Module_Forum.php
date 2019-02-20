@@ -1,6 +1,6 @@
 <?php
 /**
- * My forum. Attemp 2 :)
+ * My forum. Attempt 2 :)
  * @author gizmore
  */
 final class Module_Forum extends GWF_Module

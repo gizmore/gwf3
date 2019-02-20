@@ -20,7 +20,7 @@ $lang = array(
 
 	'title2' => 'Individual Arrangements',
 	'text2' =>
-		'In addition to the regular tour, individual arrangements for different operators are beeing created regularly.<br/>'.
+		'In addition to the regular tour, individual arrangements for different operators are being created regularly.<br/>'.
 		'Thus, events can be musically aligned according to the theme.',
 );
 ?>

@@ -54,7 +54,7 @@ syslog.priority         = LOG_INFO
 syslog.facility         = LOG_LOCAL2
 .RE
 
-# Allow Sudosh to execute -c arguements?  If so, what?
+# Allow Sudosh to execute -c arguments?  If so, what?
 .RE
 -c arg allow = scp
 .RE

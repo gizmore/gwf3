@@ -39,7 +39,7 @@ final class Shadowcmd_running_mode extends Shadowcmd
 			self::rply($player, '5077');
 			self::rply($player, '5078');
 // 			$bot->reply('You are now playing running mode. This means unlimited stats but instant death. Good luck!');
-// 			$bot->reply('It is advised you #enable norl now too, to prevent your char from beeing kidnapped with the #rl command!');
+// 			$bot->reply('It is advised you #enable norl now too, to prevent your char from being kidnapped with the #rl command!');
 			return true;
 		}
 		return false;

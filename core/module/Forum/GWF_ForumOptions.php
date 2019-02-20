@@ -39,7 +39,7 @@ final class GWF_ForumOptions extends GDO
 	}
 	
 	###################
-	### Convinience ###
+	### Convenience ###
 	###################
 	public function isSubscrHidden() { return $this->isOptionEnabled(self::HIDE_SUBSCR); }
 	public function isSubscribeAll() { return $this->getVar('fopt_subscr') === self::SUBSCRIBE_ALL; }

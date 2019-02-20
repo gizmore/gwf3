@@ -120,7 +120,7 @@ final class WeChall_API_Bot extends GWF_Method
 		}
 
 		else {
-			die( "The user doesnt exist at https://www.wechall.net" );
+			die( "The user doesn't exist at https://www.wechall.net" );
 		}
 		
 //		if (false !== ($error = $this->module->isExcludedFromAPI($user))) {

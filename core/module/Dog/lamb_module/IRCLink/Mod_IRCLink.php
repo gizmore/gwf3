@@ -46,9 +46,9 @@ final class DOGMOD_IRCLink extends Dog_Module
 	###############
 	### Getters ###
 	###############
-	public function getTriggers($priviledge, $showHidden=true)
+	public function getTriggers($privilege, $showHidden=true)
 	{
-		switch ($priviledge)
+		switch ($privilege)
 		{
 			case 'admin': return array('irc_link', 'irc_links_reload', 'irc_links_reset');
 			default: return array();

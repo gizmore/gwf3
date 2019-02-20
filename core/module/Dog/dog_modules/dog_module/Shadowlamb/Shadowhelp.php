@@ -84,7 +84,7 @@ final class Shadowhelp
 					'magic' => "The magic attribute raises your max_mp by ".SR_Player::MP_PER_MAGIC.'. It also increases your MP refresh rate slightly.',
 					'strength' => "The strength attribute raises attack for melee weapons. It also raises the max weight you can carry.",
 					'quickness' => "Quickness raises your defense by increasing your chance to evade attacks. Also your busytime will decrease.",
-					'wisdom' => "Wisdom increases duration of magic spells and increases your chance for successfull spell casting.",
+					'wisdom' => "Wisdom increases duration of magic spells and increases your chance for successful spell casting.",
 					'intelligence' => "Intelligence increases the power of your magic spells. It also increases your magic defense.",
 					'charisma' => "Charisma raises the time that hirelings follow you. It also betters the sell(+".Shadowfunc::SELL_PERCENT_CHARISMA."%) and buy(-".Shadowfunc::BUY_PERCENT_CHARISMA."%) prices for your character. You currently sell to {$sell_rate}% and buy to {$buy_rate}%.",
 					'luck' => "Luck increases the chance of better drops.",
@@ -314,12 +314,12 @@ final class Shadowhelp
 						'party' => 'Player command. Usage. #(p)arty. View your party status.',
 						'inventory' => 'Player command. Usage: #(i)nventory [<page|search>] <[page]>. View or search your inventory. See',
 						array(
-							'compare' => 'Player command. Usage: #(c)o(mp)are <item_name|inv_id|S_<view_id>|item_name> [<item2:inv_id|S_<view_id>|item_name>]. Will compare item1 with currently equiped item, or item2 if specified',
+							'compare' => 'Player command. Usage: #(c)o(mp)are <item_name|inv_id|S_<view_id>|item_name> [<item2:inv_id|S_<view_id>|item_name>]. Will compare item1 with currently equipped item, or item2 if specified',
 							'swap' => 'Player command. Usage: #(sw)ap <item1> <item2>. Will swap inventory item position',
 							'sort' => 'Use the swap command to sort your inventory.',
 						),
 						'cyberware' => 'Player command. Usage: #(cy)berware [<cy_id>]. View your cyberware.',
-						'effects' => 'Player command. Usage: #(ef)fects. View your current effects. For example after beeing the target of a spell or drinking a potion.',
+						'effects' => 'Player command. Usage: #(ef)fects. View your current effects. For example after being the target of a spell or drinking a potion.',
 						'examine' => 'Player command. Usage: #(ex)amine <inv_id|'.$eqs.'|item_name>. Examine your items.',
 						'show' => 'Player command. Usage: #show [<player>] <inv_id|'.$eqs.'|item_name>. Show another player the examine string of your items, or behave like #examine.',
 						'known_knowledge' => "Player command. Usage: #known_knowledge|#kk. List your known knowledge. Knowledge can help you on some quests but it is not required.",
@@ -509,7 +509,7 @@ final class Shadowhelp
 							'clan_manage' => 'ClanLeader command. Usage: #manage <buywealth|buystorage|buymembers|slogan>. Manage your clan size and motto.',
 							'clan_request' => 'Player command. Usage: #request <player>. Join another player\'s clan.',
 							'clan_accept' => 'ClanLeader command. Usage #accept <player>. Accept another player\'s clan join request.',
-							'clan_abondon' => 'Player command. Usage: #abondon. Abondon or even destroy your current clan. The clan has to be emptied for beeing destroyed.',
+							'clan_abondon' => 'Player command. Usage: #abandon. Abandon or even destroy your current clan. The clan has to be emptied for being destroyed.',
 							'clan_toggle' => 'ClanLeader command. Usage #toggle <moderation>. Switch various clan setting bits.',
 							'clan_pushy' => 'Player command. Usage: #pushy <amt>. Deposit money into your clan\'s bank.',
 							'clan_popy' => 'Player command. Usage: #popy <amt>. Withdraw money out of your clan\'s bank.',
@@ -531,7 +531,7 @@ final class Shadowhelp
 						
 					'notations' => 'Notations',
 					array(
-						'level_notation' => 'Attributes, skills, spells and similiar have the N(M) notation. N is the base level and (M) is the adjusted level. 2(3) means +1 on that field with an effective value of 3.',
+						'level_notation' => 'Attributes, skills, spells and similar have the N(M) notation. N is the base level and (M) is the adjusted level. 2(3) means +1 on that field with an effective value of 3.',
 						'player_notation' => 'Notations for players',
 						array(
 							'human_notation' => 'The notation for human players is Nickname{<server>}. @see npc_notation.',
@@ -633,8 +633,8 @@ final class Shadowhelp
 						'lock_option' => 'Dis/enable equipment lock, which determines how your (effective) level is computed. When you lock your equipment you cannot change it in combat.',
 						'bot_option' => 'Dis/enable the bot flag for your player. This has no effect on the game, just that [BOT] is shown behind your playername as information.',
 						'norl_option' => 'You can dis/enable this option to specify if it is allowed to steal your leadership with the #rl command.',
-						'norefresh_option' => 'You can enable this option to supress HP/MP refreshing messages.',
-						'noautolook_option' => 'You can enable this option to supress auto look, and arrival / leave messages.',
+						'norefresh_option' => 'You can enable this option to suppress HP/MP refreshing messages.',
+						'noautolook_option' => 'You can enable this option to suppress auto look, and arrival / leave messages.',
 					),
 					
 					'glossary' => 'Some glossary of terms and keywords used',

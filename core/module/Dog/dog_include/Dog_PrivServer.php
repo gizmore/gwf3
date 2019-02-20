@@ -1,6 +1,6 @@
 <?php
 /**
- * User priviledges on a server.
+ * User privileges on a server.
  * @author gizmore
  * @version 4.0
  */

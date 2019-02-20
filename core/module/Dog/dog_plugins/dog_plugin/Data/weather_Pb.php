@@ -3,7 +3,7 @@ $lang = array(
 	'en' => array(
 		'help' => 'Usage: %CMD% <some location>. Get weather information from google.',
 		'err_google' => 'Cannot connect to google.',
-		'err_decode' => 'An error occured in the response processor.',
+		'err_decode' => 'An error occurred in the response processor.',
 		'weather' => "Wetter in \x02%s\x02: %s, %s°C, %s.",
 	),
 );

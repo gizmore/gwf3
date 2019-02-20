@@ -26,7 +26,7 @@ $lang = array(
 	'err_order' => 'The Order could not be found.',
 	'err_token' => 'Your '.GWF_SITENAME.' token is invalid.',
 	'err_xtoken' => 'Your %s token is invalid.',
-	'err_crit' => 'An error occured while we executed your order.<br/>Please contact the site admin and mention your order token: %s.',
+	'err_crit' => 'An error occurred while we executed your order.<br/>Please contact the site admin and mention your order token: %s.',
 
 	# Messages
 	'msg_paid' => 'Thank you for your purchase. Your order has been executed successfully.',

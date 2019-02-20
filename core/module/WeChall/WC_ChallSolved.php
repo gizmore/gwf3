@@ -110,7 +110,7 @@ final class WC_ChallSolved extends GDO
 	
 	
 	###################
-	### Convinience ###
+	### Convenience ###
 	###################
 	/**
 	 * @return WC_Challenge

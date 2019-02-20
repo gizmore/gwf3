@@ -11,7 +11,7 @@ $lang = array(
 		'C++ is a compiled programming language, that means the sourcecode gets compiled into an executeable.<br/>'.
 		'Thus, to code in C++, you will need a <i>compiler</i>, that generates programs out of C/++ sourcecode.<br/>'.
 		'<br/>'.
-		'In this tutorial we will setup the mingw compiler, and use Code::Blocks as an IDE (Integrated Developement Environment).<br/>'.
+		'In this tutorial we will setup the mingw compiler, and use Code::Blocks as an IDE (Integrated Development Environment).<br/>'.
 		'<br/>'.
 		'So folks, what do we need to get started?<br/>'.
 		'<br/>'.
@@ -28,7 +28,7 @@ $lang = array(
 		'Installing Code::Blocks is easy as well.<br/>'.
 		'I chose the binary windows package without MinGw. It seems possible to just use the package that includes MinGW, and skip installing MinGW yourself.<br/>'.
 		'When running Code::Blocks first time, it will prompt you about the default compiler to use. Here you choose Gnu-GCC-Compiler (which should be autodetected).<br/>'.
-		'If MinGW gets not detected, you have to set it up manually, which is easy, so dont worry. Go to the menu, <i>Settings->Compiler and Debugger</i>, select the gcc compiler and edit the toolchain executables (make it point to your MinGW directory).',
+		'If MinGW gets not detected, you have to set it up manually, which is easy, so don't worry. Go to the menu, <i>Settings->Compiler and Debugger</i>, select the gcc compiler and edit the toolchain executables (make it point to your MinGW directory).',
 
 	'box_4_t' => 'Compiling hello world',
 	'box_4_b' =>

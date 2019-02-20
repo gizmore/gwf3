@@ -193,7 +193,7 @@ abstract class SR_NPCBase extends SR_Player
 	}
 	
 	/**
-	 * Create a new enemy party with arbitary amount of enemies.
+	 * Create a new enemy party with arbitrary amount of enemies.
 	 * @see SR_NPCBase::spawn
 	 * @return SR_Party
 	 */

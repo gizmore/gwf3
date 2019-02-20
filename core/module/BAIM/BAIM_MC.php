@@ -26,7 +26,7 @@ final class BAIM_MC extends GDO
 		);
 	}
 	###################
-	### Convinience ###
+	### Convenience ###
 	###################
 	public function getMC() { return $this->getVar('bmc_mc'); }
 	public function getToken() { return $this->getVar('bmc_token'); }

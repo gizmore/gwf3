@@ -133,7 +133,7 @@ final class Module_WeChall extends GWF_Module
 	}
 	
 	/**
-	 * We succesfully logged in and add your last location as link.
+	 * We successfully logged in and add your last location as link.
 	 * @param $user
 	 * @param $args
 	 * @return unknown_type
@@ -404,7 +404,7 @@ final class Module_WeChall extends GWF_Module
 	{
 		# more vars
 		$today = date('md');
-		$tommorow = date('md', time() + GWF_Time::ONE_DAY);
+		$tomorrow = date('md', time() + GWF_Time::ONE_DAY);
 		$yesterday = date('md', time() - GWF_Time::ONE_DAY);
 		
 		# Output
@@ -427,7 +427,7 @@ final class Module_WeChall extends GWF_Module
 			elseif ($date === $today) {
 				$day = '[b]'.WC_HTML::lang('Today').'[/b]';
 			}
-			elseif ($date === $tommorow) {
+			elseif ($date === $tomorrow) {
 				$day = WC_HTML::lang('Tommorow');
 			}
 			elseif ($date < $today) {

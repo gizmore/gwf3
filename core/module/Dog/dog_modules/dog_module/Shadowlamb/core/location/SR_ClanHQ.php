@@ -533,7 +533,7 @@ abstract class SR_ClanHQ extends SR_Location
 		if ($amt <= 0)
 		{
 			$player->msg('1062');
-// 			$player->message('Please push a postive amount of nuyen.');
+// 			$player->message('Please push a positive amount of nuyen.');
 			return false;
 		}
 		
@@ -600,7 +600,7 @@ abstract class SR_ClanHQ extends SR_Location
 		if ($amt <= 0)
 		{
 			$player->msg('1062');
-// 			$player->message('Please pop a postive amount of nuyen.');
+// 			$player->message('Please pop a positive amount of nuyen.');
 			return false;
 		}
 		$damt = Shadowfunc::displayNuyen($amt);

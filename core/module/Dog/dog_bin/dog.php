@@ -26,7 +26,7 @@ $gwf = new GWF3(NULL, array(
 	'no_session' => true, # Suppress session creation?
 	'store_last_url' => false, # Save the current URL into session?
 	'ignore_user_abort' => false, # Ignore abort and continue the script on browser kill?
-	'kick_banned_ip' => false, # Kick banned IP adress by temp_ban file?
+	'kick_banned_ip' => false, # Kick banned IP address by temp_ban file?
 	'env' => isset($argv[5]) ? $argv[5] : 'prod',
 	'unix_user' => isset($argv[6]) ? $argv[6] : 'root',
 ));

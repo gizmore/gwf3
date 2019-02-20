@@ -117,7 +117,7 @@ final class WC_RegAt extends GDO
 	}
 	
 	###################
-	### Convinience ###
+	### Convenience ###
 	###################
 	public function getOnsiteScore() { return $this->getVar('regat_onsitescore'); }
 	public function getOnsiteRank() { return $this->getVar('regat_onsiterank'); }

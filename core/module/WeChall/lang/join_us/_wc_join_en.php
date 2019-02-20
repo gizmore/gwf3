@@ -36,7 +36,7 @@ $lang = array(
 		'1:email/username combination exists.<br/>'.
 		'0:combination does not exist or authkey wrong.<br/>'.
 		'<br/>'.
-		'Please make sure that your users have the possibilty to change their emails or at least have some "used"/existing email address.<br/>'.
+		'Please make sure that your users have the possibility to change their emails or at least have some "used"/existing email address.<br/>'.
 		'To link accounts to wechall you have to confirm linking via this email address. (if they registered here with the same email there is no need to send mails).<br/>'.
 		'Also ensure that you do case-sensitive checks to avoid potential exploitation.<br/>'.
 		'<br/>'.
@@ -69,7 +69,7 @@ $lang = array(
 		'<br/>'.
 		'making use of authkey is optional here. If you have public accessible profiles you can just ignore it.<br/>'.
 		'<br/>'.
-		'The format of the output does not matter, since we write seperate code for each site.<br/>'.
+		'The format of the output does not matter, since we write separate code for each site.<br/>'.
 		'Your output must contain at least userscore and maxscore. So the output of this script could be like "userscore:maxscore".<br/>'.
 		'You can also output something like "username has solved solved of total and is rank rank of usercount"<br/>'.
 		'(see point 5)<br/>'.

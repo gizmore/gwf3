@@ -29,7 +29,7 @@ final class Quest_Redmond_Shrine extends SR_Quest
 		if ($player->hasSkill('searching'))
 		{
 			$player->message($this->lang('strong'));
-// 			$player->message('The monk says: "You are really strong my '.$son.', please take this donation as a sign of deep respect to your greatful skills and patience."');
+// 			$player->message('The monk says: "You are really strong my '.$son.', please take this donation as a sign of deep respect to your grateful skills and patience."');
 			$player->message($this->lang('nyward', array(300)));
 			$player->giveNuyenEvent(300);
 // 			$player->message('You received a donation of 300 nuyen.');

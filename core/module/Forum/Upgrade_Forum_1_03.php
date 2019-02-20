@@ -2,7 +2,7 @@
 function Upgrade_Forum_1_03(Module_Forum $module)
 {
 	var_dump('TRIGGERED Upgrade_Forum_1_03');
-	var_dump('New threads are forced beeing unread, when added to group.');
+	var_dump('New threads are forced being unread, when added to group.');
 	
 	$db = gdo_db();
 	$threads = GWF_TABLE_PREFIX.'forumthread';

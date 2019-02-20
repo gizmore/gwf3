@@ -16,7 +16,7 @@ $lang = array(
 'yes' => 'Hmm yes...',
 'no' => 'Hmm no...',
 'negotiation' => 'I can not afford to negotiate much in these times.',
-'hello' => "Hello my Name is Lillien. I'm the owner of this flowerstore. Isn't it beautiful in here? Look around and enjoy yourself, maybe you find a special flower for your {$b}love{$b}. Flowers somtimes say more than words.",
+'hello' => "Hello my Name is Lillien. I'm the owner of this flowerstore. Isn't it beautiful in here? Look around and enjoy yourself, maybe you find a special flower for your {$b}love{$b}. Flowers sometimes say more than words.",
 'default' => 'How can i help you?',
 'love' => 'Oh stop you :^)',
 );
