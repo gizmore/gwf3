@@ -12,8 +12,7 @@ final class PM_Delete extends GWF_Method
 		if (false === ($pm = GWF_PM::getByID($id))) {
 			return $this->module->error('err_pm');
 		}
-		if ($token != ($pm->getHashcode())) {
-			echo $pm->getHashcode();
+		if ($token !== $pm->getHashcode()) {
 			return $this->module->error('err_pm');
 		}
 		if (false === ($user = GWF_User::getByID($uid))) {
