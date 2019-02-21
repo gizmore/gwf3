@@ -34,7 +34,7 @@ function blightInstall()
 		"CREATE TABLE IF NOT EXISTS blight (".
 		"sessid INT(11) UNSIGNED PRIMARY KEY NOT NULL, ".
 		"password CHAR(32) CHARACTER SET ascii COLLATE ascii_general_ci NOT NULL, ".
-		"attempt INT(11) UNSIGNED NOT NULL DEFAULT 0 ".
+		"attemp INT(11) UNSIGNED NOT NULL DEFAULT 0 ".
 		") ENGINE=myISAM";
 	return $db->queryWrite($query);
 }
@@ -74,7 +74,7 @@ function blightCountUp()
 {
 	$db = blightDB();
 	$sessid = GWF_Session::getSessSID();
-	$query = "UPDATE blight SET attempt=attempt+1 WHERE sessid=$sessid";
+	$query = "UPDATE blight SET attemp=attemp+1 WHERE sessid=$sessid";
 	return $db->queryWrite($query);
 }
 
@@ -87,7 +87,7 @@ function blightSetAttempt($attempt)
 	$db = blightDB();
 	$attempt = (int)$attempt;
 	$sessid = GWF_Session::getSessSID();
-	$query = "UPDATE blight SET attempt=$attempt WHERE sessid=$sessid";
+	$query = "UPDATE blight SET attemp=$attempt WHERE sessid=$sessid";
 	return $db->queryWrite($query);
 }
 
@@ -122,7 +122,7 @@ function blightAttemp()
 {
 	$db = blightDB();
 	$sessid = GWF_Session::getSessSID();
-	$query = "SELECT attempt FROM blight WHERE sessid=$sessid";
+	$query = "SELECT attemp FROM blight WHERE sessid=$sessid";
 	if (false === ($result = $db->queryFirst($query)))
 	{
 		return -1;
