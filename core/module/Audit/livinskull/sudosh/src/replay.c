@@ -277,7 +277,7 @@ int main(int argc, char **argv, char **environ)
 	if (sscanf(argv[0], match, from, to, &e, randstr) != 4) {
 	    LL();
 	    fprintf(stderr, "%s: invalid format: %s\n", progname, argv[0]);
-	    fprintf(stderr, "%s: the appropriate format is %s\n", progname,
+	    fprintf(stderr, "%s: the appropiate format is %s\n", progname,
 		    match);
 	    exit(EXIT_FAILURE);
 	}

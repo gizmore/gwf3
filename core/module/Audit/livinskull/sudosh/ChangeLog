@@ -8,8 +8,8 @@
 2004-09-14 Douglas Richard Hanks, Jr. <dhanks@gmail.com>
 	* Submitted work to SourceForce.
 	* Submitted work to FreshMeat.
-	* Submitted Official Announcement to SUDO mailing list.
-	* Submitted Official Announcement to SAGE mailing list.
+	* Submitted Offical Announcement to SUDO mailing list.
+	* Submitted Offical Announcement to SAGE mailing list.
 
 2004-09-24 Douglas Richard Hanks, Jr. <dhanks@gmail.com>
 	* First stable release.
@@ -19,7 +19,7 @@
 	* Added support for FreeBSD.
 
 2004-10-01 Douglas Richard Hanks, Jr. <dhanks@gmail.com>
-	* Deleted sudosh.  Perl wasn't an appropriate programming lanaguage
+	* Deleted sudosh.  Perl wasn't an appropiate programming lanaguage
 	  for this project.
 	* Ported sudosh to C.
 
@@ -39,8 +39,8 @@
 	* Added GNU Autoconf support for cross-platform support.
 	* Ported code to work in Solaris environment.
 	* Submitted new release to SourceForge and FreshMeat.
-	* Submitted Official Announcement to SUDO mailing list.
-	* Submitted Official Announcement to SAGE mailing list.
+	* Submitted Offical Announcement to SUDO mailing list.
+	* Submitted Offical Announcement to SAGE mailing list.
 
 2004-10-12 Douglas Richard Hanks, Jr. <dhanks@gmail.com>
 	* Corrected keystroke bug in sudosh.c.
@@ -157,7 +157,7 @@
 	  SHELL and PATH.
 	* Changes directory to user's HOME directory.
 	* Changed the way the shell is executed.  Added a dash '-' before the
-	  argument, i.e. -ksh  This allows the shell to execute as if it were
+	  arguement, i.e. -ksh  This allows the shell to execute as if it were
 	  a login shell.
 	* Added a random string to the log files so that non-privileged users
 	  cannot delete their log files.
@@ -180,7 +180,7 @@
 
 2005-05-12 Douglas Richard Hanks, Jr. <dhanks@gmail.com>
 	* Corrected delimiter bug in sudosh-replay.
-	* Removed the dependency for the TERM environment variable.
+	* Removed the dependancy for the TERM environment variable.
 	  Defaults to "dumb" if the TERM cannot be resolved.
 
 2005-05-19 Douglas Richard Hanks, Jr. <dhanks@gmail.com>
