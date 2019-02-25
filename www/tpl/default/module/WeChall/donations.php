@@ -40,13 +40,13 @@ Sum:    €704,00
 Goal:   €350,00
 </pre>
 
-<pre>Donations 2019:    0 donations
-Sum:    €  5,00
+<pre>Donations 2019:    1 donations
+Sum:    € 20,00
 Goal:   €350,00
 </pre>
 
-<pre>Totals:           14 donations
-Sum:    € 1009,00
+<pre>Totals:           15 donations
+Sum:    € 1026,00
 Goal:   € 1050,00
 </pre>
 
@@ -81,6 +81,7 @@ We currently have the following ca. expenses for WeChall:<br/>
 <li>1.Aug.2018 - <em>&quot;That's nothing but here's some €€€ for this awesome website!&quot;</em> – ???</li>
 <li>8.Aug.2018 - <em>&quot;Thanks for everything so far! btw. what is the solution for shadowlamb 2, 3, &4?&quot;</em> - <a class="donor" href="/profile/space">space</a></li>
 <li>31.Oct.2018 - <em>&quot;coding , a neverending dream greetz to All :-*&quot;</em> – <a class="donor" href="/profile/occasus">occasus</a></li>
+<li>25.Feb.2019 – <em>&quot;Is this enough for "Stalking"?&quot;</em> – ???</li>
 </ol>
 </div>
 
