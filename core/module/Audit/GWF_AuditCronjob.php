@@ -50,17 +50,23 @@ final class GWF_AuditCronjob extends GWF_Cronjob
 		}
 	}
 	
+	
+	
+	/**
+	 * Mar 24 18:06:54 176.58.89.195 -sudosh: 30623:test
+	 * 
+	 */
 	private static function parseSudoshRow(Module_Audit $module, $row, $fh2)
 	{
 // 		echo $row;
-		if (false === ($row2 = Common::substrFrom($row, '-sudosh[', false)))
+		if (false === ($row2 = Common::substrFrom($row, '-sudosh: ', false)))
 		{
 			return self::error('Invalid line: '.$row);
 		}
-		elseif (false === ($row2 = Common::substrFrom($row2, ']: ', false)))
-		{
-			return self::error('Invalid line: '.$row);
-		}
+// 		elseif (false === ($row2 = Common::substrFrom($row2, ']: ', false)))
+// 		{
+// 			return self::error('Invalid line: '.$row);
+// 		}
 		elseif (Common::startsWith($row2, 'created')) # livinsh
 		{
 			return self::parseSudoCreated($module, $row2);
