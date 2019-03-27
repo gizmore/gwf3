@@ -187,7 +187,7 @@ final class GWF_AuditCronjob extends GWF_Cronjob
 		$chunksize = 1024*1024; # 1MB
 		for ($i = 0; $i < $len; $i += $chunksize)
 		{
-			if (false === self::appendToDB($module, $log, substr($file, $i, $chunksize)))
+			if (false === self::appendToDB($module, $log, mb_substr($file, $i, $chunksize)))
 			{
 				return false;
 			}
@@ -204,7 +204,8 @@ final class GWF_AuditCronjob extends GWF_Cronjob
 	
 	private static function appendToDB(Module_Audit $module, GWF_AuditLog $log, $chunk)
 	{
-// 		var_dump($chunk);
+		# Remove invalid utf8. Bad fix
+		$chunk = mb_convert_encoding($chunk, 'UTF-8', 'UTF-8');
 		$chunk = $log->escape($chunk);
 		if (false === ($log->updateRow("al_data=CONCAT(al_data, '$chunk')")))
 		{
