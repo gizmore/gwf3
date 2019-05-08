@@ -50,17 +50,23 @@ final class GWF_AuditCronjob extends GWF_Cronjob
 		}
 	}
 	
+	
+	
+	/**
+	 * Mar 24 18:06:54 176.58.89.195 -sudosh: 30623:test
+	 * 
+	 */
 	private static function parseSudoshRow(Module_Audit $module, $row, $fh2)
 	{
 // 		echo $row;
-		if (false === ($row2 = Common::substrFrom($row, '-sudosh[', false)))
+		if (false === ($row2 = Common::substrFrom($row, '-sudosh: ', false)))
 		{
 			return self::error('Invalid line: '.$row);
 		}
-		elseif (false === ($row2 = Common::substrFrom($row2, ']: ', false)))
-		{
-			return self::error('Invalid line: '.$row);
-		}
+// 		elseif (false === ($row2 = Common::substrFrom($row2, ']: ', false)))
+// 		{
+// 			return self::error('Invalid line: '.$row);
+// 		}
 		elseif (Common::startsWith($row2, 'created')) # livinsh
 		{
 			return self::parseSudoCreated($module, $row2);
@@ -181,7 +187,7 @@ final class GWF_AuditCronjob extends GWF_Cronjob
 		$chunksize = 1024*1024; # 1MB
 		for ($i = 0; $i < $len; $i += $chunksize)
 		{
-			if (false === self::appendToDB($module, $log, substr($file, $i, $chunksize)))
+			if (false === self::appendToDB($module, $log, mb_substr($file, $i, $chunksize)))
 			{
 				return false;
 			}
@@ -198,7 +204,8 @@ final class GWF_AuditCronjob extends GWF_Cronjob
 	
 	private static function appendToDB(Module_Audit $module, GWF_AuditLog $log, $chunk)
 	{
-// 		var_dump($chunk);
+		# Remove invalid utf8. Bad fix
+		$chunk = mb_convert_encoding($chunk, 'UTF-8', 'UTF-8');
 		$chunk = $log->escape($chunk);
 		if (false === ($log->updateRow("al_data=CONCAT(al_data, '$chunk')")))
 		{
