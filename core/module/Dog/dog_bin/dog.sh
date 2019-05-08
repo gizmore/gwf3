@@ -1,7 +1,7 @@
 #!/bin/bash
 # -*- coding: utf-8 -*-
 
-curl http://192.168.0.4/dogstart.php?shall_restart=1
+#curl http://192.168.0.4/dogstart.php?shall_restart=1
 
 USERNAME=`whoami`
 
@@ -10,9 +10,9 @@ USERNAME=`whoami`
 php dog.php $1 $2 $3 $4 $5 $USERNAME
 # config, install, flush, lamb_import, env
 
-mplayer /DATA/_ProjectPDT7/GWF3/core/module/Lamb/lamb_bin/wecken.mp3
-mplayer /DATA/_ProjectPDT7/GWF3/core/module/Lamb/lamb_bin/wecken.mp3
-mplayer /DATA/_ProjectPDT7/GWF3/core/module/Lamb/lamb_bin/wecken.mp3
+#mplayer /DATA/_ProjectPDT7/GWF3/core/module/Lamb/lamb_bin/wecken.mp3
+#mplayer /DATA/_ProjectPDT7/GWF3/core/module/Lamb/lamb_bin/wecken.mp3
+#mplayer /DATA/_ProjectPDT7/GWF3/core/module/Lamb/lamb_bin/wecken.mp3
 
 #while true;
 #do

@@ -1,4 +1,5 @@
 <?php
+require_once 'dog_include/Dog_Includes.php';
 final class Dog_IRCC implements Dog_IRC
 {
 	/**
@@ -95,7 +96,7 @@ final class Dog_IRCC implements Dog_IRC
 	{
 // 		$message = str_replace(array("\r", "\n"), '', trim($message));
 		$message = str_replace(array("\r", "\n"), '', $message);
-		Dog_Log::server($this->server, $message, ' >>>> ');
+		Dog_Log::server($this->server, new Dog_IRCMsg($message), ' >>>> ');
 		if (!fwrite($this->socket, "$message\r\n"))
 		{
 			$this->hard_disconnect();

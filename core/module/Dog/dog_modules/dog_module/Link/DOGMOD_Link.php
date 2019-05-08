@@ -144,28 +144,33 @@ final class DOGMOD_Link extends Dog_Module
 		{
 			return array('image', $content);
 		}
-		
+
+		$cs = Common::regex('/charset\\s*=\\s*([^;\\s]*)/i', $type);
+		echo $cs . PHP_EOL;
+		$in_charset = ($cs !== false) ? $cs : "ISO-8859-1";
+
 		# Get Title from html
 		if (0 === preg_match('#< *title *>([^<]+)< */ *title *>#i', $content, $matches))
 		{
 			return false;
 		}
 		
-		$title = $this->decode($matches[1]);
+		$title = $this->decode($matches[1], $in_charset);
 
 		$descr = '';
 		if (1 === preg_match('#(< *meta.*description[^>]*>)#i', $content, $matchesB)) {
 			$tag = $matchesB[1];
 			if (1 === preg_match('#content=["\']([^"\']+)["\']#', $tag, $matchesB)) {
-				$descr = ' - '.$this->decode($matchesB[1]);
+				$descr = ' - '.$this->decode($matchesB[1], $in_charset);
 			}
 		}
 		
 		return array('html', $title.' - '.$descr);
 	}
 	
-	private function decode($s)
+	private function decode($s, $in_charset)
 	{
+		$s = iconv($in_charset, "UTF-8//IGNORE", $s);
 		$s = str_replace(array('&nbsp;'), array(' '), $s);
 		$s = htmlspecialchars_decode($s, ENT_QUOTES);
 		return strlen($s) > 1024 ? substr($s, 0, 1024) : $s;

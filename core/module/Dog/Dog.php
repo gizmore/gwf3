@@ -501,7 +501,7 @@ final class Dog
 		# Log to server log
 		if (self::$LAST_MSG->shouldLog())
 		{
-			Dog_Log::server($server, $message);
+			Dog_Log::server($server, self::$LAST_MSG);
 		}
 		
 		# Include event code

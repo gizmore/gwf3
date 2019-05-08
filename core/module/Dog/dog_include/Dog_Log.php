@@ -1,4 +1,5 @@
-<?php
+<?php 
+require_once 'dog_include/Dog_Includes.php';
 /**
  * Dog log wrapper.
  * @author gizmore
@@ -6,13 +7,27 @@
  */
 final class Dog_Log
 {
-	public static function server(Dog_Server $server, $message, $direction = ' << ')
+	public static function server(Dog_Server $server, $irc_msg, $direction = ' << ')
 	{
-		echo $server->getTLD().$direction.$message.PHP_EOL;
+		echo date("H:i:s") . " " . $server->getTLD();
+
+		if (strtolower($irc_msg->getEvent()) === 'privmsg' && $irc_msg->getArgc() > 1) {
+			$from = preg_replace('/!.*/', '', $irc_msg->getFrom());
+			$msg = $irc_msg->getArgs();
+			$target = array_shift($msg);
+			$msg = join(' ', $msg);
+			if ($target[0] !== '#') {
+				$target = $from;
+			}
+			echo " " . $target . ": " . $from . ": " . $msg . PHP_EOL;
+		} else {
+			echo $direction . $irc_msg->getRaw() . PHP_EOL;
+		}
+
 		if ($server->isLogging())
 		{
 			$host = GWF_String::remove($server->getHost(), '/', '!');
-			GWF_Log::rawLog("dog/{$host}/{$host}", $message);
+			GWF_Log::rawLog("dog/{$host}/{$host}", $irc_msg->getRaw());
 			GWF_Log::flush();
 		}
 	}
