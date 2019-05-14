@@ -28,14 +28,18 @@ final class Shadowcmd_running_mode extends Shadowcmd
 		{
 			$bot->reply(Shadowhelp::getHelp($player, 'rm'));
 		}
-		elseif ($player->getBase('level') > 2)
+		elseif ($player->getBase('level') > $player->getBase('karma'))
 		{
-			self::rply($player, '1034');
+			self::rply($player, '1197', array($player->getBase('level'), $player->getBase('karma')));
+// 			self::reply($player, "You need %s karma to switch to running mode, but you only have %s.");
+// 			self::rply($player, '1034');
 // 			$bot->reply('You cannot switch to running mode when you passed level 2.');
+			return false;
 		}
 		else
 		{
-			$player->saveOption(SR_Player::RUNNING_MODE, true);
+			$player->alterField('karma', -$player->getBase('level')); # cost karma
+			$player->saveOption(SR_Player::RUNNING_MODE, true); # set to running mode
 			self::rply($player, '5077');
 			self::rply($player, '5078');
 // 			$bot->reply('You are now playing running mode. This means unlimited stats but instant death. Good luck!');

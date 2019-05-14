@@ -472,6 +472,7 @@ $lang = array(
 '1194' => 'Invalid range.',
 '1195' => 'Clan has been abandoned.',
 '1196' => 'There is no more room in the bank for that.',
+'1197' => 'You need %s karma to switch to running mode, but you only have %s.',
 
 ########################
 # 10000-14999 = Spells #
