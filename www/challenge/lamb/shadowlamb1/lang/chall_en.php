@@ -8,7 +8,7 @@ $lang = array(
 
 	'client_it' => 'How to play',
 	'client_info' =>
-		'To play you will need an IRC client and connect to irc.gizmore.org on port 6668 or port 6666 for SSL.'.PHP_EOL.
+		'To play you will need an IRC client and connect to irc.wechall.net on port 6668 or port 6697 for SSL.'.PHP_EOL.
 		'The channel is #shadowlamb',
 
 	'msg_right' => 'Ugah says right. You passed challenge.',
