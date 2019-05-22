@@ -40,14 +40,14 @@ Sum:    €704,00
 Goal:   €350,00
 </pre>
 
-<pre>Donations 2019:    2 donations
-Sum:    € 45,00
-Goal:   €350,00
+<pre>Donations 2019:    4 donations
+Sum:    €160,00
+Goal:   €450,00
 </pre>
 
-<pre>Totals:           16 donations
-Sum:    € 1056,00
-Goal:   € 1050,00
+<pre>Totals:           18 donations
+Sum:    € 1164,00
+Goal:   € 1150,00
 </pre>
 
 </div>
@@ -56,10 +56,12 @@ Goal:   € 1050,00
 We currently have the following ca. expenses for WeChall:<br/>
 <ul>
 <li>- Box0 (warchall.net) €100/y</li>
+<li>- Box1 (---secret---) €0/y (gizmore pays)</li>
 <li>- Box2 (wechall.net) €120/y</li>
 <li>- Box3 (irc.wechall.net) €100/y</li>
-<li>- Box4 (wanda.gizmore.org) €0/y</li>
+<li>- Box4 (wanda.gizmore.org) €0/y (gizmore pays)</li>
 <li>- Domain costs €30/y</li>
+<li>- T-Shirts 2019 €100</li>
 <li>-&nbsp;</li>
 <li>- Wishlist; A better server for www only. Tear mailserver and maybe some challs apart.</li>
 </ul>
@@ -81,8 +83,10 @@ We currently have the following ca. expenses for WeChall:<br/>
 <li>1.Aug.2018 - <em>&quot;That's nothing but here's some €€€ for this awesome website!&quot;</em> – ???</li>
 <li>8.Aug.2018 - <em>&quot;Thanks for everything so far! btw. what is the solution for shadowlamb 2, 3, &4?&quot;</em> - <a class="donor" href="/profile/space">space</a></li>
 <li>31.Oct.2018 - <em>&quot;coding , a neverending dream greetz to All :-*&quot;</em> – <a class="donor" href="/profile/occasus">occasus</a></li>
+<li>----- 2019 -----</li>
 <li>25.Feb.2019 – <em>&quot;Is this enough for "Stalking"?&quot;</em> – ???</li>
 <li>25.Feb.2019 – <em>&quot;No!<img src="img/default/smile/tongue.png" />&quot;</em> – <a class="donor" href="/profile/tehron">tehron</a></li>
+<li>6.May.2019 – <em>&quot;Be excellent to eachother.&quot;</em> – <a class="donor" href="/profile/tweg">tweg</a></li>
 </ol>
 </div>
 
@@ -90,7 +94,7 @@ We currently have the following ca. expenses for WeChall:<br/>
 <h2>Hall of purchased Gods</h2>
 <ol>
 <li>----- 2018 -----</li>
-<li>9.Nov.2018 - someone donated €5 as a monthly payment. (unlimited money, we just have to wait) €15 so far.</li>
+<li>9.Nov.2018 - someone donated €5 as a monthly payment. (unlimited money, we just have to wait) €35 so far.</li>
 </ol>
 </div>
 
