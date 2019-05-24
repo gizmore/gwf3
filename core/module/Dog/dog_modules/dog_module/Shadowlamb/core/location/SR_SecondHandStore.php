@@ -63,11 +63,16 @@ abstract class SR_SecondHandStore extends SR_Store
 	
 	private function getSecondsHandArgID(SR_Player $player)
 	{
-		$item = $this->getLastPurchasedItemName();
+		$itemname = $this->getLastPurchasedItemName();
+		return $this->_getSecondsHandArgID($player, $itemname);
+	}
+	
+	private function _getSecondsHandArgID(SR_Player $player, $itemname)
+	{
 		$items = $this->getStoreItems($player);
 		foreach ($items as $id => $data)
 		{
-			if (!strcmp($data[0], $item))
+			if (!strcmp($data[0], $itemname))
 			{
 				return $id+1;
 			}
@@ -130,5 +135,15 @@ abstract class SR_SecondHandStore extends SR_Store
 // 		$bot->reply(sprintf('You sold your %s for %s.%s', $item->getItemName(), Shadowfunc::displayNuyen($price), $statmsg));
 // 		return true;
 	}
+	
+	protected function onStealSuccess(SR_Player $player, $itemname)
+	{
+		if (parent::onStealSuccess($player, $itemname))
+		{
+			$id = $this->_getSecondsHandArgID($player, $itemname);
+			$this->removeSecondHandItem($player, $id);
+			return true;
+		}
+		return false;
+	}
 }
-?>

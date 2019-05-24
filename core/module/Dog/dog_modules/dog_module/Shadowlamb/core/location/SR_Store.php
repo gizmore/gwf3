@@ -601,7 +601,7 @@ abstract class SR_Store extends SR_Location
 		return false;
 	}
 	
-	private function onStealSuccess(SR_Player $player, $itemname)
+	protected function onStealSuccess(SR_Player $player, $itemname)
 	{
 		$bot = Shadowrap::instance($player);
 		
