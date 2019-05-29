@@ -2777,6 +2777,8 @@ class SR_Player extends GDO
 	{
 		SR_Bounty::onKilledByHuman($killer, $this);
 		
+		SR_BadKarma::onKilled($killer, this);
+		
 		if (false === SR_KillProtect::isKillProtected($killer, $this))
 		{
 			SR_KillProtect::onKilled($killer, $this);

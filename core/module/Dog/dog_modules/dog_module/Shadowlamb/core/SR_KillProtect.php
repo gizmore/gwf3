@@ -80,8 +80,6 @@ final class SR_KillProtect extends GDO
 	
 	public static function onKilled(SR_Player $killer, SR_Player $victim)
 	{
-		echo __METHOD__;
-		
 		return self::table(__CLASS__)->insertAssoc(array(
 			'sr4kp_killer' => $killer->getID(),
 			'sr4kp_victim' => $victim->getID(),

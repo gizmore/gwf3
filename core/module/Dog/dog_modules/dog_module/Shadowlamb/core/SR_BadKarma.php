@@ -11,7 +11,7 @@ final class SR_BadKarma
 		foreach ($ep->getMembers() as $e)
 		{
 			$e instanceof SR_Player;
-			if (!$e->isHuman())
+			if (!$e->isHuman()) # Friendly NPC
 			{
 				$add += 0.05;
 				continue;
@@ -19,27 +19,48 @@ final class SR_BadKarma
 			
 			
 			$badkarma = $e->getBase('bad_karma');
-			if ($badkarma > 0)
+			if ($badkarma > 1.0)
 			{
-				continue;
+				continue; # Attack Badboy is ok			}
 			}
 			
+			# Fighting others is 0.1
+			$add += 0.1;
+
 			
 //			$bounty = $e->getBase('sr4pl_bounty');
 
+// 			$l2 = $e->get('level');
+// 			$diff = $l1 - $l2;
+// 			if ($diff < 0)
+// 			{
+// 				continue; # May attack higher player? Hmm..
+// 			}
 			
-			$l2 = $e->get('level');
-			$diff = $l1 - $l2;
-			if ($diff < 0)
-			{
-				continue;
-			}
-			
-			$add += round($diff / 100, 2);
+// 			$add += round($diff / 10, 2);
 		}
 		
+		# And add it!
 		self::addBadKarma($player, $add);
 	}
+	
+	public static function onKilled(SR_Player $killer, SR_Player $target)
+	{
+		$add = 0;
+		if ($target instanceof SR_TalkingNPC)
+		{
+			$add += 0.25;
+		}
+		
+		if ($target->isHuman())
+		{
+			$add += 0.90;
+		}
+
+		# And add it!
+		self::addBadKarma($killer, $add);
+	}
+	
 	
 	/**
 	 * Distribute bad karma to a player. Announce to him too.
@@ -54,7 +75,7 @@ final class SR_BadKarma
 		# Sane?
 		if ($add <= 0)
 		{
-			return true;
+			return true; # nothing to add
 		}
 		
 
