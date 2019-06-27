@@ -87,6 +87,7 @@ final class DOGMOD_Shadowlamb extends Dog_Module
 	
 	public function onInitTimers()
 	{
+		Shadowrun4::init();
 		Shadowrun4::initTimers();
 	}
 	

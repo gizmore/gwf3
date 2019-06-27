@@ -1,4 +1,6 @@
 <?php
+require_once 'SR_Player.php';
+
 final class SR_DummyPlayer extends SR_Player
 {
 	private static $dog_user = NULL;

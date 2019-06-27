@@ -59,6 +59,8 @@
 
 # /core/module/Dog/dog_modules/dog_module/Shadowlamb/
 /core/module/Dog/dog_modules/dog_module/Shadowlamb/secret.php
+/core/module/Dog/dog_modules/dog_module/Shadowlamb/GameMasters.php
+		
 
 # /core/module/Dog/dog_plugins/
 /core/module/Dog/dog_plugins/dog_plugin_secret
