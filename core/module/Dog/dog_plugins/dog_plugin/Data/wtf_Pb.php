@@ -18,18 +18,20 @@ if (!function_exists('fetchDefinitionE'))
 	function fetchDefinitionE(Dog_Plugin $plugin, $term) {
 		$output = array();
 		
-		$res = GWF_HTTP::getFromUrl('http://www.urbandictionary.com/define.php?term='.$term);
+		$url = 'https://www.urbandictionary.com/define.php?term='.urlencode($term);
+		$res = GWF_HTTP::getFromUrl($url);
 		if ($res === false) 
 		{
+			echo "FAILED: $url\n";
 			return Dog::lang('err_timeout');
 		}
 		
-		if (1 !== preg_match('#<div class=\'meaning\'>(.+?)</div>.*?<div class=\'example\'>(.*?)</div>#s', $res, $arr))
+		if (!preg_match_all('#<div class="meaning">(.+?)</div>.*?<div class="example">(.*?)</div>#', $res, $arr))
 		{
 			return $plugin->lang('none_yet', array($term, urlencode($term)));
 		}
 		
-		$definition = trim(html_entity_decode(strip_tags(preg_replace('#<\s*?br\s*?/?\s*?>#', "\n", $arr[1]))));
+		$definition = trim(html_entity_decode(strip_tags(preg_replace('#<\s*?br\s*?/?\s*?>#', "\n", $arr[1][0])), ENT_QUOTES|ENT_HTML5));
 		$definition = strtr($definition, array("\r" => ' ', "\n" => ' '));
 		while(false !== strstr($definition, '  ')) 
 			$definition = str_replace('  ', ' ', $definition);
@@ -41,13 +43,15 @@ if (!function_exists('fetchDefinitionE'))
 		
 		if (!empty($arr[2])) 
 		{
-			$example = trim(html_entity_decode(strip_tags(preg_replace('#<\s*?br\s*?/?\s*?>#', "\n", $arr[2]))));
+			$example = trim(html_entity_decode(strip_tags(preg_replace('#<\s*?br\s*?/?\s*?>#', "\n", $arr[2][0])), ENT_QUOTES|ENT_HTML5));
 			$example = strtr($example, array("\r" => ' | ', "\n" => ' | '));
 			
 			while(false !== strstr($example, ' |  | ')) 
 				$example = str_replace(' |  | ', ' | ', $example);
 			while(false !== strstr($example, '  ')) 
 				$example = str_replace('  ', ' ', $example);
+			
+			$example = str_replace("\" ", "\"", $example);
 				
 			if(strlen($example) > 800) $example = substr($example, 0, 800).'...';
 				$output['example'] = $example;
@@ -61,13 +65,10 @@ $def = fetchDefinitionE($plugin, $message);
 
 if (is_string($def))
 {
-	return $plugin->reply($def);
+	$plugin->reply($def);
 }
-
-$plugin->reply(utf8_encode(html_entity_decode($def['definition'], ENT_QUOTES)));
-if (isset($def['example']))
+else
 {
-	$plugin->rply('example', array(utf8_encode(html_entity_decode($def['example'], ENT_QUOTES))));
+	$plugin->reply($def['definition']);
+	$plugin->rply('example', array($def['example']));
 }
-
-?>
