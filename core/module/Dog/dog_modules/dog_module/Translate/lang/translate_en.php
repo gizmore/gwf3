@@ -7,5 +7,5 @@ $lang = array(
 
 	'weird' => 'Could not parse the result.',
 	'trans' => "\X02Translation:\X02 %s",
-	'trans_auto' => '\X02Translation from %s:\X02 %s',
+	'trans_auto' => "\X02Translation from %s:\X02 %s",
 );

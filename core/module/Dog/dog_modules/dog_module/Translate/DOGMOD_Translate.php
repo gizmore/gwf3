@@ -82,21 +82,26 @@ class DOGMOD_Translate extends Dog_Module
 
 	private static function googleTranslate($text, $from='auto', $to='de', $return_source_lang=false)
 	{
-		$html = GWF_HTTP::getFromURL('https://translate.google.com?sl='.$from.'&tl='.$to.'&hl=en&ie=UTF-8&q=' . urlencode($text));
-		if(!preg_match('#<span id=result_box .+?>(.+?)</div>#', $html, $arr)) return false;
-		$translation = html_entity_decode(strip_tags($arr[1]), ENT_QUOTES);
-		if($return_source_lang)
+		$url = "https://translate.googleapis.com/translate_a/single?client=gtx&sl=$from&tl=$to&dt=t&q=" . urlencode($text);
+		
+		$html = GWF_HTTP::getFromURL($url);
+
+		$result = json_decode($html, true);
+		
+		if (!($translation = $result[0][0][0]))
 		{
-			if(!preg_match('#<div id=autotrans.+?<h3.+?>(.+?) to .+? translation</h3>#', $html, $arr))
-			{
-				return false;
-			}
-			return array('translation' => $translation, 'source_lang' => $arr[1]);
+			echo "GTranslate failed: $url\n";
+			echo $translation . "\n";
+			echo $html . "\n";
+			return false;
 		}
-		else
+		
+		if(!$return_source_lang)
 		{
 			return $translation;
 		}
+
+		return array('translation' => $translation, 'source_lang' => $result[2]);
 	}
 }
 ?>
