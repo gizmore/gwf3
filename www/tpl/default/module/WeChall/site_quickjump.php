@@ -1,4 +1,6 @@
 <?php
+require_once GWF_PATH . 'core/module/WeChall/WC_SiteAdmin.php';
+
 $SITE = WC_Site::getByID(Common::getGetString('sid'));
 if ($SITE === false)
 {	# fallback
@@ -152,7 +154,16 @@ echo WC_HTML::button('btn_active_sites', GWF_WEB_ROOT.'active_sites', $which==='
 echo WC_HTML::button('btn_graveyard', GWF_WEB_ROOT.'graveyard', $which==='2');
 echo WC_HTML::button('btn_not_ranked', GWF_WEB_ROOT.'not_ranked', $which==='4');
 echo WC_HTML::button('btn_coming_soon', GWF_WEB_ROOT.'coming_soon', $which==='3');
+
+$user = GWF_User::getStaticOrGuest();
+if (WC_SiteAdmin::isSiteAdmin($user->getID()))
+{
+	echo '&nbsp;|&nbsp;'.PHP_EOL;
+	echo WC_HTML::button('btn_alert_site_admins', GWF_WEB_ROOT.'alert_site_admins');
+}
+
 echo '</div>'.PHP_EOL;
+
 
 ### Helper
 # Output 1 select

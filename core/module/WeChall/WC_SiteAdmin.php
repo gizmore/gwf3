@@ -43,9 +43,16 @@ final class WC_SiteAdmin extends GDO
 		return self::table(__CLASS__)->deleteWhere("siteadmin_uid=$userid AND siteadmin_sid=$siteid");
 	}
 	
-	public static function isSiteAdmin($userid, $siteid)
+	public static function isSiteAdmin($userid, $siteid=null)
 	{
-		return self::table(__CLASS__)->getRow($userid, $siteid) !== false;
+		if ($siteid)
+		{
+			return self::table(__CLASS__)->getRow($userid, $siteid) !== false;
+		}
+		else
+		{
+			return !!self::table(__CLASS__)->selectVar("1", "siteadmin_uid=$userid");
+		}
 	}
 	
 	public static function getSiteAdmins($siteid)

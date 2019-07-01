@@ -741,4 +741,29 @@ $lang = array(
 
 	#5.11 ActiveSiteRanking
 	'pi_activerank' => 'This new ranking only sums active sites. It has a reduced functionality at the moment, for example no correct highlighting, and no profile or other pages link here.',
+
+	# 5.12 SiteAdmin alerts
+	'btn_alert_site_admins' => 'Alert Site Admins',
+	'ft_alert_site_admins' => 'Send an email to site admins',
+	'th_site' => 'Site',
+	'th_title' => 'Title',
+	'th_message' => 'Message',
+	'err_title' => 'Your title has to be between %s and %s chars in length.',
+	'err_message' => 'Your message has to be between %s and %s chars in length.',
+	'mail_subj_alert_sitemins' => GWF_SITENAME . ': Site Admin Information',
+	'mail_body_alert_sitemins' => '
+Dear %s<br/>,
+<br/>
+There has been creted a site admin alert by %s.<br/>
+The title and Message follows.<br/>
+<br/>
+===============================================<br/>
+Title: %s<br/>
+===============================================<br/>
+%s<br/>
+===============================================<br/>
+Kind Regards,<br/>
+The WeChall Team<br/>
+',
+	'msg_alert_mails_sent' => 'We have sent %s mails to the site admins.',
 );
