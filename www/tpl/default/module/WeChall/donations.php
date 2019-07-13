@@ -40,13 +40,13 @@ Sum:    €704,00
 Goal:   €350,00
 </pre>
 
-<pre>Donations 2019:    4 donations
-Sum:    €160,00
+<pre>Donations 2019:    5 donations
+Sum:    €175,00
 Goal:   €450,00
 </pre>
 
-<pre>Totals:           18 donations
-Sum:    € 1164,00
+<pre>Totals:           19 donations
+Sum:    € 1179,00
 Goal:   € 1150,00
 </pre>
 
@@ -87,6 +87,7 @@ We currently have the following ca. expenses for WeChall:<br/>
 <li>25.Feb.2019 – <em>&quot;Is this enough for "Stalking"?&quot;</em> – ???</li>
 <li>25.Feb.2019 – <em>&quot;No!<img src="img/default/smile/tongue.png" />&quot;</em> – <a class="donor" href="/profile/tehron">tehron</a></li>
 <li>6.May.2019 – <em>&quot;Be excellent to eachother.&quot;</em> – <a class="donor" href="/profile/tweg">tweg</a></li>
+<li>29.Juni.2019 – <em>&quot;Thanks a lot for this website, and all the great work maintaining it!&quot;</em> – <a class="donor" href="/profile/kkaosninja">kkaosninja</a></li>
 </ol>
 </div>
 
@@ -94,7 +95,7 @@ We currently have the following ca. expenses for WeChall:<br/>
 <h2>Hall of purchased Gods</h2>
 <ol>
 <li>----- 2018 -----</li>
-<li>9.Nov.2018 - someone donated €5 as a monthly payment. (unlimited money, we just have to wait) €35 so far.</li>
+<li>9.Nov.2018 - someone donated €5 as a monthly payment. (unlimited money, we just have to wait) ca. €40 so far.</li>
 </ol>
 </div>
 
