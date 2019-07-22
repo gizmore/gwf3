@@ -280,6 +280,7 @@ final class Shadowhelp
 						'gms' => "GM command. Usage: #gms <player>. Print a lot of status of a player.",
 						'gmsp' => "GM command. Usage: #gmsp <player> <spell> <level>. Adjust the spell for a player.",
 						'gmt' => "GM command. Usage: #gmt <username> <enemy,enemy,...>. Attack a party with enemies for debugging purposes.",
+						'gmload' => "GM command. Usage: #gmload <username>. Load a player into memory.",
 					),
 						
 					'status_cmds' => 'Commands for player information',
