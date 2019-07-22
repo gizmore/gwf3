@@ -38,8 +38,7 @@ final class GWF_Validator
 		if (strlen($email) > $maxlen) {
 			return false;
 		}
-		//from: http://www.regular-expressions.info/email.html
-		return preg_match('/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/iD', $email) > 0;
+		return preg_match('/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]+$/iD', $email) > 0;
 	}
 
 	public static function isValidUsername($name, $maxlength=28, $minlength=3, $allowChars='')
