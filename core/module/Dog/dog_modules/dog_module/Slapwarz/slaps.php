@@ -71,6 +71,7 @@ $slaps = array(
 	array('eleminates' , 79),
 	array('disables' , 80),
 	array('destroys' , 90),
+	array('naruto-runs', 84),
 ),
 
 
