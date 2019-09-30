@@ -32,7 +32,7 @@ $slaps = array(
 
 'verbs' => array(
 	array('totally fails at', 0),
-	array('screws thyselfhim/herself while slapping', 3),
+	array('screws thyself while slapping', 3),
 	array('fails at', 5),
 	array('fails a bit at', 8),
 	array('misses' , 10),
