@@ -411,7 +411,7 @@ www/challenge/warchall/live_rfi/www/temp/
 /www/challenge/fixus/login.php
 /www/challenge/gizcrypt/index.php
 /www/challenge/gizcrypt/install.php
-/www/challenge/gizmore/
+/www/challenge/gizmore/ankapaint/
 /www/challenge/guesswork/index.php
 /www/challenge/guesswork/install.php
 /www/challenge/guestbook/gbook.include
@@ -430,66 +430,7 @@ www/challenge/warchall/live_rfi/www/temp/
 /www/challenge/livinskull/smile/pinfo.php.foo
 /www/challenge/livinskull/smile/pinfo.php.gif
 /www/challenge/livinskull/smile/pinfo.phpoo
-/www/challenge/livinskull/smile/smiles/.jpg
-/www/challenge/livinskull/smile/smiles/0payload_orig.jpg
-/www/challenge/livinskull/smile/smiles/1.Php.jpg
-/www/challenge/livinskull/smile/smiles/1.jpg
-/www/challenge/livinskull/smile/smiles/14u8i3sitzif.png
-/www/challenge/livinskull/smile/smiles/1503954_360553210781483_1096156666
-/www/challenge/livinskull/smile/smiles/21009b70229598c6a80eef8b45bf282b-i
-/www/challenge/livinskull/smile/smiles/7e27bb68ffc86bb8e164abc83ad58674.j
-/www/challenge/livinskull/smile/smiles/8349849038590348590834095809348509
-/www/challenge/livinskull/smile/smiles/94b9223448a3332db22bf864b86c0159.j
-/"www/challenge/livinskull/smile/smiles/<?php echo \"aa\"; ?>.jpg"
-/www/challenge/livinskull/smile/smiles/<?php echo LIVINSKULL_SMILEY_SOLUT
-/www/challenge/livinskull/smile/smiles/<?php echo LIVINSKULL_SMILEY_SOLUT
-/www/challenge/livinskull/smile/smiles/<?php echo LIVINSKULL_SMILEY_SOLUT
-/www/challenge/livinskull/smile/smiles/<?php echo constant('LIVINSKULL_SM
-/www/challenge/livinskull/smile/smiles/Gizmore.jpg
-/www/challenge/livinskull/smile/smiles/IMG-20150803-WA0027.jpg
-/www/challenge/livinskull/smile/smiles/LIVINSKULL_SMILEY_SOLUTION.jpg
-/www/challenge/livinskull/smile/smiles/LIV_SMI_SOL.jpg
-/www/challenge/livinskull/smile/smiles/Penguins.jpg
-/www/challenge/livinskull/smile/smiles/Rainbow.jpg
-/www/challenge/livinskull/smile/smiles/Var10_MOD.gif
-/www/challenge/livinskull/smile/smiles/Wonder_Woman_DCAU_008.jpg
-/www/challenge/livinskull/smile/smiles/aaaa.jpg
-/www/challenge/livinskull/smile/smiles/abcd.jpg
-/www/challenge/livinskull/smile/smiles/attachment.jpg
-/www/challenge/livinskull/smile/smiles/battery-low.png
-/www/challenge/livinskull/smile/smiles/bg.png
-/www/challenge/livinskull/smile/smiles/cartina.jpg
-/www/challenge/livinskull/smile/smiles/cg-leopard-ubuntu-wallpapers_31332
-/www/challenge/livinskull/smile/smiles/check10.jpg
-/www/challenge/livinskull/smile/smiles/cmd-comment-nginx.png
-/www/challenge/livinskull/smile/smiles/cmd.png
-/www/challenge/livinskull/smile/smiles/cmd2.png
-/www/challenge/livinskull/smile/smiles/faneq.jpg
-/www/challenge/livinskull/smile/smiles/favicon.png
-/www/challenge/livinskull/smile/smiles/fuckBitches.jpeg
-/www/challenge/livinskull/smile/smiles/gen5-php.png
-/www/challenge/livinskull/smile/smiles/head.png
-/www/challenge/livinskull/smile/smiles/image-01.jpg
-/www/challenge/livinskull/smile/smiles/images.png
-/www/challenge/livinskull/smile/smiles/logo.png
-/www/challenge/livinskull/smile/smiles/lol.jpeg
-/www/challenge/livinskull/smile/smiles/luckyBunny.jpeg
-/www/challenge/livinskull/smile/smiles/meh.jpg
-/www/challenge/livinskull/smile/smiles/morsed.png
-/www/challenge/livinskull/smile/smiles/php-logo-virus.jpg
-/www/challenge/livinskull/smile/smiles/pixel.jpg
-/www/challenge/livinskull/smile/smiles/rage.jpg
-
-/www/challenge/livinskull/smile/smiles/sds.jpg
-/www/challenge/livinskull/smile/smiles/shellcode.png
-/www/challenge/livinskull/smile/smiles/smile.jpg
-/www/challenge/livinskull/smile/smiles/smile1.jpg
-/www/challenge/livinskull/smile/smiles/stego_final.png
-/www/challenge/livinskull/smile/smiles/tasteless Kopie.jpg
-/www/challenge/livinskull/smile/smiles/test.Php.jpg
-/www/challenge/livinskull/smile/smiles/test.phtml%00.jpg
-/www/challenge/livinskull/smile/smiles/test.phtml.jpg
-/www/challenge/livinskull/smile/smiles/trac_logo_mini.png
+/www/challenge/livinskull/smile/smiles/
 /www/challenge/morsed/index.php
 /www/challenge/morsed/install.php
 /www/challenge/morsed/morsed.png
