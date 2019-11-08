@@ -11,6 +11,18 @@ color: gold;
 font-weight: bold;
 text-decoration: none;
 }
+span.nomsg:AFTER {
+font-style: italic;
+content: "No message left";
+}
+span.unknownuser:AFTER {
+font-style: italic;
+content: "???";
+}
+span.dodate {
+display: inline-block;
+min-width: 92px;
+}
 CSS;
 GWF_Website::addInlineCSS($css);
 ?>
@@ -40,13 +52,13 @@ Sum:    €704,00
 Goal:   €350,00
 </pre>
 
-<pre>Donations 2019:    5 donations
-Sum:    €175,00
+<pre>Donations 2019:    7 donations
+Sum:    €245,00
 Goal:   €450,00
 </pre>
 
-<pre>Totals:           19 donations
-Sum:    € 1179,00
+<pre>Totals:           21 donations
+Sum:    € 1239,00
 Goal:   € 1150,00
 </pre>
 
@@ -73,21 +85,23 @@ We currently have the following ca. expenses for WeChall:<br/>
 <h2>Hall of purchased Fame :)</h2>
 <ol>
 <li>----- 2017 -----</li>
-<li>3.Oct.2017 – <em>&quot;I challenge you to donate more than I did :)!&quot;</em> – ???</li>
-<li>8.Nov.2017 – <em>&quot;When in doubt, .slap dloser&quot;</em> – ???</li>
-<li>3.Dec.2017 – <em>&quot;I feel great to can contribute to this great project and know many people with same interests&quot;</em> – <a class="donor" href="/profile/spnow">spnow</a></li>
-<li>8.Dec.2017 – <em>&quot;Awesome work guys - glad to be part of the community!&quot;</em> – <a class="donor" href="/profile/benito255">benito255</a></li>
+<li><span class="dodate">3.Oct.2017</span> – <em>&quot;I challenge you to donate more than I did :)!&quot;</em> – ???</li>
+<li><span class="dodate">8.Nov.2017</span> – <em>&quot;When in doubt, .slap dloser&quot;</em> – ???</li>
+<li><span class="dodate">3.Dec.2017</span> – <em>&quot;I feel great to can contribute to this great project and know many people with same interests&quot;</em> – <a class="donor" href="/profile/spnow">spnow</a></li>
+<li><span class="dodate">8.Dec.2017</span> – <em>&quot;Awesome work guys - glad to be part of the community!&quot;</em> – <a class="donor" href="/profile/benito255">benito255</a></li>
 <li>----- 2018 -----</li>
-<li>28.Jan.2018 – <em>&quot;37K users and only 8 donations?! Shame on you!&quot;</em> – ???</li>
-<li>31.Jul.2018 - <em>&quot;You folks do good work.&quot;</em> – ???</li>
-<li>1.Aug.2018 - <em>&quot;That's nothing but here's some €€€ for this awesome website!&quot;</em> – ???</li>
-<li>8.Aug.2018 - <em>&quot;Thanks for everything so far! btw. what is the solution for shadowlamb 2, 3, &4?&quot;</em> - <a class="donor" href="/profile/space">space</a></li>
-<li>31.Oct.2018 - <em>&quot;coding , a neverending dream greetz to All :-*&quot;</em> – <a class="donor" href="/profile/occasus">occasus</a></li>
+<li><span class="dodate">28.Jan.2018</span> – <em>&quot;37K users and only 8 donations?! Shame on you!&quot;</em> – ???</li>
+<li><span class="dodate">31.Jul.2018</span> - <em>&quot;You folks do good work.&quot;</em> – ???</li>
+<li><span class="dodate">1.Aug.2018</span> - <em>&quot;That's nothing but here's some €€€ for this awesome website!&quot;</em> – ???</li>
+<li><span class="dodate">8.Aug.2018</span> - <em>&quot;Thanks for everything so far! btw. what is the solution for shadowlamb 2, 3, &4?&quot;</em> - <a class="donor" href="/profile/space">space</a></li>
+<li><span class="dodate">31.Oct.2018</span> - <em>&quot;coding , a neverending dream greetz to All :-*&quot;</em> – <a class="donor" href="/profile/occasus">occasus</a></li>
 <li>----- 2019 -----</li>
-<li>25.Feb.2019 – <em>&quot;Is this enough for "Stalking"?&quot;</em> – ???</li>
-<li>25.Feb.2019 – <em>&quot;No!<img src="img/default/smile/tongue.png" />&quot;</em> – <a class="donor" href="/profile/tehron">tehron</a></li>
-<li>6.May.2019 – <em>&quot;Be excellent to eachother.&quot;</em> – <a class="donor" href="/profile/tweg">tweg</a></li>
-<li>29.Juni.2019 – <em>&quot;Thanks a lot for this website, and all the great work maintaining it!&quot;</em> – <a class="donor" href="/profile/kkaosninja">kkaosninja</a></li>
+<li><span class="dodate">25.Feb.2019</span> – <em>&quot;Is this enough for "Stalking"?&quot;</em> – ???</li>
+<li><span class="dodate">25.Feb.2019</span> – <em>&quot;No!<img src="img/default/smile/tongue.png" />&quot;</em> – <a class="donor" href="/profile/tehron">tehron</a></li>
+<li><span class="dodate">6.May.2019</span> – <em>&quot;Be excellent to eachother.&quot;</em> – <a class="donor" href="/profile/tweg">tweg</a></li>
+<li><span class="dodate">29.Jun.2019</span> – <em>&quot;Thanks a lot for this website, and all the great work maintaining it!&quot;</em> – <a class="donor" href="/profile/kkaosninja">kkaosninja</a></li>
+<li><span class="dodate">20.Oct.2019</span> – <span class="nomsg"></span> – <span class="unknownuser"></span></li>
+<li><span class="dodate">7.Nov.2019</span> – <span class="nomsg"></span> – <a class="donor" href="/profile/flabbyrabbit">flabbyrabbit</a></li>
 </ol>
 </div>
 
