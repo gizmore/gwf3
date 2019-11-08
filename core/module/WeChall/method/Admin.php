@@ -93,6 +93,7 @@ final class WeChall_Admin extends GWF_Method
 	
 	private function onRecalcEverything()
 	{
+		set_time_limit(600); # 10 minutes should be enough
 		require_once GWF_CORE_PATH.'module/WeChall/WC_RegAt.php';
 		
 		$wc = Module_WeChall::instance();
