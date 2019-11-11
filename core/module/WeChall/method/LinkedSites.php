@@ -74,7 +74,7 @@ final class WeChall_LinkedSites extends GWF_Method
 	################
 	public function templateSites()
 	{
-		$whitelist = array('site_name', 'site_challcount', 'regat_score', 'site_score', 'regat_solved', 'regat_lastdate', 'regat_onsitename');
+		$whitelist = array('site_name', 'site_challcount', 'regat_score', 'site_score', 'regat_solved', 'regat_lastdate', 'regat_onsitename', 'regat_challsolved');
 		
 		$form_link = $this->getFormLink();
 		$form_all = $this->getFormAll();
