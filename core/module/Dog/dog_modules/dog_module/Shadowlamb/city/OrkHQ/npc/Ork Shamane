@@ -1,0 +1,44 @@
+<?php
+final class Redmond_Orc_Shamane extends SR_NPC
+{
+	public function getNPCLevel() { return 6; }
+	public function getNPCPlayerName() { return 'Ork Shamane'; }
+//	public function getNPCMeetPercent(SR_Party $party) { return 100.00; }
+	public function canNPCMeet(SR_Party $party) { return false; }
+	public function getNPCEquipment()
+	{
+		return array(
+			'weapon' => 'HanBo',
+			'armor' => 'LeatherVest',
+			'boots' => 'Sneakers',
+			'legs' => 'ElvenShorts',
+		);
+	}
+	public function getNPCInventory() { return array('FirstAid'); }
+	public function getNPCSpells() return array('flu'=>3,'calm'=>1); }
+	public function getNPCModifiers() {
+		return array(
+			'race' => 'ork',
+			'gender' => 'male', 'female'
+			'strength' => 2,
+			'quickness' => 5,
+			'magic'  => 4,
+      'melee'   => 1
+      'ninja'   => 1
+			'intelligence' => 3,
+			'wisdom' => 4,
+			'distance' => 12,
+			'base_hp' => 9,
+			'nuyen' => 90,
+			'base_mp' => 20,
+		);
+    {
+	public function getNPCLoot(SR_Player $player)
+	{
+		if (rand(1, 10) <= 5) {
+			return array('Bacon');
+		} 
+		return array();
+	}
+}
+?>
