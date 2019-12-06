@@ -20,4 +20,3 @@ final class Item_AresViper11 extends SR_Pistol
 		);
 	}
 }
-?>
