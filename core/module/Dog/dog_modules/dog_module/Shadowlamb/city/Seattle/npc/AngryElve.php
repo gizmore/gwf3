@@ -43,4 +43,3 @@ final class Seattle_AngryElve extends SR_NPC
 	}
 	
 }
-?>
