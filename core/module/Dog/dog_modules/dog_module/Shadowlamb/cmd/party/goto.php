@@ -81,7 +81,7 @@ final class Shadowcmd_goto extends Shadowcmd
 		$eta = $cityclass->getGotoETA($party);
 		
 		$party->pushAction(SR_Party::ACTION_GOTO, $tlc, $eta);
-		$party->setContactEta(rand(5,15));
+		$party->setContactEta(rand(1,5));
 		$party->ntice('5127', array($tlc, $party->displayETA()));
 // 		$party->notice(sprintf('You are going to %s. ETA: %s.', $tlc, GWF_Time::humanDuration($eta)));
 		
@@ -210,4 +210,3 @@ final class Shadowcmd_goto extends Shadowcmd
 		return count($back) === 1 ? $back[0] : false;
 	}
 }
-?>
