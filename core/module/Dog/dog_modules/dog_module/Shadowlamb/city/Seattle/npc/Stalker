@@ -1,0 +1,34 @@
+<?php
+final class Seattle_Stalker extends SR_NPC
+{
+	public function getNPCLevel() { return 13; }
+	public function getNPCPlayerName() { return 'Stalker'; }
+	public function getNPCMeetPercent(SR_Party $party) { return 10.00; }
+	public function getNPCEquipment()
+	{
+		return array(
+			'weapon' => 'HanBo',
+			'armor' => 'ElvenVest',
+			'legs' => 'ElvenSHorts',
+			'boots' => 'ArmyBoots',
+			'helmet' => 'Cap',
+		);
+	}
+	public function getNPCInventory() { return array('Stimpatch', 'HanBo'); }
+	public function getNPCModifiers() {
+		return array(
+			'race' => 'human',
+			'gender' => 'male', 'female'
+			'strength' => rand(3, 5),
+			'quickness' => rand(3, 6),
+			'distance' => rand(1, 12),
+			'melee' => rand(2, 5),
+			'ninja' => rand(1, 3),
+			'biotech' => rand(1, 2),
+			'thief' => rand(3, 5),
+			'nuyen' => rand(60, 90),
+			'base_hp' => rand(6, 14),
+		);
+	}
+}
+?>
