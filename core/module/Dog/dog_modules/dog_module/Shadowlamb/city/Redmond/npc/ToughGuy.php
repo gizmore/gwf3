@@ -15,11 +15,12 @@ final class Redmond_ToughGuy extends SR_NPC
 			'boots' => rand('Sneakers', 'Sandals'),
 		);
 	}
-	public function getNPCInventory() { return array(); }
+	public function getNPCInventory('BaseballBat', 'IronPipe', 'Stiletto', 'Claws', 'Fists';) { return array(); }
 	public function getNPCModifiers() {
 		return array(
 			'nuyen' => rand(30, 40),
 			'base_hp' => rand(2, 4),
+			'melee'  => rand(0, 3)
 			'distance' => rand(0, 2),
 		);
 	}
