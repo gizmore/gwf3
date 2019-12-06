@@ -21,6 +21,7 @@ final class Seattle_AngryElve extends SR_NPC
 			'strength' => rand(1, 3),
 			'quickness' => rand(3, 5),
 			'distance' => rand(8, 14),
+			'melee' => rand(1, 3)
 			'bows' => rand(1, 3),
 			'firearms' => rand(1, 3),
 			'sharpshooter' => rand(1, 2),
