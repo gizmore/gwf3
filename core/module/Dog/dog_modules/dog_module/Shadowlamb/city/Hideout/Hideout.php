@@ -8,4 +8,3 @@ final class Hideout extends SR_Dungeon
 	public function getExploreTime() { return 40; }
 	public function getGotoTime() { return 30; }
 }
-?>
