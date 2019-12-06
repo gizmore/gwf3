@@ -8,7 +8,7 @@ final class Seattle_Citizen1 extends SR_HireNPC
 	public function getNPCEquipment()
 	{
 		return array(
-			'weapon' => 'SteelNunchaku',
+			'weapon' => array('SteelNunchaku', 'Club', 'Stiletto', 'Fists')
 			'armor' => 'StuddedVest',
 			'legs' => 'ElvenShorts',
 			'boots' => 'Sneakers'
@@ -93,4 +93,3 @@ final class Seattle_Citizen1 extends SR_HireNPC
 		}
 	}
 }
-?>
