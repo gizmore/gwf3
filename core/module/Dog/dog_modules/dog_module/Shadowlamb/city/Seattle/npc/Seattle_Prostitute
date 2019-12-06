@@ -10,7 +10,7 @@ final class Seattle_Prostitute extends SR_NPC
 	{
 		return array(
 			'race' => 'halfelve',
-			'gender' => (rand)'male', 'female')
+			'gender' => rand('male', 'female')
 			'charisma' => rand(3, 6),
 			'melee' => rand(4, 7),
 			'ninja' => rand(0, 6),
