@@ -14,7 +14,7 @@ final class Seattle_Citizen1 extends SR_HireNPC
 			'boots' => 'Sneakers'
 		);
 	}
-	public function getNPCInventory() { return array(); }
+	public function getNPCInventory() { return array('SteelNunchaku', 'Club', 'Stiletto', 'Fists'); }
 	public function getNPCModifiers() {
 		return array(
 			'race' => 'human',
