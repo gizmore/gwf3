@@ -7,7 +7,7 @@ final class Seattle_AngryElve extends SR_NPC
 	public function getNPCEquipment()
 	{
 		return array(
-			'weapon' => 'ElvenBow',
+			'weapon' => array('ElvenBow', 'Fists', 'Stiletto')
 			'armor' => 'ElvenVest',
 			'legs' => 'ElvenShorts',
 			'boots' => 'ElvenBoots',
