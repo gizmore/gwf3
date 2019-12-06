@@ -9,25 +9,30 @@ final class Redmond_Ueberpunk extends SR_NPC
 	public function getNPCEquipment()
 	{
 		return array(
-			'weapon' => 'AresPredator',
-			'armor' => 'Clothes',
-			'legs' => 'Trousers',
-			'boots' => 'Sneakers',
+			'weapon' => array('AresPredator', 'Claws', 'Fists')
+			'armor' => 'LeatherVest',
+			'legs' => 'ElvenShorts',
+			'boots' => 'ArmyBoots',
 		);
 	}
-	public function getNPCInventory() { return array('FirstAid', 'Ammo_9mm'); }
+	public function getNPCInventory('AresPredator', 'Claws') { return array('FirstAid', 'Ammo_9mm'); }
 	public function getNPCModifiers() {
 		return array(
 			'nuyen' => rand(20, 30),
 			'base_hp' => rand(8, 12),
-			'strength' => rand(2, 3),
-			'quickness' => rand(2, 3),
+			'strength' => rand(3, 5),
+			'quickness' => rand(3, 4),
 			'distance' => rand(8, 10),
-			'firearms' => rand(1, 3),
+			'melee'   => rand(1, 3)
+			'ninja'   => rand(1, 3)
+			'firearms' => rand(2, 3),
 			'pistols' => rand(2, 3),
 		);
 	}
-	
+	public function getNPCCyberware()
+	{
+		return array('DermalPlates','CyberMuscles');
+	}
 	public function getNPCLoot(SR_Player $player)
 	{
 		$back = array();
@@ -51,4 +56,3 @@ final class Redmond_Ueberpunk extends SR_NPC
 	}
 	
 }
-?>
