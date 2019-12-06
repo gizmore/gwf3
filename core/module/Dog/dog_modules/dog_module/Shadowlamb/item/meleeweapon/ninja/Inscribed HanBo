@@ -1,0 +1,21 @@
+<?php
+final class Item_Inscribed_HanBo extends SR_NinjaWeapon
+{
+	public function getAttackTime() { return 34; }
+	public function getItemLevel() { return 1; }
+	public function getItemWeight() { return 950; }
+	public function getItemPrice() { return 615; }
+	public function getItemRange() { return 3.5; }
+	public function getItemDescription() { return 'A magical staff, around 1.1m in length, with a nice grip and slightly aerodynamic design.'; }
+	public function getItemModifiersA(SR_Player $player)
+	{
+		return array(
+			'attack' => 5.5,
+			'min_dmg' => 1.5,
+			'max_dmg' => 5.5,
+			'ninja'   => 1.5,
+			
+		);
+	}
+}
+?>
