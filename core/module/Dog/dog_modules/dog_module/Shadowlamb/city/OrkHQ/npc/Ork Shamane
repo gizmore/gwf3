@@ -14,19 +14,19 @@ final class Redmond_Orc_Shamane extends SR_NPC
 			'legs' => 'ElvenShorts',
 		);
 	}
-	public function getNPCInventory() { return array('FirstAid'); }
+	public function getNPCInventory() { return array('FirstAid', 'HanBo'); }
 	public function getNPCSpells() return array('flu'=>3,'calm'=>1); }
 	public function getNPCModifiers() {
 		return array(
 			'race' => 'ork',
 			'gender' => 'male', 'female'
 			'strength' => 2,
-			'quickness' => 5,
-			'magic'  => 4,
+			'quickness' => 4,
+			'magic'  => 3,
       'melee'   => 1
       'ninja'   => 1
 			'intelligence' => 3,
-			'wisdom' => 4,
+			'wisdom' => 3,
 			'distance' => 12,
 			'base_hp' => 9,
 			'nuyen' => 90,
