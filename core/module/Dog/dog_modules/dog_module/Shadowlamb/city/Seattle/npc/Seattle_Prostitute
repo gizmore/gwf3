@@ -1,0 +1,51 @@
+<?php
+final class Seattle_Prostitute extends SR_NPC
+{
+	public function getNPCLevel() { return 9; }
+	public function getNPCPlayerName() { return 'Prostitute'; }
+	public function canNPCMeet(SR_Party $party) { return true; }
+	public function getNPCMeetPercent(SR_Party $party) { return 60.00; }
+	
+	public function getNPCModifiers()
+	{
+		return array(
+			'race' => 'halfelve',
+			'gender' => (rand)'male', 'female')
+			'charisma' => rand(3, 6),
+			'melee' => rand(4, 7),
+			'ninja' => rand(0, 6),
+			'firearms' => rand(1, 3),
+			'quickness' => rand(6, 8),
+			'base_hp' => rand(9, 11),
+			'distance' => rand(1, 24),
+			'nuyen' => rand(40, 150),
+		);
+	}
+	
+	public function getNPCEquipment()
+	{
+		return array(
+			'weapon' => array('AresViper', 'Stiletto', 'Claws', 'Fists'),
+			'armor' => 'LeatherVest',
+			'legs' => array('HardSkirt'),
+			'boots' => array('HighHeels'),
+			'belt' => array('ElvenBelt'),
+			'ring' => array('Ring_of_negotiation:1.1'),
+		);
+	}
+	
+	public function getNPCInventory()
+	{
+		return array(
+			'Claws', 'Stiletto'
+			'1xStimpatch',
+			'60xAmmo_9mm', '60xAmmo_5mm'
+		);
+	}
+
+// 	public function getNPCLoot(SR_Player $player)
+// 	{
+// 		return array();
+// 	}
+	
+}
