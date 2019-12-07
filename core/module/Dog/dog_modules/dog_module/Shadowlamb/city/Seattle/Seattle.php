@@ -1,15 +1,15 @@
 <?php
 final class Seattle extends SR_City
 {
-	const TIME_TO_DELAWARE = 450;
-	const TIME_TO_VEGAS = 1450;
+	const TIME_TO_DELAWARE = 350;
+	const TIME_TO_VEGAS = 1050;
 	
-	public function getImportNPCS() { return array('Redmond_Cyberpunk','Redmond_Ork','Redmond_Ueberpunk','Redmond_Burglar','Redmond_Snowman'); }
+	public function getImportNPCS() { return array('Redmond_Cyberpunk','Redmond_Ork','Redmond_Ueberpunk','Redmond_Burglar','Redmond_Prostitute', 'Redmond_Snowman'); }
 	public function getArriveText(SR_Player $player) { return 'You arrive at Seattle. It is a big city with a bunch of slums and a big commercial centrum.'; }
 	public function getSquareKM() { return 8; }
 	public function getMinLevel() { return 8; }
 	
-//	public function getExploreTime() { return 210; }
+//	public function getExploreTime() { return 120; }
 	public function onEvents(SR_Party $party)
 	{
 		$this->onEventWallet($party);
@@ -45,4 +45,3 @@ final class Seattle extends SR_City
 		}
 	}
 }
-?>
