@@ -23,7 +23,8 @@ final class Redmond_Citizen extends SR_HireNPC
 			'quickness' => rand(1, 4),
 			'distance' => rand(0, 2),
 			'nuyen' => rand(10, 20),
-			'sharpshooter' => rand(0,2),
+			'sharpshooter' => rand(0, 1),
+			'melee' => rand(0, 2)
 			'ninja' => rand(0,1),
 			'biotech' => rand(0,2),
 			'base_hp' => rand(4, 8),
