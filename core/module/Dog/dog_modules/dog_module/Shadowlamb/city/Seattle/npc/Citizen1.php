@@ -14,7 +14,7 @@ final class Seattle_Citizen1 extends SR_HireNPC
 			'boots' =>rand('BikerBoots', 'ArmyBoots')
 		);
 	}
-	public function getNPCInventory('Knife', 'IronPipe', 'BrassKnuckles') { return array('firstaid'); }
+	public function getNPCInventory() { return rand('firstaid', 'Knife', 'IronPipe', 'BrassKnuckles'); }
 	public function getNPCModifiers() {
 		return array(
 			'race' => 'human',
