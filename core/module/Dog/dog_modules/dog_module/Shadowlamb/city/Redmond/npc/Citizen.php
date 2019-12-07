@@ -8,22 +8,25 @@ final class Redmond_Citizen extends SR_HireNPC
 	public function getNPCEquipment()
 	{
 		return array(
-			'weapon' => 'Knife',
-			'armor' => 'Clothes',
-			'legs' => 'Trousers',
+			'weapon' => rand('Knife', 'Fists', 'IronPipe', 'BrassKnuckles')
+			'armor' => rand('Clothes','LeatherVest', 'ChainVest', 'Lined Duster')
+			'legs' => rand('Trousers', 'Shorts', 'ElvenShorts')
+			'boots' => rand('Sneakers', 'Shoes', 'Boots')
 		);
 	}
-	public function getNPCInventory() { return array(); }
+	public function getNPCInventory('Knife', 'IronPipe', 'BrassKnuckles') { return array('firstaid'); }
 	public function getNPCModifiers() {
 		return array(
-			'race' => 'human',
-			'gender' => 'male',
-			'strength' => rand(2, 3),
-			'quickness' => rand(1, 3),
+			'race' => rand('human', 'halfelve', 'dwarf', 'halfork')
+			'gender' => rand('male', 'female')
+			'strength' => rand(2, 4),
+			'quickness' => rand(1, 4),
 			'distance' => rand(0, 2),
 			'nuyen' => rand(10, 20),
-			'sharpshooter' => rand(3,4),
-			'base_hp' => rand(6, 12),
+			'sharpshooter' => rand(0,2),
+			'ninja' => rand(0,1),
+			'biotech' => rand(0,2),
+			'base_hp' => rand(4, 8),
 		);
 	}
 	
@@ -85,4 +88,3 @@ final class Redmond_Citizen extends SR_HireNPC
 		}
 	}
 }
-?>
