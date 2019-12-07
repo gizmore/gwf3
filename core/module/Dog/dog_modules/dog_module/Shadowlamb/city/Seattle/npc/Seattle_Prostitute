@@ -25,7 +25,7 @@ final class Seattle_Prostitute extends SR_NPC
 	public function getNPCEquipment()
 	{
 		return array(
-			'weapon' => array('AresViper', 'Stiletto', 'Claws', 'Fists'),
+			'weapon' => array('AresViper', 'Stiletto', 'Fists'),
 			'armor' => 'LeatherVest',
 			'legs' => array('HardSkirt'),
 			'boots' => array('HighHeels'),
@@ -37,7 +37,7 @@ final class Seattle_Prostitute extends SR_NPC
 	public function getNPCInventory()
 	{
 		return array(
-			'Claws', 'Stiletto'
+			'FirstAid', 'Stiletto'
 			'1xStimpatch',
 			'60xAmmo_9mm', '60xAmmo_5mm'
 		);
