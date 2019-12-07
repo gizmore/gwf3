@@ -1,7 +1,7 @@
 <?php
 final class Item_Flashbang extends SR_Grenade
 {
-	public function getItemDescription() { return 'Will blind and enemy party and does slight party damage.'; }
+	public function getItemDescription() { return 'SHock-Grenade: Will blind and enemy party and does slight party damage.'; }
 	public function getItemPrice() { return 150; }
 	public function getItemUsetime() { return 15; }
 	public function getItemWeight() { return 450; }
@@ -188,4 +188,3 @@ final class Item_Flashbang extends SR_Grenade
 //		}
 //	}
 }
-?>
