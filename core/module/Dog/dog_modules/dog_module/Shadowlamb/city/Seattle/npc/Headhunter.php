@@ -14,7 +14,7 @@ final class Seattle_Headhunter extends SR_NPC
 			'helmet' => 'KevlarHelmet',
 		);
 	}
-	public function getNPCInventory('Knife', 'RugerWarhawk') { return array('Stimpatch','Ammo_11mm','Ammo_11mm','Ammo_11mm','Ammo_11mm','Ammo_11mm'); }
+	public function getNPCInventory() { return array('Knife', 'RugerWarhawk','Stimpatch','Ammo_11mm','Ammo_11mm','Ammo_11mm','Ammo_11mm','Ammo_11mm'); }
 	public function getNPCModifiers() {
 		return array(
 			'race' => 'human',
