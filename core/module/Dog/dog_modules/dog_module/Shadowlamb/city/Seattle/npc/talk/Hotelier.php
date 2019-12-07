@@ -11,7 +11,7 @@ final class Seattle_Hotelier extends SR_TalkingNPC
 	
 	private function calcNegPrice(SR_Player $player)
 	{
-		$price = 10000;
+		$price = 5000;
 		$try = $player->getTemp(self::TEMP_WORDN);
 		$price -= $try * 1000;
 		return $price;
@@ -142,4 +142,3 @@ final class Seattle_Hotelier extends SR_TalkingNPC
 	}
 	
 }
-?>
