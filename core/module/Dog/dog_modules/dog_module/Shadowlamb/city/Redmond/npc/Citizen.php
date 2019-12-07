@@ -14,7 +14,7 @@ final class Redmond_Citizen extends SR_HireNPC
 			'boots' => rand('Sneakers', 'Shoes', 'Boots')
 		);
 	}
-	public function getNPCInventory('Knife', 'IronPipe', 'BrassKnuckles') { return array('firstaid'); }
+	public function getNPCInventory() { return array('firstaid', 'IronPipe'); }
 	public function getNPCModifiers() {
 		return array(
 			'race' => rand('human', 'halfelve', 'dwarf', 'halfork')
