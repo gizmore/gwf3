@@ -24,23 +24,12 @@ final class Seattle_Prostitute extends SR_NPC
 	
 	public function getNPCEquipment()
 	{
-		return array(
-			'weapon' => array('AresViper', 'Stiletto', 'Fists'),
-			'armor' => 'LeatherVest',
-			'legs' => array('HardSkirt'),
-			'boots' => array('HighHeels'),
-			'belt' => array('ElvenBelt'),
-			'ring' => array('Ring_of_negotiation:1.1'),
-		);
+		return array();
 	}
 	
 	public function getNPCInventory()
 	{
-		return array(
-			'FirstAid', 'Stiletto'
-			'1xStimpatch',
-			'60xAmmo_9mm', '60xAmmo_5mm'
-		);
+		return array('FirstAid', 'Stiletto''1xStimpatch','20xAmmo_9mm', '20xAmmo_5mm');
 	}
 
 // 	public function getNPCLoot(SR_Player $player)
