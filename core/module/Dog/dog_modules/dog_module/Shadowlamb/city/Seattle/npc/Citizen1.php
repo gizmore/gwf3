@@ -8,21 +8,23 @@ final class Seattle_Citizen1 extends SR_HireNPC
 	public function getNPCEquipment()
 	{
 		return array(
-			'weapon' => 'LongSword',
-			'armor' => 'LeatherVest',
-			'legs' => 'Trousers',
+			'weapon' => rand('Knife', 'IronPipe', 'BrassKnuckles', 'Fists')
+			'armor' => rand('StuddedVest', 'ChainVest', 'KevlarVest')
+			'legs' => rand('Trousers', 'Shorts')
+			'boots' =>rand('BikerBoots', 'ArmyBoots')
 		);
 	}
-	public function getNPCInventory() { return array(); }
+	public function getNPCInventory('Knife', 'IronPipe', 'BrassKnuckles') { return array('firstaid'); }
 	public function getNPCModifiers() {
 		return array(
 			'race' => 'human',
-			'gender' => 'male',
+			'gender' => rand('male', 'female')
 			'strength' => rand(2, 4),
 			'melee' => rand(2, 4),
+			'ninja' => rand(1, 2),
 			'quickness' => rand(2, 4),
 			'distance' => rand(0, 2),
-			'nuyen' => rand(40, 60),
+			'nuyen' => rand(40, 90),
 			'base_hp' => rand(8, 16),
 		);
 	}
@@ -90,4 +92,3 @@ final class Seattle_Citizen1 extends SR_HireNPC
 		}
 	}
 }
-?>
