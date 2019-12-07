@@ -1,7 +1,7 @@
 <?php
 final class Redmond_Noob extends SR_NPC
 {
-	public function getNPCLevel() { return rand(1, 10) }
+	public function getNPCLevel() { return (1) }
 	public function getNPCPlayerName() { return 'Noob'; }
 	public function getNPCMeetPercent(SR_Party $party) { return 70.00; }
 	public function canNPCMeet(SR_Party $party) { return true; }
@@ -25,7 +25,7 @@ final class Redmond_Noob extends SR_NPC
 			'distance' => rand(0, 2),
 			'strength' => rand(1, 3)
 			'quickness' => rand(1, 3)
-			'ninja' => rand(1, 3)
+			'ninja' => rand(0, 1)
 		);
 	}
 	public function getNPCModifiersB()
