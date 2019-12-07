@@ -9,13 +9,13 @@ final class Redmond_ToughGuy extends SR_NPC
 	public function getNPCEquipment()
 	{
 		return array(
-			'weapon' => rand('BaseballBat', 'IronPipe', 'Stiletto', 'Claws', 'Fists';),
+			'weapon' => rand('BaseballBat', 'IronPipe', 'Stiletto', 'BaseballBat', 'Fists';),
 			'armor' => 'LeatherVest',
 			'legs' => 'Shorts',
 			'boots' => rand('Sneakers', 'Sandals'),
 		);
 	}
-	public function getNPCInventory('BaseballBat', 'IronPipe', 'Stiletto', 'Claws', 'Fists';) { return array(); }
+	public function getNPCInventory('BaseballBat', 'IronPipe', 'Stiletto', 'BaseballBat', 'Fists';) { return array(); }
 	public function getNPCModifiers() {
 		return array(
 			'nuyen' => rand(30, 40),
