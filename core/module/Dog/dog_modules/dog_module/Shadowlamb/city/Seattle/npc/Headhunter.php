@@ -7,28 +7,27 @@ final class Seattle_Headhunter extends SR_NPC
 	public function getNPCEquipment()
 	{
 		return array(
-			'weapon' => 'RugerWarhawk',
-			'armor' => 'KevlarVest',
+			'weapon' => array('RugerWarhawk', 'Knife', 'Fists')
+			'armor' => rand('KevlarVest', 'ChainVest')
 			'legs' => 'KevlarLegs',
 			'boots' => 'ArmyBoots',
 			'helmet' => 'KevlarHelmet',
 		);
 	}
-	public function getNPCInventory() { return array('Stimpatch','Ammo_11mm','Ammo_11mm','Ammo_11mm','Ammo_11mm','Ammo_11mm'); }
+	public function getNPCInventory('Knife', 'RugerWarhawk') { return array('Stimpatch','Ammo_11mm','Ammo_11mm','Ammo_11mm','Ammo_11mm','Ammo_11mm'); }
 	public function getNPCModifiers() {
 		return array(
 			'race' => 'human',
-			'gender' => 'male',
+			'gender' => rand('male', 'female')
 			'strength' => rand(2, 3),
 			'quickness' => rand(3, 4),
 			'distance' => rand(8, 12),
-			'melee' => rand(1, 2),
+			'melee' => rand(2, 4),
 			'firearms' => rand(3, 4),
 			'pistols' => rand(3, 4),
-			'sharpshooter' => rand(1, 2),
+			'sharpshooter' => rand(1, 3),
 			'nuyen' => rand(30, 70),
 			'base_hp' => rand(4, 9),
 		);
 	}
 }
-?>
