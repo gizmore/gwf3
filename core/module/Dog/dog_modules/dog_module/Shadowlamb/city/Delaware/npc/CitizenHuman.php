@@ -8,22 +8,24 @@ final class Delaware_CitizenHuman extends SR_HireNPC
 	public function getNPCEquipment()
 	{
 		return array(
-			'weapon' => array('LongSword','Knife','BroadSword'),
-			'armor' => array('LeatherVest','StuddedVest'),
-			'legs' => array('Trousers', 'StuddedLegs'),
+			'weapon' => array('IronPipe','Knife','BrassKnuckles', 'Fists', 'WoodenNunchaku'),
+			'armor' => rand('ChainVest','StuddedVest', 'KevlarVest),
+			'legs' => rand('Trousers', 'StuddedLegs'),
 			'helmet' => array('Cap'),
-			'boots' => array('Boots','ArmyBoots'),
+			'boots' => rand('Boots','ArmyBoots'),
 		);
 	}
 	public function getNPCInventory() { return array('Cake'); }
 	public function getNPCModifiers() {
 		return array(
-			'race' => 'human',
+			'race' => rand('human', 'ork', 'darkelve', 'halfelve', 'faerie')
 			'gender' => SR_Player::getRandomGender(),
 			'strength' => rand(2, 4),
 			'melee' => rand(4, 6),
+			'ninja' => rand(2, 3),
 			'sharpshooter' => rand(2, 4),
-			'quickness' => rand(2, 4),
+			'quickness' => rand(3, 5),
+			'body' => rand(3, 5),
 			'distance' => rand(0, 2),
 			'nuyen' => rand(20, 40),
 			'base_hp' => rand(10, 18),
@@ -84,4 +86,3 @@ final class Delaware_CitizenHuman extends SR_HireNPC
 		return true;
 	}
 }
-?>
