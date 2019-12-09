@@ -7,7 +7,8 @@ final class Redmond_Ares extends SR_Store
 		return array(
 			array('Clothes', 100.0, 100),
 			array('LeatherVest', 100.0, 200),
-			array('ChainVest', 100.0, 750),
+			array('StuddedVest', 100.0, 450),
+			array('ChainVest', 100.0, 950),
 			array('Knife', 100.0, 200),
 			array('Stiletto', 100.0, 149.95),
 			array('ShortSword', 100.0, 550),
@@ -34,4 +35,3 @@ final class Redmond_Ares extends SR_Store
 	public function getEnterText(SR_Player $player) { return $this->lang($player, 'enter'); }
 // 	public function getHelpText(SR_Player $player) { return $this->lang($player, 'help'); }
 } 
-?>
