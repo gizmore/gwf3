@@ -1,0 +1,18 @@
+<?php
+final class Item_Tomahawk extends SR_Axe
+{
+	public function getAttackTime() { return 25; }
+	public function getItemLevel() { return 2; }
+	public function getItemWeight() { return 1200; }
+	public function getItemPrice() { return 85; }
+	public function getItemRange() { return 1.4; }
+	public function getItemDescription() { return 'The favorite weapon of street-shamane's & tribal fans.'; }
+	public function getItemModifiersA(SR_Player $player)
+	{
+		return array(
+			'attack' => 2.5, 
+			'min_dmg' => 1.5,
+			'max_dmg' => 7.5,
+		);
+	}
+}
