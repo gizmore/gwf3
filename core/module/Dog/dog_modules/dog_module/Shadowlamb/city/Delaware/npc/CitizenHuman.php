@@ -25,7 +25,7 @@ final class Delaware_CitizenHuman extends SR_HireNPC
 			'ninja' => rand(2, 3),
 			'sharpshooter' => rand(2, 4),
 			'quickness' => rand(3, 5),
-			'body' => rand(3, 5),
+			'body' => rand(4, 6),
 			'distance' => rand(0, 2),
 			'nuyen' => rand(20, 40),
 			'base_hp' => rand(10, 18),
