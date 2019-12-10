@@ -57,6 +57,8 @@ final class Redmond_BlackDwarf extends SR_TalkingNPC
 				{
 					$this->rply('thx');
 // 					$this->reply('Thanks to you, I can smith and runecraft items again :)');
+					$player->levelupFieldTo('viking', 0);
+// 			                $player->updateField('viking', 0);
 				}
 				elseif ($has)
 				{
@@ -94,4 +96,3 @@ final class Redmond_BlackDwarf extends SR_TalkingNPC
 		return true;
 	}
 }
-?>
