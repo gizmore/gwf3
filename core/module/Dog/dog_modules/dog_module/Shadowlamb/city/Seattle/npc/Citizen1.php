@@ -8,6 +8,7 @@ final class Seattle_Citizen1 extends SR_HireNPC
 	public function getNPCEquipment()
 	{
 		return array(
+			'amulet' => array('LO_Amulet_of_orcas:1'),
 			'weapon' => array('SteelNunchaku', 'Club', 'Stiletto', 'Fists')
 			'armor' => 'StuddedVest',
 			'legs' => 'ElvenShorts',
