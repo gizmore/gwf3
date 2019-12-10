@@ -1,0 +1,22 @@
+<?php
+final class Item_ColtManhunter extends SR_Pistol
+{
+	public function getAttackTime() { return 35; }
+	public function getAmmoName() { return 'Ammo_11mm'; }
+	public function getBulletsMax() { return 8; }
+	public function getBulletsPerShot() { return 1; }
+	public function getReloadTime() { return 50; }
+	public function getItemLevel() { return 10; }
+	public function getItemWeight() { return 1450; }
+	public function getItemPrice() { return 1250; }
+	public function getItemDescription() { return 'Colt's competitor to the Ruger Warhawk, a laser-sigh supported automatic clip pistol.'; }
+	public function getItemRequirements() { return array('firearms'=>3, 'pistols'=>2); }
+	public function getItemModifiersA(SR_Player $player)
+	{
+		return array(
+			'attack' => 18.5,
+			'min_dmg' => 2.5,
+			'max_dmg' => 16.5,
+		);
+	}
+}
