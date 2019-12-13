@@ -7,7 +7,7 @@ final class Seattle_Ninja extends SR_NPC
 	public function getNPCEquipment()
 	{
 		return array(
-			'weapon' => 'NinjaSword',
+			'weapon' => rand('NinjaSword_with_strength:1.1', 'HanBo_with_strength:1.1', 'Fists', 'WoodNunchaku_with_strength:1.1')
 			'armor' => 'Uwagi',
 			'legs' => 'Hakama',
 			'boots' => 'ChikaTabi',
@@ -18,12 +18,13 @@ final class Seattle_Ninja extends SR_NPC
 	public function getNPCModifiers() {
 		return array(
 			'race' => 'human',
-			'gender' => 'male',
+			'gender' => rand('male', 'female')
 			'strength' => rand(2, 3),
-			'quickness' => rand(3, 4),
+			'quickness' => rand(3, 6),
 			'distance' => rand(0, 2),
 			'melee' => rand(2, 3),
 			'ninja' => rand(2, 4),
+			'thief' => rand(2, 3),
 			'sharpshooter' => rand(1, 2),
 			'nuyen' => rand(10, 60),
 			'base_hp' => rand(5, 10),
@@ -42,4 +43,3 @@ final class Seattle_Ninja extends SR_NPC
 		return array();
 	}
 }
-?>
