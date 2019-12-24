@@ -52,13 +52,13 @@ Sum:    €704,00
 Goal:   €350,00
 </pre>
 
-<pre>Donations 2019:    7 donations
-Sum:    €245,00
+<pre>Donations 2019:    8 donations
+Sum:    €275,00
 Goal:   €450,00
 </pre>
 
-<pre>Totals:           21 donations
-Sum:    € 1239,00
+<pre>Totals:           22 donations
+Sum:    € 1269,00
 Goal:   € 1150,00
 </pre>
 
@@ -102,6 +102,9 @@ We currently have the following ca. expenses for WeChall:<br/>
 <li><span class="dodate">29.Jun.2019</span> – <em>&quot;Thanks a lot for this website, and all the great work maintaining it!&quot;</em> – <a class="donor" href="/profile/kkaosninja">kkaosninja</a></li>
 <li><span class="dodate">20.Oct.2019</span> – <span class="nomsg"></span> – <span class="unknownuser"></span></li>
 <li><span class="dodate">7.Nov.2019</span> – <span class="nomsg"></span> – <a class="donor" href="/profile/flabbyrabbit">flabbyrabbit</a></li>
+
+<li><span class="dodate">21.Dec.2019</span> – <em>&quot;This is fun. Thanks.&quot;</em> – <a class="donor" href="/profile/sutaburosu">sutaburosu</a></li>
+
 </ol>
 </div>
 
