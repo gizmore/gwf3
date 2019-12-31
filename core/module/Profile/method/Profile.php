@@ -47,6 +47,8 @@ final class Profile_Profile extends GWF_Method
 			}
 		}
 		
+		$prof_view = array_slice($prof_view, 0, 50); # max 50 items to prevent session overflow.
+		
 		GWF_Session::set('prof_view', $prof_view);
 		
 		$tVars = array(
