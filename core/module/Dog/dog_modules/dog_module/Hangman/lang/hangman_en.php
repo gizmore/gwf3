@@ -7,7 +7,7 @@ $lang = array(
 //	'hang--' => 'Usage: %CMD% <id>. Vote a word down.',
 
 	'err_word' => 'This word does not exists in the database.',
-	'err_wordlen' => 'The word has to be at least %d chars in length.',
+	'err_wordlen' => 'The word has to be %d up to %d chars in length.',
 	'err_alpha' => 'Only alphabetical letters are allowed.',
 	'err_dup' => 'This word was already in the database.',
 		

@@ -27,9 +27,9 @@ final class DOGMOD_Hangman extends Dog_Module
 		
 		$iso = Dog::getChannel()->getLangISO();
 		
-		if (GWF_String::strlen($hang_word) < 6 || GWF_String::strlen($hang_word) > 60)
+		if (GWF_String::strlen($hang_word) < 6 || GWF_String::strlen($hang_word) > 100)
 		{
-			return $this->rply('err_wordlen', array(6, 30));
+			return $this->rply('err_wordlen', array(6, 100));
 		}
 
 		if (!preg_match('/^[a-z ]+$/Di', $hang_word))
