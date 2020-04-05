@@ -23,30 +23,16 @@ final class DOGMOD_Hangman extends Dog_Module
 
 	public function on_ADDhang_Pc()
 	{
-		$argv = $this->argv();
-		$argc = count($argv);
-		if ($argc === 1)
-		{
-			$hang_word = strtolower($argv[0]);
-			$iso = Dog::getChannel()->getLangISO();
-		}
-		elseif ($argc === 2)
-		{
-			$hang_word = strtolower($argv[0]);
-			$iso = strtolower($argv[1]);
-		}
-		else
-		{
-			return $this->showHelp('+hang');
-		}
+		$hang_word = trim($this->msgarg());
 		
+		$iso = Dog::getChannel()->getLangISO();
 		
-		if (GWF_String::strlen($hang_word) < 6 || GWF_String::strlen($hang_word) > 30)
+		if (GWF_String::strlen($hang_word) < 6 || GWF_String::strlen($hang_word) > 60)
 		{
 			return $this->rply('err_wordlen', array(6, 30));
 		}
 
-		if (!preg_match('/^\p{L}+$/Dui', $hang_word))
+		if (!preg_match('/^[a-z ]+$/Di', $hang_word))
 		{
 			return $this->rply('err_alpha');
 		}
@@ -66,12 +52,7 @@ final class DOGMOD_Hangman extends Dog_Module
 
 	public function on_REMOVEhang_Hb()
 	{
-		$argv = $this->argv();
-		if (1 !== ($argc = count($argv)))
-		{
-			return $this->showHelp('-hang');
-		}
-		$hang_word = strtolower($argv[0]);
+		$hang_word = $this->msgarg();
 		
 		if (  (false === ($word = Hangman_Words::getByWord($hang_word)))
 			&&(false === ($word = Hangman_Words::getByID($hang_word))) )

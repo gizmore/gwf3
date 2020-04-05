@@ -111,6 +111,13 @@ final class HangmanGame {
 		
 		$length = strlen($this->solution);
 		$this->grid = str_pad('',$length,$this->CONFIG['placeholder']);
+		for ($i = 0; $i < $length; $i++)
+		{
+			if ($this->solution[$i] === ' ')
+			{
+				$this->grid[$i] = ' ';
+			}
+		}
 		$this->sendGrid();
 		
 		$this->sendOutput(' ');
@@ -181,6 +188,7 @@ final class HangmanGame {
 	}
 
 	private static function convertUmlaute($string) {
+// 		return $string;
 		$replace = array("ä" => "ae", "ö" => "oe", "ü" => "ue", "Ä" => "Ae", "Ö" => "Oe", "Ü" => "Ue");
 		return strtr($string,$replace);
 	}
