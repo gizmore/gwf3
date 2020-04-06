@@ -199,15 +199,6 @@ final class HangmanGame {
 		}
 		$this->grid = $newgrid;
 		
-// 		for($x=0;$x<mb_strlen($this->solution);$x++) {
-// 			if (mb_substr($lowersol, $x, 1) === mb_strtolower($char)) {
-// 				preg_replace("//iuD", $replacement, $subject)
-// 			}
-// 			if(mb_strtolower($this->solution[$x]) == mb_strtolower($char)) {
-// 				$this->grid[$x] = $this->solution[$x];
-// 			}
-// 		}
-		
 		$this->sendGrid();
 	}
 
