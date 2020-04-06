@@ -42,8 +42,8 @@ final class HangmanGame {
 	/**
 	 *
 	 * @param string $user the username
-	 * @param string|char $message the guess
-	 * @return the answer
+	 * @param string $message the guess
+	 * @return string answer
 	 */
 	public function onGuess($user, $message)
 	{
@@ -109,7 +109,7 @@ final class HangmanGame {
 		$this->lastTime = time();
 		$this->guesses = '';
 		
-		$length = strlen($this->solution);
+		$length = mb_strlen($this->solution);
 		$this->grid = str_pad('',$length,$this->CONFIG['placeholder']);
 		for ($i = 0; $i < $length; $i++)
 		{
@@ -154,13 +154,15 @@ final class HangmanGame {
 			return;
 		}
 		
-		$charset = 'abcdefghijklmnopqrstuvwxyz';
-		if(!stristr($charset,$char)) {
+		$char = mb_strtolower($char);
+		
+		$charset = 'üäößabcdefghijklmnopqrstuvwxyz';
+		if(!mb_stristr($charset, $char)) {
 			$this->sendOutput('Charset is a-z.');
 			return;
 		}
 
-		if (false !== strpos($this->guesses, $char))
+		if (false !== mb_strpos($this->guesses, $char))
 		{
 			$this->sendOutput(sprintf('The char was already guessed, guessed chars: %s', $this->guesses));
 			return;
@@ -169,8 +171,10 @@ final class HangmanGame {
 		$this->guesses .= $char;
 		$this->lastNick = $nick;
 		$this->lastTime = time();
+		
+		$lowersol = mb_strtolower($this->solution);
 
-		if(!stristr($this->solution,$char)) {
+		if(!stristr($lowersol, $char)) {
 			if($this->subLife() === 'lose') return;
 			$this->sendOutput("That char doesn't match.");
 			$this->sendGrid();
@@ -178,19 +182,39 @@ final class HangmanGame {
 			return false;
 		}
 		
-		for($x=0;$x<strlen($this->solution);$x++) {
-			if(strtolower($this->solution[$x]) == strtolower($char)) {
-				$this->grid[$x] = $this->solution[$x];
+		$lowersol = mb_strtolower($this->solution);
+		
+		$newgrid = '';
+		$chrArray = preg_split('//u', $lowersol, -1, PREG_SPLIT_NO_EMPTY);
+		
+		$i = 0;
+		foreach ($chrArray as $chr) {
+			if (mb_strtolower($chr) === $char) {
+				$newgrid .= $chr;
 			}
+			else {
+				$newgrid .= mb_substr($this->grid, $i, 1);
+			}
+			$i++;
 		}
+		$this->grid = $newgrid;
+		
+// 		for($x=0;$x<mb_strlen($this->solution);$x++) {
+// 			if (mb_substr($lowersol, $x, 1) === mb_strtolower($char)) {
+// 				preg_replace("//iuD", $replacement, $subject)
+// 			}
+// 			if(mb_strtolower($this->solution[$x]) == mb_strtolower($char)) {
+// 				$this->grid[$x] = $this->solution[$x];
+// 			}
+// 		}
 		
 		$this->sendGrid();
 	}
 
 	private static function convertUmlaute($string) {
-// 		return $string;
-		$replace = array("ä" => "ae", "ö" => "oe", "ü" => "ue", "Ä" => "Ae", "Ö" => "Oe", "Ü" => "Ue");
-		return strtr($string,$replace);
+		return $string;
+// 		$replace = array("ä" => "ae", "ö" => "oe", "ü" => "ue", "Ä" => "Ae", "Ö" => "Oe", "Ü" => "Ue");
+// 		return strtr($string,$replace);
 	}
 
 	public function trySolution($nick,$solution) {
@@ -198,7 +222,7 @@ final class HangmanGame {
 			return;
 		}
 		$solution = self::convertUmlaute($solution);
-		if(strtolower($solution) != strtolower($this->solution)) {
+		if(mb_strtolower($solution) != mb_strtolower($this->solution)) {
 			if($this->subLife() === "lose") return;
 			$this->sendOutput(sprintf('Sorry %s, that was not the correct solution.', $nick));
 			$this->lastNick = $nick;

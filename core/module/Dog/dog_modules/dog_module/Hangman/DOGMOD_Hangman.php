@@ -17,7 +17,7 @@ final class DOGMOD_Hangman extends Dog_Module
 			'solve_anytime' => 'c,o,b,1', # channel operator boolean
 			'placeholder' => 'c,o,s,*',   # channel operator string
 			'lives' => 'c,o,i,8',         # channel operator integer
-			'singleplayer' => 'c,o,b,0',  # channel operator boolean
+			'singleplayer' => 'c,o,b,1',  # channel operator boolean
 		);
 	}
 
@@ -32,7 +32,7 @@ final class DOGMOD_Hangman extends Dog_Module
 			return $this->rply('err_wordlen', array(6, 100));
 		}
 
-		if (!preg_match('/^[a-z ]+$/Di', $hang_word))
+		if (!preg_match('/^[üäößa-z ]+$/Diu', $hang_word))
 		{
 			return $this->rply('err_alpha');
 		}

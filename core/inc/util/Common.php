@@ -183,12 +183,12 @@ final class Common
 	 * */
 	public static function substrUntil($string, $until, $default=NULL, $reverse=false)
 	{
-		$spos = (true === $reverse) ? 'strrpos' : 'strpos';
+		$spos = (true === $reverse) ? 'mb_strrpos' : 'mb_strpos';
 		if (false === ($pos = $spos($string, $until)))
 		{
 			return $default === NULL ? $string : $default;
 		}
-		return substr($string, 0, $pos);
+		return mb_substr($string, 0, $pos);
 	}
 
 	/**
@@ -202,14 +202,14 @@ final class Common
 	 * */
 	public static function substrFrom($string, $from, $default="", $reverse=false)
 	{
-		$spos = (true === $reverse) ? 'strrpos' : 'strpos';
+		$spos = (true === $reverse) ? 'mb_strrpos' : 'mb_strpos';
 		$pos = $spos($string, $from);
 		if ($pos === false)
 		{
 			return $default;
 		}
-		$len = strlen($from);
-		return substr($string, $pos+$len);
+		$len = mb_strlen($from);
+		return mb_substr($string, $pos+$len);
 	}
 
 	/**
