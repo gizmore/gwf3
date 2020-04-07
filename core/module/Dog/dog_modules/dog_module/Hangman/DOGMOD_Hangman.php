@@ -77,10 +77,10 @@ final class DOGMOD_Hangman extends Dog_Module
 		if (false === isset($this->instances[$channel->getID()]))
 		{
 			$config = array(
-				'solution_allowed_everytime' => $this->getConfig('solve_anytime', 'c') === '1',
+				'solution_allowed_everytime' => $this->getConfig('solve_anytime', 'c') === 1,
 				'placeholder' => $this->getConfig('placeholder', 'c'),
 				'lives' => $this->getConfig('lives', 'c'),
-				'singleplayer' => $this->getConfig('singleplayer', 'c') === '1',
+				'singleplayer' => $this->getConfig('singleplayer', 'c') == 1,
 			);
 			$this->instances[$channel->getID()] = new HangmanGame($config);
 		}

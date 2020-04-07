@@ -157,15 +157,15 @@ final class HangmanGame {
 			return;
 		}
 		
-		$char = mb_strtolower($char);
+		$char = mb_strtolower($char, 'utf8');
 		
 		$charset = 'üäößabcdefghijklmnopqrstuvwxyz';
-		if(!mb_stristr($charset, $char)) {
+		if(!mb_stristr($charset, $char, null, 'utf8')) {
 			$this->sendOutput('Charset is a-z.');
 			return;
 		}
 
-		if (false !== mb_strpos($this->guesses, $char))
+		if (false !== mb_strpos($this->guesses, $char, null, 'utf8'))
 		{
 			$this->sendOutput(sprintf('The char was already guessed, guessed chars: %s', $this->guesses));
 			return;
@@ -175,9 +175,9 @@ final class HangmanGame {
 		$this->lastNick = $nick;
 		$this->lastTime = time();
 		
-		$lowersol = mb_strtolower($this->solution);
+		$lowersol = mb_strtolower($this->solution, 'utf8');
 
-		if(!stristr($lowersol, $char)) {
+		if(!mb_stristr($lowersol, $char, null, 'utf8')) {
 			if($this->subLife() === 'lose') return;
 			$this->sendOutput("That char doesn't match.");
 			$this->sendGrid();
@@ -216,7 +216,7 @@ final class HangmanGame {
 			return;
 		}
 		$solution = self::convertUmlaute($solution);
-		if(mb_strtolower($solution) != mb_strtolower($this->solution)) {
+		if(mb_strtolower($solution, 'utf8') != mb_strtolower($this->solution, 'utf8')) {
 			if($this->subLife() === "lose") return;
 			$this->sendOutput(sprintf('Sorry %s, that was not the correct solution.', $nick));
 			$this->lastNick = $nick;
