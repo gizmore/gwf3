@@ -55,8 +55,7 @@ final class HangmanGame {
 			{
 				$this->CONFIG['solution_allowed_everytime'] = false;
 			}
-			$iso = Common::substrFrom($message, ' ', Dog::getChannel()->getLangISO());
-			$this->onStartGame($iso);
+			$this->onStartGame(Dog::getChannel()->getLangISO());
 		}
 		
 		elseif ($message === '')
@@ -109,13 +108,17 @@ final class HangmanGame {
 		$this->lastTime = time();
 		$this->guesses = '';
 		
-		$length = mb_strlen($this->solution);
-		$this->grid = str_pad('',$length,$this->CONFIG['placeholder']);
+		$length = GWF_String::strlen($this->solution);
+		$this->grid = '';
 		for ($i = 0; $i < $length; $i++)
 		{
-			if ($this->solution[$i] === ' ')
+			if (mb_substr($this->solution, $i, 1, 'utf8') === ' ')
 			{
-				$this->grid[$i] = ' ';
+				$this->grid .= ' ';
+			}
+			else
+			{
+				$this->grid .= $this->CONFIG['placeholder'];
 			}
 		}
 		$this->sendGrid();
@@ -182,20 +185,20 @@ final class HangmanGame {
 			return false;
 		}
 		
-		$lowersol = mb_strtolower($this->solution);
-		
 		$newgrid = '';
-		$chrArray = preg_split('//u', $lowersol, -1, PREG_SPLIT_NO_EMPTY);
 		
-		$i = 0;
-		foreach ($chrArray as $chr) {
-			if (mb_strtolower($chr) === $char) {
-				$newgrid .= $chr;
+		$len = GWF_String::strlen($lowersol);
+		
+		for ($i = 0; $i < $len; $i++)
+		{
+			$chr = mb_substr($lowersol, $i, 1, 'utf8');
+			
+			if (mb_strtolower($chr, 'utf8') === $char) {
+				$newgrid .= mb_substr($this->solution, $i, 1, 'utf8');
 			}
 			else {
-				$newgrid .= mb_substr($this->grid, $i, 1);
+				$newgrid .= mb_substr($this->grid, $i, 1, 'utf8');
 			}
-			$i++;
 		}
 		$this->grid = $newgrid;
 		
