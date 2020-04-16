@@ -10,6 +10,8 @@ require_once 'HangmanGame.php';
 final class DOGMOD_Hangman extends Dog_Module
 {
 	private $instances = array();
+	
+	public static $PUNCTUATION = array(' ', '.', ',', '!', '?');
 
 	public function getOptions()
 	{
@@ -32,7 +34,8 @@ final class DOGMOD_Hangman extends Dog_Module
 			return $this->rply('err_wordlen', array(6, 100));
 		}
 
-		if (!preg_match('/^[üäößa-z ]+$/Diu', $hang_word))
+		$punctuation = implode('', self::$PUNCTUATION);
+		if (!preg_match('/^[üäößa-z'.$punctuation.']+$/Diu', $hang_word))
 		{
 			return $this->rply('err_alpha');
 		}
@@ -89,4 +92,3 @@ final class DOGMOD_Hangman extends Dog_Module
 		$this->reply($hang->onGuess(Dog::getUser()->getName(), $this->msgarg()));
 	}
 }
-?>

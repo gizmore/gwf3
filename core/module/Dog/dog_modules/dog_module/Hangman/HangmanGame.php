@@ -112,9 +112,11 @@ final class HangmanGame {
 		$this->grid = '';
 		for ($i = 0; $i < $length; $i++)
 		{
-			if (mb_substr($this->solution, $i, 1, 'utf8') === ' ')
+			$solchar = mb_substr($this->solution, $i, 1, 'utf8');
+			
+			if (in_array($solchar, DOGMOD_Hangman::$PUNCTUATION, true))
 			{
-				$this->grid .= ' ';
+				$this->grid .= $solchar;
 			}
 			else
 			{
