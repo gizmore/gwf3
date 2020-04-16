@@ -11,7 +11,7 @@ final class DOGMOD_Hangman extends Dog_Module
 {
 	private $instances = array();
 	
-	public static $PUNCTUATION = array(' ', '.', ',', '!', '?');
+	public static $PUNCTUATION = array(' ', '.', ',', '!', '?', '-');
 
 	public function getOptions()
 	{
@@ -34,7 +34,8 @@ final class DOGMOD_Hangman extends Dog_Module
 			return $this->rply('err_wordlen', array(6, 100));
 		}
 
-		$punctuation = implode('', self::$PUNCTUATION);
+		$punctuation = implode('', self::$PUNCTUATION); # regex chars
+		$punctuation = preg_quote($punctuation, '/'); # special treatment for special regex chars
 		if (!preg_match('/^[üäößa-z'.$punctuation.']+$/Diu', $hang_word))
 		{
 			return $this->rply('err_alpha');
