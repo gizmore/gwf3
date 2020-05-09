@@ -26,6 +26,8 @@ final class Dog_IRCC implements Dog_IRC
 		{
 			return Dog_Log::error('Dog_IRC::connect() ERROR: stream_context_create()');
 		}
+
+		stream_context_set_option($this->context, "ssl", "allow_self_signed", TRUE);
 		
 		$url = $server->getURL();
 		
