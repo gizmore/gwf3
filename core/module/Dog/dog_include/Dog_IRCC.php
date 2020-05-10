@@ -22,13 +22,18 @@ final class Dog_IRCC implements Dog_IRC
 	{
 		$this->server = $server;
 		
-		if (false === ($this->context = @stream_context_create()))
+		$opts = array(
+			"ssl" => array(
+				"verify_peer" => false,
+				"verify_peer_name" => false,
+			),
+		);
+
+		if (false === ($this->context = @stream_context_create($opts)))
 		{
 			return Dog_Log::error('Dog_IRC::connect() ERROR: stream_context_create()');
 		}
 
-		stream_context_set_option($this->context, "ssl", "allow_self_signed", TRUE);
-		
 		$url = $server->getURL();
 		
 		if (false === ($socket = @stream_socket_client(
@@ -45,9 +50,9 @@ final class Dog_IRCC implements Dog_IRC
 		
 		if ($server->isSSL())
 		{
-			if (false === @stream_socket_enable_crypto($socket, true, STREAM_CRYPTO_METHOD_TLS_CLIENT))
+			if (false === @stream_socket_enable_crypto($socket, true, STREAM_CRYPTO_METHOD_ANY_CLIENT))
 			{
-				return Dog_Log::error('Dog_IRC::connect() ERROR: stream_socket_enable_crypto(true, STREAM_CRYPTO_METHOD_TLS_CLIENT)');
+				return Dog_Log::error('Dog_IRC::connect() ERROR: stream_socket_enable_crypto(true, STREAM_CRYPTO_METHOD_ANY_CLIENT)');
 			}
 		}
 		
