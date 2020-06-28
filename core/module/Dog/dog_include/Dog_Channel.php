@@ -126,7 +126,15 @@ final class Dog_Channel extends GDO
 	 */
 	public function getUserByAbbrev($username)
 	{
-		foreach ($this->users as $user)
+	    foreach ($this->users as $user)
+	    {
+	        $user instanceof Dog_User;
+	        if (mb_strtolower($username) == mb_strtolower($user->getName()))
+	        {
+	            return $user;
+	        }
+	    }
+	    foreach ($this->users as $user)
 		{
 			$user instanceof Dog_User;
 			if (stripos($user->getName(), $username) === 0)
