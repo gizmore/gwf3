@@ -7,7 +7,8 @@ $lang = array(
 	'err_not_same_user' => 'Nie znaleziono takiego użytkownika. Wpisz Swój adres e-mail lub nazwę Swojego konta.', 
 	'err_no_mail' => 'Przykro nam, ale Twój adres e-mail nie jest połączony z Twoim kontem. :(',
 	'err_pass_retype' => 'Przepisane hasło nie jest identyczne.',
-	'msg_pass_changed' => 'Twoje hasło zostało zmienione.',
+    'err_no_token' => 'Nie można znaleźć Twojego żądania.',
+    'msg_pass_changed' => 'Twoje hasło zostało zmienione.',
 
 	'pt_request' => 'Prośba o zmianę hasła',
 	'pt_change' => 'Zmień hasło',

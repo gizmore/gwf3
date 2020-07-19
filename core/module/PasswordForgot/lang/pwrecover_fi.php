@@ -7,7 +7,8 @@ $lang = array(
 	'err_not_same_user' => 'Käyttäjää ei löytynyt. Ole hyvä ja anna joko sähköpostiosoitteesi tai käyttäjänimesi.', # same message! no spoiled connection from uname=>email
 	'err_no_mail' => 'Olemme pahoillamme, mutta käyttäjätunnukseesi ei ole yhdistetty sähköpostiosoitetta. :(',
 	'err_pass_retype' => 'Uudelleenkirjoittamasi salasana ei täsmää.',
-	'msg_pass_changed' => 'Salasanasi on vaihdettu.',
+    'err_no_token' => 'Pyyntöäsi ei löytynyt.',
+    'msg_pass_changed' => 'Salasanasi on vaihdettu.',
 
 	'pt_request' => 'Pyydä uutta salasanaa',
 	'pt_change' => 'Vaihda salasanaasi',

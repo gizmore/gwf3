@@ -7,6 +7,7 @@ $lang = array(
 	'err_not_same_user' => 'No user found. Please submit either your email or your username .', # same message! no spoiled connection from uname=>email
 	'err_no_mail' => 'We are sorry, but you do not have an email connected to your account. :(',
 	'err_pass_retype' => 'Your retyped password does not match.',
+    'err_no_token' => 'Your change request could not be found.',
 	'msg_pass_changed' => 'Your password has been changed.',
 
 	'pt_request' => 'Request a new password',

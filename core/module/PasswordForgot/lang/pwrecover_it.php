@@ -7,7 +7,8 @@ $lang = array(
 	'err_not_same_user' => 'Utente non trovato. La preghiamo di inserire il suo indirizzo oppure il suo nome utente.', # same message! no spoiled connection from uname=>email
 	'err_no_mail' => 'Siamo spiacenti, ma non ha un indirizzo E-Mail collegato al suo account. :(',
 	'err_pass_retype' => 'La password non coincide con quella riscritta sotto.',
-	'msg_pass_changed' => 'La sua password è stata cambiata.',
+    'err_no_token' => 'Impossibile trovare la tua richiesta.',
+    'msg_pass_changed' => 'La sua password è stata cambiata.',
 
 	'pt_request' => 'Richiedi una nuova password',
 	'pt_change' => 'Cambia password',

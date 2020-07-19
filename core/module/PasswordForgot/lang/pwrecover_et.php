@@ -7,7 +7,8 @@ $lang = array(
 	'err_not_same_user' => 'Kasutajat ei leitud. Palun kinnita oma kasutajanimi või email .', # same message! no spoiled connection from uname=>email
 	'err_no_mail' => 'Meil on kahju, aga sul pole emaili kinnitatud kasutajale. :(',
 	'err_pass_retype' => 'Sinu teine salasõna ei lähe esimesega kokku.',
-	'msg_pass_changed' => 'Sinu parool on muudetud.',
+    'err_no_token' => 'Teie taotlust ei leitud.',
+    'msg_pass_changed' => 'Sinu parool on muudetud.',
 
 	'pt_request' => 'Nõua uut parooli',
 	'pt_change' => 'Muuda parooli',

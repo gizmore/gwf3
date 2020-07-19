@@ -6,6 +6,7 @@ $lang = array(
 # same message! no spoiled connection from uname=>email 
 	'err_no_mail' => 'Lo sentimos, pero no tiene un email vinculado a su cuenta. :(',
 	'err_pass_retype' => 'Las contraseñas no coinciden.',
+    'err_no_token' => 'No se pudo encontrar su solicitud.',
 	'msg_pass_changed' => 'Su contraseña ha sido cambiada.',
 	'pt_request' => 'Pedir nueva contraseña',
 	'pt_change' => 'Cambiar contraseña',

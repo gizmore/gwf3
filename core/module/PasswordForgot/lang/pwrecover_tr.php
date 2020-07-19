@@ -5,6 +5,7 @@ $lang = array (
 'err_not_same_user' => 'Kullanıcı bulunamadı. Lütfen ya e-posta ya da kullanıcı adınızı gönderin.', # Aynı mesajı! => E-posta uname hiçbir şımarık bağlantı
 'err_no_mail' => 'Üzgünüz, ama bir e-posta hesabınıza bağlı gerekmez. :(',
 'err_pass_retype' => 'Kişisel retyped şifre eşleşmiyor.',
+'err_no_token' => 'İsteğiniz bulunamadı.',
 'msg_pass_changed' => 'Şifreniz değiştirildi.',
 
 'pt_request' => 'iste yeni bir parola',
