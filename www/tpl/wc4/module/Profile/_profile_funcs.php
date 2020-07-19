@@ -150,7 +150,9 @@ function wcProfileFavLinks(GWF_User $user, Module_Links $mod_links)
 	$links = array();
 	while (false !== ($row = $db->fetchAssoc($result)))
 	{
-		$links[] = new GWF_Links($row);#$linksT->createClass($row);
+		$links[] = $link = new GWF_Links($row);#$linksT->createClass($row);
+		$vote = new GWF_VoteScore($row);
+		$link->setVar('link_voteid', $vote);
 	}
 	
 	if (0 === ($count = count($links))) {
