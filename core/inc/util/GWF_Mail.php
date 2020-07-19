@@ -140,6 +140,7 @@ final class GWF_Mail
 		#$body = preg_replace('/<[^>]+>([^<]+)<[^>+]>/', '$1', $body);
 		$body = preg_replace('/<[^>]+>/', '', $body);
 		$body = self::br2nl($body);
+		$body = preg_replace("/(GeSHi`ed .*\n)([0-9\n]*)/m", '$1', $body);
 		$body = html_entity_decode($body, ENT_QUOTES, 'UTF-8');
 		return $body;
 	}
@@ -204,7 +205,7 @@ final class GWF_Mail
 		$encrypted = $this->encrypt($message);
 		if (GWF_DEBUG_EMAIL & 16)
 		{
-			GWF_Website::addDefaultOutput(sprintf('<h1>Local EMail:</h1><pre>%s<br/>%s</pre>', htmlspecialchars($this->subject), $message));
+			GWF_Website::addDefaultOutput(sprintf('<h1>Local EMail:</h1><pre>%s<br/>%s</pre>', htmlspecialchars($this->subject), htmlspecialchars($message)));
 // 			GWF_Website::addDefaultOutput(sprintf('<h1>Local EMail:</h1><pre>%s<br/>%s</pre>', htmlspecialchars($this->subject), $encrypted));
 			return true;
 		}

@@ -36,7 +36,7 @@ final class GWF_EMailOnPM
 			$receiver->displayUsername(),
 			$sendername,
 			$pm->display('pm_title'),
-			$pm->display('pm_message'),
+		    GWF_Message::display($pm->getVar('pm_message'), true, true, false),
 			$autofolder,
 			$delete
 		)));
