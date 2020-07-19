@@ -18,8 +18,7 @@
 /www/index.php
 /www/protected/logs
 /www/protected/installog
-/www/protected/config_dog.php
-/www/protected/config_dog_dev.php
+/www/protected/config_*
 /www/protected/tgc.gizmore.org.pem
 /core/module/WeChall/lang/wechall/_wc_es_OLD.php
 /core/module/Dog/dog_modules/dog_module_dev/*
