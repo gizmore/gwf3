@@ -63,3 +63,20 @@ a, a.gwf_button, .gwf_button_generic {
 .tinytagger span {
 	padding-right: 20px;
 }
+
+div.gwf_errors {
+    background-color: #c33;
+}
+
+div.gwf_errors span.gwf_err_t {
+    background-color: #d33;
+}
+
+div.gwf_messages {
+    background-color: #3c3;
+}
+
+div.gwf_messages span.gwf_msg_t {
+    background-color: #5c5;
+}
+
