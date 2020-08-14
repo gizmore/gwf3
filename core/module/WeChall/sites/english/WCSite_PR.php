@@ -16,7 +16,7 @@ class WCSite_PR extends WC_Site
         $maxscore = $stats['maxScore'];
         $usercount = $stats['userCount'] ? $stats['userCount'] : -1;
         $challssolved = $onsitescore;
-        $challcount = $maxscore-1;
+        $challcount = $maxscore;
         
         if ($maxscore === 0 || $challcount === 0)
         {
