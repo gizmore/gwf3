@@ -18,7 +18,7 @@ class WCSite_PR extends WC_Site
         $challssolved = $onsitescore;
         $challcount = $maxscore;
         
-        if ($maxscore === 0 || $challcount === 0)
+        if ($maxscore == 0 || $challcount == 0)
         {
             return htmlDisplayError(WC_HTML::lang('err_response', array(GWF_HTML::display($result), $this->displayName())));
         }
