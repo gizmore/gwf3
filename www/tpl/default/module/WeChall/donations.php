@@ -57,9 +57,14 @@ Sum:    €275,00
 Goal:   €450,00
 </pre>
 
+<pre>Donations 2020:    2 donations
+Sum:    €27,00
+Goal:   €350,00
+</pre>
+
 <pre>Totals:           22 donations
-Sum:    € 1269,00
-Goal:   € 1150,00
+Sum:    € 1296,00
+Goal:   € 1500,00
 </pre>
 
 </div>
@@ -104,6 +109,8 @@ We currently have the following ca. expenses for WeChall:<br/>
 <li><span class="dodate">7.Nov.2019</span> – <span class="nomsg"></span> – <a class="donor" href="/profile/flabbyrabbit">flabbyrabbit</a></li>
 
 <li><span class="dodate">21.Dec.2019</span> – <em>&quot;This is fun. Thanks.&quot;</em> – <a class="donor" href="/profile/sutaburosu">sutaburosu</a></li>
+
+<li><span class="dodate">19.Aug.2020</span> – <em>&quot;love this it-world. . . greetings to all Challengers  love you all.&quot;</em> – ???</li>
 
 </ol>
 </div>
