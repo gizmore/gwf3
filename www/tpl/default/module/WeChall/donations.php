@@ -62,7 +62,7 @@ Sum:    €27,00
 Goal:   €350,00
 </pre>
 
-<pre>Totals:           22 donations
+<pre>Totals:           24 donations
 Sum:    € 1296,00
 Goal:   € 1500,00
 </pre>
