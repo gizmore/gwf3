@@ -110,7 +110,7 @@ We currently have the following ca. expenses for WeChall:<br/>
 
 <li><span class="dodate">21.Dec.2019</span> – <em>&quot;This is fun. Thanks.&quot;</em> – <a class="donor" href="/profile/sutaburosu">sutaburosu</a></li>
 
-<li><span class="dodate">19.Aug.2020</span> – <em>&quot;love this it-world. . . greetings to all Challengers  love you all.&quot;</em> – ???</li>
+<li><span class="dodate">19.Aug.2020</span> – <em>&quot;love this it-world. . . greetings to all Challengers  love you all.&quot;</em> – <a class="donor" href="/profile/occasus">occasus</a></li>
 
 </ol>
 </div>
