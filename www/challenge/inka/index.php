@@ -10,7 +10,7 @@ if (false === ($chall = WC_Challenge::getByTitle(GWF_PAGE_TITLE)))
 $chall->showHeader();
 $href = 'inka.php';
 $href2 = 'inka.php?answer=1234';
-$rage = 'http://www.youtube.com/watch?v=GSNeonapnT8#t=0m23';
+$rage = 'https://www.youtube.com/watch?v=L4zo_A9axKQ';
 $easteregg = sprintf('<a style="color: #fee;" href="%s">Eastereggs For The Winner!</a>', $rage);
 echo GWF_Box::box($chall->lang('info', array($href, $href2, $easteregg)), $chall->lang('title'));
 echo $chall->copyrightFooter();
