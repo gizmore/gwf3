@@ -1198,7 +1198,7 @@ class SR_Player extends GDO
 			}
 			else
 			{
-				if ($value[0] === '*')
+				if (@$value[0] === '*')
 				{
 					$this->sr4_data_modified[$key] *= substr($value, 1);
 				}

@@ -47,6 +47,8 @@ $tables = array(
 	'PrivServer',
 	'Server',
 	'User',
+    'DiscordUsers',
+    'DiscordChannels',
 );
 
 # Install Tables

@@ -9,6 +9,7 @@ final class Dog_Server extends GDO
 	const WS = 0x80;
 	const HAS_CONNECTED_ONCE = 0x100;
 	const NO_BOTFLAG = 0x200;
+	const DISCORD = 0x400;
 	const DEFAULT_OPTIONS = 0x11;
 	const LOGBITS = 0x03;
 	
@@ -80,6 +81,8 @@ final class Dog_Server extends GDO
 	public function getConf($key, $def='0') { return Dog_Conf_Plug_Serv::getConf('servers', $this->getID(), $key, $def); }
 	public function setConf($key, $val='1') { return Dog_Conf_Plug_Serv::setConf('servers', $this->getID(), $key, $val); }
 	public function isWebsocket() { return $this->isOptionEnabled(self::WS); }
+	public function isDiscord() { return $this->isOptionEnabled(self::DISCORD); }
+    
 	/**
 	 * @return Dog_Nick
 	 */
@@ -185,6 +188,10 @@ final class Dog_Server extends GDO
 		if ($this->isWebsocket())
 		{
 			$this->connection = new Dog_IRCWS($this);
+		}
+		elseif ($this->isDiscord())
+		{
+		    $this->connection = new Dog_Discord($this);
 		}
 		else
 		{

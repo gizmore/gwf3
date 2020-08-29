@@ -24,12 +24,15 @@ final class DOGMOD_ClaimNick extends Dog_Module
 
 	public function claimServer(Dog_Server $server)
 	{
-		if ($server->getNick()->isTemp())
-		{
-			if (false !== ($nick = Dog_Nick::getNickFor($server)))
-			{
-				$server->sendRAW("NICK {$nick->getName()}");
-			}
-		}
+	    if ($server->getNick())
+	    {
+    		if ($server->getNick()->isTemp())
+    		{
+    			if (false !== ($nick = Dog_Nick::getNickFor($server)))
+    			{
+    				$server->sendRAW("NICK {$nick->getName()}");
+    			}
+    		}
+	    }
 	}
 }

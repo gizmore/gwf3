@@ -3,6 +3,11 @@ final class Dog_Auth
 {
 	public static function connect(Dog_Server $server)
 	{
+	    if ($server->isDiscord())
+	    {
+	        return true;
+	    }
+	    
 		if (false === ($nick = self::getNickData($server)))
 		{
 			return Dog_Log::warn(sprintf('No nicks for %s.', $server->displayName()));

@@ -57,7 +57,7 @@ final class Dog_Launcher
 	{
 		$error = error_get_last();
 		
-		if ($error['type'] != 0)
+		if ($error && $error['type'] != 0)
 		{
 			self::cleanup('Fatal PHP Error :O');
 		}
