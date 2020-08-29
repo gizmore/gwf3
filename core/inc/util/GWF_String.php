@@ -62,7 +62,7 @@ final class GWF_String
 		$i = Common::clamp((int)$offset, 0, $len-1);
 		while ($i >= 0)
 		{
-			if ($s{$i} === $c)
+			if ($s[$i] === $c)
 			{
 				return $i;
 			}
