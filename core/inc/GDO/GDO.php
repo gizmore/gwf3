@@ -188,8 +188,10 @@ abstract class GDO
 	################
 	### Escaping ###
 	################
+	public static function quote($s) { return sprintf("'%s'", self::escape($s)); }
 	public static function escape($s) { return self::$CURRENT_DB->escape($s); }
 	public static function escapeIdentifier($s) { return self::$CURRENT_DB->escapeIdentifier($s); }
+	
 	
 	###############
 	### Options ###
