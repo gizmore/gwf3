@@ -1,0 +1,3 @@
+[submodule "core/module/Wanda"]
+	path = core/module/Wanda
+	url = https://github.com/gizmore/gwf3-wanda
