@@ -57,13 +57,13 @@ Sum:    €275,00
 Goal:   €450,00
 </pre>
 
-<pre>Donations 2020:    2 donations
-Sum:    €27,00
+<pre>Donations 2020:    3 donations
+Sum:    €127,00
 Goal:   €350,00
 </pre>
 
-<pre>Totals:           24 donations
-Sum:    € 1296,00
+<pre>Totals:           25 donations
+Sum:    € 1396,00
 Goal:   € 1500,00
 </pre>
 
@@ -107,10 +107,10 @@ We currently have the following ca. expenses for WeChall:<br/>
 <li><span class="dodate">29.Jun.2019</span> – <em>&quot;Thanks a lot for this website, and all the great work maintaining it!&quot;</em> – <a class="donor" href="/profile/kkaosninja">kkaosninja</a></li>
 <li><span class="dodate">20.Oct.2019</span> – <span class="nomsg"></span> – <span class="unknownuser"></span></li>
 <li><span class="dodate">7.Nov.2019</span> – <span class="nomsg"></span> – <a class="donor" href="/profile/flabbyrabbit">flabbyrabbit</a></li>
-
 <li><span class="dodate">21.Dec.2019</span> – <em>&quot;This is fun. Thanks.&quot;</em> – <a class="donor" href="/profile/sutaburosu">sutaburosu</a></li>
-
+<li>----- 2020 -----</li>
 <li><span class="dodate">19.Aug.2020</span> – <em>&quot;love this it-world. . . greetings to all Challengers  love you all.&quot;</em> – <a class="donor" href="/profile/occasus">occasus</a></li>
+<li><span class="dodate">25.Aug.2020</span> – <em>&quot; --- &quot;</em> – ???</li>
 
 </ol>
 </div>
