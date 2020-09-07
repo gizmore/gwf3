@@ -31,10 +31,25 @@ final class Dog_DiscordChannels extends GDO
         return $chan;
     }
     
+    /**
+     * @param string $channel_name
+     * @return self
+     */
     public static function getEntry($channel_name)
     {
         $ename = ltrim(GDO::escape($channel_name), '#');
         return self::table(__CLASS__)->selectFirstObject('*', "dc_name='$ename'");
+    }
+    
+    public static function getEntryByGuildId($guildId)
+    {
+        return self::table(__CLASS__)->selectFirstObject('*', "dc_guild=" . GDO::quote($guildId));
+    }
+    
+    public static function getDogChannelByGuildId($server, $guildId)
+    {
+        $entry = self::getEntryByGuildId($guildId);
+        return Dog_Channel::getForServer($server->getID(), '#'.$entry->getName());
     }
 
 }
