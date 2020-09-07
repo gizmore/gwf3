@@ -233,7 +233,7 @@ final class Shadowlang
 			{
 				return "\X02\X035{$back}\X03\X02";
 			}
-			elseif (false !== SR_SetItems::getSetForItem($item->getName()))
+			elseif (false !== SR_SetItems::getSetForItemNoSubstring($item->getName()))
 			{
 				return "\X02\X036{$back}\X03\X02";
 			}

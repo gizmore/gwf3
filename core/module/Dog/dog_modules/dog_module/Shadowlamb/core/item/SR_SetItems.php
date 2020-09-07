@@ -85,6 +85,32 @@ final class SR_SetItems
 		
 		return false;
 	}
+
+	public static function getSetForItemNoSubstring($itemName)
+	{
+	    foreach (self::$SETS as $name => $set)
+	    {
+	        foreach ($set[1] as $items)
+	        {
+	            if (is_array($items))
+	            {
+	                foreach ($items as $item)
+	                {
+	                    if ($item === $itemName)
+	                    {
+	                        return $name;
+	                    }
+	                }
+	            }
+	            elseif ($items === $itemName)
+	            {
+	                return $name;
+	            }
+	        }
+	    }
+	    
+	    return false;
+	}
 	
 	public static function getSetsForPlayer(SR_Player $player)
 	{
