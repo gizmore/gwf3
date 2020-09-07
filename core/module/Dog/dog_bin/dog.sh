@@ -7,7 +7,7 @@ USERNAME=`whoami`
 
 # USUAL EXAMPLE: ./dog.sh config.php install noflush noimport dev
 # KNOWN env: dev,qa,prod
-php5 dog.php $1 $2 $3 $4 $5 $USERNAME
+php dog.php $1 $2 $3 $4 $5 $USERNAME
 # config, install, flush, lamb_import, env
 
 #mplayer /DATA/_ProjectPDT7/GWF3/core/module/Lamb/lamb_bin/wecken.mp3
