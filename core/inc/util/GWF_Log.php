@@ -155,7 +155,7 @@ final class GWF_Log
 	{
 		$date = date('Ymd');
 		return is_string($username)
-			? sprintf('%s/memberlog/%s/%s_%s.txt', self::$basedir, $username, $date, $filename)
+			? sprintf('%s/memberlog/%s/%s_%s.txt', self::$basedir, str_replace('|', '!', $username), $date, $filename)
 			: sprintf('%s/%s_%s.txt', self::$basedir, $date, $filename);
 	}
 
