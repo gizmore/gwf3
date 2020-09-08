@@ -172,7 +172,7 @@ final class Dog_Channel extends GDO
 	/**
 	 * Add or remove a privilege for a user in a channel.
 	 * @param Dog_User $user
-	 * @param char $priv
+	 * @param string $priv single char
 	 * @param boolean $bool
 	 */
 	public function setUser(Dog_User $user, $priv, $bool=true)

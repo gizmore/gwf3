@@ -206,7 +206,7 @@ final class Dog_Plugin
 	##############
 	/**
 	 * Get the config vars from ####conf string.
-	 * @see Dog_Vars
+	 * @see Dog_Var
 	 * @return array
 	 */
 	public function getConfigVars()
@@ -242,4 +242,3 @@ final class Dog_Plugin
 		Dog_Var::setVar($this->getConfigVars(), $scope, $varname, $value);
 	}
 }
-?>
