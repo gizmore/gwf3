@@ -298,12 +298,16 @@ final class Dog_Discord implements Dog_IRC
             $ircStyle = ":{$username}!HOST JOIN :{$channel->getName()}";
             $this->messageQueue[] = $ircStyle;
         }
-        else
+        elseif ($data->status === 'offline')
         {
 //             $ircStyle = ":{$username}!HOST PART :{$channel->getName()}";
 //             $this->messageQueue[] = $ircStyle;
             $channel->removeUser($user);
             $this->server->removeUser($user);
+        }
+        elseif ($data->status === 'idle')
+        {
+            
         }
     }
     
