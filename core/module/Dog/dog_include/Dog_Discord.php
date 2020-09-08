@@ -295,14 +295,15 @@ final class Dog_Discord implements Dog_IRC
         # Add/Remove
         if ($data->status === 'online')
         {
-            $channel->addUser($user);
-            $this->server->addUser($user);
+            $ircStyle = ":{$username}!HOST JOIN :{$channel->getName()}";
+            $this->messageQueue[] = $ircStyle;
         }
         else
         {
-            $this->server->removeUser($user);
+//             $ircStyle = ":{$username}!HOST PART :{$channel->getName()}";
+//             $this->messageQueue[] = $ircStyle;
             $channel->removeUser($user);
-            
+            $this->server->removeUser($user);
         }
     }
     
