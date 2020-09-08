@@ -15,7 +15,7 @@ final class Item_TomsScroll1 extends SR_QuestItem
 		}
 		if ($player->get('crypto') >= 3)
 		{
-			$pw = GWF_AES::decrypt4(base64_decode('PXa5vs9yDDi5reJlkUVLGFxldG+VjXJ6s18KFIWTlqE='), LAMB_PASSWORD2, LAMB_PASSWORD2);
+			$pw = GWF_AES::decrypt4(base64_decode('PVHAh6iIlV/Oam8SU3zoZgX4Ziy9U7eYKjF6ogdwG7o='), LAMB_PASSWORD2, LAMB_PASSWORD2);
 			$player->message('With your awe-some crypto skills, you also know the plaintext is '.$pw.'.');
 		}
 	}

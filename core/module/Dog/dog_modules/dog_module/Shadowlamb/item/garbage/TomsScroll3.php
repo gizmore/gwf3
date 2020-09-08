@@ -13,11 +13,11 @@ final class Item_TomsScroll3 extends SR_QuestItem
 	
 	private function getCiphertext(SR_Player $player)
 	{
-		$ct = base64_decode('C9RJy1K5IXpZkCXs/IpuY5+Yb3QlYjGwdmeLH/uddAXyA/hJSYt3HiubjWMe7NxikFPX9Hs9CaqE4X4C1j8HqSEs6IJz23nV0eRbfjgHbCoFKYr/J04DvZ9VoTmkYYCI');
+		$ct = base64_decode('XuuV+k2zXxV0C38j0xP+ey3bRl/BTEl/mtwapOW3MaJ1a/GhkYbCYiCtCikX9ELlDOvZh0lTgONAkKjdEPMYqDqLLD/lOkUdKPh7NLoRiaGoIIczHQhVLzFao2nkpAlMFoLQ2iTbVx2t6ypisdSkvaSfoFUyZ/67E8hujBEXnjlX1PCsoq8XBA6TBhL0mS/7raDATqk5bJJaTpj+sJjMNVAFjkvrD39AiLlnK5cr9ZLsNTr0MWrREhuijdFaw+eg');
 		$ct = GWF_AES::decrypt4($ct, LAMB_PASSWORD2, LAMB_PASSWORD2);
 		$ct .= $this->getSolution($player);
 		$ct = preg_replace('/[^A-Z ]/i', '', $ct);
-		$pw = GWF_AES::decrypt4(base64_decode('PXa5vs9yDDi5reJlkUVLGFxldG+VjXJ6s18KFIWTlqE='), LAMB_PASSWORD2, LAMB_PASSWORD2);
+		$pw = GWF_AES::decrypt4(base64_decode('PVHAh6iIlV/Oam8SU3zoZgX4Ziy9U7eYKjF6ogdwG7o='), LAMB_PASSWORD2, LAMB_PASSWORD2);
 		return GWF_PolyROT::encrypt($ct, $pw);
 	}
 	
