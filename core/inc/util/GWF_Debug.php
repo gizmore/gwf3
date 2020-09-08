@@ -100,7 +100,7 @@ final class GWF_Debug
 		{
 			$error = error_get_last();
 
-			if ($error['type'] != 0)
+			if ($error && ($error['type'] != 0))
 			{
 				$dirname = dirname(__FILE__);
 				require_once $dirname.'/GWF_Log.php';
