@@ -28,7 +28,7 @@ final class GWF_AES
 	 */
 	public static function encrypt4($data, $key, $iv)
 	{
-		return mcrypt_encrypt(self::CIPHER, $key, $data, self::MODE, hash('SHA256', $iv, true));
+		return @mcrypt_encrypt(self::CIPHER, $key, $data, self::MODE, hash('SHA256', $iv, true));
 	}
 
 	/**
@@ -78,6 +78,6 @@ final class GWF_AES
 	 */
 	public static function decrypt4($data, $key, $iv)
 	{
-		return mcrypt_decrypt(self::CIPHER, $key, $data, self::MODE, hash('SHA256', $iv, true));
+		return @mcrypt_decrypt(self::CIPHER, $key, $data, self::MODE, hash('SHA256', $iv, true));
 	}
 }
