@@ -167,7 +167,7 @@ final class GWF_QuickSearch
 		$bracket = 0;
 		for ($i = 0; $i < $len; $i++)
 		{
-			switch($term{$i})
+			switch($term[$i])
 			{
 				case '"':
 					$in_quote = !$in_quote;
@@ -198,7 +198,7 @@ final class GWF_QuickSearch
 							$back[] = $item;
 						}
 	//				}
-					if (false !== ($item = self::search_item($term{$i}, $in_quote)))
+					if (false !== ($item = self::search_item($term[$i], $in_quote)))
 					{
 						$back[] = $item;
 					}
@@ -206,7 +206,7 @@ final class GWF_QuickSearch
 					break;
 		
 				default:
-					$cur .= $term{$i};
+					$cur .= $term[$i];
 					break;
 			}
 		}
