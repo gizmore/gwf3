@@ -95,14 +95,25 @@ final class Dog_Timer
 	
 	public function execute()
 	{
-		if ( (is_array($this->func)) || ($this->func[0]!=='/') )
-		{
-			call_user_func($this->func, $this->args);
-		}
-		else
-		{
-			$args = $this->args;
-			include $this->func;
-		}
+	    if (is_array($this->func))
+	    {
+	        if (method_exists($this->func[0], $this->func[1]))
+	        {
+	            call_user_func($this->func, $this->args);
+	        }
+	    }
+	    elseif ( ($this->func[0] !== '/') && ($this->func[1] !== ':') )
+	    {
+	        if (function_exists($this->func))
+	        {
+	            call_user_func($this->func, $this->args);
+	        }
+	    }
+	    else
+	    {
+	        $args = $this->args;
+	        include $this->func;
+	    }
 	}
+
 }
