@@ -87,7 +87,8 @@ final class Slay_PNow
 		
 		if ( (isset($data['live'])) && ($data['live']) )
 		{
-			return self::querySlayLiveshow($module, $data['redirect_url']);
+// 		    return self::querySlayLiveshow($module, $data['redirect_url']);
+		    return self::querySlayLiveshow($module, null);
 		}
 
 		# Timing
