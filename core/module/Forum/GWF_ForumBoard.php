@@ -230,7 +230,7 @@ final class GWF_ForumBoard extends GDO
 			'board_pid' => $parentid,
 			'board_gid' => $groupid,
 		
-			'board_pos' => count(self::getBoards()) + 1,
+			'board_pos' => @count(self::getBoards()) + 1,
 			'board_options' => $options, 
 		
 			'board_title' => $title,
