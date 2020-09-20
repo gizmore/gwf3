@@ -77,7 +77,7 @@ final class GWF_BBCode
 		$len = strlen($message);
 		while($i < $len)
 		{
-			if ($message{$i} === '[')
+			if ($message[$i] === '[')
 			{
 				if (false !== ($close_bracket = strpos($message, ']', $i)))
 				{
