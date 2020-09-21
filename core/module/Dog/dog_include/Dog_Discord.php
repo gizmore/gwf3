@@ -285,6 +285,12 @@ final class Dog_Discord implements Dog_IRC
         $userGUID = $data->user->id;
         $username = $data->user->username;
         
+        # FIX: Sometimes the username is empty. Why?
+        if (!$username)
+        {
+            return;
+        }
+        
         # Get user
         Dog_DiscordUsers::getOrCreateEntry($username, $userGUID);
         $user = Dog_User::getOrCreate($this->server->getID(), $username);
