@@ -76,7 +76,7 @@ final class HangmanGame {
 
 			 if (GWF_String::toLower($this->grid) === GWF_String::tolower($this->solution))
 			 {
-				$this->winGame($nick);
+			     $this->winGame($user);
 			 }
 		}
 		
