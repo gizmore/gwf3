@@ -8,7 +8,7 @@ if (!GWF_User::isAdminS()) {
 }
 $title = GWF_PAGE_TITLE;
 $solution = require 'challenge/training/timing1/password.php';
-$score = 6;
+$score = 3;
 $url = "challenge/training/timing1/index.php";
 $creators = "Gizmore,tehron";
 $tags = 'Training,Programming,Exploit';
