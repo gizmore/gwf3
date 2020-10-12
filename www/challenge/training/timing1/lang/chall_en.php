@@ -8,6 +8,8 @@ $lang = array(
         'I have added sleeps to make the challenge solveable more easily. If you think it would be solveable without the sleeps, contact me.<br/>'.PHP_EOL.
         '<br/>'.PHP_EOL.
 		'Again you are given <a href="%1$s">the source</a>, also as <a href="%2$s">highlighted version</a>.<br/>'.PHP_EOL.
-		'<br/>'.PHP_EOL.
-		'Good luck!',
+        '<br/>'.PHP_EOL.
+        'Thanks go to <a href="/profile/tehron">tehron</a> and <a href="/profile/livinskull">livinskull</a> for testing the challenge.<br/>'.PHP_EOL.
+        '<br/>'.PHP_EOL.
+    'Good luck!',
 );

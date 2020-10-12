@@ -8,9 +8,9 @@ if (!GWF_User::isAdminS()) {
 }
 $title = GWF_PAGE_TITLE;
 $solution = require 'challenge/training/timing1/password.php';
-$score = 3;
+$score = 4;
 $url = "challenge/training/timing1/index.php";
-$creators = "Gizmore,tehron";
+$creators = "Gizmore";
 $tags = 'Training,Programming,Exploit';
 
 WC_Challenge::installChallenge($title, $solution, $score, $url, $creators, $tags, true);
