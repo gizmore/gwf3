@@ -173,7 +173,7 @@ final class DOGMOD_Forum extends Dog_Module
 	{
 		if (false === ($entries = $board->fetchNewEntries(10)))
 		{
-		    $board->saveOption(Dog_Forum::DELETED, true);
+// 		    $board->saveOption(Dog_Forum::DELETED, true);
 			return Dog_Log::warn('Forum Board Activities corrupt!');
 		}
 		
