@@ -218,7 +218,7 @@ final class Shadowhelp
 				'effects' => 'Known effects',
 				array(
 					'alc' => 'The alcohol effect determines how drunk a character is. If a character is too drunk, it might do random actions in combat.',
-					'caf' => 'The caffeine effect determines how caffinated a character is. If a character is too caffinated it cannot sleep.',
+					'caf' => 'The caffeine effect determines how caffeinated a character is. If a character is too caffeinated it cannot sleep.',
 				),
 				
 //				'items' => "There are ".SR_Item::getTotalItemCount()." items",
@@ -370,7 +370,7 @@ final class Shadowhelp
 						'cast' => 'Player command. Usage: #(ca)st [<ks_id|spell_name>][:level] [<target_name|target_enum>]. Cast a spell. If spell is friendly the enum is member_enum. If spell is offensive the enum is enemy enum. See #ks|#known_spells for your spells.',
 						'drop' => 'Player command. Usage: #(dr)op <inv_id|item_name> [<amount>]. Drop one or multiple items. Used to save weight.',
 						'equip' => 'Player command. Usage: #(eq)uip <item_name|inv_id>. Equip yourself with an item. Will cost time in combat.',
-						'unequip' => 'Player command. Usage: #uneqip|#uq <'.$eqs.'>. Unequip a wearing item. Will cost time in combat.',
+						'unequip' => 'Player command. Usage: #unequip|#uq <'.$eqs.'>. Unequip a wearing item. Will cost time in combat.',
 						'reload' => "Player command. Usage: #(r)eload. Reload your weapon. This is only needed for fireweapons and costs time in combat.",
 						'hijack' => "Leader command. Usage: #hijack [<target>]. Try to break into a player's mount and steal an item. Only works when the player is inside a location and you are outside of it. This will always add {$hjbk} bad karma to your character for trying such bad things.",
 						'give' => 'Player command. Usage: #give <player_name> <inv_id|item> [<amount>]. Give a player in the same location some items. In combat this costs time. See also #givekp, #givekw and #giveny.',
@@ -433,7 +433,7 @@ final class Shadowhelp
 						'alchemist_cmds' => 'Alchemist commands',
 						array(
 							'recipes' => 'Location command. Usage: #recipes [<recipe>]. Show all the recipes here that you can create with #recipe, or show the details of a single recipe.',
-							'recipe' => 'Location command. Usage: #recipe <recipe>. Create a recipe from it\'s incredients.',
+							'recipe' => 'Location command. Usage: #recipe <recipe>. Create a recipe from it\'s ingredients.',
 						),
 						
 						'bank_cmds' => 'Bank commands',
@@ -587,7 +587,7 @@ final class Shadowhelp
 						'enum' => 'To select items, words, places and spells, you can use the id from their respective status_commands; #inventory, #known_words, #known_places, #known_spells.',
 						'id' => 'IDs',
 						array(
-							'inv_id' => 'inv_id means inventory ID, which is an enumeration of your invenotry items. The enumeration changes as less as possible, when removing or adding items.',
+							'inv_id' => 'inv_id means inventory ID, which is an enumeration of your inventory items. The enumeration changes as less as possible, when removing or adding items.',
 							'view_id' => 'view_id specifies an item from a shop by enumeration. This type of enum / ID works for buy and similar commands. With #compare you can use S_1 to reference the first shop item.',
 							'spell_id' => 'Refer to your spell by using the id from #known_spells. Use #(k)nown_(s)pells to list your spells, use #(ca)st to cast a spell.',
 							'kp_id' => 'A kp_id means the enum of one of your #(k)nown_(p)laces. You can find new known_places with #explore.',
