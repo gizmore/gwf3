@@ -263,6 +263,10 @@ final class Dog_Discord implements Dog_IRC
         {
             $userid = $message->author->id;
             $username = $message->author->username;
+            if ( (!$userid) || (!$username) )
+            {
+                return;
+            }
             $to = $this->nick->getName();
             Dog_DiscordUsers::getOrCreateEntry($username, $userid);
             if ($userid === $this->discord->id)
