@@ -9,11 +9,9 @@ if (false === ($chall = WC_Challenge::getByTitle(GWF_PAGE_TITLE)))
 }
 $chall->showHeader();
 
-echo GWF_Box::box($chall->lang('info'), $chall->lang('title'));
-
 echo "<!-- BEGIN OF CHALLENGE -->\n";
 $image = sprintf('<img src="wechall-newyear.png" title="wechall-newyear.png" alt="wechall-newyear.png" />');
-echo GWF_Box::box($image, 'wechall-newyear.png');
+echo GWF_Box::box($chall->lang('info', [$image]), $chall->lang('title'));
 echo "<!-- END OF CHALLENGE -->\n";
 
 formSolutionbox($chall);
