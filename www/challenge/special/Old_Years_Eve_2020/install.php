@@ -10,7 +10,7 @@ if (!GWF_User::isAdminS())
 }
 $score = 7;
 $url = "challenge/special/Old_Years_Eve_2020/index.php";
-$creators = "Dr_Blutig";
+$creators = "gizmore";
 $tags = 'Special,Crypto';
 
 WC_Challenge::installChallenge($title, $solution, $score, $url, $creators, $tags, true, WC_Challenge::CHALL_CASE_I);
