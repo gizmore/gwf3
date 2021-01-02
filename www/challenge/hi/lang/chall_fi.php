@@ -3,7 +3,7 @@
 $lang = array(
 	'info' => '
 Hei, kuvaile tätä tilannetta.<br/>
-IRC-kanavamme on #wechall irc.idlemonkeys.net:ssä.<br/>
+IRC-kanavamme on #wechall irc.wechall.net:ssä.<br/>
 <br/>
 Serveri lähettää viestin kaikille käyttäjillä kanavalla ja myös lähettäjälle itselleen.<br/>
 Jokainen minuutti kun jäsen liittyy se sanoo hei,<br/>

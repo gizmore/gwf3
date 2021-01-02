@@ -3,7 +3,7 @@
 $lang = array(
 	'info' => '
 Ciao, immagina questa situazione.<br/>
-C\'è un canale IRC #wechall su irc.idlemonkeys.net.<br/>
+C\'è un canale IRC #wechall su irc.wechall.net.<br/>
 <br/>
 Il server invia un messaggio a tutte le persone nel canale, ed inoltre ne invia uno al mittente.<br/>
 Se ogni minuto una persona si unisce e dice \'Ciao\',

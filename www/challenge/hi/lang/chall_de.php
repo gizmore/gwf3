@@ -3,7 +3,7 @@
 $lang = array(
 	'info' =>
 		'Hi, Stell dir vor:<br/>'.PHP_EOL.
-		'Es gibt einen IRC channel #wechall auf irc.idlemonkeys.net.<br/>'.PHP_EOL.
+		'Es gibt einen IRC channel #wechall auf irc.wechall.net.<br/>'.PHP_EOL.
 		'<br/>'.PHP_EOL.
 		'Der Server versendet die Nachrichten an alle Teilnehmer im channel, auch zurück zum Absender.<br/>'.PHP_EOL.
 		'Wenn jede Minute ein weiterer Teilnehmer hinzukommt, und &quot;Hi&quot; sagt,<br/>'.PHP_EOL.

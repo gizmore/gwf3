@@ -3,7 +3,7 @@
 $lang = array(
 	'info' => '
 Hi, imagine this situation.<br/>
-There is an IRC channel #wechall on irc.idlemonkeys.net.<br/>
+There is an IRC channel #wechall on irc.wechall.net.<br/>
 <br/>
 The server sends the messages to all people in the channel, also back to the sender himself.<br/>
 When every minute one person joins and says hi,<br/>
