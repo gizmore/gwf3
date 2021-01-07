@@ -324,7 +324,7 @@ abstract class SR_Spell
 		# Announce
 		$p = $player->getParty();
 		$ep = $target->getParty();
-		if ($ep->getID() !== $p->getID())
+		if ($ep && $p && ($ep->getID() !== $p->getID()))
 		{
 			$ep->ntice($key_foe, $args);
 		}

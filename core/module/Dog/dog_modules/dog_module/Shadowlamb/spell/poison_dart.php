@@ -21,7 +21,7 @@ final class Spell_poison_dart extends SR_OffensiveSpell
 	{
 		$wisdom = $potion_player->get('wisdom');
 		$damage = rand($level, $level+$wisdom+1);
-		$this->spellDamageSingleTarget($player, $target, $level, $damage);
+		$this->spellDamageSingleTarget($player, $target, $level, '10000', $damage);
 
 		$seconds = Common::clamp(90-$hits, 30, 90);
 		$amount = rand($level*2, $level*2+$hits/3);
