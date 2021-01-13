@@ -25,7 +25,10 @@ final class WeChall_ChallEdit extends GWF_Method
 			return $this->onReset($chall).$this->templateEdit($chall);
 		}
 		if (false !== (Common::getPost('delete'))) {
-			return $this->onDelete($chall);
+		    return $this->onDelete($chall);
+		}
+		if (false !== (Common::getPost('solved'))) {
+		    return $this->onMarkSolved($chall);
 		}
 		
 		return $this->templateEdit($chall);
@@ -51,11 +54,22 @@ final class WeChall_ChallEdit extends GWF_Method
 		return new GWF_Form($this, $data);
 	}
 	
+	private function getForm2(WC_Challenge $chall)
+	{
+	    $data = array(
+	        'username' => array(GWF_Form::STRING, '', 'Username'),
+	        'solved' => array(GWF_Form::SUBMIT, 'Mark Solved'),
+	    );
+	    return new GWF_Form($this, $data);
+	}
+	
 	private function templateEdit(WC_Challenge $chall)
 	{
-		$form = $this->getForm($chall);
-		$tVars = array(
-			'form' => $form->templateY($this->module->lang('ft_edit_chall')),
+	    $form = $this->getForm($chall);
+	    $form2 = $this->getForm2($chall);
+	    $tVars = array(
+		    'form' => $form->templateY($this->module->lang('ft_edit_chall')),
+		    'form2' => $form2->templateY('Mark Challenge solved'),
 		);
 		return $this->module->templatePHP('chall_edit.php', $tVars);
 	}
@@ -144,9 +158,24 @@ final class WeChall_ChallEdit extends GWF_Method
 		return $this->module->message('msg_chall_deleted');
 	}
 	
+	private function onMarkSolved(WC_Challenge $chall)
+	{
+	    $form = $this->getForm2($chall);
+	    if (false !== ($error = $form->validate($this->module))) {
+	        return $error;
+	    }
+	    $username = $form->getVar('username');
+	    $user = GWF_User::getByName($username);
+	    
+	    GWF_Module::loadModuleDB('Forum', true);
+	    $chall->onChallengeSolved($user->getID());
+	    return $this->module->message('msg_chall_mark_solved');
+	}
+	
 	##################
 	### Validators ###
 	##################
+	public function validate_username(Module_WeChall $m, $arg) { return GWF_User::getByName($arg) ? false : 'This user is unknown'; }
 	public function validate_score(Module_WeChall $m, $arg) { return $arg > 0 && $arg <= 10 ? false : $m->lang('err_chall_score'); }
 	public function validate_title(Module_WeChall $m, $arg) { return strlen($arg) > 0 ? false : $m->lang('err_chall_title'); }
 	public function validate_url(Module_WeChall $m, $arg) { return (strlen($arg) < 1) ? $m->lang('err_chall_url') : false; }

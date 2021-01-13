@@ -15,8 +15,9 @@ $chall->onCheckSolution();
 
 $user = GWF_User::getStaticOrGuest();
 $username = $user->displayUsername();
+$url = 'https://ranzgruppe.com';
 
-echo GWF_Box::box($chall->lang('info', [$username]), $chall->lang('title'));
+echo GWF_Box::box($chall->lang('info', [$username, $url]), $chall->lang('title'));
 
 formSolutionbox($chall);
 

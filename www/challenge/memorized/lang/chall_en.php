@@ -4,11 +4,12 @@ $lang = array(
 'info' =>
     "Hello %s,<br/>\n".
     "<br/>\n".
-    "I have prepared a horrible challenge for you.<br/>\n".
+    "An enemy punk band has created a website.<br/>\n".
+    "I want you to hack them and find the solution.<br/>\n".
     "<br/>\n".
-    "You can access it here: <a href=\"%s\">Memorized</a><br/>\n".
+    "You can access the site here: <a href=\"%s\">ranzgruppe.com</a><br/>\n".
     "<br/>\n".
-    "I hope someone can find the solution.<br/>\n".
+    "I hope you won't disappoint me!<br/>\n".
     "<br/>\n".
     "Good Luck!<br/>\n".
     "gizmore<br/>\n",
