@@ -228,7 +228,7 @@ ul.gwf_messages li {
 li span.gwf_errors_t { background-color: #f66 !important; }
 li span.gwf_criticals_t { background-color: #f66 !important; }
 li span.gwf_warnings_t { background-color: #f66 !important; }
-li span.gwf_messages_t { background-color: #6f6; !important }
+li span.gwf_messages_t { background-color: #6f6 !important }
 
 ul.gwf_messages { background-color: #3f3; }
 ul.gwf_errors { background-color: #f33; }
