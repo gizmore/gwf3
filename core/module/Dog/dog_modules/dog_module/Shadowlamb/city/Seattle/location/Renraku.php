@@ -15,7 +15,7 @@ final class Seattle_Renraku extends SR_Entrance
 		foreach ($p->getMembers() as $member)
 		{
 			$member instanceof SR_Player;
-			if (!$member->getInvItemByName('IDCardA'))
+			if (!$member->getInvItemByName('IDCard'))
 			{
 				SR_NPC::createEnemyParty('Renraku_Guard','Renraku_Guard','Renraku_Guard')->talk($p, true);
 				return true;
