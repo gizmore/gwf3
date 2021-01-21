@@ -23,7 +23,7 @@ int close(int);
 ssize_t recv(int s, void *buf, size_t len, int flags);
 ssize_t send(int s, const void *buf, size_t len, int flags);
 
-static int ssl_socket = 0;
+static int ssl_socket = -93; // initialize to invalid fd to avoid breaking forked sendmail's reads and writes
 static SSL *ssl_ssl = NULL;
 static SSL_CTX *ssl_ctx = NULL;
 static int forked = 0;

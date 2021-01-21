@@ -44,7 +44,14 @@ final class WC_WarToken extends GDO
 	
 	public static function isValidWarToken(GWF_User $user, $token)
 	{
-		$token = self::escape(strtoupper($token));
+		$token = strtoupper($token);
+
+		if (!preg_match("/^([0-9A-F]{5}-){5}[0-9A-F]{5}$/D", $token))
+		{
+			return false;
+		}
+
+		$token = self::escape($token);
 		if (false === ($token = self::table(__CLASS__)->selectVar('1', "wt_uid={$user->getID()} AND wt_token='$token'")))
 		{
 			return false;

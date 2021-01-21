@@ -46,6 +46,7 @@ $bind_addr = '0.0.0.0';
 $bind_port = 4141;
 $server_certificate = null;
 $server_certificate_key = null;
+$server_certificate_passphrase = null;
 
 # Parse arguments
 $options = getopt('2c:dh:k:l:p:s');
@@ -95,23 +96,23 @@ if ( $use_ssl )
 
 	if ( !stream_context_set_option($stream_context, 'ssl', 'local_cert', $server_certificate) )
 	{
-		die('cannot set local_cert');
+		warscore_die('cannot set local_cert');
 	}
 	if ( $server_certificate_key !== null && !stream_context_set_option($stream_context, 'ssl', 'local_pk', $server_certificate_key) )
 	{
-		die('cannot set passphrase');
+		warscore_die('cannot set passphrase');
 	}
 	if ( $server_certificate_passphrase !== null && !stream_context_set_option($stream_context, 'ssl', 'passphrase', $server_certificate_passphrase) )
 	{
-		die('cannot set passphrase');
+		warscore_die('cannot set passphrase');
 	}
 	if ( !stream_context_set_option($stream_context, 'ssl', 'allow_self_signed', true) )
 	{
-		die('cannot set allow_self_signed');
+		warscore_die('cannot set allow_self_signed');
 	}
 	if ( !stream_context_set_option($stream_context, 'ssl', 'verify_peer', false) )
 	{
-		die('cannot set verify_peer');
+		warscore_die('cannot set verify_peer');
 	}
 
 } else { # no ssl
@@ -122,16 +123,22 @@ if ( $use_ssl )
 
 
 warscore_debug("CREATING SOCKET FOR $stream_url");
-if (false === ($server_socket = stream_socket_server($stream_url, $errno, $errstr, STREAM_SERVER_BIND|STREAM_SERVER_LISTEN, $stream_context)))
+if (false === ($server_socket = @stream_socket_server($stream_url, $errno, $errstr, STREAM_SERVER_BIND|STREAM_SERVER_LISTEN, $stream_context)))
 {
-	die('cannot create socket: '+$errstr);
+	warscore_die('cannot create socket: '.$errstr);
 }
 
 
 
 function warscore_debug($message)
 {
-#	echo $message.PHP_EOL;
+	#echo '['.date('c').'] ('.getmypid().') '.$message.PHP_EOL;
+}
+
+function warscore_die($message)
+{
+	warscore_debug('DIE: ' . $message);
+	die($message . PHP_EOL);
 }
 
 function warscore_send($socket, $message)
@@ -172,6 +179,7 @@ function warscore_function($socket, $pid)
 		'no_session' => true,
 		'store_last_url' => false,
 		'ignore_user_abort' => false,
+		'security_init' => false,
 	));
 	gdo_db();
 	GWF_Debug::setDieOnError(false);
@@ -565,7 +573,7 @@ while(true)
 	
 	if ($pid == -1)
 	{
-		die('fork failed');
+		warscore_die('fork failed');
 	}
 	elseif ($pid) # Parent
 	{
@@ -574,7 +582,7 @@ while(true)
 	else # Child
 	{
 		warscore_function($client_socket, $pid);
-		die('bad child'); # bad child; shouldn't get here
+		warscore_die('bad child'); # bad child; shouldn't get here
 	}
 
 	if (!$use_ssl) # seems to close ssl stream in child!
