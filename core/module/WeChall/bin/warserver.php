@@ -565,6 +565,9 @@ while(true)
 
 	if ($client_socket === false)
 	{
+		# don't break successful exit of future children; gwf shutdown handler will think a fatal error occurred if last error is not cleared
+		error_clear_last();
+
 		sleep(0.1); # avoid continuous looping
 		continue;
 	}
