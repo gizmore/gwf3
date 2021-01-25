@@ -62,9 +62,14 @@ Sum:    €127,00
 Goal:   €350,00
 </pre>
 
-<pre>Totals:           25 donations
-Sum:    € 1396,00
-Goal:   € 1500,00
+<pre>Donations 2021:    2 donations
+Sum:    €75,00
+Goal:   €470,00
+</pre>
+
+<pre>Totals:           27 donations
+Sum:    € 1471,00
+Goal:   € 1970,00
 </pre>
 
 </div>
@@ -77,11 +82,14 @@ We currently have the following ca. expenses for WeChall:<br/>
 <li>- Box2 (wechall.net) €120/y</li>
 <li>- Box3 (irc.wechall.net) €100/y</li>
 <li>- Box4 (wanda.gizmore.org) €0/y (gizmore pays)</li>
+<li>- Box5 (tbs.wechall.net) €120/y</li>
 <li>- Domain costs €30/y</li>
 <li>- T-Shirts 2019 €100</li>
+<li>- T-Shirts 2020 €0</li>
+<li>- T-Shirts 2021 €0</li>
 <li>-&nbsp;</li>
-<li>- Wishlist; A better server for www only. Tear mailserver and maybe some challs apart.</li>
-</ul>
+<li>- Wishlist; A better server for www only. Tear mailserver and maybe some challs apart. (Still valid)</li>
+<li>- Wishlist2; A re-setup of warchall.net with debian instead of gentoo (Now valid)</li></ul>
 </div>
 
 <hr>
@@ -109,8 +117,11 @@ We currently have the following ca. expenses for WeChall:<br/>
 <li><span class="dodate">7.Nov.2019</span> – <span class="nomsg"></span> – <a class="donor" href="/profile/flabbyrabbit">flabbyrabbit</a></li>
 <li><span class="dodate">21.Dec.2019</span> – <em>&quot;This is fun. Thanks.&quot;</em> – <a class="donor" href="/profile/sutaburosu">sutaburosu</a></li>
 <li>----- 2020 -----</li>
-<li><span class="dodate">19.Aug.2020</span> – <em>&quot;love this it-world. . . greetings to all Challengers  love you all.&quot;</em> – <a class="donor" href="/profile/occasus">occasus</a></li>
+<li><span class="dodate">19.Aug.2020</span> – <em>&quot;love this it-world. . . greetings to all Challengers love you all.&quot;</em> – <a class="donor" href="/profile/occasus">occasus</a></li>
 <li><span class="dodate">25.Aug.2020</span> – <em>&quot; --- &quot;</em> – ???</li>
+<li>----- 2021 -----</li>
+<li><span class="dodate">18.Jan.2021</span> – <em>&quot;Was? Ich hab' mich nur verdrückt!&quot;</em> – ???</li>
+<li><span class="dodate">24.Jan.2021</span> – <em>&quot;help to support the site&quot;</em> – <a class="donor" href="/profile/spnow">spnow</a></li>
 
 </ol>
 </div>
@@ -119,7 +130,7 @@ We currently have the following ca. expenses for WeChall:<br/>
 <h2>Hall of purchased Gods</h2>
 <ol>
 <li>----- 2018 -----</li>
-<li>9.Nov.2018 - someone donated €5 as a monthly payment. (unlimited money, we just have to wait) ca. €40 so far.</li>
+<li>9.Nov.2018 - someone donated €5 as a monthly payment. (unlimited money, we just have to wait) ca. €140 so far.</li>
 </ol>
 </div>
 
