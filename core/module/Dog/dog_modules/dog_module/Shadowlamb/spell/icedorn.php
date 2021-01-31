@@ -21,7 +21,7 @@ final class Spell_icedorn extends SR_OffensiveSpell
 		$max = 10+$level*10+$wis;
 		$seconds = rand($min, $max);
 		$seconds = $this->lowerSpellIncrement($target, $seconds, 'frozen');
-		$target->busy($seconds*10);
+		$target->busy($seconds);
 		$ef = Shadowfunc::diceFloat(0.1, $level, 1);
 		$target->addEffects(new SR_Effect($seconds, array('frozen'=>$ef), SR_Effect::MODE_ONCE_EXTEND));
 		
