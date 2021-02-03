@@ -257,7 +257,7 @@ final class Shadowcmd_mount extends Shadowcmd
 				return false;
 			}
 
-			if (false === $item->useAmount($player, $amt, true, true))
+			if (false === $item->useAmount($player, $amt, false, true))
 			{
 				$bot->reply(sprintf('Cannot use item amount in %s line %s.', __FILE__, __LINE__));
 				return false;
