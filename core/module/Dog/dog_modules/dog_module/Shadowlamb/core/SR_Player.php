@@ -2081,9 +2081,16 @@ class SR_Player extends GDO
 		return $this->sr4_inventory->addItem($item);
 	}
 
-	public function itemAmountChanged(SR_Item $item, $amount_change, $modify=true)
+	public function itemAmountChanged(SR_Item $item, $amount_change, $modify=true, $use_mount=false)
 	{
-		$this->sr4_inventory->itemAmountChanged($item, $amount_change);
+        if ($use_mount)
+        {
+            $this->sr4_mount_inv->itemAmountChanged($item, $amount_change);
+        }
+        else
+        {
+            $this->sr4_inventory->itemAmountChanged($item, $amount_change);
+        }
 
 		if ($modify)
 		{

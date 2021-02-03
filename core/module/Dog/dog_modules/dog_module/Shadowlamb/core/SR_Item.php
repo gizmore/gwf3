@@ -532,7 +532,7 @@ class SR_Item extends GDO
 	 * @param int $amount
 	 * @return true|false
 	 */
-	public function useAmount(SR_Player $player, $amount=1, $modify=true)
+	public function useAmount(SR_Player $player, $amount=1, $modify=true, $use_mount=false)
 	{
 		if ($amount > $this->getAmount())
 		{
@@ -545,7 +545,7 @@ class SR_Item extends GDO
 			return false;
 		}
 
-		$player->itemAmountChanged($this, -$amount, false);
+		$player->itemAmountChanged($this, -$amount, false, $use_mount);
 
 		if ($this->getAmount() < 1)
 		{
