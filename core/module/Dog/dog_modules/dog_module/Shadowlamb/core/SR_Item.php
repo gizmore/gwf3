@@ -545,7 +545,12 @@ class SR_Item extends GDO
 			return false;
 		}
 
-		$player->itemAmountChanged($this, -$amount, false);
+		if (false === $player->itemAmountChanged($this, -$amount, false)) {
+			Dog_Log::error(sprintf('Item %s(%d) can not propagate decrease amount %d to player!', $this->getItemName(), $this->getID(), $amount));
+			// undo item amount decrease (change won't be visible tho...)
+			$this->increase('sr4it_amount', $amount);
+			return false;
+		}
 
 		if ($this->getAmount() < 1)
 		{
