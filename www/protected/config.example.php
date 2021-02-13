@@ -8,7 +8,7 @@
 ### Error reporting ###
 #######################
 ini_set('display_errors', 0);
-error_reporting(0xffffffff);
+error_reporting(E_ALL);
 
 ###################
 ### Main Config ###
