@@ -7,6 +7,7 @@ final class Dog_IRCC implements Dog_IRC
 	 */
 	private $server = false;
 	private $socket = NULL;
+	private $recv_buffer = ''; // buffers recv'd data until new line is seen
 	private $context = false;
 	private $timestamp = 0;
 	
@@ -91,7 +92,26 @@ final class Dog_IRCC implements Dog_IRC
 			$this->disconnect('I got feof!');
 			return false;
 		}
-		return fgets($this->socket, 2047);
+
+		$res = fgets($this->socket, 2047);
+
+		// discard recv_buffer on read error/eof
+		if ($res === false)
+		{
+			$this->recv_buffer = '';
+			return false;
+		}
+
+		// read until new line (socket is non-blocking!)
+		$this->recv_buffer .= $res;
+		if (substr_compare($this->recv_buffer, "\n", -1) === 0)
+		{
+			$res = $this->recv_buffer;
+			$this->recv_buffer = '';
+			return $res;
+		}
+
+		return false;
 	}
 	
 	public function sendAction($to, $message) { $this->sendPRIVMSG($to, "\x01ACTION {$message}\x01"); }
