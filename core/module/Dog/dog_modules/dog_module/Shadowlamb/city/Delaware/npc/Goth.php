@@ -9,7 +9,7 @@ final class Delaware_Goth extends SR_NPC
 	public function getNPCModifiers()
 	{
 		return array(
-			'race' => 'darkelve',
+			'race' => rand('darkelve', 'vampire', 'human')
 			'strength' => rand(2, 3),
 			'melee' => rand(3, 5),
 			'ninja' => rand(4, 5),
@@ -25,14 +25,14 @@ final class Delaware_Goth extends SR_NPC
 	
 	public function getNPCSpells()
 	{
-		return array('firebolt'=>1);
+		return array('flu'=>2);
 	}
 	
 	public function getNPCEquipment()
 	{
 		return array(
-			'amulet' => array('LO_Amulet_of_strength:1'),
-			'weapon' => array('SteelNunchaku'),
+			'amulet' => array('LO_Amulet_of_orcas:1'),
+			'weapon' => array('Fists', 'Knife', 'WoodNunchaku'),
 			'armor' => array('LeatherVest','StuddedVest'),
 			'boots' => array('Boots','ArmyBoots'),
 			'helmet' => array('Cap', 'LeatherCap'),
@@ -48,4 +48,3 @@ final class Delaware_Goth extends SR_NPC
 		return array();
 	}
 }
-?>
