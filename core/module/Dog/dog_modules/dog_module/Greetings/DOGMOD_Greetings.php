@@ -11,6 +11,12 @@ final class DOGMOD_Greetings extends Dog_Module
 		$user = Dog::getUser();
 		$server = Dog::getServer();
 		$channel = Dog::getChannel();
+		
+		if (!$channel) # should not happen
+		{
+		    return; # should not happen
+		}
+		
 		$cid = $channel->getID();
 		
 		if (  (Dog::isItself())
