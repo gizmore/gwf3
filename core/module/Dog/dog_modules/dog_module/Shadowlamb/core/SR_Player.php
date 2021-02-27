@@ -2081,14 +2081,31 @@ class SR_Player extends GDO
 		return $this->sr4_inventory->addItem($item);
 	}
 
+    /**
+     * Update inventory (player inventory or player mount) to reflect changed item amount.
+     * @return bool false if the item couldn't be found in any inventory, else true.
+     */
 	public function itemAmountChanged(SR_Item $item, $amount_change, $modify=true)
 	{
-		$this->sr4_inventory->itemAmountChanged($item, $amount_change);
+		if ($this->sr4_inventory->contains($item))
+		{
+			$this->sr4_inventory->itemAmountChanged($item, $amount_change);
+		}
+		elseif ($this->sr4_mount_inv->contains($item))
+		{
+			$this->sr4_mount_inv->itemAmountChanged($item, $amount_change);
+		}
+		else
+		{
+			return false;
+		}
 
 		if ($modify)
 		{
 			$this->modify();
 		}
+
+		return true;
 	}
 	
 	public function removeFromInventory(SR_Item $item, $modify=true)

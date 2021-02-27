@@ -11,12 +11,12 @@ final class GWF_InstallConfig
 	const POSTVARS = 'cfgvars';
 	const CONFIG_FILENAME = 'protected/config.php';
 	const TYPE = 0; const SECTION = 1; const VARNAME = 2; const VALUE = 3; const COMMENT = 4;
-	
+
 	private static $inited = false;
 	private static $vars = array();
 	private static $defaults = array();
 	private static $lang = true;
-	
+
 	################
 	### Checkers ###
 	################
@@ -43,7 +43,7 @@ final class GWF_InstallConfig
 		self::setVar('GWF_STAFF_EMAILS', $arg);
 		return false;
 	}
-	
+
 	public static function check__GWF_IP_QUICK($arg)
 	{
 		if (GWF_IP6::isValidType($arg)) {
@@ -51,7 +51,7 @@ final class GWF_InstallConfig
 		}
 		return 'Invalid IP type.';
 	}
-	
+
 	################
 	### Test Var ###
 	################
@@ -66,10 +66,10 @@ final class GWF_InstallConfig
 		if (!isset(self::$vars[$varname])) {
 			return self::error('err_unknown_var', htmlspecialchars($varname));
 		}
-		
+
 		$type = self::$vars[$varname][self::TYPE];
 		$name = htmlspecialchars($varname);
-		
+
 		switch ($type)
 		{
 			case 'text':
@@ -77,34 +77,34 @@ final class GWF_InstallConfig
 					return self::error('err_text',  array($name));
 				}
 				break;
-				
+
 			case 'int8':
 				if (!GWF_Validator::isOctalNumber(decoct(intval($value, 10)))) {
 					return self::error('err_int8', array($name));
 				}
 				break;
-				
+
 			case 'int10':
 				if (!GWF_Validator::isDecimalNumber($value)) {
 					return self::error('err_int10', array($name));
 				}
 				break;
-				
+
 			case 'script':
 //				if (!self::isDefaultValue($varname, $value)) {
 //					return self::error('err_script', $name);
 //				}
 				break;
-				
+
 			case 'bool':
 				if (!self::isBoolean($value)) {
 					return self::error('err_bool', array($name));
 				}
 				break;
-				
+
 			default: return self::error('err_unknown_type', array(htmlspecialchars($type)));
 		}
-		
+
 		$method_name = sprintf('check__%s', $varname);
 		if (method_exists(__CLASS__, $method_name))
 		{
@@ -114,17 +114,17 @@ final class GWF_InstallConfig
 			return false;
 		}
 	}
-	
+
 	private static function isBoolean($value)
 	{
 		return $value === 'true' || $value === 'false'; # 0,1,yes,no ?
 	}
-	
+
 //	private static function isDefaultValue($varname, $value)
 //	{
 //		return self::$defaults[$varname][self::VALUE] === $value;
 //	}
-	
+
 	###############
 	### Setters ###
 	###############
@@ -134,9 +134,9 @@ final class GWF_InstallConfig
 			echo self::error('err_unknown_var', htmlspecialchars($varname));
 			return false;
 		}
-		
+
 		$type = self::$vars[$varname][self::TYPE];
-		
+
 		switch($type)
 		{
 			case 'script': return true;
@@ -144,11 +144,11 @@ final class GWF_InstallConfig
 			default:
 				break;
 		}
-		
+
 		self::$vars[$varname][self::VALUE] = $value;
 		return true;
 	}
-	
+
 //	private static function setPostVar($varname, $value)
 //	{
 //		if (isset($_POST[self::POSTVARS]))
@@ -159,7 +159,7 @@ final class GWF_InstallConfig
 //			$_POST[self::POSTVARS][$varname] = $value;
 //		}
 //	}
-	
+
 	public static function restoreDefault($varname)
 	{
 		if (!isset(self::$vars[$varname])) {
@@ -169,7 +169,7 @@ final class GWF_InstallConfig
 		self::$vars[$varname][self::VALUE] = self::$defaults[$varname][self::VALUE];
 		return true;
 	}
-	
+
 	#################
 	### Init Vars ###
 	#################
@@ -185,7 +185,7 @@ final class GWF_InstallConfig
 			self::$inited = true;
 		}
 	}
-	
+
 	/**
 	 * Config Vars are an array of array($type, $section, $varname, $varvalue, $comment). Types are: 'int10', 'int8', 'text', 'bool', 'script'.
 	 * @return array of array($type, $section, $varname, $varvalue, $comment)
@@ -202,9 +202,9 @@ final class GWF_InstallConfig
 			$domain = $_SERVER['HTTP_HOST'];
 			$self = substr($_SERVER['REQUEST_URI'], 0, strrpos($_SERVER['REQUEST_URI'], '/install/')+1);
 		}
-		
+
 		$path = GWF_PATH;
-		
+
 		$temp = array(
 			# Main
 			array('text',   'Main', 'GWF_DOMAIN', $domain, 'Example: \'www.foobar.com\'.'),
@@ -229,16 +229,16 @@ final class GWF_InstallConfig
 			array('text', 'Defaults', 'GWF_DEFAULT_DESIGN', 'default', 'Default design. Example: \'wanda\'.'),
 			array('text', 'Defaults', 'GWF_ICON_SET', 'default', 'Default Icon-Set. Example: \'default\'.'),
 			array('text', 'Defaults', 'GWF_DOWN_REASON', 'Converting the database atm. should be back within 45 minutes.', 'The Message if maintainance-mode is enabled.'),
-			
+
 			# Language
 #			array('text', 'Language', 'GWF_LANG_ADMIN', 'en', 'Admins language. Should be \'en\'.'),
 			array('text', 'Language', 'GWF_SUPPORTED_LANGS', 'en;de;fr;it;pl;hu;es;bs;et;fi;ur;tr;sq;nl;ru;cs;sr;lv', 'Separate 2 char ISO codes by semicolon. Currently (partially) Supported: en;de;fr;it;pl;hu;es;bs;et;fi;ur;tr;sq;nl;ru;cs;sr'),
-			
+
 			# Various
 			array('int10', 'Various', 'GWF_ONLINE_TIMEOUT', 300, 'A request will mark you online for N seconds.'),
 			array('int10', 'Various', 'GWF_CRONJOB_BY_WEB', 1, 'Chance in permille to trigger cronjob by www clients (0-1000)'),
 			array('bool',  'Various', 'GWF_USER_STACKTRACE', true, 'Show stacktrace to the user on error? Example: true.' ),
-			
+
 			# Database
 			array('text', 'Database', 'GWF_SECRET_SALT', GWF_Random::randomKey(16, GWF_Random::ALPHANUMUPLOW), 'May not be changed after install!'),
 			array('text', 'Database', 'GWF_CHALLENGE_SALT', GWF_Random::randomKey(16, GWF_Random::ALPHANUMUPLOW), 'Salt for challenges!'),
@@ -251,16 +251,16 @@ final class GWF_InstallConfig
 			array('text', 'Database', 'GWF_DB_ENGINE', 'myIsam', 'Default database table type. Either \'innoDB\' or \'myIsam\'.'),
 			array('text', 'Database', 'GWF_DB_CHARSET', 'utf8mb4', 'UTF8 encoding. Either utf8 or utf8mb4.'),
 			array('text', 'Database', 'GWF_TABLE_PREFIX', 'gwf_', 'Database table prefix. Example: \'gwf3_\'.'),
-			
+
 			# Session
 			array('text',  'Session', 'GWF_SESS_NAME', 'GWF', 'Cookie Prefix. Example: \'GWF\'.'),
 			array('int10', 'Session', 'GWF_SESS_LIFETIME', 8*60*60, 'Session lifetime in seconds.'),
 			array('int10',  'Session', 'GWF_SESS_PER_USER', '2', 'Number of allowed simultaneous sessions per user. Example: 1'),
-			
+
 			# IP
 			array('text',  'IP', 'GWF_IP_QUICK', 'hash_32_1', 'Hashed IP Duplicates. See core/inc/util/GWF_IP6.php'),
 			array('text',  'IP', 'GWF_IP_EXACT', 'bin_32_128', 'Complete IP storage. See core/inc/util/GWF_IP6.php'),
-			
+
 			# EMail
 			array('int10', 'EMail', 'GWF_DEBUG_EMAIL', 15, 'Send Mail on errors? 0=NONE, 1=DB ERRORS, 2=PHP_ERRORS, 4=404, 8=403, 16=MailToScreen, 31=DEBUG)'),
 			array('text',  'EMail', 'GWF_BOT_EMAIL', 'robot@'.$domain, 'Robot sender email. Example: robot@www.site.com.'),
@@ -284,7 +284,7 @@ final class GWF_InstallConfig
 		}
 		return $back;
 	}
-	
+
 	private static function mergeConfig()
 	{
 		if (!Common::isFile('protected/config.php')) {
@@ -303,12 +303,12 @@ final class GWF_InstallConfig
 					echo $error;
 					continue;
 				}
-				
+
 				self::setVar($varname, $defined_value);
 			}
 		}
 	}
-	
+
 	private static function getDefinedValue($varname)
 	{
 		$value = constant($varname);
@@ -322,17 +322,17 @@ final class GWF_InstallConfig
 			return (string)$value;
 		}
 	}
-	
+
 	private static function getBoolValue($value)
 	{
 		return ($value === 'true' || $value === '1') ? 'true' : 'false';
 	}
-	
+
 	private static function error($key, $params=array())
 	{
 		return GWF_HTML::error(self::$lang->lang('wizard'), self::$lang->lang($key, $params));
 	}
-	
+
 	private static function mergePostVars()
 	{
 		$errors = array();
@@ -340,25 +340,25 @@ final class GWF_InstallConfig
 		foreach ($postvars as $key => $value)
 		{
 			$value = trim($value);
-			
+
 			if (!isset(self::$vars[$key])) {
 				$errors[] = self::$lang->lang('err_unknown_var', array(htmlspecialchars($key)));
 				continue;
 			}
-			
+
 			if (false !== ($error = self::testVar($key, $value))) {
 				$errors[] = $error;
 				continue;
 			}
-			
+
 			self::setVar($key, $value);
 		}
-		
+
 		if (count($errors) > 0) {
 			echo GWF_HTML::error(self::$lang->lang('wizard'), $errors);
 		}
 	}
-	
+
 	############
 	### Form ###
 	############
@@ -370,16 +370,16 @@ final class GWF_InstallConfig
 	public static function displayForm($action='wizard.php', GWF_LangTrans $lang)
 	{
 		self::init($lang);
-		
+
 		$back = sprintf('<form method="post" action="%s">', htmlspecialchars($action));
 		$back .= '<table>';
-		
+
 		$color_toggle = -1;
 		$current_section = '';
 		foreach (self::$vars as $var)
 		{
 			list($type, $section, $define, $value, $comment) = $var;
-			
+
 			if ($section !== $current_section) {
 				$current_section = $section;
 				$color_toggle++;# = 1 - $color_toggle;
@@ -387,28 +387,28 @@ final class GWF_InstallConfig
 			}
 			$back .= self::displayRow($color_toggle, $var);
 		}
-		
+
 		# Buttons
 		$buttons = GWF_Form::submit('test_db', 'Test DB');
 		$buttons .= GWF_Form::submit('write_config', 'Write Config');
 		$back .= sprintf('<tr class="gwfinstall%d"><td colspan="3">%s</td></tr>', $color_toggle, $buttons).PHP_EOL;
-		
+
 		$back .= '</table>'.PHP_EOL;
 		$back .= '</form>'.PHP_EOL;
 		return $back;
 	}
-	
+
 	private static function displayRow($color=0, array $var)
 	{
 //		return sprintf('<tr class="gwfinstall%s"><td>%s</td><td>%s</td><td>%s</td></tr>', $color, $var[self::VARNAME], self::displayInput($var), $var[self::COMMENT]);
 		return sprintf('<tr class="gwfinstall%s"><td>%s - %s</td></tr><tr class="gwfinstall%s"><td>%s</td></tr>', $color, $var[self::VARNAME], $var[self::COMMENT], $color, self::displayInput($var));
 	}
-	
+
 	private static function displayDivRow($color=0, $section='Test')
 	{
 		return sprintf('<tr class="gwfinstall%s"><td colspan="3" class="gwfinstallformdiv">### %s ###</td></tr>', $color, $section).PHP_EOL;
 	}
-	
+
 	private static function displayInput(array $var)
 	{
 		$pv = self::POSTVARS;
@@ -418,7 +418,7 @@ final class GWF_InstallConfig
 		$value = htmlspecialchars($val);
 		switch ($type)
 		{
-			case 'int8': 
+			case 'int8':
 				return sprintf('<input type="text" name="%s[%s]" value="%s" size="3" />', $pv, $name, decoct($value));
 			case 'int10':
 				return sprintf('<input type="text" name="%s[%s]" value="%s" size="11" />', $pv, $name, $value);
@@ -432,7 +432,7 @@ final class GWF_InstallConfig
 				return self::error('err_unknown_type', htmlspecialchars($type));
 		}
 	}
-	
+
 	##############
 	### Writer ###
 	##############
@@ -443,15 +443,15 @@ final class GWF_InstallConfig
 	public static function writeConfig(GWF_LangTrans $lang)
 	{
 		self::init($lang);
-		
+
 		# Open File
 		if (false === ($fh = fopen(self::CONFIG_FILENAME, 'w')))
 		{
 			echo GWF_HTML::err('ERR_FILE_NOT_FOUND', self::CONFIG_FILENAME);
 			return false;
 		}
-		
-		# Put in sections 
+
+		# Put in sections
 		$cfg2 = array();
 		foreach (self::$vars as $data)
 		{
@@ -461,10 +461,10 @@ final class GWF_InstallConfig
 			}
 			$cfg2[$section][] = $data;
 		}
-		
-		# Header 
+
+		# Header
 		self::writeHeader($fh);
-		
+
 		# Sections
 		foreach ($cfg2 as $section => $cfg)
 		{
@@ -478,14 +478,14 @@ final class GWF_InstallConfig
 
 		# Site Down
 		self::writeSiteDown($fh);
-		
+
 		# Footer
 		self::writeFooter($fh);
-		
+
 		# Close File
 		return fclose($fh);
 	}
-	
+
 	private static function writeHeader($fh)
 	{
 		fwrite($fh, '<?php'.PHP_EOL);
@@ -496,10 +496,10 @@ final class GWF_InstallConfig
 		fwrite($fh, ' */'.PHP_EOL);
 		self::writeSectionHeader($fh, 'Error reporting');
 		fwrite($fh, 'ini_set(\'display_errors\', 1);'.PHP_EOL);
-		fwrite($fh, 'error_reporting(0xffffffff);'.PHP_EOL);
+		fwrite($fh, 'error_reporting(E_ALL);'.PHP_EOL);
 		fwrite($fh, PHP_EOL);
 	}
-	
+
 	private static function writeSiteDown($fh)
 	{
 		$t = "\t";
@@ -507,13 +507,13 @@ final class GWF_InstallConfig
 		$ip = isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '127.0.0.1';
 		fwrite($fh, "#define('GWF_WORKER_IP', '{$ip}');".PHP_EOL);
 	}
-	
+
 	private static function writeFooter($fh)
 	{
 		fwrite($fh, '#(c)2009-2012 gizmore.'.PHP_EOL);
 		fwrite($fh, '?>'.PHP_EOL);
 	}
-	
+
 	private static function writeSectionHeader($fh, $section)
 	{
 		$section = sprintf('### %s ###', $section);
@@ -522,7 +522,7 @@ final class GWF_InstallConfig
 		fwrite($fh, $section.PHP_EOL);
 		fwrite($fh, $bound.PHP_EOL);
 	}
-	
+
 	private static function writeVar($fh, array $data)
 	{
 		list($type, $section, $key, $value, $comment) = $data;

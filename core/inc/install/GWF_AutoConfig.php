@@ -1,6 +1,6 @@
 <?php
 /**
- * 
+ *
  * @author gizmore
  */
 final class GWF_AutoConfig
@@ -8,25 +8,25 @@ final class GWF_AutoConfig
 	public static function configure()
 	{
 		ini_set('display_errors', 1);
-		error_reporting(0xffffffff);
-		
+		error_reporting(E_ALL);
+
 		$self = substr($_SERVER['REQUEST_URI'], 0, strrpos($_SERVER['REQUEST_URI'], '/install/')+1);
-		
+
 		define('GWF_DOMAIN', $_SERVER['HTTP_HOST']);
 		define('GWF_SITENAME', 'GWF');
 		define('GWF_WEB_ROOT_NO_LANG', $self);
 		define('GWF_LOG_BITS', 0xfff);
-		
+
 		define('GWF_DEFAULT_DOCTYPE', 'html5');
 		define('GWF_DEFAULT_LANG', 'en');
 		define('GWF_DEFAULT_MODULE', 'GWF');
 		define('GWF_DEFAULT_METHOD', 'About');
 		define('GWF_DEFAULT_DESIGN', 'default');
 		define('GWF_ICON_SET', 'default');
-		
+
 		define('GWF_SMARTY_PATH', GWF_CORE_PATH.'inc/3p/smarty/Smarty.class.php');
 		define('GWF_SMARTY_DIRS', GWF_PATH.'extra/temp/smarty/');
-		
+
 		define('GWF_LANG_ADMIN', 'en');
 		define('GWF_SUPPORTED_LANGS', 'en;de;fr;it;pl;hu;es;bs;et;fi;ur;tr;sq;nl;ru;cs;sr;lv');
 
@@ -50,10 +50,10 @@ final class GWF_AutoConfig
 		define('GWF_SESS_NAME', 'GWF');
 		define('GWF_SESS_LIFETIME', 14400);
 		define('GWF_SESS_PER_USER', 1);
-		
+
 		define('GWF_IP_QUICK', 'hash_32_1');
 		define('GWF_IP_EXACT', 'bin_32_128');
-		
+
 		#############
 		### EMail ###
 		#############
@@ -64,7 +64,7 @@ final class GWF_AutoConfig
 		define('GWF_SUPPORT_EMAIL', 'support@'.$_SERVER['HTTP_HOST']);
 		define('GWF_STAFF_EMAILS', '');
 	}
-	
+
 	/**
 	 * Determine if we should use 0700 or 0777 as chmod for logfiles.
 	 * @return number
@@ -79,22 +79,22 @@ final class GWF_AutoConfig
 // 		{
 // 			die('FATAL: Cannot probe for CHMOD mask in '.__CLASS__.'.');
 // 		}
-		
+
 // 		if (false !== ($chmod = fileperms($filename)))
 // 		{
 // 			var_dump($chmod);
 // 		}
-		
+
 // 		if (!@unlink($filename))
 // 		{
 // 			die('FATAL: Cannot unlink the CHMOD probe file in '.__CLASS__.'.');
 // 		}
-		
+
 // 		if ($chmod === false)
 // 		{
 // 			die('FATAL: The CHMOD probe mysteriously failed in '.__CLASS__.'.');
 // 		}
-		
+
 // 		return $chmod;
 	}
 }

@@ -775,4 +775,8 @@ class SR_Inventory
 		$this->onChanged(true);
 	}
 
+	public function contains($item)
+	{
+		return isset($this->inventory[$item->getID()]);
+	}
 }
