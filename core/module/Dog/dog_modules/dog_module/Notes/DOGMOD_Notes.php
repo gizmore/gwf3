@@ -122,17 +122,17 @@ final class DOGMOD_Notes extends Dog_Module
 		return $this->lang('msg_sent', array($nickname));
 	}
 	
-	public function onRead(Dog_Server $server, Dog_User $user, $from, $origin, $message)
+	public function onRead(Dog_Server $server, Dog_User $user, $message)
 	{
 		return 'STUB FUNCTION';
 	}
 	
-	public function onDelete(Dog_Server $server, Dog_User $user, $from, $origin, $message)
+	public function onDelete(Dog_Server $server, Dog_User $user, $message)
 	{
 		return 'STUB FUNCTION';
 	}
 	
-	public function onSearch(Dog_Server $server, Dog_User $user, $from, $origin, $message)
+	public function onSearch(Dog_Server $server, Dog_User $user, $message)
 	{
 		return 'STUB FUNCTION';
 	}
