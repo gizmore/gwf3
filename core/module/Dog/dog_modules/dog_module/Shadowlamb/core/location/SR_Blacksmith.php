@@ -317,7 +317,7 @@ abstract class SR_Blacksmith extends SR_Store
 			return false;
 		}
 
-		$modsRune = $rune->getModifiers();
+		$modsRune = $rune->getItemModifiersB();
 		if (($modsRune === NULL) || (count($modsRune) === 0))
 		{
 			$bot->reply('The rune has no modifiers. Somethings wrong! (BUG)');
