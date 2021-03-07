@@ -1129,7 +1129,7 @@ class SR_Player extends GDO
 	
 	private function modifyItem(SR_Item $item)
 	{
-		$this->applyModifiers($item->getItemModifiers($this));
+		$this->applyModifiers($item->getItemModifiersAndWeight($this));
 	}
 	
 	private function modifyEffectsOnce()

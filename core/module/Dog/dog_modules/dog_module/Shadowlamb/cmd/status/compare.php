@@ -92,8 +92,6 @@ final class Shadowcmd_compare extends Shadowcmd
 // 		$item2ModA = $item2->getItemModifiersA($player);
 		$item1ModA = $item1->getItemModifiers($player);
 		$item2ModA = $item2->getItemModifiers($player);
-		unset($item1ModA['weight']);
-		unset($item2ModA['weight']);
 		
 		if($item1ModA || $item2ModA)
 		{
