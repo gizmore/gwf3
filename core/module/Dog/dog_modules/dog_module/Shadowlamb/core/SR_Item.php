@@ -405,15 +405,17 @@ class SR_Item extends GDO
 	
 	public function getItemModifiers(SR_Player $player)
 	{
-		$weight = $this->getItemWeightStacked();
-		$back = array_merge(array('weight'=> $weight), $this->getItemModifiersA($player));
-		if (NULL !== ($modB = $this->getItemModifiersB()))
-		{
-			$back = self::mergeModifiers($back, $modB);
-		}
+		$back = array_merge($this->getItemModifiersA($player), $this->getItemModifiersBArray());
 		return $back;
 	}
 	
+	public function getItemModifiersAndWeight(SR_Player $player)
+	{
+		$weight = $this->getItemWeightStacked();
+		$back = array_merge(array('weight'=> $weight), $this->getItemModifiers($player));
+		return $back;
+	}
+
 	public function getItemInfo(SR_Player $player)
 	{
 		return $this->displayItemInfo($player);
