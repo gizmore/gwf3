@@ -40,6 +40,11 @@ We will probably contact you any time soon, for saying thanks.
 You are reading it right, we are accepting donations now: <?= $tVars['paybutton']; ?><br/>
 It would be awesome if some people would donate something, as the rent for <a href="http://warchall.net">box0</a> and <a href="https://www.wechall.net">box2</a> is due in nov/december.<br/>
 We will give an overview here of the donations, manually updated.<br/>
+<br/>
+<b>New: </b> We are now accepting <a style="font-weight: bold;" onclick="$('#bitcoinqr').toggle();">bitcoins</a><br/>
+<br/>
+<div>xpub661MyMwAqRbcFBHXoGuBJso1o99RoyzSv1gr7NUCk9uprUMYW92ByBLzkq4dFvLTizGKuked1DWeYGnivQe8xQYEvpfeJXwpy17aDu21f4N</div>
+<div id="bitcoinqr" style="display:none;" onclick="$(this).hide()" ><img src="/img/default/bitcoin_donations.png"></div>
 </div>
 <div class="box">
 <pre>Donations 2017:    7 donations
