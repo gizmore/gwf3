@@ -15,6 +15,8 @@ $url = 'https://github.com/gizmore/gdo6';
 
 echo GWF_Box::box($chall->lang('info', [$username, $url]), $chall->lang('title'));
 
+echo "\n<!-- https://www.youtube.com/watch?v=DfN_ZMmiLQw -->\n";
+
 echo $chall->copyrightFooter();
 
 require_once('challenge/html_foot.php');
