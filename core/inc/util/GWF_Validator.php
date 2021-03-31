@@ -260,7 +260,7 @@ final class GWF_Validator
 		$len = strlen($arg);
 		for($i = 0; $i < $len; $i++)
 		{
-			if ($arg{$i}<'0' || $arg{$i}>'9') {
+			if ($arg[$i]<'0' || $arg[$i]>'9') {
 				if (is_string($unset)) {
 					$_POST[$key] = $unset;
 				}
