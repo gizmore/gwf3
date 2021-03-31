@@ -11,7 +11,7 @@ $chall->showHeader();
 $user = GWF_User::getStaticOrGuest();
 $username = $user->displayUsername();
 $login = 'site/login.php';
-$github = 'https://github.com/gizmore/gwf3';
+$github = 'https://github.com/gizmore/gwf3/tree/master/www/challenge/temper';
 
 echo GWF_Box::box($chall->lang('info', [$username, $login, $github]), $chall->lang('title'));
 
