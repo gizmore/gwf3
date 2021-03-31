@@ -226,15 +226,19 @@ final class WC_Challenge extends GDO
 		return GWF_Time::displayAge($this->getVar('chall_date'));
 	}
 	
-	public function displayVoteNumber($value)
+	/* At least for difficulty votes it makes more sense to display higher values tinted towards
+		red rather than green. Use the $reverse parameter for that. */
+	public function displayVoteNumber($value, $reverse=false)
 	{
-		return sprintf('<b style="color:#%s;">%.02f</b>', WC_HTML::getColorForPercent($value*10), $value);
+		return sprintf('<b style="color:#%s;">%.02f</b>',
+						WC_HTML::getColorForPercent(($reverse ? (10-$value) : $value)*10),
+						$value);
 	}
 	
 	public function displayDif()
 	{
 //		return $this->displayVoteNumber($this->getVotesDif()->getVar('vs_avg'));
-		return $this->displayVoteNumber($this->getVar('chall_dif'));
+		return $this->displayVoteNumber($this->getVar('chall_dif'), $reverse=true);
 	}
 	
 	public function displayEdu()
