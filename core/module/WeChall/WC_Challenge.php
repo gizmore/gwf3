@@ -469,7 +469,7 @@ final class WC_Challenge extends GDO
 	 * @param int $founderid
 	 * @param string $created_by
 	 * @param boolean $createBoards Create forum boards for the challenge (important for DBImports)
-	 * @return unknown_type
+	 * @return boolean
 	 */
 	public function insertChallenge($founderid, $created_by='', $createBoards=true, $verbose=true)
 	{
@@ -1036,7 +1036,6 @@ final class WC_Challenge extends GDO
 	/**
 	 * Get language bit for a key with current browser language.
 	 * Has arbitrary number of arguments, ..., ...
-	 * @see LangTrans
 	 * @param string $key
 	 * @return string
 	 */
@@ -1063,5 +1062,3 @@ final class WC_Challenge extends GDO
 		$this->onSolve(GWF_Session::getUser(), $answer);
 	}
 }
-
-?>
