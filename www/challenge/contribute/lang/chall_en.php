@@ -18,4 +18,9 @@ $lang = array(
     "<br/>\n".
     "Thanks in advance for your contribution!<br/>\n".
     "gizmore<br/>\n",
+    
+    'halloffame' => 'There is <a href="%s">a list of contributors</a> you can visit.',
+    
+    'modules' => 'There is <a href="%s">a list of modules</a> you can work on.',
+    
 );
