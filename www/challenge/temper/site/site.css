@@ -1,0 +1,11 @@
+td:nth-child(1) { text-align: right; }
+nav {
+  padding: 8px;
+  background: rgb(2,0,36);
+  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+}
+nav ul { list-style: none; }
+nav, nav a { color: #fff; }
+nav li { display: inline-block; }
+.error { background: #612; color: #fff; padding: 8px; }
+.message { background: #162; color: #fff; padding: 8px; }
