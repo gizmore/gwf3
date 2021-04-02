@@ -29,6 +29,8 @@ final class AES
      */
     public static function encrypt4($data, $key, $iv)
     {
+        $iv_size = openssl_cipher_iv_length(self::CIPHER);
+        $iv = substr($iv, 0, $iv_size);
         return openssl_encrypt($data, self::CIPHER, $key, null, $iv);
     }
     
@@ -90,6 +92,8 @@ final class AES
      */
     public static function decrypt4($data, $key, $iv)
     {
+        $iv_size = openssl_cipher_iv_length(self::CIPHER);
+        $iv = substr($iv, 0, $iv_size);
         return openssl_decrypt($data, self::CIPHER, $key, null, $iv);
     }
     
