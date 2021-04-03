@@ -589,7 +589,7 @@ class WC_Site extends WC_SiteBase
 	
 	public function displayStatus()
 	{
-		$color = $this->isScored() ? 'green' : 'red';
+		$color = $this->isUp() ? 'green' : 'red';
 		$text = WC_HTML::lang('site_dot_'.$color);
 		return sprintf('<img src="%stpl/wc4/img/dot_%s.png" alt="%s" title="%s" />', GWF_WEB_ROOT, $color, $text, $text);
 	}
@@ -992,7 +992,7 @@ class WC_Site extends WC_SiteBase
 	{
 		require_once 'WC_RegAt.php';
 		
-		if (!$this->isScored()) {
+		if (!$this->isUp()) {
 			return new GWF_Result(WC_HTML::lang('err_site_down', array($this->displayName())), true);
 		}
 		
