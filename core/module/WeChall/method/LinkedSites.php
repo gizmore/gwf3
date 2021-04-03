@@ -173,9 +173,9 @@ final class WeChall_LinkedSites extends GWF_Method
 			return $this->module->error('err_already_linked', array($site->displayName()));
 		}
 		
-		if ( (!$site->isScored()) )
+		if ( (!$site->isUp()) )
 		{
-			return $this->module->error('err_site');
+			return $this->module->error('err_site_down', array($site->displayName()));
 		}
 		
 		if (WC_Freeze::isUserFrozenOnSite(GWF_Session::getUserID(), $site->getID()))
