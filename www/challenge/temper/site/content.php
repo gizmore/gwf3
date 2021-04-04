@@ -21,6 +21,8 @@ $gwf = new GWF3('./', array(
     'ignore_user_abort' => true, # Ignore abort and continue the script on browser kill?
 ));
 
+GWF_Debug::setMailOnError(false);
+
 $user = GWF_User::getStaticOrGuest();
 define('GWF_PAGE_TITLE', 'Temper');
 

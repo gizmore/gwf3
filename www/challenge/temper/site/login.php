@@ -23,7 +23,7 @@ $gwf = new GWF3('../', array(
 
 $user = GWF_User::getStaticOrGuest();
 
-
+GWF_Debug::setMailOnError(false);
 
 Session::init('temper', GWF_DOMAIN, 60*60*24*7);
 
