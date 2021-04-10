@@ -12,7 +12,7 @@ class Session
     private static $INSTANCE;
     private static $STARTED = false;
     
-    private static $COOKIE_NAME = 'temper';
+    private static $COOKIE_NAME = 'tempering';
     private static $COOKIE_DOMAIN = 'www.wechall.net';
     private static $COOKIE_JS = false;
     private static $COOKIE_HTTPS = false;
