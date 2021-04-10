@@ -144,7 +144,7 @@ class Session
     
     public static function reloadCookie($cookieValue)
     {
-        if ($decrypted = AES::decrypt($cookieValue, TEMPER_SALT))
+        if ($decrypted = AES::decryptIV($cookieValue, TEMPER_SALT))
         {
             if ($decoded = zlib_decode($decrypted))
             {
@@ -213,7 +213,7 @@ class Session
         $this->cookieData['sess_time'] = time();
         $json = json_encode($this->cookieData);
         $encoded = zlib_encode($json, ZLIB_ENCODING_GZIP, 9);
-        $encrypted = AES::encrypt($encoded, TEMPER_SALT);
+        $encrypted = AES::encryptIV($encoded, TEMPER_SALT);
         return $encrypted;
     }
     
