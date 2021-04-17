@@ -190,7 +190,7 @@ final class WC_RegAt extends GDO
 			# Ceasum Patch
 			$challcount = $site->getVar('site_challcount');
 			$powarg = $site->getPowArg();
-			if (false === $regats->update("regat_solved=regat_onsitescore/$maxscore, regat_score=POW((regat_onsitescore/$maxscore),(1+($powarg/$challcount)))*$sitescore ", "regat_sid=$siteid"))
+			if (false === $regats->update("regat_solved=regat_onsitescore/$maxscore, regat_score=POW(LEAST(1,regat_onsitescore/$maxscore),(1+($powarg/$challcount)))*$sitescore ", "regat_sid=$siteid"))
 			{
 				return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 			}

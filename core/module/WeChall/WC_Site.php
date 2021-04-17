@@ -1273,7 +1273,7 @@ class WC_Site extends WC_SiteBase
 		else
 		{
 			$basescore = $this->getBasescore();
-			$average = $this->getAverage();
+			$average = Common::clamp($this->getAverage(), 0, 1);
 			$challcnt = $this->getChallcount();
 			$spc = $this->getVar('site_spc');
 			
@@ -1331,6 +1331,13 @@ class WC_Site extends WC_SiteBase
 	{
 		# 0.00 - 1.00
 		$solved = $this->calcPercent($regat);
+
+		# When sites remove challenges, outdated scoring information can
+		# lead to values greater than 1.
+		# We clamp the value only here so scores are okish, but high
+		# percentages are still shown on the site to indicate something
+		# is wrong.
+		$solved = Common::clamp($solved, 0, 1);
 
 		$fullscore = $this->getScore();
 		
