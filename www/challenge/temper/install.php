@@ -7,7 +7,7 @@ if (!GWF_User::isAdminS())
 {
     return htmlSendToLogin("Better be admin !");
 }
-$score = 7;
+$score = 6;
 $url = "challenge/temper/index.php";
 $creators = "jusb3";
 $tags = 'Crypto,Exploit';
