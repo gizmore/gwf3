@@ -77,6 +77,8 @@ Happy Challenging!", $user->displayUsername(), $link);
         $mail = new GWF_Mail();
         $mail->setSender(GWF_BOT_EMAIL);
         $mail->setSenderName("WeChall");
+        $mail->setReceiver($user->getValidMail());
+        $mail->setReceiverName($user->displayUsername());
         $mail->setSubject("[TBS][WeChall] - Try out tbs.wechall.net");
         $mail->setBody($body);
         $mail->sendToUser($user);
