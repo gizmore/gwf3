@@ -12,64 +12,94 @@ final class WeChall_TBSMigration extends GWF_Method
     {
         GWF_Website::plaintext();
         
-        # usernames
+        if (!$site = WC_Site::getByClassName('TBS'))
+        {
+            die('TBS is not listed on wechall');
+        }
+        
         if (!($wc = Common::getRequestString('wc')))
         {
-            die('err_param_wc');
+            die('Missing parameter: wc');
         }
         
         if (!($tbs = Common::getRequestString('tbs')))
         {
-            die('err_param_tbs');
+            die('Missing parameter: tbs');
         }
         
-        if (!$site = WC_Site::getByClassName('TBS'))
+        if (!($token = Common::getRequestString('token')))
         {
-            die('err_site_tbs');
+            die('Missing parameter: token');
         }
         
-        if (!$token = Common::getRequestString('token'))
+        if (!($email = Common::getRequestString('email')))
         {
-            die('err_param_token');
+            die('Missing parameter: email');
+        }
+        
+        if (!$xauth = Common::getRequestString('xauth'))
+        {
+            die('Missing parameter: xauth');
         }
         
         if (!($user = GWF_User::getByName($wc)))
         {
-            die('err_wechall_name');
+            die('The wechall user is unknown');
+        }
+        
+        # Protect below here
+        if ($xauth !== $site->getVar('site_xauthkey'))
+        {
+            die('The xauth token is invalid.');
         }
         
         Module_WeChall::instance()->includeClass('WC_RegAt');
         if (!($regat = WC_RegAt::getRegatRow($user->getID(), $site->getID())))
         {
-            die('err_not_linked');
-        }
-        
-        if ($tbs !== $regat->getVar('regat_onsitename'))
-        {
-            die('err_combination');
+            die("{$wc} is not linked to TBS");
         }
         
         if (!$user->hasValidMail())
         {
-            die('err_no_mail');
+            die('User has no email');
+        }
+        
+        if ($tbs !== $regat->getVar('regat_onsitename'))
+        {
+            die('User has a different TBS name.');
+        }
+        
+        if ($user->getValidMail() !== $email)
+        {
+            die('User has a different email.');
         }
         
         $this->sendMail($user, $tbs, $token);
         
+        $url = $this->getMigrationURL($user, $tbs, $token);
+        
         die('msg_mail_sent');
+    }
+    
+    private function getMigrationURL(GWF_User $user, $tbs, $token)
+    {
+        $host = Common::getRequestString('host', 'https://tbs.wechall.net');
+        $link = sprintf(
+            $host . '/index.php?mo=TBS&me=Migrate&tbs=%s&wechall=%s&email=%s&token=%s',
+            urlencode($tbs),
+            urlencode($user->displayUsername()),
+            urlencode($user->getValidMail()),
+            urlencode($token));
+        return $link;
     }
 
     private function sendMail(GWF_User $user, $tbs, $token)
     {
-        $link = sprintf(
-            'https://tbs.wechall.net/index.php?mo=TBS&me=Migrate&tbs=%s&wechall=%s&token=%s',
-            urlencode($tbs),
-            urlencode($user->displayUsername()),
-            urlencode($token));
+        $link = $this->getMigrationURL($user, $tbs, $token);
         $body = sprintf("Hello %s,<br/>
 <br/>
 It seems like you want to migrate your TBS account to tbs.wechall.net<br/>
-To complete this, please visit the link below.<br/>
+To initiate this, please visit the link below.<br/>
 <br/>
 %s<br/>
 <br/>
@@ -83,4 +113,5 @@ Happy Challenging!", $user->displayUsername(), $link);
         $mail->setBody($body);
         $mail->sendToUser($user);
     }
+    
 }
