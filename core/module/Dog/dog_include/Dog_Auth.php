@@ -45,6 +45,8 @@ final class Dog_Auth
 	    {
 	        $conn->send('PASS '.$pass);
 	        $conn->send("NICK {$nick->getName()}");
+	        $conn->send("CAP REQ :twitch.tv/commands");
+// 	        $conn->send("CAP REQ :twitch.tv/tags");
 	        return true;
 	    }
 	    
