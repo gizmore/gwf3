@@ -64,7 +64,8 @@ final class WeChall_TBSMigration extends GWF_Method
             die('User has no email');
         }
         
-        if ($tbs !== $regat->getVar('regat_onsitename'))
+        $onsitename = $regat->getVar('regat_onsitename');
+        if (strcasecmp($tbs, $onsitename) !== 0)
         {
             die('User has a different TBS name.');
         }
