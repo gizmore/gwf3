@@ -36,7 +36,7 @@ $out = '';
 $channels = $server->getChannels();
 foreach ($channels as $channel)
 {
-	$channel instanceof Lamb_Channel;
+// 	$channel instanceof Lamb_Channel;
 	$out .= sprintf(', %s(%d)', $channel->getName(), count($channel->getUsers()));
 }
 

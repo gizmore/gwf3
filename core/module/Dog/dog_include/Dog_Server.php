@@ -10,6 +10,7 @@ final class Dog_Server extends GDO
 	const HAS_CONNECTED_ONCE = 0x100;
 	const NO_BOTFLAG = 0x200;
 	const DISCORD = 0x400;
+	const TWITCH = 0x800;
 	const DEFAULT_OPTIONS = 0x11;
 	const LOGBITS = 0x03;
 	
@@ -51,6 +52,7 @@ final class Dog_Server extends GDO
 
 	public function isSSL() { return $this->isOptionEnabled(self::SSL); }
 	public function isBNC() { return $this->isOptionEnabled(self::BNC); }
+	public function isTwitch() { return $this->isOptionEnabled(self::TWITCH); }
 	public function isActive() { return $this->isOptionEnabled(self::ACTIVE); }
 	public function isLogging() { return $this->isOptionEnabled(self::LOGGING_OFF) ? false : $this->isOptionEnabled(self::LOGGING_ON); }
 	public function isConnected() { return $this->connection->isConnected() && $this->connection->alive(); }

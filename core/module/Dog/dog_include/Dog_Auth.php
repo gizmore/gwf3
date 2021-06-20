@@ -39,12 +39,21 @@ final class Dog_Auth
 	
 	private static function sendNick(Dog_IRC $conn, Dog_Server $server, Dog_Nick $nick)
 	{
+	    $pass = $nick->getPass();
+	    
+	    if ($server->isTwitch())
+	    {
+	        $conn->send('PASS '.$pass);
+	        $conn->send("NICK {$nick->getName()}");
+	        return true;
+	    }
+	    
 		if (!$conn->send("NICK {$nick->getName()}"))
 		{
 			return false;
 		}
 		
-		if (NULL !== ($pass = $nick->getPass()))
+		if ($pass)
 		{
 			if ($server->isBNC())
 			{
