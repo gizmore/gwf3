@@ -193,6 +193,16 @@ final class Dog_IRCC implements Dog_IRC
 	
 	private function sendFromQueue(array $q)
 	{
+	    if ($this->server->isTwitch())
+	    {
+	        switch ($q[0])
+	        {
+	            case 'n': $this->sendSplitted("PRIVMSG {$q[1]} :", $q[2]); break;
+	            case 'p': $this->sendSplitted("PRIVMSG {$q[1]} :", $q[2]); break;
+	            case 'r': $this->send($q[2]); $this->msgs_sent--; break;
+	        }
+	    }
+	    
 		switch ($q[0])
 		{
 			case 'n': $this->sendSplitted("NOTICE {$q[1]} :", $q[2]); break;
