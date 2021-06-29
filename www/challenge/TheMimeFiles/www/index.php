@@ -9,8 +9,9 @@
 <body>
   <header><h1>The Mime Files</h1></header>
   <nav>
-    <a href="index.php">The Mime Files</a></nav>
+    <a href="index.php">The Mime Files</a>
     <a href="upload.php">Upload</a>
+  </nav>
   <main>
     <p>The Mime Files is a collection of Mime pictures</p>
     <p>Feel free to <a href="upload.php">upload</a> more of them, and i will show them to the world.</p>

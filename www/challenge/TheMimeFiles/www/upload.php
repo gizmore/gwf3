@@ -8,8 +8,9 @@
 <body>
   <header><h1>The Mime Files</h1></header>
   <nav>
-    <a href="index.php">The Mime Files</a></nav>
+    <a href="index.php">The Mime Files</a>
     <a href="upload.php">Upload</a>
+  </nav>
   <main>
     <div>
       <p>Upload a mime image!</p>
