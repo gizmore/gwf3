@@ -34,7 +34,7 @@ function uploadFile(array $file)
     }
     
     $dir = "upload/" . session_id();
-    @mkdir($dir, 0x777, true); # create upload dir
+    @mkdir($dir, 0700, true); # create upload dir
     
     $path = 'upload/'.session_id().'/'.$file['name'];
     

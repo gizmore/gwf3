@@ -8,8 +8,9 @@ if (false === ($chall = WC_Challenge::getByTitle(GWF_PAGE_TITLE)))
 }
 $chall->showHeader();
 
-$href = 'themimefiles.warchall.net';
-echo GWF_Box::box($chall->lang('info', [$href]), $chall->lang('title'));
+$href = 'http://themimefiles.warchall.net';
+$href3 = 'https://github.com/gizmore/gwf3/tree/master/www/challenge/TheMimeFiles/www';
+echo GWF_Box::box($chall->lang('info', [$href, $href3]), $chall->lang('title'));
 
 echo $chall->copyrightFooter();
 

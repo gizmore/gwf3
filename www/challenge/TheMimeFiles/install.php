@@ -1,13 +1,13 @@
 <?php
 chdir("../../");
 require_once("challenge/html_head.php");
-$title = 'Temper';
+$title = 'The Mime Files';
 html_head("Install: $title");
 if (!GWF_User::isAdminS())
 {
     return htmlSendToLogin("Better be admin !");
 }
-$score = 3;
+$score = 4;
 $url = "challenge/TheMimeFiles/index.php";
 $creators = "gizmore";
 $tags = 'Exploit';

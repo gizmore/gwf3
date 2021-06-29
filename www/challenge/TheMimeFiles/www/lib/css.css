@@ -1,0 +1,8 @@
+img {
+	transition: transform 3s, border 2s;
+	border: 1px inset #fff;
+}
+img:hover {
+	transform: scale(1.5);
+	border: 1px inset #000;
+}

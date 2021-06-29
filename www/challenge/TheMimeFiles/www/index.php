@@ -4,6 +4,7 @@
 <head>
   <title>The Mime Files</title>
   <meta name="description" content="This is the ultimate mime photo archive worldwide. Just kidding, this is a hacking challenge ;)" />
+  <link rel="stylesheet" href="lib/css.css" />
 </head>
 <body>
   <header><h1>The Mime Files</h1></header>
@@ -18,7 +19,11 @@
     <img src="img/mime3.jpg" />
     <img src="img/mime4.jpg" />
     <img src="img/mime5.jpg" />
-  
+    <img src="img/mime1.jpg" />
+    <img src="img/mime2.jpg" />
+    <img src="img/mime3.jpg" />
+    <img src="img/mime4.jpg" />
+    <img src="img/mime5.jpg" />
   </main>
   <footer>&copy; 2021 - The Mime Files</footer>
 </body>
