@@ -9,7 +9,10 @@ final class DOGMOD_Notes extends Dog_Module
 	
 	public function event_join()
 	{
-		$this->onJoinTell(Dog::getServer(), Dog::getUser());
+	    if ($user = Dog::getUser())
+	    {
+    		$this->onJoinTell(Dog::getServer(), $user);
+	    }
 	}
 	
 	public function trigger_login(Dog_User $user)
