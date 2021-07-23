@@ -4,7 +4,7 @@ class GWF_DebugInfo
 	public static function getTimings($with_diskspace=true)
 	{
 		$t_sql = $queries = 0;
-		if (false !== ($db = gdo_db()))
+		if (false !== ($db = @gdo_db()))
 		{
 			$t_sql = $db->getQueryTime();
 			$queries = $db->getQueryCount();

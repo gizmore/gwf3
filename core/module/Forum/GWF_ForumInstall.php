@@ -58,6 +58,7 @@ final class GWF_ForumInstall
 		{
 			$moderator = new GWF_Group(array(
 				'group_name' => 'moderator',
+			    'group_date' => GWF_Time::getDate(),
 			));
 			if (false === ($moderator->insert())) {
 				return GWF_HTML::err('ERR_DATABASE', __FILE__, __LINE__);

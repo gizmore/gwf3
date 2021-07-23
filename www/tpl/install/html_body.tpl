@@ -2,8 +2,8 @@
 	<div id="gwf_inst_main">
 		<div id="gwf_inst_logo">
 			<h1 class="fl">GWF</h1>
-			<h2>{$il->lang('title_long', $step)}</h2>
-			<h3>{$il->lang('title_step', $step)}</h3>
+			<h2>{$il->lang('title_long', [$step])}</h2>
+			<h3>{$il->lang('title_step', [$step])}</h3>
 		</div>
 		<div class="fl">
 			<div id="gwf_inst_stepmenu">

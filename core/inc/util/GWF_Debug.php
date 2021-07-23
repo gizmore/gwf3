@@ -131,7 +131,7 @@ final class GWF_Debug
 	 * @param $errcontext
 	 * @return false
 	 */
-	public static function error_handler($errno, $errstr, $errfile, $errline, $errcontext)
+	public static function error_handler($errno, $errstr, $errfile, $errline, $errcontext=null)
 	{
 		if (error_reporting() === 0)
 		{

@@ -61,8 +61,8 @@ final class Module_ITMB extends GWF_Module
 		{
 			$mo = Common::getGetString('mo');
 			$me = Common::getGetString('me');
-			$mo += str_repeat('_', 20 - strlen($mo));
-			return sprintf("CLICK_%s=>%me", $mo, $me);
+			$mo .= str_repeat('_', 20 - strlen($mo));
+			return sprintf("CLICK_%s=>%s", $mo, $me);
 		}
 		return null;
 	}
