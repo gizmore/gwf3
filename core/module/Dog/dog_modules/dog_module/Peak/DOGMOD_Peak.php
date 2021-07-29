@@ -16,22 +16,24 @@ final class DOGMOD_Peak extends Dog_Module
 	public function event_JOIN() { $this->checkPeak(); }
 	private function checkPeak()
 	{
-		$channel = Dog::getChannel();
-		$count = $channel->getUserCount();
-		$peak = Dog_ChannelPeak::getPeak($channel);
-		$old_peak = $peak->getVar('lcpeak_peak');
-		if ($count > $old_peak)
+		if ($channel = Dog::getChannel())
 		{
-			if (!$peak->savePeak($count))
-			{
-				Dog::err('ERR_DATABASE', array(__FILE__, __LINE__));
-			}
-			elseif ( ($old_peak > 0) && ($this->hasPeakshow()) )
-			{
-				$iso = $channel->getLangISO();
-				$date = GWF_Time::displayTimestamp(NULL, $iso);
-				$channel->sendNOTICE($this->langISO($iso, 'new_peak', array($channel->getName(), Dog::getServer()->displayLongName(), $count, $date)));
-			}
+    		$count = $channel->getUserCount();
+    		$peak = Dog_ChannelPeak::getPeak($channel);
+    		$old_peak = $peak->getVar('lcpeak_peak');
+    		if ($count > $old_peak)
+    		{
+    			if (!$peak->savePeak($count))
+    			{
+    				Dog::err('ERR_DATABASE', array(__FILE__, __LINE__));
+    			}
+    			elseif ( ($old_peak > 0) && ($this->hasPeakshow()) )
+    			{
+    				$iso = $channel->getLangISO();
+    				$date = GWF_Time::displayTimestamp(NULL, $iso);
+    				$channel->sendNOTICE($this->langISO($iso, 'new_peak', array($channel->getName(), Dog::getServer()->displayLongName(), $count, $date)));
+    			}
+    		}
 		}
 	}
 	
