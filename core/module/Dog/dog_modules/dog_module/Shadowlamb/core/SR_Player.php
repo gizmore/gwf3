@@ -751,14 +751,14 @@ class SR_Player extends GDO
 	
 	public function message($message)
 	{
-		if (false === ($user = $this->getUser()))
-		{
-			return Dog_Log::error('User does not exist: '.$this->getName());
-		}
-		
 		if (false !== ($remote = $this->getRemotePlayer()))
 		{
 			return $remote->message($message);
+		}
+		
+		if (false === ($user = $this->getUser()))
+		{
+		    return Dog_Log::error('User does not exist: '.$this->getName());
 		}
 		
 		$user->setUIStates();
