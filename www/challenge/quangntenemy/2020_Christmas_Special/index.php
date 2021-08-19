@@ -2,7 +2,7 @@
 chdir('../../../');
 define('GWF_PAGE_TITLE', '2020 Christmas Special');
 require_once('challenge/html_head.php');
-require(GWF_CORE_PATH.'module/WeChall/solutionbox.php');
+require(GWF_CORE_PATH . 'module/WeChall/solutionbox.php');
 if (false === ($chall = WC_Challenge::getByTitle(GWF_PAGE_TITLE)))
 {
 	$chall = WC_Challenge::dummyChallenge(GWF_PAGE_TITLE, 5, 'challenge/quangntenemy/2020_Christmas_Special/index.php', false);

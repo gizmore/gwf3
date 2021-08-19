@@ -8,7 +8,7 @@ $lang = array(
     '<br/>'.PHP_EOL.
     '%s<br/>'.PHP_EOL.
     '<br/>'.PHP_EOL.
-    'We wish you A Merry Christmas and A Happy New Year!<br/>'.PHP_EOL.
+    'We wish you a Merry Christmas and a Happy New Year!<br/>'.PHP_EOL.
     '<br/>'.PHP_EOL.
     'quangntenemy and gizmore<br/>'.PHP_EOL,
 );
