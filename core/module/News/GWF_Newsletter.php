@@ -176,13 +176,13 @@ final class GWF_Newsletter extends GDO
 	
 	/**
 	 * @param $html boolean html or text (html=true, text=false)
-	 * @param $langid the language of the newsletter.
-	 * @return unknown_type
+	 * @param $langid int the language of the newsletter.
+	 * @return array
 	 */
-	public static function getNewsletterEmails($html=true, $langid)
+	public static function getNewsletterEmails($html, $langid)
 	{
 		$newsletters = new self(false);
-		$flag = $html === true ? self::WANT_HTML : self::WANT_TEXT;
+		$flag = $html ? self::WANT_HTML : self::WANT_TEXT;
 		return $newsletters->selectObjects('*', "nl_options&$flag");
 	}
 	

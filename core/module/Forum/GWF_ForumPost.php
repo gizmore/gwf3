@@ -325,7 +325,7 @@ final class GWF_ForumPost extends GDO # implements GDO_Searchable
 		return $this->getShowHREFThread($term, $this->getThread());
 	}
 	
-	public function getShowHREFThread($term='', $thread)
+	public function getShowHREFThread($term, $thread)
 	{
 		$thread instanceof GWF_ForumThread;
 		return $thread === false ? '#' : $thread->getPostHREF($this, $term);
