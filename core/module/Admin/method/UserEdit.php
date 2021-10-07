@@ -79,7 +79,8 @@ final class Admin_UserEdit extends GWF_Method
 	{
 		$_POST['username'] = $arg = trim($arg);
 		
-		if ($this->user->getVar('user_name') === $arg)
+		if (mb_strtolower($this->user->getVar('user_name'))
+		    === mb_strtolower($arg))
 		{
 			return false;
 		}

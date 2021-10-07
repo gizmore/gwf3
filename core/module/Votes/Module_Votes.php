@@ -152,7 +152,7 @@ final class Module_Votes extends GWF_Module
 		return false;
 	}
 
-	public static function installPollTable($user, $name, $title, array $options, $gid=0, $level=0, $is_multi, $guest_votes, $is_public=false, $result=GWF_VoteMulti::SHOW_RESULT_ALWAYS, $reverse=true)
+	public static function installPollTable($user, $name, $title, array $options, $gid, $level, $is_multi, $guest_votes, $is_public=false, $result=GWF_VoteMulti::SHOW_RESULT_ALWAYS, $reverse=true)
 	{
 		if ('' !== ($error = self::installPollTableB($user, $name, $title, $options, $gid, $level, $is_multi, $guest_votes, $is_public, $result, $reverse))) {
 			return $error;
@@ -166,7 +166,7 @@ final class Module_Votes extends GWF_Module
 		
 		return $module->message('msg_mvote_added');
 	}
-	public static function installPollTableB($user, $name, $title, array $options, $gid=0, $level=0, $is_multi, $guest_votes, $is_public=false, $result=GWF_VoteMulti::SHOW_RESULT_ALWAYS, $reverse=true)
+	public static function installPollTableB($user, $name, $title, array $options, $gid, $level, $is_multi, $guest_votes, $is_public=false, $result=GWF_VoteMulti::SHOW_RESULT_ALWAYS, $reverse=true)
 	{
 		
 		if (false === ($module = GWF_Module::getModule('Votes'))) {
