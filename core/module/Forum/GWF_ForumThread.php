@@ -431,15 +431,15 @@ final class GWF_ForumThread extends GDO
 	/**
 	* Create a new thread that can be used as a fake thread.
 	* You can also call insert() on it, and it becomes a real row.
-	* @param unknown_type $user GWF_User or false
-	* @param unknown_type $title string
-	* @param unknown_type $boardid int
-	* @param unknown_type $groupid int
-	* @param unknown_type $postcount int
-	* @param unknown_type $options int
+	* @param GWF_User $user GWF_User or false
+	* @param string $title string
+	* @param int $boardid int
+	* @param int $groupid int
+	* @param int $postcount int
+	* @param int $options int
 	* @return GWF_ForumThread
 	*/
-	public static function fakeThread($user=false, $title, $boardid=0, $groupid=0, $postcount=1, $options=0, $date=true)
+	public static function fakeThread($user, $title, $boardid=0, $groupid=0, $postcount=1, $options=0, $date=true)
 	{
 		if ($user === false) {
 			$userid = 0;
@@ -521,7 +521,7 @@ final class GWF_ForumThread extends GDO
 
 	/**
 	 * In case we modify the treadlist in any obscure way, we shall call this to adjust the posters.
-	 * @return unknown_type
+	 * @return boolean
 	 */
 	public function updateLastPost()
 	{

@@ -53,7 +53,7 @@ final class GWF_HTML
 	 * @param boolean $to_smarty group errors to a fixed smarty area
 	 * @return string
 	 */
-	public static function error($title=NULL, $messages, $log=true)
+	public static function error($title, $messages, $log=true)
 	{
 		$messages = (array) $messages;
 
@@ -86,8 +86,8 @@ final class GWF_HTML
 	################
 	### Messages ###
 	################
-	public static function message($title=NULL, $message, $log=true) { return self::messageA($title, array($message), $log); }
-	public static function messageA($title=NULL, array $messages, $log=true)
+	public static function message($title, $message, $log=true) { return self::messageA($title, array($message), $log); }
+	public static function messageA($title, array $messages, $log=true)
 	{
 		if (count($messages) === 0) return '';
 

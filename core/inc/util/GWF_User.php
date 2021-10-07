@@ -40,7 +40,7 @@ final class GWF_User extends GDO
 
 	### Constants
 	const EMAIL_LENGTH = 255;
-	const USERNAME_LENGTH = 32;
+	const USERNAME_LENGTH = 28;
 
 	###########
 	### GDO ###

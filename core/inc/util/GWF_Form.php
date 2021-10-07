@@ -223,7 +223,7 @@ class GWF_Form
 		return $this->template('formY.php', $title, $action, 3);
 	}
 
-	private function template($file, $title, $action=true, $colspan)
+	private function template($file, $title, $action=true, $colspan=1)
 	{
 
 //		if (!is_string($method) || ($method !== 'get'))
