@@ -67,13 +67,13 @@ Sum:    €127,00
 Goal:   €350,00
 </pre>
 
-<pre>Donations 2021:    3 donations
-Sum:    €175,00
+<pre>Donations 2021:    4 donations
+Sum:    €225,00
 Goal:   €470,00
 </pre>
 
-<pre>Totals:           27 donations
-Sum:    € 1571,00
+<pre>Totals:           29 donations
+Sum:    € 1621,00
 Goal:   € 1970,00
 </pre>
 
@@ -128,6 +128,7 @@ We currently have the following ca. expenses for WeChall:<br/>
 <li><span class="dodate">18.Jan.2021</span> – <em>&quot;Was? Ich hab' mich nur verdrückt!&quot;</em> – ???</li>
 <li><span class="dodate">24.Jan.2021</span> – <em>&quot;help to support the site&quot;</em> – <a class="donor" href="/profile/spnow">spnow</a></li>
 <li><span class="dodate">15.Apr.2021</span> – <em>&quot;for future generations&quot;</em> – <a class="donor" href="/profile/maraud3r">maraud3r</a></li>
+<li><span class="dodate">16.Oct.2021</span> – <em>&quot;What we do now echoes in eternity.&quot;</em> – <a class="donor" href="/profile/Hertz">Hertz</a></li>
 
 </ol>
 </div>
