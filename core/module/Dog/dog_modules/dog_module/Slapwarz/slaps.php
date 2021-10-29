@@ -203,6 +203,7 @@ $slaps = array(
 	array('parrot', 27),
 	array('link', 21),
 	array('savoy', 24),
+	array('pumpkin', 27),
 	array('sandwich', 22),
 	array('wrench', 33),
 	array('email', 10),
