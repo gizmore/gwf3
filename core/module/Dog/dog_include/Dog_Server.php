@@ -1,4 +1,17 @@
 <?php
+use ForceUTF8\Encoding;
+use ForceUTF8\Emoji;
+
+# require utf8 sanitizers
+$path = GWF_PATH . "/core/inc/3p/ForceUTF8/";
+require $path . 'Emoji.class.php';
+require $path . 'Encoding.php';
+
+/**
+ * Server entity.
+ * @author gizmore
+ * @author dloser
+ */
 final class Dog_Server extends GDO
 {
 	const LOGGING_ON = 0x01;
@@ -272,7 +285,12 @@ final class Dog_Server extends GDO
 						return $msg;
 					}
 				}
-				echo "ignoring undecodable raw_msg: " . $raw_msg . PHP_EOL;
+				
+				# Assume it is really broken but not evil.
+				# Try to fix it.
+				$msg = Encoding::toUTF8($raw_msg);
+				$msg = Emoji::removeEmoji($msg);
+				return $msg;
 			}
 		}
 		return false;
