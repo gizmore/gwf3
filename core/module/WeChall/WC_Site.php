@@ -581,7 +581,7 @@ class WC_Site extends WC_SiteBase
 	 * @param unknown_type $text
 	 * @return unknown_type
 	 */
-	public function displayLogoUNT($username, $solved, $min=2, $max=32, $pad=false, $text)
+	public function displayLogoUNT($username, $solved, $min=2, $max=32, $pad=false, $text='Hello World!')
 	{
 		$size = round( (($max-$min)*$solved)+$min );
 		return $this->displayLogo($size, $text, $solved>=1.0, $pad===false?false:$max, $username);
