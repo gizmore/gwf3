@@ -431,7 +431,7 @@ final class GWF_Time
 	}
 
 
-	public static function humanDurationRaw($duration, $nUnits=2, array $units)
+	public static function humanDurationRaw($duration, $nUnits=2, array $units=null)
 	{
 		$duration = (int)$duration;
 		$calced = array();
