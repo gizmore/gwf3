@@ -556,7 +556,7 @@ final class WC_Challenge extends GDO
 			if (false === ($board = $this->getBoard())) {
 				if (false === ($board = GWF_ForumBoard::createBoard(
 					'Challenge: '.$this->getTitle(), 
-					$module->langAdmin('chall_help_desc', $this->getTitle()),
+				$module->langAdmin('chall_help_desc', [$this->getTitle()]),
 					$module->cfgChallengeBoardID(),
 					GWF_ForumBoard::ALLOW_THREADS|GWF_ForumBoard::GUEST_VIEW
 				))) {
@@ -570,7 +570,7 @@ final class WC_Challenge extends GDO
 			if (false === ($board = $this->getSolutionBoard())) {
 				if (false === ($board = GWF_ForumBoard::createBoard(
 					'Solution: '.$this->getTitle(), 
-					$module->langAdmin('chall_solution_desc', $this->getTitle()),
+				$module->langAdmin('chall_solution_desc', [$this->getTitle()]),
 					$module->cfgSolutionBoardID(),
 					GWF_ForumBoard::ALLOW_THREADS|GWF_ForumBoard::GUEST_VIEW,
 					$group->getID()
