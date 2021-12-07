@@ -752,7 +752,7 @@ final class WC_Challenge extends GDO
 	
 	public function isAnswerBlocked($user)
 	{
-		if (false === Common::getPostString('answer'))
+		if (!Common::getPostString('answer'))
 		{
 			return false;
 		}
