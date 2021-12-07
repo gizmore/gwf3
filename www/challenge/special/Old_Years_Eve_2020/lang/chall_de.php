@@ -13,7 +13,7 @@ $lang = array(
     "<br/>\n" .
     "<hr/>\n" .
     "<br/>\n" .
-    "Vielen Dank an Dr_Blutig für das Implemntieren dieser Challenge.<br/>\n" .
+    "Vielen Dank an Dr_Blutig für das Implementieren dieser Challenge.<br/>\n" .
     "<br/>\n" .
     "Wir wünschen Euch ein Frohes neues Jahr 2020=>2021!\n",
 );
