@@ -752,6 +752,11 @@ final class WC_Challenge extends GDO
 	
 	public function isAnswerBlocked($user)
 	{
+		if (false === Common::getPostString('answer'))
+		{
+			return false;
+		}
+			
 		// CSRF
 		if (function_exists('formSolutionboxValidate'))
 		{
