@@ -8,6 +8,5 @@ $lang = array(
 		'The problem is that he will need glasses.<br/>'.PHP_EOL.
 		'Do you need glasses as well?<br/>'.PHP_EOL.
 		'<br/>'.PHP_EOL.
-		'spaceone told us you can <a href="%s">help!<br/>'.PHP_EOL,
-	
+		'spaceone told us you can <a href="%s">help!</a><br/>'.PHP_EOL,
 );
