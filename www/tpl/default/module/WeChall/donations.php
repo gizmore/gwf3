@@ -67,8 +67,13 @@ Sum:    €127,00
 Goal:   €350,00
 </pre>
 
-<pre>Donations 2021:    4 donations
-Sum:    €225,00
+<pre>Donations 2021:    5 donations
+Sum:    €275,00
+Goal:   €470,00
+</pre>
+
+<pre>Donations 2022:    1 donation
+Sum:     €20,00
 Goal:   €470,00
 </pre>
 
@@ -129,7 +134,9 @@ We currently have the following ca. expenses for WeChall:<br/>
 <li><span class="dodate">24.Jan.2021</span> – <em>&quot;help to support the site&quot;</em> – <a class="donor" href="/profile/spnow">spnow</a></li>
 <li><span class="dodate">15.Apr.2021</span> – <em>&quot;for future generations&quot;</em> – <a class="donor" href="/profile/maraud3r">maraud3r</a></li>
 <li><span class="dodate">16.Oct.2021</span> – <em>&quot;What we do now echoes in eternity.&quot;</em> – <a class="donor" href="/profile/Hertz">Hertz</a></li>
-
+<li><span class="dodate">17.Dec.2021</span> – <em>&quot;That is not dead which can eternal lie.&quot;</em> – <a class="donor" href="/profile/monnino">monnino</a></li>
+<li>----- 2022 -----</li>
+<li><span class="dodate">5.Jan.2021</span> – <em>&quot;gizmore: please, go and take a programming course, please&quot;</em> – <a class="donor" href="/profile/tehron">tehron</a></li>
 </ol>
 </div>
 
