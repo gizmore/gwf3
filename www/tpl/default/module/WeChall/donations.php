@@ -72,13 +72,13 @@ Sum:    €275,00
 Goal:   €470,00
 </pre>
 
-<pre>Donations 2022:    1 donation
-Sum:     €20,00
+<pre>Donations 2022:    2 donations
+Sum:    €153,37
 Goal:   €470,00
 </pre>
 
-<pre>Totals:           29 donations
-Sum:    € 1621,00
+<pre>Totals:           32 donations
+Sum:    € 1758,37
 Goal:   € 1970,00
 </pre>
 
@@ -137,6 +137,7 @@ We currently have the following ca. expenses for WeChall:<br/>
 <li><span class="dodate">17.Dec.2021</span> – <em>&quot;That is not dead which can eternal lie.&quot;</em> – <a class="donor" href="/profile/monnino">monnino</a></li>
 <li>----- 2022 -----</li>
 <li><span class="dodate">5.Jan.2021</span> – <em>&quot;gizmore: please, go and take a programming course, please&quot;</em> – <a class="donor" href="/profile/tehron">tehron</a></li>
+<li><span class="dodate">11.Jan.2021</span> – <em>&quot;2022 will be the year we ascend to a higher plane of existence and become space robots&quot;</em> – <a class="donor" href="/profile/bigheks">bigheks</a></li>
 </ol>
 </div>
 
