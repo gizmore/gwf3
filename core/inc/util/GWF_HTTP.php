@@ -95,7 +95,7 @@ final class GWF_HTTP
 		curl_close($ch);
 		
 		# Get the status code from HTTP headers
-		if(preg_match('/HTTP\/1\.\d+\s+(\d+)/', $response, $matches))
+		if(preg_match('/HTTP\/((1\.\d+)|2)\s+(\d+)/', $response, $matches))
 		{
 			$code = intval($matches[1]);
   		} 
