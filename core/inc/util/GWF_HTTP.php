@@ -92,17 +92,10 @@ final class GWF_HTTP
 		}
  
 		$response = curl_exec($ch);
-		curl_close($ch);
 		
 		# Get the status code from HTTP headers
-		if(preg_match('/HTTP\/1\.\d+\s+(\d+)/', $response, $matches))
-		{
-			$code = intval($matches[1]);
-  		} 
-  		else
-  		{
-  			return false;
-  		}
+		$code = curl_getinfo($ch, CURLINFO_RESPONSE_CODE);
+		curl_close($ch);
  
   		# See if code indicates success
   		return (($code>=200) && ($code<400)) || $code === 403 || $code === 401;	
