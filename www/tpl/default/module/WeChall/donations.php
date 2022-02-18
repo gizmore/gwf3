@@ -48,38 +48,38 @@ We will give an overview here of the donations, manually updated.<br/>
 </div>
 <div class="box">
 <pre>Donations 2017:    7 donations
-Sum:    €300,00
-Goal:   €350,00
+Sum:    €  300,00
+Goal:   €  350,00
 </pre>
 
 <pre>Donations 2018:    7 donations
-Sum:    €704,00
-Goal:   €350,00
+Sum:    €  704,00
+Goal:   €  350,00
 </pre>
 
 <pre>Donations 2019:    8 donations
-Sum:    €275,00
-Goal:   €450,00
+Sum:    €  275,00
+Goal:   €  450,00
 </pre>
 
 <pre>Donations 2020:    3 donations
-Sum:    €127,00
-Goal:   €350,00
+Sum:    €  127,00
+Goal:   €  350,00
 </pre>
 
 <pre>Donations 2021:    5 donations
-Sum:    €275,00
-Goal:   €470,00
+Sum:    €  275,00
+Goal:   €  470,00
 </pre>
 
-<pre>Donations 2022:    2 donations
-Sum:    €153,37
-Goal:   €470,00
+<pre>Donations 2022:    3 donations
+Sum:    €  203,37
+Goal:   €  480,00
 </pre>
 
-<pre>Totals:           32 donations
+<pre>Totals:           33 donations
 Sum:    € 1758,37
-Goal:   € 1970,00
+Goal:   € 1980,00
 </pre>
 
 </div>
@@ -93,7 +93,7 @@ We currently have the following ca. expenses for WeChall:<br/>
 <li>- Box3 (irc.wechall.net) €100/y</li>
 <li>- Box4 (wanda.gizmore.org) €0/y (gizmore pays)</li>
 <li>- Box5 (tbs.wechall.net) €120/y</li>
-<li>- Domain costs €30/y</li>
+<li>- Domain costs €40/y</li>
 <li>- T-Shirts 2019 €100</li>
 <li>- T-Shirts 2020 €0</li>
 <li>- T-Shirts 2021 €0</li>
@@ -138,6 +138,7 @@ We currently have the following ca. expenses for WeChall:<br/>
 <li>----- 2022 -----</li>
 <li><span class="dodate">5.Jan.2021</span> – <em>&quot;gizmore: please, go and take a programming course, please&quot;</em> – <a class="donor" href="/profile/tehron">tehron</a></li>
 <li><span class="dodate">11.Jan.2021</span> – <em>&quot;2022 will be the year we ascend to a higher plane of existence and become space robots&quot;</em> – <a class="donor" href="/profile/bigheks">bigheks</a></li>
+<li><span class="dodate">6.Feb.2021</span> – <em>-</em> – <a class="donor" href="/profile/wechall" rel="nofollow">?????</a></li>
 </ol>
 </div>
 
