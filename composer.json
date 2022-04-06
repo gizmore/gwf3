@@ -1,6 +1,6 @@
 {
     "require": {
         "cboden/ratchet": "^0.3.5",
-        "dompdf/dompdf": "^0.7.0"
+        "dompdf/dompdf": "^1.2.1"
     }
 }
