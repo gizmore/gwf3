@@ -10,7 +10,7 @@ if (false === ($chall = WC_Challenge::getByTitle(GWF_PAGE_TITLE)))
 }
 $chall->showHeader();
 
-$href = 'https://'.$domain.'/challenge/training/nodns/etc/hosts.php';
+$href = 'https://'.$domain.'/challenge/training/net/nodns/etc/hosts.php';
 echo GWF_Box::box($chall->lang('info', [$href]), $chall->lang('title'));
 
 echo $chall->copyrightFooter();
