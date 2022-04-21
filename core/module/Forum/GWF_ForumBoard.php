@@ -225,12 +225,15 @@ final class GWF_ForumBoard extends GDO
 	 */
 	public static function createBoard($title, $descr, $parentid=1, $options=0, $groupid=0)
 	{
+		$pos = self::getBoards();
+		$pos = $pos ? (count($pos) + 1) : 1;
+		
 		$board = new self(array(
 			'board_bid' => 0,
 			'board_pid' => $parentid,
 			'board_gid' => $groupid,
 		
-			'board_pos' => @count(self::getBoards()) + 1,
+			'board_pos' => $pos,
 			'board_options' => $options, 
 		
 			'board_title' => $title,

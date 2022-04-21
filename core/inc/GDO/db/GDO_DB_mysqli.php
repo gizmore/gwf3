@@ -135,7 +135,11 @@ final class GDO_DB_mysqli extends GDO_Database
 	
 	public function escape($s)
 	{
-		return mysqli_real_escape_string($this->link, $s);
+		if ($s)
+		{
+			return mysqli_real_escape_string($this->link, $s);
+		}
+		return $s;
 	}
 	
 	public function escapeIdentifier($s)
