@@ -9,7 +9,6 @@ if (!GWF_User::isAdminS()) {
 }
 
 $title = GWF_PAGE_TITLE;
-$solution = false;
 $score = 1;
 $url = "challenge/guesswork/LoFi/index.php";
 $creators = "Gizmore";
