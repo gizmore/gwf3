@@ -9,7 +9,7 @@ if (false === ($chall = WC_Challenge::getByTitle(GWF_PAGE_TITLE))) {
 }
 $chall->showHeader();
 
-$hrefMP3 = '///mp3.gizmore.org';
+$hrefMP3 = 'http://mp3.gizmore.org';
 $guesswork = WC_Challenge::getByTitle('Guesswork');
 $hrefGuesswork = '/challenge/guesswork/index.php';
 
