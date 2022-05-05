@@ -9,10 +9,10 @@ if (!GWF_User::isAdminS()) {
 }
 
 $title = GWF_PAGE_TITLE;
-$score = 1;
+$score = 2;
 $url = "challenge/guesswork/LoFi/index.php";
 $creators = "Gizmore";
-$tags = 'Exploit,Special';
+$tags = 'Special';
 
 echo WC_Challenge::installChallenge($title, $solution, $score, $url, $creators, $tags, true, 0);
 
