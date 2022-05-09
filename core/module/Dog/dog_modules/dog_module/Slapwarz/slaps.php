@@ -96,6 +96,7 @@ $slaps = array(
 	array('a gross', 35),
 	array('a poison', 35),
 	array('a living', 37),
+	array('a sexy', 15),
     array('a' , 40),
     array('a flying', 40),
 	array('a mysterious', 40),
