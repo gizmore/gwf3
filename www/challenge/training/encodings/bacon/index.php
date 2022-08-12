@@ -47,7 +47,7 @@ function bacon_count_chars($s)
 	$len = strlen($s);
 	for ($i = 0; $i < $len; $i++)
 	{
-		$c = $s{$i};
+		$c = $s[$i];
 		if ( ($c >= 'A' && $c <= 'Z') || ($c >= 'a' && $c <= 'z') )
 		{
 			$count++;
@@ -77,15 +77,15 @@ function bacon_encode(WC_Challenge $chall, $hidden)
 	$a = ord('A');
 	for ($i = 0; $i < $len; $i++)
 	{
-		$c = ord($hidden{$i});
+		$c = ord($hidden[$i]);
 		$bin = decbin($c-$a);
 		$bin = sprintf('%05d', $bin);
 		
 		for ($j = 0; $j < 5; $j++)
 		{
 			$pos = bacon_next_pos($message, $pos);
-			if ($bin{$j} === '1') {
-				$message{$pos} = strtoupper($message{$pos});
+			if ($bin[$j] === '1') {
+				$message[$pos] = strtoupper($message[$pos]);
 			}
 		}
 	}
@@ -95,7 +95,7 @@ function bacon_encode(WC_Challenge $chall, $hidden)
 	$len = strlen($message);
 	while ($pos < $len)
 	{
-		$message{$pos} = strtoupper($message{$pos});
+		$message[$pos] = strtoupper($message[$pos]);
 		$pos += 2;
 	}
 	
@@ -106,7 +106,7 @@ function bacon_next_pos($s, $pos)
 {
 	do {
 		$pos++;		
-	} while (!bacon_is_letter($s{$pos}));
+	} while (!bacon_is_letter($s[$pos]));
 	return $pos;
 }
 

@@ -62,7 +62,7 @@ final class WC_CryptoChall
 		
 		for($i = 0; $i < $len; $i++)
 		{
-			$back .= sprintf('%02X', ord($ct{$i}));
+			$back .= sprintf('%02X', ord($ct[$i]));
 			if (($i % 16) === 15)
 			{
 				$back .= PHP_EOL;
