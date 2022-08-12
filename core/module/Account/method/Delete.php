@@ -73,9 +73,15 @@ final class Account_Delete extends GWF_Method
 		}
 		$this->onSendEmail($user, $note);
 		
+		# Release user email
+		$user->saveVar('user_email', $user->getValidMail().'_deleted');
+		$user->saveOption(GWF_User::MAIL_APPROVED, false);
+		
+		# Mark deleted
 		$user->saveOption(GWF_User::DELETED, true);
 		GWF_Hook::call(GWF_Hook::DELETE_USER, $user);
 
+		# Logout
 		GWF_Session::onLogout();
 		GWF_Hook::call(GWF_Hook::LOGOUT, $user);
 		
