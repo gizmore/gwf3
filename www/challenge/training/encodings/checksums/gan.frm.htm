@@ -1,0 +1,41 @@
+<style xmedia="blind or colorblind">
+#THE-CHALLENGE input { color: black; background: black; }
+DASH.DASH { display: inline-block; background: #d9a; height: 2px; width: 20px; position: relative; top: -4px; }
+input[type=number] { width: 32px; }
+
+</style>
+
+<div id="THE-CHALLENGE">
+  
+  <form method="POST" action=?_t=time()&defaultgan=123456789>
+
+    <input type="number" value="1" id="gan1" name="gan[0]" />
+    <input type="number" value="2" id="gan2" name="gan[1]" />
+    <input type="number" value="3" id="gan3" name="gan[2]" />
+
+	<dash class="DASH" id="fa27f4ce"></dash>
+
+    <input type="number" value="4" id="gan4" name="gan[3]" />
+    <input type="number" value="5" id="gan5" name="gan[4]" />
+    <input type="number" value="6" id="gan6" name="gan[5]" />
+    
+	<dash class="DASH" id="fa7e0000"></dash>
+
+    <input type="number" value="7" id="gan7" name="gan[6]" />
+    <input type="number" value="8" id="gan8" name="gan[7]" />
+    <input type="number" value="9" id="gan9" name="gan[8]" />
+
+  </form>
+</div>
+
+<?php
+function checkGAN($array) {
+	static $poly = [ 1, 5, 13, 31, 131, 131, 137, 7, 43, 1];
+	$sum = 1;
+	for ($i = 0; $i < 8; ) {
+		$sum *= $poly[$i]; 
+		$sum += $array[$i++];
+	}
+	return ($sum % 10) == $array[8];
+}
+?>
