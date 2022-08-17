@@ -14,5 +14,6 @@ $name = $user->isGuest() ? 'hacker' : $user->displayUsername();
 $info = $chall->lang('info', array($name, "<a href=\"https://fineprint.phpgdo.com\">GDOv7 Fineprint</a>"));
 $title = $chall->lang('title');
 echo GWF_Box::box($info, $title);
+formSolutionbox($chall);
 echo $chall->copyrightFooter();
 require_once('challenge/html_foot.php');
