@@ -1,6 +1,7 @@
 <?php
 $solution = require 'secret.php';
 chdir('../../../');
+require(GWF_CORE_PATH.'module/WeChall/solutionbox.php');
 define('GWF_PAGE_TITLE', "Fineprint");
 // require_once('challenge/gwf_include.php');
 require_once('challenge/html_head.php');
