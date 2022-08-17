@@ -1,10 +1,10 @@
 <?php
 $solution = require 'secret.php';
 chdir('../../../');
-require(GWF_CORE_PATH.'module/WeChall/solutionbox.php');
 define('GWF_PAGE_TITLE', "Fineprint");
 // require_once('challenge/gwf_include.php');
 require_once('challenge/html_head.php');
+require(GWF_CORE_PATH.'module/WeChall/solutionbox.php');
 if (false === ($chall = WC_Challenge::getByTitle(GWF_PAGE_TITLE)))
 {
 	$chall = WC_Challenge::dummyChallenge(GWF_PAGE_TITLE, 2, 'challenge/gizmore/fineprint/index.php', $solution);
