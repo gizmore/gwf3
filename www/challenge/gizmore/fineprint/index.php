@@ -10,6 +10,7 @@ if (false === ($chall = WC_Challenge::getByTitle(GWF_PAGE_TITLE)))
 	$chall = WC_Challenge::dummyChallenge(GWF_PAGE_TITLE, 2, 'challenge/gizmore/fineprint/index.php', $solution);
 }
 $chall->showHeader();
+$chall->onCheckSolution();
 $user = GWF_User::getStaticOrGuest();
 $name = $user->isGuest() ? 'hacker' : $user->displayUsername();
 $info = $chall->lang('info', array($name, "<a href=\"https://fineprint.phpgdo.com\">GDOv7 Fineprint</a>"));
