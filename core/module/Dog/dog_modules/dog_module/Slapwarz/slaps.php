@@ -124,6 +124,7 @@ $slaps = array(
 ),
 
 'items' => array(
+	array('banana peel', 25),
 	array('railgun' , 75), 
 	array('vacuum cleaner' , 35),
 	array('trout' , 25),
