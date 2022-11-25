@@ -120,7 +120,8 @@ $slaps = array(
     array('an invisible', 25),
     array('a crazy', 35),
     array('a fascinating', 31),
-    array('a tasty', 16),
+	array('a tasty', 16),
+	array('a bloody', 25),
 ),
 
 'items' => array(
