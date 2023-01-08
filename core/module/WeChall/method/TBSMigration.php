@@ -86,7 +86,7 @@ final class WeChall_TBSMigration extends GWF_Method
     {
         $host = Common::getRequestString('host', 'https://tbs.wechall.net');
         $link = sprintf(
-            $host . '/index.php?mo=TBS&me=Migrate&tbs=%s&wechall=%s&email=%s&token=%s',
+            $host . '/index.php?_mo=TBS&_me=Migrate&tbs=%s&wechall=%s&email=%s&token=%s',
             urlencode($tbs),
             urlencode($user->displayUsername()),
             urlencode($user->getValidMail()),
