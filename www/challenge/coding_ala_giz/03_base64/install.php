@@ -14,7 +14,7 @@ $title = 'CAG: Base64';
 $score = 1;
 $url = "challenge/coding_ala_giz/03_base64/index.php";
 $creators = "gizmore,aLLamoox";
-$tags = 'Encoding,Training';
+$tags = 'Encoding,Training,CAG';
 WC_Challenge::installChallenge($title, $solution, $score, $url, $creators, $tags, true);
 require_once("challenge/html_foot.php");
 ?>

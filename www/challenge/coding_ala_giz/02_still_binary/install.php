@@ -14,7 +14,7 @@ $solution = false;
 $score = 1;
 $url = "challenge/coding_ala_giz/02_still_binary/index.php";
 $creators = "gizmore,aLLamoox";
-$tags = 'Encoding,Training';
+$tags = 'Encoding,Training,CAG';
 WC_Challenge::installChallenge($title, $solution, $score, $url, $creators, $tags, true);
 require_once("challenge/html_foot.php");
 ?>
