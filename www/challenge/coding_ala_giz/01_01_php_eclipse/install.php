@@ -1,8 +1,7 @@
 <?php
-$solution = require 'solution2.php';;
 chdir("../../../../");
 require_once("challenge/html_head.php");
-html_head("CAG: Binary Encoding BE");
+html_head("CAG: Binary Encoding");
 if (!GWF_User::isAdminS())
 {
 	echo GWF_HTML::err('ERR_NO_PERMISSION');
@@ -10,9 +9,10 @@ if (!GWF_User::isAdminS())
 	require_once("challenge/html_foot.php");
 	return;
 }
-$title = 'CAG: Base64';
+$title = 'CAG: Binary Encoding';
+$solution = false;
 $score = 1;
-$url = "challenge/coding_ala_giz/03_base64/index.php";
+$url = "challenge/coding_ala_giz/01_01_php_eclipse/index.php";
 $creators = "gizmore,aLLamoox";
 $tags = 'Encoding,Training,CAG';
 WC_Challenge::installChallenge($title, $solution, $score, $url, $creators, $tags, true);

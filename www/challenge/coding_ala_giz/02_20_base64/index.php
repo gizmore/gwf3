@@ -6,7 +6,7 @@ define('GWF_PAGE_TITLE', 'CAG: Base64');
 require_once('challenge/html_head.php');
 require(GWF_CORE_PATH.'module/WeChall/solutionbox.php');
 if (false === ($chall = WC_Challenge::getByTitle(GWF_PAGE_TITLE))) {
-	$chall = WC_Challenge::dummyChallenge(GWF_PAGE_TITLE, 1, 'challenge/coding_ala_giz/03_base64/index.php', $sol);
+	$chall = WC_Challenge::dummyChallenge(GWF_PAGE_TITLE, 1, 'challenge/coding_ala_giz/02_20_base64/index.php', $sol);
 }
 $chall->showHeader();
 $chall->onCheckSolution();
