@@ -8,17 +8,19 @@ What is a binary?
 
 Logical operations
 
- - AND
- - OR
- - XOR
- - NOT
+ - AND &
+ - OR |
+ - XOR ^
+ - NOT ~
  
 Arithmetic operations
 
- - ADD
- - MUL
- - DIV
- - and more
+ - ADD +
+ - SUB -
+ - MUL *
+ - DIV /
+ - MOD %
+ - and more?
  
 Convert from binary to decimal a.v.v.
 
