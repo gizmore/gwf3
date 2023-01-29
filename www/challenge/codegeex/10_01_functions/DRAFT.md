@@ -1,12 +1,8 @@
-
 CGX#6 - Functions
 
  - variables
- - primitives
+ - primitives (int, float, string, boolean)
  - arrays
- - objects
  - scopes
  - parameters
- - loops?
- 
- 
+ - foreach loops
