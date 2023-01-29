@@ -1,6 +1,6 @@
 <?php
 $lang = [
-	'title' => 'CAG: Numerical Systems',
+	'title' => 'CGX: Numerical Systems',
 	'info' =>
 		'Hello future Hackers,<br/>'.PHP_EOL.
 		'<br/>'.

@@ -1,6 +1,6 @@
 <?php
 $lang = array(
-	'title' => 'CAG: Install Eclipse',
+	'title' => 'CGX: Install Eclipse',
 	'info' =>
 		'Hello future Hackers,<br/>'.PHP_EOL.
 		'<br/>'.

@@ -1,6 +1,6 @@
 <?php
 $lang = array(
-	'title' => 'CAG: Binary Encoding',
+	'title' => 'CGX: Binary Encoding',
 	'info' =>
 		'Hello future Hackers,<br/>'.PHP_EOL.
 		'<br/>'.

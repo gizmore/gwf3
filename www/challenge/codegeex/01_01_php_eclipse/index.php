@@ -1,6 +1,6 @@
 <?php
 chdir('../../../');
-define('GWF_PAGE_TITLE', 'CAG: Install Eclipse');
+define('GWF_PAGE_TITLE', 'CGX: Install Eclipse');
 require_once('challenge/html_head.php');
 if (false === ($chall = WC_Challenge::getByTitle(GWF_PAGE_TITLE))) {
 	$chall = WC_Challenge::dummyChallenge(GWF_PAGE_TITLE, 1, 'challenge/coding_ala_giz/01_01_php_eclipse/index.php', false);
