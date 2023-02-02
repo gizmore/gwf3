@@ -6,5 +6,3 @@ CGX#10 - HTTP and WWW (+bots)
  - [sockets](https://en.wikipedia.org/wiki/TCP/IP_Illustrated)
  - [curl](https://en.wikipedia.org/wiki/CURL)
  - solve the bot programming challenge 1 on wechall.net
- 
-
