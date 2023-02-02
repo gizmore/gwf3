@@ -3,9 +3,12 @@ class GWF_DebugInfo
 {
 	public static function getTimings($with_diskspace=true)
 	{
+		global $SINGLE_GDO_DB;
+		
 		$t_sql = $queries = 0;
-		if (false !== ($db = @gdo_db()))
+		if ($SINGLE_GDO_DB)
 		{
+			$db = $SINGLE_GDO_DB;
 			$t_sql = $db->getQueryTime();
 			$queries = $db->getQueryCount();
 		}

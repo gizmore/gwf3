@@ -10,6 +10,8 @@ final class GWF_AutoConfig
 		ini_set('display_errors', 1);
 		error_reporting(E_ALL);
 
+		define('GWF_AUTO_CONFIG', true);
+		
 		$self = substr($_SERVER['REQUEST_URI'], 0, strrpos($_SERVER['REQUEST_URI'], '/install/')+1);
 
 		define('GWF_DOMAIN', $_SERVER['HTTP_HOST']);
@@ -24,7 +26,7 @@ final class GWF_AutoConfig
 		define('GWF_DEFAULT_DESIGN', 'default');
 		define('GWF_ICON_SET', 'default');
 
-		define('GWF_SMARTY_PATH', GWF_CORE_PATH.'inc/3p/smarty/Smarty.class.php');
+		define('GWF_SMARTY_PATH', GWF_CORE_PATH.'inc/3p/smarty4/libs/Smarty.class.php');
 		define('GWF_SMARTY_DIRS', GWF_PATH.'extra/temp/smarty/');
 
 		define('GWF_LANG_ADMIN', 'en');
@@ -57,7 +59,7 @@ final class GWF_AutoConfig
 		#############
 		### EMail ###
 		#############
-		define('GWF_DEBUG_EMAIL', 15);
+		define('GWF_DEBUG_EMAIL', 31);
 		define('GWF_BOT_EMAIL', 'robot@'.$_SERVER['HTTP_HOST']);
 		define('GWF_ERROR_EMAIL', 'errors@'.$_SERVER['HTTP_HOST']);
 		define('GWF_ADMIN_EMAIL', 'admin@'.$_SERVER['HTTP_HOST']);

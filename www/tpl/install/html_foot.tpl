@@ -1,7 +1,7 @@
 		</div>
 		<div id="gwf_inst_progress">
-			{$il->lang('foot_progress', [(100 / $steps * $step)])}<br />
-			[#{str_repeat('#', (int)(100 / $steps * $step/2))}{str_repeat('-', 100-100 / $steps * $step)}] <br>
+			{$il->lang('foot_progress', [(int)(100.0 / $steps * $step)])}<br />
+			[#{str_repeat('#', (int)(100.0 / $steps * $step/2.0))}{str_repeat('-', (int)(100.0-100.0 / $steps * $step))}] <br>
 			<!-- Progressbar with CSS by steps / percent-->
 			GWF_PATH: {$gwfpath}<br>
 			GWF_WEB_PATH: {$gwfwebpath}<br>

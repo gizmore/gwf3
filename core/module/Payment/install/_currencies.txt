@@ -18,7 +18,6 @@ Ascension Island 	Ascension pound[A] 	£ 	None 	Penny 	100
 Ascension Island	Saint Helena pound 	£ 	SHP 	Penny 	100
 Australia 	Australian dollar 	$ 	AUD 	Cent 	100
 Austria 	Euro 	€ 	EUR 	Cent 	100
-Azerbaijan 	Azerbaijani manat 	Azeri manat symbol.svg 	AZN 	Qəpik 	100
 Bahamas 	Bahamian dollar 	$ 	BSD 	Cent 	100
 Bahrain 	Bahraini dinar 	ب.د 	BHD 	Fils 	1,000
 Bangladesh 	Bangladeshi taka 	৳ 	BDT 	Paisa 	100
@@ -31,7 +30,7 @@ Bermuda 	Bermudian dollar 	$ 	BMD 	Cent 	100
 Bhutan	Bhutanese ngultrum	X	BTN 	Chertrum 	100
 Bhutan	Indian rupee 	₨ 	INR 	Paisa 	100
 Bolivia 	Bolivian boliviano 	Bs. 	BOB 	Centavo 	100
-Bosnia Herzegovina	Bosnia and Herzegovina convertible mark 	KM or КМ 	BAM 	Fening 	100
+Bosnia Herzegovina	Bosnia and Herzegovina convertible mark 	KM	BAM 	Fening 	100
 Botswana 	Botswana pula 	P 	BWP 	Thebe 	100
 Brazil 	Brazilian real 	R$ 	BRL 	Centavo 	100
 British Indian Ocean Territory 	United States dollar[4] 	$ 	USD 	Cent[D] 	100
@@ -45,7 +44,7 @@ Burundi 	Burundian franc 	Fr 	BIF 	Centime 	100
 Cambodia 	Cambodian riel 	៛ 	KHR 	Sen 	100
 Cameroon 	Central African CFA franc 	Fr 	XAF 	Centime 	100
 Canada 	Canadian dollar 	$ 	CAD 	Cent 	100
-Cape Verde 	Cape Verdean escudo 	$ or Esc 	CVE 	Centavo 	100
+Cape Verde 	Cape Verdean escudo 	$ 	CVE 	Centavo 	100
 Cayman Islands 	Cayman Islands dollar 	$ 	KYD 	Cent 	100
 Central African Republic 	Central African CFA franc 	Fr 	XAF 	Centime 	100
 Chad 	Central African CFA franc 	Fr 	XAF 	Centime 	100
@@ -74,7 +73,7 @@ East Timor 	United States dollar 	$ 	USD 	Cent[D] 	100
 #East Timor 	None 	None 	None 	Centavo 	None
 Ecuador 	United States dollar 	$ 	USD 	Cent[D] 	100
 #Ecuador 	None 	None 	None 	Centavo 	None
-Egypt 	Egyptian pound 	£ or ج.م 	EGP 	Piastre[F] 	100
+Egypt 	Egyptian pound 	ج.م 	EGP 	Piastre[F] 	100
 El Salvador 	Salvadoran colón 	₡ 	SVC 	Centavo 	100
 El Salvador 	United States dollar 	$ 	USD 	Cent[D] 	100
 Equatorial Guinea 	Central African CFA franc 	Fr 	XAF 	Centime 	100
@@ -210,7 +209,7 @@ San Marino 	Euro 	€ 	EUR 	Cent 	100
 São Tomé and Príncipe 	São Tomé and Príncipe dobra 	Db 	STD 	Cêntimo 	100
 Saudi Arabia 	Saudi riyal 	ر.س 	SAR 	Hallallah 	100
 Senegal 	West African CFA franc 	Fr 	XOF 	Centime 	100
-Serbia 	Serbian dinar 	дин. or din. 	RSD 	Para 	100
+Serbia 	Serbian dinar 	дин. 	RSD 	Para 	100
 Seychelles 	Seychellois rupee 	₨ 	SCR 	Cent 	100
 Sierra Leone 	Sierra Leonean leone 	Le 	SLL 	Cent 	100
 Singapore 	Brunei dollar 	$ 	BND 	Sen 	100
@@ -231,7 +230,7 @@ Suriname 	Surinamese dollar 	$ 	SRD 	Cent 	100
 Swaziland 	Swazi lilangeni 	L 	SZL 	Cent 	100
 Sweden 	Swedish krona 	kr 	SEK 	Öre 	100
 Switzerland 	Swiss franc 	Fr 	CHF 	Rappen[I] 	100
-Syrian Arab Republic 	Syrian pound 	£ or ل.س 	SYP 	Piastre 	100
+Syrian Arab Republic 	Syrian pound 	ل.س 	SYP 	Piastre 	100
 Taiwan	New Taiwan dollar 	$ 	TWD 	Cent 	100
 Tajikistan 	Tajikistani somoni 	ЅМ 	TJS 	Diram 	100
 Tanzania, United Republic Of 	Tanzanian shilling 	Sh 	TZS 	Cent 	100

@@ -365,6 +365,11 @@ final class GWF_InstallWizard
 	 */
 	public static function wizard_4_1()
 	{
+		if (false !== ($error = self::wizard_check_cfg_quick()))
+		{
+			return $error;
+		}
+		
 		$back = self::wizard_h2('4');
 		$back .= sprintf('<p>%s</p>', self::$gwfil->lang('step_4_1'));
 		$back .= '<pre>';
@@ -379,6 +384,11 @@ final class GWF_InstallWizard
 	 */
 	public static function wizard_4_2()
 	{
+		if (false !== ($error = self::wizard_check_cfg_quick()))
+		{
+			return $error;
+		}
+		
 		$back = self::wizard_h2('4');
 		$back .= sprintf('<p>%s</p>', self::$gwfil->lang('step_4_2'));
 		$back .= '<pre>';
@@ -469,6 +479,11 @@ final class GWF_InstallWizard
 
 	public static function wizard_6_1()
 	{
+		if (false !== ($error = self::wizard_check_cfg_quick()))
+		{
+			return $error;
+		}
+		
 		$names = Common::getPostArray('mod', array());
 		// Nothing to install Oo
 		if (count($names) === 0)
@@ -571,6 +586,11 @@ final class GWF_InstallWizard
 	 */
 	public static function wizard_9_1()
 	{
+		if (false !== ($error = self::wizard_check_cfg_quick()))
+		{
+			return $error;
+		}
+		
 		$username = Common::getPostString('username', '');
 		if (!GWF_Validator::isValidUsername($username))
 		{
@@ -645,7 +665,7 @@ final class GWF_InstallWizard
 		
 		$back = self::wizard_h2('11');
 		
-		$template_cache = GWF_SMARTY_DIRS.'tplc';
+		$template_cache = GWF_SMARTY_DIRS.'/tplc';
 		if (false === GWF_File::removeDir($template_cache, true, true, false)) # FIXME: remove only .php or don't remove .git and .svn
 		{
 			$back .= self::wizard_error('err_clear_smarty');

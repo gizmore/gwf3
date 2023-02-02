@@ -14,7 +14,7 @@ final class GWF_Currency extends GDO
 		return array(
 			'curr_iso' => array(GDO::PRIMARY_KEY|GDO::TOKEN, GDO::NOT_NULL, 3),
 			'curr_cid' => array(GDO::PRIMARY_KEY|GDO::UINT, GDO::NOT_NULL),
-			'curr_char' => array(GDO::VARCHAR|GDO::UTF8|GDO::CASE_S, GDO::NOT_NULL, 4),
+			'curr_char' => array(GDO::VARCHAR|GDO::UTF8|GDO::CASE_S, GDO::NOT_NULL, 5),
 			'curr_digits' => array(GDO::TINYINT, 2),
 		);
 	}
