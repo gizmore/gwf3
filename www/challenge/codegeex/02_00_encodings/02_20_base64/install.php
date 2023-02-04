@@ -13,7 +13,7 @@ if (!GWF_User::isAdminS())
 $title = 'CGX: Base64';
 $score = 1;
 $url = "challenge/coding_ala_giz/02_20_base64/index.php";
-$creators = "gizmore,aLLamoox";
+$creators = "gizmore,x";
 $tags = 'Encoding,Training,CGX';
 WC_Challenge::installChallenge($title, $solution, $score, $url, $creators, $tags, true);
 require_once("challenge/html_foot.php");

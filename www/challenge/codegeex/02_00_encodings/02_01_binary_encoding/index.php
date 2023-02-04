@@ -1,9 +1,15 @@
 <?php
+define('NO_HEADER_PLEASE', true);
+$challdir = getcwd();
 chdir('../../../');
-define('GWF_PAGE_TITLE', 'CGX: Binary Encoding');
+// define('GWF_PAGE_TITLE', 'CGX: Binary Encoding');
 require_once('challenge/html_head.php');
 require(GWF_CORE_PATH.'module/WeChall/solutionbox.php');
-if (false === ($chall = WC_Challenge::getByTitle(GWF_PAGE_TITLE))) {
+$cgx = WC_CodegeexChallenge::byCWD($challdir);
+
+echo $gwf->onDisplayHead();# . '<div id="page_wrap">';
+
+if (false === ($chall = WC_CodegeexChallenge::getByTitle(GWF_PAGE_TITLE))) {
 	$chall = WC_Challenge::dummyChallenge(GWF_PAGE_TITLE, 1, 'challenge/coding_ala_giz/02_01_binary_encoding/index.php', false);
 }
 $chall->showHeader();
@@ -12,7 +18,7 @@ function generateSolution()
 {
 	if (!($sol = GWF_Session::get('cag01')))
 	{
-		$sol = GWF_Random::randomKey(8, '01');
+		$sol = re;
 		GWF_Session::set('cag01', $sol);
 	}
 	return $sol;

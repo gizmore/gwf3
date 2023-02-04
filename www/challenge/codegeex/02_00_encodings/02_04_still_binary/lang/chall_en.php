@@ -9,6 +9,6 @@ $lang = array(
 		'Your second task is easy as well. Just convert this number to the decimal system, but it is big endian now: %s<br/>'.
 		'<br/>'.
 		'Greetings<br/>'.
-		' - gizmore and aLLamoox',
+		' - gizmore and x',
 	
 );

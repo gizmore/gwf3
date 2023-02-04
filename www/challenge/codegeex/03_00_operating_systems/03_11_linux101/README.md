@@ -1,8 +1,11 @@
-# The Linux 101
+# CXG#: Linux101
 
-## Everything's a file
+A linux talk for beginners or advanced people.
+We will see what happens.
 
-## How linux differs from windows
-
-## Bootlevels
-
+ - history and age?
+ - bash, sh, ch, zsh
+ - all is a file / stdio.h
+ -
+ 
+Thanks for watching!

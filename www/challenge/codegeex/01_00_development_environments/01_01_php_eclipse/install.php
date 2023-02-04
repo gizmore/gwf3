@@ -13,7 +13,7 @@ $title = 'CGX: Binary Encoding';
 $solution = false;
 $score = 1;
 $url = "challenge/coding_ala_giz/01_01_php_eclipse/index.php";
-$creators = "gizmore,aLLamoox";
+$creators = "gizmore,x";
 $tags = 'Encoding,Training,CGX';
 WC_Challenge::installChallenge($title, $solution, $score, $url, $creators, $tags, true);
 require_once("challenge/html_foot.php");

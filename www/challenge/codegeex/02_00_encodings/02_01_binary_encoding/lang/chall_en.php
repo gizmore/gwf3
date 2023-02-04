@@ -1,14 +1,19 @@
 <?php
 $lang = array(
-	'title' => 'CGX: Binary Encoding',
+	'title' => 'CGX#2: Binary Encoding',
 	'info' =>
 		'Hello future Hackers,<br/>'.PHP_EOL.
 		'<br/>'.
-		'aLLamoox and gizmore proudly present: Coding Ala Giz<br/>'.
+		'x and gizmore have recording another video.<br/>'.
+		'This time we talk about binary in general,<br/>'.
+		'And this lesson might be pretty boring for you.<br/>'.
+		'Just don\'t watch it.<br/>'.
 		'<br/>'.
-		'Your first task is easy. Just convert this number to the decimal system: %s<br/>'.
+		'Instead you can solve this binary conversion problem.<br/>'.
 		'<br/>'.
-		'Greetings<br/>'.
-		' - gizmore and aLLamoox',
+		'%s'.
+		'<br/>'.
+		'Happy Challenging!<br/>'.
+		' - gizmore and x',
 	
 );

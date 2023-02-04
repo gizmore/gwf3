@@ -12,5 +12,5 @@ $lang = [
 		'%s<br/>'.
 		'<br/>'.
 		'Greetings<br/>'.
-		' - gizmore and aLLamoox',
+		' - gizmore and x',
 ];

@@ -1,2 +1,5 @@
 /__RAW_VIDEO/
 /__VIDEO_PROCESSING/
+/**/*.avi
+/**/*.mp4
+/**/solution*.php

@@ -2,6 +2,7 @@
 
 Here we discuss various software licenses roughly.
 
+
  - Unlicensed
  - Properitary
  
