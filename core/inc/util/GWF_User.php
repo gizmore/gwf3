@@ -281,6 +281,10 @@ final class GWF_User extends GDO
 			$this->setVar('user_data', serialize(array()));
 			return array();
 		}
+		elseif ($data === null)
+		{
+			return array();
+		}
 		return unserialize($data);
 	}
 

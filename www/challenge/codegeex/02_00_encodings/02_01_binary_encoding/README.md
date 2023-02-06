@@ -9,7 +9,7 @@
 Logical operations
 
  - AND &
- - OR |
+ - OR  |
  - XOR ^
  - NOT ~
  

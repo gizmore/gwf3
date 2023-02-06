@@ -1,36 +1,33 @@
-# CGX: phpgdo Core
+# CG#X: phpgdo core
 
-A deeper look into the gdo core modules.
+Here we look into the 
+[phpgdo core](https://github.com/gizmore/phpgdo)
+and also dive into the code and compare it with older versions.
 
+The core is dependency free and is recoded from scratch.
 
-# phpgdo7: Core
- - Utilities (curl, files, cli, random, more)
- - GDT (know how to behave in all modes. know validation. know serialization)
- - GDO (table+entity, re-use column GDT)
- - DB (no raw queries, easier than sql, fast, small, cache)
- - I18n (cheap, reuse, fast)
- - Templates (php, cascading)
+## phpgdo: core features
+ - Util (rand, files, PP, debug)
  - Methods (parameters, inputs, processing, output)
- - Cache (fs, memcached, processcache, tempcache)
- - Users (systems, guests, members)
- - Permissions (groups, level)
- - UI, Icons, Panels, Containers, Menus
+ - Templates (php, cascading)
+ - GDT (rendering, validation, serialization, re-use GDO vars)
  - Rendering (cli,www,json,xml,websocket,js?,gtk?)
- - Forms (csrf, validation)
- - Tables (queried/plain, lists,cards,tables)
- - Tests (unit tests, fuzzing, mail on error)
- 
-## Good
- - very few warnings
- - core has unit tests
- - performance ok
- - memory good
- - solid and secure
- 
+ - GDO (table+entity, re-use columns)
+ - DB (consistency, cache, migrations, transactions)
+ - Language (i18n, js)
+ - Cache (fs, memcached, processcache, tempcache)
+ - User (system, guests, members, permissions, level)
+ - UI (icons, panels, containers, menus)
+ - Form (csrf, validation)
+ - Table (queried/plain, lists,cards,tables)
+ - Tests (unit tests, fuzzing)
+
 ## Bad
- - lots of half finished garbage
- - php - a fractal of a bad design
- - very unflexible markup
+ - lots of half finished garbage.
+ - php - a fractal of a bad design!
+ - no flexible markup
+ - Questions?
  
-## Plans
+## Plans for v8
  - port to a better language
+ 

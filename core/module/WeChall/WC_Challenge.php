@@ -10,7 +10,7 @@ final class WC_Challenge extends GDO
 	const CHALL_NO_SPACES = 2;
 	const CHALL_HASHED_PW = 4;
 	
-	const MIN_SCORE = 1;
+	const MIN_SCORE = 0;
 	const MAX_SCORE = 10;
 	
 	###########

@@ -1,24 +1,26 @@
-CGX#4 - Ascii Encoding
- - gizmore and x
- - PHP
+# CGX#4: Ascii Encoding
 
-Computers only use numbers
- - Original 7 bit
- - ascii is text representation
- 
-Other encodings
- - 8bit ascii
+Computers can only work with numbers.
+We need a mapping, for converting numbers to written characters, to display text to humans.
+The [ASCII]()
+[encoding](../../)
+was one of the first encoding to solve this problem.
+
+
+## ASCII
+
+ - 1 byte per character.
+ - Original 7 bit + 1 bit [checksum]()
+
+
+## Other encodings
+ - 8bit ASCII / extended ASCII
  - Win ISO
  - CBM ascii
- - UTF8
- - UTF32
- 
-Implementation
- - number to letter
- - letter to number
+ - UTF 8/16/32
+
+
+## PHP Implementation
+ - number to letter (chr())
+ - letter to number (ord())
  - string encodings in PHP
- 
-PHP got you saved
- - ord
- - chr
- 
