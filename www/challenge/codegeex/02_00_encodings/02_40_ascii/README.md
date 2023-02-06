@@ -11,7 +11,8 @@ was one of the first encoding to solve this problem.
 
  - 1 byte per character.
  - Original 7 bit + 1 bit [checksum]()
-
+ - [ASCII Table]()
+ 
 
 ## Other encodings
  - 8bit ASCII / extended ASCII

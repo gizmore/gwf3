@@ -897,22 +897,52 @@ final class WC_Challenge extends GDO
 	### Did not break much for challs! ###
 	######################################
 	/**
-	 * Get a challenge that is not installed yet.
+	 * 
 	 * @param string $title
-	 * @param int $score
-	 * @param string $url
-	 * @param string $solution
+	 * @param number $score
+	 * @param boolean $url
+	 * @param boolean $solution
+	 * @param number $options
+	 * @param array $creators
 	 * @return WC_Challenge
 	 */
-	public static function dummyChallenge($title, $score=1, $url=false, $solution=false, $options=0)
+	public static function dummyChallenge($title, $score=1, $url=false, $solution=false, $options=0, $creators=null, $tags=null)
 	{
+		$creatorIDs = '';
+		$creatorNames = '';
+		$users = [];
+		if ($creators)
+		{
+			foreach ($creators as $name)
+			{
+				$user = GWF_User::getByName($name);
+				$users[] = $user;
+			}
+			
+			$creatorIDs = implode(',', array_map(function(GWF_User $user){
+				return $user->getID();
+			}, $users));
+			$creatorIDs = ",{$creatorIDs},";
+			
+			$creatorNames = implode(',', array_map(function(GWF_User $user){
+				return $user->displayUsername();
+			}, $users));
+			$creatorNames = ",{$creatorNames},";
+		}
+		
+		$tagstring = '';
+		if ($tags)
+		{
+			$tagstring = sprintf(',%s,', implode(',', $tags));
+		}
+		
 		return new self(array(
 			'chall_id' => '0',
 			'chall_gid' => 0,
-			'chall_creator' => '',
-			'chall_creator_name' => '',
+			'chall_creator' => $creatorIDs,
+			'chall_creator_name' => $creatorNames,
 			'chall_url' => $url === false ? 'index.php' : $url,
-			'chall_tags' => '',
+			'chall_tags' => $tagstring,
 			'chall_score' => $score,
 			'chall_title' => $title,
 			'chall_views' => 0,
@@ -1051,6 +1081,11 @@ final class WC_Challenge extends GDO
 	public function lang($key, $args=NULL)
 	{
 		return false === ($lang = $this->getLang()) ? $key : $lang->lang($key, $args);
+	}
+	
+	public function hasLang($key)
+	{
+		return $this->challLang->hasKey($key);
 	}
 	
 	public static function isValidScore($score)

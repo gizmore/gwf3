@@ -768,4 +768,20 @@ Kind Regards,<br/>
 The WeChall Team<br/>
 ',
 	'msg_alert_mails_sent' => 'We have sent %s mails to the site admins.',
+
+	# 5.13 Codinggeex
+	'draft' => 'CGX-Entwurf#%s',
+	'video' => 'Video-CGX#%s',
+	'video_box' => 'Diese Lektion enthält ein Video.',
+	'problem' => 'Problem CGX#%s',
+	'problem_box' => '
+Diese Lektion hat ein interaktives Problem:<br/>
+%S
+<br/>
+%s<br/>
+<br/>
+Das Problem wird zufällig generiert und ist an Ihre Sitzung gebunden.<br/>
+<br/>
+Viel Glück!<br/>
+Das WeChall-Team',
 );

@@ -1,20 +1,18 @@
 <?php
 $lang = array(
-	'score' => 1,
-	'title' => 'CGX#2: Binary Encoding',
+	'title' => 'Binary Encoding',
 	'info' =>
 		'Hello future Hackers,<br/>'.PHP_EOL.
 		'<br/>'.
 		'x and gizmore have recorded another video.<br/>'.
 		'This time we talk about binary in general,<br/>'.
-		'and this lesson might be pretty boring for you.<br/>'.
-		'Just don\'t watch it.<br/>'.
+		'so this lesson might be boring for you.<br/>'.
+		'Maybe just don\'t watch it.<br/>'.
 		'<br/>'.
-		'Instead you can solve this binary conversion problem.<br/>'.
-		'<br/>'.
-		'%s'.
+		'Instead you can solve the binary conversion problem below.<br/>'.
 		'<br/>'.
 		'Happy Challenging!<br/>'.
 		' - gizmore and x',
+	'problem' => 'Please convert this binary data to a decimal number.',
 	
 );

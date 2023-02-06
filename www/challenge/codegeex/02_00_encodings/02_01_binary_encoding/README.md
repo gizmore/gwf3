@@ -1,4 +1,4 @@
-# CGX#2: Binary Encoding
+# CGX#3: Binary Encoding
 
  - Computers only work with 0 and 1
  - Encode anything with a series of 0 and 1

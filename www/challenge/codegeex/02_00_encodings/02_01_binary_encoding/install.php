@@ -1,21 +1,28 @@
 <?php
-$dir = getcwd();
-chdir(GWF_WWW_PATH);
-require_once("challenge/html_head.php");
-html_head("CGX: Binary Encoding");
+$ds = DIRECTORY_SEPARATOR;
+$challdir = getcwd() . $ds;
+$i = strpos($challdir, "{$ds}challenge{$ds}");
+$d = substr($challdir, 0, $i);
+chdir($d);
+define('NO_HEADER_PLEASE', true);
+require_once('challenge/html_head.php');
+require(GWF_CORE_PATH.'module/WeChall/WC_CodegeexChallenge.php');
+$cgx = WC_CodegeexChallenge::byCWD($challdir);
 if (!GWF_User::isAdminS())
 {
-	echo GWF_HTML::err('ERR_NO_PERMISSION');
-	$_GET['no_session'] = 1;
-	require_once("challenge/html_foot.php");
-	return;
+	return htmlSendToLogin("Better be admin !");
 }
-$title = 'CGX: Binary Encoding';
+$chall = $cgx->getChallenge();
+$title = $chall->getTitle();
+require_once("challenge/html_head.php");
+echo $gwf->onDisplayHead();# . '<div id="page_wrap">';
+$score = $cgx->getScore();
 $solution = false;
-$score = 1;
-$url = "{$dir}/index.php";
+$url = $cgx->getChallenge()->getVar('chall_url');
 $creators = "gizmore,x";
 $tags = 'Encoding,Training,CGX';
-WC_Challenge::installChallenge($title, $solution, $score, $url, $creators, $tags, true);
+$verbose = true;
+$options = 0;
+WC_Challenge::installChallenge($title, $solution, $score, $url, $creators, $tags, $verbose, $options);
+
 require_once("challenge/html_foot.php");
-?>

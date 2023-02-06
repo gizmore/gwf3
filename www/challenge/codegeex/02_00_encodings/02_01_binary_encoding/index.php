@@ -12,22 +12,20 @@ $cgx = WC_CodegeexChallenge::byCWD($challdir);
 $prob = $cgx->hasProblem();
 $user = GWF_User::getStaticOrGuest();
 $chall = $cgx->getChallenge();
-$solution = $cgx->getSolution();
 define('GWF_PAGE_TITLE', $chall->getTitle());
 /** @var $gwf GWF3 **/
-echo $gwf->onDisplayHead();# . '<div id="page_wrap">';
+echo $gwf->onDisplayHead();
 $chall->showHeader();
 if ($prob)
 {
-	$problem = require "{$challdir}/problem.php";
-	$solution = require "{$challdir}/solution.php";
+	$solution = $cgx->getSolution();
 	if (isset($_POST['answer']))
 	{
 		if (false !== ($error = $chall->isAnswerBlocked($user)))
 		{
 			echo $error;
 		}
-		elseif ((string)$_POST['answer'] === (string)$solution)
+		elseif (!strcasecmp($_POST['answer'], (string)$solution))
 		{
 			$chall->onChallengeSolved($user->getID());
 		}
@@ -38,15 +36,19 @@ if ($prob)
 	}
 }
 
-echo GWF_Box::box($chall->lang('info', [$problem]), $chall->lang('title'));
-
-// if ($cgx->hasVideo())
-// {
-// }
+echo $cgx->getInfoBox();
 
 if ($prob)
 {
+	echo $cgx->getProblemBox();
 	formSolutionbox($chall);
+}
+
+echo $cgx->getDraftBox();
+
+if ($cgx->hasVideo())
+{
+	echo $cgx->getVideoBox();
 }
 
 echo $chall->copyrightFooter();

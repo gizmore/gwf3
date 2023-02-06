@@ -766,4 +766,21 @@ Kind Regards,<br/>
 The WeChall Team<br/>
 ',
 	'msg_alert_mails_sent' => 'We have sent %s mails to the site admins.',
+	
+	# 5.13 Codinggeex
+	'draft' => 'Draft CGX#%s',
+	'video' => 'Video CGX#%s',
+	'video_box' => 'This lesson has a video.',
+	'problem' => 'Problem CGX#%s',
+	'problem_box' => '
+This lesson has an interactive problem:<br/>
+%s
+<br/>
+%s<br/>
+<br/>
+The problem is randomly generated and is bound to your session.<br/>
+<br/>
+Good Luck!<br/>
+The WeChall Team',
+	
 );
