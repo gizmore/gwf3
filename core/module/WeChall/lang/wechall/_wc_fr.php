@@ -770,4 +770,20 @@ Kind Regards,<br/>
 The WeChall Team<br/>
 ',
 	'msg_alert_mails_sent' => 'We have sent %s mails to the site admins.',
+
+	# 5.13 Codinggeex
+	'brouillon' => 'Brouillon CGX#%s',
+	'video' => 'Vidéo CGX#%s',
+	'video_box' => 'Cette leçon contient une vidéo.',
+	'problème' => 'Problème CGX#%s',
+	'problem_box' => '
+Cette leçon comporte un problème interactif :<br/>
+%s
+<br/>
+%s<br/>
+<br/>
+Le problème est généré aléatoirement et est lié à votre session.<br/>
+<br/>
+Bonne chance!<br/>
+L\'équipe WeChall',
 );

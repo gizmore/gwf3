@@ -763,4 +763,21 @@ Kind Regards,<br/>
 The WeChall Team<br/>
 ',
 	'msg_alert_mails_sent' => 'We have sent %s mails to the site admins.',
+
+	# 5.13 Codinggeex
+	'draft' => 'CGX#%s vázlat',
+	'video' => 'Video CGX#%s',
+	'video_box' => 'A leckéhez tartozik egy videó.',
+	'problem' => 'CGX#%s probléma',
+	'problem_box' => '
+Ebben a leckében van egy interaktív probléma:<br/>
+%s
+<br/>
+%s<br/>
+<br/>
+A probléma véletlenszerűen generálódik, és az Ön munkamenetéhez van kötve.<br/>
+<br/>
+Sok szerencsét!<br/>
+A WeChall csapata',
+	
 );
