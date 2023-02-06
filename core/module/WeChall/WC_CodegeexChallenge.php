@@ -46,7 +46,8 @@ final class WC_CodegeexChallenge
 		{
 			return $chall;
 		}
-		$url = Common::substrFrom($cwd, '/www/') . 'index.php';
+		$i = strpos($cwd, '/challenge/');
+		$url = substr($cwd, $i+1) . 'index.php';
 		$score = self::parseScore($cwd);
 		return WC_Challenge::dummyChallenge($title, $score, $url, false, 0, self::getCreators($cwd), ['Training', 'CGX']);
 	}
