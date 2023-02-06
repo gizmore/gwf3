@@ -1,2 +1,2 @@
 <?php
-return 'https://www.youtube.com/watch?v=P0gG_NyLeog';
+return 'https://www.youtube.com/embed/P0gG_NyLeog';

@@ -113,14 +113,8 @@ final class WC_CodegeexChallenge
 	
 	private static function parseScore($cwd)
 	{
-		try
-		{
-			return require "{$cwd}score.php";
-		}
-		catch (Exception $x)
-		{
-			return 0;
-		}
+		$path = "{$cwd}score.php";
+		return is_file($path) ? include $path : 0;
 	}
 	
 	###########
