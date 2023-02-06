@@ -774,7 +774,7 @@ The WeChall Team<br/>
 	'problema' => 'Problema CGX#%s',
 	'problem_box' => '
 Questa lezione ha un problema interattivo:<br/>
-%S
+%s
 <br/>
 %s<br/>
 <br/>
