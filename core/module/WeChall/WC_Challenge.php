@@ -910,7 +910,7 @@ final class WC_Challenge extends GDO
 	{
 		$creatorIDs = '';
 		$creatorNames = '';
-		$users = [];
+		$users = array();
 		if ($creators)
 		{
 			foreach ($creators as $name)

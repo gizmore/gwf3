@@ -1,23 +1,55 @@
 <?php
-# CHARSET = '0123456789';
-# CHARSET = 'abcdefg';
-#const CHARSET = "\0x00\0x01\0x02\0x03....320013142 ABCDEFGH adadadahv " ;
+$ds = DIRECTORY_SEPARATOR;
+$challdir = getcwd() . $ds;
+$i = strpos($challdir, "{$ds}challenge{$ds}");
+$d = substr($challdir, 0, $i);
+chdir($d);
+define('NO_HEADER_PLEASE', true);
+require_once('challenge/html_head.php');
+require(GWF_CORE_PATH.'module/WeChall/WC_CodegeexChallenge.php');
+require(GWF_CORE_PATH.'module/WeChall/solutionbox.php');
+$cgx = WC_CodegeexChallenge::byCWD($challdir);
+$prob = $cgx->hasProblem();
+$user = GWF_User::getStaticOrGuest();
+$chall = $cgx->getChallenge();
+define('GWF_PAGE_TITLE', $chall->getTitle());
+/** @var $gwf GWF3 **/
+echo $gwf->onDisplayHead();
+$chall->showHeader();
+if ($prob)
+{
+	$solution = $cgx->getSolution();
+	if (isset($_POST['answer']))
+	{
+		if (false !== ($error = $chall->isAnswerBlocked($user)))
+		{
+			echo $error;
+		}
+		elseif (!strcasecmp($_POST['answer'], (string)$solution))
+		{
+			$chall->onChallengeSolved($user->getID());
+		}
+		else
+		{
+			echo WC_HTML::error('err_wrong');
+		}
+	}
+}
 
-00_install
+echo $cgx->getInfoBox();
 
-0 == cat enconding
- 0 = level
- 
-01 01 # cat 1, level  1 # install
-01 09 # cat 1, level 09 # almost binary (afterwards edit)
-01 10 # cat 1, level 10 # binary
+if ($prob)
+{
+	echo $cgx->getProblemBox();
+	formSolutionbox($chall);
+}
 
-02 01 # cat 2, level  1
-02 22 # cat 2, level 22
+echo $cgx->getDraftBox();
 
+if ($cgx->hasVideo())
+{
+	echo $cgx->getVideoBox();
+}
 
-01 01 PHP install eclipse
-02 01 binary
-02 05 still binary
-
-
+echo $chall->copyrightFooter();
+require_once('challenge/html_foot.php');

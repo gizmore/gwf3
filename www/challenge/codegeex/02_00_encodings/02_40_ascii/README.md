@@ -17,7 +17,7 @@ was one of the first encoding to solve this problem.
 ## Other encodings
  - 8bit ASCII / extended ASCII
  - Win ISO
- - CBM ascii
+ - C64 Screencode (A=1, B=2, ...)
  - UTF 8/16/32
 
 
