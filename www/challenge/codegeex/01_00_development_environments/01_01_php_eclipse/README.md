@@ -6,7 +6,7 @@ on a windows desktop machine.
 We will code in PHP, with the Eclipse IDE, and install a debugger,
 so we can really solve and tackle complex programs later.
 I will also present my own work in PHP one day,
-which i plan to migrate to a new language then.
+which I plan to migrate to a new language then.
 
 So - who are we?
 
