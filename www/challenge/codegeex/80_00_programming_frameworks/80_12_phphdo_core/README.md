@@ -18,7 +18,7 @@ The core is dependency free and is recoded from scratch.
  - Cache (fs, memcached, processcache, tempcache)
  - User (system, guests, members, permissions, level)
  - UI (icons, panels, containers, menus)
- - Form (csrf, validation)
+ - Form (csrf, validations)
  - Table (queried/plain, lists,cards,tables)
  - Tests (unit tests, fuzzing)
 

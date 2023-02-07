@@ -1,0 +1,1 @@
+https://anthonyhobday.com/sideprojects/saferules/
