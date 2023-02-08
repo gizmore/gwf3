@@ -7,7 +7,7 @@ $lang = [
 		'If you watched the first lesson, this one is the next step.<br/>'.
 		'We are going to install a webserver and a database and make it work with the eclipse debugger.<br/>'.
 		'<br/>'.
-		'This is an auxalary challenge, and is not scored.<br/>'.
+		'This is an auxiliary challenge, and is not scored.<br/>'.
 		'<br/>'.
 		'Happy Challenging!',
 ];

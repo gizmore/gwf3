@@ -9,7 +9,7 @@ $lang = [
 		'<br/>'.
 		'x and gizmore proudly present: Codinggeex<br/>'.
 		'<br/>'.
-		'This is an auxalary challenge, 
+		'This is an auxiliary challenge, 
 to motivate you to install an PHP development environment ala giz.<br/>'.
 		'<br/>'.
 		'This is hopefully the first (quite bad) video in a series of us teaching you something new (or ancient).<br/>'.
