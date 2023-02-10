@@ -1,4 +1,4 @@
-# CGX#11 - Object Orientation (PHP)
+# CGX#11 - Object Orientation
 
 ## What is OOP?
 
@@ -21,7 +21,10 @@ add methods to them.
  - traits (uses)
  - autoloader (namespaces)
  - GC?
+ -
  - Questions?
+ -
+ - Javascript
  -
  - Java
  - no Traits
@@ -32,4 +35,6 @@ add methods to them.
  - C
  - structs and functions
  -
- - THX!
+ - Ruby
+ - Everything is a class
+ -
