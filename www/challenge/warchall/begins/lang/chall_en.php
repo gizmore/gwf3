@@ -31,4 +31,3 @@ $lang = array(
 	'err_no_mail' => 'You don\'t have a valid contact mail.',
 	'msg_mail' => 'You should now get mails with logfiles to your main contact mail.',
 );
-?>

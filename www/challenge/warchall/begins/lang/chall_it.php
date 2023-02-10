@@ -31,4 +31,3 @@ $lang = array(
 	'err_no_mail' => 'Non hai una valida E-Mail di contatto.',
 	'msg_mail' => 'D\'ora in poi dovresti ricevere il log tramite E-Mail, al tuo indirizzo E-Mail.',
 );
-?>

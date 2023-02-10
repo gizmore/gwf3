@@ -106,33 +106,35 @@ function warchall1createAccount(WC_Challenge $chall)
 	}
 	$eusername = GDO::escape($username);
 	
+	$back = '';
+	
 	# Form1
 	$f = new WCA_FormCreate();
 	$form = $f->form($chall);
 	
 	# Form2
-	$f2 = new WCA_FormSetupMail();
-	if (false === ($db2 = gdo_db_instance(WARGIZ_DB_HOST, WARGIZ_DB_USER, WARGIZ_DB_PASS, WARGIZ_DB_DB)))
-	{
-		return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
-	}
-	$email = '';
-	if (false !== ($result = $db2->queryFirst("SELECT am_email FROM gwf_audit_mails WHERE am_username='$eusername'", true)))
-	{
-		$email = $result['am_email'];
-	}
-	$form2 = $f2->form($chall, $email);
+// 	$f2 = new WCA_FormSetupMail();
+// 	if (false === ($db2 = gdo_db_instance(WARGIZ_DB_HOST, WARGIZ_DB_USER, WARGIZ_DB_PASS, WARGIZ_DB_DB)))
+// 	{
+// 		return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
+// 	}
+// 	$email = '';
+// 	if (false !== ($result = $db2->queryFirst("SELECT am_email FROM gwf_audit_mails WHERE am_username='$eusername'", true)))
+// 	{
+// 		$email = $result['am_email'];
+// 	}
+// 	$form2 = $f2->form($chall, $email);
 
-	$back = '';
-	if (isset($_POST['setmail']))
-	{
-		if (false !== ($error = $form2->validate($chall)))
-		{
-			return $error;
-		}
-		$back .= warchall1createEMailB($chall, $db2, $eusername);
+// 	$back = '';
+// 	if (isset($_POST['setmail']))
+// 	{
+// 		if (false !== ($error = $form2->validate($chall)))
+// 		{
+// 			return $error;
+// 		}
+// 		$back .= warchall1createEMailB($chall, $db2, $eusername);
 		
-	}
+// 	}
 	
 	if (isset($_POST['create']))
 	{
@@ -145,26 +147,38 @@ function warchall1createAccount(WC_Challenge $chall)
 	
 	return
 		$back.
-		$form2->templateY($chall->lang('ft_setup_email')).
+// 		$form2->templateY($chall->lang('ft_setup_email')).
 		$form->templateY($chall->lang('ft_create_ssh_account'));
 }
 
 function warchall1createAccountB(WC_Challenge $chall)
 {
-	if (false === ($db = gdo_db_instance(WARBOX_DB_HOST, WARBOX_DB_USER, WARBOX_DB_PASS, WARBOX_DB_DB)))
-	{
-		return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
-	}
+// 	if (false === ($db = gdo_db_instance(WARBOX_DB_HOST, WARBOX_DB_USER, WARBOX_DB_PASS, WARBOX_DB_DB)))
+// 	{
+// 		return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
+// 	}
 	
+// 	$user = GWF_Session::getUser();
+// 	$username = $db->escape(strtolower($user->getVar('user_name')));
+// 	$pass = $db->escape(@crypt($_POST['password1']));
+// 	if (false === $db->queryWrite("REPLACE INTO war_audit_add_user VALUES('{$username}', '{$pass}')"))
+// 	{
+// 		return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
+// 	}
+	
+	$url = 'https://warchall.net/admin/create_user.php';
 	$user = GWF_Session::getUser();
-	$username = $db->escape(strtolower($user->getVar('user_name')));
-	$pass = $db->escape(@crypt($_POST['password1']));
-	if (false === $db->queryWrite("REPLACE INTO war_audit_add_user VALUES('{$username}', '{$pass}')"))
-	{
-		return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
-	}
+	$postdata = array(
+		'username' => strtolower($user->displayUsername()),
+		'password' => $_POST['password1'],
+	);
+	$headers = array(
+		'Authorization: Basic ' . base64_encode(TEHRONS_API_KEY),
+	);
 	
-	return GWF_HTML::message('Let the Warchall begin', $chall->lang('msg_creating_account', $username, $_POST['password1']));
+	echo GWF_HTTP::post($url, $postdata, false, $headers);
+
+	return GWF_HTML::message('Let the Warchall begin', $chall->lang('msg_creating_account', [$user->displayUsername(), $_POST['password1']]));
 }
 
 function warchall1createEMailB(WC_Challenge $chall, GDO_Database $db2, $eusername)
