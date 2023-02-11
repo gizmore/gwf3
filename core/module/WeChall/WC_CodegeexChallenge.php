@@ -241,7 +241,8 @@ final class WC_CodegeexChallenge
 	private function getVideoBoxContent()
 	{
 		$title = $this->challenge->getTitle();
-		$url = $this->includeFile('video.php');
+		$url = $this->directory . 'video.php';
+		$url = include $url;
 		return <<<EOF
 <iframe width="790" height="665"
 src="{$url}"
