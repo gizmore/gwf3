@@ -18,14 +18,14 @@ echo $gwf->onDisplayHead();
 $chall->showHeader();
 if ($prob)
 {
-	$solution = $cgx->getSolution();
+	$solution = $cgx->getFlag();
 	if (isset($_POST['answer']))
 	{
 		if (false !== ($error = $chall->isAnswerBlocked($user)))
 		{
 			echo $error;
 		}
-		elseif (!strcasecmp($_POST['answer'], (string)$solution))
+		elseif (!(string)strcasecmp($_POST['answer'], (string)$solution))
 		{
 			$chall->onChallengeSolved($user->getID());
 		}
