@@ -1,0 +1,8 @@
+#!/C:\windows\system32\ed
+
+Congratulations hacker,
+
+You have achieved what only a few achieve.
+Kinda.
+
+The flag or solution for this challenge is: EpidermalGlance
