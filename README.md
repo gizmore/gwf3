@@ -1,4 +1,4 @@
 gwf3
 ====
 
-Gizmore Website Framework
+Gizmore Website Framework v3

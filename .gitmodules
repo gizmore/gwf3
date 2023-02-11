@@ -1,3 +1,6 @@
 [submodule "core/module/Wanda"]
 	path = core/module/Wanda
 	url = https://github.com/gizmore/gwf3-wanda
+[submodule "core/inc/3p/smarty4"]
+	path = core/inc/3p/smarty4
+	url = https://github.com/smarty-php/smarty
