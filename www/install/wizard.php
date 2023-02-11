@@ -3,7 +3,7 @@ chdir('../'); # to www
 
 $worker_ip = 'YOUR.IP.GOES.HERE';
 
-error_reporting(E_ALL & ~E_STRICT);
+error_reporting(E_ALL & ~E_STRICT & ~E_DEPRECATED);
 
 #####################################
 ### Try to find GWF automagically ###
