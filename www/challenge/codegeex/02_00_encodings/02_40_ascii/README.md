@@ -2,8 +2,8 @@
 
 Computers can only work with numbers.
 We need a mapping, for converting numbers to written characters, to display text to humans.
-The [ASCII]()
-[encoding](../../)
+The [ASCII](https://en.wikipedia.org/wiki/ASCII)
+[encoding](../README.md)
 was one of the first encoding to solve this problem.
 
 

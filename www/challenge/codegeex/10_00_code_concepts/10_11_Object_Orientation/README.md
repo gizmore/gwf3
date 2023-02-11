@@ -1,4 +1,4 @@
-# CGX#11 - Object Orientation
+# CGX#7: Object Orientation
 
 ## What is OOP?
 
@@ -19,7 +19,6 @@ OOP adds methods to them.
  - interfaces (implements)
  - traits (uses)
  - autoloader (namespaces)
- - GC?
  -
  - Questions?
  -

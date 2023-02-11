@@ -1,4 +1,4 @@
-# CGX#6 - PHP Programming Basics
+# CGX#5 - PHP Programming Basics
 
 In this video we disuss the most essential and basic things 
 when for programming:
