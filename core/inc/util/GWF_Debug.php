@@ -133,11 +133,11 @@ final class GWF_Debug
 	 */
 	public static function error_handler($errno, $errstr, $errfile, $errline, $errcontext=null)
 	{
-		if (error_reporting() === 0)
+		if (!(error_reporting() & $errno))
 		{
-			return;
+		    return;
 		}
-
+		
 		# Log as critical!
 		if (class_exists('GWF_Log'))
 		{
