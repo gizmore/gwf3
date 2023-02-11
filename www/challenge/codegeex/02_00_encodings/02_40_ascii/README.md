@@ -15,10 +15,10 @@ was one of the first encoding to solve this problem.
  
 
 ## Other encodings
+ - C64 Screencode (A=1, B=2, ...)
  - 8bit ASCII / extended ASCII
  - Win ISO
- - C64 Screencode (A=1, B=2, ...)
- - UTF 8/16/32
+ - Unicode with UTF 8/16/32
 
 
 ## PHP Implementation
