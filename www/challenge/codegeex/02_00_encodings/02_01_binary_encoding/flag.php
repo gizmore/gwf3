@@ -1,2 +1,2 @@
 <?php
-return GWF_Random::randomKey(8, '01');
+return GWF_Random::rand(0, 255);

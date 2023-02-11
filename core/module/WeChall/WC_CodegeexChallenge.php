@@ -146,7 +146,7 @@ final class WC_CodegeexChallenge
 	 */
 	public function hasProblem()
 	{
-		$path = $this->directory . 'problem.php';
+		$path = $this->directory . 'flag.php';
 		return is_file($path);
 	}
 	
@@ -266,6 +266,10 @@ EOF;
 		$user = GWF_User::getStaticOrGuest();
 		$flag = $this->getFlag();
 		$path = $this->directory . 'problem.php';
+		if (!is_file($path))
+		{
+			$path = $this->directory . 'flag.php';
+		}
 		return include $path;
 	}
 	
