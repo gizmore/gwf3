@@ -359,7 +359,7 @@ class GWF3
 		$db = gdo_db();
 		if (!isset($_COOKIE[GWF_SESS_NAME]))
 		{
-			setcookie(GWF_SESS_NAME, 'i_like_cookies', time()+60, '/', GWF_Session::getDomain());
+			setcookie(GWF_SESS_NAME, 'i_like_cookies', time()+(60*60*24), '/', GWF_Session::getDomain());
 			GWF_Session::initFakeSession();
 		}
 		else

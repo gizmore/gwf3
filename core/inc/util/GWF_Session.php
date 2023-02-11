@@ -238,14 +238,15 @@ final class GWF_Session extends GDO
 	
 	public static function getDomain()
 	{
-		if (isset($_SERVER['HTTP_HOST']))
-		{
-			return (strpos($_SERVER['HTTP_HOST'], GWF_DOMAIN) === false) ? $_SERVER['HTTP_HOST'] : '.'.GWF_DOMAIN;
-		}
-		else
-		{
-			return '.'.GWF_DOMAIN;
-		}
+	    return GWF_DOMAIN;
+// 		if (isset($_SERVER['HTTP_HOST']))
+// 		{
+// 			return (strpos($_SERVER['HTTP_HOST'], GWF_DOMAIN) === false) ? $_SERVER['HTTP_HOST'] : '.'.GWF_DOMAIN;
+// 		}
+// 		else
+// 		{
+// 			return '.'.GWF_DOMAIN;
+// 		}
 	}
 	
 	private static function setCookies($id, $uid, $sessid)
@@ -255,7 +256,7 @@ final class GWF_Session extends GDO
 			# cookie is valid one year, but it's checked against config later.
 //			$secure = Common::getProtocol() === 'https';
 			$secure = false;
-			setcookie(GWF_SESS_NAME, "$id-$uid-$sessid", time()+31536000, GWF_WEB_ROOT_NO_LANG, self::getDomain(), $secure, true);
+			setcookie(GWF_SESS_NAME, "$id-$uid-$sessid", time()+GWF_SESS_LIFETIME, GWF_WEB_ROOT_NO_LANG, self::getDomain(), $secure, true);
 		}
 	}
 	
