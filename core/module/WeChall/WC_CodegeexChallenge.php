@@ -137,10 +137,7 @@ final class WC_CodegeexChallenge
 	
 	public function getSolution()
 	{
-		global $problem;
-		$problem = $this->getProblem();
-		$path = $this->directory . 'solution.php';
-		return include $path;
+		return $this->parseSolution();
 	}
 	
 	/**
@@ -151,6 +148,19 @@ final class WC_CodegeexChallenge
 	{
 		$path = $this->directory . 'problem.php';
 		return is_file($path);
+	}
+	
+	public function getFlag(): ?string
+	{
+		$sesskey = sprintf('CGX#%s#FLAG', $this->cgxNumber);
+		if (!($flag = GWF_Session::get($sesskey)))
+		{
+			if ($flag = $this->parseFlag())
+			{
+				GWF_Session::set($sesskey, $flag);
+			}
+		}
+		return $flag;
 	}
 	
 	public function getProblem()
@@ -243,27 +253,27 @@ allowfullscreen></iframe>
 EOF;
 	}
 	
+	private function parseFlag(): ?string
+	{
+		$user = GWF_User::getStaticOrGuest();
+		$path = $this->directory . 'flag.php';
+		return include $path;
+	}
+	
 	private function parseProblem()
 	{
-		return $this->includeFile('problem.php');
+		$user = GWF_User::getStaticOrGuest();
+		$flag = $this->getFlag();
+		$path = $this->directory . 'problem.php';
+		return include $path;
 	}
 	
 	private function parseSolution()
 	{
-		return $this->includeFile('solution.php');
-	}
-	
-	private function includeFile($path)
-	{
-		$path = $this->directory . $path;
-		if (is_file($path) && is_readable($path))
-		{
-			return include $path;
-		}
-		else
-		{
-			throw new Exception("cannot include {$path} for CGX {$this->directory}");
-		}
+		$user = GWF_User::getStaticOrGuest();
+		$flag = $this->getFlag();
+		$path = $this->directory . 'solution.php';
+		return include $path;
 	}
 	
 }
