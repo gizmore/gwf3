@@ -37,8 +37,7 @@ So - who are we?
 
 4) [Hello World](https://87x0)
  - [CLI]()
- - [Apache2.4]() (missing?)
- - [WAMP](https://youtube.com/@codinggeeks)
+
 
 5) Debugger
  - ![breakpoints via gui](./eclipse_breakpoint.png)
