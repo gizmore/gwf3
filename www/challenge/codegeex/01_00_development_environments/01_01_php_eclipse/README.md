@@ -13,7 +13,9 @@ So... who are we?
 ## Codinggeex
 
 Mentor: [gizmore@wechall.net](https://www.wechall.net/profile/gizmore)
+
 Newbie: [rain@wechall.net](https://www.wechall.net/profile/rain)
+
 Newbie: [x@wechall.net](https://www.wechall.net/profile/x)
 
 
