@@ -768,10 +768,12 @@ The WeChall Team<br/>
 	'msg_alert_mails_sent' => 'We have sent %s mails to the site admins.',
 	
 	# 5.13 Codinggeex
-	'bozza' => 'Bozza CGX#%s',
-	'video' => 'Video CGX#%s',
+	'draft' => 'Bozza CGX#%s',
+	'vid' => 'Video',
+	'video' => 'Video %s: %s',
 	'video_box' => 'Questa lezione ha un video.',
-	'problema' => 'Problema CGX#%s',
+	'click_to_expand' => 'Clicca qui per guardare il video.',
+	'problem' => 'Problema CGX#%s',
 	'problem_box' => '
 Questa lezione ha un problema interattivo:<br/>
 %s

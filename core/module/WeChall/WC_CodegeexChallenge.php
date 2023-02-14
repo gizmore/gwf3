@@ -207,11 +207,32 @@ final class WC_CodegeexChallenge
 			WC_HTML::lang('draft', [$this->getNumber()]));
 	}
 	
-	public function getVideoBox()
+	public function getVideoBoxes()
 	{
+		$title = $this->challenge->getTitle();
+		$url = $this->directory . 'video.php';
+		$urls = include $url;
+		if (!is_array($urls))
+		{
+			$urls = [$urls];
+		}
+		$back = '';
+		foreach ($urls as $key => $url)
+		{
+			$back .= $this->getVideoBox($key, $title, $url);
+		}
+		return $back;
+	}
+	
+	public function getVideoBox($key, $title, $url)
+	{
+		$expand = @$_GET['video'] == $key;
+		$t = WC_HTML::lang('video', [$title, $this->getVideoTitle($key)]);
+		$url2 = $this->challenge->getHREF() . "?video={$key}#video_{$key}";
+		$anchor = "<a id=\"video_{$key}\" href=\"{$url2}\">$t</a>";
 		return GWF_Box::box(
-			$this->getVideoBoxContent(),
-			WC_HTML::lang('video', [$this->getNumber()]));
+			$this->getVideoBoxContent($key, $title, $url, $expand),
+			$anchor);
 	}
 	
 	public function getProblemBox()
@@ -238,25 +259,31 @@ final class WC_CodegeexChallenge
 		return nl2br($markdown);
 	}
 	
-	private function getVideoBoxContent()
+	private function getVideoBoxContent($key, $title, $url, $expanded=false)
 	{
-		$title = $this->challenge->getTitle();
-		$url = $this->directory . 'video.php';
-		$url = include $url;
-		return <<<EOF
+		if ($expanded)
+		{
+			return <<<EOF
 <iframe width="790" height="665"
 src="{$url}"
-title="$title"
+title="{$title}"
 frameborder="0"
-allow="accelerometer; autoplay; clipboard-write; encrypted-media;
-gyroscope; picture-in-picture; web-share"
-allowfullscreen></iframe>
+allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+allowfullscreen>
+</iframe>
 EOF;
+		}
+		else
+		{
+			$t = WC_HTML::lang('click_to_expand');
+			$url = $this->challenge->getHREF() . "?video={$key}#video_{$key}";
+			return "<a href=\"{$url}\">{$t}</a>\n";
+		}
 	}
 	
 	private function parseFlag(): ?string
 	{
-		$user = GWF_User::getStaticOrGuest();
+// 		$user = GWF_User::getStaticOrGuest();
 		$path = $this->directory . 'flag.php';
 		return include $path;
 	}
@@ -279,6 +306,17 @@ EOF;
 		$flag = $this->getFlag();
 		$path = $this->directory . 'solution.php';
 		return include $path;
+	}
+	
+	private function getVideoTitle($key)
+	{
+		$c = $this->challenge;
+		$key = "video_{$key}";
+		if ($c->hasLang($key))
+		{
+			return $c->lang($key);
+		}
+		return WC_HTML::lang('vid');
 	}
 	
 }

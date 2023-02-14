@@ -766,8 +766,10 @@ The WeChall Team<br/>
 
 	# 5.13 Codinggeex
 	'draft' => 'CGX#%s vázlat',
-	'video' => 'Video CGX#%s',
+	'vid' => 'Video',
+	'video' => 'Video %s: %s',
 	'video_box' => 'A leckéhez tartozik egy videó.',
+	'click_to_expand' => 'Kattintson ide a videó megtekintéséhez.',
 	'problem' => 'CGX#%s probléma',
 	'problem_box' => '
 Ebben a leckében van egy interaktív probléma:<br/>

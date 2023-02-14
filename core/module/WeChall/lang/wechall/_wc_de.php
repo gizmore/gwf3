@@ -771,8 +771,10 @@ The WeChall Team<br/>
 
 	# 5.13 Codinggeex
 	'draft' => 'CGX-Entwurf#%s',
-	'video' => 'Video-CGX#%s',
+	'vid' => 'Video',
+	'video' => 'Video %s: %s',
 	'video_box' => 'Diese Lektion enthält ein Video.',
+	'click_to_expand' => 'Klicken Sie hier, um das Video anzuschauen.',
 	'problem' => 'Problem CGX#%s',
 	'problem_box' => '
 Diese Lektion hat ein interaktives Problem:<br/>

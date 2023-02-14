@@ -768,11 +768,13 @@ The WeChall Team<br/>
 	'msg_alert_mails_sent' => 'We have sent %s mails to the site admins.',
 
 	# 5.13 Кодингекс
-	'черновик' => 'Черновик CGX#%s',
-	'video' => 'Видео CGX#%s',
+	'draft' => 'Черновик CGX#%s',
+	'vid' => 'Видео',
+	'video' => 'Видео %s: %s',
 	'video_box' => 'В этом уроке есть видео.',
-	'проблема' => 'Проблема CGX#%s',
-	'проблемное_ящик' => '
+	'click_to_expand' => 'Нажмите здесь, чтобы посмотреть видео.',
+	'problem' => 'Проблема CGX#%s',
+	'problem_box' => '
 В этом уроке есть интерактивная задача:<br/>
 %s
 <br/>

@@ -4,6 +4,9 @@ $lang = [
 	'on_wc' => 'on WeChall',
 	'on_gh' => 'on GitHub',
 	'on_yt' => 'on YouTube',
+	'click_to_watch' => 'Click to watch.',
+	'video_take_one' => 'Take One',
+	'video_take_two' => 'Take Two',
 	'info' =>
 		'Hello future Hackers,<br/>'.PHP_EOL.
 		'<br/>'.
@@ -22,6 +25,8 @@ to motivate you to install an PHP development environment ala giz.<br/>'.
 		'You can take a look at the drafts %s and %s.<br/>'.
 		'You can find more videos on %s<br/>'.
 		'<br/>'.
+		'EDIT: We redid the first video; TakeTwo(r) is definately better than our first try.<br/>'.
+		'<br/>'.
 		'Well, Happy Challenging!<br/>'.
-		' - giz and x',
+		' - giz, rain and x',
 ];

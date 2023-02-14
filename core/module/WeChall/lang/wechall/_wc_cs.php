@@ -770,8 +770,10 @@ The WeChall Team<br/>
 
 	# 5.13 Codinggeex
 	'draft' => 'Draft CGX#%s',
-	'video' => 'Video CGX#%s',
+	'vid' => 'Video',
+	'video' => 'Video %s: %s',
 	'video_box' => 'Tato lekce obsahuje video.',
+	'click_to_expand' => 'Kliknutím sem přehrajete video.',
 	'problém' => 'Problém CGX#%s',
 	'problem_box' => '
 Tato lekce má interaktivní problém:<br/>

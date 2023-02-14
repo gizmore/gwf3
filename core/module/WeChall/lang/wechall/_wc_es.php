@@ -770,8 +770,10 @@ The WeChall Team<br/>
 
 	# 5.13 Codinggeex
 	'borrador' => 'Borrador CGX#%s',
-	'video' => 'Video CGX#%s',
+	'vid' => 'Video',
+	'video' => 'Video %s: %s',
 	'video_box' => 'Esta lección tiene un video.',
+	'click_to_expand' => 'Haz clic aquí para ver el video.',
 	'problema' => 'Problema CGX#%s',
 	'problema_caja' => '
 Esta lección tiene un problema interactivo:<br/>

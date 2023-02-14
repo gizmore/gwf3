@@ -48,7 +48,7 @@ echo $cgx->getDraftBox();
 
 if ($cgx->hasVideo())
 {
-	echo $cgx->getVideoBox();
+	echo $cgx->getVideoBoxes();
 }
 
 echo $chall->copyrightFooter();

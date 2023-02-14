@@ -1,2 +1,4 @@
 <?php
-return 'https://www.youtube.com/embed/BGTEuq_KTuQ';
+return [
+	'take_one' => 'https://www.youtube.com/embed/BGTEuq_KTuQ',
+];

@@ -773,8 +773,10 @@ The WeChall Team<br/>
 
 	# 5.13 Codinggeex
 	'brouillon' => 'Brouillon CGX#%s',
-	'video' => 'Vidéo CGX#%s',
+	'vid' => 'Vidéo',
+	'video' => 'Vidéo %s: %s',
 	'video_box' => 'Cette leçon contient une vidéo.',
+	'click_to_expand' => 'Cliquez ici pour regarder la vidéo.',
 	'problème' => 'Problème CGX#%s',
 	'problem_box' => '
 Cette leçon comporte un problème interactif :<br/>

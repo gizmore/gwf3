@@ -72,7 +72,7 @@ final class GWF_DateSelect
 		$len = strlen($format);
 		for ($i = 0; $i < $len; $i++)
 		{
-			$c = $format{$i};
+			$c = $format[$i];
 			if (isset($selects[$c]))
 			{
 				if (!in_array($c, $taken)) {

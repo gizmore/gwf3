@@ -769,8 +769,10 @@ The WeChall Team<br/>
 	
 	# 5.13 Codinggeex
 	'draft' => 'Draft CGX#%s',
-	'video' => 'Video CGX#%s',
+	'vid' => 'Video',
+	'video' => 'Video %s: %s',
 	'video_box' => 'This lesson has a video.',
+	'click_to_expand' => 'Click to watch the video.',
 	'problem' => 'Problem CGX#%s',
 	'problem_box' => '
 This lesson has an interactive problem:<br/>

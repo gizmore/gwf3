@@ -71,7 +71,7 @@ final class Profile_Form extends GWF_Method
 			'level_contact' => array(GWF_Form::INT, $profile->getVar('prof_level_contact'), $this->module->lang('th_level_contact'), $this->module->lang('tt_level_contact'), 5, true),
 			'div4' => array(GWF_Form::DIVIDER),
 			'poi_score' => array(GWF_Form::INT, $profile->getVar('prof_poi_score'), $this->l('th_poi_score'), $this->l('tt_poi_score'), 5, true),
-			'poi_white' => array(GWF_Form::CHECKBOX, $profile->isPOIWhitelisting(), $this->l('th_poi_white', $href_poi_white), $this->l('tt_poi_white')),
+			'poi_white' => array(GWF_Form::CHECKBOX, $profile->isPOIWhitelisting(), $this->l('th_poi_white', array($href_poi_white)), $this->l('tt_poi_white')),
 			'edit' => array(GWF_Form::SUBMIT, $this->module->lang('btn_edit')),
 		);
 		

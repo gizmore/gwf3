@@ -179,6 +179,10 @@ final class WC_Challenge extends GDO
 //		return $this->getVar('chall_vote_fun', false);
 	}
 	
+	/**
+	 * Get the challenge index.php URL
+	 * @return string
+	 */
 	public function getHREF()
 	{
 		return GWF_WEB_ROOT.$this->getVar('chall_url');
