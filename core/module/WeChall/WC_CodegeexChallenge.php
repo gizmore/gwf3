@@ -219,6 +219,10 @@ final class WC_CodegeexChallenge
 		$back = '';
 		foreach ($urls as $key => $url)
 		{
+			if (is_numeric($key))
+			{
+				$key++;
+			}
 			$back .= $this->getVideoBox($key, $title, $url);
 		}
 		return $back;
