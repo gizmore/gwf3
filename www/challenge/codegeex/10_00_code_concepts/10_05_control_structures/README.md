@@ -1,4 +1,6 @@
-# CGX#11: Programming - Control Structures
+# CGX#: Programming - Control Structures
+
+We discuss the various control structures of some programming languages.
 
  - if
  - ternary
@@ -6,5 +8,6 @@
  - for
  - foreach
  - switch/case
- 
+ - try/catch/finally
+ - promises/callbacks
  
