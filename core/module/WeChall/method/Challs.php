@@ -86,6 +86,10 @@ final class WeChall_Challs extends GWF_Method
 		{
 			$conditions .= " AND chall_score > 0";
 		}
+		else
+		{
+			$filter_prefix = 'all_';
+		}
 		if (0 === ($count = $challs->countRows($conditions))) {
 			return 'No Data';
 		}
