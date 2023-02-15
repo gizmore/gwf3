@@ -784,5 +784,7 @@ The problem is randomly generated and is bound to your session.<br/>
 <br/>
 Good Luck!<br/>
 The WeChall Team',
+	'btn_scored' => 'Scored Challenges',
+	'btn_browse' => 'Browse Folder',
 	
 );

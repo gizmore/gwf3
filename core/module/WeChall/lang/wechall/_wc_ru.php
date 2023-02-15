@@ -784,4 +784,7 @@ The WeChall Team<br/>
 <br/>
 Удачи!<br/>
 Команда WeChall',
+	'btn_scored' => 'Вызовы с очками',
+	'btn_browse' => 'Просмотреть папку',
+	
 );

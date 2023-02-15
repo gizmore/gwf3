@@ -784,5 +784,6 @@ Il problema viene generato in modo casuale ed è legato alla tua sessione.<br/>
 <br/>
 Buona fortuna!<br/>
 Il team WeChall',
-	
+	'btn_scored' => 'Sfide con punteggio',
+	'btn_browse' => 'Sfoglia cartella',
 );

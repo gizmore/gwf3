@@ -781,5 +781,6 @@ A probléma véletlenszerűen generálódik, és az Ön munkamenetéhez van köt
 <br/>
 Sok szerencsét!<br/>
 A WeChall csapata',
-	
+	'btn_scored' => 'Scored Challenges',
+	'btn_browse' => 'Mappa tallózása',
 );

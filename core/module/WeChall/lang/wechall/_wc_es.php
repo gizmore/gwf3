@@ -785,5 +785,6 @@ El problema se genera aleatoriamente y está vinculado a su sesión.<br/>
 <br/>
 ¡Buena suerte!<br/>
 El equipo de WeChall',
-	
+	'btn_scored' => 'Desafíos puntuados',
+	'btn_browse' => 'Explorar carpeta',
 );

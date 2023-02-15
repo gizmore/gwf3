@@ -55,12 +55,17 @@ if ($show_tags_and_filters)
 	echo $cloud.PHP_EOL;
 }
 
-if ($show_tags_and_filters and GWF_Session::isLoggedIn())
+if ($show_tags_and_filters)
 {
 	echo GWF_Button::wrapStart();
+	echo GWF_Button::generic($tLang->lang('btn_scored'), $tVars['href_scored'], 'generic', '', $tVars['sel_scored']);
 	echo GWF_Button::generic($tLang->lang('btn_all'), $tVars['href_all'], 'generic', '', $tVars['sel_all']);
-	echo GWF_Button::generic($tLang->lang('th_regat_solved'), $tVars['href_solved'], 'generic', '', $tVars['sel_solved']);
-	echo GWF_Button::generic($tLang->lang('btn_open'), $tVars['href_unsolved'], 'generic', '', $tVars['sel_unsolved']);
+	if (GWF_Session::isLoggedIn())
+	{
+		echo GWF_Button::generic($tLang->lang('th_regat_solved'), $tVars['href_solved'], 'generic', '', $tVars['sel_solved']);
+		echo GWF_Button::generic($tLang->lang('btn_open'), $tVars['href_unsolved'], 'generic', '', $tVars['sel_unsolved']);
+	}
+	echo GWF_Button::generic($tLang->lang('btn_browse'), $tVars['href_browse'], 'generic', '', false);
 	echo GWF_Button::wrapEnd();
 }
 
@@ -131,4 +136,3 @@ foreach ($challs as $chall)
 	echo GWF_Table::rowEnd();
 }
 echo '</table>';
-?>

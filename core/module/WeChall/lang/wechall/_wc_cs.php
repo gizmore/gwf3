@@ -785,5 +785,7 @@ Problém je generován náhodně a je spojen s vaší relací.<br/>
 <br/>
 Hodně štěstí!<br/>
 tým WeChall',
+	'btn_scored' => 'Obodované výzvy',
+	'btn_browse' => 'Procházet složku',
 	
 );

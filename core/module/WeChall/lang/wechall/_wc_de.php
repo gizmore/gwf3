@@ -786,4 +786,6 @@ Das Problem wird zufällig generiert und ist an Ihre Sitzung gebunden.<br/>
 <br/>
 Viel Glück!<br/>
 Das WeChall-Team',
+	'btn_scored' => 'Herausforderungen',
+	'btn_browse' => 'Verzeichnis durchstöbern',
 );

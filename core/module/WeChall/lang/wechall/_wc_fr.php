@@ -788,4 +788,7 @@ Le problème est généré aléatoirement et est lié à votre session.<br/>
 <br/>
 Bonne chance!<br/>
 L\'équipe WeChall',
+	'btn_scored' => 'Défis notés',
+	'btn_browse' => 'Parcourir le dossier',
+	
 );

@@ -7,6 +7,13 @@ final class WeChall_Challs extends GWF_Method
 	public function getHTAccess()
 	{
 		return
+			'RewriteRule ^all_challs/?$ index.php?mo=WeChall&me=Challs&all=1'.PHP_EOL.
+			'RewriteRule ^all_challs/([a-zA-Z0-9]+)$ index.php?mo=WeChall&me=Challs&tag=$1&all=1'.PHP_EOL.
+			'RewriteRule ^all_challs/by/([^/]+)/([DEASC,]+)/page-(\d+)$ index.php?mo=WeChall&me=Challs&by=$1&dir=$2&page=$3&all=1'.PHP_EOL.
+			'RewriteRule ^all_challs/by/page-(\d+)$ index.php?mo=WeChall&me=Challs&page=$1&all=1'.PHP_EOL.
+			'RewriteRule ^all_challs/([a-zA-Z0-9]+)/by/page-(\d+)$ index.php?mo=WeChall&me=Challs&tag=$1&page=$2&all=1'.PHP_EOL.
+			'RewriteRule ^all_challs/([a-zA-Z0-9]+)/by/([^/]+)/([DEASC,]+)/page-(\d+)$ index.php?mo=WeChall&me=Challs&tag=$1&by=$2&dir=$3&page=$4&all=1'.PHP_EOL.
+			
 			'RewriteRule ^challs/?$ index.php?mo=WeChall&me=Challs'.PHP_EOL.
 			'RewriteRule ^challs/([a-zA-Z0-9]+)$ index.php?mo=WeChall&me=Challs&tag=$1'.PHP_EOL.
 			'RewriteRule ^challs/by/([^/]+)/([DEASC,]+)/page-(\d+)$ index.php?mo=WeChall&me=Challs&by=$1&dir=$2&page=$3'.PHP_EOL.
@@ -74,8 +81,13 @@ final class WeChall_Challs extends GWF_Method
 		$from_query = $from_userid === 0 ? '1' : "chall_creator LIKE '%,$from_userid,%'";
 				 
 		$conditions = "($from_query)";
+		$all = !!Common::getGetString('all');
+		if (!$all)
+		{
+			$conditions .= " AND chall_score > 0";
+		}
 		if (0 === ($count = $challs->countRows($conditions))) {
-			return '';
+			return 'No Data';
 		}
 		
 		$orderby = $challs->getMultiOrderby($by, $dir);
@@ -95,10 +107,13 @@ final class WeChall_Challs extends GWF_Method
 			'tag' => $tag,
 			'by' => $by,
 			'dir' => $dir,
-			'href_all' => GWF_WEB_ROOT.$sort_url,
+			'href_all' => GWF_WEB_ROOT.'all_'.$sort_url.'?all=1',
+			'href_scored' => GWF_WEB_ROOT.$sort_url,
+			'href_browse' => GWF_WEB_ROOT.'challenge',
 			'href_solved' => GWF_WEB_ROOT.'solved_'.$sort_url,
 			'href_unsolved' => GWF_WEB_ROOT.'open_'.$sort_url,
-			'sel_all' => $solve_filter === '',
+			'sel_scored' => $solve_filter === '' && (!$all),
+			'sel_all' => $all,
 			'sel_solved' => $solve_filter === 'solved',
 			'sel_unsolved' => $solve_filter === 'open',
 			'show_colors' => $show_colors,
