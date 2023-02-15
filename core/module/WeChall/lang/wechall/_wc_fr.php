@@ -790,5 +790,8 @@ Bonne chance!<br/>
 L\'équipe WeChall',
 	'btn_scored' => 'Défis notés',
 	'btn_browse' => 'Parcourir le dossier',
+	'solver' => 'Marquer comme résolu',
+	'solver_box' => 'Cette tâche n\'est pas un défi mais un guide vidéo. Vous pouvez %s pour le marquer comme résolu.',
+	'click_here' => 'cliquez ici',
 	
 );

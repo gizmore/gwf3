@@ -786,5 +786,7 @@ Good Luck!<br/>
 The WeChall Team',
 	'btn_scored' => 'Scored Challenges',
 	'btn_browse' => 'Browse Folder',
-	
+	'solver' => 'Mark as solved',
+	'solver_box' => 'This challenge is just a video tutorial for real beginners. You can %s to mark it as solved.',
+	'click_here' => 'press here',
 );

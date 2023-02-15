@@ -200,6 +200,16 @@ final class WC_CodegeexChallenge
 		return GWF_Box::box($text, $chall->lang('title'));
 	}
 	
+	public function getSolverBox()
+	{
+		if (!$this->hasProblem())
+		{
+			return GWF_Box::box(
+				$this->getSolverContent(),
+				WC_HTML::lang('solver'));
+		}
+	}
+	
 	public function getDraftBox()
 	{
 		return GWF_Box::box(
@@ -251,6 +261,25 @@ final class WC_CodegeexChallenge
 		return GWF_Box::box(
 			WC_HTML::lang('problem_box', [$description, $problem]),
 			WC_HTML::lang('problem', [$this->getNumber()]));
+	}
+	
+	/**
+	 * Mark a challenge as solved, for video tutorial challenges without a problem.
+	 */
+	public function markAuxilarySolved()
+	{
+		if (isset($_GET['mark_solved']))
+		{
+			if (!$this->hasProblem())
+			{
+				$c = $this->getChallenge();
+				$c->onChallengeSolved();
+			}
+			else
+			{
+				die('Invalid solver token. This incident is being reported! ;=)'); # hehe
+			}
+		}
 	}
 	
 	###############
@@ -321,6 +350,15 @@ EOF;
 			return $c->lang($key);
 		}
 		return WC_HTML::lang('vid');
+	}
+	
+	private function getSolverContent()
+	{
+		$rand = ((float)rand())*0.01+1.00; # Just to confuse some lamerz :P
+		$here = WC_HTML::lang('click_here');
+		$indx = $this->challenge->getHREF();
+		$anch = "<a href=\"{$indx}?mark_solved={$rand}\">$here</a>";
+		return WC_HTML::lang('solver_box', [$anch]);
 	}
 	
 }

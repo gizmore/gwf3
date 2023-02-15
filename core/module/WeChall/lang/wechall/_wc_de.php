@@ -788,4 +788,7 @@ Viel Glück!<br/>
 Das WeChall-Team',
 	'btn_scored' => 'Herausforderungen',
 	'btn_browse' => 'Verzeichnis durchstöbern',
+	'solver' => 'Als gelöst markieren',
+	'solver_box' => 'Diese Aufgabe ist keine Challenge, sondern eine Videoanleitung. Du kannst %s um es als gelöst zu markieren.',
+	'click_here' => 'hier draufdrücken',
 );

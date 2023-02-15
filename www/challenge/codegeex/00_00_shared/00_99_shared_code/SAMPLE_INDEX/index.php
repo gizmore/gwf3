@@ -35,8 +35,14 @@ if ($prob)
 		}
 	}
 }
+else
+{
+	$cgx->markAuxilarySolved();
+}
 
 echo $cgx->getInfoBox();
+
+echo $cgx->getSolverBox();
 
 if ($prob)
 {

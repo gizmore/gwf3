@@ -787,5 +787,7 @@ Hodně štěstí!<br/>
 tým WeChall',
 	'btn_scored' => 'Obodované výzvy',
 	'btn_browse' => 'Procházet složku',
-	
+	'solver' => 'Označit jako vyřešené',
+	'solver_box' => 'Tento úkol není výzvou, ale video průvodcem. Můžete %s označit jako vyřešené.',
+	'click_here' => 'stiskněte zde',
 );

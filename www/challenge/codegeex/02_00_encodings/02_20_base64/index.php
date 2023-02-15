@@ -1,18 +1,61 @@
 <?php
-$sol = require 'solution2.php';
-$solution = require 'solution.php';
-chdir('../../../');
-define('GWF_PAGE_TITLE', 'CGX: Base64');
+$ds = DIRECTORY_SEPARATOR;
+$challdir = getcwd() . $ds;
+$i = strpos($challdir, "{$ds}challenge{$ds}");
+$d = substr($challdir, 0, $i);
+chdir($d);
+define('NO_HEADER_PLEASE', true);
 require_once('challenge/html_head.php');
+require(GWF_CORE_PATH.'module/WeChall/WC_CodegeexChallenge.php');
 require(GWF_CORE_PATH.'module/WeChall/solutionbox.php');
-if (false === ($chall = WC_Challenge::getByTitle(GWF_PAGE_TITLE))) {
-	$chall = WC_Challenge::dummyChallenge(GWF_PAGE_TITLE, 1, 'challenge/coding_ala_giz/02_20_base64/index.php', $sol);
-}
+$cgx = WC_CodegeexChallenge::byCWD($challdir);
+$prob = $cgx->hasProblem();
+$user = GWF_User::getStaticOrGuest();
+$chall = $cgx->getChallenge();
+define('GWF_PAGE_TITLE', $chall->getTitle());
+/** @var $gwf GWF3 **/
+echo $gwf->onDisplayHead();
 $chall->showHeader();
-$chall->onCheckSolution();
-$url = 'https://en.wikipedia.org/wiki/Base64';
-$problem = base64_encode($solution);
-echo GWF_Box::box($chall->lang('info', [$url, $problem]), $chall->lang('title'));
-formSolutionbox($chall);
+if ($prob)
+{
+	$solution = $cgx->getFlag();
+	if (isset($_POST['answer']))
+	{
+		if (false !== ($error = $chall->isAnswerBlocked($user)))
+		{
+			echo $error;
+		}
+		elseif (!strcasecmp($_POST['answer'], (string)$solution))
+		{
+			$chall->onChallengeSolved($user->getID());
+		}
+		else
+		{
+			echo WC_HTML::error('err_wrong');
+		}
+	}
+}
+else
+{
+	$cgx->markAuxilarySolved();
+}
+
+echo $cgx->getInfoBox();
+
+echo $cgx->getSolverBox();
+
+if ($prob)
+{
+	echo $cgx->getProblemBox();
+	formSolutionbox($chall);
+}
+
+echo $cgx->getDraftBox();
+
+if ($cgx->hasVideo())
+{
+	echo $cgx->getVideoBoxes();
+}
+
 echo $chall->copyrightFooter();
 require_once('challenge/html_foot.php');

@@ -787,4 +787,8 @@ El problema se genera aleatoriamente y está vinculado a su sesión.<br/>
 El equipo de WeChall',
 	'btn_scored' => 'Desafíos puntuados',
 	'btn_browse' => 'Explorar carpeta',
+	'solver' => 'Marcar como resuelto',
+	'solver_box' => 'Esta tarea no es un desafío sino una guía en video. Puedes %s para marcarlo como resuelto.',
+	'clic_aquí' => 'clic aquí',
+	
 );

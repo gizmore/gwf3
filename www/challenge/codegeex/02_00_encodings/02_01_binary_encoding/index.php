@@ -25,7 +25,7 @@ if ($prob)
 		{
 			echo $error;
 		}
-		elseif (!(string)strcasecmp($_POST['answer'], (string)$solution))
+		elseif (!strcasecmp($_POST['answer'], (string)$solution))
 		{
 			$chall->onChallengeSolved($user->getID());
 		}
@@ -35,8 +35,14 @@ if ($prob)
 		}
 	}
 }
+else
+{
+	$cgx->markAuxilarySolved();
+}
 
 echo $cgx->getInfoBox();
+
+echo $cgx->getSolverBox();
 
 if ($prob)
 {

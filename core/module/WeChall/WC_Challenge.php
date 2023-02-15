@@ -855,9 +855,13 @@ final class WC_Challenge extends GDO
 		
 		echo WC_HTML::message('msg_correct', array($this->hrefVotes(), $href_sb));
 		
-		if (false !== ($wechall = WC_Site::getWeChall()))
+		# Update, unless this is a Score-0 tutorial
+		if ($this->getScore())
 		{
-			echo $wechall->onUpdateUser($user)->display('WeChall');
+			if (false !== ($wechall = WC_Site::getWeChall()))
+			{
+				echo $wechall->onUpdateUser($user)->display('WeChall');
+			}
 		}
 
 		# Increase solvecount.

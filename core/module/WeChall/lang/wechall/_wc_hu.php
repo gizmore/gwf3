@@ -783,4 +783,8 @@ Sok szerencsét!<br/>
 A WeChall csapata',
 	'btn_scored' => 'Scored Challenges',
 	'btn_browse' => 'Mappa tallózása',
+	'solver' => 'Megjelölés megoldottként',
+	'solver_box' => 'Ez a feladat nem kihívás, hanem egy videó útmutató. %s segítségével megoldottként jelölheti meg.',
+	'click_here' => 'kattints ide',
+	
 );

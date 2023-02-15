@@ -786,4 +786,8 @@ Buona fortuna!<br/>
 Il team WeChall',
 	'btn_scored' => 'Sfide con punteggio',
 	'btn_browse' => 'Sfoglia cartella',
+	'solver' => 'Segna come risolto',
+	'solver_box' => 'Questo compito non è una sfida ma una guida video. Puoi %s contrassegnarlo come risolto.',
+	'click_here' => 'clicca qui',
+	
 );

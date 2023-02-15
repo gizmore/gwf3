@@ -1,47 +1,61 @@
 <?php
-chdir('../../../');
-define('GWF_PAGE_TITLE', 'CGX: Binary Encoding BE');
+$ds = DIRECTORY_SEPARATOR;
+$challdir = getcwd() . $ds;
+$i = strpos($challdir, "{$ds}challenge{$ds}");
+$d = substr($challdir, 0, $i);
+chdir($d);
+define('NO_HEADER_PLEASE', true);
 require_once('challenge/html_head.php');
+require(GWF_CORE_PATH.'module/WeChall/WC_CodegeexChallenge.php');
 require(GWF_CORE_PATH.'module/WeChall/solutionbox.php');
-if (false === ($chall = WC_Challenge::getByTitle(GWF_PAGE_TITLE))) {
-	$chall = WC_Challenge::dummyChallenge(GWF_PAGE_TITLE, 1, 'challenge/coding_ala_giz/02_04_still_binary/index.php', false);
-}
-$chall->showHeader();
-
-function generateSolution()
-{
-	if (!($sol = GWF_Session::get('cag02')))
-	{
-		$sol = GWF_Random::randomKey(8, '01');
-		GWF_Session::set('cag02', $sol);
-	}
-	return $sol;
-}
+$cgx = WC_CodegeexChallenge::byCWD($challdir);
+$prob = $cgx->hasProblem();
 $user = GWF_User::getStaticOrGuest();
-$problem = generateSolution();
-$problem = strrev($problem);
-$solution = bindec($problem);
-
-if (isset($_POST['answer']))
+$chall = $cgx->getChallenge();
+define('GWF_PAGE_TITLE', $chall->getTitle());
+/** @var $gwf GWF3 **/
+echo $gwf->onDisplayHead();
+$chall->showHeader();
+if ($prob)
 {
-	if (false !== ($error = $chall->isAnswerBlocked($user)))
+	$solution = $cgx->getFlag();
+	if (isset($_POST['answer']))
 	{
-		echo $error;
-	}
-	elseif ((string)$_POST['answer'] === (string)$solution)
-	{
-		$chall->onChallengeSolved($user->getID());
-	}
-	else
-	{
-		echo WC_HTML::error('err_wrong');
+		if (false !== ($error = $chall->isAnswerBlocked($user)))
+		{
+			echo $error;
+		}
+		elseif (!strcasecmp($_POST['answer'], (string)$solution))
+		{
+			$chall->onChallengeSolved($user->getID());
+		}
+		else
+		{
+			echo WC_HTML::error('err_wrong');
+		}
 	}
 }
+else
+{
+	$cgx->markAuxilarySolved();
+}
 
-echo GWF_Box::box($chall->lang('info', [$problem]), $chall->lang('title'));
+echo $cgx->getInfoBox();
 
-formSolutionbox($chall);
+echo $cgx->getSolverBox();
+
+if ($prob)
+{
+	echo $cgx->getProblemBox();
+	formSolutionbox($chall);
+}
+
+echo $cgx->getDraftBox();
+
+if ($cgx->hasVideo())
+{
+	echo $cgx->getVideoBoxes();
+}
 
 echo $chall->copyrightFooter();
 require_once('challenge/html_foot.php');
-

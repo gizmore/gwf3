@@ -18,7 +18,7 @@ echo $gwf->onDisplayHead();
 $chall->showHeader();
 if ($prob)
 {
-	$solution = $cgx->getSolution();
+	$solution = $cgx->getFlag();
 	if (isset($_POST['answer']))
 	{
 		if (false !== ($error = $chall->isAnswerBlocked($user)))
@@ -35,8 +35,14 @@ if ($prob)
 		}
 	}
 }
+else
+{
+	$cgx->markAuxilarySolved();
+}
 
 echo $cgx->getInfoBox();
+
+echo $cgx->getSolverBox();
 
 if ($prob)
 {

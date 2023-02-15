@@ -10,23 +10,17 @@ $lang = [
 	'info' =>
 		'Hello future Hackers,<br/>'.PHP_EOL.
 		'<br/>'.
-		'x and gizmore proudly present: Codinggeex<br/>'.
+		'gizmore, rain and x <i>proudly</i> <b>present</b>:... %s<br/>'.
+		'Our new YouTube channel to spread some IT/dev &quot;knowledge&quot;!<br/>'.
+		'<br/>' . PHP_EOL.
+		'This is our first video tutorial, and we talk about installing a PHP development environment alá gizmore.<br/>'.
 		'<br/>'.
-		'This is an auxiliary challenge, 
-to motivate you to install an PHP development environment ala giz.<br/>'.
+		'You can take a look at the drafts %s and %s,<br/>'.
+		'and you can find more videos on %s<br/>'.
+		'<br/>'. PHP_EOL.
+		'<br/>'. PHP_EOL.
+		'<b>EDIT</b>: We redid the first video; TakeTwo is definately better than our first tryouts and will be released soon.<br/>'.
 		'<br/>'.
-		'This is hopefully the first (quite bad) video in a series of us teaching you something new (or ancient).<br/>'.
-		'We already have like 5 videos recorded,<br/>'.
-		'And we plan to integrate these lessons into WeChall in some way.<br/>'.
-		'They shall not affect the scoring (too much).<br/>'.
-		'I\'d like to make them almost all be worth a score of zero,<br/>'.
-		'and maybe hide them from the rest by default.<br/>'.
-		'<br/>'.
-		'You can take a look at the drafts %s and %s.<br/>'.
-		'You can find more videos on %s<br/>'.
-		'<br/>'.
-		'EDIT: We redid the first video; TakeTwo(r) is definately better than our first try.<br/>'.
-		'<br/>'.
-		'Well, Happy Challenging!<br/>'.
-		' - giz, rain and x',
+		'Happy Challenging!<br/>'.
+		' - gizmore, rain and x' . PHP_EOL,
 ];

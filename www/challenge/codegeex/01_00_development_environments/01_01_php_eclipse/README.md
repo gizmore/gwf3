@@ -4,10 +4,11 @@ This is our first lesson.
 We show how to setup an
 [IDE](https://en.wikipedia.org/wiki/Integrated_development_environment)
 on a windows desktop.
-We will code in PHP, with the Eclipse IDE, and install a debugger,
-so we can tackle complex programs later.
+We will code in PHP, with the Eclipse IDE, and install and play with a debugger,
+so we can tackle complex programs more easily, later on.
 
-So... who are we?
+
+So... *who* are **we**? :)
 
 
 ## Codinggeex
@@ -16,7 +17,7 @@ Mentor: [gizmore@wechall.net](https://www.wechall.net/profile/gizmore)
 
 Newbie: [rain@wechall.net](https://www.wechall.net/profile/rain)
 
-Newbie: [x@wechall.net](https://www.wechall.net/profile/x)
+Novice: [x@wechall.net](https://www.wechall.net/profile/x)
 
 
 ### Installed software

@@ -20,7 +20,7 @@ $score = $cgx->getScore();
 $solution = false;
 $url = $cgx->getChallenge()->getVar('chall_url');
 $creators = "gizmore,x";
-$tags = 'Training,CGX';
+$tags = 'Encoding,Training,CGX';
 $verbose = true;
 $options = 0;
 WC_Challenge::installChallenge($title, $solution, $score, $url, $creators, $tags, $verbose, $options);
