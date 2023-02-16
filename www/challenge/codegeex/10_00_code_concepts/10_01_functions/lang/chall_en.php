@@ -1,17 +1,16 @@
 <?php
 $lang = [
-	'title' => 'CGX: Base64',
+	'title' => 'CGX#6: Variables and Functions',
 	'info' =>
-		'Hello future Hackers,<br/>'.PHP_EOL.
-		'<br/>'.
-		'Another encoding is the <b>Base64</b>.<br/>'.
-		'You can read about it on <a href="%s">Wikipedia</a>.<br/>'.
-		'<br/>'.
-		'Alternatively, here is a brief proof-checked explaination from chatGPT:<br/><br/>'.
-		'Base64 is a way of encoding information into a text string that can be quickly decoded. It can be used to represent binary data such as images and audio files in a way that is more compatible with any transmissions. It is widely used. Any text string encoded with Base64 can be easily decoded with the appropriate software.<br/>'.
-		'<br/>'.
-		'%s<br/>'.
-		'<br/>'.
-		'Greetings<br/>'.
-		' - gizmore and x',
+		'Hello Challengers,%%'.
+		'%%'.
+		'Please bear with another video tryout from us (%yt%@codinggeex%).%%'.
+		'This one is a (horrible?) introduction to %w%variables% and %w%functions% in PHP.%%'.
+		'I was not brave enough to watch it myself yet,<br/>%%'.
+		'but maybe it is not that bad.<br/>%%'.
+		'%%'.
+		'We are a crew of 4 volunteers now, who will get introduced soon.%%'.
+		'%%'.
+		'Greetings%%'.
+		' - gizmore, x, ???, and ???.',
 ];
