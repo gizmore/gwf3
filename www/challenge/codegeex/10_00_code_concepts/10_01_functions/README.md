@@ -1,21 +1,30 @@
-# CGX#5 - PHP Programming Basics
+# CGX#6: Functions and Variables (PHP)
 
 In this video we talk quickly about the most 
 essential and basic things in programming,
 so you hear a few technical terms already.
 
-No worries, you will probably learn about them later by examples.
+Again we are using PHP, but we will start with machine code soon :D
 
-Enjoy!
+And... no worries, you will probably learn about all this more later, by some examples and better languages.
+
+ - Enjoy!
+ - gizmore and x
 
 
 ## Digital Programming Tools
 
  - Variables
  - Primitives (int, float, string, boolean)
- - Arrays
+ - Arrays (order is stable, size and implementation is dynamic)
  - Functions
  - Parameters
  - Scopes (local, global)
  - Foreach / While / Do / Loops / Control
+ 
+ - Questions?
+ 
+ 
+We hope you liked this and,
+See you soon!
  
