@@ -1,42 +1,60 @@
 <?php
-#
+# CPU
+#  arithmetic registers
+# eax = 5 
+# ecx = 0
+# edx = 15
+#  constrol flow registers
+# eip = LOOP: # instruction pointer
+# esp = 0x400000 # stack pointer
+#  single bit flags
+# C0 = CARRY flag - set to 1 on overflow or underflow ADD EAX 12 
+
 # MOV EAX, 5
-# CALL traditionalLoop
+# CALL traditionalLoop == PUSH EIP on Stack, MOV EIP, &#memoy address
 # PUSH EAX    # echo arg1 
 # MOV  EAX, 1 # syscall 1 == echo
 # INT  80     # do syscall
-echo traditionalLoop(5);
 function traditionalLoop(int $n)
 {
-	$sum = 0; # XOR EDX,EDX
-	# DEC EAX
+	$sum = 0; # 80004f: XOR EDX,EDX (start:)  0x8x: 
 	# MOV ECX, EAX
-	for ($i = $n-1; $i==0; $i--)
+	for ($i = $n; $i!=0; $i--)
 	{
-		# LOOP:
-		$sum += $i; # ADD EDX, EAX
+	    # LOOP:
+		# JZ ECX + 16  # (20 00 0C)
+
+	    # ADD:
+		$sum += $i; # ADD EDX, ECX (04)
 		            # DEC ECX
-		# JNZ - 12  # JNZ LOOP:
+		# Jumper:   # JMP LOOP: # (7f f8)
 	}
+	
+	# below16:
+	
 	
 	# MOV EAX, EDX
 	# RET
 	return $sum;
 }
 
+echo traditionalLoop(0x80_00_00_00); # X: 5s
+                                     # G: 9s
+
+
 function traditionalMemcmp(string $a, string $b)
 {
-	if (strlen($a) != strlen($b))
+#    return $a === $b; # memcmp(a, b) == 0;
+    
+    # func in C:
+    $len = strlen($a);
+	for ($i = 0; $i < $len; $i++) # 2 if
 	{
-		return false;
-	}
-	
-	for ($i = 0; $i < strlen($a); $i++)
-	{
-		if ($a[$i] != $b[$i])
+		if ($a[$i] != $b[$i]) # 1 if
 		{
-			return false;
+			return 1;
 		}
 	}
-	return true;
+	return 0;
 }
+
