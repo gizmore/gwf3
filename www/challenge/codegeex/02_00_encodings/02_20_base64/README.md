@@ -7,4 +7,5 @@ This is video #8 in a series of learning IT in general.
 Encodings:
 
  - Charsets (again)
- - Memory alignment
+ - Memory alignment (missing)
+ 

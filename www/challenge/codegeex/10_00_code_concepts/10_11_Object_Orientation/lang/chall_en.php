@@ -1,6 +1,6 @@
 <?php
 $lang = [
-	'title' => 'CGX#6: Variables and Functions',
+	'title' => 'CGX#7: Object Orientation',
 	'info' =>
 		"Hello Challengers,<br/>\n".
 		"<br/>\n" . 
