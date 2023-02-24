@@ -176,9 +176,17 @@ function warchall1createAccountB(WC_Challenge $chall)
 		'Authorization: Basic ' . base64_encode(TEHRONS_API_KEY),
 	);
 	
-	echo GWF_HTTP::post($url, $postdata, false, $headers);
+	$response = GWF_HTTP::post($url, $postdata, false, $headers);
+	$data = @json_decode($response, true);
+	if ($data && ($data['res'] === 0))
+	{
+		return GWF_HTML::message('Let the Warchall begin', $chall->lang('msg_creating_account', [$user->displayUsername(), $_POST['password1']]));
+	}
+	else
+	{
+		return GWF_HTML::error('Warchall setup failed', print_r($data, true));
+	}
 
-	return GWF_HTML::message('Let the Warchall begin', $chall->lang('msg_creating_account', [$user->displayUsername(), $_POST['password1']]));
 }
 
 function warchall1createEMailB(WC_Challenge $chall, GDO_Database $db2, $eusername)
