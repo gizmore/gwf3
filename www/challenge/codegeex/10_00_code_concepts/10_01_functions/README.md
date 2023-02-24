@@ -1,4 +1,4 @@
-# CGX#6: Functions and Variables (PHP)
+# CGX#6: Functions and Variables
 
 In this video we talk quickly about the most 
 essential and basic things in programming,
