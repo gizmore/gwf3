@@ -10,7 +10,7 @@ We discuss differences between the PHP and the C90 type system.
  - header and objects
  - linker
  - stdint.h
- - bool
+ - bool (0 == false, rest = true)
  - floats
  - strings
  - arrays
