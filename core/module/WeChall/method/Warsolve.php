@@ -186,7 +186,7 @@ final class WeChall_Warsolve extends GWF_Method
 			$f instanceof WC_Warflag;
 			if ($f->getLevelNum() < $this_num)
 			{
-				if (false !== ($err = $this->onSingleSolved($f)))
+				if (false !== ($err = $this->onSingleSolved($f, false)))
 				{
 					return $err;
 				}
@@ -196,14 +196,17 @@ final class WeChall_Warsolve extends GWF_Method
 		return false;
 	}
 	
-	private function onSingleSolved(WC_Warflag $flag)
+	private function onSingleSolved(WC_Warflag $flag, $updateTime=true)
 	{
 		if (!WC_Warflags::insertSuccess($flag, $this->user))
 		{
 			return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 		}
 		
-		$flag->setLastSolver($this->user);
+		if ($updateTime)
+		{
+			$flag->setLastSolver($this->user);
+		}
 		
 		$flag->recalcSolvers();
 		
