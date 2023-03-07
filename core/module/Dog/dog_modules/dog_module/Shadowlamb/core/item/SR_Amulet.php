@@ -1,4 +1,6 @@
 <?php
+require_once 'SR_Equipment.php';
+
 abstract class SR_Amulet extends SR_StattedEquipment
 {
 	public function displayType() { return 'Amulet'; }
@@ -7,4 +9,3 @@ abstract class SR_Amulet extends SR_StattedEquipment
 	public function getItemEquipTime() { return 120; }
 	public function getItemUnequipTime() { return 40; }
 }
-?>

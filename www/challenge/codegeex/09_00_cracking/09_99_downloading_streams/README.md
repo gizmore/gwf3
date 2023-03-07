@@ -19,18 +19,24 @@ Here we will discuss how the game evolved for this particular problem.
  - laws may differ in other countries
  - internet, economy, globalization
  - just kidding
+ 
 
 ## Metrics
  - keep running
  - double-slash
  - debugger detection
  - dynamic javascript debugging
+ - 
+ - NEW: onwindowresize debugger detection
+ - NEW: Detect debugger by fluctuations in required clock cycles / ms
+ 
 
 ## There are more!
  - event behaviour?
  - ip2country?
  - encrypted streams
  - splitted streams
+ 
  
 ## Endgame
  - good old camrip

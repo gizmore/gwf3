@@ -1,4 +1,6 @@
 <?php
+require_once 'SR_Usable.php';
+
 abstract class SR_Equipment extends SR_Usable
 {
 	public function isItemStackable() { return false; }

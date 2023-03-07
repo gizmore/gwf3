@@ -190,7 +190,7 @@ final class Dog
 		return self::hasPermission($serv, $chan, $user, $priv, 'c', $needlogin);
 	}
 	
-	public static function isInScope(Dog_Server $serv, $chan=false, $abc)
+	public static function isInScope(Dog_Server $serv, $chan, $abc)
 	{
 		switch ($abc)
 		{
@@ -206,7 +206,7 @@ final class Dog
 		Dog::rply('err_scope_'.$abc);
 	}
 	
-	public static function hasPermission(Dog_Server $serv, $chan=false, Dog_User $user, $priv, $abc=NULL, $needlogin=true)
+	public static function hasPermission(Dog_Server $serv, $chan, Dog_User $user, $priv, $abc=NULL, $needlogin=true)
 	{
 		switch ($abc)
 		{

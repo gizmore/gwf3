@@ -526,8 +526,8 @@ final class Shadowhelp
 						
 					'tips' => 'Tips',
 					array(
-						'0' => 'Bold words in the #help pages are topics that have an own help page, but the word might not be related to the context it appears in.',
-						'1' => 'The commands in #c and #cc change according to your current action/location.',
+						'Tip1' => 'Bold words in the #help pages are topics that have an own help page, but the word might not be related to the context it appears in.',
+						'Tip2' => 'The commands in #c and #cc change according to your current action/location.',
 					),
 						
 					'notations' => 'Notations',

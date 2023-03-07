@@ -1,1 +1,1 @@
-New: #quests citystats + New prerequisite quest in Chicago Blacksmith.
+New IRC Network and promotion on irc.ircgo.org. HTML helpfiles added.

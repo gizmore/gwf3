@@ -730,7 +730,7 @@ final class Shadowfunc
 		return $back === '' ? Shadowrun4::lang('none') : substr($back, 2);
 	}
 	
-	public static function getCyberware(SR_Player $player, $key='5045', SR_Player $spectator)
+	public static function getCyberware(SR_Player $player, $key='5045', SR_Player $spectator=null)
 	{
 		$i = 1;
 		$back = '';

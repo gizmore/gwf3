@@ -96,7 +96,7 @@ abstract class SR_City
 		$this->checkNPCEquipmentB($npc, NULL, $npc->getNPCCyberware());
 	}
 	
-	private function checkNPCEquipmentB(SR_NPC $npc, $key=NULL, $items)
+	private function checkNPCEquipmentB(SR_NPC $npc, $key=NULL, $items=null)
 	{
 		if ($items === '')
 		{

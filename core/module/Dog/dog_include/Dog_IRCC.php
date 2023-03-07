@@ -1,5 +1,5 @@
 <?php
-require_once 'dog_include/Dog_Includes.php';
+require_once 'Dog_Includes.php';
 final class Dog_IRCC implements Dog_IRC
 {
 	/**

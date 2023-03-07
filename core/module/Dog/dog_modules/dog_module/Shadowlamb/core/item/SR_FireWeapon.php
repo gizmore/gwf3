@@ -1,4 +1,6 @@
 <?php
+require_once 'SR_Weapon.php';
+
 abstract class SR_FireWeapon extends SR_Weapon
 {
 	public abstract function getAmmoName();

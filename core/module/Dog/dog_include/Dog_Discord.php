@@ -1,7 +1,7 @@
 <?php
 use Discord\Discord;
 
-require_once 'dog_include/Dog_Includes.php';
+require_once 'Dog_Includes.php';
 
 /**
  * Discord connector.

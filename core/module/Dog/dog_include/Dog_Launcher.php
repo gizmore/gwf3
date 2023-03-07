@@ -44,7 +44,7 @@ final class Dog_Launcher
 		die(0);
 	}
 	
-	public static function error_handler($errno, $errstr, $errfile, $errline, $errcontext)
+	public static function error_handler($errno, $errstr, $errfile, $errline, $errcontext=null)
 	{
 		GWF_Debug::error_handler($errno, $errstr, $errfile, $errline, $errcontext);
 		if ($errno === E_ERROR)

@@ -1,24 +1,24 @@
 <?php
 require_once 'SR_Player.php';
-require_once 'item/SR_Rune.php';
-require_once 'item/SR_Usable.php';
-require_once 'item/SR_QuestItem.php';
-require_once 'item/SR_Consumable.php';
-require_once 'item/SR_Grenade.php';
-require_once 'item/SR_Equipment.php';
-require_once 'item/SR_Cyberware.php';
-require_once 'item/SR_Amulet.php';
-require_once 'item/SR_Armor.php';
-require_once 'item/SR_Boots.php';
-require_once 'item/SR_Earring.php';
-require_once 'item/SR_Helmet.php';
-require_once 'item/SR_Legs.php';
-require_once 'item/SR_Ring.php';
-require_once 'item/SR_Shield.php';
-require_once 'item/SR_Weapon.php';
-require_once 'item/SR_FireWeapon.php';
-require_once 'item/SR_MeleeWeapon.php';
-require_once 'item/SR_Cyberdeck.php';
+// require_once 'item/SR_Rune.php';
+// require_once 'item/SR_Usable.php';
+// require_once 'item/SR_QuestItem.php';
+// require_once 'item/SR_Consumable.php';
+// require_once 'item/SR_Grenade.php';
+// require_once 'item/SR_Equipment.php';
+// require_once 'item/SR_Cyberware.php';
+// require_once 'item/SR_Amulet.php';
+// require_once 'item/SR_Armor.php';
+// require_once 'item/SR_Boots.php';
+// require_once 'item/SR_Earring.php';
+// require_once 'item/SR_Helmet.php';
+// require_once 'item/SR_Legs.php';
+// require_once 'item/SR_Ring.php';
+// require_once 'item/SR_Shield.php';
+// require_once 'item/SR_Weapon.php';
+// require_once 'item/SR_FireWeapon.php';
+// require_once 'item/SR_MeleeWeapon.php';
+// require_once 'item/SR_Cyberdeck.php';
 
 /**
  * A shadowrum item.
