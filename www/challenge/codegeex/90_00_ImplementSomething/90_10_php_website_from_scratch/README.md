@@ -4,7 +4,8 @@ In this video we will implement a PHP website from scratch, or at least a good s
 
 ## ToC
 
- - The Web Stack, HTML, CSS, PHP, Database
+ - The Web Stack, HTTP, HTML, CSS, PHP, Database
  - PHP Include
- 
+ - HTTP Caches
+ - A page counter (filesystem and flock)
 
