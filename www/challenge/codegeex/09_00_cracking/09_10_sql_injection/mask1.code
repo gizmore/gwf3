@@ -1,0 +1,51 @@
+<div class="box">
+ <div class="box_t">Problem #1</div>
+ <form method="post" class="box_c">
+   <div>
+    <label>Username</label>
+    <input type="text" name="username" />
+   </div>
+   <div>
+    <label>Password</label>
+    <input type="password" name="password" />
+   </div>
+   <div>
+    <input type="submit" name="mask1" />
+   </div>
+ </form>
+</div>
+
+<?php
+$solution = require('solution1.php');
+if (isset($_POST['mask1']))
+{
+	$c = require 'config.php';
+	$link = mysqli_connect('localhost', $c['username'], $c['password'], $c['database']);
+	$user = $_POST['username'];
+	$pass = md5($_POST['password']);
+	$query = "SELECT * FROM users WHERE username = '$user' AND password = '$pass'";
+    $result = mysqli_query($link, $query);
+    $userdata = mysqli_fetch_assoc($result);
+    if ($userdata)
+    {
+    echo <<< EOE
+    <div class="gwf_messages">
+<span class="gwf_msg_t">WeChall</span>
+<ul>
+<li>Welcome back, $user, Your first secret word is &quot;{$solution}&quot;</li>
+</ul>
+</div>
+EOE;
+    }
+    else
+    {
+    echo <<< EOE
+    <div class="gwf_errors">
+<span class="gwf_err_t">WeChall</span>
+<ul>
+<li>Unknown User/Password!</li>
+</ul>
+</div>
+EOE;
+	}    
+}
