@@ -1,15 +1,4 @@
-# CGX#10: Java and Eclipse
+# CGX#9: Java Introduction
 
-In this video we setup a Java IDE and toolchain,
-and learn about the java type system.
+In this video we learn about Java and it's type system roughly.
 
-
-## ToC
-
- - 
- - Interfaces and Classes (again)
- - What is Bytecode
- - Primitive Types
- - Strings
- - Primitive References
- 

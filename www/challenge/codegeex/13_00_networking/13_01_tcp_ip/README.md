@@ -3,9 +3,11 @@
 Networking nowadays means TCP/IP.
 This is a brief introduction.
 
- - Older Protocols
- - IP4/6
+ - Older Protocols (+-1975)
+ - IPv4/6 (Broadcast, NaT)
  - UDP
  - TCP
+ - Checksums, Fragmention, Discovery
+ - BGP (Routing)
  -
  

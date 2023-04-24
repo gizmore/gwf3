@@ -1,5 +1,5 @@
 CREATE DATABASE sqlfirst;
-CREATE USER sqlfirst IDENTIFIED BY 'sqlfirst';
+CREATE USER sqlfirst@localhost IDENTIFIED BY 'sqlfirst';
 GRANT SELECT ON sqlfirst.* TO sqlfirst@localhost;
 
 CREATE TABLE `users` (
