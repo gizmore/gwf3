@@ -1,0 +1,21 @@
+<div class="box">
+ <div class="box_t">Vuln App #1</div>
+ <form method="post" class="box_c">
+   <div>
+    <label>Username</label>
+    <input type="text" name="username" />
+   </div>
+   <div>
+    <label>Password</label>
+    <input type="password" name="password" />
+   </div>
+   <div>
+    <input type="submit" name="mask1" />
+   </div>
+ </form>
+</div>
+<?php
+if (isset($_REQUEST['mask1']))
+{
+    echo "<div>Welcome back, <b>{$_REQUEST['username']}</b>!</div>";
+}
