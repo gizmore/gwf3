@@ -16,6 +16,8 @@ define('GWF_PAGE_TITLE', $chall->getTitle());
 /** @var $gwf GWF3 **/
 echo $gwf->onDisplayHead();
 
+include 'mask1.code';
+
 $chall->onCheckSolution();
 
 $chall->showHeader();
