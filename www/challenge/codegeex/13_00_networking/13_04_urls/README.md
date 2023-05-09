@@ -1,0 +1,59 @@
+# CGX#13: urls
+
+In this lesson we talk about urls.
+
+I have hidden a few inside this
+[markdown](https://pandao.github.io/editor.md/en.html)
+document, and you probably know already what an
+[URL](https://en.wikipedia.org/wiki/URL?rel=gizmore)
+or
+[Uniform](https://www.hostinger.com/tutorials/what-is-a-url)
+[Resource](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/Web_mechanics/What_is_a_URL)
+[Locator](https://www.techtarget.com/searchnetworking/definition/URL)
+is...
+
+Anyway, i am sure some
+[newbies](https://memes.com/m/KwEZ9D8eR8V)
+will learn something,
+and some of us would 
+[call](tel:017659598844)
+this a
+[link](https://de.wikipedia.org/wiki/Magnet-Link)
+from the
+[past](https://remix.kwed.org/download.php/4242/SkyMarshall%20Arts%20-%20Abyss%20Game%202%20%28Emulate%20the%20Past%20mix%29.mp3).
+
+- [amir, rain2, gizmore, x](https://youtube.com/@codinggeex)
+- [proto](email://codinggeex@wechalll.net)
+- [host](https://www.wechall.net)
+(
+[domain](https://www.namecheap.com/)
+[IP](https://127.0.0.1)
+)
+- port
+- path
+- [auth](http://::1/mp3@gizmore.org)
+- query
+- hash
+- urlencode
+- http get it no post url
+[browsers](https://www.mozilla.org/en-US/firefox/new/)
+got it: ftp was
+[filed](file:///etc/passwd)
+dropped
+- 
+[rants](#why)
+: why &=&= would be better than ?=&=
+- maxlength
+- utf8 and look-alikes
+
+[Happy]()
+[Challenging](https://www.wechall.net/challenge/training/encodings/url/index.php)
+!
+
+
+### Why ?
+
+Why did they use 2 different characters
+for the query part of the url?
+
+This complicates the processing **a lot**.
