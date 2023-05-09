@@ -12,6 +12,13 @@ or
 [Locator](https://www.techtarget.com/searchnetworking/definition/URL)
 is...
 
+It is used in e.g. links to access ressources,
+which is just an URL with a text, like this:
+
+[https://mp3:gizmore@google.de:443/q?s=gizmore&x#amir](https://mp3:gizmore@google.de:443/q?s=gizmore&x#amir)
+
+To demonstrate it, the text here equals the link.
+
 Anyway, i am sure some
 [newbies](https://memes.com/m/KwEZ9D8eR8V)
 will learn something,
@@ -22,7 +29,6 @@ this a
 from the
 [past](https://remix.kwed.org/download.php/4242/SkyMarshall%20Arts%20-%20Abyss%20Game%202%20%28Emulate%20the%20Past%20mix%29.mp3).
 
-- [amir, rain2, gizmore, x](https://youtube.com/@codinggeex)
 - [proto](email://codinggeex@wechalll.net)
 - [host](https://www.wechall.net)
 (
@@ -31,7 +37,7 @@ from the
 )
 - port
 - path
-- [auth](http://::1/mp3@gizmore.org)
+- auth
 - query
 - hash
 - urlencode
@@ -40,16 +46,14 @@ from the
 got it: ftp was
 [filed](file:///etc/passwd)
 dropped
-- 
-[rants](#why)
-: why &=&= would be better than ?=&=
+- [rants](#why)
 - maxlength
 - utf8 and look-alikes
 
 [Happy]()
 [Challenging](https://www.wechall.net/challenge/training/encodings/url/index.php)
 !
-
+- [amir, rain2, gizmore, x](https://youtube.com/@codinggeex)
 
 ### Why ?
 
