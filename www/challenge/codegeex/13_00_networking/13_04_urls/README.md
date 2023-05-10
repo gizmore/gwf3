@@ -29,7 +29,7 @@ this a
 from the
 [past](https://remix.kwed.org/download.php/4242/SkyMarshall%20Arts%20-%20Abyss%20Game%202%20%28Emulate%20the%20Past%20mix%29.mp3).
 
-- [proto](mailto:codinggeex@wechalll.net?subject=things)
+- [protocol](mailto:codinggeex@wechalll.net?subject=things)
 - [host](https://www.wechall.net)
 (
 [domain](https://www.namecheap.com/)
@@ -40,7 +40,7 @@ from the
 - auth
 - query
 - hash
-- urlencode
+- url encode
 - http get it no post url
 [browsers](https://www.mozilla.org/en-US/firefox/new/)
 got it: ftp was
@@ -53,7 +53,7 @@ dropped
 [Happy](#why-)
 [Challenging](https://www.wechall.net/challenge/training/encodings/url/index.php)
 !
-- [amir, Dewy, rain2, gizmore, x](https://youtube.com/@codinggeex)
+- [amir, Dewy, rainn, gizmore, x](https://youtube.com/@codinggeex)
 
 
 ### Why ?
