@@ -29,11 +29,11 @@ this a
 from the
 [past](https://remix.kwed.org/download.php/4242/SkyMarshall%20Arts%20-%20Abyss%20Game%202%20%28Emulate%20the%20Past%20mix%29.mp3).
 
-- [proto](email://codinggeex@wechalll.net)
+- [proto](mailto:codinggeex@wechalll.net?subject=things)
 - [host](https://www.wechall.net)
 (
 [domain](https://www.namecheap.com/)
-[IP](https://127.0.0.1)
+[IP](http://127.0.0.1)
 )
 - port
 - path
@@ -50,14 +50,15 @@ dropped
 - maxlength
 - utf8 and look-alikes
 
-[Happy]()
+[Happy](#why-)
 [Challenging](https://www.wechall.net/challenge/training/encodings/url/index.php)
 !
-- [amir, rain2, gizmore, x](https://youtube.com/@codinggeex)
+- [amir, Dewy, rain2, gizmore, x](https://youtube.com/@codinggeex)
+
 
 ### Why ?
 
 Why did they use 2 different characters
-for the query part of the url?
+for the query part of the url? (`?` and `&`)?
 
-This complicates the processing **a lot**.
+This complicates url a lot.
