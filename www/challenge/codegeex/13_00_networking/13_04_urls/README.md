@@ -15,7 +15,7 @@ is...
 It is used in e.g. links to access ressources,
 which is just an URL with a text, like this:
 
-[https://mp3:gizmore@google.de:443/q?s=gizmore&x#amir](https://mp3:gizmore@google.de:443/q?s=gizmore&x#amir)
+[https://mp3:gizmore@google.de:443/?q=gizmore&x#Amir](https://mp3:gizmore@google.de:443/?q=gizmore&x#Amir)
 
 To demonstrate it, the text here equals the link.
 
@@ -46,22 +46,21 @@ from the
 got it: ftp was
 [filed](file:///etc/passwd)
 dropped
-- [rants](#why)
+- [rants](#why-)
 - maxlength
 - utf8 and look-alikes
 
-[Happy](#why-)
-[Challenging](https://www.wechall.net/challenge/training/encodings/url/index.php)
-!
+[Happy Challenging](https://www.wechall.net/challenge/training/encodings/url/index.php)!
 
 -
-[amir](https://www.wechall.net/profile/amir),
+[AmirGT](https://www.wechall.net/profile/AmirGT),
 [Dewy](https://www.wechall.net/profile/Dewy),
 [rainn](https://www.wechall.net/profile/rainn),
 [gizmore](https://www.wechall.net/profile/gizmore),
 [x](https://www.wechall.net/profile/x)
 
 (https://youtube.com/@codinggeex)
+
 
 ### Why ?
 
