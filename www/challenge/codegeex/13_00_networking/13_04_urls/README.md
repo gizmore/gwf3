@@ -25,7 +25,7 @@ will learn something,
 and some of us would 
 [call](tel:017659598844)
 this a
-[link](https://de.wikipedia.org/wiki/Magnet-Link)
+[link](https://en.wikipedia.org/wiki/Magnet_URI_scheme)
 from the
 [past](https://remix.kwed.org/download.php/4242/SkyMarshall%20Arts%20-%20Abyss%20Game%202%20%28Emulate%20the%20Past%20mix%29.mp3).
 
@@ -53,8 +53,15 @@ dropped
 [Happy](#why-)
 [Challenging](https://www.wechall.net/challenge/training/encodings/url/index.php)
 !
-- [amir, Dewy, rainn, gizmore, x](https://youtube.com/@codinggeex)
 
+-
+[amir](https://www.wechall.net/profile/amir),
+[Dewy](https://www.wechall.net/profile/Dewy),
+[rainn](https://www.wechall.net/profile/rainn),
+[gizmore](https://www.wechall.net/profile/gizmore),
+[x](https://www.wechall.net/profile/x)
+
+(https://youtube.com/@codinggeex)
 
 ### Why ?
 
