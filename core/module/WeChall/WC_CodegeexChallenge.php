@@ -49,7 +49,8 @@ final class WC_CodegeexChallenge
 		$i = strpos($cwd, '/challenge/');
 		$url = substr($cwd, $i+1) . 'index.php';
 		$score = self::parseScore($cwd);
-		return WC_Challenge::dummyChallenge($title, $score, $url, false, 0, self::getCreators($cwd), ['Training', 'CGX']);
+        $solution = self::parseSolution2($cwd);
+		return WC_Challenge::dummyChallenge($title, $score, $url, $solution, 0, self::getCreators($cwd), ['Training', 'CGX']);
 	}
 	
 	private static function getCreators($cwd)
@@ -332,16 +333,24 @@ EOF;
 		}
 		return include $path;
 	}
-	
-	private function parseSolution()
-	{
-		$user = GWF_User::getStaticOrGuest();
-		$flag = $this->getFlag();
-		$path = $this->directory . 'solution.php';
-		return include $path;
-	}
-	
-	private function getVideoTitle($key)
+
+    private function parseSolution()
+    {
+        $user = GWF_User::getStaticOrGuest();
+        $flag = $this->getFlag();
+        $path = $this->directory . 'solution.php';
+        return include $path;
+    }
+
+    private static function parseSolution2($cwd)
+    {
+        $user = GWF_User::getStaticOrGuest();
+        $path = $cwd . 'solution.php';
+        return include $path;
+    }
+
+
+    private function getVideoTitle($key)
 	{
 		$c = $this->challenge;
 		$key = "video_{$key}";

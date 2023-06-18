@@ -8,10 +8,9 @@ and will crack a demo application with SQL injection.
 
 ToC:
 
- - SQL and dialects
- - HeidiSQL, PhpMyAdmin
+ - SQL Basics
  - Quoting and Escaping
- - Parameter Binding
+ - md5 hashes for passwords
  - Demo Application
  - Injections
  - Second Task 

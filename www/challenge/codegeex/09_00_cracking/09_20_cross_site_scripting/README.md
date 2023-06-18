@@ -5,6 +5,8 @@ This video introduces you to the concepts of
 
 We will exploit a very simple XSS vuln single page application.
 
+Please excuse us being clueless, cracking is an art ;) 
+
 
 ToC:
 
