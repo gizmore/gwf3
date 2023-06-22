@@ -346,7 +346,7 @@ EOF;
     {
         $user = GWF_User::getStaticOrGuest();
         $path = $cwd . 'solution.php';
-        return include $path;
+        return @include($path);
     }
 
 
