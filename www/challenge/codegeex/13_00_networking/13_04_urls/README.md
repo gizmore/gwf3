@@ -23,7 +23,7 @@ Anyway, i am sure some
 [newbies](https://memes.com/m/KwEZ9D8eR8V)
 will learn something,
 and some of us would 
-[call](tel:017659598844)
+[call](tel:004917659598844)
 this a
 [link](https://en.wikipedia.org/wiki/Magnet_URI_scheme)
 from the
