@@ -285,6 +285,12 @@ select {
 	padding-left: 32px;
 }
 
+.marked-down code {
+	font-family: monospace;
+	padding: 0 8px;
+	background-color: beige;
+}
+
 /** Buttons **/
 /* .gwf_buttons_outer { */
 /* 	margin: 5px; */
