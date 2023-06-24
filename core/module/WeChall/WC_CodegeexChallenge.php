@@ -213,9 +213,10 @@ final class WC_CodegeexChallenge
 	
 	public function getDraftBox()
 	{
-		return GWF_Box::box(
-			$this->getDraft(),
-			WC_HTML::lang('draft', [$this->getNumber()]));
+        return $this->getDraft();
+//		return GWF_Box::box(
+//			$this->getDraft(),
+//			WC_HTML::lang('draft', [$this->getNumber()]));
 	}
 	
 	public function getVideoBoxes()
@@ -290,9 +291,11 @@ final class WC_CodegeexChallenge
 	{
 		$path = $this->directory . 'README.md';
 		$markdown = file_get_contents($path);
-		return nl2br($markdown);
+        require_once '../core/inc/util/GWF_Markdown.php';
+        return GWF_Markdown::parse($markdown);
 	}
-	
+
+
 	private function getVideoBoxContent($key, $title, $url, $expanded=false)
 	{
 		if ($expanded)
@@ -339,7 +342,7 @@ EOF;
         $user = GWF_User::getStaticOrGuest();
         $flag = $this->getFlag();
         $path = $this->directory . 'solution.php';
-        return include $path;
+        return @include $path;
     }
 
     private static function parseSolution2($cwd)

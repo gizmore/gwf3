@@ -52,8 +52,7 @@ dropped
 
 [Happy Challenging](https://www.wechall.net/challenge/training/encodings/url/index.php)!
 
--
-[AmirGT](https://www.wechall.net/profile/AmirGT),
+- [AmirGT](https://www.wechall.net/profile/AmirGT),
 [Dewy](https://www.wechall.net/profile/Dewy),
 [rainn](https://www.wechall.net/profile/rainn),
 [gizmore](https://www.wechall.net/profile/gizmore),
