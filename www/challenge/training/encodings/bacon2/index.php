@@ -46,7 +46,7 @@ function bacon2_to_stream($hidden)
 	$len = strlen($hidden);
 	for ($i = 0; $i < $len; $i++)
 	{
-		$c = ord($hidden{$i}) - $a;
+		$c = ord($hidden[$i]) - $a;
 		$back .= sprintf('%05d', decbin($c));
 	}
 	return $back;
@@ -71,11 +71,11 @@ function bacon2_encode(WC_Challenge $chall, $hidden)
 		}
 
 		# current char in carrier
-		$curr = $message{$pos};
+		$curr = $message[$pos];
 		if ($curr >= 'a' && $curr <= 'z')
 		{
 			# what char do we need
-			switch ($hiddenstream{$si})
+			switch ($hiddenstream[$si])
 			{
 				case '0':
 					if ($curr >= 'n') { # we need a 0 but fail

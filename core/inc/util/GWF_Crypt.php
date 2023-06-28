@@ -32,7 +32,7 @@ final class GWF_Crypt
 					$x = 1;
 				}
 			}
-			$back .= chr(ord($key{$k%$klen}) ^ ord($ciphertext{$i}) ^ $e);
+			$back .= chr(ord($key[$k%$klen]) ^ ord($ciphertext[$i]) ^ $e);
 		}
 		return $back;
 	}

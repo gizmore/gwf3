@@ -26,7 +26,7 @@ function noother_says_correct($number)
 	for ($i = 0; $i < strlen($number); $i++)
 	{ 
 		# Disallow all the digits!
-		$digit = ord($number{$i});
+		$digit = ord($number[$i]);
 		if ( ($digit >= $one) && ($digit <= $nine) )
 		{
 			# Aha, digit not allowed!

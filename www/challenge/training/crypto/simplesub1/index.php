@@ -56,7 +56,7 @@ function crypto_sub1_encrypt($pt, array $map)
 	$len = strlen($pt);
 	for ($i = 0; $i < $len; $i++)
 	{
-		$c = $pt{$i};
+		$c = $pt[$i];
 		if ($c === ' ') {
 			$ct .= ' ';
 		} else {

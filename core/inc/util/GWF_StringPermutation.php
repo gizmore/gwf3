@@ -14,7 +14,7 @@ final class GWF_StringPermutation extends GWF_Permutation
 		$back = '';
 		foreach ($a as $i)
 		{
-			$back .= $this->string{$i};
+			$back .= $this->string[$i];
 		}
 		return $back;
 	}

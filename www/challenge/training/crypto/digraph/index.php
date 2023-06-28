@@ -41,7 +41,7 @@ function crypto_dig1_encrypt($pt)
 	$len = strlen($pt);
 	for ($i = 0; $i < $len; $i++)
 	{
-		$c = $pt{$i};
+		$c = $pt[$i];
 		if ($c === ' ') {
 			$ct .= ' ';
 		} else {

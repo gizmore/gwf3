@@ -45,8 +45,8 @@ function crypto_trans1_encrypt($pt)
 	$ct = '';
 	while ($i < $len)
 	{
-		$ct .= $pt{$i+1};
-		$ct .= $pt{$i};
+		$ct .= $pt[$i+1];
+		$ct .= $pt[$i];
 		$i += 2;
 	}
 	return $ct;
