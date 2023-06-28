@@ -19,7 +19,7 @@ $message = '';
 $len = strlen($msg);
 for ($i = 0; $i < $len; $i++)
 {
-	$message .= ', '.ord($msg{$i});
+	$message .= ', '.ord($msg[$i]);
 }
 $message = substr($message, 2);
 

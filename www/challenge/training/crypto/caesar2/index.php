@@ -44,7 +44,7 @@ function crypto_caesar_2_encrypt($pt)
 	$len = strlen($pt);
 	for ($i = 0; $i < $len; $i++)
 	{
-		$c = $pt{$i};
+		$c = $pt[$i];
 		if ($c === ' ') {
 			$ct .= $c;
 		} else {

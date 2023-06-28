@@ -8,7 +8,7 @@ function hashgame_wc4_salt($len = 4)
 	$back = '';
 	for ($i = 0; $i < $len; $i++)
 	{
-		$back .= $alpha{rand(0, $max)};
+		$back .= $alpha[rand(0, $max)];
 	}
 	return $back;
 }

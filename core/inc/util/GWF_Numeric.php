@@ -162,7 +162,7 @@ final class GWF_Numeric
 		$len = strlen($n);
 		for ($i = 0; $i < $len; $i++)
 		{
-			$sum += (int)$n{$i};
+			$sum += (int)$n[$i];
 		}
 		return $sum;
 	}

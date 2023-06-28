@@ -15,7 +15,7 @@ $message = '';
 $len = strlen($msg);
 for ($i = 0; $i < $len; $i++)
 {
-	$message .= sprintf('%%%02X', ord($msg{$i}));
+	$message .= sprintf('%%%02X', ord($msg[$i]));
 }
 echo GWF_Box::box($chall->lang('info', array($message)), $chall->lang('title'));
 formSolutionbox($chall);

@@ -89,7 +89,7 @@ final class DOGMOD_PG extends Dog_Module
 		$len = strlen($message);
 		for ($i = 0; $i < $len; $i++)
 		{
-			$c = $message{$i};
+			$c = $message[$i];
 			if ($c >= 'a' && $c <= 'z')
 			{
 				$lower++;
