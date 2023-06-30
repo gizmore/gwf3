@@ -14,9 +14,10 @@ class GWF_Markdown
 
     public static function parse($markdown)
     {
-        $parser = self::getParser();
-        $marked = $parser->convert($markdown)->getContent();
-        return "<div class=\"marked-down\">{$marked}</div>";
+        return nl2br($markdown);
+//        $parser = self::getParser();
+//        $marked = $parser->convert($markdown)->getContent();
+//        return "<div class=\"marked-down\">{$marked}</div>";
     }
 
     private static function getParser()

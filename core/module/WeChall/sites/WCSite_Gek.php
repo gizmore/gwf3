@@ -22,7 +22,7 @@ class WCSite_Gek extends WC_Site
 		$onsitescore = intval($stats[2]);
 		$maxscore = intval($stats[3]);
 		$challssolved = intval($stats[4]);
-		$challcount = intval($stats[5])/2;
+		$challcount = intval($stats[5]);
 		$usercount = intval($stats[6]);
 		
 		if ($maxscore === 0 || $challcount === 0 || $usercount === 0) {
