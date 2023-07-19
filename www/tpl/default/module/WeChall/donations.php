@@ -72,13 +72,18 @@ Sum:    €  275,00
 Goal:   €  470,00
 </pre>
 
-<pre>Donations 2022:    3 donations
+    <pre>Donations 2022:    3 donations
 Sum:    €  203,37
 Goal:   €  480,00
 </pre>
 
-<pre>Totals:           33 donations
-Sum:    € 1758,37
+    <pre>Donations 2023:    1 donations
+Sum:    €  20,00
+Goal:   €  480,00
+</pre>
+
+    <pre>Totals:           34 donations
+Sum:    € 1778,37
 Goal:   € 1980,00
 </pre>
 
@@ -96,7 +101,6 @@ We currently have the following ca. expenses for WeChall:<br/>
 <li>- Domain costs €40/y</li>
 <li>- T-Shirts 2019 €100</li>
 <li>- T-Shirts 2020 €0</li>
-<li>- T-Shirts 2021 €0</li>
 <li>-&nbsp;</li>
 <li>- Wishlist; A better server for www only. Tear mailserver and maybe some challs apart. (Still valid)</li>
 <li>- Wishlist2; A re-setup of warchall.net with debian instead of gentoo (Now valid)</li></ul>
@@ -139,6 +143,8 @@ We currently have the following ca. expenses for WeChall:<br/>
 <li><span class="dodate">5.Jan.2022</span> – <em>&quot;gizmore: please, go and take a programming course, please&quot;</em> – <a class="donor" href="/profile/tehron">tehron</a></li>
 <li><span class="dodate">11.Jan.2022</span> – <em>&quot;2022 will be the year we ascend to a higher plane of existence and become space robots&quot;</em> – <a class="donor" href="/profile/bigheks">bigheks</a></li>
 <li><span class="dodate">6.Feb.2022</span> – <em>-</em> – <a class="donor" href="/profile/wechall" rel="nofollow">?????</a></li>
+<li>----- 2023 -----</li>
+<li><span class="dodate">18.06.2023</span> – <em>&quot;Sharing is Caring&quot;</em> – <a class="donor" href="/profile/occasus">occasus</a></li>
 </ol>
 </div>
 
