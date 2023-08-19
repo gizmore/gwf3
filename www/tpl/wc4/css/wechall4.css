@@ -887,3 +887,7 @@ footer.GWF_PB_foot div {
 #jump_address {
 	width: 320px;
 }
+
+textarea {
+	padding: 8px;
+}
