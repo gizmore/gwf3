@@ -65,11 +65,12 @@ final class Contact_Form extends GWF_Method
 
 	private function getAdminProfiles()
 	{
-		$admin = GWF_Group::getByName('admin')->getID();
+        $admin = GWF_Group::getByName('admin')->getID();
+        $staff = GWF_Group::getByName('staff')->getID();
 		$u = GWF_TABLE_PREFIX.'user';
 		$ug = GWF_TABLE_PREFIX.'usergroup';
 		$db = gdo_db();
-		$query = "SELECT user_name FROM {$ug} AS ug INNER JOIN {$u} AS u ON u.user_id=ug_userid WHERE ug_groupid={$admin}";
+		$query = "SELECT DISTINCT user_name FROM {$ug} AS ug INNER JOIN {$u} AS u ON u.user_id=ug_userid WHERE ug_groupid={$admin} OR ug_groupid={$staff}";
 		if (false === ($result = $db->queryRead($query))) {
 			return '';
 		}
