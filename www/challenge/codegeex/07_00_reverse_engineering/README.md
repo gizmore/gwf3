@@ -1,7 +1,7 @@
 # CGX#14: Amaze Me
 
-In this lesson we will use [IDA](https://hex-rays.com/ida-free/#download)
-and [x64debug](https://x64dbg.com/) to crack a windows application,
+In this lesson we will use [x64debug](https://x64dbg.com/)
+to crack a windows application [AmazeMe](https://github.com/gizmore/gwf3/tree/master/www/challenge/codegeex/07_00_reverse_engineering),
 designed to learn cracking and assembly.
 It has no anti debugger tricks, is slim and beautiful.
 The crackit was designed by bb. All cudos to him.
