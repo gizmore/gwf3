@@ -61,7 +61,7 @@ final class WeChall_SiteEdit extends GWF_Method
 			'form' => $form->templateY($this->module->lang('ft_edit_site', array($site->displayName()))),
 			'href_update_all' => $this->module->hrefDDOS($site->getVar('site_id')),
 			'href_update_one' => $this->module->getMethodURL('SiteUpdateUser', '&siteid='.$site->getVar('site_id')),
-			'form_logo' => $form_logo->templateY($this->module->lang('ft_edit_site_logo', $site->displayName())),
+			'form_logo' => $form_logo->templateY($this->module->lang('ft_edit_site_logo', array($site->displayName()))),
 			'form_site_admin' => $form_sitemin->templateX($this->module->lang('ft_edit_site_admin', array($site->displayName()))),
 			'href_edit_descr' => $this->module->getMethodURL('SiteDescr', '&siteid='.$site->getVar('site_id')),
 			'href_edit_boxes' => $this->module->getMethodURL('Warboxes', '&siteid='.$site->getVar('site_id')),
