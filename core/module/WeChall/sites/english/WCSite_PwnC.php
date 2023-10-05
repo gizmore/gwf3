@@ -9,9 +9,9 @@ class WCSite_PwnC extends WC_Site
         }
         list($onsitescore, $maxscore) = explode(':', trim($result, '"'));
         $onsitesrank = -1;
-        $challssolved = -1;
+        $challssolved = 0;
         $usercount = -1;
-        $challcount = -1;
+        $challcount = 0;
         if ($maxscore == 0)
         {
             return htmlDisplayError(WC_HTML::lang('err_response', array(GWF_HTML::display($result), $this->displayName())));
