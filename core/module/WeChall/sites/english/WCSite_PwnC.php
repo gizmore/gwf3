@@ -7,11 +7,7 @@ class WCSite_PwnC extends WC_Site
         {
             return htmlDisplayError(WC_HTML::lang('err_response', array(GWF_HTML::display($result), $this->displayName())));
         }
-        list($onsitescore, $maxscore) = explode(':', trim($result, '"'));
-        $onsitesrank = -1;
-        $challssolved = $onsitescore;
-        $usercount = -1;
-        $challcount = $maxscore;
+        list($onsitesrank, $onsitescore, $maxscore, $challssolved, $challcount, $usercount) = explode(':', trim($result, '"'));
         if ($maxscore == 0)
         {
             return htmlDisplayError(WC_HTML::lang('err_response', array(GWF_HTML::display($result), $this->displayName())));
