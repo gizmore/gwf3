@@ -9,7 +9,7 @@ class WCSite_PwnC extends WC_Site
         }
 
         $resp = json_decode($result, true);
-        if ($resp['error'])
+        if (isset($resp['error']))
         {
             return htmlDisplayError(WC_HTML::lang('err_response', array(GWF_HTML::display($resp['error']), $this->displayName())));
         }
