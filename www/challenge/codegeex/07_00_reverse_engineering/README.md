@@ -14,5 +14,4 @@ The crackit was designed by bb. All kudos to him.
  - Stack
  - Hex Dump
  - Kernel Space
- - User Space [Main function] 
- 
+ - User Space [Main function]
