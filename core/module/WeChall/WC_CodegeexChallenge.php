@@ -235,7 +235,7 @@ final class WC_CodegeexChallenge
 			{
 				$key++;
 			}
-			$back .= $this->getVideoBox($key, $title, $url);
+			$back .= $this->getVideoBox($key, $title . "-{$key}", $url);
 		}
 		return $back;
 	}
