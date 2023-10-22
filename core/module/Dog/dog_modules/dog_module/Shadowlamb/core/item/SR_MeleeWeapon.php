@@ -1,4 +1,6 @@
 <?php
+require_once 'SR_Weapon.php';
+
 abstract class SR_MeleeWeapon extends SR_Weapon
 {
 	public function displayType() { return 'Melee Weapon'; }

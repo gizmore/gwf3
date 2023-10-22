@@ -420,7 +420,7 @@ final class GWF_InstallFunctions
 	 * @param string $path the destination path
 	 * @param string $ext file extension (e.g. .php)
 	 */
-	public static function CopyExampleFile($file, $path, $ext='.php', &$output)
+	public static function CopyExampleFile($file, $path, $ext, &$output)
 	{
 		$copied = $path.$file.$ext;
 		if (false === Common::isFile($copied))
