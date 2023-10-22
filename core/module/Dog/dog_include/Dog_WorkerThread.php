@@ -258,7 +258,7 @@ final class Dog_WorkerThread
 		return true;
 	}
 
-	private function queue($type, Dog_Scope $scope, $message, $callback=null, array $args, array $includes)
+	private function queue($type, Dog_Scope $scope, $message, $callback, array $args, array $includes)
 	{
 		if (count($this->callbacks) >= $this->callb_max)
 		{
@@ -272,7 +272,7 @@ final class Dog_WorkerThread
 		}
 	}
 	
-	private function storeCallback($callback=null, array $args, Dog_Scope $scope)
+	private function storeCallback($callback, array $args, Dog_Scope $scope)
 	{
 		$this->callbacks[(string)($this->callbacnt++)] = array(time(), $scope, $callback, $args);
 		return true;
