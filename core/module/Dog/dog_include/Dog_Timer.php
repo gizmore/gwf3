@@ -46,7 +46,7 @@ final class Dog_Timer
 		$elapsed *= 1000000;
 		if ($elapsed < self::$MICROS)
 		{
-			usleep(self::$MICROS-$elapsed);
+			usleep(self::$MICROS-(int)$elapsed);
 		}
 		self::$LAST_TIME = microtime(true);
 	}
