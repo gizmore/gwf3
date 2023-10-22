@@ -1,4 +1,6 @@
 <?php
+require_once 'SR_Equipment.php';
+
 abstract class SR_Shield extends SR_Equipment
 {
 	public function displayType() { return 'Shield'; }
