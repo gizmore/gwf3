@@ -29,6 +29,7 @@ final class Dog_WorkerThread
 	private $max_msg_len = 65535;
 	
 	// Callbacks
+	private $callmxtim = 300;
 	private $callb_max = 3;   // max queued jobs at once
 	private $callbacks = array();
 	private $callbacnt = 1;
