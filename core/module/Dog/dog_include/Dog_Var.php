@@ -267,7 +267,7 @@ final class Dog_Var
 		return false;
 	}
 
-	public static function showVar(array $vars, $scope=NULL, $varname, $lang_handler, $help)
+	public static function showVar(array $vars, $varname, $lang_handler, $help, $scope=NULL)
 	{
 		if (false === ($var = self::getVar($vars, $varname, $scope)))
 		{
