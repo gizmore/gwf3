@@ -1,7 +1,7 @@
 <?php
 # uid::cid::solve_date::1st_look::viewcount::options::time_taken::tries::username::challname::solvecount
 # dog_wc_solvers('WC', '[WeChall]', 'https://www.wechall.net/index.php?mo=WeChall&me=API_ChallSolved&ajax=true&datestamp=%DATE%&no_session=true')
-function dog_wc_solvers($key, $name, $url, $channels=array(), $max_solvercount=100, $format)
+function dog_wc_solvers($key, $name, $url, $channels, $max_solvercount, $format)
 {
 	# Date we want to query
 	$lastdate = GWF_Settings::getSetting('DOG_SOLVERS_DATE_'.$key, '');

@@ -356,12 +356,15 @@ abstract class SR_Spell
 	/**
 	 * Do simple damage to a single target.
 	 * Loot the stuff, send messages.
+	 *
 	 * @param SR_Player $player
 	 * @param SR_Player $target
 	 * @param int $level
+	 * @param string $key
 	 * @param double $damage
+	 * @param string $arg4
 	 */
-	public function spellDamageSingleTarget(SR_Player $player, SR_Player $target, $level, $key='10000', $damage, $arg4='')
+	public function spellDamageSingleTarget(SR_Player $player, SR_Player $target, $level, $key, $damage, $arg4='')
 	{
 		$maxhp = $target->getMaxHP();
 		$damage = round($damage, 1);
