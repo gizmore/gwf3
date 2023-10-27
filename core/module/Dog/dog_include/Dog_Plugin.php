@@ -73,7 +73,7 @@ final class Dog_Plugin
 		if (  ($entry[0] !== '_') # disabled
 			&&(Common::substrUntil($entry, '_', NULL, true) === $name) )
 		{
-			self::$PLUGIN[] = new Dog_Plugin($name, substr(Common::substrFrom($entry, '_', NULL, true), 0, -4), $fullpath);
+			self::$PLUGIN[] = new Dog_Plugin($name, $fullpath, substr(Common::substrFrom($entry, '_', null, true), 0, -4));
 		}
 	}
 	#####################
@@ -91,7 +91,7 @@ final class Dog_Plugin
 	private $path;  # file to include
 	private $trans; # lang file
 	
-	public function __construct($name, $priv='Pb', $path)
+	public function __construct($name, $path, $priv='Pb')
 	{
 		$this->name = strtolower($name);
 		$this->priv = strtolower($priv[0]);
