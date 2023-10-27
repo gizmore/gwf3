@@ -234,11 +234,11 @@ final class Dog_Plugin
 	
 	public function showConfigVar($scope, $varname)
 	{
-		Dog_Var::showVar($this->getConfigVars(), $scope, $varname, $this, $this->lang("conf_$varname"));
+		Dog_Var::showVar($this->getConfigVars(), $varname, $this, $this->lang("conf_$varname"), $scope);
 	}
 	
 	public function setConfigVar($scope, $varname, $value)
 	{
-		Dog_Var::setVar($this->getConfigVars(), $scope, $varname, $value);
+		Dog_Var::setVar($this->getConfigVars(), $varname, $value, $scope);
 	}
 }

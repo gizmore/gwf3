@@ -319,6 +319,6 @@ abstract class Dog_Module
 
 	public function setConfigVar($scope, $varname, $value)
 	{
-		Dog_Var::setVar($this->getConfigVars(), $scope, $varname, $value);
+		Dog_Var::setVar($this->getConfigVars(), $varname, $value, $scope);
 	}
 }

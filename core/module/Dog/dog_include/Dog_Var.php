@@ -277,7 +277,7 @@ final class Dog_Var
 		Dog::rply('msg_showvar', array($lang_handler->getName(), $varname, $help, $var->getValue()));
 	}
 	
-	public static function setVar(array $vars, $scope=NULL, $varname, $value)
+	public static function setVar(array $vars, $varname, $value, $scope=NULL)
 	{
 		if (false === ($var = self::getVar($vars, $varname, $scope)))
 		{
