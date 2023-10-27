@@ -12,7 +12,9 @@ abstract class SR_NPCBase extends SR_Player
 	 * @var SR_Player
 	 */
 	protected $chat_partner = NULL;
-	
+
+	private $npc_classname;
+
 	public function hasFeelings() { return false; }
 	public function hasRottingItems() { return false; }
 	
