@@ -184,7 +184,7 @@ final class HangmanGame {
 			$this->sendOutput("That char doesn't match.");
 			$this->sendGrid();
 			$this->sendLivesLeft();
-			return false;
+			return;
 		}
 		
 		$newgrid = '';
