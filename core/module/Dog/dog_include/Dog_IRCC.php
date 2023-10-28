@@ -70,7 +70,9 @@ final class Dog_IRCC implements Dog_IRC
 	
 	public function hard_disconnect()
 	{
-		fclose($this->socket);
+		if (is_resource($this->socket)) {
+			fclose($this->socket);
+		}
 		$this->socket = NULL;
 	}
 	
@@ -124,7 +126,7 @@ final class Dog_IRCC implements Dog_IRC
 // 		$message = str_replace(array("\r", "\n"), '', trim($message));
 		$message = str_replace(array("\r", "\n"), '', $message);
 		Dog_Log::server($this->server, new Dog_IRCMsg($message), ' >>>> ');
-		if (!fwrite($this->socket, "$message\r\n"))
+		if (!is_resource($this->socket) || !fwrite($this->socket, "$message\r\n"))
 		{
 			$this->hard_disconnect();
 			return false;
