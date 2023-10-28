@@ -162,12 +162,12 @@ final class HangmanGame {
 		$char = mb_strtolower($char, 'utf8');
 		
 		$charset = 'üäößabcdefghijklmnopqrstuvwxyz';
-		if(!mb_stristr($charset, $char, null, 'utf8')) {
+		if(!mb_stristr($charset, $char, false, 'utf8')) {
 			$this->sendOutput('Charset is a-z.');
 			return;
 		}
 
-		if (false !== mb_strpos($this->guesses, $char, null, 'utf8'))
+		if (false !== mb_strpos($this->guesses, $char, 0, 'utf8'))
 		{
 			$this->sendOutput(sprintf('The char was already guessed, guessed chars: %s', $this->guesses));
 			return;
@@ -179,7 +179,7 @@ final class HangmanGame {
 		
 		$lowersol = mb_strtolower($this->solution, 'utf8');
 
-		if(!mb_stristr($lowersol, $char, null, 'utf8')) {
+		if(!mb_stristr($lowersol, $char, false, 'utf8')) {
 			if($this->subLife() === 'lose') return;
 			$this->sendOutput("That char doesn't match.");
 			$this->sendGrid();
