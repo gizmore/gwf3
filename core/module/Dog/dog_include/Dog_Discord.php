@@ -1,5 +1,6 @@
 <?php
 use Discord\Discord;
+use Discord\WebSockets\Intents;
 
 require_once 'Dog_Includes.php';
 
@@ -162,6 +163,7 @@ final class Dog_Discord implements Dog_IRC
             'token' => $this->nick->getPass(),
             'pmChannels' => true,
             'loadAllMembers' => true,
+            'intents' => Intents::getDefaultIntents() | Intents::GUILD_MEMBERS, // Enable the `GUILD_MEMBERS` intent
         ]);
         
         $this->discord->on('ready', [$this, 'ready']);
