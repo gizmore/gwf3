@@ -77,13 +77,14 @@ Sum:    €  203,37
 Goal:   €  480,00
 </pre>
 
-    <pre>Donations 2023:    1 donations
-Sum:    €  20,00
+    <pre>Donations 2023:    3 donations
+Sum:    €  134,00
 Goal:   €  480,00
 </pre>
 
-    <pre>Totals:           34 donations
-Sum:    € 1778,37
+
+    <pre>Totals:           36 donations
+Sum:    € 1892,37
 Goal:   € 1980,00
 </pre>
 
@@ -145,6 +146,8 @@ We currently have the following ca. expenses for WeChall:<br/>
 <li><span class="dodate">6.Feb.2022</span> – <em>-</em> – <a class="donor" href="/profile/wechall" rel="nofollow">?????</a></li>
 <li>----- 2023 -----</li>
 <li><span class="dodate">18.06.2023</span> – <em>&quot;Sharing is Caring&quot;</em> – <a class="donor" href="/profile/occasus">occasus</a></li>
+<li><span class="dodate">23.10.2023</span> – <em>&quot;Practice makes perfect!&quot;</em> – <a class="donor" href="/profile/b_itz">b_itz</a></li>
+<li><span class="dodate">30.10.2023</span> – <em>&quot;We are all one.&quot;</em> – <a class="donor" href="/profile/Hertz">Hertz</a></li>
 </ol>
 </div>
 
