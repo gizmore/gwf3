@@ -24,7 +24,7 @@ if (isset($_POST['answer']))
 }
 
 
-echo GWF_Box::box($chall->lang('info', $signs), $chall->lang('title'));
+echo GWF_Box::box($chall->lang('info', [$signs]), $chall->lang('title'));
 
 formSolutionbox($chall);
 
