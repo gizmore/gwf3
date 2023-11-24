@@ -108,7 +108,10 @@ final class GWF_Table
 
 	private static function getHeaders2(array $headers, $sortURL='', $key_by='by', $key_dir='dir')
 	{
-		$sortURL = htmlspecialchars($sortURL);
+		if ($sortURL === null) {
+			$sortURL = '';
+		}
+        $sortURL = htmlspecialchars($sortURL);
 
 		$allowed = array();
 		foreach ($headers as $header)
