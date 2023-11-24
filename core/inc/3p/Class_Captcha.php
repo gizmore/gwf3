@@ -312,9 +312,9 @@
             $aCharDetails = imageftbbox($iFontSize, $iAngle, $sCurrentFont, $this->sCode[$i], array());
             
             // calculate character starting coordinates
-            $iX = $this->iSpacing / 4 + $i * $this->iSpacing;
+            $iX = (int) ($this->iSpacing / 4 + $i * $this->iSpacing);
             $iCharHeight = $aCharDetails[2] - $aCharDetails[5];
-            $iY = $this->iHeight / 2 + $iCharHeight / 4; 
+            $iY = (int) ($this->iHeight / 2 + $iCharHeight / 4);
             
             // write text to image
             imagefttext($this->oImage, $iFontSize, $iAngle, $iX, $iY, $iTextColour, $sCurrentFont, $this->sCode[$i], array());
