@@ -77,14 +77,14 @@ Sum:    €  203,37
 Goal:   €  480,00
 </pre>
 
-    <pre>Donations 2023:    3 donations
-Sum:    €  134,00
+    <pre>Donations 2023:    4 donations
+Sum:    €  159,00
 Goal:   €  480,00
 </pre>
 
 
-    <pre>Totals:           36 donations
-Sum:    € 1892,37
+    <pre>Totals:           37 donations
+Sum:    € 1917,37
 Goal:   € 1980,00
 </pre>
 
@@ -148,6 +148,7 @@ We currently have the following ca. expenses for WeChall:<br/>
 <li><span class="dodate">18.06.2023</span> – <em>&quot;Sharing is Caring&quot;</em> – <a class="donor" href="/profile/occasus">occasus</a></li>
 <li><span class="dodate">23.10.2023</span> – <em>&quot;Practice makes perfect!&quot;</em> – <a class="donor" href="/profile/b_itz">b_itz</a></li>
 <li><span class="dodate">30.10.2023</span> – <em>&quot;We are all one.&quot;</em> – <a class="donor" href="/profile/Hertz">Hertz</a></li>
+<li><span class="dodate">26.11.2023</span> – <em style="text-decoration: underline;" title="tehron funnily blats livinskull with an epic PS3. (40 damage).">&quot;.slap livinskull&quot;</em> – <a class="donor" href="/profile/tehron">tehron</a></li>
 </ol>
 </div>
 
