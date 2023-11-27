@@ -35,7 +35,7 @@ class GWF_Captcha extends GWF_Method
 		$oVisualCaptcha = new PhpCaptcha($aFonts, $width, $height, $rgbcolor);
 		
 		# Output the captcha
-		die($oVisualCaptcha->Create('', Common::getGetString('chars', true)));
+		$oVisualCaptcha->Create('', Common::getGetString('chars', true));
 	}
 }
 ?>
