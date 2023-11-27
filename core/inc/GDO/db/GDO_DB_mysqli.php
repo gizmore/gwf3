@@ -32,6 +32,10 @@ final class GDO_DB_mysqli extends GDO_Database
 	
 	public function setupConnection()
 	{
+		// As of PHP 8.1.0, the default setting is MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT. Previously,
+		// it was MYSQLI_REPORT_OFF. (tehron)
+		mysqli_report(MYSQLI_REPORT_OFF);
+
 		$this->queryWrite("set session sql_mode='STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION'");
 	}
 	
