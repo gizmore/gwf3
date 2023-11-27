@@ -6,4 +6,4 @@ $lang = array(
 	),
 );
 $plugin = Dog::getPlugin();
-$plugin->reply($plugin->lang('out', time()));
+$plugin->reply($plugin->lang('out', [time()]));
