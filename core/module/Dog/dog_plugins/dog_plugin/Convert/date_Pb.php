@@ -1,27 +1,23 @@
 <?php
 $lang = array(
 	'en' => array(
-		'help' => 'Usage: %CMD% [<timestamp>] [<timezone>]. Convert a unix timestamp to a date.',
-		'conv' => 'Timestamp %s will be %s.',
+		'help' => 'Usage: %CMD% [<timestamp>]. Convert a unix timestamp to a date.',
+		'conv' => 'Timestamp %s is %s.',
 	),
 );
 
 $plugin = Dog::getPlugin();
 if ('' === ($message = $plugin->msg()))
 {
-	return $plugin->showHelp();
+	$plugin->showHelp();
+	return;
 }
 
-$args = explode(' ', $message);
-if (count($args) === 1)
+if (!is_numeric($message))
 {
-	$args[] = 'CET';
+	$plugin->showHelp();
+	return;
 }
 
-if (count($args) !== 2)
-{
-	return $plugin->showHelp();
-}
-
-$plugin->rply('conv', array($args[0], GWF_Time::displayTimestamp($args[0], Dog::getLangISO(), 'Invalid date')));
-?>
+$timestamp = (int) $message;
+$plugin->rply('conv', array($timestamp, GWF_Time::displayTimestamp($timestamp, Dog::getLangISO(), 'Invalid date')));
