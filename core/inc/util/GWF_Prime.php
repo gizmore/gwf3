@@ -190,7 +190,7 @@ final class GWF_Prime
 				$the_value = '1';
 				while ( ($the_value < $lo) || ($the_value) > $hi)
 				{
-					$the_value = gmp_strval(gmp_nextprime(gmp_random(2)));
+					$the_value = gmp_strval(gmp_nextprime(gmp_random_bits(32)));
 				}
 				return $the_value;
 		}
