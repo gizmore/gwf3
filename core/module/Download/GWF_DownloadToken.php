@@ -26,7 +26,7 @@ final class GWF_DownloadToken extends GDO
 		$uid = $user === false ? '0' : $user->getID();
 		$token = self::escape($token);
 		$now = GWF_Time::getDate(GWF_Date::LEN_SECOND);
-		return self::table(__CLASS__)->selectFirst("dlt_dlid=$id AND dlt_uid=$uid AND dlt_token='$token' AND dlt_expires>'$now'") !== false;
+        return self::table(__CLASS__)->selectVar('1', "dlt_dlid=$id AND dlt_uid=$uid AND dlt_token='$token' AND (dlt_expires='' OR dlt_expires>'$now')") === 1;
 	}
 	
 	public static function generateToken()
