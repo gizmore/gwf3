@@ -259,7 +259,7 @@ final class DOGMOD_Slapwarz extends Dog_Module
 		$user = GWF_TABLE_PREFIX.'dog_users';
 		$user2 = GWF_TABLE_PREFIX.'dog_users';
 		$lsh = GWF_TABLE_PREFIX.'dog_slap_history';
-		$limit = GDO::getLimit(1, Common::clamp($rank-1, 0));
+		$limit = GDO::getLimit(1, Common::clamp(((int)$rank)-1, 0));
 		$query = "SELECT u.user_name slapper, u2.user_name target, s.* FROM $lsh s JOIN $user u ON u.user_id=lsh_slapper JOIN $user2 u2 ON u2.user_id=lsh_target ORDER BY lsh_damage DESC $limit";
 		
 		echo $query.PHP_EOL;
