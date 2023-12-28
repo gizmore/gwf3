@@ -77,14 +77,14 @@ Sum:    €  203,37
 Goal:   €  480,00
 </pre>
 
-    <pre>Donations 2023:    6 donations
-Sum:    €  284,00
+    <pre>Donations 2023:    7 donations
+Sum:    €  299,00
 Goal:   €  480,00
 </pre>
 
 
-    <pre>Totals:           37 donations
-Sum:    € 2042,37
+    <pre>Totals:           40 donations
+Sum:    € 2057,37
 Goal:   € 1980,00
 </pre>
 
@@ -151,6 +151,7 @@ We currently have the following ca. expenses for WeChall:<br/>
 <li><span class="dodate">26.11.2023</span> – <em style="text-decoration: underline;" title="tehron funnily blats livinskull with an epic PS3. (40 damage).">&quot;.slap livinskull&quot;</em> – <a class="donor" href="/profile/tehron">tehron</a></li>
     <li><span class="dodate">12.12.2023</span> – <em>&quot;We will survive!&quot;</em> – <a class="donor" href="/profile/Xaav">Xaav</a></li>
     <li><span class="dodate">13.12.2023</span> – <em>&quot; --- &quot;</em> – ???</li>
+    <li><span class="dodate">27.12.2023</span> – <em>&quot;Thank you!&quot;</em> – <a class="donor" href="/profile/drworm">drworm</a></li>
 </ol>
 </div>
 
