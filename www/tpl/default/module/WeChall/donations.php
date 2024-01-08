@@ -41,10 +41,15 @@ You are reading it right, we are accepting donations now: <?= $tVars['paybutton'
 It would be awesome if some people would donate something, as the rent for <a href="http://warchall.net">box0</a> and <a href="https://www.wechall.net">box2</a> is due in nov/december.<br/>
 We will give an overview here of the donations, manually updated.<br/>
 <br/>
+Please note that many values are estimations, but almost correct. For PayPal donations we have to pay fees, so not the full amount listed here shows up in the account.<br/>
+I also do not have a separate account for WeChall or my company at the moment, so it's a bit of shuffeling.<br/>
+It might be possible i spent some of the too much donations in 2018 on food and servers i indicated *i* pay for them, but you did :).<br/>
+In case anyone needs webhosting, just contact us :)<br/>
+<br/>
 <b>New: </b> We are now accepting <a style="font-weight: bold;" onclick="$('#bitcoinqr').toggle();">bitcoins</a><br/>
 <br/>
-<div>xpub661MyMwAqRbcFBHXoGuBJso1o99RoyzSv1gr7NUCk9uprUMYW92ByBLzkq4dFvLTizGKuked1DWeYGnivQe8xQYEvpfeJXwpy17aDu21f4N</div>
-<div id="bitcoinqr" style="display:none;" onclick="$(this).hide()" ><img src="/img/default/bitcoin_donations.png"></div>
+<div style="word-break: break-all;">xpub661MyMwAqRbcFBHXoGuBJso1o99RoyzSv1gr7NUCk9uprUMYW92ByBLzkq4dFvLTizGKuked1DWeYGnivQe8xQYEvpfeJXwpy17aDu21f4N</div>
+<div id="bitcoinqr" style="display:none;" onclick="$(this).hide()" ><img alt="Bitcoin QR-Code" src="/img/default/bitcoin_donations.png"></div>
 </div>
 <div class="box">
 <pre>Donations 2017:    7 donations
@@ -72,20 +77,24 @@ Sum:    €  275,00
 Goal:   €  470,00
 </pre>
 
-    <pre>Donations 2022:    3 donations
+<pre>Donations 2022:    3 donations
 Sum:    €  203,37
 Goal:   €  480,00
 </pre>
 
-    <pre>Donations 2023:    7 donations
+<pre>Donations 2023:    7 donations
 Sum:    €  299,00
 Goal:   €  480,00
 </pre>
 
+<pre>Donations 2024:    1 donation
+Sum:    €  500,00
+Goal:   €  680,00
+</pre>
 
-    <pre>Totals:           40 donations
-Sum:    € 2057,37
-Goal:   € 1980,00
+<pre>Totals:           41 donations
+Sum:    € 2557,37
+Goal:   € 2660,00
 </pre>
 
 </div>
@@ -93,18 +102,15 @@ Goal:   € 1980,00
 <div class="box">
 We currently have the following ca. expenses for WeChall:<br/>
 <ul>
-<li>- Box0 (warchall.net) €100/y</li>
+<li>- Box0 (warchall.net) €120/y</li>
 <li>- Box1 (---secret---) €0/y (gizmore pays)</li>
 <li>- Box2 (wechall.net) €120/y</li>
-<li>- Box3 (irc.wechall.net) €100/y</li>
-<li>- Box4 (wanda.gizmore.org) €0/y (gizmore pays)</li>
-<li>- Box5 (tbs.wechall.net) €120/y</li>
-<li>- Domain costs €40/y</li>
-<li>- T-Shirts 2019 €100</li>
-<li>- T-Shirts 2020 €0</li>
+<li>- Box3 (irc.wechall.net) €120/y</li>
+<li>- Box4 (wanda.gizmore.org, IRC2, git) €120/y</li>
+<li>- Box5 (tbs.wechall.net, ESL) €150/y</li>
+<li>- Domain costs €50/y</li>
 <li>-&nbsp;</li>
-<li>- Wishlist; A better server for www only. Tear mailserver and maybe some challs apart. (Still valid)</li>
-<li>- Wishlist2; A re-setup of warchall.net with debian instead of gentoo (Now valid)</li></ul>
+<li>- Wishlist; A better server for www only. Tear mailserver and maybe some challs apart.</li>
 </div>
 
 <hr>
@@ -145,13 +151,15 @@ We currently have the following ca. expenses for WeChall:<br/>
 <li><span class="dodate">11.Jan.2022</span> – <em>&quot;2022 will be the year we ascend to a higher plane of existence and become space robots&quot;</em> – <a class="donor" href="/profile/bigheks">bigheks</a></li>
 <li><span class="dodate">6.Feb.2022</span> – <em>-</em> – <a class="donor" href="/profile/wechall" rel="nofollow">?????</a></li>
 <li>----- 2023 -----</li>
-<li><span class="dodate">18.06.2023</span> – <em>&quot;Sharing is Caring&quot;</em> – <a class="donor" href="/profile/occasus">occasus</a></li>
-<li><span class="dodate">23.10.2023</span> – <em>&quot;Practice makes perfect!&quot;</em> – <a class="donor" href="/profile/b_itz">b_itz</a></li>
-<li><span class="dodate">30.10.2023</span> – <em>&quot;We are all one.&quot;</em> – <a class="donor" href="/profile/Hertz">Hertz</a></li>
-<li><span class="dodate">26.11.2023</span> – <em style="text-decoration: underline;" title="tehron funnily blats livinskull with an epic PS3. (40 damage).">&quot;.slap livinskull&quot;</em> – <a class="donor" href="/profile/tehron">tehron</a></li>
-    <li><span class="dodate">12.12.2023</span> – <em>&quot;We will survive!&quot;</em> – <a class="donor" href="/profile/Xaav">Xaav</a></li>
-    <li><span class="dodate">13.12.2023</span> – <em>&quot; --- &quot;</em> – ???</li>
-    <li><span class="dodate">27.12.2023</span> – <em>&quot;Thank you!&quot;</em> – <a class="donor" href="/profile/drworm">drworm</a></li>
+<li><span class="dodate">18.Jun.2023</span> – <em>&quot;Sharing is Caring&quot;</em> – <a class="donor" href="/profile/occasus">occasus</a></li>
+<li><span class="dodate">23.Oct.2023</span> – <em>&quot;Practice makes perfect!&quot;</em> – <a class="donor" href="/profile/b_itz">b_itz</a></li>
+<li><span class="dodate">30.Oct.2023</span> – <em>&quot;We are all one.&quot;</em> – <a class="donor" href="/profile/Hertz">Hertz</a></li>
+<li><span class="dodate">26.Nov.2023</span> – <em style="text-decoration: underline;" title="tehron funnily blats livinskull with an epic PS3. (40 damage).">&quot;.slap livinskull&quot;</em> – <a class="donor" href="/profile/tehron">tehron</a></li>
+<li><span class="dodate">12.Dec.2023</span> – <em>&quot;We will survive!&quot;</em> – <a class="donor" href="/profile/Xaav">Xaav</a></li>
+<li><span class="dodate">13.Dec.2023</span> – <em>&quot; --- &quot;</em> – ???</li>
+<li><span class="dodate">27.Dec.2023</span> – <em>&quot;Thank you!&quot;</em> – <a class="donor" href="/profile/drworm">drworm</a></li>
+<li>----- 2024 -----</li>
+<li><span class="dodate">5.Jan.2024</span> – <em>&quot;Gizmore, please fix those sum/goal amounts -- they don't add up!&quot;</em> – <a class="donor" href="/profile/FranzT">FranzT</a></li>
 </ol>
 </div>
 
