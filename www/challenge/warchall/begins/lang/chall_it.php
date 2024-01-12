@@ -23,7 +23,7 @@ $lang = array(
 	'btn_submit' => 'Vai!',
 
 	'msg_creating_account' =>
-		'Ok utente, in circa un minuto dovresti essere in grado di effettuare il login tramite <b>ssh -p 19198 %s@warchall.net</b><br/>Usa la password che hai inserito nel form.<br/>Buon divertimento!<br/>Il team di WarChall',
+		'Ok utente, in circa un minuto dovresti essere in grado di effettuare il login tramite <b>ssh -p 19198 %s@warchall.net</b><br/>Usa la password che hai inserito nel form. Tieni presente che il tuo nome utente è stato convertito in lettere minuscole.<br/>Buon divertimento!<br/>Il team di WarChall',
 	
 	'ft_setup_email' => 'Attiva invio log tramite E-Mail',
 	'btn_setmail' => 'Cambia',

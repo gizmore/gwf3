@@ -23,7 +23,7 @@ $lang = array(
 	'btn_submit' => 'Go!',
 
 	'msg_creating_account' =>
-		'Ok Challenger, in about 1 minute you should be able to login via <b>ssh -p 19198 %s@warchall.net</b><br/>Use the password you entered in the form.<br/><br/>Happy Challenging!<br/>The warchall team',
+		'Ok Challenger, in about 1 minute you should be able to login via <b>ssh -p 19198 %s@warchall.net</b><br/>Use the password you entered in the form. Note that your username is converted to lowercase.<br/><br/>Happy Challenging!<br/>The warchall team',
 	
 	'ft_setup_email' => 'Enable logfile EMails',
 	'btn_setmail' => 'Toggle',
