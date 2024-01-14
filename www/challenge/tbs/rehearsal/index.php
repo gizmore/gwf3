@@ -14,7 +14,7 @@ $chall->showHeader();
 $chall->onCheckSolution();
 $user = GWF_User::getStaticOrGuest();
 $name = $user->isGuest() ? 'hacker' : $user->displayUsername();
-$linkA = sprintf('<a href="%s/downloads">%s</a>', GWF_WEB_ROOT, $chall->lang('link_one'));
+$linkA = sprintf('<a href="%sdownloads">%s</a>', GWF_WEB_ROOT, $chall->lang('link_one'));
 $yt = 'https://www.youtube.com/watch?v=2SZ86fI3CLU';
 $linkB = sprintf('<a href="%s">%s</a>', $yt, $chall->lang('link_two'));
 $info = $chall->lang('info', array($name, $linkA, $linkB));
