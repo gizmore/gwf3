@@ -14,6 +14,6 @@ $url = 'challenge/tbs/rehearsal/index.php';
 $creators = 'gizmore,theAnswer';
 $tags = 'CGX,Stegano';
 
-WC_Challenge::installChallenge($title, $solution, $score, $url, $creators, $tags, true);
+WC_Challenge::installChallenge($title, $solution, $score, $url, $creators, $tags, true, WC_Challenge::CHALL_CASE_I);
 
 require_once('challenge/html_foot.php');
