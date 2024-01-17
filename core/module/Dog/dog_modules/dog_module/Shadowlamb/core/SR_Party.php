@@ -1531,13 +1531,15 @@ final class SR_Party extends GDO
 // 				return sprintf("{$b}going{$b} to %s. %s remaining.", $this->getLocation(), $this->displayETA());
 			
 			case 'hunt':
-                $display_target = SR_Player::getByID($this->getTarget())->displayName();
+//                $display_target = SR_Player::getByID($this->getTarget())->displayName();
+                $display_target = $this->getTarget();
 				return $player->lang('pa_hunt', array($display_target, $display_eta));
 // 				return sprintf("{$b}hunting{$b} %s. %s remaining.", $this->getTarget(), $this->displayETA());
 			
 			case 'hijack':
-                $display_target = SR_Player::getByID($this->getTarget())->displayName();
-				return $player->lang('pa_hijack', array($this->getTarget(), $this->getLocation(), $display_eta));
+//                $display_target = SR_Player::getByID($this->getTarget())->displayName();
+                $display_target = $this->getTarget();
+				return $player->lang('pa_hijack', array($display_target, $this->getLocation(), $display_eta));
 // 				return sprintf("{$b}hijacking{$b} %s at %s. %s remaining.", $this->getTarget(), $this->getLocation(), $this->displayETA());
 			
 			default:
