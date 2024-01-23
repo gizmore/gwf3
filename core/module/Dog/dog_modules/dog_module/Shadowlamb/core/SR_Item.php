@@ -322,12 +322,15 @@ class SR_Item extends GDO
 	public function initModifiersB()
 	{
 		$modifiers = array();
-		foreach (explode(',', $this->getVar('sr4it_modifiers')) as $data)
-		{
-			if ($data !== '')
+		$modstr = $this->getVar('sr4it_modifiers');
+		if ($modstr !== null) {
+			foreach (explode(',', $modstr) as $data)
 			{
-				$data = explode(':', $data);
-				$modifiers[$data[0]] = (float)$data[1];
+				if ($data !== '')
+				{
+					$data = explode(':', $data);
+					$modifiers[$data[0]] = (float)$data[1];
+				}
 			}
 		}
 		$this->modifiers = count($modifiers) ? $modifiers : NULL;
