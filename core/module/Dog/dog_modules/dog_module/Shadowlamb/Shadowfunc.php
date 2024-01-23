@@ -275,7 +275,7 @@ final class Shadowfunc
 		$p = pow(10, $precision);
 		$min *= $p;
 		$max *= $p;
-		$back = round(rand($min, $max) / $p, $precision);
+		$back = round(rand((int) $min, (int) $max) / $p, $precision);
 // 		echo "diceFloat($min, $max) = $back\n";
 		return $back;
 	}
@@ -305,7 +305,7 @@ final class Shadowfunc
 	{
 		$defense = Common::clamp($defense, 1);
 		$dicesB = $dices / $defense;
-		$hits = rand(0, $dicesB);
+		$hits = rand(0, (int) $dicesB);
 		printf("Shadowfunc::dicePoolB(dices=%s, defense=%s) === %s hits\n", $dices, $defense, $hits);
 		return $hits;
 	}
