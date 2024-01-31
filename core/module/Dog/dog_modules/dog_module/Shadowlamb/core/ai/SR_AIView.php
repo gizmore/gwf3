@@ -27,7 +27,7 @@ final class SR_AIView implements ArrayAccess
 //		}
 //	}
 	
-	public function offsetExists($offset)
+	public function offsetExists(mixed $offset): bool
 	{
 		if (isset($this->childs[$offset]))
 		{
@@ -43,18 +43,18 @@ final class SR_AIView implements ArrayAccess
 		return true;
 	}
 	
-	public function offsetGet($offset)
+	public function offsetGet(mixed $offset): mixed
 	{
 		
 		return $this->vars[$offset];
 	}
 	
-	public function offsetSet($offset, $value)
+	public function offsetSet(mixed $offset, mixed $value): void
 	{
 		$this->vars[$offset] = $value;
 	}
 	
-	public function offsetUnset($offset)
+	public function offsetUnset(mixed $offset): void
 	{
 		unset($this->vars[$offset]);
 	}
