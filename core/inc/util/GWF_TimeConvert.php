@@ -73,7 +73,7 @@ final class GWF_TimeConvert
 		if ($units === true) {
 			$units = array('s' => 60,'m' => 60,'h' => 24,'d' => 365,'y' => 1000000);
 		}
-		return self::humanDurationRaw($duration, $nUnits, $units);
+		return self::humanDurationRaw($duration, $units, $nUnits);
 	}
 
 	public static function humanDurationISO($iso, $duration, $nUnits=2)
@@ -89,10 +89,10 @@ final class GWF_TimeConvert
 				GWF_HTML::langISO($iso, 'unit_year_s') => 1000000,
 			);
 		}
-		return self::humanDurationRaw($duration, $nUnits, $cache[$iso]);
+		return self::humanDurationRaw($duration, $cache[$iso], $nUnits);
 	}
 
-	public static function humanDurationRaw($duration, $nUnits=2, array $units)
+	public static function humanDurationRaw($duration, array $units, $nUnits=2)
 	{
 		$calced = array();
 		foreach ($units as $text => $mod)
