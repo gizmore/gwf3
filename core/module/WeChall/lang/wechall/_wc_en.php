@@ -355,6 +355,7 @@ $lang = array(
 	'msg_chall_edited' => 'The challenge has been edited.',
 	'msg_chall_installed' => 'The %s Challenge has been installed and is ready to get solved :)',
 	'msg_chall_deleted' => 'The challenge has been deleted.',
+	'msg_chall_mark_solved' => 'The challenge has been marked as solved.',
 	'msg_cached_ctags' => 'The challenge Tag-Cloud has been re-populated.',
 	'msg_site_added' => 'A new challenge site has been added.',
 	'msg_site_edited' => 'The Site %s has been edited.',
