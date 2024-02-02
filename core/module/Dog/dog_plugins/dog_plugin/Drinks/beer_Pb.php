@@ -3,9 +3,9 @@ $lang = array(
 	'en' => array(
 		'help' => 'Usage: %CMD% [<user>]. Give or grab a beer to cool the codemonkeys down.',
 		'give1' => 'passes 1 of %d bottles of cold beer around to %s.',
-		'steal1' => 'passes 1 of %d bottles of cold beer around to %s, but gizmore steals it!',
+		'steal1' => 'passes 1 of %d bottles of cold beer around to %s, but %s dropped it!',
 		'give2' => 'and %s pass 1 of %d bottles of cold beer around to %s.',
-		'steal2' => 'and %s pass 1 of %d bottles of cold beer around to %s, but gizmore steals it!',
+		'steal2' => 'and %s pass 1 of %d bottles of cold beer around to %s, but %s dropped it!',
 		'ouch0' => 'Is there any .vodka left?',
 		'ouch1' => 'Alert, Emergency Log!, Critical Error! help!!!!! Beer is empty, repeat. BEER IS EMPTY!',
 		'ouch2' => 'I have no beer left.',
@@ -31,9 +31,9 @@ $key = ($unam === 'gizmore') || rand(0,3) ? 'give' : 'steal';
 $args = $plugin->argv();
 if ( (count($args) === 1) && ( $args[0] != '') && ( $args[0] != $unam) )
 {
-	$plugin->rplyAction($key.'2', array($user->displayName(), $DOTBEERLEFT, $args[0]));
+	$plugin->rplyAction($key.'2', array($user->displayName(), $DOTBEERLEFT, $args[0], Dog::getNickname()));
 }
 else 
 {
-	$plugin->rplyAction($key.'1', array($DOTBEERLEFT, $user->displayName()));
+	$plugin->rplyAction($key.'1', array($DOTBEERLEFT, $user->displayName(), Dog::getNickname()));
 }
