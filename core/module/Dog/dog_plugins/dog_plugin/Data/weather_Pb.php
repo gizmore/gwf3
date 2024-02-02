@@ -1,10 +1,8 @@
 <?php
 $lang = array(
 	'en' => array(
-		'help' => 'Usage: %CMD% <some location>. Get weather information from google.',
-		'err_google' => 'Cannot connect to google.',
-		'err_decode' => 'An error occurred in the response processor.',
-		'weather' => "Wetter in \x02%s\x02: %s, %s°C, %s.",
+		'help' => 'Usage: %CMD% <some location>. Get weather information by location name or zipcode. Provided by wttr.in.',
+		'err_fetch' => 'Cannot connect to weather provider.',
 	),
 );
 $plugin = Dog::getPlugin();
@@ -16,29 +14,12 @@ if ($msg === '')
 	return $plugin->showHelp();
 }
 
-return $plugin->rply('NOT WORKING');
+$url = "https://wttr.in/" . urlencode($msg) . '?format=3';
+$response = GWF_HTTP::getFromURL($url);
 
-$url = "http://www.google.com/ig/api?weather=".urlencode($msg)."&hl=".Dog::getLangISO();
-
-if (false === ($file = GWF_HTTP::getFromURL($url)))
+if ($response === false)
 {
-	return $plugin->rply('err_google');
+	return $plugin->rply('err_fetch');
 }
 
-try
-{
-	$file = utf8_encode($file);
-	if (false !== ($xml = simplexml_load_string($file)))
-	{
-		$temp = $xml->weather->forecast_information->city;
-		$location = $xml->weather->forecast_information->city->attributes()->data;
-		$condition = $xml->weather->current_conditions->condition->attributes()->data;
-		$temp_c = $xml->weather->current_conditions->temp_c->attributes()->data;
-		$humidity = $xml->weather->current_conditions->humidity->attributes()->data;
-		$plugin->rply('weather', array($location, $condition, $temp_c, $humidity));
-	}
-}
-catch (Exception $e)
-{
-}
-$plugin->rply('err_decode');
+$plugin->reply(urldecode($response));
