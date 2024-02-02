@@ -9,7 +9,7 @@ if (!GWF_User::isAdminS())
 {
 	return htmlSendToLogin('Better be admin!');
 }
-$score = 1;
+$score = 2;
 $url = 'challenge/tbs/rehearsal/index.php';
 $creators = 'gizmore,theAnswer';
 $tags = 'CGX,Stegano';

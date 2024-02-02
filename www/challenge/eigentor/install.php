@@ -8,7 +8,7 @@ if (!GWF_User::isAdminS())
 {
     return htmlSendToLogin('Better be admin!');
 }
-$score = 3;
+$score = 2;
 $solution = false;
 $url = 'challenge/eigentor/index.php';
 $creators = 'gizmore';
