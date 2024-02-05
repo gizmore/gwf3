@@ -26,7 +26,7 @@ if (false === strpos('&#+!', $argv[0][0]))
 		{
 			$mode = $modes[$i];
 
-			if (false !== strpos('Oohv', $mode)) # member status
+			if (false !== strpos('aqOohv', $mode)) # member status
                         {
 				if ($arg < $argc)
 				{
