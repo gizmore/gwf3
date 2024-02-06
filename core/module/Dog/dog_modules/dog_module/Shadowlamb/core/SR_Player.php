@@ -2000,6 +2000,9 @@ class SR_Player extends GDO
 			return true;
 		}
 		
+		// assemble givelist before giving items, because stackable items' amount might be modified by giving them! (tehron)
+		$givelist = $this->getGiveItemList($items);
+
 		foreach ($items as $item)
 		{
 			$item instanceof SR_Item;
@@ -2017,7 +2020,6 @@ class SR_Player extends GDO
 // 		}
 		
 		# Always sync clients
-		$givelist = $this->getGiveItemList($items);
 		if ($from === '')
 		{
 			return $this->msg('5273', array($givelist));
