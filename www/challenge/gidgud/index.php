@@ -15,6 +15,11 @@ $sid = GWF_Session::getSessSID();
 $hash = md5($sid.$secret.$secret.$sid);
 $url = 'https://gidgud.wechall.net?sessid=' . $sid . '&sessh=' . $hash;
 
+if ($sid == 0)
+{
+    echo GWF_HTML::error($chall->getTitle(), $chall->lang('err_sessid'));
+}
+
 if (isset($_POST['answer']))
 {
     if (false !== ($error = $chall->isAnswerBlocked(GWF_User::getStaticOrGuest())))

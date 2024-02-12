@@ -15,5 +15,6 @@ Good Luck!<br/>
 <br/>
 Note: The challenge will be bound to your WeChall session id.<br/>',
 
+    'err_sessid' => 'You have no session on wechall.net yet, please refresh this page.',
     'err_wrong' => 'With that info we cannot win anything.',
 );
