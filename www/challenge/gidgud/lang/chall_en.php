@@ -4,7 +4,7 @@ $lang = array(
 	'info' => '
 Hello %s,<br/>
 <br/>
-There is a tender for the management and creation of a website infrastructure for a university in Brunswick, Germany.<br/>
+There is a contest for the management and creation of a website infrastructure for a university in Brunswick, Germany.<br/>
 To increase our chances, it would be great if we could hack the old website to show what we can do.<br/>
 To prove that you are successful, log in as an admin.<br/>
 <br/>
