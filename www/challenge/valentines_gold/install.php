@@ -9,11 +9,11 @@ if (!GWF_User::isAdminS())
 {
 	return htmlSendToLogin('Better be admin!');
 }
-$score = 4;
+$score = 5;
 $url = 'challenge/valentines_gold/index.php';
 $creators = 'gizmore,tehron';
 $tags = 'Math,Coding';
 
-WC_Challenge::installChallenge($title, $solution, $score, $url, $creators, $tags, true);
+WC_Challenge::installChallenge($title, $solution, $score, $url, $creators, $tags, true, WC_Challenge::CHALL_CASE_I);
 
 require_once('challenge/html_foot.php');

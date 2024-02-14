@@ -11,11 +11,11 @@ The %1$s\'s number!<br/>
 The %1$s\'s number is the number of combinations to build an even number out of two prime summands.<br/>
 Example:<br/>
 <br/>
-%1$s(4) = 1 (2+2)<br/>
-%1$s(6) = 1 (3+3)<br/>
-%1$s(8) = 1 (3+5)<br/>
-%1$s(10) = 2 (3+7, 5+5)<br/>
-%1$s(12) = 1 (5+7)<br/>
+%1$ss_number(4) = 1 (2+2)<br/>
+%1$ss_number(6) = 1 (3+3)<br/>
+%1$ss_number(8) = 1 (3+5)<br/>
+%1$ss_number(10) = 2 (3+7, 5+5)<br/>
+%1$ss_number(12) = 1 (5+7)<br/>
 <br/>
 You analyze a bigger set of numbers to work on your proof...<br/>
 <br/>
