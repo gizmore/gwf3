@@ -243,7 +243,7 @@ final class WeChall_SiteEdit extends GWF_Method
 	### Validators ###
 	##################
 	public function validate_site_name(Module_WeChall $m, $arg) { return GWF_Validator::validateString($m, 'site_name', $arg, 3, 32); }
-	public function validate_site_classname(Module_WeChall $m, $arg) { return GWF_Validator::validateClassname($m, 'site_classname', $arg, 2, 24); }
+	public function validate_site_classname(Module_WeChall $m, $arg) { return GWF_Validator::validateString($m, 'site_classname', $arg, 2, 24); }
 	public function validate_site_basescore(Module_WeChall $m, $arg) {  return GWF_Validator::validateInt($m, 'site_basescore', $arg, 0, 20000); }
 	public function validate_site_usercount(Module_WeChall $m, $arg) {  return GWF_Validator::validateInt($m, 'site_usercount', $arg, 0); }
 	public function validate_site_challcount(Module_WeChall $m, $arg) {  return GWF_Validator::validateInt($m, 'site_challcount', $arg, 0); }
