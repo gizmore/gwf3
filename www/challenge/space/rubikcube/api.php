@@ -61,14 +61,14 @@ final class CubeChallenge
 		$cube = $this->getCube();
 		if (!$cube) {
 			$this->setCube(self::createRandom($moves), 0);
-			return $this->chall->lang('level2', $moves);
+			return $this->chall->lang('level2', [$moves]);
 		}
 		if (false === ($msg = $this->doMove($cube, $moves))) {
 			$this->resetCube();
 			$this->setCube(self::createRandom($moves), 0);
-			return $this->chall->lang('level2_moves', $moves) . $this->_resetScript();
+			return $this->chall->lang('level2_moves', [$moves]) . $this->_resetScript();
 		}
-		return $msg ? $msg : $this->chall->lang('level2', $moves);
+		return $msg ? $msg : $this->chall->lang('level2', [$moves]);
 	}
 
 	public function doMove($cube, $max=0)
