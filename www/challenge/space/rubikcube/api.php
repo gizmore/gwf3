@@ -33,7 +33,7 @@ final class CubeChallenge
 		}
 		$moves = $cube->getMoves();
 		if ($moves > 0) {
-			$msg .= ' ' . $chall->lang('moves', $moves);
+			$msg .= ' ' . $chall->lang('moves', [$moves]);
 		}
 		return $msg;
 	}
