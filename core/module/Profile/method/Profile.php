@@ -24,17 +24,17 @@ final class Profile_Profile extends GWF_Method
 		return $this->profile($user);
 	}
 
-    public function getOGImage()
-    {
-        if ($user = GWF_User::getByName(Common::getGet('username')))
-        {
-            if ($user->hasAvatar())
-            {
-                return Common::getProtocol() . "://" . GWF_DOMAIN . $user->getAvatarURL();
-            }
-        }
-        return parent::getOGImage();
-    }
+//    public function getOGImage()
+//    {
+//        if ($user = GWF_User::getByName(Common::getGet('username')))
+//        {
+//            if ($user->hasAvatar())
+//            {
+//                return Common::getProtocol() . "://" . GWF_DOMAIN . $user->getAvatarURL();
+//            }
+//        }
+//        return parent::getOGImage();
+//    }
 
     private function profile(GWF_User $user)
 	{
