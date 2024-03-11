@@ -217,7 +217,7 @@ final class GWF_Website
 	public static function displayMeta()
 	{
 		$back = '';
-		$mode = array('name', 'http-equiv');
+		$mode = array('name', 'http-equiv', 'property');
 		foreach (self::$_meta as $meta)
 		{
 			if (!is_array($meta))

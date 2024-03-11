@@ -324,6 +324,8 @@ class GWF_Module extends GDO
 			return GWF_HTML::err('ERR_METHOD_MISSING', array(htmlspecialchars($methodname), $this->getName()));
 		}
 
+        $method->setupOGImage();
+
 		# User has Permissions?
 		if (false === $method->hasPermission())
 		{

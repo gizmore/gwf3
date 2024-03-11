@@ -23,8 +23,20 @@ final class Profile_Profile extends GWF_Method
 
 		return $this->profile($user);
 	}
-	
-	private function profile(GWF_User $user)
+
+    public function getOGImage()
+    {
+        if ($user = GWF_User::getByName(Common::getGet('username')))
+        {
+            if ($user->hasAvatar())
+            {
+                return Common::getProtocol() . "://" . GWF_DOMAIN . $user->getAvatarURL();
+            }
+        }
+        return parent::getOGImage();
+    }
+
+    private function profile(GWF_User $user)
 	{
 		if (false === ($profile = GWF_Profile::getProfile($user->getID()))) {
 			return GWF_HTML::err('ERR_UNKNOWN_USER');

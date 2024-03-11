@@ -1,4 +1,5 @@
 <?php
+
 /**
  * A method called via index.php?mo=Module&me=Method.
  * The methods classname name has to be Module_Method.
@@ -156,5 +157,23 @@ abstract class GWF_Method
 //		);
 		return false;
 	}
+
+    public function setupOGImage()
+    {
+        if ($image = $this->getOGImage())
+        {
+            GWF_Website::addMeta(['og:image', $image, 2]);
+        }
+    }
+
+    public function getOGImage()
+    {
+        if (defined('GWF_OG_IMAGE'))
+        {
+            $path = constant('GWF_OG_IMAGE');
+            return sprintf('%s://%s%s%s', Common::getProtocol(), GWF_DOMAIN, GWF_WEB_ROOT_NO_LANG, $path);
+        }
+    }
+
 }
 
