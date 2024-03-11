@@ -162,7 +162,7 @@ abstract class GWF_Method
     {
         if ($image = $this->getOGImage())
         {
-            GWF_Website::addMeta(['og:image', $image, 2]);
+            GWF_Website::addMeta(array('og:image', $image, 2));
         }
     }
 
