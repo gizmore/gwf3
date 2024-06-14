@@ -1,8 +1,8 @@
 <?php
 final class Delaware extends SR_City
 {
-	const TIME_TO_CHICAGO = 600;
-	const TIME_TO_VEGAS = 1200;
+	const TIME_TO_CHICAGO = 400;
+	const TIME_TO_VEGAS = 900;
 	
 	public function getImportNPCS()
 	{
@@ -55,4 +55,3 @@ final class Delaware extends SR_City
 		}
 	}
 }
-?>
