@@ -295,6 +295,7 @@ final class WeChall_LinkedSites extends GWF_Method
 			'regat_langid' => $site->getLangID(),
 			'regat_tagbits' => $site->getTagBits(),
 			'regat_linkdate' => GWF_Time::getDate(GWF_Date::LEN_DAY),
+			'regat_lastdate' => GWF_Time::getDate(GWF_Date::LEN_DAY),
 		));
 		if (false === ($regat->insert()))
 		{
