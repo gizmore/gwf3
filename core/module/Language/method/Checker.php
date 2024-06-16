@@ -344,10 +344,10 @@ final class Language_Checker extends GWF_Method
 		}
 	}
 	
-	public function error($title, $targs=NULL, $key, $kargs=NULL, $log=true) {
+	public function error($title, $targs, $key, $kargs=NULL, $log=true) {
 		return GWF_HTML::error($this->module->lang($title, $targs), $this->module->lang($key, $kargs), $log);
 	}
-	public function message($title, $targs=NULL, $key, $kargs=NULL, $log=true) {
+	public function message($title, $targs, $key, $kargs=NULL, $log=true) {
 		return GWF_HTML::message($this->module->lang($title, $targs), $this->module->lang($key, $kargs), $log);
 	}
 }
