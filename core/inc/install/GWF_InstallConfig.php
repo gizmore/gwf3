@@ -367,7 +367,7 @@ final class GWF_InstallConfig
 	 * @param $action
 	 * @return string html
 	 */
-	public static function displayForm($action='wizard.php', GWF_LangTrans $lang)
+	public static function displayForm($action, GWF_LangTrans $lang)
 	{
 		self::init($lang);
 
@@ -398,7 +398,7 @@ final class GWF_InstallConfig
 		return $back;
 	}
 
-	private static function displayRow($color=0, array $var)
+	private static function displayRow($color, array $var)
 	{
 //		return sprintf('<tr class="gwfinstall%s"><td>%s</td><td>%s</td><td>%s</td></tr>', $color, $var[self::VARNAME], self::displayInput($var), $var[self::COMMENT]);
 		return sprintf('<tr class="gwfinstall%s"><td>%s - %s</td></tr><tr class="gwfinstall%s"><td>%s</td></tr>', $color, $var[self::VARNAME], $var[self::COMMENT], $color, self::displayInput($var));

@@ -33,7 +33,7 @@ final class GWF_InstallFunctions
 	//	return array('GWF_Country','GWF_Group','GWF_IP2Country','GWF_LangMap','GWF_Language','GWF_Module','GWF_ModuleVar','GWF_PublicKey','GWF_Session','GWF_Settings','GWF_User','GWF_UserGroup');
 	}
 
-	public static function core($drop=false, &$success)
+	public static function core($drop=false, &$success = false)
 	{
 		$db = gdo_db();
 		$tables = self::get_core_tables();
