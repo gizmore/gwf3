@@ -221,7 +221,7 @@ final class WeChall_API_UserBanner extends GWF_Method
 		return GWF_ForumOptions::getUserOptions($user, true)->getVar('fopt_signature');
 	}
 	
-	private function displayBanner(GWF_User $user, $format=self::FORMAT, $bg=self::BGCOLOR, $fg=self::FGCOLOR, $size, $spacingx=1, $spacingy=1, $mx, $my, $divider)
+	private function displayBanner(GWF_User $user, $format=self::FORMAT, $bg=self::BGCOLOR, $fg=self::FGCOLOR, $size=self::SIZE, $spacingx=1, $spacingy=1, $mx=1, $my=1, $divider='  ')
 	{
 		$this->box_logo = new GWF_GDRect();
 		$this->box_stats = new GWF_GDRect(0, 0, self::WIDTH, self::HEIGHT);
