@@ -18,7 +18,7 @@ final class Forum_Move extends GWF_Method
 		return GWF_HTML::err('ERR_PARAMETER', array(_FILE__, __LINE__, 'move'));
 	}
 	
-	private function move($dir=-1, $bid)
+	private function move($dir, $bid)
 	{
 		if (false === ($board = GWF_ForumBoard::getBoard($bid))) {
 			return $this->module->error('err_board');
