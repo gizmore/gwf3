@@ -26,6 +26,7 @@ $gwf = new GWF3(getcwd(), array(
 	'no_session' => true,
 	'store_last_url' => false,
 	'ignore_user_abort' => true,
+	'security_init' => false
 ));
 
 ######################
