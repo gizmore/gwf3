@@ -48,8 +48,6 @@ if ($do_highlight) {
 
 echo GWF_Box::box($chall->lang('info', array($code, $toggleButtonText, $toggleButtonLink, $dateTimeString, $qr_details[0], $qr_details[1])), $chall->lang('title'));
 
-echo getQrSolution($chall);
-
 formSolutionbox($chall);
 
 echo $chall->copyrightFooter();
