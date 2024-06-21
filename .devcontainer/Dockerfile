@@ -7,7 +7,7 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 
 # Install php-mysql driver
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg
-RUN docker-php-ext-install mysqli pdo pdo_mysql gd 
+RUN docker-php-ext-install mysqli pdo pdo_mysql gd bcmath
 RUN docker-php-ext-enable mysqli pdo pdo_mysql xdebug gd
 
 
