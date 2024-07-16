@@ -8,8 +8,8 @@ if (!GWF_User::isAdminS()) {
 
 $title = "Luggage";
 $solution = false;
-$score = 1;
-$url = "challenge/magictoast/qr_codes/index.php";
+$score = 3;
+$url = "challenge/luggage/index.php";
 $creators = "MagicToast";
 $tags = 'Encoding,Cracking,Math';
 WC_Challenge::installChallenge($title, $solution, $score, $url, $creators, $tags, true);
