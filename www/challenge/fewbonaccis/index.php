@@ -1,6 +1,11 @@
 <?php
 chdir('../../');
 define('GWF_PAGE_TITLE', "Few Bonaccis");
+apache_setenv('no-gzip', 1);
+ini_set('zlib.output_compression', 'Off');
+#header('Connection: close');
+while (ob_get_level() > 0) { ob_end_clean(); }
+
 require_once('challenge/html_head.php');
 require(GWF_CORE_PATH.'module/WeChall/solutionbox.php');
 if (false === ($chall = WC_Challenge::getByTitle(GWF_PAGE_TITLE)))
@@ -28,10 +33,12 @@ $name = $user->isGuest() ? 'hacker' : $user->displayUsername();
 $info = $chall->lang('info', array($name));
 $title = $chall->lang('title');
 echo GWF_Box::box($info, $title);
-
+$ip = $_SERVER['REMOTE_ADDR'];
+$ip = GWF_IP6::isV6($ip) ? "[{$ip}]" : $ip;
+$host = isset($_POST['host']) ? $_POST['host'] : sprintf('http://%s/fib.php?n=', $ip);
 ?>
 <form method="post" action="?">
-<input type="text" name="host" value="http://<?=$_SERVER['REMOTE_ADDR']?>/fib.php?n=" />
+<input type="text" name="host" value="<?=$host?>" size="32" />
 <input type="submit" name="try" value="TRY MICROSERVICE" />
 </form>
 <?php

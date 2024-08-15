@@ -6,7 +6,7 @@ function trying()
     foreach ($secrets as $n => $fib)
     {
         $url = $_POST['host'] . $n;
-        echo "Trying $url...<br/>\n";
+        echo "Trying $url<br/>\n";
         flush();
         $a = microtime(true);
         $result = trim(GWF_HTTP::getFromURL($url));
