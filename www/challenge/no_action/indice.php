@@ -21,7 +21,7 @@ $title = $chall->lang('title');
 echo GWF_Box::box($info, $title);
 
 ?>
-<!-- <form action="?"> -->
+<!-- THE FORM: <form action="?"> -->
 <?php
 
 echo formSolutionbox($chall);
