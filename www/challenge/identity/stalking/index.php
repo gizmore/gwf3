@@ -23,7 +23,7 @@ if (false === ($identity = WC_Challenge::getByTitle('Identity')))
 else if (!WC_ChallSolved::hasSolved($user->getID(), $identity->getID()))
 {
 	$ida = sprintf('<a href="%s">%s</a>', htmlspecialchars($identity->hrefChallenge()), htmlspecialchars($identity->getName()));
-	echo GWF_HTML::error($chall->lang('title'), $chall->lang('err_identity', $ida));
+	echo GWF_HTML::error($chall->lang('title'), $chall->lang('err_identity', [$ida]));
 }
 
 else # We can submit answers 
