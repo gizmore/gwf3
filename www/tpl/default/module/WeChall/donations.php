@@ -87,13 +87,13 @@ Sum:    €  299,00
 Goal:   €  480,00
 </pre>
 
-<pre>Donations 2024:    2 donations
-Sum:    €  637,00
+<pre>Donations 2024:    3 donations
+Sum:    €  680,00
 Goal:   €  680,00
 </pre>
 
-<pre>Totals:           42 donations
-Sum:    € 2557,37
+<pre>Totals:           43 donations
+Sum:    € 2600,37
 Goal:   € 2660,00
 </pre>
 
@@ -160,7 +160,8 @@ We currently have the following ca. expenses for WeChall:<br/>
 <li><span class="dodate">27.Dec.2023</span> – <em>&quot;Thank you!&quot;</em> – <a class="donor" href="/profile/drworm">drworm</a></li>
 <li>----- 2024 -----</li>
 <li><span class="dodate">5.Jan.2024</span> – <em>&quot;Gizmore, please fix those sum/goal amounts -- they don't add up!&quot;</em> – <a class="donor" href="/profile/FranzT">FranzT</a></li>
-<li><span class="dodate">7.Aug.2024</span> – <em>&quot;WeChall, therefore We Are&quot;</em> – <a class="donor" href="/profile/Herz">Herz</a></li>
+    <li><span class="dodate">7.Aug.2024</span> – <em>&quot;WeChall, therefore We Are&quot;</em> – <a class="donor" href="/profile/Herz">Herz</a></li>
+    <li><span class="dodate">8.Sep.2024</span> – <em>"bump"</em> – <a class="donor" href="/profile/livinskull">livinskull</a></li>
 </ol>
 </div>
 

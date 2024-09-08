@@ -9,7 +9,7 @@ You tell him fibonacci is solved, and there is a closed form to compute any numb
 He argues that you could not even create a microservice that computes fibonacci correctly in a reasonable time.<br/>
 <br/>
 You take the challenge and implement a microservice at the URL below.<br/>
-You agree that your coworker will implement a script to test your servive, and he may not modify it, once it is implemented.<br/>
+You agree that your coworker will implement a script to test your service, and he may not modify it, once it is implemented.<br/>
 The script will query your httpd a few times, and each request shall only take 2.618 seconds max.<br/>
 Your service has to return the MD5 of the Nth fibonacci number.<br/>
 <br/>
