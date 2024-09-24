@@ -182,7 +182,7 @@ final class Dog_ScumGame
 		# Player has these cards?
 		$acv = array_count_values($this->cards[$pn]);
 		$check = $cards[0];
-		if ($check > 0) { $check = (int)$check; }
+		if (is_numeric($check)) { $check = (int)$check; }
 		if ( (!isset($acv[$check])) || (count($cards) > $acv[$check]) ) { return 'You don\'t have the right cards.'; }
 		
 		# Cards are on table.
