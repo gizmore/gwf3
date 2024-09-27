@@ -508,16 +508,16 @@ final class WeChall_Warflags extends GWF_Method
 	
 	private function bitFromType(array $row)
 	{
-		$type = $row[9];
-		if ($type === 'SSH')
+		$type = trim($row[9]);
+		if (strtoupper($type) === 'SSH')
 		{
 			return WC_Warflag::WARCHALL;
 		}
-		if ($type === 'WEB')
+		if (strtoupper($type) === 'WEB')
 		{
 			return WC_Warflag::WARFLAG;
 		}
-		return -1;
+		return 0;
 	}
 	
 	private function updateFromCSV(WC_Warflag $flag, array $row)
