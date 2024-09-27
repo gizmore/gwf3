@@ -15,7 +15,7 @@ final class Quest_Seattle_BD2 extends SR_Quest
 		$need = $this->getNeededAmount();
 		$give = 0;
 		
-		foreach ($player->getInventory()->getItemsByClass(SR_Rune, $need-$have) as $item)
+		foreach ($player->getInventory()->getItemsByClass('SR_Rune', $need-$have) as $item)
 		{
 			$player->deleteFromInventory($item);
 			$have++;

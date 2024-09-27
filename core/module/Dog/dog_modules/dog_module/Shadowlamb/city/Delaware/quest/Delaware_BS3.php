@@ -14,7 +14,7 @@ final class Quest_Delaware_BS3 extends SR_Quest
 		$need = $this->getNeededAmount();
 
 		$have_after = $have_before;
-		foreach ($player->getInventory()->getItemsByClass(SR_Rune, $need-$have_before) as $item)
+		foreach ($player->getInventory()->getItemsByClass('SR_Rune', $need-$have_before) as $item)
 		{
 			$player->deleteFromInventory($item);
 			$have_after++;
