@@ -60,6 +60,7 @@ final class Module_WeChall extends GWF_Module
 	public function cfgSiteBoardID() { return GWF_ForumBoard::getByTitle(self::BOARD_SITES)->getID(); }
 	public function cfgChallengeBoardID() { return GWF_ForumBoard::getByTitle(self::BOARD_CHALLS)->getID(); }
 	public function cfgSolutionBoardID() { return GWF_ForumBoard::getByTitle(self::BOARD_SOLUTIONS)->getID(); }
+    public function cfgOTWCronjobDate() { return $this->getModuleVar('wc_warbox_ip_date'); }
 	##################
 	### GWF_Module ###
 	##################
@@ -71,7 +72,7 @@ final class Module_WeChall extends GWF_Module
 	public function getClasses() { return array('WC_SiteMaster', 'WC_Site', 'WC_Challenge', 'WC_Warbox'); }
 	public function onLoadLanguage() { return $this->loadLanguage('lang/wechall/_wc'); }
 	public function getDefaultAutoLoad() { return true; }
-	public function onCronjob() { require_once 'WC_Cronjob.php'; }
+	public function onCronjob() { require_once 'WC_Cronjob.php'; WC_Cronjob::onCronjob($this); }
 	public function onMerge(GDO_Database $db_from, GDO_Database $db_to, array &$db_offsets, $prefix, $prevar)
 	{
 		require_once 'WC_Merge.php';
