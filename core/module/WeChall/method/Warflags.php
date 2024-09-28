@@ -463,7 +463,9 @@ final class WeChall_Warflags extends GWF_Method
 		{
 			$back .= $this->onCSVRow($row);
 		}
-		
+
+		$back .= GWF_HTML::message('Warflags', 'Warflags CSV Import finished.');
+
 		return $back . $this->templateOverview();
 	}
 	
