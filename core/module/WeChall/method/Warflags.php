@@ -100,8 +100,8 @@ final class WeChall_Warflags extends GWF_Method
 		return $m->lang('err_wf_cat');
 	}
 	
-	public function validate_pos(Module_WeChall $m, $arg) { return GWF_Validator::validateInt($m, 'pos', $arg, 1, 1000, true); }
-	public function validate_type(Module_WeChall $m, $arg) { return ($arg === 'WEB') || ($arg === 'SSH') ? false : $m->lang('err_wf_type'); }
+	public function validate_pos(Module_WeChall $m, $arg) { return GWF_Validator::validateInt($m, 'pos', $arg, 0, 1000, true); }
+	public function validate_type(Module_WeChall $m, $arg) { $arg = strtoupper($arg); return ($arg === 'WEB') || ($arg === 'SSH') ? false : $m->lang('err_wf_type'); }
 	public function validate_wf_score(Module_WeChall $m, $arg) { return GWF_Validator::validateInt($m, 'wf_score', $arg, 0, 1000000, true); }
 	public function validate_wf_title(Module_WeChall $m, $arg) { return GWF_Validator::validateString($m, 'wf_title', $arg, 0, 64, false); }
 	public function validate_wf_authors(Module_WeChall $m, $arg) { return GWF_Validator::validateString($m, 'wf_authors', $arg, 0, 255, false); }
