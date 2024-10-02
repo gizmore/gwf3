@@ -9,7 +9,7 @@ Can you still crack it?<br/>
 <br/>
 The hash is %s and bound to your session.<br/>
 <br/>
-Tip: The plaintext is 11 lowercase letters.<br/>
+Tip: The plaintext is 7 lowercase letters.<br/>
 <br/>
 Good Luck!<br/>
 - gizmore',
