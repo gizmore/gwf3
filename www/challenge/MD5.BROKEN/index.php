@@ -12,7 +12,6 @@ $chall->showHeader();
 $user = GWF_User::getStaticOrGuest();
 require '../core/module/WeChall/WC_CryptoChall.php';
 $solution = WC_CryptoChall::generateSolution('MD5.BROKE', true, true, 11);
-$solution = 'abc';
 $hash = $scrambler($solution);
 
 if (isset($_POST['answer'])) {
