@@ -1,4 +1,6 @@
 <?php
+require_once 'SR_Equipment.php';
+
 abstract class SR_Weapon extends SR_Equipment
 {
 	public function getAttackTime() { return 30; }
