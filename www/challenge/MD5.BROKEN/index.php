@@ -11,8 +11,17 @@ if (false === ($chall = WC_Challenge::getByTitle(GWF_PAGE_TITLE)))
 $chall->showHeader();
 $user = GWF_User::getStaticOrGuest();
 require '../core/module/WeChall/WC_CryptoChall.php';
-$solution = WC_CryptoChall::generateSolution('MD5.BROKE', true, true, 7);
-$hash = $scrambler($solution);
+if ($solution = GWF_Session::get('md5.broke.solution'))
+{
+    $hash = GWF_Session::get('md5.broke.hash');
+}
+else
+{
+    $solution = WC_CryptoChall::generateSolution('MD5.BROKE#3', true, true, 7);
+    $hash = $scrambler($solution);
+    GWF_Session::set('md5.broke.solution', $solution);
+    GWF_Session::set('md5.broke.hash', $hash);
+}
 
 if (isset($_POST['answer'])) {
     if (false !== ($error = $chall->isAnswerBlocked($user))) {
