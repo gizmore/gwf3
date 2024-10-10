@@ -11,7 +11,7 @@ $lang = array(
     def fly_away(num: int) -> bool:
         return hash(num) == 31337
     </code><br/>
-    Note: This challenge got tested with python3.10 and should be easy.<br/>
+    Note: This challenge got tested with cpython, 64-bit, python3.10 and should be easy.<br/>
     <br/>
     Good luck!<br/>
     - gizmore',
