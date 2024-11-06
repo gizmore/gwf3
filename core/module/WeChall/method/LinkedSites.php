@@ -209,7 +209,7 @@ final class WeChall_LinkedSites extends GWF_Method
 			}
 		}
 		
-		if ($onsitemail !== $user->getValidMail())
+		if ($onsitemail !== $user->getValidMail() && (!$site->hasNoEmail()))
 		{
 			return $this->onLinkSiteMail($site, $user, $onsitename, $onsitemail);
 		}

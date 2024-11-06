@@ -93,6 +93,7 @@ final class WeChall_SiteEdit extends GWF_Method
 		$data['auto_update'] = array(GWF_Form::CHECKBOX, $site->hasAutoUpdate(), $this->module->lang('th_autoupdate'));
 		$data['onsite_rank'] = array(GWF_Form::CHECKBOX, $site->hasOnSiteRank(), $this->module->lang('th_site_has_osr'));
 		$data['default_hide'] = array(GWF_Form::CHECKBOX, $site->isDefaultHidden(), $this->module->lang('th_default_hide'));
+		$data['no_email'] = array(GWF_Form::CHECKBOX, $site->hasNoEmail(), $this->module->lang('th_no_email'));
 		if ($is_admin)
 		{
 			$data['linear'] = array(GWF_Form::CHECKBOX, $site->isLinear(), $this->module->lang('th_linear'));
@@ -377,7 +378,8 @@ final class WeChall_SiteEdit extends GWF_Method
 		$site->saveOption(WC_Site::HIDE_BY_DEFAULT, isset($_POST['default_hide']));
 		$site->saveOption(WC_Site::ONSITE_RANK, isset($_POST['onsite_rank']));
 		$site->saveOption(WC_Site::NO_V1_SCRIPTS, isset($_POST['no_v1']));
-		
+		$site->saveOption(WC_Site::NO_EMAIL, isset($_POST['no_email']));
+
 		# Trigger warbox config parsing.
 // 		if ($site->isWarBox())
 // 		{
