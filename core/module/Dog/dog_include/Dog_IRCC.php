@@ -125,7 +125,7 @@ final class Dog_IRCC implements Dog_IRC
 	{
 // 		$message = str_replace(array("\r", "\n"), '', trim($message));
 		$message = str_replace(array("\r", "\n"), '', $message);
-		Dog_Log::server($this->server, new Dog_IRCMsg($message), ' >>>> ');
+		Dog_Log::server($this->server, new Dog_IRCMsg($message, $this->server->getNick()->getNick()));
 		if (!is_resource($this->socket) || !fwrite($this->socket, "$message\r\n"))
 		{
 			$this->hard_disconnect();

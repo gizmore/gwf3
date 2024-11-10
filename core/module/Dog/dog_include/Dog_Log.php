@@ -2,26 +2,27 @@
 require_once 'Dog_Includes.php';
 /**
  * Dog log wrapper.
- * @author gizmore
- * @version 4.0
+ * @author gizmore, tehron
+ * @version 4.1
  */
 final class Dog_Log
 {
-	public static function server(Dog_Server $server, $irc_msg, $direction = ' << ')
+	public static function server(Dog_Server $server, Dog_IRCMsg $irc_msg)
 	{
 		echo date("H:i:s") . " " . $server->getTLD();
 
 		if (strtolower($irc_msg->getEvent()) === 'privmsg' && $irc_msg->getArgc() > 1) {
-			$from = preg_replace('/!.*/', '', $irc_msg->getFrom());
+			$from = $irc_msg->getFrom();
 			$msg = $irc_msg->getArgs();
 			$target = array_shift($msg);
 			$msg = join(' ', $msg);
-			if ($target[0] !== '#') {
+			if ($target[0] !== '#' && $irc_msg->getDirection() == Direction::IN) {
 				$target = $from;
 			}
 			echo " " . $target . ": " . $from . ": " . $msg . PHP_EOL;
 		} else {
-			echo $direction . $irc_msg->getRaw() . PHP_EOL;
+			$d = $irc_msg->getDirection() === Direction::IN ? ' << ' : ' >> ';
+			echo $d . $irc_msg->getRaw() . PHP_EOL;
 		}
 
 		if ($server->isLogging())
@@ -109,7 +110,7 @@ final class Dog_Log
 		self::warn("Unknown event: {$msg->getEvent()}");
 		echo $msg->getRaw().PHP_EOL;
 		echo 'EVNT: '.$msg->getEvent().PHP_EOL;
-		echo 'FROM: '.$msg->getFrom().PHP_EOL;
+		echo 'FROM: '.$msg->getFromFull().PHP_EOL;
 		echo 'ARGS: '.implode(',', $msg->getArgs()).PHP_EOL;
 		echo '============================================='.PHP_EOL;
 	}

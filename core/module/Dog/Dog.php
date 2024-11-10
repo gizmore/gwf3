@@ -96,7 +96,7 @@ final class Dog
 	 */
 	public static function setupUser()
 	{
-		return self::setUser(self::$LAST_SERVER->getUserByName(Common::substrUntil(self::$LAST_MSG->getFrom(), '!')));
+		return self::setUser(self::$LAST_SERVER->getUserByName(self::$LAST_MSG->getFrom()));
 	}
 	
 	public static function setUser($user)
@@ -362,7 +362,7 @@ final class Dog
 	 */
 	public static function getOrCreateUser()
 	{
-		$username = Common::substrUntil(Dog::getIRCMsg()->getFrom(), '!');
+		$username = Dog::getIRCMsg()->getFrom();
 		return self::getOrCreateUserByName($username);
 	}
 	
@@ -449,7 +449,7 @@ final class Dog
 
 		$serv = self::getServer();
 		$chan = self::getChannel();
-		$from = self::$LAST_MSG->getFrom();
+		$from = self::$LAST_MSG->getFromFull();
 		$to = $chan === false ? $serv->getNick()->getName() : $chan->getName();
 		$trigger = self::getTrigger();
 

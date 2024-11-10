@@ -1,15 +1,22 @@
 <?php
+enum Direction {
+	case IN;
+	case OUT;
+}
+
 /**
- * IRC Message parsed from socket input.
- * @author gizmore
- * @version 4.0
+ * IRC Message parsed from socket input, or constructed from message to send.
+ * @author gizmore, tehron
+ * @version 4.1
  */
 final class Dog_IRCMsg
 {
-	private $raw, $from, $event, $args;
+	private $raw, $direction, $from, $event, $args;
 
 	public function getRaw() { return $this->raw; }
-	public function getFrom() { return $this->from; }
+	public function getDirection() { return $this->direction; }
+	public function getFromFull() { return $this->from; }
+	public function getFrom() { return Common::substrUntil($this->getFromFull(), '!'); }
 	public function getEvent() { return $this->event; }
 	public function getArgs() { return $this->args; }
 	public function getArgc() { return count($this->args); }
@@ -20,11 +27,18 @@ final class Dog_IRCMsg
 		return strpos($this->raw, '.login') === false && strpos($this->raw, '.register') === false;
 	}
 	
-	public function __construct($message)
+	public function __construct($message, $from=null)
 	{
 		$this->raw = $message;
-		
-		$by_space = preg_split('/[ ]+/', $this->raw);
+
+		if ($from !== null) {
+			$this->direction = Direction::OUT;
+			$message = ':' . $from . ' ' . $message;
+		} else {
+			$this->direction = Direction::IN;
+		}
+
+		$by_space = preg_split('/[ ]+/', $message);
 		
 		$this->from = $message[0] === ':' ? ltrim(array_shift($by_space), ':') : '';
 		$this->event = preg_replace('/[^a-z_0-9]/i', '', array_shift($by_space));
