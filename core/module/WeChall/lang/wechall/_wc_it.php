@@ -789,5 +789,10 @@ Il team WeChall',
 	'solver' => 'Segna come risolto',
 	'solver_box' => 'Questo compito non è una sfida ma una guida video. Puoi %s contrassegnarlo come risolto.',
 	'click_here' => 'clicca qui',
-	
+
+    # Site Messanger contacts
+    'th_site_discord' => 'Discord',
+    'th_site_telegram' => 'Telegram',
+    'th_site_whatsapp' => 'WhatsApp',
+    'th_site_signal' => 'Signal',
 );

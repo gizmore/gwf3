@@ -68,7 +68,25 @@ if ($user !== false) {
 		echo WC_HTML::tableRowForm($tLang->lang('th_site_avg'), $site->displayAvg());
 	}
 
-	# Diff Votes
+    echo WC_HTML::tableRowForm($tLang->lang('th_site_irc'), $site->displayIRC());
+    if ($telegram = $site->getVar('site_telegram'))
+    {
+        echo WC_HTML::tableRowForm($tLang->lang('th_site_telegram'), $site->getVar('site_telegram'));
+    }
+    if ($telegram = $site->getVar('site_discord'))
+    {
+        echo WC_HTML::tableRowForm($tLang->lang('th_site_discord'), $site->getVar('site_discord'));
+    }
+    if ($telegram = $site->getVar('site_signal'))
+    {
+        echo WC_HTML::tableRowForm($tLang->lang('th_site_signal'), $site->getVar('site_signal'));
+    }
+    if ($telegram = $site->getVar('site_whatsapp'))
+    {
+        echo WC_HTML::tableRowForm($tLang->lang('th_site_whatsapp'), $site->getVar('site_whatsapp'));
+    }
+
+    # Diff Votes
 // 	$vdif = $site->getVotesDif();
 // 	echo GWF_Table::rowStart().
 // 		'<th>'.$tLang->lang('th_site_dif').'</th>'.PHP_EOL.

@@ -58,9 +58,13 @@ class WC_Site extends WC_SiteBase
 		
 			'site_authkey' => array(GDO::VARCHAR|GDO::ASCII|GDO::CASE_S, GDO::NOT_NULL, 32),
 			'site_xauthkey' => array(GDO::VARCHAR|GDO::ASCII|GDO::CASE_S, GDO::NOT_NULL, 32),
-		
-			'site_irc' => array(GDO::TEXT|GDO::UTF8|GDO::CASE_I, GDO::NOT_NULL, 255),
-		
+
+            'site_irc' => array(GDO::TEXT|GDO::UTF8|GDO::CASE_I, GDO::NOT_NULL, 255),
+            'site_discord' => array(GDO::TEXT|GDO::UTF8|GDO::CASE_I, GDO::NOT_NULL, 255),
+            'site_telegram' => array(GDO::TEXT|GDO::UTF8|GDO::CASE_I, GDO::NOT_NULL, 255),
+            'site_signal' => array(GDO::TEXT|GDO::UTF8|GDO::CASE_I, GDO::NOT_NULL, 255),
+            'site_whatsapp' => array(GDO::TEXT|GDO::UTF8|GDO::CASE_I, GDO::NOT_NULL, 255),
+
 			'site_url' => array(GDO::TEXT|GDO::UTF8|GDO::CASE_I, GDO::NOT_NULL, 255),
 			'site_url_mail' => array(GDO::TEXT|GDO::UTF8|GDO::CASE_I, GDO::NOT_NULL, 255),
 			'site_url_score' => array(GDO::TEXT|GDO::UTF8|GDO::CASE_I, GDO::NOT_NULL, 255),

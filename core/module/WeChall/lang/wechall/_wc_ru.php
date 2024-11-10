@@ -789,4 +789,10 @@ The WeChall Team<br/>
 	'solver' => 'Отметить как решенное',
 	'solver_box' => 'Эта задача не задача, а видеоинструкция. Вы можете %s отметить проблему как решенную.',
 	'click_here' => 'нажмите здесь',
+
+    # Site Messanger contacts
+    'th_site_discord' => 'Discord',
+    'th_site_telegram' => 'Telegram',
+    'th_site_whatsapp' => 'WhatsApp',
+    'th_site_signal' => 'Signal',
 );

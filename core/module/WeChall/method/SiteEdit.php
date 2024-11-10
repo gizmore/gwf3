@@ -126,7 +126,11 @@ final class WeChall_SiteEdit extends GWF_Method
 		$data['site_xauthkey'] = array(GWF_Form::STRING, $site->getVar('site_xauthkey'), $this->module->lang('th_site_xauthkey'));
 
 		$data['site_irc'] = array(GWF_Form::STRING, $site->getVar('site_irc'), $this->module->lang('th_site_irc'));
-		
+		$data['site_telegram'] = array(GWF_Form::STRING, $site->getVar('site_telegram'), $this->module->lang('th_site_telegram'));
+		$data['site_discord'] = array(GWF_Form::STRING, $site->getVar('site_discord'), $this->module->lang('th_site_discord'));
+		$data['site_whatsapp'] = array(GWF_Form::STRING, $site->getVar('site_whatsapp'), $this->module->lang('th_site_whatsapp'));
+		$data['site_signal'] = array(GWF_Form::STRING, $site->getVar('site_signal'), $this->module->lang('th_site_signal'));
+
 		$data['div2'] = array(GWF_Form::DIVIDER);
 		$data['div3'] = array(GWF_Form::HEADLINE, $this->module->lang('pi_site_urls'));
 		$data['site_url'] = array(GWF_Form::STRING, $site->getVar('site_url'), $this->module->lang('th_site_url'));
@@ -255,6 +259,10 @@ final class WeChall_SiteEdit extends GWF_Method
 	public function validate_site_authkey(Module_WeChall $m, $arg) { return GWF_Validator::validateString($m, 'site_authkey', $arg, 0, 32); }
 	public function validate_site_xauthkey(Module_WeChall $m, $arg) { return GWF_Validator::validateString($m, 'site_xauthkey', $arg, 0, 32); }
 	public function validate_site_irc(Module_WeChall $m, $arg) { return GWF_Validator::validateString($m, 'site_irc', $arg, 0, 255); }
+	public function validate_site_telegram(Module_WeChall $m, $arg) { return GWF_Validator::validateString($m, 'site_telegram', $arg, 0, 255); }
+	public function validate_site_discord(Module_WeChall $m, $arg) { return GWF_Validator::validateString($m, 'site_discord', $arg, 0, 255); }
+	public function validate_site_signal(Module_WeChall $m, $arg) { return GWF_Validator::validateString($m, 'site_signal', $arg, 0, 255); }
+	public function validate_site_whatsapp(Module_WeChall $m, $arg) { return GWF_Validator::validateString($m, 'site_whatsapp', $arg, 0, 255); }
 	public function validate_site_url(Module_WeChall $m, $arg) { return GWF_Validator::validateString($m, 'site_url', $arg, 0, 255); }
 	public function validate_site_url_mail(Module_WeChall $m, $arg) { return GWF_Validator::validateString($m, 'site_url_mail', $arg, 0, 255); }
 	public function validate_site_url_score(Module_WeChall $m, $arg) { return GWF_Validator::validateString($m, 'site_url_score', $arg, 0, 255); }
@@ -343,6 +351,10 @@ final class WeChall_SiteEdit extends GWF_Method
 			'site_launchdate' => $form->getVar('site_launchdate'),
 			'site_xauthkey' => $form->getVar('site_xauthkey'),
 			'site_irc' => $form->getVar('site_irc'),
+			'site_discord' => $form->getVar('site_discord'),
+			'site_telegram' => $form->getVar('site_telegram'),
+			'site_signal' => $form->getVar('site_signal'),
+			'site_whatsapp' => $form->getVar('site_whatsapp'),
 			'site_url' => $form->getVar('site_url'),
 			'site_url_mail' => $form->getVar('site_url_mail'),
 			'site_url_score' => $form->getVar('site_url_score'),

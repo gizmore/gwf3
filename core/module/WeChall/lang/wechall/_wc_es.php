@@ -790,5 +790,10 @@ El equipo de WeChall',
 	'solver' => 'Marcar como resuelto',
 	'solver_box' => 'Esta tarea no es un desafío sino una guía en video. Puedes %s para marcarlo como resuelto.',
 	'clic_aquí' => 'clic aquí',
-	
+
+    # Site Messanger contacts
+    'th_site_discord' => 'Discord',
+    'th_site_telegram' => 'Telegram',
+    'th_site_whatsapp' => 'WhatsApp',
+    'th_site_signal' => 'Signal',
 );

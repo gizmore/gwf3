@@ -786,5 +786,10 @@ A WeChall csapata',
 	'solver' => 'Megjelölés megoldottként',
 	'solver_box' => 'Ez a feladat nem kihívás, hanem egy videó útmutató. %s segítségével megoldottként jelölheti meg.',
 	'click_here' => 'kattints ide',
-	
+
+    # Site Messanger contacts
+    'th_site_discord' => 'Discord',
+    'th_site_telegram' => 'Telegram',
+    'th_site_whatsapp' => 'WhatsApp',
+    'th_site_signal' => 'Signal',
 );

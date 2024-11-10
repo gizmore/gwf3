@@ -793,5 +793,10 @@ L\'équipe WeChall',
 	'solver' => 'Marquer comme résolu',
 	'solver_box' => 'Cette tâche n\'est pas un défi mais un guide vidéo. Vous pouvez %s pour le marquer comme résolu.',
 	'click_here' => 'cliquez ici',
-	
+
+    # Site Messanger contacts
+    'th_site_discord' => 'Discord',
+    'th_site_telegram' => 'Telegram',
+    'th_site_whatsapp' => 'WhatsApp',
+    'th_site_signal' => 'Signal',
 );

@@ -790,4 +790,10 @@ The WeChall Team',
 	'solver' => 'Mark as solved',
 	'solver_box' => 'This challenge is just a video tutorial for real beginners. You can %s to mark it as solved.',
 	'click_here' => 'press here',
+
+    # Site Messanger contacts
+    'th_site_discord' => 'Discord',
+    'th_site_telegram' => 'Telegram',
+    'th_site_whatsapp' => 'WhatsApp',
+    'th_site_signal' => 'Signal',
 );

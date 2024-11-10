@@ -791,4 +791,10 @@ Das WeChall-Team',
 	'solver' => 'Als gelöst markieren',
 	'solver_box' => 'Diese Aufgabe ist keine Challenge, sondern eine Videoanleitung. Du kannst %s um es als gelöst zu markieren.',
 	'click_here' => 'hier draufdrücken',
+
+    # Site Messanger contacts
+    'th_site_discord' => 'Discord',
+    'th_site_telegram' => 'Telegram',
+    'th_site_whatsapp' => 'WhatsApp',
+    'th_site_signal' => 'Signal',
 );

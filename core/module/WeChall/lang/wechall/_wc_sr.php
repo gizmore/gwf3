@@ -790,4 +790,10 @@ The WeChall Team<br/>
 	'solver' => 'Означи као решено',
 	'solver_box' => 'Овај задатак није изазов већ видео водич. Можете %s да га означите као решено.',
 	'click_here' => 'кликни овде',
+
+    # Site Messanger contacts
+    'th_site_discord' => 'Discord',
+    'th_site_telegram' => 'Telegram',
+    'th_site_whatsapp' => 'WhatsApp',
+    'th_site_signal' => 'Signal',
 );

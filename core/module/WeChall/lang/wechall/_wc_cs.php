@@ -790,4 +790,10 @@ tým WeChall',
 	'solver' => 'Označit jako vyřešené',
 	'solver_box' => 'Tento úkol není výzvou, ale video průvodcem. Můžete %s označit jako vyřešené.',
 	'click_here' => 'stiskněte zde',
+
+    # Site Messanger contacts
+    'th_site_discord' => 'Discord',
+    'th_site_telegram' => 'Telegram',
+    'th_site_whatsapp' => 'WhatsApp',
+    'th_site_signal' => 'Signal',
 );
