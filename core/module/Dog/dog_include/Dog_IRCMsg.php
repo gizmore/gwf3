@@ -11,13 +11,13 @@ enum Direction {
  */
 final class Dog_IRCMsg
 {
-	private $raw, $direction, $from, $event, $args;
+	private $raw, $direction, $prefix, $command, $args;
 
 	public function getRaw() { return $this->raw; }
 	public function getDirection() { return $this->direction; }
-	public function getFromFull() { return $this->from; }
-	public function getFrom() { return Common::substrUntil($this->getFromFull(), '!'); }
-	public function getEvent() { return $this->event; }
+	public function getPrefix() { return $this->prefix; }
+	public function getFrom() { return Common::substrUntil($this->getPrefix(), '!'); }
+	public function getCommand() { return $this->command; }
 	public function getArgs() { return $this->args; }
 	public function getArgc() { return count($this->args); }
 	public function getArg($n) { return $this->args[$n]; }
@@ -27,44 +27,38 @@ final class Dog_IRCMsg
 		return strpos($this->raw, '.login') === false && strpos($this->raw, '.register') === false;
 	}
 	
-	public function __construct($message, $from=null)
+	public function __construct($message, $prefix=null)
 	{
 		$this->raw = $message;
 
-		if ($from !== null) {
+		if ($prefix !== null) {
 			$this->direction = Direction::OUT;
-			$message = ':' . $from . ' ' . $message;
+			$message = ':' . $prefix . ' ' . $message;
 		} else {
 			$this->direction = Direction::IN;
 		}
 
-		$by_space = preg_split('/[ ]+/', $message);
+		# https://stackoverflow.com/a/930706
+		$this->prefix = '';
+		$trailing = array();
 		
-		$this->from = $message[0] === ':' ? ltrim(array_shift($by_space), ':') : '';
-		$this->event = preg_replace('/[^a-z_0-9]/i', '', array_shift($by_space));
-		$this->args = array();
-		
-		$len = count($by_space);
-		while ($len)
-		{
-			$arg = array_shift($by_space);
-			if (strlen($arg) === 0)
-			{
-				# trailing spaces?
-			}
-			elseif ($arg[0] === ':')
-			{
-				# implode everything after colon
-				$this->args[] = trim(substr($arg, 1).' '.implode(' ', $by_space));
-				return;
-			}
-			else
-			{
-				# Normal arg
-				$this->args[] = $arg;
-			}
-			$len--;
+		if (strlen($message) === 0) {
+			throw new Exception('Bad Message: empty line.');
 		}
+
+		if ($message[0] === ':') {
+			list($this->prefix, $message) = explode(' ', substr($message, 1), 2);
+		}
+		
+		if (strstr($message, ' :') !== false) {
+			list($message, $trailing) = explode(' :', $message, 2);
+			$this->args = preg_split("/\s+/", $message);
+			array_push($this->args, $trailing);
+		} else {
+			$this->args = preg_split("/\s+/", $message);
+		}
+
+		$this->command = array_shift($this->args);
 	}
 }
 ?>

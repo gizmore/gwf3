@@ -449,7 +449,7 @@ final class Dog
 
 		$serv = self::getServer();
 		$chan = self::getChannel();
-		$from = self::$LAST_MSG->getFromFull();
+		$from = self::$LAST_MSG->getPrefix();
 		$to = $chan === false ? $serv->getNick()->getName() : $chan->getName();
 		$trigger = self::getTrigger();
 
@@ -505,7 +505,7 @@ final class Dog
 		}
 		
 		# Include event code
-		$event = self::$LAST_MSG->getEvent();
+		$event = self::$LAST_MSG->getCommand();
 		$path = DOG_PATH.'dog_event/'.$event.'.php';
 		if (Common::isFile($path))
 		{

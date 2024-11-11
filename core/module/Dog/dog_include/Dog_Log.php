@@ -11,11 +11,10 @@ final class Dog_Log
 	{
 		echo date("H:i:s") . " " . $server->getTLD();
 
-		if (strtolower($irc_msg->getEvent()) === 'privmsg' && $irc_msg->getArgc() > 1) {
+		if (in_array(strtolower($irc_msg->getCommand()), array('privmsg', 'notice')) && $irc_msg->getArgc() > 1) {
 			$from = $irc_msg->getFrom();
-			$msg = $irc_msg->getArgs();
-			$target = array_shift($msg);
-			$msg = join(' ', $msg);
+			$target = $irc_msg->getArg(0);
+			$msg = $irc_msg->getArg(1);
 			if ($target[0] !== '#' && $irc_msg->getDirection() == Direction::IN) {
 				$target = $from;
 			}
@@ -107,10 +106,10 @@ final class Dog_Log
 	{
 		$msg = DOG::getIRCMsg();
 		echo '============================================='.PHP_EOL;
-		self::warn("Unknown event: {$msg->getEvent()}");
+		self::warn("Unknown command: {$msg->getCommand()}");
 		echo $msg->getRaw().PHP_EOL;
-		echo 'EVNT: '.$msg->getEvent().PHP_EOL;
-		echo 'FROM: '.$msg->getFromFull().PHP_EOL;
+		echo 'CMND: '.$msg->getCommand().PHP_EOL;
+		echo 'PRFX: '.$msg->getPrefix().PHP_EOL;
 		echo 'ARGS: '.implode(',', $msg->getArgs()).PHP_EOL;
 		echo '============================================='.PHP_EOL;
 	}
