@@ -231,7 +231,7 @@ abstract class SR_Bazar extends SR_Location
 		
 		$iname = $args[0];
 		
-		$price = round($args[1]);
+		$price = round(intval($args[1]));
 		if ($price < self::MIN_PRICE)
 		{
 			$player->msg('1109', array(Shadowfunc::displayNuyen(self::MIN_PRICE)));
