@@ -536,7 +536,7 @@ class Shadowcmd
 
 	public static function onExecute(SR_Player $player, $message)
 	{
-		$args = explode(' ', $message);
+		$args = preg_split('/\s+/', $message, -1, PREG_SPLIT_NO_EMPTY);
 
 		$command = self::unshortcut(array_shift($args));
 		$command = self::untranslate($command);
