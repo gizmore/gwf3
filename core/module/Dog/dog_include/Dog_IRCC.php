@@ -16,6 +16,7 @@ final class Dog_IRCC implements Dog_IRC
 	private $sent_time = 0;
 	private $last_target = '';
 	private $msgs_pntr = 0;
+	private $read_error = false;
 	
 	public function isConnected() { return $this->socket !== NULL; }
 	
@@ -74,6 +75,8 @@ final class Dog_IRCC implements Dog_IRC
 			fclose($this->socket);
 		}
 		$this->socket = NULL;
+		$this->read_error = false;
+		$this->recv_buffer = '';
 	}
 	
 	public function disconnect($message)
@@ -84,23 +87,25 @@ final class Dog_IRCC implements Dog_IRC
 	
 	public function alive()
 	{
-		return $this->socket !== NULL && (!feof($this->socket));
+		return $this->socket !== NULL && !$this->read_error;
 	}
 	
 	public function receive()
 	{		
 		if (feof($this->socket))
 		{
-			$this->disconnect('I got feof!');
+			$this->hard_disconnect();
 			return false;
 		}
 
 		$res = fgets($this->socket, 2047);
+		$this->read_error = $res === false && feof($this->socket);
 
-		// discard recv_buffer on read error/eof
-		if ($res === false)
-		{
-			$this->recv_buffer = '';
+		if ($this->read_error) {
+			$this->hard_disconnect();
+		}
+		
+		if ($res === false) {
 			return false;
 		}
 
@@ -126,7 +131,7 @@ final class Dog_IRCC implements Dog_IRC
 // 		$message = str_replace(array("\r", "\n"), '', trim($message));
 		$message = str_replace(array("\r", "\n"), '', $message);
 		Dog_Log::server($this->server, new Dog_IRCMsg($message, $this->server->getNick()->getNick()));
-		if (!is_resource($this->socket) || !fwrite($this->socket, "$message\r\n"))
+		if (!is_resource($this->socket) || @fwrite($this->socket, "$message\r\n") === false)
 		{
 			$this->hard_disconnect();
 			return false;
