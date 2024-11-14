@@ -9,20 +9,7 @@ final class Dog_Log
 {
 	public static function server(Dog_Server $server, Dog_IRCMsg $irc_msg)
 	{
-		echo date("H:i:s") . " " . $server->getTLD();
-
-		if (in_array(strtolower($irc_msg->getCommand()), array('privmsg', 'notice')) && $irc_msg->getArgc() > 1) {
-			$from = $irc_msg->getFrom();
-			$target = $irc_msg->getArg(0);
-			$msg = $irc_msg->getArg(1);
-			if ($target[0] !== '#' && $irc_msg->getDirection() == Direction::IN) {
-				$target = $from;
-			}
-			echo " " . $target . ": " . $from . ": " . $msg . PHP_EOL;
-		} else {
-			$d = $irc_msg->getDirection() === Direction::IN ? ' << ' : ' >> ';
-			echo $d . $irc_msg->getRaw() . PHP_EOL;
-		}
+		echo date("H:i:s") . ' ' . $server->getTLD() . ' ' . $irc_msg->toConsoleString(stream_isatty(STDOUT)) . PHP_EOL;
 
 		if ($server->isLogging())
 		{
