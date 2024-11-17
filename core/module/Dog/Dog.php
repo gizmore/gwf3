@@ -419,7 +419,9 @@ final class Dog
 		
 		if (!$server->isConnected())
 		{
-			$server->connect();
+			if (!$server->connect()) {
+				return;
+			}
 		}
 		
 		$server->sendQueue();

@@ -28,7 +28,7 @@ final class Dog_Server extends GDO
 	const LOGBITS = 0x03;
 	
 	/**
-	 * @var Dog_IRCC
+	 * @var Dog_IRC
 	 */
 	private $connection = NULL;
 	private $next_connect = 0;
@@ -214,35 +214,33 @@ final class Dog_Server extends GDO
 		}
 	}
 	
-	public function connect()
-	{
-		if ($this->next_connect <= microtime(true))
-		{
-			$this->attempt++;
-			echo "Dog_IRC::connect() to {$this->getURL()}{$this->displaySSL()} attempt {$this->attempt}.\n";
-			$this->setConnectIn($this->getNextConnectTime());
-			if (false === $this->connection->connect($this))
-			{
-				if (false !== ($connector = $this->getVarDefault('dog_connector', false)))
-				{
-					$connector instanceof Dog_User;
-					$connector->sendPRIVMSG(Dog::lang('err_connecting', array($this->displayLongName())));
-				}
-				
-				if ( ($this->attempt > 3) && (!$this->hasConnectedOnce()) )
-				{
-					Dog::removeServer($this);
-					$this->delete();
-				}
-				
-				return false;
-			}
-			else
-			{
-				$this->attempt = 2;
-				return Dog_Auth::connect($this);
-			}
+	public function connect() {
+		if ($this->next_connect > microtime(true)) {
+			return false;
 		}
+			
+		$this->attempt++;
+		echo "Dog_IRC::connect() to {$this->getURL()}{$this->displaySSL()} attempt {$this->attempt}.\n";
+		$this->setConnectIn($this->getNextConnectTime());
+		if (false === $this->connection->connect($this))
+		{
+			if (false !== ($connector = $this->getVarDefault('dog_connector', false)))
+			{
+				$connector instanceof Dog_User;
+				$connector->sendPRIVMSG(Dog::lang('err_connecting', array($this->displayLongName())));
+			}
+			
+			if ( ($this->attempt > 3) && (!$this->hasConnectedOnce()) )
+			{
+				Dog::removeServer($this);
+				$this->delete();
+			}
+			
+			return false;
+		}
+		
+		$this->attempt = 0;
+		return Dog_Auth::connect($this);
 	}
 	
 	public function disconnect($message)

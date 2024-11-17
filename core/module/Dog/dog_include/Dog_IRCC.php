@@ -22,6 +22,7 @@ final class Dog_IRCC implements Dog_IRC
 	
 	public function connect(Dog_Server $server, $blocking=0)
 	{
+		$this->socket = null;
 		$this->server = $server;
 		
 		$opts = array(

@@ -63,7 +63,7 @@ final class Dog_Auth
 			}
 			else
 			{
-				return $server->sendPRIVMSG('NickServ', 'IDENTIFY '.$pass);
+				return $conn->send("PRIVMSG NickServ :IDENTIFY $pass");
 			}
 		}
 		return true;
