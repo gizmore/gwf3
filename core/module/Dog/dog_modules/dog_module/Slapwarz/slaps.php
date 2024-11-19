@@ -260,7 +260,7 @@ $slaps = array(
     array('whip', 40),
     array('printer', 35),
     array('version control system', 15),
-    array('sabre'. 52),
+    array('sabre', 52),
     array('crab', 35),
     array('crap', 27),
     array('harp', 41),
