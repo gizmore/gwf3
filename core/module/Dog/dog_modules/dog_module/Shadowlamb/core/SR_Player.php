@@ -745,7 +745,7 @@ class SR_Player extends GDO
 	{
 		if ($this->isOptionEnabled(self::HELP))
 		{
-			$this->msg('5030', $this->lang($key, $args));
+			$this->msg('5030', array($this->lang($key, $args)));
 		}
 	}
 	
