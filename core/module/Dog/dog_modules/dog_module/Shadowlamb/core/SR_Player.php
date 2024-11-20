@@ -768,6 +768,10 @@ class SR_Player extends GDO
 		{
 			return Dog_Log::error(sprintf('User %s does not have a server: %s', $username, $message));
 		}
+		
+		if (($channel = Dog::getChannel()) !== false) {
+			$server->sendPRIVMSG($channel->getName(), $message);
+		}
 		elseif ($this->isOptionEnabled(self::SILENCE))
 		{
 			# silence ...

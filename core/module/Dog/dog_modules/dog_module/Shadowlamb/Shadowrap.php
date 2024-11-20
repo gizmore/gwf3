@@ -14,8 +14,12 @@ final class Shadowrap
 	
 	public function reply($message)
 	{
-		Dog::reply($message);
-		return true;
+		if ($this->player === null) {
+			Dog::reply($message);
+			return true;
+		}
+		
+		return $this->player->message($message);
 // 		if (true === $this->player->isOptionEnabled(SR_Player::WWW_OUT))
 // 		{
 // 			$this->player->message($message);
