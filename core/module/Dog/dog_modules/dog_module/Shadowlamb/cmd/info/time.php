@@ -10,7 +10,7 @@ final class Shadowcmd_time extends Shadowcmd
 		$m = $hours[1]; $d = $hours[2];
 		$h = $hours[3]; $i = $hours[4]; $s = $hours[5];
 		
-		self::rply($player, '5309', array($h, $i, $s, $d, $m, $y));
+		$player->msg('5309', array($h, $i, $s, $d, $m, $y));
 		
 		if (false !== ($loc = $player->getParty()->getLocationClass()))
 		{
@@ -18,7 +18,7 @@ final class Shadowcmd_time extends Shadowcmd
 			$he = sprintf('%02d', $hs + $loc->getOpenHours());
 			$ms = sprintf('%02d', $loc->getOpenMin());
 			$me = sprintf('%02d', $loc->getOpenMins());
-			self::rply($player, '5310', array($loc->getName(), $hs, $ms, $he, $me));
+			$player->msg('5310', array($loc->getName(), $hs, $ms, $he, $me));
 		}
 #		self::rply($player, '5243', array(GWF_Time::humanDuration(Shadowrun4::getTime(), 4)));
 	}

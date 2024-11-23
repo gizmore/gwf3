@@ -5,7 +5,7 @@ final class Shadowcmd_ccommands extends Shadowcmd
 	{
 		$long_versions = isset($args[0]);
 		$commands = self::getCurrentCommands($player, true, true, $long_versions, true, true, true);
-		return self::rply($player, '5037', array(implode(',', $commands)));
+		return $player->msg('5037', array(implode(',', $commands)));
 	}
 }
 ?>

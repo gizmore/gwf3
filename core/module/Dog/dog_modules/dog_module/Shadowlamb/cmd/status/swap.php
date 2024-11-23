@@ -5,7 +5,7 @@ final class Shadowcmd_swap extends Shadowcmd
 	{
 		if (count($args) !== 2)
 		{
-			self::reply($player, Shadowhelp::getHelp($player, 'swap'));
+			$player->message(Shadowhelp::getHelp($player, 'swap'));
 			return false;
 		}
 
@@ -13,19 +13,19 @@ final class Shadowcmd_swap extends Shadowcmd
 
 		if($ret < 0 && $ret > -3)
 		{
-			self::rply($player, '1020', array($args[-$ret-1]));
+			$player->msg('1020', array($args[-$ret-1]));
 			return false;
 // 			$bot->reply("You don\'t have " . $args[-$ret-1]);
 		}
 		elseif($ret == -3)
 		{
-			self::rply($player, '1030');
+			$player->msg('1030');
 			return false;
 // 			$bot->reply("You can't swap " . $args[0] . " with itself.");
 		}
 		else
 		{
-			return self::rply($player, '5063', $args);
+			return $player->msg('5063', $args);
 // 			$bot->reply("Items " . $args[0] . " and " . $args[1] . " have been swapped.");
 		}
 

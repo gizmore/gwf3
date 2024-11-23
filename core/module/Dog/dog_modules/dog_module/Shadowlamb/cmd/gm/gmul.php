@@ -10,19 +10,19 @@ final class Shadowcmd_gmul extends Shadowcmd
 		# Syntax
 		if (count($args) !== 2)
 		{
-			self::reply($player, Shadowhelp::getHelp($player, 'gmul'));
+			$player->message(Shadowhelp::getHelp($player, 'gmul'));
 			return false;
 		}
 		
 		# Args
 		if (false === ($target = Shadowrun4::getPlayerByShortName($args[0])))
 		{
-			self::rply($player, '1017');
+			$player->msg('1017');
 			return false;
 		}
 		elseif ($target === -1)
 		{
-			self::rply($player, '1018');
+			$player->msg('1018');
 			return false;
 		}
 		
@@ -30,7 +30,7 @@ final class Shadowcmd_gmul extends Shadowcmd
 		$field = $args[1];
 		if (false === ($cost = Shadowcmd_lvlup::getKarmaCostFactor($field)))
 		{
-			self::rply($player, '1024');
+			$player->msg('1024');
 			return false;
 		}
 		
@@ -50,7 +50,7 @@ final class Shadowcmd_gmul extends Shadowcmd
 		# Limit
 		if ($have_level <= 0)
 		{
-			self::reply($player, 'Lowered to 0 already!');
+			$player->message('Lowered to 0 already!');
 			return false;
 		}
 		
@@ -68,7 +68,7 @@ final class Shadowcmd_gmul extends Shadowcmd
 		$target->modify();
 		
 		# Announce
-		return self::reply($player, sprintf('%s reverted %s back to level %s and got %s karma back.', $target->getName(), $field, $have_level-1, $karma_back));
+		return $player->message(sprintf('%s reverted %s back to level %s and got %s karma back.', $target->getName(), $field, $have_level-1, $karma_back));
 	}
 }
 ?>

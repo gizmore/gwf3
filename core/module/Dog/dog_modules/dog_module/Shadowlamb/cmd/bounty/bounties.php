@@ -27,7 +27,7 @@ final class Shadowcmd_bounties extends Shadowcmd
 				return $bot->reply(Shadowhelp::getHelp($player, 'bounties'));
 		}
 		
-		return self::rply($player, '5087', array(SR_Bounty::displayBounties($player, $page)));
+		return $player->msg('5087', array(SR_Bounty::displayBounties($player, $page)));
 // 		return $bot->reply(SR_Bounty::displayBounties($player, $page));
 	}
 }

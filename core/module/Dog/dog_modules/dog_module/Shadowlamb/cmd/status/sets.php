@@ -33,7 +33,7 @@ final class Shadowcmd_sets extends Shadowcmd
 		$nPages = GWF_PageMenu::getPagecount($ipp, $nItems);
 		if ( ($page < 1) || ($page > $nPages) )
 		{
-			return self::rply($player, '1009');
+			return $player->msg('1009');
 		}
 		$sets = array_slice($sets, $from, $ipp);
 		
@@ -47,7 +47,7 @@ final class Shadowcmd_sets extends Shadowcmd
 		}
 		$out = trim($out, ',; ');
 		
-		return self::rply($player, '5295', array($page, $nPages, $out));
+		return $player->msg('5295', array($page, $nPages, $out));
 	}
 
 	private static function displaySet(SR_Player $player, $substr)
@@ -56,7 +56,7 @@ final class Shadowcmd_sets extends Shadowcmd
 		   && (false === ($set = SR_SetItems::getSetForItem($substr)))
 		)
 		{
-			return self::rply($player, '1189');
+			return $player->msg('1189');
 		}
 		
 		$modifiers = SR_SetItems::getModifiersForSet($set);
@@ -110,7 +110,7 @@ final class Shadowcmd_sets extends Shadowcmd
 		$itemstr = str_replace('(, ', ', (', $itemstr);
 		$itemstr = trim($itemstr, ',; ');
 		
-		return self::rply($player, '5296', array($set, $itemstr, $modstr));
+		return $player->msg('5296', array($set, $itemstr, $modstr));
 	}
 }
 ?>

@@ -35,7 +35,7 @@ final class Shadowcmd_parties extends Shadowcmd
 			$out .= sprintf($format, $item);
 // 			$out .= sprintf(', %s(L%s(%s))(M%s)', $leader, $l, $ll, $mc);
 		}
-		return self::rply($player, '5248', array($page, $nPages, ltrim($out, ',; ')));
+		return $player->msg('5248', array($page, $nPages, ltrim($out, ',; ')));
 // 		$bot = Shadowrap::instance($player);
 // 		$bot->reply(sprintf('Parties page %s from %s: %s.', $page, $nPages, substr($out, 2)));
 	}

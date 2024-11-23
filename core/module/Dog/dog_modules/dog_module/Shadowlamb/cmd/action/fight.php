@@ -9,7 +9,7 @@ final class Shadowcmd_fight extends Shadowcmd
 		{
 			if (false === ($ep = $p->getEnemyParty()))
 			{
-				self::reply($player, 'Cannot get enemy party! (tell gizmore)');
+				$player->message('Cannot get enemy party! (tell gizmore)');
 				return false;
 			}
 			
@@ -36,13 +36,13 @@ final class Shadowcmd_fight extends Shadowcmd
 			}
 			if (false === ($target = Shadowfunc::getPlayerInLocation($player, $args[0])))
 			{
-				self::rply($player, '1028', array($args[0]));
+				$player->msg('1028', array($args[0]));
 // 				$bot->reply(sprintf('%s is not here.', $args[0]));
 				return false;
 			}
 			if (false === ($ep = $target->getParty()))
 			{
-				self::reply($player, 'Cannot get enemy party! (tell gizmore)');
+				$player->message('Cannot get enemy party! (tell gizmore)');
 				return false;
 			}
 			
@@ -77,7 +77,7 @@ final class Shadowcmd_fight extends Shadowcmd
 		if (false !== ($time = SR_KillProtect::isKillProtectedParty($p, $ep)))
 		{
 			$wait = GWF_Time::humanDuration($time-Shadowrun4::getTime());
-			self::rply($player, '1060', array($wait));
+			$player->msg('1060', array($wait));
 // 			$player->message(sprintf('You cannot attack this party again. Please wait %s.', $wait));
 			return false;
 		}

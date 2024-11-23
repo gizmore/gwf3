@@ -57,13 +57,13 @@ class Shadowcmd_enable extends Shadowcmd
 		$bits = SR_Player::NOTICE|SR_Player::PRIVMSG;
 		if (($player->getOptions()&$bits) === $msgtype)
 		{
-			return self::rply($player, '5072', array($typetext[$msgtype]));
+			return $player->msg('5072', array($typetext[$msgtype]));
 // 			Lamb::instance()->reply('Your Shadowlamb message type was already set to '.$typetext[$msgtype].'.');
 // 			return true;
 		}
 		$player->saveOption($bits, false);
 		$player->saveOption($msgtype, true);
-		self::rply($player, '5073', array($typetext[$msgtype]));
+		$player->msg('5073', array($typetext[$msgtype]));
 // 		Lamb::instance()->reply('Your Shadowlamb message type has been set to: '.$typetext[$msgtype].'.');
 		$player->msg('5074');
 // 		$player->message('This is a test.');

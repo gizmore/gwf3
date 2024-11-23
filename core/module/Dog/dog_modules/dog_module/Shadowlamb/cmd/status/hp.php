@@ -48,7 +48,7 @@ class Shadowcmd_hp extends Shadowcmd
 // 			$back .= sprintf(", %s-%s%s(%s/%s)%s", $b.($member->getEnum()).$b, $b2, $member->getName(), $hpmp, $hpmmpm, $b2);
 		}
 		
-		return self::rply($player, $key, array(ltrim($back, ',; ')));
+		return $player->msg($key, array(ltrim($back, ',; ')));
 		
 // 		$bot->reply(sprintf('Your parties %s: %s.', $text, substr($back, 2)));
 // 		return true;

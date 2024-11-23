@@ -178,7 +178,7 @@ final class Shadowcmd_lvlup extends Shadowcmd
 		}
 		
 // 		$player->modify();
-		return self::rply($player, '5061', array($need, $f, $level, $level+1));
+		return $player->msg('5061', array($need, $f, $level, $level+1));
 // 		return $bot->reply(sprintf('You used %d karma and leveled up your %s from %d to %d.', $need, $f, $level, $level+1));
 	}
 	

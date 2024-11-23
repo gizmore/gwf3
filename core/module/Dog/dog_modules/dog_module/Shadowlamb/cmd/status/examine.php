@@ -13,11 +13,11 @@ final class Shadowcmd_examine extends Shadowcmd
 		
 		if (false === ($item = $player->getItem($args[0])))
 		{
-			self::rply($player, '1020', array($args[0])); # don't know item
+			$player->msg('1020', array($args[0])); # don't know item
 			return false;
 		}
 		
-		return self::rply($player, '5049', array($item->getItemInfo($player)));
+		return $player->msg('5049', array($item->getItemInfo($player)));
 	}
 }
 ?>

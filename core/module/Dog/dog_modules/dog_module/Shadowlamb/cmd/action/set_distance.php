@@ -35,7 +35,7 @@ final class Shadowcmd_set_distance extends Shadowcmd
 		}
 		
 		$player->updateField('distance', $d);
-		return self::rply($player, '5122', array($d));
+		return $player->msg('5122', array($d));
 // 		$player->message(sprintf("Your default combat distance has been set to %.01f meters.", $d));
 // 		return true;
 	}
@@ -53,7 +53,7 @@ final class Shadowcmd_set_distance extends Shadowcmd
 			$out .= sprintf($format, $member->getEnum(), $member->getName(), $val);
 // 			$out .= sprintf(', %s:%s(%s)', $member->getName(), $member->getBase('distance'), $p->getDistance($member));
 		}
-		return self::rply($player, $key, array(ltrim($out, ',; ')));
+		return $player->msg($key, array(ltrim($out, ',; ')));
 	}
 	
 }

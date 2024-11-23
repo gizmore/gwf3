@@ -21,7 +21,7 @@ final class Shadowcmd_compare extends Shadowcmd
 		
 		if(!$item1)
 		{
-			self::rply($player, '1020', array($args[0]));
+			$player->msg('1020', array($args[0]));
 // 			$bot->reply('I don`t know what item "'.$args[0].'" is.');
 			return false;
 		}
@@ -31,7 +31,7 @@ final class Shadowcmd_compare extends Shadowcmd
 			$item2 = self::getItem($bot, $player, $args[1]);
 			if(!$item2)
 			{
-				self::rply($player, '1020', array($args[1]));
+				$player->msg('1020', array($args[1]));
 // 				$bot->reply('I don`t know what item "'.$args[1].'" is.');
 				return false;
 			}
@@ -39,7 +39,7 @@ final class Shadowcmd_compare extends Shadowcmd
 			$item2 = $player->getItem( $item1->getItemType() );
 			if(!$item2)
 			{
-				self::rply($player, '1021', array($item1->getItemName()));
+				$player->msg('1021', array($item1->getItemName()));
 // 				$bot->reply('You don`t have anything comparable to "'.$item1->getItemName().'" equipped');
 				return false;
 			}
@@ -380,7 +380,7 @@ final class Shadowcmd_compare extends Shadowcmd
 			}
 			else
 			{
-				self::rply($player, '1022');
+				$player->msg('1022');
 // 				$bot->reply('You are not in a store!');
 			}
 			return false;

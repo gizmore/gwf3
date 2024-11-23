@@ -11,7 +11,7 @@ final class Shadowcmd_part extends Shadowcmd
 		$p = $player->getParty();
 		if ($p->getMemberCount() === 1)
 		{
-			self::rply($player, '1093');
+			$player->msg('1093');
 // 			$bot->reply('You are not in a party.');
 			return false;
 		}

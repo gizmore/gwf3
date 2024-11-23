@@ -5,7 +5,7 @@ final class Shadowcmd_party_loot extends Shadowcmd
 	{
 		if (count($args) > 1)
 		{
-			self::reply($player, Shadowhelp::getHelp($player, 'party_loot'));
+			$player->message(Shadowhelp::getHelp($player, 'party_loot'));
 			return false;
 		}
 		
@@ -21,13 +21,13 @@ final class Shadowcmd_party_loot extends Shadowcmd
 				case SR_Party::LOOT_RAND: $type = 'random'; break;
 				case SR_Party::LOOT_KILL: $type = 'killer'; break;
 			}
-			return self::rply($player, '5139', array($player->lang('pl_'.$type)));
+			return $player->msg('5139', array($player->lang('pl_'.$type)));
 // 			return self::reply($player, sprintf("Your party has set it's loot mode to: \X02%s\X02.", $type));
 		}
 		
 		if (false === $player->isLeader())
 		{
-			self::rply($player, '1032');
+			$player->msg('1032');
 // 			return self::reply($player, 'Only the leader can change the party loot settings.');
 		}
 		
@@ -38,7 +38,7 @@ final class Shadowcmd_party_loot extends Shadowcmd
 			case 'cycle': $bit = SR_Party::LOOT_CYCLE; break;
 			case 'killer': $bit = SR_Party::LOOT_KILL; break;
 			default:
-				self::reply($player, Shadowhelp::getHelp($player, 'party_loot'));
+				$player->message(Shadowhelp::getHelp($player, 'party_loot'));
 // 				self::reply($player, 'The loot mode is invalid. '.Shadowhelp::getHelp($player, 'party_loot'));
 				return false;
 		}

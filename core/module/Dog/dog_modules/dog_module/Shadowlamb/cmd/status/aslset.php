@@ -43,7 +43,7 @@ final class Shadowcmd_aslset extends Shadowcmd_asl
 		if ($errors !== '')
 		{
 			$message = sprintf('Error: %s.', $errors);
-			self::reply($player, $message);
+			$player->message($message);
 			$player->message(self::getASLSetHelp($player));
 			return false;
 		}
@@ -61,11 +61,11 @@ final class Shadowcmd_aslset extends Shadowcmd_asl
 			'sr4pl_bmi' => $bmi,
 			'sr4pl_height' => $height,
 		))) {
-			self::reply($player, 'Database errror 12!');
+			$player->message('Database errror 12!');
 			return false;
 		}
 		$player->modify();
-		return self::rply($player, '5266', array(Shadowfunc::displayASL($player)));
+		return $player->msg('5266', array(Shadowfunc::displayASL($player)));
 // 		return self::reply($player, sprintf('Your asl has been set to %s.', Shadowfunc::displayASL($player)));
 	}
 	

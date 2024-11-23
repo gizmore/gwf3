@@ -90,7 +90,7 @@ final class Shadowcmd_quests extends Shadowcmd
 // 			$open, $done, $declined, $failed, $unknown, $total
 // 		);
 		
-		self::reply($player, $message);
+		$player->message($message);
 	}
 	
 	private static function displayCityStats(SR_Player $player)
@@ -129,13 +129,13 @@ final class Shadowcmd_quests extends Shadowcmd
 		
 		if ($out === '')
 		{
-			self::reply($player, Shadowrun4::lang('1010'));
+			$player->message(Shadowrun4::lang('1010'));
 			return false;
 		}
 
 		$message = Shadowrun4::lang('5009', array(substr($out, 2)));
 // 		$message = sprintf('Quest stats per city: %s.', substr($out, 2));
-		self::reply($player, $message);
+		$player->message($message);
 	}
 
 	private static function getCitySection($arg)
@@ -198,7 +198,7 @@ final class Shadowcmd_quests extends Shadowcmd
 		
 		if (count($quests) === 0)
 		{
-			return self::rply($player, $errcode); # There are no quests here.
+			return $player->msg($errcode); # There are no quests here.
 		}
 		if ( (count($quests) === 1) && ($player->getLangISO() !== 'bot') )
 		{
@@ -209,7 +209,7 @@ final class Shadowcmd_quests extends Shadowcmd
 		{
 			if ( ($page < 1) || ($page > $nPages) )
 			{
-				return self::reply($player, Shadowrun4::lang($errcode));
+				return $player->message(Shadowrun4::lang($errcode));
 			}
 			$quests = array_slice($quests, ($page-1)*10, 10, true);
 			$message = '';
@@ -223,12 +223,12 @@ final class Shadowcmd_quests extends Shadowcmd
 			
 			if ($message === '')
 			{
-				return self::reply($player, Shadowrun4::lang($errcode)); # There are no quests here.
+				return $player->message(Shadowrun4::lang($errcode)); # There are no quests here.
 			}
 			
 			$section = Shadowrun4::lang('qu_'.$section);
 			
-			return self::rply($player, '5069', array($section, $page, $nPages, ltrim($message, ',; ')));
+			return $player->msg('5069', array($section, $page, $nPages, ltrim($message, ',; ')));
 // 			self::reply($player, Shadowrun4::lang('5009', array($section, $page, $nPages, substr($message, 2))));
 // 			$message = sprintf('%s quests, page %d/%d: %s.', $section, $page, $nPages, substr($message, 2));
 // 			self::reply($player, $message);
@@ -287,7 +287,7 @@ final class Shadowcmd_quests extends Shadowcmd
 			$id, $quest->getCityName(), $quest->getStatusString($player), $quest->getQuestName(), $quest->getQuestDescription()
 		));
 // 		$message = sprintf('%d: %s - %s (%s)', $id, $quest->getQuestName(), $quest->getQuestDescription(), $quest->getStatusString($player));
-		return self::reply($player, $message);
+		return $player->message($message);
 	}
 
 	/**
@@ -306,12 +306,12 @@ final class Shadowcmd_quests extends Shadowcmd
 		
 		if (count($args) !== 2)
 		{
-			return self::reply($player, Shadowhelp::getHelp($player, 'quests'));
+			return $player->message(Shadowhelp::getHelp($player, 'quests'));
 		}
 		
 		if (false === ($city = Shadowrun4::getCityByAbbrev($args[1])))
 		{
-			return self::reply($player, Shadowhelp::getHelp($player, 'quests'));
+			return $player->message(Shadowhelp::getHelp($player, 'quests'));
 		}
 		
 		$cityname = $city->getName();
@@ -335,7 +335,7 @@ final class Shadowcmd_quests extends Shadowcmd
 			}
 		}
 		
-		return self::rply($player, '5265', array($cityname, GWF_Array::implodeHuman($names)));
+		return $player->msg('5265', array($cityname, GWF_Array::implodeHuman($names)));
 	}
 }
 ?>

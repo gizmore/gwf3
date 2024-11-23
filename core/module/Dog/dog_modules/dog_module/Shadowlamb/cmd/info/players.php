@@ -47,7 +47,7 @@ final class Shadowcmd_players extends Shadowcmd
 			return false;
 		}
 
-		return self::rply($player, '5247', array($page, $nPages, ltrim($out, ',; ')));
+		return $player->msg('5247', array($page, $nPages, ltrim($out, ',; ')));
 // 		$out = $out === '' ? 'This page is empty.' : sprintf('Active players (page %d of %d): %s.', $page, $nPages, substr($out, 2));
 		
 // 		self::reply($player, $out);

@@ -7,7 +7,7 @@ final class Shadowcmd_use extends Shadowcmd
 	{
 		if (count($args) < 1)
 		{
-			self::reply($player, Shadowhelp::getHelp($player, 'use'));
+			$player->message(Shadowhelp::getHelp($player, 'use'));
 			return false;
 		}
 		

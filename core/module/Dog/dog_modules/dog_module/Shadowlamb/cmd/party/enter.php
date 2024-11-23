@@ -7,13 +7,13 @@ final class Shadowcmd_enter extends Shadowcmd
 		
 		if (false === ($location = $party->getLocationClass(SR_Party::ACTION_OUTSIDE)))
 		{
-			self::rply($player, '1031'); # You are not outside of a location.
+			$player->msg('1031'); # You are not outside of a location.
 			return false;
 		}
 		
 		if (!$player->isLeader())
 		{
-			self::rply($player, '1032'); # Only the leader of a party can enter locations.
+			$player->msg('1032'); # Only the leader of a party can enter locations.
 			return false;
 		}
 		

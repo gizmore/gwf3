@@ -75,7 +75,7 @@ final class Shadowcmd_give extends Shadowcmd
 		
 		$busymsg = $player->isFighting() ? Shadowfunc::displayBusy($player->busy(SR_Player::GIVE_TIME)) : '';
 		
-		self::rply($player, '5115', array($amt, $giveItem->displayFullName($player), $target->getName(), $busymsg));
+		$player->msg('5115', array($amt, $giveItem->displayFullName($player), $target->getName(), $busymsg));
 		
 // 		$player->message(sprintf('You gave %d %s to %s.%s', $amt, $giveItem->getName(), $target->getName(), $busymsg));
 

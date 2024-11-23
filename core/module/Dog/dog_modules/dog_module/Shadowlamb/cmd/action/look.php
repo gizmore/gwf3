@@ -42,7 +42,7 @@ final class Shadowcmd_look extends Shadowcmd
 		if ($back === '')
 		{
 			# You see no other players.
-			return $command_mode ? self::rply($player, '5120') : true;
+			return $command_mode ? $player->msg('5120') : true;
 		}
 
 // 		$player->setOption(SR_Player::RESPONSE_PLAYERS);
@@ -50,7 +50,7 @@ final class Shadowcmd_look extends Shadowcmd
 		# You see these players: %s.
 		if ($command_mode)
 		{
-			self::rply($player, '5121', array(ltrim($back, ',; ')));
+			$player->msg('5121', array(ltrim($back, ',; ')));
 		}
 		else
 		{

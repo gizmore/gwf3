@@ -95,7 +95,7 @@ class Shadowcmd
 	
 	public static function showHelp(SR_Player $player)
 	{
-		self::reply($player, self::getHelp($player));
+		$player->message(self::getHelp($player));
 		return false;
 	}
 	
@@ -585,7 +585,7 @@ class Shadowcmd
 			return call_user_func(array($location, $command), $player, $args);
 		}
 		
-		self::reply($player, "Error: The function $function does not exist.");
+		$player->message("Error: The function $function does not exist.");
 		return false;
 	}
 	

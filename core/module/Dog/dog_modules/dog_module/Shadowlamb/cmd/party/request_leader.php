@@ -28,14 +28,14 @@ final class Shadowcmd_request_leader extends Shadowcmd
 		
 		if ($leader->isOptionEnabled(SR_Player::NO_RL))
 		{
-			self::rply($player, '1096');
+			$player->msg('1096');
 			return false;
 // 			return $bot->reply('Your leader does not allow to takeover the leadership.');
 		}
 		
 		if ($wait > 0)
 		{
-			self::rply($player, '1097', array(GWF_Time::humanDuration($wait)));
+			$player->msg('1097', array(GWF_Time::humanDuration($wait)));
 			return false;			
 // 			return $bot->reply(sprintf('Please wait %s and try again.', GWF_Time::humanDuration($wait)));
 		}

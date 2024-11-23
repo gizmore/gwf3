@@ -85,7 +85,7 @@ final class Shadowcmd_gml extends Shadowcmd
 		
 		if (false === ($city = Shadowrun4::getCityByAbbrev($cityname)))
 		{
-			self::reply($player, 'Unknown city: '.$cityname);
+			$player->message('Unknown city: '.$cityname);
 			return false;
 		}
 		

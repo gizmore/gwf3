@@ -24,13 +24,13 @@ final class Shadowcmd_hunt extends Shadowcmd
 		$target = Shadowrun4::getPlayerByShortName($args[0]);
 		if ($target === false)
 		{
-			self::rply($player, '1017');
+			$player->msg('1017');
 // 			$bot->reply('This player is not in memory.');
 			return false;
 		}
 		elseif ($target === -1)
 		{
-			self::rply($player, '1018');
+			$player->msg('1018');
 // 			$bot->reply('The player name is ambigous. Try the {server} version.');
 			return false;
 		}
@@ -40,14 +40,14 @@ final class Shadowcmd_hunt extends Shadowcmd
 		$ep = $target->getParty();
 		if ($p->getID() === $ep->getID())
 		{
-			self::rply($player, '1083');
+			$player->msg('1083');
 // 			$bot->reply('You cannot hunt own party members.');
 			return false;
 		}
 		
 		if ($p->getCity() !== $ep->getCity())
 		{
-			self::rply($player, '1084', array($name, $p->getCity(), $name, $ep->getCity()));
+			$player->msg('1084', array($name, $p->getCity(), $name, $ep->getCity()));
 // 			$bot->reply(sprintf('You cannot hunt %s because you are in %s and %s is in %s.', $name, $p->getCity(), $name, $ep->getCity()));
 			return false;
 		}

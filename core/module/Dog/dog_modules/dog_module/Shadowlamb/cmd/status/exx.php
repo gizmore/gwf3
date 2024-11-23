@@ -14,11 +14,11 @@ final class Shadowcmd_exx extends Shadowcmd
 
 		if (false === ($item = $player->getItem($args[0])))
 		{
-			self::rply($player, '1020', array($args[0])); # don't know item
+			$player->msg('1020', array($args[0])); # don't know item
 			return false;
 		}
 		
-		return self::rply($player, '9001', array($item->displayPacked($player)));
+		return $player->msg('9001', array($item->displayPacked($player)));
 	}
 }
 ?>

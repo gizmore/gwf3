@@ -8,7 +8,7 @@ final class Shadowcmd_known_spells extends Shadowcmd
 			$arg = $args[0];
 			if (false === ($spell = $player->getSpell($arg)))
 			{
-				self::rply($player, '1023'); # You don't have this knowledge.
+				$player->msg('1023'); # You don't have this knowledge.
 				return false;
 			}
 			else
@@ -18,7 +18,7 @@ final class Shadowcmd_known_spells extends Shadowcmd
 		}
 		else
 		{
-			return self::reply($player, Shadowfunc::getSpells($player, '5054'));
+			return $player->message(Shadowfunc::getSpells($player, '5054'));
 		}
 		return true;
 	}

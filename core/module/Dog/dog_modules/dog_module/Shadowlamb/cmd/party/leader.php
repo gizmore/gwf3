@@ -14,21 +14,21 @@ final class Shadowcmd_leader extends Shadowcmd
 		$party = $player->getParty();
 		if (false === ($target = $party->getMemberByArg($args[0])))
 		{
-			self::rply($player, '1089');
+			$player->msg('1089');
 // 			$bot->reply(sprintf('%s is not in your party.', $args[0]));
 			return false;
 		}
 		
 		if ($target->isLeader())
 		{
-			self::rply($player, '1091', array($target->getName()));
+			$player->msg('1091', array($target->getName()));
 // 			$bot->reply(sprintf('%s is already the party leader.', $target->getName()));
 			return false;
 		}
 		
 		if ($target->isNPC())
 		{
-			self::rply($player, '1092');
+			$player->msg('1092');
 // 			$bot->reply(sprintf('You can not give leadership to NPCs.'));
 			return false;
 		}
@@ -37,7 +37,7 @@ final class Shadowcmd_leader extends Shadowcmd
 		{
 			case SR_Party::ACTION_HIJACK:
 			case SR_Party::ACTION_FIGHT:
-				self::rply($player, '1033');
+				$player->msg('1033');
 // 				$bot->reply(sprintf('You cannot change leadership now.'));
 				return false;
 		}

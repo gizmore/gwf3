@@ -8,7 +8,7 @@ final class Shadowcmd_unequip extends Shadowcmd
 // 		$bot = Shadowrap::instance($player);
 		if (count($args) !== 1)
 		{
-			self::reply($player, Shadowhelp::getHelp($player, 'unequip'));
+			$player->message(Shadowhelp::getHelp($player, 'unequip'));
 			return false;
 		}
 
@@ -20,14 +20,14 @@ final class Shadowcmd_unequip extends Shadowcmd
 		
 		if (false === ($item = $player->getItem($args[0])))
 		{
-			self::rply($player, '1029');
+			$player->msg('1029');
 // 			$player->message(sprintf('You don`t have that item.'));
 			return false;
 		}
 		
 		if ( (!$item->isEquipped($player)) || ($item instanceof SR_Piercing) )
 		{
-			self::rply($player, '1067', array($player->lang($item->getItemType())));
+			$player->msg('1067', array($player->lang($item->getItemType())));
 // 			$player->message(sprintf('You don`t have a %s equipped.', $item->getItemName()));
 			return false;
 		}

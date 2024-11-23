@@ -11,7 +11,7 @@ class Shadowcmd_ban extends Shadowcmd
 // 		$bot = Shadowrap::instance($player);
 		if (count($args) > 1)
 		{
-			self::reply($player, Shadowhelp::getHelp($player, $bool===true?'ban':'unban'));
+			$player->message(Shadowhelp::getHelp($player, $bool===true?'ban':'unban'));
 // 			$bot->reply(Shadowhelp::getHelp($player, $bool===true?'ban':'unban'));
 			return false;
 		}
@@ -21,7 +21,7 @@ class Shadowcmd_ban extends Shadowcmd
 		{
 			$p->banAll($bool);
 			$key = $bool === true ? '5065' : '5066';
-			return self::rply($player, $key);
+			return $player->msg($key);
 // 			if ($bool === true)
 // 			{
 // 				$msg = 'Your party does not accept new members anymore.';
@@ -36,7 +36,7 @@ class Shadowcmd_ban extends Shadowcmd
 		
 		if (false === ($target = Shadowrun4::getPlayerByName($args[0])))
 		{
-			self::rply($player, '1017');
+			$player->msg('1017');
 // 			$bot->reply('This player is unknown or not in memory.');
 			return false;
 		}
@@ -55,7 +55,7 @@ class Shadowcmd_ban extends Shadowcmd
 		}
 // 		return true;
 
-		return self::rply($player, $key, $args);
+		return $player->msg($key, $args);
 	}
 }
 ?>

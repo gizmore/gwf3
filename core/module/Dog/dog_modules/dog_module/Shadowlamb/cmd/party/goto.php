@@ -30,14 +30,14 @@ final class Shadowcmd_goto extends Shadowcmd
 		
 		if (false === ($tlc = self::getTLCByArg($player, $args[0])))
 		{
-			self::rply($player, '1069');
+			$player->msg('1069');
 // 			$player->message('This location is unknown or ambigious.');
 			return false;
 		}
 		
 		if (false === ($target = $cityclass->getLocation($tlc)))
 		{
-			self::rply($player, '1070', array($cityname));
+			$player->msg('1070', array($cityname));
 // 			$bot->reply(sprintf('The location %s does not exist in %s.', $tlc, $cityname));
 			return false;
 		}
@@ -45,14 +45,14 @@ final class Shadowcmd_goto extends Shadowcmd
 		$tlc = $target->getName();
 		if (!$player->hasKnowledge('places', $tlc))
 		{
-			self::rply($player, '1023');
+			$player->msg('1023');
 // 			$bot->reply(sprintf('You don`t know where the %s is.', $tlc));
 			return false;
 		}
 		
 		if ($party->getLocation('inside') === $tlc)
 		{
-			self::rply($player, '1071', array($tlc));
+			$player->msg('1071', array($tlc));
 // 			$bot->reply(sprintf('You are already in %s.', $tlc));
 			return false;
 		}
@@ -65,14 +65,14 @@ final class Shadowcmd_goto extends Shadowcmd
 			}
 			else
 			{
-				self::rply($player, '1118');
+				$player->msg('1118');
 				return false;
 			}
 		}
 		
 		if ( ($party->getAction() === SR_Party::ACTION_GOTO) && ($party->getTarget() === $tlc) )
 		{
-			self::rply($player, '5127', array($tlc, $party->displayETA()));
+			$player->msg('5127', array($tlc, $party->displayETA()));
 // 			$bot->reply(sprintf('You are already going to %s. ETA: %s.', $tlc, $party->displayETA()));
 			return false;
 		}

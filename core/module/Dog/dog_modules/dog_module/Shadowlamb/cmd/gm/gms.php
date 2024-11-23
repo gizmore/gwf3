@@ -21,10 +21,10 @@ final class Shadowcmd_gms extends Shadowcmd
 			return false;
 		}
 		
-		self::reply($player, Shadowfunc::getStatus($npc, '5301'));
-		self::reply($player, Shadowfunc::getEquipment($npc, '5303'));
-		self::reply($player, Shadowfunc::getAttributes($npc, '5304'));
-		self::reply($player, Shadowfunc::getSkills($npc, '5305'));
+		$player->message(Shadowfunc::getStatus($npc, '5301'));
+		$player->message(Shadowfunc::getEquipment($npc, '5303'));
+		$player->message(Shadowfunc::getAttributes($npc, '5304'));
+		$player->message(Shadowfunc::getSkills($npc, '5305'));
 //		$bot->reply(sprintf('Party: %s.', Shadowfunc::getPartyStatus($npc)));
 		return true;
 	}

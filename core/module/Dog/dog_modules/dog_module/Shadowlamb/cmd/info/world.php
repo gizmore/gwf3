@@ -3,7 +3,7 @@ final class Shadowcmd_world extends Shadowcmd
 {
 	public static function execute(SR_Player $player, array $args)
 	{
-		return self::rply($player, '5241', array(
+		return $player->msg('5241', array(
 			SR_NPC::$NPC_COUNTER, Shadowrun4::getCityCount(),
 			SR_Location::$LOCATION_COUNT, SR_Item::getTotalItemCount(),
 			SR_Spell::getTotalSpellCount(), SR_Quest::getTotalQuestCount(),

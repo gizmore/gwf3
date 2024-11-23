@@ -28,7 +28,7 @@ class Shadowcmd_asl extends Shadowcmd
 		$b = chr(2);
 		if ($player->getBase('age') > 0)
 		{
-			return self::rply($player, '5012', array(Shadowfunc::displayASL($player), self::translate('asl')));
+			return $player->msg('5012', array(Shadowfunc::displayASL($player), self::translate('asl')));
 // 			return self::reply($player, sprintf("Your asl: %s. Use #asl [<age|bmi|height>] for party sums.", Shadowfunc::displayASL($player)));
 		}
 		else
@@ -66,7 +66,7 @@ class Shadowcmd_asl extends Shadowcmd
 				case 'age': $out2 = "{$val}y"; break;
 				case 'bmi': $out2 = Shadowfunc::displayWeight($val); break;
 				case 'height': $out2 = Shadowfunc::displayDistance($val, 2); break;
-				default: self::reply($player, 'Error unknown field in onASLShowPartyB()'); return false;
+				default: $player->message('Error unknown field in onASLShowPartyB()'); return false;
 			}
 			$out .= sprintf($format, $member->getEnum(), $member->getName(), $out2);
 		}
@@ -75,9 +75,9 @@ class Shadowcmd_asl extends Shadowcmd
 			case 'age': $sumtxt = "{$sum}y"; break;
 			case 'bmi': $sumtxt = Shadowfunc::displayWeight($sum); break;
 			case 'height': $sumtxt = Shadowfunc::displayDistance($sum, 2); break;
-			default: self::reply($player, 'Error unknown field2 in onASLShowPartyB()'); return false;
+			default: $player->message('Error unknown field2 in onASLShowPartyB()'); return false;
 		}
-		self::rply($player, '', array(Shadowrun4::lang('sum_'.$field), $sumtxt, ltrim($out, ',; ')));
+		$player->msg('', array(Shadowrun4::lang('sum_'.$field), $sumtxt, ltrim($out, ',; ')));
 		return true;
 	}
 }

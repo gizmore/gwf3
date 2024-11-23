@@ -21,7 +21,7 @@ final class Shadowcmd_xp extends Shadowcmd
 			);
 		}
 		
-		return self::rply($player, '5308', array(ltrim($back, '|,; ')));
+		return $player->msg('5308', array(ltrim($back, '|,; ')));
 	}
 }
 ?>

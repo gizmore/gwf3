@@ -12,21 +12,21 @@ final class Shadowcmd_join extends Shadowcmd
 
 		if (false === ($target = Shadowfunc::getFriendlyTarget($player, $args[0], false)))
 		{
-			self::rply($player, '1028', array($args[0]));
+			$player->msg('1028', array($args[0]));
 // 			$bot->reply(sprintf('%s is not here or you are in his/her party already.', $args[0]));
 			return false;
 		}
 
 		if ($target->getParty()->getLeader()->isNPC())
 		{
-			self::rply($player, '1085');
+			$player->msg('1085');
 // 			$bot->reply('You cannot join NPC parties.');
 			return false;
 		}
 		
 		if ($target->getPartyID() === $player->getPartyID())
 		{
-			self::rply($player, '1086');
+			$player->msg('1086');
 // 			$bot->reply('You cannot join your own party.');
 			return false;
 		}
@@ -35,14 +35,14 @@ final class Shadowcmd_join extends Shadowcmd
 		$ep = $target->getParty();
 		if ($ep->hasBanned($player))
 		{
-			self::rply($player, '1087');
+			$player->msg('1087');
 // 			$bot->reply(sprintf('The party does not want you to join.'));
 			return false;
 		}
 		
 		if ($ep->isFull())
 		{
-			self::rply($player, '1088', array(SR_Party::MAX_MEMBERS));
+			$player->msg('1088', array(SR_Party::MAX_MEMBERS));
 // 			$bot->reply('The party has reached the maximum membercount of '.SR_Party::MAX_MEMBERS.'.');
 			return false;
 		}
