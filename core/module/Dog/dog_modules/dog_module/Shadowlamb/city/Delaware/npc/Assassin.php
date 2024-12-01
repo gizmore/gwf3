@@ -9,13 +9,13 @@ final class Delaware_Assassin extends SR_NPC
 	public function getNPCModifiers()
 	{
 		return array(
-			'race' => 'human',
-			'strength' => rand(3, 4),
+			'race' => rand('human', 'vampire', 'woodelve', 'darkelve', 'ork')
+			'strength' => rand(4, 5),
 			'melee' => rand(4, 6),
-			'sharpshooter' => rand(1, 2),
-			'quickness' => rand(2, 4),
+			'sharpshooter' => rand(3, 5),
+			'quickness' => rand(5, 8),
 			'ninja' => rand(3, 4),
-			'base_hp' => rand(18, 20),
+			'base_hp' => rand(16, 20),
 			'distance' => rand(2, 4),
 			'nuyen' => rand(25, 50),
 		);
@@ -24,12 +24,11 @@ final class Delaware_Assassin extends SR_NPC
 	public function getNPCEquipment()
 	{
 		return array(
-			'weapon' => array('NinjaSword','Katana'),
-			'armor' => 'StuddedVest',
-			'boots' => 'ArmyBoots',
+			'weapon' => rand('NinjaSword', 'WoodenNunchaku', 'Knife', 'Fists'),
+			'armor' => 'KevlarVest',
+			'boots' => 'Sneakers',
 			'helmet' => 'LeatherCap',
-			'legs' => 'StuddedLegs',
+			'legs' => 'ElvenShorts',
 		);
 	}
 }
-?>
