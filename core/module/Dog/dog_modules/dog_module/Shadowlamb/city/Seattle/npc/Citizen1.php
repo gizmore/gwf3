@@ -8,19 +8,23 @@ final class Seattle_Citizen1 extends SR_HireNPC
 	public function getNPCEquipment()
 	{
 		return array(
-			'weapon' => 'LongSword',
-			'armor' => 'LeatherVest',
-			'legs' => 'Trousers',
+			'amulet' => array('LO_Amulet_of_orcas:1'),
+			'weapon' => array('SteelNunchaku', 'Club', 'Stiletto', 'Fists')
+			'armor' => 'StuddedVest',
+			'legs' => 'ElvenShorts',
+			'boots' => 'Sneakers'
 		);
 	}
-	public function getNPCInventory() { return array(); }
+	public function getNPCInventory() { return array('SteelNunchaku', 'Club', 'Stiletto', 'Fists'); }
 	public function getNPCModifiers() {
 		return array(
 			'race' => 'human',
 			'gender' => 'male',
 			'strength' => rand(2, 4),
-			'melee' => rand(2, 4),
-			'quickness' => rand(2, 4),
+			'melee' => rand(2, 3),
+			'ninja' => rand(1, 5),
+			'quickness' => rand(3, 6),
+			'charisma' => rand(3, 6),
 			'distance' => rand(0, 2),
 			'nuyen' => rand(40, 60),
 			'base_hp' => rand(8, 16),
@@ -90,4 +94,3 @@ final class Seattle_Citizen1 extends SR_HireNPC
 		}
 	}
 }
-?>
