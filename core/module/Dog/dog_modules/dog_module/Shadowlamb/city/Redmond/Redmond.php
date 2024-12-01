@@ -1,11 +1,11 @@
 <?php
 final class Redmond extends SR_City
 {
-	const TIME_TO_SEATTLE = 300;
-	const TIME_TO_VEGAS = 1600;
-	public function getArriveText(SR_Player $player) { return 'You arrive at Redmond. Home sweet home.'; }
+	const TIME_TO_SEATTLE = 240;
+	const TIME_TO_VEGAS = 1200;
+	public function getArriveText(SR_Player $player) { return 'You arrive at Redmond. Home, sweet home.'; }
 	public function getSquareKM() { return 6; }
-//	public function getExploreTime() { return 180; }
+//	public function getExploreTime() { return 120; }
 	public function getMinLevel() { return 0; }
 
 	public function getImportNPCS() { return array('Seattle_BlackOp'); }
@@ -36,4 +36,3 @@ final class Redmond extends SR_City
 		}
 	}
 }
-?>
