@@ -12,7 +12,7 @@ echo
 '| <a href="'.GWF_WEB_ROOT.'ranking">'.$module->lang('menu_ranking').'</a>'.PHP_EOL.
 '| <a href="'.GWF_WEB_ROOT.'challs">'.$module->lang('menu_challs').'</a>'.PHP_EOL.
 // 			'| <a href="'.GWF_WEB_ROOT.'register">'.$module->lang('menu_register').'</a>'.PHP_EOL.
-'| <a href="'.GWF_WEB_ROOT.'irc_chat">'.$module->lang('menu_chat').'</a>'.PHP_EOL.
+'| <a href="'.GWF_WEB_ROOT.'lounge">'.$module->lang('menu_chat').'</a>'.PHP_EOL.
 '| <a href="'.GWF_WEB_ROOT.'contact">'.$module->lang('menu_contact').'</a>'.PHP_EOL.
 '</nav>'.PHP_EOL;
 

@@ -795,4 +795,14 @@ Il team WeChall',
     'th_site_telegram' => 'Telegram',
     'th_site_whatsapp' => 'WhatsApp',
     'th_site_signal' => 'Signal',
+
+    # Lounge chat
+    'link_chatlounge' => 'Chat',
+    'title_chatlounge' => 'WeChall IRC Webchat',
+    'info_chatlounge' =>
+        "We created a new webchat page, using 'thelounge' app.<br/>\n
+        I hope some will like and use it.<br/>\n
+        Of course it's better to use a real client like kvirc.<br/>\n
+        <br/>\n
+        Click this link to start the chat: %s.<br/>\n",
 );
