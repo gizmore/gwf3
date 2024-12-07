@@ -781,6 +781,14 @@ abstract class SR_Bazar extends SR_Location
 	{
 		$price = $this->calcBuySlotPrice($player);
 		$avail_slots = $this->getBazarSlots($player);
+
+		if ($price < 0)
+		{
+			$player->msg('1198', array(self::MAX_SLOTS_BUY));
+			// You have reached the max number of slots
+			return false;
+		}
+
 		if ($player->getNuyen() < $price)
 		{
 			$player->msg('1063', array(Shadowfunc::displayNuyen($price), $player->displayNuyen()));
