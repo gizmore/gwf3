@@ -9,7 +9,7 @@ $chall->showHeader();
 $user = GWF_User::getStaticOrGuest();
 $name = $user->getVar('user_name');
 $username = urlencode($name);
-$ip = $_SERVER['REMOTE_ADDR'];
+$ip = eval_ip($_SERVER['REMOTE_ADDR']);
 $port = Common::getPostInt('port', 80);
 $url = sprintf('http://%s:%d/%s/', $ip, $port, $username);
 if (false !== Common::getPost('go')) {
@@ -43,5 +43,16 @@ function www_rewrite_go(WC_Challenge $chall, $url)
 	else {
 		$chall->onChallengeSolved(GWF_Session::getUserID());
 	}
+}
+
+function eval_ip($ip)
+{
+	if (filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6)) {
+	    return "[$ip]";
+	}
+	if (filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4)) {
+		return $ip;
+	}
+	return null;
 }
 ?>
