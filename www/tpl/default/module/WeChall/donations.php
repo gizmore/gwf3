@@ -87,13 +87,13 @@ Sum:    €  299,00
 Goal:   €  480,00
 </pre>
 
-<pre>Donations 2024:    4 donations
-Sum:    €  705,00
+<pre>Donations 2024:    5 donations
+Sum:    €  740,00
 Goal:   €  680,00
 </pre>
 
-<pre>Totals:           44 donations
-Sum:    € 2625,37
+<pre>Totals:           45 donations
+Sum:    € 2660,37
 Goal:   € 2660,00
 </pre>
 
@@ -163,6 +163,7 @@ We currently have the following ca. expenses for WeChall:<br/>
     <li><span class="dodate">7.Aug.2024</span> – <em>&quot;WeChall, therefore We Are&quot;</em> – <a class="donor" href="/profile/Hertz">Hertz</a></li>
     <li><span class="dodate">8.Sep.2024</span> – <em>"bump"</em> – <a class="donor" href="/profile/livinskull">livinskull</a></li>
     <li><span class="dodate">10.Oct.2024</span> – <em>Give me Strength to endure The Darkness</em> – <a class="donor" href="/profile/occasus">occasus</a></li>
+    <li><span class="dodate">13.Dec.2024</span> – <em>next tattoo will be smaller xD</em> – <a class="donor" href="/profile/occasus">occasus</a></li>
 </ol>
 </div>
 
@@ -170,7 +171,7 @@ We currently have the following ca. expenses for WeChall:<br/>
 <h2>Hall of purchased Gods</h2>
 <ol>
 <li>----- 2018 -----</li>
-<li>9.Nov.2018 - someone donated €5 as a monthly payment. (unlimited money, we just have to wait) ca. €140 so far.</li>
+<li>9.Nov.2018 - someone donated €5 as a monthly payment. (unlimited money, we just have to wait) ca. €317 so far.</li>
 </ol>
 </div>
 
