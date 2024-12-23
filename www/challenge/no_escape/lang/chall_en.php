@@ -2,9 +2,9 @@
 $lang = array(
 	'title' => 'No Escape',
 	'info' =>
-		'The small gizmore software company is expanding, and got contracted to create the new online votings for presidential election in 2012.<br/>'.
+		'The small gizmore software company is expanding, and got contracted to create the new online votings for presidential election in 2025.<br/>'.
 		'The current script is in alpha phase, and we`d like to know if it`s safe.<br/>'.
-		'To prove me wrong you have to set the votecount for at least one of the candidates to 111. There is a reset at 100.<br/>'.
+		'To prove me wrong you have to set the vote count for at least one of the candidates to 111. There is a reset at 100.<br/>'.
 		'Again you are given <a href="%1$s">the sourcecode</a>, also as <a href="%2$s">highlighted version</a>.<br/>'.
 		'<br/>'.
 		'Good Luck!',

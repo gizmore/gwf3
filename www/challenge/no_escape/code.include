@@ -28,14 +28,19 @@ function noesc_db()
  */
 function noesc_createTable()
 {
+    // somehow indian tech support messed up the db structure.... 1 col per vote_count O.o
 	$db = noesc_db();
 	$query =
 		"CREATE TABLE IF NOT EXISTS noescvotes ( ".
-		"id     INT(11) UNSIGNED PRIMARY KEY, ". # I could have one row per candidate, but currently there is only one global row(id:1). I know it`s a bit unrealistic, but at least it is safe, isn`t it?
-		"bill   INT(11) UNSIGNED NOT NULL DEFAULT 0, ". # bill column
-		"barack INT(11) UNSIGNED NOT NULL DEFAULT 0, ". # barack column
-		"george INT(11) UNSIGNED NOT NULL DEFAULT 0 )"; # george columb
-	
+		"id      INT(11) UNSIGNED PRIMARY KEY, ". # I could have one row per candidate, but currently there is only one global row(id:1). I know it`s a bit unrealistic, but at least it is safe, isn`t it?
+		"scholz  INT(11) UNSIGNED NOT NULL DEFAULT 0, ".
+		"merz    INT(11) UNSIGNED NOT NULL DEFAULT 0, ".
+		"habeck  INT(11) UNSIGNED NOT NULL DEFAULT 0, ".
+		"lindner INT(11) UNSIGNED NOT NULL DEFAULT 0, ".
+		"wagenk  INT(11) UNSIGNED NOT NULL DEFAULT 0, ".
+		"weidel  INT(11) UNSIGNED NOT NULL DEFAULT 0, ".
+		"iamben  INT(11) UNSIGNED NOT NULL DEFAULT 0)"; # This is iamben from #gentoo-chat. Please make him win!
+
 	if (false === $db->queryWrite($query)) {
 		return false;
 	}
@@ -48,7 +53,7 @@ function noesc_createTable()
  */
 function noesc_resetVotes()
 {
-	noesc_db()->queryWrite("REPLACE INTO noescvotes VALUES (1, 0, 0, 0)");
+	noesc_db()->queryWrite("REPLACE INTO noescvotes VALUES (1, 0, 0, 0, 0, 0, 0, 0)");
 	echo GWF_HTML::message('No Escape', 'All votes have been reset', false);
 }
 
@@ -61,7 +66,7 @@ function noesc_resetVotes()
  */
 function noesc_voteup($who)
 {
-	if ( (stripos($who, 'id') !== false) || (strpos($who, '/') !== false) ) {
+	if ( (stripos($who, 'id') === 0) || (strpos($who, '/') !== false) ) {
 		echo GWF_HTML::error('No Escape', 'Please do not mess with the id. It would break the challenge for others', false);
 		return;
 	}
@@ -157,5 +162,3 @@ function noesc_solved()
 	}
 	$chall->onChallengeSolved(GWF_Session::getUserID());
 }
-
-?>
