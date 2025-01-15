@@ -9,7 +9,7 @@ $lang = array(
     <br/>
     It currently speaks
     <a href="https://github.com/gizmore/pygdo-telegram">Telegram</a> (<a href="https://t.me/+rankW0nN_ig4OGEy">CLICK</a>),
-    <a href="https://github.com/gizmore/pygdo-discord">Discord</a> (<a href="https://discord.gg/JkeErrNQ">CLICK</a>),
+    <a href="https://github.com/gizmore/pygdo-discord">Discord</a> (<a href="https://discord.gg/ftWTRs3QQG">CLICK</a>),
     <a href="https://github.com/gizmore/pygdo-irc">IRC</a>, (<a href="ircs://irc.wechall.net:6697/#shadowlamb">CLICK</a>)
     WhatsApp (SOON) Bash and HTTP.<br/>
     <br/>
