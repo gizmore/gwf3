@@ -76,7 +76,6 @@ $lang = array(
 	'Yesterday' => 'Tegnap',
 	'Today' => 'Ma',
 	'Tomorrow' => 'Holnap',
-	'Yesterday' => 'Tegnap',
 	'OtherDay' => 'Ez %s',
 
 	'fav_links' => '%s felhasználó %s kedvenc linket jelölt be',
