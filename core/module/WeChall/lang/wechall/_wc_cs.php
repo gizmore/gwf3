@@ -76,6 +76,7 @@ $lang = array(
 	'bdnews_body_init' => 'Tito uživatelé mají tento týden narozeniny:'.PHP_EOL.'[url=%s]Označ jako přečtené[/url]'.PHP_EOL.PHP_EOL,
 	'Yesterday' => 'Včera',
 	'Today' => 'Dnes',
+	'Tomorrow' => 'Zítra',
 	'Yesterday' => 'Včera',
 	'OtherDay' => 'Tento %s',
 

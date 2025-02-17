@@ -79,6 +79,7 @@ $lang = array(
 	'bdnews_body_init' => 'Les utilisateurs suivants ont fêté leur anniversaire cette semaine:'.PHP_EOL.'[url=%s]Cliquez ici pour marquer comme lu[/url]'.PHP_EOL.PHP_EOL,
 	'Yesterday' => 'Hier',
 	'Today' => 'Aujourd\'hui',
+	'Tomorrow' => 'Demain',
 	'Yesterday' => 'Hier',
 	'OtherDay' => 'Ce %s',
 

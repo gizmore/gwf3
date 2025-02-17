@@ -76,6 +76,7 @@ $lang = array(
 	'bdnews_body_init' => 'Следећи корисници имају рођендан ове недеље:'.PHP_EOL.'[url=%s]Кликните овде да означите као прочитано[/url]'.PHP_EOL.PHP_EOL,
 	'Yesterday' => 'Јуче',
 	'Today' => 'Данас',
+	'Tomorrow' => 'Tomorrow',
 	'Yesterday' => 'Јуче',
 	'OtherDay' => 'This %s',
 
