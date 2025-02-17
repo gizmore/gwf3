@@ -77,7 +77,6 @@ $lang = array(
 	'Yesterday' => 'Јуче',
 	'Today' => 'Данас',
 	'Tomorrow' => 'Tomorrow',
-	'Yesterday' => 'Јуче',
 	'OtherDay' => 'This %s',
 
 	'fav_links' => '%s has %s favorite Links',

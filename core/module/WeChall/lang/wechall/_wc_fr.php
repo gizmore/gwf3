@@ -80,7 +80,6 @@ $lang = array(
 	'Yesterday' => 'Hier',
 	'Today' => 'Aujourd\'hui',
 	'Tomorrow' => 'Demain',
-	'Yesterday' => 'Hier',
 	'OtherDay' => 'Ce %s',
 
 	'fav_links' => '%s a %s liens favoris',
