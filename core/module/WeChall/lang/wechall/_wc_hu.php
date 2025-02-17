@@ -75,6 +75,7 @@ $lang = array(
 	'bdnews_body_init' => 'A következő felhasználóknak van a héten születésnapjuk:'.PHP_EOL.'[url=%s]Kattints ide, hogy olvasottként jelöld meg ezt az üzenetet.[/url]'.PHP_EOL.PHP_EOL,
 	'Yesterday' => 'Tegnap',
 	'Today' => 'Ma',
+	'Tomorrow' => 'Holnap',
 	'Yesterday' => 'Tegnap',
 	'OtherDay' => 'Ez %s',
 

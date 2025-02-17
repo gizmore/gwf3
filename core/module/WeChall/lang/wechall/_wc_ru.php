@@ -75,6 +75,7 @@ $lang = array(
 	'bdnews_body_init' => 'Следующие пользователи празднуют свой день рождения на этой недели:'.PHP_EOL.'[url=%s]Нажмите здесь,чтобы отметить их[/url]'.PHP_EOL.PHP_EOL,
 	'Yesterday' => 'Вчера',
 	'Today' => 'Сегодня',
+	'Tomorrow' => 'Завтра',
 	'Yesterday' => 'Вчера',
 	'OtherDay' => 'На днях %s',
 
