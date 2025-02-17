@@ -430,7 +430,7 @@ final class Module_WeChall extends GWF_Module
 				$day = '[b]'.WC_HTML::lang('Today').'[/b]';
 			}
 			elseif ($date === $tomorrow) {
-				$day = WC_HTML::lang('Tommorow');
+				$day = WC_HTML::lang('Tomorrow');
 			}
 			elseif ($date < $today) {
 				$day = WC_HTML::lang('bd_over', array($day));
