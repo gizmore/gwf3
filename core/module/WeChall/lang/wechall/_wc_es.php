@@ -806,4 +806,7 @@ El equipo de WeChall',
         Of course it's better to use a real client like kvirc.<br/>\n
         <br/>\n
         Click this link to start the chat: %s.<br/>\n",
+
+    # admin "edit site"
+    'th_no_email' => 'El sitio no guarda correos electrónicos para los usuarios',
 );
