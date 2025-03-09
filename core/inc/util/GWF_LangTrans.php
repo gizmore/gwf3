@@ -156,7 +156,14 @@ final class GWF_LangTrans
 	 */
 	private function replaceArgs($back, $args=NULL)
 	{
-		return !is_array($args) ? $back : vsprintf($back, $args);
+        try
+        {
+            return !is_array($args) ? $back : vsprintf($back, $args);
+        }
+        catch (Exception $e)
+        {
+            return htmlspecialchars($key).(is_array($args) ? ': '.GWF_Array::implode(',', $args) : '');
+        }
 	}
 
 
