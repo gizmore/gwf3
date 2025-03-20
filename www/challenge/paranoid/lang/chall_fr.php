@@ -9,7 +9,7 @@ $lang = array(
 		'<b>F</b>aut-il dire que c\'est avec plaisir que je vous présente mon deuxième challenge de ste<i>g</i>ano?<br/>'.PHP_EOL.
 		'<b>A</b>h! Il a été éc<i>r</i>it à partir de zéro par un esprit paranoïaque.<br/>'.PHP_EOL.
 		'<b>U</b>n petit challenge qui me sert à tester le framework de mon site we<i>b</i>.<br/>'.PHP_EOL.
-		'<b>X</b>(l\'école polytechnique), vous sûrement m\'ouvrir leur porte avec ce challen<i>ge</i>. J\'espère que vous l\'aimerai.<br/>'.PHP_EOL.
+		'<b>X</b>(l\'école polytechnique), va sûrement m\'ouvrir ses portes avec ce challen<i>ge</i>. J\'espère que vous l\'aimerez.<br/>'.PHP_EOL.
 		'<!-- Translation by grimm :) -->'.PHP_EOL,
 
 );
