@@ -14,7 +14,7 @@ final class Quest_Vegas_HiJack extends SR_QuestMultiItem
 		{
 			case 'shadowrun':
 				$npc->rply($this->lang('1'));
-				$npc->rply($this->lang('2', $this->getQuestDescriptionStats()));
+				$npc->rply($this->lang('2', array($this->getQuestDescriptionStats())));
 				$npc->rply($this->lang('3'));
 				break;
 			case 'confirm':
