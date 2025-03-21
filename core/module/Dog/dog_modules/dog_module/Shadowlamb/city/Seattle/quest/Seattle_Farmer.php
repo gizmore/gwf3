@@ -18,7 +18,7 @@ final class Quest_Seattle_Farmer extends SR_Quest
 		}
 		else
 		{
-			return $npc->reply($this->lang('more', max(0, $this->getNeededAmount()-$this->getAmount())));
+			return $npc->reply($this->lang('more', array(max(0, $this->getNeededAmount()-$this->getAmount()))));
 		}
 	}
 	
