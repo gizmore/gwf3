@@ -36,9 +36,10 @@ We will probably contact you any time soon, for saying thanks.
 </div>
 <?php endif; ?>
 
+
 <div class="box">
-You are reading it right, we are accepting donations now: <?= $tVars['paybutton']; ?><br/>
-It would be awesome if some people would donate something, as the rent for <a href="http://warchall.net">box0</a> and <a href="https://www.wechall.net">box2</a> is due in nov/december.<br/>
+    <!--You are reading it right, we are accepting donations now: <?= $tVars['paybutton']; ?><br/>-->
+It would be awesome if some people would donate something, as the rent for two or three of the servers is not monthly, and due in nov/december.<br/>
 We will give an overview here of the donations, manually updated.<br/>
 <br/>
 Please note that many values are estimations, but almost correct. For PayPal donations we have to pay fees, so not the full amount listed here shows up in the account.<br/>
@@ -46,10 +47,10 @@ I also do not have a separate account for WeChall or my company at the moment, s
 It might be possible i spent some of the too much donations in 2018 on food and servers i indicated *i* pay for them, but you did :).<br/>
 In case anyone needs webhosting, just contact us :)<br/>
 <br/>
-<b>New: </b> We are now accepting <a style="font-weight: bold;" onclick="$('#bitcoinqr').toggle();">bitcoins</a><br/>
+<!-- <b>New: </b> We are now accepting <a style="font-weight: bold;" onclick="$('#bitcoinqr').toggle();">bitcoins</a><br/>
 <br/>
 <div style="word-break: break-all;">xpub661MyMwAqRbcFBHXoGuBJso1o99RoyzSv1gr7NUCk9uprUMYW92ByBLzkq4dFvLTizGKuked1DWeYGnivQe8xQYEvpfeJXwpy17aDu21f4N</div>
-<div id="bitcoinqr" style="display:none;" onclick="$(this).hide()" ><img alt="Bitcoin QR-Code" src="/img/default/bitcoin_donations.png"></div>
+<div id="bitcoinqr" style="display:none;" onclick="$(this).hide()" ><img alt="Bitcoin QR-Code" src="/img/default/bitcoin_donations.png"></div>-->
 </div>
 <div class="box">
 <pre>Donations 2017:    7 donations
@@ -92,18 +93,24 @@ Sum:    €  740,00
 Goal:   €  680,00
 </pre>
 
-<pre>Totals:           45 donations
-Sum:    € 2660,37
-Goal:   € 2660,00
+<pre>Donations 2025:    1 donation
+Sum:    €   10,00
+Goal:   €  666,00
+</pre>
+
+
+<pre>Totals:           46 donations
+Sum:    € 2670,37
+Goal:   € 2670,00
 </pre>
 
 </div>
 
 <div class="box">
-We currently have the following ca. expenses for WeChall:<br/>
+    We currently have the following <b>ca.</b>b expenses for WeChall:<br/>
 <ul>
-<li>- Box0 (warchall.net) €120/y</li>
-<li>- Box1 (---secret---) €0/y (gizmore pays)</li>
+<li>-<strike>Box??? (warchall.net) €120/y</strike></li>
+<li>- <strike>Box1 (---secret---) €0/y (gizmore pays)</strike><</li>
 <li>- Box2 (wechall.net) €120/y</li>
 <li>- Box3 (irc.wechall.net) €120/y</li>
 <li>- Box4 (wanda.gizmore.org, IRC2, git) €120/y</li>
@@ -164,6 +171,8 @@ We currently have the following ca. expenses for WeChall:<br/>
     <li><span class="dodate">8.Sep.2024</span> – <em>"bump"</em> – <a class="donor" href="/profile/livinskull">livinskull</a></li>
     <li><span class="dodate">10.Oct.2024</span> – <em>Give me Strength to endure The Darkness</em> – <a class="donor" href="/profile/occasus">occasus</a></li>
     <li><span class="dodate">13.Dec.2024</span> – <em>next tattoo will be smaller xD</em> – <a class="donor" href="/profile/occasus">occasus</a></li>
+    <li>----- 2025 -----</li>
+    <li><span class="dodate">5.May.2025</span> – <em>&quot;May WeChall live forever&quot;</em> – <a class="donor" href="/profile/Xaav">Xaav</a></li>
 </ol>
 </div>
 
