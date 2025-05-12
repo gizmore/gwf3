@@ -43,8 +43,8 @@ It would be awesome if some people would donate something, as the rent for two o
 We will give an overview here of the donations, manually updated.<br/>
 <br/>
 Please note that many values are estimations, but almost correct. For PayPal donations we have to pay fees, so not the full amount listed here shows up in the account.<br/>
-I also do not have a separate account for WeChall or my company at the moment, so it's a bit of shuffeling.<br/>
-It might be possible i spent some of the too much donations in 2018 on food and servers i indicated *i* pay for them, but you did :).<br/>
+I also do not have a separate account for WeChall or my company at the moment, so it's a bit of shuffling.<br/>
+It might be possible I spent some of the too much donations in 2018 on food and servers I indicated *I* pay for them, but you did :).<br/>
 In case anyone needs webhosting, just contact us :)<br/>
 <br/>
 <!-- <b>New: </b> We are now accepting <a style="font-weight: bold;" onclick="$('#bitcoinqr').toggle();">bitcoins</a><br/>
@@ -107,7 +107,7 @@ Goal:   € 2670,00
 </div>
 
 <div class="box">
-    We currently have the following <b>ca.</b>b expenses for WeChall:<br/>
+    We currently have the following <b>ca.</b> expenses for WeChall:<br/>
 <ul>
 <li>-<strike>Box??? (warchall.net) €120/y</strike></li>
 <li>- <strike>Box1 (---secret---) €0/y (gizmore pays)</strike><</li>
