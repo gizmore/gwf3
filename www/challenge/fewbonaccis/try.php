@@ -10,7 +10,7 @@ function trying()
         flush();
         $a = microtime(true);
         $result = trim(GWF_HTTP::getFromURL($url));
-        echo "Got $result<br/>\n";
+        echo "Got " . htmlspecialchars($result) . "<br/>\n";
         $b = microtime(true);
         if (strlen($result) != 32)
         {
