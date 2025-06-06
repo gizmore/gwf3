@@ -93,14 +93,14 @@ Sum:    €  740,00
 Goal:   €  680,00
 </pre>
 
-<pre>Donations 2025:    1 donation
-Sum:    €   10,00
-Goal:   €  666,00
+<pre>Donations 2025:    2 donation
+Sum:    €   60,00
+Goal:   €  726,00
 </pre>
 
 
-<pre>Totals:           46 donations
-Sum:    € 2670,37
+<pre>Totals:           47 donations
+Sum:    € 2720,37
 Goal:   € 2670,00
 </pre>
 
@@ -173,6 +173,7 @@ Goal:   € 2670,00
     <li><span class="dodate">13.Dec.2024</span> – <em>next tattoo will be smaller xD</em> – <a class="donor" href="/profile/occasus">occasus</a></li>
     <li>----- 2025 -----</li>
     <li><span class="dodate">5.May.2025</span> – <em>&quot;May WeChall live forever&quot;</em> – <a class="donor" href="/profile/Xaav">Xaav</a></li>
+    <li><span class="dodate">31.May.2025</span> – <em>&quot;Payment to keep dloser from solving more challenges.&quot;</em> – <a class="donor" href="/profile/benito255">benito255</a></li>
 </ol>
 </div>
 
