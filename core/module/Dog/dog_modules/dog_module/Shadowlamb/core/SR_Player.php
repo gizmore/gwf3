@@ -2101,6 +2101,10 @@ class SR_Player extends GDO
 		{
 			$this->sr4_mount_inv->itemAmountChanged($item, $amount_change);
 		}
+		elseif ($this->sr4_bank->contains($item))
+		{
+			$this->sr4_bank->itemAmountChanged($item, $amount_change);
+		}
 		else
 		{
 			return false;
