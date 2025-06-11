@@ -7,7 +7,7 @@ $slaps = array(
 
 'adverbs' => array(
 	array('hardly', 14),
-	array('accidently', 15),
+	array('accidentally', 15),
 	array('sadly', 25),
 	array('funnily', 28),
 	array('hopefully', 29),
@@ -93,7 +93,7 @@ $slaps = array(
 	array('kills', 70),
 	array('eliminates', 71),
 	array('damages' , 75),
-	array('eleminates' , 79),
+	array('eliminates' , 79),
 	array('disables' , 80),
 	array('destroys' , 90),
 	array('naruto-runs', 84),
