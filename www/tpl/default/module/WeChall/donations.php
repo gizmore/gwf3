@@ -38,7 +38,7 @@ We will probably contact you any time soon, for saying thanks.
 
 
 <div class="box">
-    <!--You are reading it right, we are accepting donations now: <?= $tVars['paybutton']; ?><br/>-->
+You are reading it right, we are accepting donations now: <?= $tVars['paybutton']; ?><br/>
 It would be awesome if some people would donate something, as the rent for two or three of the servers is not monthly, and due in nov/december.<br/>
 We will give an overview here of the donations, manually updated.<br/>
 <br/>
@@ -47,10 +47,10 @@ I also do not have a separate account for WeChall or my company at the moment, s
 It might be possible I spent some of the too much donations in 2018 on food and servers I indicated *I* pay for them, but you did :).<br/>
 In case anyone needs webhosting, just contact us :)<br/>
 <br/>
-<!-- <b>New: </b> We are now accepting <a style="font-weight: bold;" onclick="$('#bitcoinqr').toggle();">bitcoins</a><br/>
+We are also taking <a style="font-weight: bold;" onclick="$('#bitcoinqr').toggle();">bitcoins</a> (plural)<br/>
 <br/>
 <div style="word-break: break-all;">xpub661MyMwAqRbcFBHXoGuBJso1o99RoyzSv1gr7NUCk9uprUMYW92ByBLzkq4dFvLTizGKuked1DWeYGnivQe8xQYEvpfeJXwpy17aDu21f4N</div>
-<div id="bitcoinqr" style="display:none;" onclick="$(this).hide()" ><img alt="Bitcoin QR-Code" src="/img/default/bitcoin_donations.png"></div>-->
+<div id="bitcoinqr" style="display:none;" onclick="$(this).hide()" ><img alt="Bitcoin QR-Code" src="/img/default/bitcoin_donations.png"></div>
 </div>
 <div class="box">
 <pre>Donations 2017:    7 donations
@@ -93,14 +93,14 @@ Sum:    €  740,00
 Goal:   €  680,00
 </pre>
 
-<pre>Donations 2025:    2 donation
-Sum:    €   60,00
+<pre>Donations 2025:    3 donation
+Sum:    €  110,00
 Goal:   €  726,00
 </pre>
 
 
-<pre>Totals:           47 donations
-Sum:    € 2720,37
+<pre>Totals:           48 donations
+Sum:    € 2770,37
 Goal:   € 2670,00
 </pre>
 
@@ -167,13 +167,14 @@ Goal:   € 2670,00
 <li><span class="dodate">27.Dec.2023</span> – <em>&quot;Thank you!&quot;</em> – <a class="donor" href="/profile/drworm">drworm</a></li>
 <li>----- 2024 -----</li>
 <li><span class="dodate">5.Jan.2024</span> – <em>&quot;Gizmore, please fix those sum/goal amounts -- they don't add up!&quot;</em> – <a class="donor" href="/profile/FranzT">FranzT</a></li>
-    <li><span class="dodate">7.Aug.2024</span> – <em>&quot;WeChall, therefore We Are&quot;</em> – <a class="donor" href="/profile/Hertz">Hertz</a></li>
-    <li><span class="dodate">8.Sep.2024</span> – <em>"bump"</em> – <a class="donor" href="/profile/livinskull">livinskull</a></li>
-    <li><span class="dodate">10.Oct.2024</span> – <em>Give me Strength to endure The Darkness</em> – <a class="donor" href="/profile/occasus">occasus</a></li>
-    <li><span class="dodate">13.Dec.2024</span> – <em>next tattoo will be smaller xD</em> – <a class="donor" href="/profile/occasus">occasus</a></li>
-    <li>----- 2025 -----</li>
-    <li><span class="dodate">5.May.2025</span> – <em>&quot;May WeChall live forever&quot;</em> – <a class="donor" href="/profile/Xaav">Xaav</a></li>
-    <li><span class="dodate">31.May.2025</span> – <em>&quot;Payment to keep dloser from solving more challenges.&quot;</em> – <a class="donor" href="/profile/benito255">benito255</a></li>
+<li><span class="dodate">7.Aug.2024</span> – <em>&quot;WeChall, therefore We Are&quot;</em> – <a class="donor" href="/profile/Hertz">Hertz</a></li>
+<li><span class="dodate">8.Sep.2024</span> – <em>"bump"</em> – <a class="donor" href="/profile/livinskull">livinskull</a></li>
+<li><span class="dodate">10.Oct.2024</span> – <em>Give me Strength to endure The Darkness</em> – <a class="donor" href="/profile/occasus">occasus</a></li>
+<li><span class="dodate">13.Dec.2024</span> – <em>next tattoo will be smaller xD</em> – <a class="donor" href="/profile/occasus">occasus</a></li>
+<li>----- 2025 -----</li>
+<li><span class="dodate">5.May.2025</span> – <em>&quot;May WeChall live forever&quot;</em> – <a class="donor" href="/profile/Xaav">Xaav</a></li>
+<li><span class="dodate">31.May.2025</span> – <em>&quot;Payment to keep dloser from solving more challenges.&quot;</em> – <a class="donor" href="/profile/benito255">benito255</a></li>
+<li><span class="dodate">8.Jun.2025</span> – <em>&quot;Go, dloser, GO! :)&quot;</em> – <a class="donor" href="/profile/tehron">tehron</a></li>
 </ol>
 </div>
 
@@ -181,7 +182,7 @@ Goal:   € 2670,00
 <h2>Hall of purchased Gods</h2>
 <ol>
 <li>----- 2018 -----</li>
-<li>9.Nov.2018 - someone donated €5 as a monthly payment. (unlimited money, we just have to wait) ca. €317 so far.</li>
+<li>9.Nov.2018 - someone donated €5 as a monthly payment. (unlimited money, we just have to wait) ca. a lot so far.</li>
 </ol>
 </div>
 
