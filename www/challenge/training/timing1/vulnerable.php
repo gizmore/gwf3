@@ -35,7 +35,7 @@ function utf8_stringCompare($a, $b)
         return false;
     }
     
-    usleep(10000); # Training emulate sidechannel
+    usleep(50000); # Training emulate sidechannel
     
     # We have to check further!
     for ($i = 0; $i < $len_a; $i++)
@@ -50,7 +50,7 @@ function utf8_stringCompare($a, $b)
             return false; # Char $i mismatched
         }
         
-        usleep(10000); # Training emulate sidechannel
+        usleep(50000); # Training emulate sidechannel
         
         continue; # Char $i matched
     }
