@@ -21,7 +21,7 @@ $lang = array(
 	'th_formula' => 'Deine Formel',
 	'btn_go' => 'Dem Pharao zeigen',
 	'msg_formula' => 'Benutze \'%1$s\' als Formel...',
-	'err_wrong' => 'Teste ob f(%1$s) = %2$s enstspricht. f(%1$s) = %3$s ... Falsch!',
+	'err_wrong' => 'Teste ob f(%1$s) = %2$s entspricht. f(%1$s) = %3$s ... Falsch!',
 	'msg_correct' => 'Teste ob f(%1$s) = %2$s entspricht. f(%1$s) = %3$s ... Richtig!',
 	'err_too_long' => 'Deine Formel ist %1$s Zeichen lang und das überschreitet die maximale Länge von %2$s.',
 	'msg_new_record' => 'Du hast den Rekord von %2$s Zeichen gebrochen und ihn auf %1$s gesetzt!',
