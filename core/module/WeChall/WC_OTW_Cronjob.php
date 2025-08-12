@@ -28,19 +28,40 @@ class WC_OTW_Cronjob
     private function runHourly(Module_WeChall $module)
     {
         $module->includeClass('WC_Warbox');
-        $boxes = WC_Warbox::getAllBoxes();
-        foreach ($boxes as $box)
+
+        $box_data = GWF_HTTP::getFromURL(' http://status.labs.overthewire.org/wechall.json');
+        $box_data = json_decode($box_data, true);
+        foreach ($box_data as $data)
         {
-            /** @var WC_Warbox $box */
-            $host = $box->getVar('wb_host');
-            $oldIp = $box->getVar('wb_ip');
-            $newIp = gethostbyname($host);
-            if ( ($oldIp != $newIp) && ($newIp !== $host) )
+            list($name, $hostname, $newIp) = $data;
+            $box = WC_Warbox::getByName($name);
+            if ($box)
             {
-                $box->saveVar('wb_ip', $newIp);
-                echo "[+] $host has new IP: $newIp\n";
+                $oldIp = $box->getVar('wb_ip');
+                $oldIp2 = $box->getVar('wb_ip2');
+                if ($newIp != $oldIp && $newIp != $oldIp2)
+                {
+                    if($oldIp2)
+                    {
+                        echo "[+] Box $name has a new First IP: $newIp\n";
+                        $box->saveVars([
+                            'wb_ip' => $newIp,
+                            'wb_ip2' => '',
+                        ]);
+                    }
+                    else
+                    {
+                        echo "[+] Box $name has a new Second IP: $newIp\n";
+                        $box->saveVars([
+                            'wb_ip2' => $newIp,
+                        ]);
+                    }
+                }
+            }
+            else
+            {
+                echo "[-] Cannot find box $name\n";
             }
         }
     }
-
 }

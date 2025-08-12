@@ -6,7 +6,7 @@ final class WC_Warbox extends GDO
 	const WARBOX = 0x01;
 	const MULTI_SOLVE = 0x02;
 	const RECYCLE_TOKENS = 0x04;
-	
+
 	public function getClassName() { return __CLASS__; }
 	public function getTableName() { return GWF_TABLE_PREFIX.'wc_warbox'; }
 	public function getOptionsName() { return 'wb_options'; }
@@ -28,6 +28,7 @@ final class WC_Warbox extends GDO
 			'wb_pass' => array(GDO::VARCHAR|GDO::UTF8|GDO::CASE_S, '',  63),
 			'wb_weburl' => array(GDO::TEXT|GDO::UTF8|GDO::CASE_S),
 			'wb_ip' => array(GDO::VARCHAR|GDO::ASCII|GDO::CASE_I, '',  63),
+			'wb_ip2' => array(GDO::VARCHAR|GDO::ASCII|GDO::CASE_I, '',  63),
 			'wb_whitelist' => array(GDO::TEXT|GDO::UTF8|GDO::CASE_S),
 			'wb_blacklist' => array(GDO::TEXT|GDO::UTF8|GDO::CASE_S),
 			'wb_launched_at' => array(GDO::DATE, GDO::NULL, GWF_Date::LEN_DAY),
@@ -43,7 +44,8 @@ final class WC_Warbox extends GDO
 // 			'flags' => array(GDO::JOIN, GDO::NULL, array('WC_Warflag', 'wb_id', 'wf_wbid')),
 		);
 	}
-	
+
+	public static function getByName(string $name): WC_Warbox { return WC_Warbox::table('WC_Warbox')->getBy('wb_name', $name); }
 	public function getID() { return $this->getVar('wb_id'); }
 	public function getSite() { return new WCSite_WARBOX($this->gdo_data); }
 	public function getSiteID() { return $this->getVar('wb_sid'); }
@@ -315,7 +317,7 @@ final class WC_Warbox extends GDO
 	public static function getByIP($ip)
 	{
 		$ip = self::escape($ip);
-		return self::getAllBoxes("wb_ip='$ip'", 'wb_port ASC');
+		return self::getAllBoxes("wb_ip='$ip' OR wb_ip2='$ip'", 'wb_port ASC');
 	}
 
 	public static function getByIPAndPort($ip, $port)
