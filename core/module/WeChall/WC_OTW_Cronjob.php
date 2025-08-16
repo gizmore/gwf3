@@ -29,7 +29,7 @@ class WC_OTW_Cronjob
     {
         $module->includeClass('WC_Warbox');
 
-        $box_data = GWF_HTTP::getFromURL(' http://status.labs.overthewire.org/wechall.json');
+        $box_data = GWF_HTTP::getFromURL('http://status.labs.overthewire.org/wechall.json');
         $box_data = json_decode($box_data, true);
         foreach ($box_data as $data)
         {
