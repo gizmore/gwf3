@@ -324,7 +324,6 @@ final class WC_Warbox extends GDO
 	{
 		$ip = self::escape($ip);
 		$port = self::escape($port);
-		return self::getAllBoxes("wb_ip='$ip' AND wb_port='$port'");
+		return self::getAllBoxes("(wb_ip='$ip' OR wb_ip2='$ip') AND wb_port='$port'");
 	}
 }
-?>
