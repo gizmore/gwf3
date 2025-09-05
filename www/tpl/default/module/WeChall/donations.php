@@ -93,14 +93,13 @@ Sum:    €  740,00
 Goal:   €  680,00
 </pre>
 
-<pre>Donations 2025:    3 donation
-Sum:    €  110,00
+<pre>Donations 2025:    4 donation
+Sum:    €  222,00
 Goal:   €  726,00
 </pre>
-
-
-<pre>Totals:           48 donations
-Sum:    € 2770,37
+    
+<pre>Totals:           49 donations
+Sum:    € 2882,37
 Goal:   € 2670,00
 </pre>
 
@@ -175,14 +174,15 @@ Goal:   € 2670,00
 <li><span class="dodate">5.May.2025</span> – <em>&quot;May WeChall live forever&quot;</em> – <a class="donor" href="/profile/Xaav">Xaav</a></li>
 <li><span class="dodate">31.May.2025</span> – <em>&quot;Payment to keep dloser from solving more challenges.&quot;</em> – <a class="donor" href="/profile/benito255">benito255</a></li>
 <li><span class="dodate">8.Jun.2025</span> – <em>&quot;Go, dloser, GO! :)&quot;</em> – <a class="donor" href="/profile/tehron">tehron</a></li>
+<li><span class="dodate">24.Aug.2025</span> – <em><code>while ($money &lt; 222) ++$money;</code></em> – <a class="donor" href="/profile/livinskull">livinskull</a></li>
 </ol>
 </div>
 
 <div class="box">
 <h2>Hall of purchased Gods</h2>
 <ol>
-<li>----- 2018 -----</li>
-<li>9.Nov.2018 - someone donated €5 as a monthly payment. (unlimited money, we just have to wait) ca. a lot so far.</li>
+<li>----- 2018 to present -----</li>
+<li>9.Nov.2018 - someone donated €5 as a monthly payment. (unlimited money, we just have to wait) ca. a lot so far. <b>STILL! BIG THX!</b></li>
 </ol>
 </div>
 
