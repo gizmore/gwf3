@@ -107,7 +107,7 @@ final class GWF_Country extends GDO
 	public function displayNameISO($iso)
 	{
 		self::initCountryNames();
-		return self::$COUNTRY_NAMES->lang($this->getVar('country_name'));
+		return self::$COUNTRY_NAMES->lang($this->getVar('country_id'));
 	}
 }
 
