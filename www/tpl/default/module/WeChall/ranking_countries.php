@@ -26,10 +26,11 @@ foreach ($tVars['data'] as $row)
 	$topuser = $row['topuser'];
 	$style = $hlc == $cid ? $sl : '';
 	$href = GWF_WEB_ROOT.'country_ranking/for/'.$cid.'/'.Common::urlencodeSEO($row['countryname']);
+    $country = GWF_Country::getByID($cid);
 	echo GWF_Table::rowStart(true, '', '', $style);
 	echo sprintf('<td class="gwf_num">%d</td>', $rank++);
 	echo sprintf('<td>%s</td>', GWF_Country::displayFlagS2($cid, $row['countryname']));
-	echo sprintf('<td><a href="%s">%s</a></td>', $href, GWF_HTML::display($row['countryname']));
+	echo sprintf('<td><a href="%s">%s</a></td>', $href, $country->displayName());
 	echo sprintf('<td class="gwf_num">%d</td>', $row['users']);
 	echo sprintf('<td class="gwf_num">%d</td>', $row['totalscore']);
 	echo sprintf('<td class="gwf_num">%s</td>', $row['spc']);
