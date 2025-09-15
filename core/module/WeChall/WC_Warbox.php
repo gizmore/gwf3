@@ -45,7 +45,7 @@ final class WC_Warbox extends GDO
 		);
 	}
 
-	public static function getByName(string $name): WC_Warbox { return WC_Warbox::table('WC_Warbox')->getBy('wb_name', $name); }
+	public static function getByName(string $name) { return WC_Warbox::table('WC_Warbox')->getBy('wb_name', $name); }
 	public function getID() { return $this->getVar('wb_id'); }
 	public function getSite() { return new WCSite_WARBOX($this->gdo_data); }
 	public function getSiteID() { return $this->getVar('wb_sid'); }
