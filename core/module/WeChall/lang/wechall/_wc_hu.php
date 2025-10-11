@@ -192,6 +192,9 @@ $lang = array(
 	'rp_sites' => '%s Aktív oldal',
 	'rp_topusers' => 'Top %s Játékos',
 	'rp_last_active' => 'Utolsó %s Aktivitás',
+    'rp_donations' => '%s Donations',
+    'rp_shop' => '%s Shop',
+
 	#Left Panel
 	'lp_last_online' => 'Online %s',
 	'lp_last_online2' => '<a href="%s">%s Felhasználó</a>',

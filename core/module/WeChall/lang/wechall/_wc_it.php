@@ -192,6 +192,9 @@ $lang = array(
 	'rp_sites' => '%s Siti Attivi',
 	'rp_topusers' => 'I %s migliori Utenti',
 	'rp_last_active' => 'Ultime %s Attività',
+    'rp_donations' => '%s Donations',
+    'rp_shop' => '%s Shop',
+
 	#Left Panel
 	'lp_last_online' => 'Online in %s',
 	'lp_last_online2' => '<a href="%s">%s utenti</a>',

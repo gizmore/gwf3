@@ -193,6 +193,9 @@ $lang = array(
 	'rp_sites' => '%s Aktivních stránek',
 	'rp_topusers' => 'Top %s Hráči',
 	'rp_last_active' => 'Posledních %s Aktivit',
+    'rp_donations' => '%s Donations',
+    'rp_shop' => '%s Shop',
+
 	#Left Panel
 	'lp_last_online' => 'Online během %s',
 	'lp_last_online2' => '<a href="%s">%s Uživatelů</a>',

@@ -193,7 +193,10 @@ $lang = array(
 	'rp_sites' => '%s Активних Сајтова',
 	'rp_topusers' => 'Најбољих %s Корисника',
 	'rp_last_active' => 'Задњих %s Активности',
-	#Left Panel
+    'rp_donations' => '%s Donations',
+    'rp_shop' => '%s Shop',
+
+	# Left Panel
 	'lp_last_online' => 'Улоговани у року од %s',
 	'lp_last_online2' => '<a href="%s">%s Корисника</a>',
 	'lp_language' => 'Језик',
