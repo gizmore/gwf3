@@ -3,340 +3,337 @@
 $lang = array(
 
 	# Errors
-	'err_board' => 'The board is unknown, or you have no permission to access it.',
-	'err_thread' => 'The thread is unknown, or you have no permission to access it.',
-	'err_post' => 'The post is unknown.',
-	'err_parentid' => 'The parent board is unknown.',
-	'err_groupid' => 'The group is unknown.',
-	'err_board_perm' => 'You are not allowed to access this board.',
-	'err_thread_perm' => 'You are not allowed to access this thread.',
-	'err_post_perm' => 'You are not allowed to read this post.',
-	'err_reply_perm' => 'You are not allowed to reply to this thread. <a href="%s">Click here to return to the thread</a>.',
-	'err_no_thread_allowed' => 'There are no threads allowed in this board.',
-	'err_no_guest_post' => 'Guests are not allowed to post to this forum.',
-	'err_msg_long' => 'Your message is too long. Max %s chars allowed.',
-	'err_msg_short' => 'You forgot your message.',
-	'err_descr_long' => 'Your description is too long. Max %s chars allowed.',
-	'err_descr_short' => 'You forgot your description.',
-	'err_title_long' => 'Your title is too long. Max %s chars allowed.',
-	'err_title_short' => 'You forgot the title.',
-	'err_sig_long' => 'Your signature is too long. Max %s chars allowed.',
-	'err_subscr_mode' => 'Unknown subscription mode.',
-	'err_no_valid_mail' => 'You don`t have an approved email to subscribe to the forums.',
-	'err_token' => 'The token is invalid.',
-	'err_in_mod' => 'This thread is currently in moderation.',
-	'err_board_locked' => 'The board is temporarily locked.',
-	'err_no_subscr' => 'You can not subscribe manually to this thread. <a href="%s">Click here to return to the thread</a>.',
-	'err_subscr' => 'An error occurred. <a href="%s">Click here to return to the thread</a>.',
-	'err_no_unsubscr' => 'You can not unsubscribe from this thread. <a href="%s">Click here to return to the thread</a>.',
-	'err_unsubscr' => 'An error occurred. <a href="%s">Click here to return to the thread</a>.',
-	'err_sub_by_global' => 'You did not subscribe to the thread manually, but by global option flags.<br/><a href="/forum/options">Use the ForumOptions</a> to change your flags.',
-	'err_thank_twice' => 'You already have thanked for this post.',
-	'err_thanks_off' => 'It is currently not possible to thank people for posts.',
-	'err_votes_off' => 'Forum Post Voting is currently disabled.',
-	'err_better_edit' => 'Please edit your post and do not double post. You can toggle a &quot;Mark-Unread&quot; Flag in case you do significant changes.<br/><a href="%s">Click here to return to the thread</a>.',
+	'err_board' => 'Раздел неизвестен или у вас нет прав доступа.',
+	'err_thread' => 'Тема неизвестна или у вас нет прав доступа.',
+	'err_post' => 'Сообщение неизвестно.',
+	'err_parentid' => 'Родительский раздел неизвестен.',
+	'err_groupid' => 'Группа неизвестна.',
+	'err_board_perm' => 'У вас нет доступа к этому разделу.',
+	'err_thread_perm' => 'У вас нет доступа к этой теме.',
+	'err_post_perm' => 'Вам не разрешено читать это сообщение.',
+	'err_reply_perm' => 'Вам не разрешено отвечать в этой теме. <a href="%s">Нажмите здесь, чтобы вернуться к теме</a>.',
+	'err_no_thread_allowed' => 'В этом разделе нельзя создавать темы.',
+	'err_no_guest_post' => 'Гостям запрещено писать на этом форуме.',
+	'err_msg_long' => 'Ваше сообщение слишком длинное. Разрешено максимум %s символов.',
+	'err_msg_short' => 'Вы забыли ввести сообщение.',
+	'err_descr_long' => 'Описание слишком длинное. Разрешено максимум %s символов.',
+	'err_descr_short' => 'Вы забыли ввести описание.',
+	'err_title_long' => 'Заголовок слишком длинный. Разрешено максимум %s символов.',
+	'err_title_short' => 'Вы забыли указать заголовок.',
+	'err_sig_long' => 'Подпись слишком длинная. Разрешено максимум %s символов.',
+	'err_subscr_mode' => 'Неизвестный режим подписки.',
+	'err_no_valid_mail' => 'У вас нет подтверждённого email для подписки на форумы.',
+	'err_token' => 'Недействительный токен.',
+	'err_in_mod' => 'Эта тема сейчас на модерации.',
+	'err_board_locked' => 'Раздел временно заблокирован.',
+	'err_no_subscr' => 'Нельзя вручную подписаться на эту тему. <a href="%s">Нажмите здесь, чтобы вернуться к теме</a>.',
+	'err_subscr' => 'Произошла ошибка. <a href="%s">Нажмите здесь, чтобы вернуться к теме</a>.',
+	'err_no_unsubscr' => 'Нельзя отписаться от этой темы. <a href="%s">Нажмите здесь, чтобы вернуться к теме</a>.',
+	'err_unsubscr' => 'Произошла ошибка. <a href="%s">Нажмите здесь, чтобы вернуться к теме</a>.',
+	'err_sub_by_global' => 'Вы подписаны на эту тему не вручную, а через глобальные флаги опций.<br/><a href="/forum/options">Используйте ForumOptions</a>, чтобы изменить флаги.',
+	'err_thank_twice' => 'Вы уже благодарили за это сообщение.',
+	'err_thanks_off' => 'Сейчас нельзя благодарить за сообщения.',
+	'err_votes_off' => 'Голосование за сообщения форума отключено.',
+	'err_better_edit' => 'Пожалуйста, отредактируйте своё сообщение и не публикуйте подряд. Вы можете включить флаг &quot;Mark-Unread&quot; при существенных изменениях.<br/><a href="%s">Нажмите здесь, чтобы вернуться к теме</a>.',
 
 	# Messages
-	'msg_posted' => 'Your message has been posted.<br/><a href="%s">Click here to see your message</a>.',
-	'msg_posted_mod' => 'Your message has been posted, but will get reviewed before it is shown.<br/><a href="%s">Click here to return to the board</a>.',
-	'msg_post_edited' => 'Your Post has been edited.<br/><a href="%s">Click here to return to your post</a>.',
-	'msg_edited_board' => 'The board has been edited.<br/><a href="%s">Click here to return to the board</a>.',
-	'msg_board_added' => 'The new board has been added successfully. <a href="%s">Click here to go to the board</a>.',
-	'msg_edited_thread' => 'The Thread has been edited successfully.',
-	'msg_options_changed' => 'Your options have been changed.',
-	'msg_thread_shown' => 'The thread has been approved and is now shown.',
-	'msg_post_shown' => 'The post has been approved and is now shown.',
-	'msg_thread_deleted' => 'The thread has been deleted.',
-	'msg_post_deleted' => 'The post has been deleted.',
-	'msg_board_deleted' => 'The whole board has been deleted!',
-	'msg_subscribed' => 'You subscribed manually to the thread and receive mail on new posts.<br/><a href="%s">Click here to return to the thread</a>.',
-	'msg_unsubscribed' => 'You unsubscribed from the thread and will not receive emails any more.<br/><a href="%s">Click here to return to the thread</a>.',
-	'msg_unsub_all' => 'You have unsubscribed your email from all threads.',
-	'msg_thanked_ajax' => 'Your thanks have been recorded.',
-	'msg_thanked' => 'Your thanks have been recorded.<br/><a href="%s">Click here to return to the post</a>.',
-	'msg_thread_moved' => 'The Thread %s has been moved to %s.',
-	'msg_voted' => 'Thank you for your vote.',
-	'msg_marked_read' => 'Successfully marked %s threads as read.',
-
+	'msg_posted' => 'Ваше сообщение опубликовано.<br/><a href="%s">Нажмите здесь, чтобы посмотреть</a>.',
+	'msg_posted_mod' => 'Ваше сообщение опубликовано, но будет показано после проверки.<br/><a href="%s">Нажмите здесь, чтобы вернуться в раздел</a>.',
+	'msg_post_edited' => 'Ваше сообщение отредактировано.<br/><a href="%s">Нажмите здесь, чтобы вернуться к сообщению</a>.',
+	'msg_edited_board' => 'Раздел отредактирован.<br/><a href="%s">Нажмите здесь, чтобы вернуться в раздел</a>.',
+	'msg_board_added' => 'Новый раздел успешно добавлен. <a href="%s">Перейти к разделу</a>.',
+	'msg_edited_thread' => 'Тема успешно отредактирована.',
+	'msg_options_changed' => 'Ваши настройки изменены.',
+	'msg_thread_shown' => 'Тема одобрена и теперь отображается.',
+	'msg_post_shown' => 'Сообщение одобрено и теперь отображается.',
+	'msg_thread_deleted' => 'Тема удалена.',
+	'msg_post_deleted' => 'Сообщение удалено.',
+	'msg_board_deleted' => 'Весь раздел был удалён!',
+	'msg_subscribed' => 'Вы подписались на тему и будете получать письма о новых сообщениях.<br/><a href="%s">Нажмите здесь, чтобы вернуться к теме</a>.',
+	'msg_unsubscribed' => 'Вы отписались от темы и больше не будете получать письма.<br/><a href="%s">Нажмите здесь, чтобы вернуться к теме</a>.',
+	'msg_unsub_all' => 'Вы отписались от всех тем.',
+	'msg_thanked_ajax' => 'Ваша благодарность записана.',
+	'msg_thanked' => 'Ваша благодарность записана.<br/><a href="%s">Нажмите здесь, чтобы вернуться к сообщению</a>.',
+	'msg_thread_moved' => 'Тема %s была перемещена в %s.',
+	'msg_voted' => 'Спасибо за ваш голос.',
+	'msg_marked_read' => 'Успешно помечено как прочитанные тем: %s.',
 	# Titles
-	'forum_title' => GWF_SITENAME.' Forums',
-	'ft_add_board' => 'Add a new Board',
-	'ft_add_thread' => 'Add a new Thread',
-	'ft_edit_board' => 'Edit existing Board',
-	'ft_edit_thread' => 'Edit Thread',
-	'ft_options' => 'Setup your Forum options',
+	'forum_title' => 'Форумы '.GWF_SITENAME,
+	'ft_add_board' => 'Добавить новый раздел',
+	'ft_add_thread' => 'Создать новую тему',
+	'ft_edit_board' => 'Редактировать раздел',
+	'ft_edit_thread' => 'Редактировать тему',
+	'ft_options' => 'Настройки форума',
 	'pt_thread' => '%2$s ['.GWF_SITENAME.']->%1$s',
-	'ft_reply' => 'Reply to the Thread',
+	'ft_reply' => 'Ответить в теме',
 	'pt_board' => '%s',
 //	'pt_board' => '%s ['.GWF_SITENAME.']',
-	'ft_search_quick' => 'Quick-Search',
-	'ft_edit_post' => 'Edit your post',
-	'at_mailto' => 'Send EMail to %s',
-	'last_edit_by' => 'Last edited by %s - %s',
+	'ft_search_quick' => 'Быстрый поиск',
+	'ft_edit_post' => 'Редактировать сообщение',
+	'at_mailto' => 'Отправить EMail пользователю %s',
+	'last_edit_by' => 'Последнее редактирование: %s — %s',
 
 	# Page Info
-	'pi_unread' => 'Unread Threads for you',
+	'pi_unread' => 'Непрочитанные темы для вас',
 
 	# Table Headers
-	'th_board' => 'Board',
-	'th_threadcount' => 'Threads',
-	'th_postcount' => 'Posts',
-	'th_title' => 'Title',
-	'th_message' => 'Message',
-	'th_descr' => 'Description',	
-	'th_thread_allowed' => 'Threads allowed',	
-	'th_locked' => 'Locked',
-	'th_smileys' => 'Disable Smileys',
-	'th_bbcode' => 'Disable BBCode',
-	'th_groupid' => 'Restrict to Group',
-	'th_board_title' => 'Board Title',
-	'th_board_descr' => 'Board Description',
-	'th_subscr' => 'Email Subscription',
-	'th_sig' => 'Your Forum Signature',
-	'th_guests' => 'Allow Guest Posts',
-	'th_google' => 'Don`t include Google/Translate Javascript',
-	'th_firstposter' => 'Creator',
-	'th_lastposter' => 'Reply From',
-	'th_firstdate' => 'First Post',
-	'th_lastdate' => 'Last Post',
-	'th_post_date' => 'Post Date',
-	'th_user_name' => 'Username',
-	'th_user_regdate' => 'Registered',
-//	'th_unread_again' => '',
-	'th_sticky' => 'Sticky',
-	'th_closed' => 'Closed',
-	'th_merge' => 'Merge Thread',
-	'th_move_board' => 'Move Board',
-	'th_thread_thanks' => 'Thanks',
-	'th_thread_votes_up' => 'UpVotes',
+	'th_board' => 'Раздел',
+	'th_threadcount' => 'Тем',
+	'th_postcount' => 'Сообщений',
+	'th_title' => 'Заголовок',
+	'th_message' => 'Сообщение',
+	'th_descr' => 'Описание',
+	'th_thread_allowed' => 'Темы разрешены',
+	'th_locked' => 'Закрыто',
+	'th_smileys' => 'Отключить смайлы',
+	'th_bbcode' => 'Отключить BBCode',
+	'th_groupid' => 'Ограничить для группы',
+	'th_board_title' => 'Название раздела',
+	'th_board_descr' => 'Описание раздела',
+	'th_subscr' => 'Подписка по email',
+	'th_sig' => 'Ваша подпись на форуме',
+	'th_guests' => 'Разрешить гостевые посты',
+	'th_google' => 'Не подключать Google/Translate JS',
+	'th_firstposter' => 'Создатель',
+	'th_lastposter' => 'Ответ от',
+	'th_firstdate' => 'Первое сообщение',
+	'th_lastdate' => 'Последнее сообщение',
+	'th_post_date' => 'Дата сообщения',
+	'th_user_name' => 'Имя пользователя',
+	'th_user_regdate' => 'Зарегистрирован',
+	//'th_unread_again' => '',
+	'th_sticky' => 'Прикреплено',
+	'th_closed' => 'Закрыто',
+	'th_merge' => 'Объединить темы',
+	'th_move_board' => 'Переместить раздел',
+	'th_thread_thanks' => 'Спасибо',
+	'th_thread_votes_up' => 'Лайки',
 	'th_thanks' => 'Thx',
-	'th_votes_up' => 'VoteUp',
+	'th_votes_up' => 'Голос «за»',
 
 	# Buttons
-	'btn_add_board' => 'Create new Board',
-	'btn_rem_board' => 'Delete Board',
-	'btn_edit_board' => 'Edit current Board',
-	'btn_add_thread' => 'Add Thread',
-	'btn_preview' => 'Preview',
-	'btn_options' => 'Edit your Forum Settings',
-	'btn_change' => 'Change',
-	'btn_quote' => 'Quote',
-	'btn_reply' => 'Reply',
-	'btn_edit' => 'Edit',
-	'btn_subscribe' => 'Subscribe',
-	'btn_unsubscribe' => 'Un-Subscribe',
-	'btn_search' => 'Search',
-	'btn_vote_up' => 'Good Post!',
-	'btn_vote_down' => 'Bad Post!',
-	'btn_thanks' => 'Thank You!',
-	'btn_translate' => 'Google/translate',
+	'btn_add_board' => 'Создать раздел',
+	'btn_rem_board' => 'Удалить раздел',
+	'btn_edit_board' => 'Редактировать раздел',
+	'btn_add_thread' => 'Создать тему',
+	'btn_preview' => 'Предпросмотр',
+	'btn_options' => 'Изменить настройки форума',
+	'btn_change' => 'Изменить',
+	'btn_quote' => 'Цитировать',
+	'btn_reply' => 'Ответить',
+	'btn_edit' => 'Редактировать',
+	'btn_subscribe' => 'Подписаться',
+	'btn_unsubscribe' => 'Отписаться',
+	'btn_search' => 'Поиск',
+	'btn_vote_up' => 'Хороший пост!',
+	'btn_vote_down' => 'Плохой пост!',
+	'btn_thanks' => 'Спасибо!',
+	'btn_translate' => 'Google/перевод',
 
 	# Selects
-	'sel_group' => 'Select a Usergroup',
-	'subscr_none' => 'Nothing',
-	'subscr_own' => 'Where I\'ve Posted',
-	'subscr_all' => 'All Threads',
-
+	'sel_group' => 'Выберите группу',
+	'subscr_none' => 'Ничего',
+	'subscr_own' => 'Где я писал',
+	'subscr_all' => 'Все темы',
 	# Config
-	'cfg_guest_posts' => 'Allow Guest Posts',	
-	'cfg_max_descr_len' => 'Max Description Length',	
-	'cfg_max_message_len' => 'Max Message Length',
-	'cfg_max_sig_len' => 'Max Signature Length',
-	'cfg_max_title_len' => 'Max Title Length',
-	'cfg_mod_guest_time' => 'Auto Moderation Time',
-	'cfg_num_latest_threads' => 'Num Latest Threads',
-	'cfg_num_latest_threads_pp' => 'Threads Per History Page',
-	'cfg_posts_per_thread' => 'Num Posts per Thread',
-	'cfg_search' => 'Search allowed',
-	'cfg_threads_per_page' => 'Threads per Board',
-	'cfg_last_posts_reply' => 'Number of Shown posts on reply',
-	'cfg_mod_sender' => 'Moderation EMail Sender',
-	'cfg_mod_receiver' => 'Moderation EMail Receiver',
-	'cfg_unread' => 'Enable Unread Threads',
-	'cfg_gtranslate' => 'Enable Google Translate',	
-	'cfg_thanks' => 'Enable Thanks',
-	'cfg_uploads' => 'Enable Uploads',
-	'cfg_votes' => 'Enable Voting',
-	'cfg_mail_microsleep' => 'EMail Microsleep :/ .. ???',	
-	'cfg_subscr_sender' => 'EMail Subscription Sender',
+	'cfg_guest_posts' => 'Разрешить гостевые посты',
+	'cfg_max_descr_len' => 'Макс. длина описания',
+	'cfg_max_message_len' => 'Макс. длина сообщения',
+	'cfg_max_sig_len' => 'Макс. длина подписи',
+	'cfg_max_title_len' => 'Макс. длина заголовка',
+	'cfg_mod_guest_time' => 'Время авто-модерации',
+	'cfg_num_latest_threads' => 'Кол-во последних тем',
+	'cfg_num_latest_threads_pp' => 'Тем на странице истории',
+	'cfg_posts_per_thread' => 'Сообщений в теме',
+	'cfg_search' => 'Разрешить поиск',
+	'cfg_threads_per_page' => 'Тем на раздел',
+	'cfg_last_posts_reply' => 'Сколько сообщений показывать при ответе',
+	'cfg_mod_sender' => 'Отправитель писем модерации',
+	'cfg_mod_receiver' => 'Получатель писем модерации',
+	'cfg_unread' => 'Включить непрочитанные темы',
+	'cfg_gtranslate' => 'Включить Google Translate',
+	'cfg_thanks' => 'Включить «Спасибо»',
+	'cfg_uploads' => 'Включить вложения',
+	'cfg_votes' => 'Включить голосование',
+	'cfg_mail_microsleep' => 'Пауза (микросон) при отправке email',
+	'cfg_subscr_sender' => 'Отправитель писем подписки',
 
 	# show_thread.php
-	'posts' => 'Posts',
-	'online' => 'The User is Online',
-	'offline' => 'The User is Offline',
-	'registered' => 'Registered at',
-	'watchers' => '%s people are watching the thread at the moment.',
-	'views' => 'This thread has been viewed %s times.',
+	'posts' => 'Сообщения',
+	'online' => 'Пользователь в сети',
+	'offline' => 'Пользователь не в сети',
+	'registered' => 'Зарегистрирован',
+	'watchers' => 'Сейчас за темой следят: %s.',
+	'views' => 'Эта тема просмотрена %s раз.',
 
 	# forum.php
-	'latest_threads' => 'Latest Activities',
+	'latest_threads' => 'Последние активности',
 
 	# Moderation EMail
-	'modmail_subj' => GWF_SITENAME.': Moderate Post',
+	'modmail_subj' => GWF_SITENAME.': Модерация сообщения',
 	'modmail_body' =>
-		'Dear Staff'.PHP_EOL.
+		'Здравствуйте, команда'.PHP_EOL.
 		PHP_EOL.
-		'There is a new Post or Thread in the '.GWF_SITENAME.' Forums that needs moderation.'.PHP_EOL.
+		'В форумах '.GWF_SITENAME.' появилось новое сообщение или тема, требующие модерации.'.PHP_EOL.
 		PHP_EOL.
-		'Board: %s'.PHP_EOL.
-		'Thread: %s'.PHP_EOL.
-		'From: %s'.PHP_EOL.
+		'Раздел: %s'.PHP_EOL.
+		'Тема: %s'.PHP_EOL.
+		'От: %s'.PHP_EOL.
 		PHP_EOL.
 		'%s'.PHP_EOL.
 		'%s'.PHP_EOL.
 		PHP_EOL.
 		PHP_EOL.
-		'To delete the post use this link:'.PHP_EOL.
+		'Чтобы удалить сообщение, используйте ссылку:'.PHP_EOL.
 		'%s'.PHP_EOL.
 		PHP_EOL.
-		'To allow this post use this link:'.PHP_EOL.
+		'Чтобы одобрить сообщение, используйте ссылку:'.PHP_EOL.
 		'%s'.PHP_EOL.
 		PHP_EOL.
 		PHP_EOL.
-		'The post will get automatically shown after %s'.PHP_EOL.
+		'Сообщение будет автоматически показано после %s'.PHP_EOL.
 		PHP_EOL.
-		'Kind Regards,'.PHP_EOL.
-		'The '.GWF_SITENAME.' Team'.PHP_EOL,
+		'С уважением,'.PHP_EOL.
+		'Команда '.GWF_SITENAME.PHP_EOL,
 
 	# New Post EMail
-	'submail_subj' => GWF_SITENAME.': New Post: "%s" by %s in %s',
-	'submail_body' => 
-		'Dear %s'.PHP_EOL.
+	'submail_subj' => GWF_SITENAME.': Новое сообщение: "%s", автор %s, в %s',
+	'submail_body' =>
+		'Здравствуйте, %s'.PHP_EOL.
 		PHP_EOL.
-		'There are %s new Post(s) in the '.GWF_SITENAME.' Forums'.PHP_EOL.
+		'В форумах '.GWF_SITENAME.' появилось новых сообщений: %s'.PHP_EOL.
 		PHP_EOL.
-		'Board: %s'.PHP_EOL.
-		'Thread: %s'.PHP_EOL.
+		'Раздел: %s'.PHP_EOL.
+		'Тема: %s'.PHP_EOL.
 		PHP_EOL.
 		'<hr/>'.PHP_EOL.
 		PHP_EOL.
 		'%s'.PHP_EOL. # Multiple msgs possible
 		PHP_EOL.
 		PHP_EOL.
-		'To view the thread please visit this page:'.PHP_EOL.
+		'Чтобы открыть тему, перейдите по ссылке:'.PHP_EOL.
 		'%s'.PHP_EOL.
 		PHP_EOL.
-		'To unsubscribe from this thread follow the link below:'.PHP_EOL.
+		'Чтобы отписаться от этой темы, используйте ссылку ниже:'.PHP_EOL.
 		'%s'.PHP_EOL.
 		PHP_EOL.
-		'To unsubscribe from the whole board, you can follow this link:'.PHP_EOL.
+		'Чтобы отписаться от всего раздела, используйте ссылку:'.PHP_EOL.
 		'%s'.PHP_EOL.
 		PHP_EOL.
-		'Kind Regards,'.PHP_EOL.
-		'The '.GWF_SITENAME.' Team'.PHP_EOL,
-		
+		'С уважением,'.PHP_EOL.
+		'Команда '.GWF_SITENAME.PHP_EOL,
+
 	'submail_body_part' =>  # that`s the %s above
-		'From: %s'.PHP_EOL.
-		'Title: %s'.PHP_EOL.
-		'Message:'.PHP_EOL.
+		'От: %s'.PHP_EOL.
+		'Заголовок: %s'.PHP_EOL.
+		'Сообщение:'.PHP_EOL.
 		'%s'.PHP_EOL.
 		PHP_EOL.
 		'<hr/>'.PHP_EOL.
 		PHP_EOL,
-		
+
 	# v2.01 (last seen)
-	'last_seen' => 'Last Seen: %s',
+	'last_seen' => 'Последний визит: %s',
 
 	# v2.02 (Mark all read)
-	'btn_mark_read' => 'Mark all read',
-	'msg_mark_aread' => 'Marked %s threads as read.',
+	'btn_mark_read' => 'Пометить всё прочитанным',
+	'msg_mark_aread' => 'Помечено как прочитанные тем: %s.',
 
 	# v2.03 (Merge)
-	'msg_merged' => 'The threads have been merged.',
-	'th_viewcount' => 'Views',
+	'msg_merged' => 'Темы были объединены.',
+	'th_viewcount' => 'Просмотры',
 
 	# v2.04 (Polls)
-	'ft_add_poll' => 'Assign one of your polls',
-	'btn_assign' => 'Assign',
-	'btn_polls' => 'Polls',
-	'btn_add_poll' => 'Add Poll',
-	'msg_poll_assigned' => 'Your poll got successfully assigned.',
-	'err_poll' => 'The poll is unknown.',
-	'th_thread_pollid' => 'Your Poll',
-	'pi_poll_add' => 'Here you can assign a poll to your thread, or create a new one.<br/>After creation you need to assign your poll to your thread here again.',
-	'sel_poll' => 'Select one poll',
-		
+	'ft_add_poll' => 'Привязать один из ваших опросов',
+	'btn_assign' => 'Привязать',
+	'btn_polls' => 'Опросы',
+	'btn_add_poll' => 'Добавить опрос',
+	'msg_poll_assigned' => 'Опрос успешно привязан.',
+	'err_poll' => 'Опрос неизвестен.',
+	'th_thread_pollid' => 'Ваш опрос',
+	'pi_poll_add' => 'Здесь вы можете привязать опрос к своей теме или создать новый.<br/>После создания нужно снова привязать опрос к теме.',
+	'sel_poll' => 'Выберите опрос',
+
 	# v2.05 (refinish)
-	'th_hidden' => 'Is Hidden?',
-	'th_thread_viewcount' => 'Views',
-	'th_unread_again' => 'Mark as Unread again?',
-	'cfg_doublepost' => 'Allow bumps / double posts?',
-	'cfg_watch_timeout' => 'Mark thread watching for N seconds',
-	'th_guest_view' => 'Guest Viewable?',
-	'pt_history' => 'Forum history - Page %s / %s',
-	'btn_unread' => 'New Threads',
-		
+	'th_hidden' => 'Скрыто?',
+	'th_thread_viewcount' => 'Просмотры',
+	'th_unread_again' => 'Снова пометить как непрочитанное?',
+	'cfg_doublepost' => 'Разрешить бамп/двойные посты?',
+	'cfg_watch_timeout' => 'Считать «наблюдение за темой» в течение N секунд',
+	'th_guest_view' => 'Доступно гостям?',
+	'pt_history' => 'История форума — Стр. %s / %s',
+	'btn_unread' => 'Новые темы',
+
 	# v2.06 (Admin Area)
-	'th_approve' => 'Approve',
-	'th_delete' => 'Delete',
-		
+	'th_approve' => 'Одобрить',
+	'th_delete' => 'Удалить',
+
 	# v2.07 rerefinish
-	'btn_pm' => 'PM',
-	'permalink' => 'link',
-		
+	'btn_pm' => 'ЛС',
+	'permalink' => 'ссылка',
+
 	# v2.08 (attachment)
-	'cfg_postcount' => 'Postcount',
-	'msg_attach_added' => 'Your attachment has been uploaded. <a href="%s">Click here to return to your post.</a>',
-	'msg_attach_deleted' => 'Your attachment has been deleted. <a href="%s">Click here to return to your post.</a>',
-	'msg_attach_edited' => 'Your attachment has been edited. <a href="%s">Click here to return to your post.</a>',
-	'msg_reupload' => 'Your attachment has been replaced.',
-	'btn_add_attach' => 'Add Attachment',
-	'btn_del_attach' => 'Delete Attachment',
-	'btn_edit_attach' => 'Edit Attachment',
-	'ft_add_attach' => 'Add Attachment',
-	'ft_edit_attach' => 'Edit Attachment',
-	'th_attach_file' => 'File',
-	'th_guest_down' => 'Guest downloadable?',
-	'err_attach' => 'Unknown attachment.',
-	'th_file_name' => 'File',
-	'th_file_size' => 'Size',
-	'th_downloads' => 'Hits',
+	'cfg_postcount' => 'Счётчик сообщений',
+	'msg_attach_added' => 'Ваше вложение загружено. <a href="%s">Вернуться к сообщению</a>.',
+	'msg_attach_deleted' => 'Ваше вложение удалено. <a href="%s">Вернуться к сообщению</a>.',
+	'msg_attach_edited' => 'Вложение изменено. <a href="%s">Вернуться к сообщению</a>.',
+	'msg_reupload' => 'Вложение заменено.',
+	'btn_add_attach' => 'Добавить вложение',
+	'btn_del_attach' => 'Удалить вложение',
+	'btn_edit_attach' => 'Редактировать вложение',
+	'ft_add_attach' => 'Добавить вложение',
+	'ft_edit_attach' => 'Редактировать вложение',
+	'th_attach_file' => 'Файл',
+	'th_guest_down' => 'Доступно гостям для скачивания?',
+	'err_attach' => 'Неизвестное вложение.',
+	'th_file_name' => 'Файл',
+	'th_file_size' => 'Размер',
+	'th_downloads' => 'Скачиваний',
 
 	# v2.09 Lang Boards
-	'cfg_lang_boards' => 'Create language boards',
-	'lang_board_title' => '%s Board',
-	'lang_board_descr' => 'For %s language',
-	'lang_root_title' => 'Foreign language',
-	'lang_root_descr' => 'Non english boards',
-	'md_board' => GWF_SITENAME.' Forums. %s',
-	'mt_board' => GWF_SITENAME.', Forum, Guest Posts, Alternate, Forum, Software',
-		
+	'cfg_lang_boards' => 'Создавать языковые разделы',
+	'lang_board_title' => 'Раздел %s',
+	'lang_board_descr' => 'Для языка: %s',
+	'lang_root_title' => 'Иноязычные разделы',
+	'lang_root_descr' => 'Неанглоязычные разделы',
+	'md_board' => 'Форумы '.GWF_SITENAME.'. %s',
+	'mt_board' => GWF_SITENAME.', Форум, Гостевые посты, Альтернатива, Форум, Софт',
+
 	# v2.10 subscribers
-	'subscribers' => '%s have subscribed to this thread and receive emails on new posts.',
-	'th_hide_subscr' => 'Hide your subscriptions?',
+	'subscribers' => '%s подписались на эту тему и получают письма о новых сообщениях.',
+	'th_hide_subscr' => 'Скрывать ваши подписки?',
 
 	# v2.11 fixes11
-	'txt_lastpost' => 'Goto last post',
-	'err_thank_self' => 'You cannot thank yourself for a post.',
-	'err_vote_self' => 'You cannot vote your own posts.',
-		
+	'txt_lastpost' => 'К последнему сообщению',
+	'err_thank_self' => 'Нельзя благодарить себя.',
+	'err_vote_self' => 'Нельзя голосовать за свои сообщения.',
+
 	# v3.00 fixes 12
-	'info_hidden_attach_guest' => 'You need to login to see an attachment.',
-	'msg_cleanup' => 'I have deleted %s threads and %s posts that have been in moderation.',
-		
+	'info_hidden_attach_guest' => 'Чтобы видеть вложения, необходимо войти.',
+	'msg_cleanup' => 'Удалено тем: %s и сообщений: %s, находившихся на модерации.',
+
 	# v1.05 (subscriptions)
-	'submode' => 'Your global subscription mode is set to: &quot;%s&quot;.',
-	'submode_all' => 'The whole board',
-	'submode_own' => 'Where you posted',
-	'submode_none' => 'Manually',
-	'subscr_boards' => 'Your have manually subscribed to %s boards.',
-	'subscr_threads' => 'You have manually subscribed to %s threads.',
-	'btn_subscriptions' => 'Manage Subscriptions',
-	'msg_subscrboard' => 'You have manually subscribed to this board and receive email on new posts.<br/>Click <a href="%s">here to return to the board</a>.',
-	'msg_unsubscrboard' => 'You have unsubscribed from this board and do not receive emails for it anymore.<br/>Click <a href="%s">here to return to your subscription overview</a>.',
-		
+	'submode' => 'Ваш глобальный режим подписки: &quot;%s&quot;.',
+	'submode_all' => 'Весь раздел',
+	'submode_own' => 'Где вы писали',
+	'submode_none' => 'Вручную',
+	'subscr_boards' => 'Вы вручную подписаны на разделов: %s.',
+	'subscr_threads' => 'Вы вручную подписаны на тем: %s.',
+	'btn_subscriptions' => 'Управление подписками',
+	'msg_subscrboard' => 'Вы вручную подписались на этот раздел и будете получать письма о новых сообщениях.<br/>Нажмите <a href="%s">здесь, чтобы вернуться в раздел</a>.',
+	'msg_unsubscrboard' => 'Вы отписались от этого раздела и больше не получаете письма.<br/>Нажмите <a href="%s">здесь, чтобы вернуться к обзору подписок</a>.',
+
 	# v1.06 (Post limits)
-	'err_post_timeout' => 'You have just recently posted. Please wait %s.',
-	'err_post_level' => 'You need a minimum userlevel of %s to post.',
-	'cfg_post_timeout' => 'Minimum time between two posts',
-	'cfg_post_min_level' => 'Minimum level to post',
-		
+	'err_post_timeout' => 'Вы недавно отправляли сообщение. Пожалуйста, подождите %s.',
+	'err_post_level' => 'Для отправки сообщений требуется уровень не ниже %s.',
+	'cfg_post_timeout' => 'Мин. время между двумя сообщениями',
+	'cfg_post_min_level' => 'Мин. уровень для отправки сообщений',
+
 	# monnino fixes
-	'btn_cleanup' => 'Clean up',
-	'btn_fix_counters' => 'Fix Counters',
-	'cfg_guest_captcha' => 'Guest Captcha?',
-	'cfg_gwf2_rewrites' => 'Use old gwf2 forum rewrite rules',
-	
+	'btn_cleanup' => 'Очистить',
+	'btn_fix_counters' => 'Исправить счётчики',
+	'cfg_guest_captcha' => 'Капча для гостей?',
+	'cfg_gwf2_rewrites' => 'Использовать старые правила переписывания gwf2 форума',
+
 );
 
-?>
