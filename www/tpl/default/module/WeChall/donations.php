@@ -93,13 +93,13 @@ Sum:    €  740,00
 Goal:   €  680,00
 </pre>
 
-<pre>Donations 2025:    4 donation
-Sum:    €  222,00
+<pre>Donations 2025:    5 donation
+Sum:    €  272,00
 Goal:   €  726,00
 </pre>
     
-<pre>Totals:           49 donations
-Sum:    € 2882,37
+<pre>Totals:           50 donations
+Sum:    € 2932,37
 Goal:   € 2670,00
 </pre>
 
@@ -175,6 +175,7 @@ Goal:   € 2670,00
 <li><span class="dodate">31.May.2025</span> – <em>&quot;Payment to keep dloser from solving more challenges.&quot;</em> – <a class="donor" href="/profile/benito255">benito255</a></li>
 <li><span class="dodate">8.Jun.2025</span> – <em>&quot;Go, dloser, GO! :)&quot;</em> – <a class="donor" href="/profile/tehron">tehron</a></li>
 <li><span class="dodate">24.Aug.2025</span> – <em><code>while ($money &lt; 222) ++$money;</code></em> – <a class="donor" href="/profile/livinskull">livinskull</a></li>
+<li><span class="dodate">25.Oct.2025</span> – <em><code>&quot;Never give up on your dreams&quot;</em> – <a class="donor" href="/profile/Hertz">Hertz</a></li>
 </ol>
 </div>
 
