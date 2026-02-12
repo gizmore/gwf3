@@ -93,14 +93,19 @@ Sum:    €  740,00
 Goal:   €  680,00
 </pre>
 
-<pre>Donations 2025:    5 donation
+<pre>Donations 2025:    5 donations
 Sum:    €  272,00
 Goal:   €  726,00
 </pre>
-    
-<pre>Totals:           50 donations
-Sum:    € 2932,37
-Goal:   € 2670,00
+
+<pre>Donations 2026:    1 donation
+Sum:    €  137,00
+Goal:   €  726,00
+</pre>
+
+<pre>Totals:           51 donations
+Sum:    € 3069,37
+Goal:   € 3396,00
 </pre>
 
 </div>
@@ -176,6 +181,8 @@ Goal:   € 2670,00
 <li><span class="dodate">8.Jun.2025</span> – <em>&quot;Go, dloser, GO! :)&quot;</em> – <a class="donor" href="/profile/tehron">tehron</a></li>
 <li><span class="dodate">24.Aug.2025</span> – <em><code>while ($money &lt; 222) ++$money;</code></em> – <a class="donor" href="/profile/livinskull">livinskull</a></li>
 <li><span class="dodate">25.Oct.2025</span> – <em><code>&quot;Never give up on your dreams&quot;</em> – <a class="donor" href="/profile/Hertz">Hertz</a></li>
+<li>----- 2026 -----</li>
+<li><span class="dodate">27.Jan.2026</span> – <em><code>&quot;New year, new opportunity to give. Donating 137 as I am not yet 1337. We’ll see next year!&quot;</em> – <a class="donor" href="/profile/Hertz">Hertz</a></li>
 </ol>
 </div>
 
