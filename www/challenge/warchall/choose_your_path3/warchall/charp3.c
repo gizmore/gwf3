@@ -13,7 +13,7 @@ int main(int argc, char *argv[])
   char *filename = "*-solution.txt";
   int lines, chars, cpl;
 
-  setregid(1640,1640); // set real and effective GID to levelxx
+  setregid(1645,1645); // set real and effective GID to levelxx
 
   printf("Counting %s ... \n", filename);
 

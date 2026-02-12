@@ -1,6 +1,6 @@
 <?php
 chdir('../../../');
-define('GWF_PAGE_TITLE', 'Blackjack Millionaire');
+define('GWF_PAGE_TITLE', 'Blackjack');
 require_once('challenge/html_head.php');
 require_once GWF_CORE_PATH.'module/WeChall/solutionbox.php';
 if (false === ($chall = WC_Challenge::getByTitle(GWF_PAGE_TITLE))) {
@@ -12,7 +12,8 @@ if (false !== ($answer = Common::getPostString('answer', false)))
 	require_once 'challenge/dog/shadowdogs1/WC5Dog_Solution.php';
     blackjackSolver($chall, $answer);
 }
-echo GWF_Box::box($chall->lang('info', array()), $chall->lang('title'));
+$href = "https://chappy.chappy-bot.net/connect.overview.html?_lang=en";
+echo GWF_Box::box($chall->lang('info', array($href)), $chall->lang('title'));
 formSolutionbox($chall);
 echo $chall->copyrightFooter();
 require_once('challenge/html_foot.php');
@@ -30,8 +31,12 @@ function blackjackSolver(WC_Challenge $chall, $answer)
 			echo GWF_HTML::message('Blackjack', $chall->lang('msg_right'));
 			$chall->onChallengeSolved(GWF_Session::getUserID());
 			break;
+        case -2:
+			echo GWF_HTML::error('Blackjack', $chall->lang('err_token'));
+            break;
 		default:
 			echo GWF_HTML::error('Blackjack', $chall->lang('err_wrong'));
 			break;
 	}
 }
+
