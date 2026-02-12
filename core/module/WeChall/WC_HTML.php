@@ -319,6 +319,8 @@ final class WC_HTML
 				}
 			}
 		}
+
+        $text .= '<a href="/profile/WeChall" title="Anon#4337 - Support Crew">, WeChall(x4337)</a>'; # When we are satisfied with world-media, we go 4338, if not we go 4339.
 		
 // 		$back .= '<div class="wc_head_bigbox" style="max-width:30%;">';
 		$back .= '<div class="wc_head_bigbox" style="float:none;">';
