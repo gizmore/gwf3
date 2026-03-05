@@ -98,13 +98,13 @@ Sum:    €  272,00
 Goal:   €  726,00
 </pre>
 
-<pre>Donations 2026:    1 donation
-Sum:    €  137,00
+<pre>Donations 2026:    2 donation
+Sum:    €  157,00
 Goal:   €  726,00
 </pre>
 
-<pre>Totals:           51 donations
-Sum:    € 3069,37
+<pre>Totals:           52 donations
+Sum:    € 3089,37
 Goal:   € 3396,00
 </pre>
 
@@ -183,6 +183,7 @@ Goal:   € 3396,00
 <li><span class="dodate">25.Oct.2025</span> – <em><code>&quot;Never give up on your dreams&quot;</em> – <a class="donor" href="/profile/Hertz">Hertz</a></li>
 <li>----- 2026 -----</li>
 <li><span class="dodate">27.Jan.2026</span> – <em><code>&quot;New year, new opportunity to give. Donating 137 as I am not yet 1337. We’ll see next year!&quot;</em> – <a class="donor" href="/profile/Hertz">Hertz</a></li>
+<li><span class="dodate">18.Feb.2026</span> – <em><code>&quot;happy new year WeChall&quot;</em> – <a class="donor" href="/profile/Xaav">Xaav</a></li>
 </ol>
 </div>
 
