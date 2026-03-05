@@ -180,10 +180,10 @@ Goal:   € 3396,00
 <li><span class="dodate">31.May.2025</span> – <em>&quot;Payment to keep dloser from solving more challenges.&quot;</em> – <a class="donor" href="/profile/benito255">benito255</a></li>
 <li><span class="dodate">8.Jun.2025</span> – <em>&quot;Go, dloser, GO! :)&quot;</em> – <a class="donor" href="/profile/tehron">tehron</a></li>
 <li><span class="dodate">24.Aug.2025</span> – <em><code>while ($money &lt; 222) ++$money;</code></em> – <a class="donor" href="/profile/livinskull">livinskull</a></li>
-<li><span class="dodate">25.Oct.2025</span> – <em><code>&quot;Never give up on your dreams&quot;</em> – <a class="donor" href="/profile/Hertz">Hertz</a></li>
+<li><span class="dodate">25.Oct.2025</span> – <em>&quot;Never give up on your dreams&quot;</em> – <a class="donor" href="/profile/Hertz">Hertz</a></li>
 <li>----- 2026 -----</li>
-<li><span class="dodate">27.Jan.2026</span> – <em><code>&quot;New year, new opportunity to give. Donating 137 as I am not yet 1337. We’ll see next year!&quot;</em> – <a class="donor" href="/profile/Hertz">Hertz</a></li>
-<li><span class="dodate">18.Feb.2026</span> – <em><code>&quot;happy new year WeChall&quot;</em> – <a class="donor" href="/profile/Xaav">Xaav</a></li>
+<li><span class="dodate">27.Jan.2026</span> – <em><&quot;New year, new opportunity to give. Donating 137 as I am not yet 1337. We’ll see next year!&quot;</em> – <a class="donor" href="/profile/Hertz">Hertz</a></li>
+<li><span class="dodate">18.Feb.2026</span> – <em>&quot;happy new year WeChall&quot;</em> – <a class="donor" href="/profile/Xaav">Xaav</a></li>
 </ol>
 </div>
 
