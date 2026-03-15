@@ -368,8 +368,8 @@ final class GWF_BBCodeItem
 		}
 
 		$text = $this->filterURLText($text);
-		
-		return sprintf('<a href="%s">%s</a>', $the_href, $text);
+
+		return sprintf('<a href="%s" target="_blank" rel="noopener noreferrer">%s</a>', $the_href, $text);
 	}
 
 	public function render_php($htmlspecial, $nl2br, $raw)
