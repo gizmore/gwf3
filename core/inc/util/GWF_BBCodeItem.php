@@ -236,7 +236,7 @@ final class GWF_BBCodeItem
 
 			$geshi_a = '<a href="http://qbnz.com/highlighter/">GeSHi</a>`ed ';
 			$pre = '<div class="gwf_bb_code">';
-			$pre .= sprintf('<div>%s%s</div>', $geshi_a, $head);
+			$pre .= sprintf('<div>%s%s<button class="gwf_copy_code_btn" onclick="return bbCopyCode(this)" data-copied="%s">%s</button></div>', $geshi_a, $head, GWF_HTML::lang('copied'), GWF_HTML::lang('copy_code'));
 			$after = '</div>';
 			return $pre.$geshi->parse_code().$after;
 		}

@@ -181,6 +181,8 @@ $lang = array(
 	'quote_from' => 'Zitat von %s',
 	'code' => 'Quelltext',
 	'for' => 'für',
+	'copy_code' => 'Kopieren',
+	'copied' => 'Kopiert!',
 
 	# 2.05 Bits
 	'yes' => 'Ja',
