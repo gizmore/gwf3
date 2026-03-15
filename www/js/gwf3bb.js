@@ -144,3 +144,25 @@ function bbInsertURLInit(key)
 	form.show();
 	return true;
 }
+
+function bbCopyCode(btn) {
+    var container = btn.closest('.gwf_bb_code');
+    var codeElements = container.querySelectorAll('pre');
+    var codeElement = codeElements.length > 1 ? codeElements[1] : null;
+    if (!codeElement) {
+        return false;
+    }
+
+    let text = codeElement.innerText;
+    text = text.replace(/\u00A0/g, ' ')  // NBSP
+        .replace(/\u200B/g, '')  // Zero-width space
+        .replace(/\r\n/g, '\n');
+
+    navigator.clipboard.writeText(text).then(function () {
+        var old = btn.innerText;
+        btn.innerText = btn.dataset.copied;
+        setTimeout(function () { btn.textContent = old; }, 2000);
+    });
+
+    return false;
+}

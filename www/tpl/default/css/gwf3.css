@@ -348,3 +348,9 @@ img.flag {
 del {
 	text-decoration: line-through;
 }
+
+.gwf_copy_code_btn {
+	font-size: 98%;
+	cursor: pointer;
+	vertical-align: inherit;
+}
