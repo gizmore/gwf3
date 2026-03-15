@@ -144,3 +144,28 @@ function bbInsertURLInit(key)
 	form.show();
 	return true;
 }
+// add copy button for Code blocks
+document.addEventListener("DOMContentLoaded", function () {
+	document.querySelectorAll(".gwf_bb_code").forEach(function(block) {
+		const pres = block.querySelectorAll("pre");
+		if (pres.length < 2) return;
+
+		const codePre = pres[1]; // second <pre> is the actual code
+
+		const btn = document.createElement("button");
+		btn.textContent = "Copy";
+		btn.style.cursor = "pointer";
+		btn.className = "copy-code-btn";
+
+		btn.addEventListener("click", () => {
+		const code = codePre.innerText;
+
+		navigator.clipboard.writeText(code).then(() => {
+			btn.textContent = "Copied!";
+			setTimeout(() => btn.textContent = "Copy", 2000);
+		});
+		});
+
+		block.getElementsByTagName('div')[0].appendChild(btn);
+	});
+});
