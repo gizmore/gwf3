@@ -13,6 +13,6 @@ Tip: The plaintext is 7 lowercase letters.<br/>
 <br/>
 Good Luck!<br/>
 - gizmore',
-    'success_message' => 'Correct! I hope you have used levensthein distance.',
+    'success_msg' => 'Correct! I hope you have used levensthein distance.',
     'err_wrong' => 'Nu-oh! Zou Broke',
 );
