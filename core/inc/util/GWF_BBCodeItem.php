@@ -232,6 +232,8 @@ final class GWF_BBCodeItem
 //			$geshi->start_line_numbers_at(1);
 //			$geshi->enable_classes();
 
+			$geshi->set_code_style("font: normal normal 1em monospace; margin:0; padding:0; background:none; vertical-align:top;");
+
 			$geshi_a = '<a href="http://qbnz.com/highlighter/">GeSHi</a>`ed ';
 			$pre = '<div class="gwf_bb_code">';
 			$pre .= sprintf('<div>%s%s</div>', $geshi_a, $head);
