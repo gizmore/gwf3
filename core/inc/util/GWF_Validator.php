@@ -10,7 +10,13 @@ final class GWF_Validator
 		if (Common::startsWith($url, '/')) {
 			return true;
 		}
+		// TODO: filter_var($url, FILTER_VALIDATE_URL); ?
 		return preg_match("/^[a-zA-Z]+[:\/\/]+[A-Za-z0-9\-_]+\\.+[A-Za-z0-9\.\/%&=\?\-_]+$/iD", $url) === 1;
+	}
+
+	public static function isAbsoluteURL($url)
+	{
+		return parse_url($url, PHP_URL_SCHEME) !== null;
 	}
 
 //	public static function filterURL($url, $maxlen=255)

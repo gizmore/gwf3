@@ -371,7 +371,11 @@ final class GWF_BBCodeItem
 
 		$text = $this->filterURLText($text);
 
-		return sprintf('<a href="%s" target="_blank" rel="noopener noreferrer">%s</a>', $the_href, $text);
+		$is_absolute = GWF_Validator::isAbsoluteURL($url);
+		$target = $is_absolute ? '_blank' : '_self';
+		$rel = $is_absolute ? ' rel="noopener noreferrer"' : '';
+
+		return sprintf('<a href="%s" target="%s"%s>%s</a>', $the_href, $target, $rel, $text);
 	}
 
 	public function render_php($htmlspecial, $nl2br, $raw)
