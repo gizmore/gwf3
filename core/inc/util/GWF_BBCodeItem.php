@@ -218,6 +218,12 @@ final class GWF_BBCodeItem
 		{
 			require_once GWF_GESHI_PATH;
 			$source = $this->renderChilds(false, false, true);
+			if (Common::startsWith($source, "\n")) {
+				$source = substr($source, 1);
+			}
+			if (Common::endsWith($source, "\n")) {
+				$source = substr($source, 0, -1);
+			}
 			$geshi = new GeSHi($source, $lang);
 
 //			$type = GESHI_HEADER_NONE;
