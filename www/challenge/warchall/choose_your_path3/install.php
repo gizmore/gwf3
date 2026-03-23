@@ -1,4 +1,5 @@
 <?php
+$solution = require_once 'solution.php';
 chdir("../../../");
 require_once("challenge/html_head.php");
 define('GWF_PAGE_TITLE', 'Choose your Path III');
@@ -9,7 +10,6 @@ if (!GWF_User::isAdminS())
 	return htmlSendToLogin("Better be admin!");
 }
 
-$solution = 'Wildcards';
 $score = 2;
 $url = 'challenge/warchall/choose_your_path3/index.php';
 $creators = "cyp";
