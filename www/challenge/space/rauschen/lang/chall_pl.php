@@ -1,6 +1,6 @@
 <?php
 $lang = array(
     'title' => 'Szum',
-    'info' => "Twój starszy brat jest z lat 90... pokazał ci obraz z ukrytym rozwiązaniem, ale wygląda jak szum.",
+    'info' => "Twój starszy brat dorastał w latach 90... pokazał ci obraz z ukrytym rozwiązaniem, ale wygląda jak szum.",
 );
 ?>
