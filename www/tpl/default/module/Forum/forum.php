@@ -50,8 +50,12 @@ if ($b->isRoot() && count($tVars['latest_threads']) > 0)
 		$hrefLastPage = $t->getLastPageHREF();
 		$lastdate = $t->displayLastDate();
 		$b2 = $t->getBoard();
-		$anchor_board = GWF_HTML::anchor($b2->getShowBoardHREF(), $b2->getVar('board_title'));
-		$anchor_thread = GWF_HTML::anchor($t->getPageHREF(1), $t->getVar('thread_title'));
+        $anchor_board = '';
+        $anchor_thread = '';
+        if($b2) {
+		    $anchor_board = GWF_HTML::anchor($b2->getShowBoardHREF(), $b2->getVar('board_title'));
+		    $anchor_thread = GWF_HTML::anchor($t->getPageHREF(1), $t->getVar('thread_title'));
+        }
 		echo GWF_Table::rowStart();
 		echo GWF_Table::column($anchor_board.'<br/>'.$anchor_thread);
 //		 GWF_HTML::anchor($t->getPageHREF(1), $t->displayBoardTitle().'<br/>'.$t->display('thread_title'), '', '', false));
