@@ -1,4 +1,6 @@
 <?php
+require_once __DIR__ . '/GWF_Parsedown.php';
+
 /** 
  * Render the snippets.
  * Add your own code tags to the bottom.
@@ -400,6 +402,13 @@ final class GWF_BBCodeItem
 			$lang = 'Plaintext';
 		}
 		return $this->renderCode($lang, $htmlspecial, $nl2br, $raw);
+	}
+
+	public function render_markdown($htmlspecial, $nl2br, $raw)
+	{
+		$pd = new GWF_Parsedown();
+		$pd->setSafeMode(true);
+		return '<div class="markdown">' . $pd->text($this->renderChilds(false, false, $raw)) . '</div>';
 	}
 
 	public function render_quote($htmlspecial, $nl2br, $raw)

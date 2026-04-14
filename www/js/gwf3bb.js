@@ -148,7 +148,7 @@ function bbInsertURLInit(key)
 function bbCopyCode(btn) {
     var container = btn.closest('.gwf_bb_code');
     var codeElements = container.querySelectorAll('pre');
-    var codeElement = codeElements.length > 1 ? codeElements[1] : null;
+    var codeElement = codeElements.length > 1 ? codeElements[1] : codeElements[0];
     if (!codeElement) {
         return false;
     }
