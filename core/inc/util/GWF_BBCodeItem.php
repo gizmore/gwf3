@@ -275,6 +275,10 @@ final class GWF_BBCodeItem
 		return '<ol>'.$this->renderChilds($htmlspecial, $nl2br, $raw).'</ol>';
 	}
 
+	public function render_pre($htmlspecial, $nl2br, $raw) {
+		return '<pre>'.$this->renderChilds($htmlspecial, $nl2br, $raw).'</pre>';
+	}
+
 	public function render_li($htmlspecial, $nl2br, $raw)
 	{
 		return '<li>'.$this->renderChilds($htmlspecial, $nl2br, $raw).'</li>';
