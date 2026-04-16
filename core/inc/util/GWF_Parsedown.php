@@ -1,9 +1,9 @@
 <?php
 
-require_once __DIR__ . '/../3p/Parsedown.php';
+require_once __DIR__ . '/../3p/ParsedownCheckbox.php';
 
 
-final class GWF_Parsedown extends Parsedown
+final class GWF_Parsedown extends ParsedownCheckbox
 {
     protected function blockFencedCodeComplete($Block)
     {
