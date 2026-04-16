@@ -349,10 +349,18 @@ del {
 	text-decoration: line-through;
 }
 
-.gwf_copy_code_btn {
+.gwf_copy_code_btn,
+.gwf_copy_code_btn:hover {
 	font-size: 98%;
 	cursor: pointer;
 	vertical-align: inherit;
+	background: url(../../../img/default/copy.png);
+	background-size: contain;
+	background-repeat: no-repeat;
+	color: transparent;
+	border: 0;
+	padding: 3px;
+	float: right;
 }
 
 .markdown h1,
