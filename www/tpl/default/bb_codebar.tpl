@@ -21,6 +21,11 @@
 		title="[code=lang]{GWF_HTML::lang('bbhelp_code')}[/code]"
 		onclick="return bbInsertCode('{$key}');" />
 	
+	<img src="{$root}img/{$iconset}/desc_sel.png"
+		alt="[markdown]"
+		title="[markdown]{GWF_HTML::lang('bbhelp_markdown')}[/markdown]"
+		onclick="return bbInsertMarkdown('{$key}');" />
+	
 	<img src="{$root}img/{$iconset}/bb/quote.png" 
 		alt="[quote]" 
 		title="[quote=username]{GWF_HTML::lang('bbhelp_quote')}[/quote]" 

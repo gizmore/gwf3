@@ -107,6 +107,11 @@ function bbInsertCodeNow(key)
 	return false;
 }
 
+function bbInsertMarkdown(key)
+{
+	return bbInsert(key, '[markdown]', '[/markdown]');
+}
+
 function bbInsertURL(key)
 {
 	if (false === bbInsertURLInit(key))
