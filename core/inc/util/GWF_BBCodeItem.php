@@ -414,7 +414,7 @@ final class GWF_BBCodeItem
 	{
 		$pd = new GWF_Parsedown();
 		$pd->setSafeMode(true);
-		return '<div class="markdown">' . $pd->text($this->renderChilds(false, false, $raw)) . '</div>';
+		return '<div class="markdown">' . $pd->text($this->renderChilds(false, false, true)) . '</div>';
 	}
 
 	public function render_quote($htmlspecial, $nl2br, $raw)
