@@ -176,6 +176,7 @@ $lang = array(
 	'bbhelp_quote' => 'The text here is a quote',
 	'bbhelp_url' => 'Link text',
 	'bbhelp_email' => 'Text for email link',
+	'bbhelp_markdown' => 'Markdown here',
 	'bbhelp_noparse' => 'Disable bb-decoding here.',
 	'bbhelp_level' => 'Text that needs a minimum userlevel to be viewable.',
 	'bbhelp_spoiler' => 'Invisible text that is shown with a click.',

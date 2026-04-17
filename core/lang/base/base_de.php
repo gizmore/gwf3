@@ -173,6 +173,7 @@ $lang = array(
 	'bbhelp_quote' => 'Dieser Text ist ein Zitat',
 	'bbhelp_url' => 'Linktext',
 	'bbhelp_email' => 'E-Mail text',
+	'bbhelp_markdown' => 'Markdown hier',
 	'bbhelp_noparse' => 'BBCode ist hier deaktiviert',
 	'bbhelp_level' => 'Dieser Text benötigt einen bestimmten Userlevel',
 	'bbhelp_spoiler' => 'Unsichtbarer Text. Durch Klick anzeigen.',
