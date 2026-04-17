@@ -21,8 +21,9 @@
 		title="[code=lang]{GWF_HTML::lang('bbhelp_code')}[/code]"
 		onclick="return bbInsertCode('{$key}');" />
 	
-	<img src="{$root}img/{$iconset}/desc_sel.png"
+	<img src="{$root}img/{$iconset}/bb/markdown.svg"
 		alt="[markdown]"
+		style="width: 24px; height: 24px;"
 		title="[markdown]{GWF_HTML::lang('bbhelp_markdown')}[/markdown]"
 		onclick="return bbInsertMarkdown('{$key}');" />
 	
