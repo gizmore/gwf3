@@ -416,6 +416,13 @@ del {
 .markdown ol ul {
 	padding-left: 20px;
 }
+
+.markdown > p,
+.markdown > ul,
+.markdown > ol {
+	margin: 0 0 1em;
+}
+
 .markdown hr {
 	margin: 1em 0;
 	border: 0;
