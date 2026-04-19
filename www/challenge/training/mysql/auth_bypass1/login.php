@@ -47,7 +47,7 @@ function auth1_onLogin(WC_Challenge $chall, $username, $password)
 	}
 
 	# Welcome back!
-	echo GWF_HTML::message('Auth1', $chall->lang('msg_welcome_back', htmlspecialchars($result['username'])), false);
+	echo GWF_HTML::message('Auth1', $chall->lang('msg_welcome_back', [htmlspecialchars($result['username'])]), false);
 	
 	# Challenge solved?
 	if (strtolower($result['username']) === 'admin') {

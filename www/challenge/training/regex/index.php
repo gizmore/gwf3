@@ -135,7 +135,7 @@ function train_regex_level_4(WC_Challenge $chall, $answer)
 	{
 		if (preg_match($answer, $t, $matches))
 		{
-			echo GWF_HTML::error('WeChall', $chall->lang('err_matching', $t), false);
+			echo GWF_HTML::error('WeChall', $chall->lang('err_matching', [$t]), false);
 			return false;
 		}
 	}
