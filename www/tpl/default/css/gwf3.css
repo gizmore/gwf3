@@ -351,7 +351,7 @@ del {
 
 .gwf_copy_code_btn,
 .gwf_copy_code_btn:hover {
-	font-size: 98%;
+	font-size: 98%;  /* there is a stupid * { font-size: 98% } global rule, which we apply to here.*/
 	cursor: pointer;
 	vertical-align: inherit;
 	background: url(../../../img/default/copy.png);
@@ -361,6 +361,10 @@ del {
 	border: 0;
 	padding: 3px;
 	float: right;
+}
+
+.markdown {
+	font-size: 1.020408em;  /* there is a stupid * { font-size: 98% } global rule, which we revert here. */
 }
 
 .markdown h1,
