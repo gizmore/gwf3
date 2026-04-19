@@ -22,7 +22,7 @@ if (false === ($user = GWF_Session::getUser()))
 }
 elseif ($score > ($scre = $user->getLevel()))
 {
-	echo GWF_HTML::error('Warchall', $chall->lang('err_score', $scre, $score));
+	echo GWF_HTML::error('Warchall', $chall->lang('err_score', [$scre, $score]));
 }
 else
 {
