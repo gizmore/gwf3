@@ -24,7 +24,7 @@ if (isset($_POST['answer']))
 	}
 	else
 	{
-		echo GWF_HTML::error($chall->getTitle(), $chall->lang('err_wrong', GWF_Random::arrayItem($coolPeople)));
+		echo GWF_HTML::error($chall->getTitle(), $chall->lang('err_wrong', array(GWF_Random::arrayItem($coolPeople))));
 	}
 }
 $user = GWF_User::getStaticOrGuest();
