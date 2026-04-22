@@ -2,12 +2,12 @@
 	margin: 0;
 	padding: 0;
 	font-family: Arial;
-	font-size: 98%;  /* WTF?: this stupid rule destroys a lot, e.g. line numbers in genshi code, makrdown, copy-code button */
 }
 
 body, html {
 	height: 100%;
 	min-height: 100%;
+	font-size: 93.75%;
 }
 
 #page_footer_space {
