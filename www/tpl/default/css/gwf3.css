@@ -46,7 +46,7 @@ ul, ol { list-style: none; }
 	min-height: 16px;
 /* 	line-height: 11px; */
 	min-width: 16px;
-	font-size: 12px;
+	font-size: 0.75rem;
 	white-space: nowrap;
 	vertical-align: middle;
 }
@@ -114,11 +114,11 @@ ul, ol { list-style: none; }
 
 /** PageMenu **/
 .gwf_pagemenu {
-	font-size: 14px;
+	font-size: 0.875rem;
 }
 
 .gwf_pagemenu_sel {
-	font-size: 18px;
+	font-size: 1.125rem;
 }
 
 /*
@@ -221,7 +221,7 @@ ul.gwf_criticals li,
 ul.gwf_warnings li,
 ul.gwf_messages li {
 	list-style: none;
-	font-size: 17px;
+	font-size: 1.0625rem;
 }
 
 /** backgrounds */
@@ -285,7 +285,7 @@ div.gwf_errors ul, div.gwf_messages ul {
 div.gwf_errors li, div.gwf_messages li {
 	list-style: none;
 /*	font-weight: bolder;*/
-	font-size: 17px;
+	font-size: 1.0625rem;
 	margin: 0;
 	padding: 0px 10px 2px 22px;
 }
@@ -335,7 +335,7 @@ div.gwf_messages li {
 .gwf_backtrace {
 	margin: 4px;
 	padding: 3px;
-	font-size: 14px;
+	font-size: 0.875rem;
 	text-align: left;
 	font-family: monospace;
 }
@@ -351,7 +351,6 @@ del {
 
 .gwf_copy_code_btn,
 .gwf_copy_code_btn:hover {
-	font-size: 98%;  /* there is a stupid * { font-size: 98% } global rule, which we apply to here.*/
 	cursor: pointer;
 	vertical-align: inherit;
 	background: url(../../../img/default/copy.png);
@@ -361,10 +360,6 @@ del {
 	border: 0;
 	padding: 3px;
 	float: right;
-}
-
-.markdown {
-	font-size: 1.020408em;  /* there is a stupid * { font-size: 98% } global rule, which we revert here. */
 }
 
 .markdown h1,

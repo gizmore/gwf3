@@ -3,7 +3,7 @@
 </div>
 
 <div class="le" style="margin: 30px 20% 10px 20px;">
-<div style="font-size: 18px; margin-bottom: 20px; margin-left: 50px;"><?php echo GWF_String::toUpper($tLang->lang('soft_nachk1')); ?></div>
+<div style="font-size: 1.125rem; margin-bottom: 20px; margin-left: 50px;"><?php echo GWF_String::toUpper($tLang->lang('soft_nachk1')); ?></div>
 <?php 	echo '<div class="ssy1024h" style="height:2px; margin-top: 4px; margin-bottom:8px;" ></div>'; ?>
 
 <div style="margin-left: 10px;">

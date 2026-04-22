@@ -51,13 +51,13 @@ body {
 }
 
 #gwfinstallbanner a {
-	font-size: 24px;
+	font-size: 1.5rem;
 	color: black;
 	text-decoration: none;
 }
 
 #gwfinstallbanner li a {
-	font-size: 16px;
+	font-size: 1rem;
 }
 
 #gwfinstallbanner li {
