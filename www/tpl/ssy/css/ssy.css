@@ -176,7 +176,7 @@ a:HOVER {
 
 .ssy_langmenu a {
 	display: block;
-	font-size: 12px;
+	font-size: 0.75rem;
 	text-decoration: none;
 	color: #acb5c1;
 }
@@ -218,7 +218,7 @@ a:HOVER {
 	display: inline-block;
 	position: relative;
 	z-index: 2;
-	font-size: 12px;
+	font-size: 0.75rem;
 }
 
 #ssy_sidemenu a {
@@ -275,7 +275,7 @@ a:HOVER {
 #ssy_footer a {
 	height: 30px;
 	line-height: 30px;
-	font-size: 12px;
+	font-size: 0.75rem;
 	color: #acb5c1;
 	text-decoration: none;
 	padding: 0px 32px;
@@ -395,7 +395,7 @@ a:HOVER {
 	display: block;
 	margin-bottom: 1px;
 	padding: 2px 10px 2px 10px;
-	font-size: 12px;
+	font-size: 0.75rem;
 	font-weight: normal;
 	text-decoration: none;
 }
@@ -410,12 +410,12 @@ a:HOVER {
 	text-align: left;
 	padding: 20px 20px 4px 10px;
 	min-width: 20%;
-	font-size: 11px;
+	font-size: 0.6875rem;
 }
 
 /* 2 3 10 table **/
 #ssy_soft_table {
-	font-size: 12px;
+	font-size: 0.75rem;
 	margin-top: 20px;
 	width: 98%;
 }
@@ -493,7 +493,7 @@ form table {
 }
 
 form table th {
-	font-size: 18px;
+	font-size: 1.125rem;
 }
 
 td {
@@ -510,7 +510,7 @@ form>table>tbody>tr>td+td {
 
 form input {
 	padding: 4px 6px;
-	font-size: 12px;
+	font-size: 0.75rem;
 }
 
 form textarea {
@@ -590,7 +590,7 @@ th, th a {
 	margin: 1px;
 	padding: 2px 15px;
 	min-width: 240px;
-	font-size: 12px;
+	font-size: 0.75rem;
 	text-decoration: none;
 	font-weight: normal;
 }
@@ -603,12 +603,12 @@ th, th a {
 .gwf_pagemenu a {
 	text-decoration: none;
 	font-weight: normal;
-	font-size: 16px;
+	font-size: 1rem;
 }
 
 .gwf_pagemenu_sel {
 	font-weight: bolder !important;
-	font-size: 24px !important;
+	font-size: 1.5rem !important;
 	color: #ffffff;
 }
 

@@ -58,7 +58,7 @@ html, body, #ssy_wrap, #ssy_main, #ssy_right {
 	color: red;
 	background: white;
 	font-weight: bolder;
-	font-size: 18px;
+	font-size: 1.125rem;
 	border: 6px groove black;
 	background: url(/template/ssy/img/grad_menu.png) repeat-y #a2acb9;
 }
@@ -100,7 +100,7 @@ html, body, #ssy_wrap, #ssy_main, #ssy_right {
 .ssy_assess {
 	text-align: center;
 	color: white;
-	font-size: 38px;
+	font-size: 2.375rem;
 	color: #e2e2e2;
 	background: url(/template/ssy/img/RoseSmall.png) no-repeat transparent center top;
 	padding-top: 170px;
@@ -117,7 +117,7 @@ html, body, #ssy_wrap, #ssy_main, #ssy_right {
 
 .ssy_langmenu a {
 	display: block;
-	font-size: 12px;
+	font-size: 0.75rem;
 	text-decoration: none;
 	color: #acb5c1;
 }
@@ -278,14 +278,14 @@ form table {
 }
 
 form table th {
-	font-size: 20px;
+	font-size: 1.25rem;
 }
 
 form input {
 	color: #ffffff;
 	background: url(/template/ssy/img/grad_menu.png) repeat-y #a2acb9;
 	padding: 4px 6px;
-	font-size: 14px;
+	font-size: 0.875rem;
 }
 
 form input[type="text"], form input[type="password"] {

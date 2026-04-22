@@ -188,7 +188,7 @@ form {
 
 /** News **/
 .gwf_newsbox_title {
-	font-size: 20px;
+	font-size: 1.25rem;
 	-moz-border-radius-topleft: 9px;
 	-moz-border-radius-topright: 9px;
 	-webkit-border-top-left-radius: 9px;
@@ -201,7 +201,7 @@ form {
 }
 
 .gwf_newsbox_date {
-	font-size: 13px;
+	font-size: 0.8125rem;
 }
 
 .gwf_newsbox_item {
@@ -225,7 +225,7 @@ form {
 }
 
 .gwf_newsbox_author {
-	font-size: 13px;
+	font-size: 0.8125rem;
 }
 
 .gwf_newsbox .gwf_pagemenu {
@@ -283,7 +283,7 @@ form {
 }
 
 .gwf_post_edited {
-	font-size: 13px;
+	font-size: 0.8125rem;
 	font-family: monospace;
 }
 
@@ -314,7 +314,7 @@ td img {
 /** PM **/
 .gwf_pm_date {
 	text-align: left !important;
-	font-size: 13px;
+	font-size: 0.8125rem;
 	font-family: monospace;
 }
 
