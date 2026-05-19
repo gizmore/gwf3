@@ -12,12 +12,12 @@ min-height: 100%;
 min-height: 100%;
 }
 
-h1 { font-size: 46px; padding: 32px 64px; }
-h2 { font-size: 44px; padding: 32px 64px; }
-h3 { font-size: 42px; padding: 32px 64px; }
-h4 { font-size: 40px; padding: 32px 64px; }
-h5 { font-size: 38px; padding: 32px 64px; }
-h6 { font-size: 36px; padding: 32px 64px; }
+h1 { font-size: 2.875rem; padding: 32px 64px; }
+h2 { font-size: 2.75rem; padding: 32px 64px; }
+h3 { font-size: 2.625rem; padding: 32px 64px; }
+h4 { font-size: 2.5rem; padding: 32px 64px; }
+h5 { font-size: 2.375rem; padding: 32px 64px; }
+h6 { font-size: 2.25rem; padding: 32px 64px; }
 
 hr {
 display: none;
@@ -34,7 +34,7 @@ color: #612;
 }
 
 em, b, p {
-font-size: 26px;
+font-size: 1.625rem;
 }
 
 p {

@@ -48,7 +48,7 @@ html, body {
 
 /* LANG MENU */
 .ssy_langmenu { position: absolute; top: 10px; left: 10px; }
-.ssy_langmenu a { display: block; font-size: 12px; text-decoration: none; color: #acb5c1; }
+.ssy_langmenu a { display: block; font-size: 0.75rem; text-decoration: none; color: #acb5c1; }
 .ssy_langmenu a:HOVER { font-weight: bolder; }
 
 /* ANGEL */
@@ -91,7 +91,7 @@ html, body {
 	position: relative;
 	z-index: 2;
 /*	margin: auto; */
-	font-size: 12px;
+	font-size: 0.75rem;
 }
 
 #ssy_sidemenu a {
@@ -103,7 +103,7 @@ html, body {
 }
 
 .ssy_sitename {
-	font-size: 32px;
+	font-size: 2rem;
 	margin-top: 15px;
 }
 
@@ -217,7 +217,7 @@ html, body {
 */
 
 #ssy_soft_table {
-	font-size: 12px;
+	font-size: 0.75rem;
 	margin-top: 20px;
 	width: 80%;
 }
@@ -310,7 +310,7 @@ form table {
 }
 
 form table th {
-	font-size: 24px;
+	font-size: 1.5rem;
 }
 
 form input {
@@ -319,7 +319,7 @@ form input {
 	
 	background: url(/template/ssy/img/grad_menu.png) repeat-y #0c1724;
 	padding: 4px 6px;
-	font-size: 12px;
+	font-size: 0.75rem;
 	
 }
 
@@ -394,7 +394,7 @@ width: 30%;
 	display: block;
 	margin-top: 16px;
 	margin-bottom: 16px;
-	font-size: 19px;
+	font-size: 1.1875rem;
 }
 .gwf_newsbox_author {
 }
@@ -489,7 +489,7 @@ width: 30%;
 	padding: 2px 15px;
 	background: url(/template/ssy/img/grad_menuR.png) repeat-y #657487;
 	min-width: 240px;
-	font-size: 12px;
+	font-size: 0.75rem;
 }
 
 .ssy_leftlinks a:HOVER {
@@ -515,7 +515,7 @@ width: 30%;
 #ssy_footer a {
 	height: 30px;
 	line-height: 30px;
-	font-size: 12px;
+	font-size: 0.75rem;
 	color: #acb5c1;
 	text-decoration: none;
 	padding: 0px 32px;
@@ -527,22 +527,22 @@ width: 30%;
 
 h1 {
 	padding-top: 20px;
-	font-size: 18px;
+	font-size: 1.125rem;
 	font-weight: normal;
 }
 h2 {
 	padding-top: 10px;
-	font-size: 16px;
+	font-size: 1rem;
 	font-weight: normal;
 }
 h3 {
 	padding-top: 5px;
-	font-size: 14px;
+	font-size: 0.875rem;
 	font-weight: normal;
 }
 h4, h5, p {
 	padding-top: 2px;
-	font-size: 12px;
+	font-size: 0.75rem;
 	font-weight: normal;
 }
 
@@ -584,7 +584,7 @@ h4, h5, p {
 	text-align: left;
 	padding: 20px 20px 4px 10px;
 	min-width: 20%;
-	font-size: 11px;
+	font-size: 0.6875rem;
 }
 
 #ssy_service_table td:HOVER {
@@ -638,7 +638,7 @@ h4, h5, p {
 	background: url(/template/ssy/img/grad_menu.png) repeat-y #0c1724;
 	margin-bottom: 1px;
 	padding: 2px 10px 2px 10px;
-	font-size: 12px;
+	font-size: 0.75rem;
 }
 
 .ssy_small_softbox a:HOVER {
