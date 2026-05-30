@@ -2,10 +2,8 @@
 # Score:MaxScore:Challs:Users
 final class WCSite_TBS extends WC_Site
 {
-	public function parseStats($url)
+	public function parseStats($result)
 	{
-		$result = GWF_HTTP::getFromURL($url, false);
-		
 		if ($result === false) {
 			return false;
 		}

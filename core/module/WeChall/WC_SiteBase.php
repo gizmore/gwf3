@@ -93,13 +93,8 @@ abstract class WC_SiteBase extends GDO
 	 * @TODO: Check with join_us specs.
 	 * @param string $url
 	 */
-	public function parseStats($url)
+	public function parseStats($result)
 	{
-		if (false === ($result = GWF_HTTP::getFromURL($url, false)))
-		{
-			return htmlDisplayError(WC_HTML::lang('err_response', array(GWF_HTML::display($result), $this->displayName())));
-		}
-	
 		$stats = explode(':', trim($result));
 		if (count($stats) !== 7)
 		{
@@ -123,5 +118,26 @@ abstract class WC_SiteBase extends GDO
 // 		$this->updateSite($maxscore, $usercount, $challcount);
 	
 		return array($score, $rank, $challssolved, $maxscore, $usercount, $challcount);
+	}
+
+	public function parseAccount($result)
+	{
+		$result = str_replace("\xEF\xBB\xBF", '', $result); # BOM
+		$result = trim($result);
+		
+		if (WECHALL_DEBUG_LINKING)
+		{
+			var_dump('SECRET URL:');
+			var_dump($url);
+			var_dump('LINK RESULT:');
+			var_dump($result);
+// 			$len = strlen($result);
+// 			for ($i = 0; $i < $len; $i++)
+// 			{
+// 				echo sprintf(' %02X', ord($result{$i}));
+// 			}
+		}
+
+		return $result > 0;
 	}
 }

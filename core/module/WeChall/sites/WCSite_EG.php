@@ -2,12 +2,8 @@
 # <username>:<rank>:<points>:<max-points>:<num-of-solved-tasks>:<num-of-tasks>:<num-of-players>
 class WCSite_EG extends WC_Site
 {
-	public function parseStats($url)
+	public function parseStats($result)
 	{
-		if (false === ($result = GWF_HTTP::getFromURL($url, false))) {
-			return htmlDisplayError(WC_HTML::lang('err_response', array(GWF_HTML::display($result), $this->displayName())));
-		}
-		
 		if (false === ($result2 = Common::substrFrom($result, '<br /><br />', false)))
 		{
 			return htmlDisplayError(WC_HTML::lang('err_response', array(GWF_HTML::display($result), $this->displayName())));

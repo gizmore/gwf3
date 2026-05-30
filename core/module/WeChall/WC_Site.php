@@ -851,6 +851,44 @@ class WC_Site extends WC_SiteBase
 // 		return 0;
 // 	}
 	
+	public function requestAccountHelper($url, $username, $email, $auth_key)
+	{
+		return GWF_HTTP::getFromURL($url, false);
+	}
+
+	public function requestAccount($base_url, $account_url, $username, $email, $auth_key)
+	{
+		$url = $this->replaceURL($account_url, $username, $email, $auth_key);
+		if (!Common::startsWith($url, 'http'))
+		{
+			$url = $base_url . '/' . $url;
+		}
+
+		return array(
+			$url,
+			$this->getSiteClass()->requestAccountHelper($url, $username, $email, $auth_key)
+		);
+	}
+
+	public function requestScoreHelper($url, $username, $auth_key)
+	{
+		return GWF_HTTP::getFromURL($url, false);
+	}
+
+	public function requestScore($base_url, $score_url, $username, $auth_key)
+	{
+		$url = $this->replaceURL($score_url, $username, '', $auth_key);
+		if (!Common::startsWith($url, 'http'))
+		{
+			$url = $base_url . '/' . $url;
+		}
+
+		return array(
+			$url,
+			$this->getSiteClass()->requestScoreHelper($url, $username, $auth_key)
+		);
+	}
+
 	/**
 	 * Check if EMail+Username exists on the site.
 	 * @return boolean
@@ -862,53 +900,18 @@ class WC_Site extends WC_SiteBase
 			return true;
 			//$url = $this->getWarboxAccountURL($onsitename, $onsitemail);
 		}
-		else
-		{
-			$url = $this->getAccountURL($onsitename, $onsitemail);
-		}
-		
-		$result = GWF_HTTP::getFromURL($url, false);
-		$result = str_replace("\xEF\xBB\xBF", '', $result); # BOM
-		$result = trim($result);
-		
-		if (WECHALL_DEBUG_LINKING)
-		{
-			var_dump('SECRET URL:');
-			var_dump($url);
-			var_dump('LINK RESULT:');
-			var_dump($result);
-// 			$len = strlen($result);
-// 			for ($i = 0; $i < $len; $i++)
-// 			{
-// 				echo sprintf(' %02X', ord($result{$i}));
-// 			}
-		}
 
-		return $result > 0;
+		list($url, $result) = $this->requestAccount(
+			$this->getVar('site_url'),
+			$this->getVar('site_url_mail'),
+			$onsitename,
+			$onsitemail,
+			$this->getVar('site_xauthkey')
+		);
+
+		return $this->parseAccount($result);
 	}
-	
-	public function getScoreURL($onsitename)
-	{
-// 		$score_part = $this->replaceURL($this->getVar('site_url_score'), urlencode($onsitename));
-		$score_part = $this->replaceURL($this->getVar('site_url_score'), $onsitename);
-		if (Common::startsWith($score_part, 'http'))
-		{
-			return $score_part;
-		}
-		return $this->getVar('site_url').'/'.$score_part;
-	}
-	
-	public function getAccountURL($onsitename, $onsitemail)
-	{
-// 		$mail_part = $this->replaceURL($this->getVar('site_url_mail'), urlencode($onsitename), urlencode($onsitemail));
-		$mail_part = $this->replaceURL($this->getVar('site_url_mail'), $onsitename, $onsitemail);
-		if (Common::startsWith($mail_part, 'http'))
-		{
-			return $mail_part;
-		}
-		return $this->getVar('site_url').'/'.$mail_part;
-	}
-	
+
 	public function hasProfileURL()
 	{
 		return $this->getVar('site_url_profile') !== '';
@@ -916,7 +919,7 @@ class WC_Site extends WC_SiteBase
 	
 	public function getProfileURL($onsitename)
 	{
-		$profile_part = $this->replaceURL($this->getVar('site_url_profile'), urlencode($onsitename));
+		$profile_part = $this->replaceURL($this->getVar('site_url_profile'), urlencode($onsitename), '', '');
 		if (Common::startsWith($profile_part, 'http'))
 		{
 			return $profile_part;
@@ -930,16 +933,17 @@ class WC_Site extends WC_SiteBase
 	 * @param unknown_type $url
 	 * @param unknown_type $username
 	 * @param unknown_type $email
+	 * @param unknown_type $auth_key
 	 * @return unknown_type
 	 */
-	private function replaceURL($url, $username, $email='')
+	private function replaceURL($url, $username, $email, $auth_key)
 	{
 		if ($this->useUrlencode())
 		{
 			$username = urlencode($username);
 			$email = urlencode($email);
 		}
-		return str_replace(array('%USERNAME%', '%EMAIL%', '%AUTHKEY%'), array($username, $email, $this->getVar('site_xauthkey')), $url);
+		return str_replace(array('%USERNAME%', '%EMAIL%', '%AUTHKEY%'), array($username, $email, $auth_key), $url);
 	}
 	
 	/**
@@ -1032,8 +1036,6 @@ class WC_Site extends WC_SiteBase
 		}
 
 		# Get new stats
-		$url = $this->getScoreURL($regat->getVar('regat_onsitename'));
-		
 		if ($this->isNoV1())
 		{
 			// score, rank, challssolved, maxscore, usercount, challcount
@@ -1041,12 +1043,20 @@ class WC_Site extends WC_SiteBase
 		}
 		else
 		{
+			list($url, $response) = $site->requestScore(
+				$this->getVar('site_url'),
+				$this->getVar('site_url_score'),
+				$regat->getVar('regat_onsitename'),
+				$this->getVar('site_xauthkey')
+			);
+
 			if (WECHALL_DEBUG_LINKING)
 			{
 				var_dump('SECRET URL:');
 				var_dump($url);
 			}
-			$stats = $site->parseStats($url);
+
+			$stats = $site->parseStats($response);
 		}
 		
 		if (!is_array($stats))

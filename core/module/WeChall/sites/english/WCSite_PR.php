@@ -1,13 +1,8 @@
 <?php
 class WCSite_PR extends WC_Site
 {
-    public function parseStats($url)
+    public function parseStats($result)
     {
-        if (false === ($result = GWF_HTTP::getFromURL($url, false)))
-        {
-            return htmlDisplayError(WC_HTML::lang('err_response', array(GWF_HTML::display($result), $this->displayName())));
-        }
-        
         $stats = json_decode($result, JSON_OBJECT_AS_ARRAY);
         
         $username = null;

@@ -5,12 +5,8 @@
  */
 final class WCSite_Rankk extends WC_Site
 {
-	public function parseStats($url)
+	public function parseStats($result)
 	{
-		if (false === ($result = GWF_HTTP::getFromURL($url, false))) {
-			return htmlDisplayError(WC_HTML::lang('err_response', array(GWF_HTML::display($result), $this->displayName())));
-		}
-
 		$data = explode(":", $result);
 		if (count($data) !== 7) {
 			return htmlDisplayError(WC_HTML::lang('err_response', array(GWF_HTML::display($result), $this->displayName())));

@@ -5,13 +5,8 @@
 */
 class WCSite_CS extends WC_Site
 {
-	public function parseStats($url)
+	public function parseStats($page)
 	{
-		if (false === ($page = GWF_HTTP::getFromURL($url, false)))
-		{
-			return htmlDisplayError(WC_HTML::lang('err_response', array(GWF_HTML::display($page), $this->displayName())));
-		}
-	
 		$result = explode(':', trim($page));
 		if (count($result) !== 7)
 		{

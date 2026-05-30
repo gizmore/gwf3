@@ -4,12 +4,8 @@
  */
 final class WCSite_NC extends WC_Site
 {
-	public function parseStats($url)
+	public function parseStats($result)
 	{
-		if (false === ($result = GWF_HTTP::getFromURL($url, false))) {
-			return htmlDisplayError(WC_HTML::lang('err_response', array(GWF_HTML::display($result), $this->displayName())));
-		}
-		
 		$file = explode('<br>', $result);
 
 		if (count($file) !== 5) {

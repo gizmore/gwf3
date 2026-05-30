@@ -47,11 +47,13 @@ Output:<br>
 </table>
 <script>
 var api_test_token = '<?=GWF_CSRF::generateToken('apt_test_token')?>';
-function api_test_url(template)
+function api_test_url(what, template)
 {
   $('#api_test_output').val('Waiting for reply...');
   $.post(GWF_WEB_ROOT+'index.php?mo=WeChall&me=ApiTest&ajax=1',{
       gwf3_csrf: api_test_token,
+      type: what,
+      classname: $('input[name=site_classname]').val(),
       base: $('#api_test_url').val(),
       template: template,
       authkey: $('#api_test_authkey').val(),
@@ -84,11 +86,11 @@ function api_test_url(template)
 }
 function api_test_mail()
 {
-  api_test_url($('#api_test_murl').val());
+  api_test_url('account', $('#api_test_murl').val());
 }
 function api_test_score()
 {
-  api_test_url($('#api_test_surl').val());
+  api_test_url('score', $('#api_test_surl').val());
 }
 </script>
 </div>

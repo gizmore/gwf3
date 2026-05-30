@@ -302,8 +302,15 @@ final class WeChall_API_Bot extends GWF_Method
 		
 		$site = $site->getSiteClass();
 		$site instanceof WC_Site;
-		$url = $site->getScoreURL($onsitename);
-		if (false === ($result = $site->parseStats($url))) {
+
+		list($url, $response) = $site->requestScore(
+			$site->getVar('site_url'),
+			$site->getVar('site_url_score'),
+			$onsitename,
+			$site->getVar('site_xauthkey')
+		);
+
+		if (false === ($result = $site->parseStats($response))) {
 			return GWF_HTML::err('ERR_GENERAL', array(__FILE__, __LINE__));
 		}
 

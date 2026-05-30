@@ -2,10 +2,8 @@
 # Score:MaxScore:Challs:Users
 final class WCSite_WC extends WC_Site
 {
-	public function parseStats($url)
+	public function parseStats($result2)
 	{
-		$result2 = GWF_HTTP::getFromURL($url, false);
-		
 		$result = explode(':', $result2);
 		
 		if (count($result) !== 6)

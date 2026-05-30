@@ -7,8 +7,15 @@ class WCSite_RZT extends WC_Site
 {
 	public function isAccountValid($onsitename, $onsitemail)
 	{
-		$url = $this->getAccountURL($onsitename, $onsitemail);
-		if (false === ($result = GWF_HTTP::getFromURL($url, false)))
+		list($url, $result) = $this->requestAccount(
+			$this->getVar('site_url'),
+			$this->getVar('site_url_mail'),
+			$onsitename,
+			$onsitemail,
+			$this->getVar('site_xauthkey')
+		);
+
+		if (false === $result)
 		{
 			htmlDisplayError(WC_HTML::lang('err_response', array(GWF_HTML::display($result), $this->displayName())));
 			return false;
@@ -30,13 +37,13 @@ class WCSite_RZT extends WC_Site
 		return intval($data['success']) > 0;
 	}
 
-	public function parseStats($url)
+	public function parseStats($result)
 	{
-		if (false === ($result = GWF_HTTP::getFromURL($url, false)))
+		if (false === $result)
 		{
 			return htmlDisplayError(WC_HTML::lang('err_response', array(GWF_HTML::display($result), $this->displayName())));
 		}
-		
+
 		$stats = json_decode($result, true, 2);
 		if ($stats === NULL or isset($stats['error']))
 		{
@@ -48,7 +55,7 @@ class WCSite_RZT extends WC_Site
 
 		$onsiterank = isset($stats['rank']) ? intval($stats['rank']) : -1;
 
-                $challssolved = intval($stats['solved']);
+		$challssolved = intval($stats['solved']);
 
 		$maxscore = intval($stats['maxscore']);
 
