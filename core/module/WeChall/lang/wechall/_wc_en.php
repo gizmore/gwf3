@@ -340,6 +340,7 @@ $lang = array(
 	'err_graph_empty' => 'This graph is empty.',
 	'err_notlinkedwc' => 'Your account is not linked to wechall itself.',
 	'err_no_sites' => 'You have to specify at least one site.',
+	'err_username_displayname' => 'You need to specify your unique username during linking.',
 
 	# Site States
 	'site_state_up' => 'Up &amp; Running',

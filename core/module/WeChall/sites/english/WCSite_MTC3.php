@@ -1,29 +1,50 @@
 <?php
 class WCSite_MTC3 extends WC_Site
 {
-	public function parseStats($result)
+	public function parseStats($json)
 	{
-		$stats = explode(':', $result);
-		if (count($stats) != 7)
+		$data = json_decode($json, true, 4);
+		if ($data === null || !isset($data['users']))
 		{
-			return htmlDisplayError(WC_HTML::lang('err_response', array(GWF_HTML::display($result), $this->displayName())));
+			return htmlDisplayError(WC_HTML::lang('err_response', array(GWF_HTML::display($json), $this->displayName())));
 		}
-		
-		# username:rank:score:maxscore:challssolved:challcount:usercount
-		$i = 0;
-		$username = $stats[$i++];
-		$onsitesrank = (int)$stats[$i++];
-		$onsitescore = (int)$stats[$i++];
-		$maxscore = (int)$stats[$i++];
-		$challssolved = (int)$stats[$i++];
-		$challcount = (int)$stats[$i++];
-		$usercount = (int)$stats[$i++];
-		
-		if ($maxscore === 0 || $challcount === 0 || $usercount === 0)
+
+		if (count($data['users']) !== 1)
 		{
-			return htmlDisplayError(WC_HTML::lang('err_response', array(GWF_HTML::display($result), $this->displayName())));
+			return htmlDisplayError(WC_HTML::lang('err_response', array(WC_HTML::lang('err_username_displayname'), $this->displayName())));
 		}
-		
-		return array($onsitescore, $onsitesrank, $challssolved, $maxscore, $usercount, $challcount);
+
+		$stats = $data['users'][0];
+		if (
+			   !isset($stats['score'])
+			|| !isset($stats['rank'])
+			|| !isset($stats['challenges_solved'])
+			|| !isset($stats['maxscore'])
+			|| !isset($stats['user_count'])
+			|| !isset($stats['challenge_count'])
+		)
+		{
+			return htmlDisplayError(WC_HTML::lang('err_response', array(GWF_HTML::display($json), $this->displayName())));
+		}
+
+		return array(
+			$stats['score'],
+			$stats['rank'],
+			$stats['challenges_solved'],
+			$stats['maxscore'],
+			$stats['user_count'],
+			$stats['challenge_count']
+		);
+	}
+
+	public function parseAccount($json)
+	{
+		$data = json_decode($json, true, 2);
+		if ($data === null || !isset($data['exists']))
+		{
+			return htmlDisplayError(WC_HTML::lang('err_response', array(GWF_HTML::display($json), $this->displayName())));
+		}
+
+		return $data['exists'] === true;
 	}
 }
