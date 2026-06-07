@@ -861,7 +861,11 @@ class WC_Site extends WC_SiteBase
 		$url = $this->replaceURL($account_url, $username, $email, $auth_key);
 		if (!Common::startsWith($url, 'http'))
 		{
-			$url = $base_url . '/' . $url;
+			if (Common::endsWith($base_url, '/')) {
+				$url = $base_url . $url;
+			} else {
+				$url = $base_url . '/' . $url;
+			}
 		}
 
 		return array(
@@ -880,7 +884,11 @@ class WC_Site extends WC_SiteBase
 		$url = $this->replaceURL($score_url, $username, '', $auth_key);
 		if (!Common::startsWith($url, 'http'))
 		{
-			$url = $base_url . '/' . $url;
+			if (Common::endsWith($base_url, '/')) {
+				$url = $base_url . $url;
+			} else {
+				$url = $base_url . '/' . $url;
+			}
 		}
 
 		return array(
@@ -924,7 +932,13 @@ class WC_Site extends WC_SiteBase
 		{
 			return $profile_part;
 		}
-		return $this->getVar('site_url').'/'.$profile_part;
+
+		$base_url = $this->getVar('site_url');
+		if (Common::endsWith($base_url, '/'))
+		{
+			return $base_url . $profile_part;
+		}
+		return $base_url . '/' . $profile_part;
 	}
 	
 	/**
