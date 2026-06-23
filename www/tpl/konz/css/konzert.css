@@ -136,12 +136,12 @@ h1, h2, h3, h4, h5, h6, th, .mugshot_text, .inline_head, h2 a, h3 a {
 span.inline_head {
 }
 b.inline_head, h2 a {
-	font-size: 24px!important;
+	font-size: 1.5rem!important;
 	font-weight: bolder!important;
 }
 
 h1 {
-	font-size: 40px;
+	font-size: 2.5rem;
 	margin-bottom: 30px;
 }
 
@@ -150,7 +150,7 @@ h2 {
 }
 
 h3 a {
-	font-size: 18px!important;
+	font-size: 1.125rem!important;
 	font-weight: bold!important;
 }
 
@@ -162,7 +162,7 @@ p {
 p, #content li, td, .gwf_date, p > span, #content a {
 /* 	font-family: 'Reenie Beanie', times; */
 	font-family: 'Merienda One', times;
-	font-size: 15px;
+	font-size: 0.9375rem;
 	font-weight: 400;
 	text-shadow: 0px 1px 1px #121212;
 	filter: dropshadow(color=#121212, offx=0, offy=1);
@@ -228,7 +228,7 @@ textarea {
 
 div.gwf_pagemenu > span > a {
 	text-decoration: none!important;
-	font-size: 20px;
+	font-size: 1.25rem;
 }
 
 
@@ -290,7 +290,7 @@ a.mugshot, img.mugshot_img {
 }
 
 .mugshot_text {
-	font-size: 20px;
+	font-size: 1.25rem;
 	margin-top: 6px;
 	text-align: center;
 }
@@ -358,7 +358,7 @@ table {
 }
 
 .gwf_pagemenu_sel {
-	font-size: 24px!important;
+	font-size: 1.5rem!important;
 }
 
 
@@ -377,7 +377,7 @@ table {
 }
 
 .ghost_intro {
-	font-size: 32px;
+	font-size: 2rem;
 }
 
 #next_page {
