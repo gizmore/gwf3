@@ -6,5 +6,4 @@ Here i am showing off some awesome hacker skills and tricks.
 
  - Der Pfandcoup
  - Learn a new language with youtube
- - OpenSourceIntelligence
-
+ - Deep knowledge 

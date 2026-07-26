@@ -10,7 +10,7 @@ if (!GWF_User::isAdminS())
 {
 	return htmlSendToLogin('Better be admin!');
 }
-$score = 2;
+$score = 3;
 $url = 'challenge/gizmore/unwritten/index.php';
 $creators = 'gizmore';
 $tags = 'Crypto,Stegano';

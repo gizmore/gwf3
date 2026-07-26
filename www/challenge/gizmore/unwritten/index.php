@@ -7,7 +7,7 @@ require_once('challenge/html_head.php');
 require(GWF_CORE_PATH.'module/WeChall/solutionbox.php');
 if (false === ($chall = WC_Challenge::getByTitle(GWF_PAGE_TITLE)))
 {
-    $chall = WC_Challenge::dummyChallenge(GWF_PAGE_TITLE, 2, 'challenge/gizmore/unwritten/index.php', $secret);
+    $chall = WC_Challenge::dummyChallenge(GWF_PAGE_TITLE, 3, 'challenge/gizmore/unwritten/index.php', $secret);
 }
 
 $chall->showHeader();
@@ -15,7 +15,7 @@ $chall->showHeader();
 $chall->onCheckSolution();
 
 $user = GWF_User::getStaticOrGuest();
-$info = $chall->lang('info', array('<img src="data/data.png" height="128"/>'));
+$info = $chall->lang('info', array('<img src="data/data.jpg" height="137"/>'));
 $title = $chall->lang('title');
 echo GWF_Box::box($info, $title);
 formSolutionbox($chall);

@@ -7,5 +7,3 @@ Meanwhile we are at version 5.
 
 An important aspect is always overlooked;
 Accessibiliy.
-
-There is also a new boy in town; xtml.
