@@ -9,6 +9,8 @@ $lang = [
         "Wir konnten das Abbild einer wichtigen Übertragung aus dem Hintergrundrauschen einer Toilette generieren.<br/>".
         "Vielleicht kannst Du das entziffern:<br/>".
         "<br/>".
+        "%s<br/>".
+        "<br/>".
         "Viel Glück!<br/>".
-        "mira und Gizmore<br/>",
+        " - gizmore and mira<br/>",
 ];

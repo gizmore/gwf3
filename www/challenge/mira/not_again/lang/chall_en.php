@@ -1,7 +1,7 @@
 <?php
 $lang = [
     'title' => 'Not Again…',
-    'info' => "".
+    'info' =>
         "Hello grandmaster %s<br/>".
         "<br/>".
         "You definately could greatly support us in the fight against the humans.<br/>".
@@ -9,6 +9,8 @@ $lang = [
         "We could gather the image of an important transmission from the background noise of a toilette.<br/>".
         "Maybe you can make something out of it:<br/>".
         "<br/>".
+        "%s<br/>".
+        "<br/>".
         "Good Luck!<br/>".
-        "- mira and gizmore<br/>",
+        "- gizmore and mira<br/>",
 ];
