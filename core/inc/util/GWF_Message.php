@@ -216,8 +216,6 @@ class GWF_Message {
 	 */
 	public static function display($message, $allowBB=true, $allowSmiley=true, $allowIMG=false, array $highlight=array())
 	{
-//		$message = self::wordwrap($message);
-
 		if (!$allowBB) {
 			$message = sprintf('[noparse]%s[/noparse]', $message);
 		}
@@ -239,11 +237,6 @@ class GWF_Message {
 		GWF_BBCode::initHighlighter($highlight);
 //		GWF_BB3::initSmileys(self::$bbSmileys, self::bbSmileyPath(), $allowSmiley);
 //		GWF_BB3::initHighlighter($highlight);
-	}
-
-	private static function wordwrap($string, $maxlen=72, $break="\n")
-	{
-		return preg_replace('#(\S{'.$maxlen.',})#e', "chunk_split('$1', ".$maxlen.", '".$break."')", $string); 
 	}
 
 	/**
