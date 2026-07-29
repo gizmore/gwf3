@@ -4,8 +4,8 @@
  * Can send EMail on error.
  * A working Database Object has to implement all abstract methods.
  * A good implementation of the Database object adds timing information.
- * @see GDO_DB_mysql as an example
- * @see GDO_DB_mysql_STRUCT as an example
+ * @see GDO_DB_mysqli as an example
+ * @see GDO_DB_mysqli_STRUCT as an example
  * @author gizmore
  * @version 3.0
  */

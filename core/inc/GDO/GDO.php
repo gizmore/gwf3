@@ -211,7 +211,7 @@ abstract class GDO
 	### Multi DB connections ###
 	############################
 	/**
-	 * @var GDO_DB_mysql
+	 * @var GDO_Database
 	 */
 	private static $CURRENT_DB = NULL;
 	public static function setCurrentDB(GDO_Database $db)
