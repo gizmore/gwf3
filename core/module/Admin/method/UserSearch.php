@@ -93,7 +93,7 @@ final class Admin_UserSearch extends GWF_Method
 			'hits' => $hits,
 			'users' => $users->selectObjects('*', $conditions, $orderby, $ipp, $from),
 			'term' => $term,
-			'pagemenu' => GWF_PageMenu::display($page, $nPages, GWF_WEB_ROOT.'index.php?mo=Admin&me=UserSearch&term='.urlencode($term).'&by='.urlencode($by).'&dir='.urlencode($dir).'&page=1'),
+			'pagemenu' => GWF_PageMenu::display($page, $nPages, GWF_WEB_ROOT.'index.php?mo=Admin&me=UserSearch&term='.urlencode($term).'&by='.urlencode($by).'&dir='.urlencode($dir).'&page=%PAGE%'),
 			'sort_url' => GWF_WEB_ROOT.'index.php?mo=Admin&me=UserSearch&term='.urlencode($term).'&by=%BY%&dir=%DIR%&page=1',
 		);
 		return $this->module->templatePHP('user_search.php', $tVars);
