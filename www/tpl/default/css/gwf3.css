@@ -455,3 +455,11 @@ del {
 .markdown a {
 	text-decoration: none;
 }
+
+span.gfw_vote_dot {
+	height: 16px;
+	width: 16px;
+	background-color: #fff;
+	border-radius: 50%;
+	display: inline-block;
+}
