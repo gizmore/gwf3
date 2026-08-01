@@ -13,6 +13,7 @@ $chall->showHeader();
 echo GWF_Box::box($chall->lang('info', array('addslashes.include', 'index.php?highlight=christmas')));
 
 
+define('ADDSLASH_DBHOST', 'challdb');
 define('ADDSLASH_USERNAME', 'gizmore_addslash');
 define('ADDSLASH_DATABASE', 'gizmore_addslash');
 define('ADDSLASH_PASSWORD', 'addslash');

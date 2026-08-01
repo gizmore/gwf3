@@ -20,7 +20,7 @@ $solution = require('solution1.php');
 if (isset($_POST['mask1']))
 {
 	$c = require 'config.php';
-	$link = mysqli_connect('localhost', $c['username'], $c['password'], $c['database']);
+	$link = mysqli_connect($c['dbhost'], $c['username'], $c['password'], $c['database']);
 	$user = $_POST['username'];
 	$pass = md5($_POST['password']);
 	$query = "SELECT * FROM users WHERE username = '$user' AND password = '$pass'";

@@ -14,7 +14,7 @@ function noesc_db()
 	static $noescdb = true;
 	if ($noescdb === true)
 	{
-		$noescdb = gdo_db_instance('localhost', NO_ESCAPE_USER, NO_ESCAPE_PW, NO_ESCAPE_DB);
+		$noescdb = gdo_db_instance(NO_ESCAPE_DBHOST, NO_ESCAPE_USER, NO_ESCAPE_PW, NO_ESCAPE_DB);
 		$noescdb->setLogging(false);
 		$noescdb->setEMailOnError(false);
 	}

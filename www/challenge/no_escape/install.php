@@ -12,6 +12,7 @@ CREATE DATABASE gizmore_noesc;
 GRANT ALL ON gizmore_noesc.* TO 'gizmore_noesc'@'localhost' IDENTIFIED BY 'gizmore_noesc';
 # Now execute install.php
 */
+define('NO_ESCAPE_DBHOST', 'challdb');
 define('NO_ESCAPE_USER', 'gizmore_noesc');
 define('NO_ESCAPE_DB', 'gizmore_noesc');
 define('NO_ESCAPE_PW', 'gizmore_noesc');

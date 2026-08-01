@@ -4,7 +4,7 @@ function asvsmysql_login($username, $password)
 	$username = addslashes($username);
 	$password = md5($password);
 	
-	if (false === ($db = gdo_db_instance('localhost', ADDSLASH_USERNAME, ADDSLASH_PASSWORD, ADDSLASH_DATABASE, GWF_DB_TYPE, 'GBK'))) {
+	if (false === ($db = gdo_db_instance(ADDSLASH_DBHOST, ADDSLASH_USERNAME, ADDSLASH_PASSWORD, ADDSLASH_DATABASE, GWF_DB_TYPE, 'GBK'))) {
 		return htmlDisplayError('Can`t connect to database.');
 	}
 

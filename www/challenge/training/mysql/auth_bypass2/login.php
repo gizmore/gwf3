@@ -18,7 +18,7 @@ if ( ('' !== ($username = Common::getPostString('username'))) && (false !== ($pa
  */
 function auth2_db()
 {
-	if (false === ($db = gdo_db_instance('localhost', WCC_AUTH_BYPASS2_USER, WCC_AUTH_BYPASS2_PASS, WCC_AUTH_BYPASS2_DB))) {
+	if (false === ($db = gdo_db_instance(WCC_AUTH_BYPASS2_DBHOST, WCC_AUTH_BYPASS2_USER, WCC_AUTH_BYPASS2_PASS, WCC_AUTH_BYPASS2_DB))) {
 		die('Database error 0815_2!');
 	}
 	$db->setLogging(false);

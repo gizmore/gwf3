@@ -12,7 +12,7 @@ function blightDB()
 	static $db;
 	if (!isset($db))
 	{
-		if (false === ($db = gdo_db_instance('localhost', BLIGHT_USER, BLIGHT_PASS, BLIGHT_DB)))
+		if (false === ($db = gdo_db_instance(BLIGHT_DBHOST, BLIGHT_USER, BLIGHT_PASS, BLIGHT_DB)))
 		{
 			die('Cannot connect to db!');
 		}

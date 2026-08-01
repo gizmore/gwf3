@@ -1,4 +1,5 @@
 <?php
+define('NO_ESCAPE_DBHOST', 'challdb');
 define('NO_ESCAPE_USER', 'gizmore_noesc');
 define('NO_ESCAPE_DB', 'gizmore_noesc');
 define('NO_ESCAPE_PW', 'gizmore_noesc');

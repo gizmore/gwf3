@@ -21,6 +21,7 @@ elseif (Common::getGetString('highlight') === 'christmas') {
 }
 
 
+define('WCC_AUTH_BYPASS2_DBHOST', 'challdb');
 define('WCC_AUTH_BYPASS2_DB', 'gizmore_auth2');
 define('WCC_AUTH_BYPASS2_USER', 'gizmore_auth2');
 define('WCC_AUTH_BYPASS2_PASS', 'AuthIsBypassTwo');

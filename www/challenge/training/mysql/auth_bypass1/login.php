@@ -18,7 +18,7 @@ if ( ('' !== ($username = Common::getPostString('username'))) && (false !== ($pa
  */
 function auth1_db()
 {
-	if (false === ($db = gdo_db_instance('localhost', WCC_AUTH_BYPASS1_USER, WCC_AUTH_BYPASS1_PASS, WCC_AUTH_BYPASS1_DB))) {
+	if (false === ($db = gdo_db_instance(WCC_AUTH_BYPASS1_DBHOST, WCC_AUTH_BYPASS1_USER, WCC_AUTH_BYPASS1_PASS, WCC_AUTH_BYPASS1_DB))) {
 		die('Database error 0815_1!');
 	}
 	$db->setLogging(false);
