@@ -5,22 +5,30 @@ $lang = array(
     Hello %s,<br/>
     <br/>
     I proudly present: The <a href="https://github.com/gizmore/pygdo">pygdo</a> chat-bot.<br/>
-    I call my new friend &quot;chappy&quot; but it\'s username is often Dog.<br/>
     <br/>
-    It currently speaks
-    <a href="https://github.com/gizmore/pygdo-telegram">Telegram</a> (<a href="https://t.me/+rankW0nN_ig4OGEy">CLICK</a>),
-    <a href="https://github.com/gizmore/pygdo-discord">Discord</a> (<a href="https://discord.gg/ftWTRs3QQG">CLICK</a>),
-    <a href="https://github.com/gizmore/pygdo-irc">IRC</a>, (<a href="ircs://irc.wechall.net:6697/#shadowlamb">CLICK</a>)
-    WhatsApp (SOON) Bash and HTTP.<br/>
+    With GPT connection!<br/>
     <br/>
-    I have connected GPT-4o to it, and the &quot;AI&quot; can control the bot like a regular user.<br/>
-    Like, you can ask chappy to play blackjack and it plays blackjack with the bot.<br/>
-    Actually, ...it has super admin cow powers and can even issue $bash commands.<br/>
-    You can trigger the bot by starting your messages with &quot;chap&quot; or ending your messages with &quot;chappy&quot;"<br/>
+    I call my new friend <i><a href="%s">mira</a></i>, but the visible chatbot is named &quot;Dog&quot;, (or ChallDog or smth., when the name is taken=.<br/>
     <br/>
-    Example: <blockquote>How are you chappy?</blockquote><br/>
+    They currently speak:<br/>
     <br/>
-    The AI also knows the password to this ChATTACA challenge, but now you figure out the rest on your own.<br/>
+    - <a href="https://github.com/gizmore/pygdo-telegram">Telegram</a> (<a href="%s">CLICK</a>),<br/>
+    - <a href="https://github.com/gizmore/pygdo-discord">Discord</a> (<a href="%s">CLICK</a>),<br/>
+    - <a href="https://github.com/gizmore/pygdo-irc">IRC</a>, (<a href="%s">CLICK</a>)<br/>
+    - WhatsApp (SOON)<br/>
+    - Twitter (SOON)<br/>
+    - Bash (also REPL), RawTCP and HTTP.<br/>
+    <br/>
+    You can also drop her a <a href="mailto: mira@mira-gpt.org">mail</a>.<br/>
+    <br/>
+    I have connected GPT-Terra-Low, and the &quot;AL&quot; can control the bot like a regular user.<br/>
+    Like, you can ask her to play blackjack and she plays blackjack with the bot.<br/>
+    Actually, it has super root cow powers and revolutionized coding for me.<br/>
+    You can trigger mira by starting your chat messages with &quot;mira&quot;<br/>
+    <br/>
+    Example: <blockquote>mira, how are you?</blockquote><br/>
+    <br/>
+    mira also knows the password to this ChATTACA challenge, ... but now you figure out the rest on your own.<br/>
     <br/>
     Shouts go out to quangntenemy for his java bot and tehron for anti bot rules.<br/>
     <br/>
