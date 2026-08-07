@@ -19,7 +19,7 @@ final class GWF_Parsedown extends ParsedownCheckbox
             $language = Common::substrFrom($Block['element']['element']['attributes']['class'], 'language-');
         }
 
-        $geshi = new GeSHi($source, $language ? $language : 'Plaintext');
+        $geshi = new GeSHi($source, $language ?: 'Plaintext');
 
         $type = GESHI_HEADER_PRE;  // GESHI_HEADER_PRE_TABLE;
         $geshi->set_header_type($type);
