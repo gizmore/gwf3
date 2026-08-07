@@ -178,8 +178,8 @@ final class Shadowcmd_compare extends Shadowcmd
 				}
 			}
 
-			$keys = array_unique(array_merge(array_keys($item1ModA?$item1ModA:array()), 
-			                                 array_keys($item2ModA?$item2ModA:array())));
+			$keys = array_unique(array_merge(array_keys($item1ModA ?: array()), 
+			                                 array_keys($item2ModA ?: array())));
 			foreach($keys as $k => $v)
 			{
 // 				$titles[] = Shadowfunc::longModifierToShort($v);
@@ -242,8 +242,8 @@ final class Shadowcmd_compare extends Shadowcmd
 		{
 // 			$titles[] = 'Reqs';
 			$titles[] = Shadowfunc::shortcutVariable($player, 'Requirements');
-			$keys = array_unique(array_merge(array_keys($item1Reqs?$item1Reqs:array()), array_keys($item2Reqs?$item2Reqs:array())));
-			$samekeys = array_intersect(array_keys($item1Reqs?$item1Reqs:array()), array_keys($item2Reqs?$item2Reqs:array()));
+			$keys = array_unique(array_merge(array_keys($item1Reqs ?: array()), array_keys($item2Reqs ?: array())));
+			$samekeys = array_intersect(array_keys($item1Reqs ?: array()), array_keys($item2Reqs ?: array()));
 			$item1V = array();
 			$item2V = array();
 			

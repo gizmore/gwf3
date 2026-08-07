@@ -6,10 +6,10 @@ class WCSite_PR extends WC_Site
         $stats = json_decode($result, JSON_OBJECT_AS_ARRAY);
         
         $username = null;
-        $onsitesrank = $stats['userRank'] ? $stats['userRank'] : -1;;
+        $onsitesrank = $stats['userRank'] ?: -1;;
         $onsitescore = $stats['score'];
         $maxscore = $stats['maxScore'];
-        $usercount = $stats['userCount'] ? $stats['userCount'] : -1;
+        $usercount = $stats['userCount'] ?: -1;
         $challssolved = $onsitescore;
         $challcount = $maxscore;
         

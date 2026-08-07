@@ -71,7 +71,7 @@ final class Paypal_Util
 			//position of Key
 			$keypos= strpos($nvpstr,'=');
 			//position of value
-			$valuepos = strpos($nvpstr,'&') ? strpos($nvpstr,'&'): strlen($nvpstr);
+			$valuepos = strpos($nvpstr,'&') ?: strlen($nvpstr);
 	
 			/*getting the Key and Value values and storing in a Associative Array*/
 			$keyval = substr($nvpstr,$initial,$keypos);
