@@ -188,7 +188,7 @@ class SR_Rune extends SR_Item
 		
 		foreach ($mods as $k => $v)
 		{
-			if ($this->isMountModifier($k))
+			if (static::isMountModifier($k))
 			{
 				$have_mount = true;
 			}
@@ -204,7 +204,7 @@ class SR_Rune extends SR_Item
 	{
 		foreach ($this->getItemModifiersB() as $k => $v)
 		{
-			if ($this->isMountModifier($k))
+			if (static::isMountModifier($k))
 			{
 				return true;
 			}

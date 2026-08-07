@@ -36,12 +36,12 @@ final class Module_GWF extends GWF_Module
 	private function filterCodeVar($var, $default) { return str_replace(' ', '', $this->getModuleVar($var, $default)); }
 	
 	# Captcha Config
-	public function cfgCaptchaBG() { $bgcolor = $this->getModuleVar('CaptchaBGColor', 'FFFFFF'); return false === $this->validate_CaptchaColor($bgcolor) ? 'FFFFFF' : $bgcolor;; }
+	public function cfgCaptchaBG() { $bgcolor = $this->getModuleVar('CaptchaBGColor', 'FFFFFF'); return false === self::validate_CaptchaColor($bgcolor) ? 'FFFFFF' : $bgcolor;; }
 	public function cfgCaptchaFont()
 	{
 		$default = GWF_PATH.'extra/font/teen.ttf';
 		$paths = explode(',', $this->getModuleVar('CaptchaFont', $default));
-		return false === $this->validate_CaptchaFont($paths) ? (array)$default : $paths;
+		return false === self::validate_CaptchaFont($paths) ? (array)$default : $paths;
 	}
 	public function cfgCaptchaWidth() { return (int)$this->getModuleVar('CaptchaWidth', '210'); }
 	public function cfgCaptchaHeight() { return (int)$this->getModuleVar('CaptchaHeight', '42'); }

@@ -63,7 +63,7 @@ final class Module_Admin extends GWF_Module
 			{
 				if (!$this->isMethodSelected('Superuser'))
 				{
-					GWF_Website::redirect($this->getSuperuserBlockURL());
+					GWF_Website::redirect(self::getSuperuserBlockURL());
 					return false;
 				}
 			}

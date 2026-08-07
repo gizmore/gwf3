@@ -159,7 +159,7 @@ abstract class GDO
 	public function setVar($var, $val) { $this->gdo_data[$var] = $val; }
 	public function unsetVar($var) { unset($this->gdo_data[$var]); }
 	public function setVars(array $data) { $this->gdo_data = array_merge($this->gdo_data, $data); }
-	public function getEscaped($var) { return $this->escape($this->gdo_data[$var]); }
+	public function getEscaped($var) { return static::escape($this->gdo_data[$var]); }
 	public function display($var) { return htmlspecialchars($this->gdo_data[$var]); }
 	public function urlencode($s) { return urlencode($this->getVar($s)); }
 	public function urlencode2($s) { return urlencode(urlencode($this->getVar($s))); }
@@ -887,7 +887,7 @@ abstract class GDO
 			if ($this->gdo_data[$k] !== $v)
 			{
 				$this->gdo_data[$k] = $v;
-				$v = $v === NULL ? 'NULL' : '\''.$this->escape($v).'\'';
+				$v = $v === NULL ? 'NULL' : '\''.static::escape($v).'\'';
 				$set .= sprintf(",`%s`=%s", $k, $v);
 			}
 		}
@@ -913,7 +913,7 @@ abstract class GDO
 		{
 			$tablename = $this->getTableName();
 			$joins = $this->getJoins($joins);
-			$limit = $this->getLimit($limit, $from);
+			$limit = static::getLimit($limit, $from);
 			$where = $this->getWhere($where);
 			$groupby = $this->getGroupBy($groupby);
 			$query = "UPDATE `{$tablename}`{$joins} SET ".$set.$where.$groupby.$limit;
@@ -977,7 +977,7 @@ abstract class GDO
 		$where = '';
 		foreach ($keys as $i => $key)
 		{
-			$where .= sprintf(' AND `%s`=\'%s\'', $key, $this->escape($values[$i]));
+			$where .= sprintf(' AND `%s`=\'%s\'', $key, static::escape($values[$i]));
 		}
 		$where = substr($where, 5);
 		

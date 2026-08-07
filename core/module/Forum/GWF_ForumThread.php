@@ -880,7 +880,7 @@ final class GWF_ForumThread extends GDO
 	{
 		$tid = $this->getVar('thread_tid');
 		$bid = $this->getBoardID();
-		$permissions = $this->getPermQuery();
+		$permissions = self::getPermQuery();
 		$date = $this->getVar('thread_lastdate');
 		$orderby = 'thread_lastdate DESC';
 		$order = "thread_lastdate<'$date' OR (thread_lastdate='$date' AND thread_tid<$tid)";
@@ -895,7 +895,7 @@ final class GWF_ForumThread extends GDO
 	{
 		$bid = $this->getBoardID();
 		$tid = $this->getVar('thread_tid');
-		$permissions = $this->getPermQuery();
+		$permissions = self::getPermQuery();
 		$date = $this->getVar('thread_lastdate');
 		$orderby = 'thread_lastdate ASC';
 		$order = "thread_lastdate>'$date' OR (thread_lastdate='$date' AND thread_tid>$tid)";
