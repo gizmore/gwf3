@@ -26,7 +26,7 @@ class GWF3
 	
 	public static function init($basepath=NULL)
 	{
-		define('GWF_PATH', dirname(__FILE__).'/');
+		define('GWF_PATH', __DIR__.'/');
 		$basepath = $basepath === NULL ? GWF_PATH.'www' : $basepath;
 		define('GWF_WWW_PATH', $basepath.'/');
 		define('GWF_CORE_PATH', GWF_PATH.'core/');
