@@ -1,7 +1,7 @@
 <?php
 final class GWF_YouTube
 {
-	static function youtubeID($string) {
+	public static function youtubeID($string) {
 		if(
 				preg_match('#youtube\.com/.*?(?:(?:(?:\?|&)v=)|(?:\#(?:./){4}))([a-zA-Z0-9_-]{11})#', $string, $arr) ||
 				preg_match('#youtu\.be/([a-zA-Z0-9_-]{11})#', $string, $arr)
@@ -12,7 +12,7 @@ final class GWF_YouTube
 		}
 	}
 
-	static function getYoutubeData($youtube_id) {
+	public static function getYoutubeData($youtube_id) {
 		if(empty($youtube_id)) return false;
 		if(!defined('GWF_GOOGLE_API_KEY')) return false;
 
