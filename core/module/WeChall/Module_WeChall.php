@@ -193,7 +193,7 @@ final class Module_WeChall extends GWF_Module
 		$vsid = (int)$args[0];
 		if (false !== ($site = WC_Site::getByVSID($vsid)))
 		{
-			$this->includeVotes();
+			self::includeVotes();
 			return $site->onRecalcVotes();
 		}
 		elseif (false !== ($chall = WC_Challenge::getByVSID($vsid)))

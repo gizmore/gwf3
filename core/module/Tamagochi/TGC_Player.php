@@ -291,7 +291,7 @@ final class TGC_Player extends GDO
 	private function rehashJSONUser()
 	{
 		if ($this->jsonUser === null) {
-			$this->jsonUser = $this->getJSONUser();
+			$this->jsonUser = self::getJSONUser();
 		}
 	}
 	
