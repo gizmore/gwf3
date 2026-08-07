@@ -65,7 +65,7 @@ class GWF_SvnInfo {
 	 * @param string $username User to authenticate to the Repository (optional)
 	 * @param string $password Password to authenticate to the Repository (optional)
 	 */
-	function setRepository($url, $username="", $password="") {
+	public function setRepository($url, $username="", $password="") {
 		$this->_reposURL 		= $url;
 		$this->_reposUsername 	= $username;
 		$this->_reposPassword 	= $password;
@@ -75,7 +75,7 @@ class GWF_SvnInfo {
 	 * Set everything needed and send the Request to the SVN Server
 	 * @return string Source-Code of the Result
 	 */
-	function _startRequest() {
+	public function _startRequest() {
 		// Init connection
 		$urlinfo = parse_url($this->_reposURL);
 		$host = $urlinfo['host'];
@@ -137,7 +137,7 @@ Repository
 	 * @param integer $endRevision Last Log-Entry
 	 * @return array Array of Log-Arrays (Revision, Creator, Date, Comment)
 	 */
-	function getLog($startRevision, $endRevision) {
+	public function getLog($startRevision, $endRevision) {
 		// some sanity checks
 		if ($startRevision > $endRevision) {
 			$startRevision = $endRevision;
@@ -203,7 +203,7 @@ Repository
 	 * Retrieve the Revision-Number of a corresponding Date
 	 * @return integer Revision-Number
 	 */
-	function getDatedRevision($date) {
+	public function getDatedRevision($date) {
 		// Form Request Body
 		// Information from http://svn.collab.net/repos/svn/trunk/notes/webdav-protocol
 		$request =  '';
@@ -237,7 +237,7 @@ Repository
 	 * Retrieve the current Revision-Number of the SVN Url
 	 * @return integer Revision-Number
 	 */
-	function getCurrentRevision() {
+	public function getCurrentRevision() {
 		return $this->getDatedRevision(time());
 	}
 
@@ -250,7 +250,7 @@ Repository
 	 * @param string $element without < and > of course
 	 * @return array like array('1123', '1234', '1235')
 	 */
-	function getElementContents($xml, $element) {
+	public function getElementContents($xml, $element) {
 		$matches = array();
 		preg_match_all('|<(' . preg_quote($element, '|') . ')>(.*)</\1>|Uuis', $xml, $matches);
 		return $matches[2];
