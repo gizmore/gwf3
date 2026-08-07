@@ -506,7 +506,7 @@ abstract class SR_Blacksmith extends SR_Store
 			$bot->reply(Shadowhelp::getHelp($player, 'split'));
 			return false;
 		}
-	
+
 		# Get Item
 		if (false === ($rune = $player->getItem($args[0])))
 		{
@@ -519,7 +519,7 @@ abstract class SR_Blacksmith extends SR_Store
 		$ditemname = $rune->displayFullName($player);
 		$confirmed = ( (isset(self::$SPLIT_CONFIRM[$pid])) && (self::$SPLIT_CONFIRM[$pid]===$rune->getID()) );
 		unset(self::$SPLIT_CONFIRM[$pid]);
-	
+
 		if (!($rune instanceof SR_Rune))
 		{
 			$bot->rply('1166');
@@ -533,7 +533,7 @@ abstract class SR_Blacksmith extends SR_Store
 // 			$bot->reply('This rune has only one modifier.');
 			return false;
 		}
-	
+
 		# Check price
 		$price = $this->calcSplitPrice($player, $rune->getItemPriceStatted());
 		$dp = Shadowfunc::displayNuyen($price);
@@ -543,7 +543,7 @@ abstract class SR_Blacksmith extends SR_Store
 // 			$player->message(sprintf('It would cost %s to split the %s, but you only have %s.', $dp, $itemname, $player->getNuyen()));
 			return false;
 		}
-	
+
 		# Confirm?
 		if (!$confirmed)
 		{
@@ -552,7 +552,7 @@ abstract class SR_Blacksmith extends SR_Store
 // 			$player->message(sprintf('It would cost %s to split the %s. Retype your command to confirm.', $dp, $itemname));
 			return true;
 		}
-	
+
 		$runes = array();
 		$names = array();
 		$mods = array_merge($rune->getItemModifiersA($player), $rune->getItemModifiersB());
@@ -561,7 +561,7 @@ abstract class SR_Blacksmith extends SR_Store
 			$v /= 2;
 			$v += Shadowfunc::diceFloat(0.0, $v/2, 1);
 			$v = round($v, 1);
-				
+
 			if ($v >= 0.1)
 			{
 				$name = "Rune_of_{$k}:{$v}";
@@ -570,32 +570,32 @@ abstract class SR_Blacksmith extends SR_Store
 				$names[] = $rune2->displayFullName($player);
 			}
 		}
-	
+
 		if (false === $rune->deleteItem($player))
 		{
 			$bot->reply(sprintf('Cannot delete rune in %s line %s.', __FILE__, __LINE__));
 			return false;
 		}
-	
+
 		if (count($runes) === 0)
 		{
 			$bot->rply('1168');
 // 			$bot->reply(sprintf('The rune burned into dust while splitting it. You don\'t need to pay.'));
 			return true;
 		}
-	
+
 		if (false === $player->giveItems($runes))
 		{
 			$bot->reply(sprintf('Cannot give items in %s line %s.', __FILE__, __LINE__));
 			return false;
 		}
-	
+
 		if (false === $player->pay($price))
 		{
 			$bot->reply(sprintf('Cannot pay price in %s line %s.', __FILE__, __LINE__));
 			return false;
 		}
-	
+
 		return $bot->rply('5217', array($dp, $ditemname, GWF_Array::implodeHuman($names)));
 // 		return $bot->reply(sprintf('You pay %s and split your %s into %s.', $dp, $itemname, GWF_Array::implodeHuman($names)));
 	}

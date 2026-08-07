@@ -30,7 +30,7 @@ final class Admin_Superuser extends GWF_Method
 // 		if (Common::getGet('setup') !== false) {
 // 			return $nav.$this->templateSetup();
 // 		}
-		
+
 		# Prompt & Login		
 		if (Common::getPost('login') !== false)
 		{
@@ -38,7 +38,7 @@ final class Admin_Superuser extends GWF_Method
 		}
 		return $this->templatePrompt();
 	}
-	
+
 	##############
 	### Prompt ###
 	##############
@@ -46,7 +46,7 @@ final class Admin_Superuser extends GWF_Method
 	{
 		return GWF_Password::checkPasswordS($arg, $this->module->cfgSuperHash()) ? false : $this->module->lang('err_check_pass');
 	}
-	
+
 	public function getFormPrompt()
 	{
 		$data = array(
@@ -55,7 +55,7 @@ final class Admin_Superuser extends GWF_Method
 		);
 		return new GWF_Form($this, $data);
 	}
-	
+
 	public function templatePrompt()
 	{
 		$form = $this->getFormPrompt();
@@ -64,16 +64,16 @@ final class Admin_Superuser extends GWF_Method
 		);
 		return $this->module->template('prompt.tpl', $tVars);
 	}
-	
+
 	public function onLogin()
 	{
 		$form = $this->getFormPrompt();
 		if (false !== ($error = $form->validate($this->module))) {
 			return $error.$this->templatePrompt();
 		}
-		
+
 		$this->module->onEnteredHash();
-		
+
 		return $this->module->requestMethodB('Modules');
 	}
 	# Moved to SetPass
@@ -89,7 +89,7 @@ final class Admin_Superuser extends GWF_Method
 // 		);
 // 		return new GWF_Form($this, $data);
 // 	}
-	
+
 // 	public function templateSetup()
 // 	{
 // 		$form = $this->getFormSetup();
@@ -98,20 +98,20 @@ final class Admin_Superuser extends GWF_Method
 // 		);
 // 		return $this->module->templatePHP('setup.php', $tVars);
 // 	}
-	
+
 // 	public function onSetup()
 // 	{
 // 		$form = $this->getFormSetup();
 // 		if (false !== ($error = $form->validate($this->module))) {
 // 			return $error.$this->templatePrompt();
 // 		}
-		
+
 // 		$plain = $newpass = $form->getVar('new_pass');
 // 		if ($newpass !== '') {
 // 			$newpass = GWF_Password::hashPasswordS($newpass);
 // 		}
 // 		$this->module->cfgSaveSuperhash($newpass);
-		
+
 // 		$key = $newpass === '' ? 'msg_pass_cleared' : 'msg_pass_set';
 // 		return $this->module->message($key, array($plain));
 // 	}

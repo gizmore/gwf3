@@ -6,30 +6,30 @@ final class Shadowcmd_drop extends Shadowcmd
 	public static function execute(SR_Player $player, array $args)
 	{
 		$bot = Shadowrap::instance($player);
-		
+
 		if ( (count($args) < 1) || (count($args) > 2) )
 		{
 			$bot->reply(Shadowhelp::getHelp($player, 'drop'));
 			return false;
 		}
-		
+
 		if (false === ($item = $player->getInvItem($args[0])))
 		{
 			$player->msg('1029');
 // 			$bot->reply('You don`t have that item.');
 			return false;
 		}
-		
-		
+
+
 		$amt = count($args) === 2 ? (int)$args[1] : 1;
-		
+
 		if ($amt < 1)
 		{
 			$player->msg('1038');
 // 			$bot->reply('You can only drop a positive amount of items.');
 			return false;
 		}
-		
+
 		if (!$item->isItemDropable())
 		{
 			$player->msg('1058');
@@ -38,7 +38,7 @@ final class Shadowcmd_drop extends Shadowcmd
 		}
 		$iname = $item->getItemName();
 		$dname = $item->displayFullName($player);
-		
+
 		# Confirm
 		if (is_numeric($args[0]))
 		{
@@ -56,8 +56,8 @@ final class Shadowcmd_drop extends Shadowcmd
 				unset(self::$CONFIRM[$pid]);
 			}
 		}
-		
-		
+
+
 		$dropped = 0;
 		# Drop stackable.
 		if ($item->isItemStackable())
@@ -72,16 +72,16 @@ final class Shadowcmd_drop extends Shadowcmd
 			{
 				$amt = $item->getAmount();
 			}
-			
+
 			if (false === $item->useAmount($player, $amt))
 			{
 				$bot->reply('Database error 9.');
 				return false;
 			}
-		
+
 			$dropped = $amt;
 		}
-		
+
 
 		else
 		{
@@ -102,8 +102,8 @@ final class Shadowcmd_drop extends Shadowcmd
 //				}
 //			}
 		}
-		
-		
+
+
 		$player->modify();
 
 		return $player->msg('5111', array($dropped, $dname));

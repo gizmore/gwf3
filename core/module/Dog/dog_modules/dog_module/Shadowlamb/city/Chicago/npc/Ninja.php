@@ -16,7 +16,7 @@ final class Chicago_Ninja extends SR_NPC
 	}
 
 	public function getNPCInventory() { return array('Stimpatch'); }
-	
+
 	public function getNPCModifiers()
 	{
 		return array(
@@ -32,13 +32,13 @@ final class Chicago_Ninja extends SR_NPC
 			'base_hp' => rand(20, 32),
 		);
 	}
-	
+
 // 	public function getNPCLoot(SR_Player $player)
 // 	{
 // 		SR_Quest::getQuest($player, 'Troll_Forever')->onKillCommando($player);
 // 		return array();
 // 	}
-	
+
 //	
 //	public function getNPCLoot(SR_Player $player)
 //	{

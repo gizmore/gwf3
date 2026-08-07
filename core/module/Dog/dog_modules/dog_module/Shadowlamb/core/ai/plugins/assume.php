@@ -12,7 +12,7 @@ final class ShadowAI_assume extends SR_AICMD
 		{
 			return NULL;
 		}
-		
+
 		$view = $player->getAIView();
 		$key = $args[0];
 //		$view[]

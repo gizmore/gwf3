@@ -5,7 +5,7 @@ final class Vegas_Sniper extends SR_NPC
 	public function getNPCPlayerName() { return 'Sniper'; }
 	public function canNPCMeet(SR_Party $party) { return true; }
 	public function getNPCMeetPercent(SR_Party $party) { return 60.00; }
-	
+
 	public function getNPCModifiers()
 	{
 		return array(
@@ -21,7 +21,7 @@ final class Vegas_Sniper extends SR_NPC
 			'nuyen' => rand(40, 150),
 		);
 	}
-	
+
 	public function getNPCEquipment()
 	{
 		return array(
@@ -32,7 +32,7 @@ final class Vegas_Sniper extends SR_NPC
 			'belt' => array('LeatherBelt'),
 		);
 	}
-	
+
 	public function getNPCInventory()
 	{
 		return array(

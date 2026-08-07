@@ -17,11 +17,11 @@ final class Seattle_DBarkeeper extends SR_TalkingNPC
 				return;
 			}
 		}
-		
+
 		switch ($word)
 		{
 			case 'shadowrun':
-				
+
 				if ($quest->isDone($player))
 				{
 					return $this->rply('thx');
@@ -49,13 +49,13 @@ final class Seattle_DBarkeeper extends SR_TalkingNPC
 // 					$msg = 'What do you say, chummer?';
 				}
 				break;
-				
+
 			case 'blackmarket': #$msg = 'I don\'t talk about illegal stuff. Order a drink and enjoy the evening please.'; break;
 			case 'renraku': #$msg = 'One of our guests keeps telling weird stories about Renraku, but I doubt the facts. Maybe you like to talk to the elve over there.'; break;
 			case 'magic': #$msg = 'My drinks are magic :) You should try the "Disconnector". It is really explosive'; break;
 			case 'malois': #$msg = 'Yeah, i think i have seen that elve lately. Why?'; break; 
 				return $this->rply($word);
-				
+
 			case 'yes': 
 				if ($player->hasTemp(self::TEMP_WORD))
 				{
@@ -71,14 +71,14 @@ final class Seattle_DBarkeeper extends SR_TalkingNPC
 // 					$msg = 'Yeah, totally!';
 				}
 // 				break;
-				
-				
+
+
 			case 'no':
 				$player->unsetTemp(self::TEMP_WORD);
 				return $this->rply('no');
 // 				$msg = 'Oh, ok.';
 // 				break;
-				
+
 			default: 
 				return $this->rply('default');
 				#$msg = 'Good evening. Welcome to the Deckers.'; break;

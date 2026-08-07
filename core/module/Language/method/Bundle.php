@@ -221,14 +221,14 @@ final class Language_Bundle extends GWF_Method
 	{
 		$contents = '';
 		$filename = 'missing_bits_'.$target.'.php';
-		
+
 		foreach ($this->missing_bits as $filename2 => $data)
 		{
 			$contents .= $this->exportMissingBitsB($filename2, $data);
 		}
-		
+
 		$archive->addFromString($filename, $contents);
-		
+
 //		file_put_contents('/tmp/'.$filename, $contents);
 //		$archive->addFile('/tmp/'.$filename, $filename);
 //		unlink('/tmp/'.$filename);

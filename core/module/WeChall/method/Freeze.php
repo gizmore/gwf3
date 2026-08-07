@@ -124,7 +124,7 @@ final class WeChall_Freeze extends GWF_Method
 				return GWF_HTML::err('ERR_DATABASE', array(__FILE__, __LINE__));
 			}
 			$this->site->increase('site_linkcount', -1);
-			
+
 			WC_RegAt::calcTotalscores(); #($this->user);
 		}
 

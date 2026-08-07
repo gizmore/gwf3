@@ -27,7 +27,7 @@ final class DOGMOD_Shadowlamb extends Dog_Module
 		SR_Install::onInstall($flush_tables);
 		Shadowrun4::init();
 		SR_Install::onCreateLangFiles();
-		
+
 // 		self::convert5();
 	}
 	private static function convert5()
@@ -73,7 +73,7 @@ final class DOGMOD_Shadowlamb extends Dog_Module
 // 					die('oops4');
 // 				}
 // 			}
-			
+
 // 			foreach (SR_Player::$EQUIPMENT as $position)
 // 			{
 // 				$itemid = $player->getVar('sr4pl_'.$position);

@@ -220,7 +220,7 @@ final class GWF_InstallFunctions
 // 				$cache[$short] = $langrow['lang_id']; #->getID();
 // 				continue;
 // 			}
-			
+
 			if ($__langs)
 			{
 				if (false === $lang_t->insertAssoc(array(
@@ -236,7 +236,7 @@ final class GWF_InstallFunctions
 					continue;
 				}
 			}
-			
+
 			$cache[$short] = $i; #langrow['lang_id'];
 		}
 		

@@ -154,7 +154,7 @@ abstract class SR_Spell
 			}
 			elseif (count($args) === 0) {
 				$members = $player->getEnemyParty()->getMembers();
-				
+
 				if (count($members) === 0)
 				{
 					$player->msg('1052', array($this->getName()));
@@ -270,7 +270,7 @@ abstract class SR_Spell
 		$dices += round($player->get('spellatk') * 6);
 		$dices += round($player->get('essence') * 18);
 		$dices -= round(Shadowfunc::calcDistance($this->caster, $target)/4); # XXX Cannot apply distance malus because of alchemy.
-		
+
 		$defense = round($target->get('essence') * 0.3);
 		$defense += round($target->get('intelligence') * 0.2);
 		$defense += round($target->get('spelldef') * 0.2);
@@ -288,7 +288,7 @@ abstract class SR_Spell
 		$int += Common::pow($level, 1.25);
 		$dices += round($int * 5);
 		$dices += round($target->get('essence') * 15);
-		
+
 // 		# To have supportive defense is bad.
 		$es = $target->get('essence');
 		echo "Target has $es essence\n";

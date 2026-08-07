@@ -74,15 +74,15 @@ final class SR_Bounty extends GDO
 		$page = Common::clamp(intval($page,10), 1, $numPages);
 		$from = GWF_PageMenu::getFrom($page, $ipp);
 		$bounties = $bounties->selectAll('concat(sr4pl_name, "{", sr4pl_sid, "}") name, SUM(sr4bo_bounty) bounty', '', $orderby, array('victim'), 10, $from, GDO::ARRAY_N, 'sr4bo_victim');
-		
+
 		if (count($bounties) === 0)
 		{
 			return $player->lang('no_bounties');
 // 			return 'There are no bounties at the moment.';
 		}
-		
+
 		$format = $player->lang('fmt_sumlist');
-		
+
 		$out = '';
 		foreach ($bounties as $i => $data)
 		{
@@ -90,7 +90,7 @@ final class SR_Bounty extends GDO
 			$out .= sprintf($format, $i+1, $data[0], $ny);
 // 			$out .= sprintf(", \x02%s\X02-%s(%s)", $i+1, $data[0], $ny);
 		}
-		
+
 		return $player->lang('bounty_page', array($page, $numPages, substr($out, 2)));
 // 		return sprintf('Bounties page %s/%s: %s.', $page, $numPages, substr($out, 2));
 	}
@@ -137,20 +137,20 @@ final class SR_Bounty extends GDO
 		foreach ($bounty as $data)
 		{
 			$b = $data['sr4bo_bounty'];
-			
+
 //			SR_BountyHistory::onKilled($killer, $victim, $data['sr4bo_id']);
 
 			$sum += $b;
 		}
-		
+
 		$victim->updateField('bounty', 0);
-		
+
 		$killer->giveNuyen($sum);
-		
+
 		$killer->increase('sr4pl_bounty_done', $sum);
-		
+
 		self::table(__CLASS__)->deleteWhere($where);
-		
+
 		$killer->msg('5034', array(Shadowfunc::displayNuyen($sum)));
 // 		$killer->message(sprintf("You collected a {$b}bounty{$b}: %s.", Shadowfunc::displayNuyen($sum)));
 	}

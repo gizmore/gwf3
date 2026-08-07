@@ -13,7 +13,7 @@ abstract class SR_Computer
 	{
 		$message = sprintf('Your %s. Hacking attempt against the %s box failed with %s hits.', $n, $this->getName(), $hits);
 		Dog_Log::debug($message);
-		
+
 		$player->msg('5022');
 // 		$player->message('Your hacking attempt failed.');
 	}

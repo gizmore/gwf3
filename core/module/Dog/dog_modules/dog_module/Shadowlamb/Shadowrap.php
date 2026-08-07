@@ -18,7 +18,7 @@ final class Shadowrap
 			Dog::reply($message);
 			return true;
 		}
-		
+
 		return $this->player->message($message);
 // 		if (true === $this->player->isOptionEnabled(SR_Player::WWW_OUT))
 // 		{
@@ -40,7 +40,7 @@ final class Shadowrap
 // 				# BAH
 // 			}
 // 		}
-		
+
 // 		return true;
 	}
 	

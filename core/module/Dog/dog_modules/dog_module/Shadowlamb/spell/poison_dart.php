@@ -2,21 +2,21 @@
 final class Spell_poison_dart extends SR_OffensiveSpell
 {
 	public function getSpellLevel() { return 2; }
-	
+
 	public function isOffensive() { return true; }
 
 	public function getHelp() { return 'Poisons an enemy and does some instant damage.'; }
-	
+
 	public function getRequirements() { return array('magic'=>3); }
-	
+
 	public function getCastTime($level) { return Common::clamp(30-$level, 20, 40); }
-	
+
 	public function getManaCost(SR_Player $player, $level)
 	{
 //		$level = $this->getLevel($player);
 		return $level + 6;
 	}
-	
+
 	public function cast(SR_Player $player, SR_Player $target, $level, $hits, SR_Player $potion_player)
 	{
 		$wisdom = $potion_player->get('wisdom');
@@ -30,7 +30,7 @@ final class Spell_poison_dart extends SR_OffensiveSpell
 		$modifiers = array('hp' => -$per_sec);
 		$target->addEffects(new SR_Effect($seconds, $modifiers, SR_Effect::MODE_REPEAT));
 		$this->announceADV($player, $target, $level);
-		
+
 		return true;
 	}
 	

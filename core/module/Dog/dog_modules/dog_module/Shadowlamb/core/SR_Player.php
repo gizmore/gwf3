@@ -358,7 +358,7 @@ class SR_Player extends GDO
 			return $user;
 		}
 		return Dog_User::getByID($this->getUID());
-		
+
 // 		return $this->getVar('sr4pl_uid');
 		#XXX What the heck?
 // 		$user = $this->getVar('sr4pl_uid');
@@ -888,7 +888,7 @@ class SR_Player extends GDO
 // 		$this->initModifyArray(self::$ATTRIBUTE);
 // 		$this->initModifyArray(self::$KNOWLEDGE);
 // 		$this->initModifyArray(self::$FEELINGS);
-		
+
 		$this->modifyRace();
 		$this->modifyGender();
 		if (!$this->hasWeapon()) { $this->modifyItem(Item_Fists::staticFists()); }
@@ -896,23 +896,23 @@ class SR_Player extends GDO
 		$this->modifyItems($this->sr4_cyberware->getArrayRef());
 		SR_SetItems::applyModifiers($this);
 		$this->modifyInventory();
-		
+
 		$this->modifyFellings();
-		
+
 		$this->modifyQuests();
-		
+
 		$this->modifyEffectsOnce();
-		
+
 		$this->modifyMaxima();
-		
+
 		$this->modifyEffectsRepeat();
-		
+
 		$this->modifyCombat();
-		
+
 		$this->modifyOverload(); # malus
-		
+
 		$this->modifyFinish();
-		
+
 //		$this->modifyParty(); # DEADLOCK!
 //		$this->modifyClamp();
 	}
@@ -2377,7 +2377,7 @@ class SR_Player extends GDO
 		{
 			return false;
 		}
-		
+
 		return $this->msg('5046', array($this->lang('ks_'.$field), $knowledge));
 // 		$this->message(sprintf('You surely forgot about the %s: %s.', $field, $knowledge));
 // 		return true;
@@ -2655,16 +2655,16 @@ class SR_Player extends GDO
 		{
 			return false; # Nothing changed.
 		}
-		
+
 		# Save original party in case of flee.
 		$p = $this->getParty();
-		
+
 		# No command on stack; make one up! -> '',rand()
 		if ($this->combat_stack === '')
 		{
 			$this->combat_stack = $this->cmdAttackRandom();
 		}
-		
+
 		# Clear combat_stack to avoid repeat via onFightDone/ExecAnyway
 		$action = $this->combat_stack;
 		$this->combat_stack = '';
@@ -2682,7 +2682,7 @@ class SR_Player extends GDO
 			$this->combat_stack = $this->old_combat_stack;
 			$this->old_combat_stack = '';
 		}
-		
+
 		return !$p->isFighting(); # Did this player kill the last enemy?
 	}
 	
@@ -2760,7 +2760,7 @@ class SR_Player extends GDO
 	public function gotKilledByNPC(SR_Player $killer)
 	{
 // 		$this->looseItem($killer);
-		
+
 		if ($this->isRunner())
 		{
 			# Forever a dead?
@@ -2803,14 +2803,14 @@ class SR_Player extends GDO
 	public function gotKilledByHuman(SR_Player $killer)
 	{
 		SR_Bounty::onKilledByHuman($killer, $this);
-		
+
 		SR_BadKarma::onKilled($killer, $this);
-		
+
 		if (false === SR_KillProtect::isKillProtected($killer, $this))
 		{
 			SR_KillProtect::onKilled($killer, $this);
 		}
-		
+
 		if (false === SR_KillProtect::isKillProtectedLevel($killer, $this))
 		{
 			$this->looseItem($killer);

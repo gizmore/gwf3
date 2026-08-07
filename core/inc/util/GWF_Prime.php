@@ -22,7 +22,7 @@ final class GWF_Prime
 	# Constrainst!
 	const LO_MAX = "2";
 	const HI_MAX = "18446744073709551616";
-	
+
 	# Woohoooooooooooooooooooooooooooooooooooooooooooooooooooo
 	# Returns a no? :P
 	# Shouts go out to!
@@ -177,7 +177,7 @@ final class GWF_Prime
 			# Your prime is not in range!
 			return self::NO_NO_NOOOO;
 		}
-		
+
 		# Check how cool you are
 		switch (GWF_Random::rand(0, 4))
 		{

@@ -11,13 +11,13 @@ final class Renraku_Employee extends SR_TalkingNPC
 		$hire = __CLASS__.'_HIRE';
 		$help = __CLASS__.'_HELP';
 		$helpyes = __CLASS__.'_HELPYES';
-		
+
 		switch ($word)
 		{
 			case 'magic': #return $this->reply('The magic department is in level 3. Use your IDCard3 at the elevator and simply choose floor 3.');
 			case 'cyberware': #return $this->reply('The cyberware department is in level 2. Use your IDCard2 at the elevator and simply choose floor 2.');
 				return $this->rply($word);
-				
+
 			case 'hire':
 				if ($this->hasTemp($hire))
 				{
@@ -29,10 +29,10 @@ final class Renraku_Employee extends SR_TalkingNPC
 				return $this->rply('plan');
 // 				$this->reply('What do you plan?');
 // 				break;
-			
+
 			case 'renraku':
 				return $this->nervousAlert($player);
-				
+
 			case 'yes':
 				if ($this->hasTemp($help))
 				{
@@ -46,7 +46,7 @@ final class Renraku_Employee extends SR_TalkingNPC
 // 					$this->reply('Yes, what?');
 				}
 // 				break;
-				
+
 			case 'no':
 				if ($this->hasTemp($helpyes))
 				{
@@ -54,7 +54,7 @@ final class Renraku_Employee extends SR_TalkingNPC
 				}
 				return $this->rply('no');
 // 				break;
-				
+
 			default:
 				if ($this->hasTemp($hire))
 				{

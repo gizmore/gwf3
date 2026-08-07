@@ -922,7 +922,7 @@ abstract class SR_ClanHQ extends SR_Location
 			}
 			$switch = 'enabled';
 		}
-		
+
 		$bot = Shadowrap::instance($player);
 		return $bot->rply('5175', array($player->lang('ct_'.$text), $player->lang($switch)));
 // 		return $bot->reply(sprintf('Your clan\'s %s option has been %s.', $text, $switch));
@@ -991,7 +991,7 @@ abstract class SR_ClanHQ extends SR_Location
 // 			$out[] = sprintf('%d-%s%s', $from, $itemname, $amt);
 		}
 		$bot = Shadowrap::instance($player);
-		
+
 		return $bot->rply('5176', array($page, $nPages, substr($out, 2)));
 // 		$text = count($out) === 0 ? 'The bank is empty.' : implode(', ', $out);
 // 		return $bot->reply(sprintf('ClanBank page %d/%d: %s.', $page, $nPages, $text));
@@ -1012,7 +1012,7 @@ abstract class SR_ClanHQ extends SR_Location
 // 			$player->message('No match found.');
 			return true;
 		}
-		
+
 		$nPages = GWF_PageMenu::getPagecount($ipp, $nItems);
 		if ( ($page < 1) || ($page > $nPages) )
 		{
@@ -1020,19 +1020,19 @@ abstract class SR_ClanHQ extends SR_Location
 // 			$player->message('This page is empty.');
 			return false;
 		}
-		
+
 		$from = GWF_PageMenu::getFrom($page, $ipp);
 		if (false === ($result = $table->selectAll('sr4cb_iname, sr4cb_iamt', $where, 'sr4cb_iamt ASC, sr4cb_iname ASC', NULL, $ipp, $from, GDO::ARRAY_N)))
 		{
 			$player->message('DB ERROR 1.');
 			return false;
 		}
-		
+
 		if (count($result) === 1)
 		{
 			return $this->onViewItem($clan, $player, $result[0][0], $result[0][1]);
 		}
-		
+
 		$out = '';
 		$format = $player->lang('fmt_items');
 		foreach ($result as $row)
@@ -1043,7 +1043,7 @@ abstract class SR_ClanHQ extends SR_Location
 			$out .= sprintf($format, $from, $itemname, $damt, $amt);
 // 			$out[] = sprintf('%d-%s%s', $from, $itemname, $amt);
 		}
-		
+
 		$bot = Shadowrap::instance($player);
 		return $bot->rply('5176', array($page, $nPages, substr($out, 2)));
 // 		return $bot->reply(sprintf('ClanBank page %d/%d: %s.', $page, $nPages, implode(', ', $out)));

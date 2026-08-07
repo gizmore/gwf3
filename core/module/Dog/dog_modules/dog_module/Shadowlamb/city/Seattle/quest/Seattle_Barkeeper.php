@@ -50,35 +50,35 @@ final class Quest_Seattle_Barkeeper extends SR_Quest
 // 			$npc->reply('You invite me to a party? Maybe try #join or #say hire.');
 // 			break;
 		}
-		
+
 		$key2 = 'Seattle_Citizen_Invite_'.$player->getID();
-		
+
 		if (!$npc->hasTemp($key2))
 		{
 			$npc->setTemp($key2, rand(1,4));
 		}
-		
+
 		$key = $npc->getTemp($key2);
-		
+
 		$npc->reply($this->lang('i_'.$key));
-		
+
 		if ($key == 4)
 		{
 			$this->onInviteCitizen($npc, $player, $npc->getParty()->getMemberCount());
 			$npc->setTemp($key2, 5);
 		}
-		
+
 		return true;
-		
+
 // 		switch ($key)
 // 		{
 // 			case 1: $npc->reply('Yeah, I am already invited. Thanks.'); break;
 // 			case 2: $npc->reply('No, I am not interested.'); break;
 // 			case 3: $npc->reply('Better get a job, chummer'); break;
-			
+
 // 			case 1: case 2: case 3: case 5:
 // 				return $npc->reply($this->lang('i_'.$key));
-			
+
 // 			case 4:
 // 				$npc->reply('An invitation for a big party? Sure me and my friends are in. Thank you!');
 // 				$this->onInviteCitizen($npc, $player, $npc->getParty()->getMemberCount());

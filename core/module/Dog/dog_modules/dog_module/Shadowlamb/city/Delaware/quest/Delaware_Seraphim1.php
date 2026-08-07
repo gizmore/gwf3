@@ -96,14 +96,14 @@ final class Quest_Delaware_Seraphim1 extends SR_Quest
 	public function onDoctorTalk(Delaware_Doctor $npc, SR_Player $player, $word)
 	{
 		$price = $this->displayRewardNuyen();
-		
+
 		$key = 'DLW_DOC_HAND';
 		if (false === $player->hasTemp($key))
 		{
 			$player->setTemp($key, 1);
 		}
 		$temp = $player->getTemp($key);
-		
+
 		switch ($word)
 		{
 			case 'yes':
@@ -119,7 +119,7 @@ final class Quest_Delaware_Seraphim1 extends SR_Quest
 					case 3:
 						return $this->onConvince($npc, $player);
 				}
-				
+
 			case 'no':
 				switch ($temp)
 				{
@@ -132,9 +132,9 @@ final class Quest_Delaware_Seraphim1 extends SR_Quest
 						$player->setTemp($key, 1);
 						return $npc->reply($this->lang('doc_haha_ok'));
 // 						return $npc->reply("Haha ok :)");
-						
+
 				}
-				
+
 			case 'hand':
 				switch ($temp)
 				{

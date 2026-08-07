@@ -357,7 +357,7 @@ final class GWF_VoteScore extends GDO #implements GDO_Sortable, GDO_Editable
 	{
 		$userid = (int)$userid;
 		$vsid = $this->getID();
-		
+
 		# Revert Guest Vote with same IP
 		$ip = GWF_IP6::getIP(GWF_IP_QUICK);
 //		var_dump($ip);
@@ -385,7 +385,7 @@ final class GWF_VoteScore extends GDO #implements GDO_Sortable, GDO_Editable
 		if (false === $this->onUserVote($score, $userid, 0)) {
 			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
 		}
-		
+
 		return false; # No error
 	}
 	

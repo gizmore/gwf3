@@ -9,13 +9,13 @@ final class Shadowcmd_players extends Shadowcmd
 		{
 			$args[] = '1';
 		}
-		
+
 		if (count($args) !== 1)
 		{
 			$player->message(Shadowhelp::getHelp($player, 'players'));
 			return false;
 		}
-		
+
 		$ppp = self::PPP;
 
 		$page = (int) $args[0];
@@ -23,14 +23,14 @@ final class Shadowcmd_players extends Shadowcmd
 		$nPlayers = count($players);
 		$nPages = GWF_PageMenu::getPagecount($ppp, $nPlayers);
 		$from = GWF_PageMenu::getFrom($page, $ppp);
-		
+
 		if ( ($page < 1) || ($page > $nPages) )
 		{
 			$player->msg('1009');
 // 			$player->message(sprintf('Page %d of %d is empty.', $page, $nPages));
 			return false;
 		}
-		
+
 		$out = '';
 		$format = $player->lang('fmt_sumlist');
 		foreach (array_slice($players, $from, $ppp, false) as $p)
@@ -40,7 +40,7 @@ final class Shadowcmd_players extends Shadowcmd
 			$out .= sprintf($format, $p->getEnum(), $p->getName(), $summand);
 // 			$out .= sprintf(', %s(L%s(%s))', $p->displayName(), $p->getBase('level'), $p->get('level'));
 		}
-		
+
 		if ($out === '')
 		{
 			$player->msg('1009');
@@ -49,9 +49,9 @@ final class Shadowcmd_players extends Shadowcmd
 
 		return $player->msg('5247', array($page, $nPages, ltrim($out, ',; ')));
 // 		$out = $out === '' ? 'This page is empty.' : sprintf('Active players (page %d of %d): %s.', $page, $nPages, substr($out, 2));
-		
+
 // 		self::reply($player, $out);
-		
+
 // 		return true;
 	}
 }

@@ -220,14 +220,14 @@ final class Shadowcmd_quests extends Shadowcmd
 				$b = ($quest->isAccepted($player) && !$quest->isDone($player)) ? chr(2) : '';
 				$message .= sprintf($format, $b, $id, $quest->getQuestName());
 			}
-			
+
 			if ($message === '')
 			{
 				return $player->message(Shadowrun4::lang($errcode)); # There are no quests here.
 			}
-			
+
 			$section = Shadowrun4::lang('qu_'.$section);
-			
+
 			return $player->msg('5069', array($section, $page, $nPages, ltrim($message, ',; ')));
 // 			self::reply($player, Shadowrun4::lang('5009', array($section, $page, $nPages, substr($message, 2))));
 // 			$message = sprintf('%s quests, page %d/%d: %s.', $section, $page, $nPages, substr($message, 2));

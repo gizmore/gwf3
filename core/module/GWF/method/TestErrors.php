@@ -10,7 +10,7 @@ final class GWF_TestErrors extends GWF_Method
 	public function execute()
 	{
 		echo $wurstbude; # Test Notice
-		
+
 		wurstbude_5(); # Test Fatal
 	}
 }

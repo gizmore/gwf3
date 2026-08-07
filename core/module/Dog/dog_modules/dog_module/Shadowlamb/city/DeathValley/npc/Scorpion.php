@@ -5,7 +5,7 @@ final class DeathValley_Scorpion extends SR_NPC
 	public function getNPCPlayerName() { return 'GiantScorpion'; }
 	public function canNPCMeet(SR_Party $party) { return true; }
 	public function getNPCMeetPercent(SR_Party $party) { return 60.00; }
-	
+
 	public function getNPCModifiers()
 	{
 		return array(
@@ -20,7 +20,7 @@ final class DeathValley_Scorpion extends SR_NPC
 			'distance' => rand(4, 12),
 		);
 	}
-	
+
 	public function getNPCEquipment()
 	{
 		return array(
@@ -29,7 +29,7 @@ final class DeathValley_Scorpion extends SR_NPC
 			'legs' => array('ScorpionLegs'),
 		);
 	}
-	
+
 	public function getNPCInventory()
 	{
 		return array(

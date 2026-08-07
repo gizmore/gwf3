@@ -7,7 +7,7 @@ final class Module_VersionServer extends GWF_Module
 	public function getDependencies() { return array('Admin'=>1.00); }
 	public function getClasses() { return array('GWF_Client', 'GWF_ClientOrder', 'GWF_VersionFiles', 'GWF_VersionServerLog'); }
 	public function getAdminSectionURL() { return $this->getMethodURL('PurgeFiles'); }
-	
+
 	public function onInstall($dropTable)
 	{
 		return
@@ -15,7 +15,7 @@ final class Module_VersionServer extends GWF_Module
 			GWF_ModuleLoader::installVars($this, array(
 			));
 	}
-	
+
 //	public function onAddMenu()
 //	{
 //		GWF_TopMenu::addMenu('purchase', $this->getMethodURL('Purchase'), '', $this->isMethodSelected('Purchasee'));

@@ -133,11 +133,11 @@ final class PM_Options extends GWF_Method
 		if (false === ($method = $this->module->getMethod('Ignore'))) {
 			return GWF_HTML::err('ERR_METHOD_MISSING', array( 'Ignore', 'PM'));
 		}
-		
+
 		if (false === ($user = GWF_User::getByName(Common::getPostString('username')))) {
 			return GWF_HTML::err('ERR_UNKNOWN_USER');
 		}
-		
+
 		$method instanceof PM_Ignore;
 		return $method->onIgnore('do', $user->getID(), Common::getPostString('reason')); # gizmore: check parameter !!!
 	}

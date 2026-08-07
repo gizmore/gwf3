@@ -78,7 +78,7 @@ final class WeChall_RankingActive extends GWF_Method
 			return array(1, 1);
 		}
 		return array(1,1); # FIX SLOW
-		
+
 // 		$rank = $this->calcExactRank($user);
 // 		$page = GWF_PageMenu::getPageForPos($rank, $ipp);
 // 		return array($page, $rank);

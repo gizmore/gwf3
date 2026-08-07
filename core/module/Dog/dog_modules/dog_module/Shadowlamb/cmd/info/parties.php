@@ -14,14 +14,14 @@ final class Shadowcmd_parties extends Shadowcmd
 				unset($pp[$i]);
 			}
 		}
-		
+
 		$page = isset($args[0]) ? intval($args[0]) : 1;
 		$nItems = count($pp);
 		$nPages = GWF_PageMenu::getPagecount(self::PPP, $nItems);
 		$page = Common::clamp($page, 1, $nPages);
 		$from = GWF_PageMenu::getFrom($page, self::PPP);
 		$slice = array_slice($pp, $from, self::PPP);
-		
+
 		$out = '';
 		$format = $player->lang('fmt_list');
 		foreach ($slice as $p)

@@ -6,7 +6,7 @@ final class Seattle_DElve extends SR_TalkingNPC
 	{
 // 		$b = chr(2);
 		$key = 'Seattle_DElve_R';
-		
+
 		$quest = SR_Quest::getQuest($player, 'Seattle_IDS');
 		if ($quest->isInQuest($player))
 		{
@@ -18,7 +18,7 @@ final class Seattle_DElve extends SR_TalkingNPC
 // 				return;
 			}
 		}
-		
+
 		switch ($word)
 		{
 			case 'renraku':
@@ -39,7 +39,7 @@ final class Seattle_DElve extends SR_TalkingNPC
 // 					$msg = 'Please hurry and bring me the cards. I really need them quick.';
 				}
 // 				break;
-			
+
 			case 'shadowrun':
 				if (!$quest->isAccepted($player))
 				{
@@ -54,7 +54,7 @@ final class Seattle_DElve extends SR_TalkingNPC
 // 					$msg = 'Hello chummer.';
 				}
 // 				break;
-				
+
 			case 'yes':
 				if ($player->hasTemp($key))
 				{
@@ -69,7 +69,7 @@ final class Seattle_DElve extends SR_TalkingNPC
 // 					$msg = 'What is your name?';
 				}
 // 				break;
-				
+
 			case 'no':
 				if ($player->hasTemp($key))
 				{
@@ -88,12 +88,12 @@ final class Seattle_DElve extends SR_TalkingNPC
 				return $this->rply('magic');
 // 				$msg = 'Magic... I almost lost all my essence due to the Renraku experiments. It was hard to recover from that.';
 // 				break;
-			
+
 			default:
 				return $this->rply('default');
 // 				$msg = 'Hello chummer, my name is Malois. Take a seat and have a drink :(';
 // 				break;
-			
+
 		}
 // 		$this->reply($msg);
 	}

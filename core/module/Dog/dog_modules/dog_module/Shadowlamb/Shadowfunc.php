@@ -389,7 +389,7 @@ final class Shadowfunc
 	public static function getStatus(SR_Player $player, $key='5014')
 	{
 		$args = array();
-		
+
 		# Scanner in Use?
 		if ($key > 5015)
 		{
@@ -421,11 +421,11 @@ final class Shadowfunc
 			round($player->getNuyen(), 2),
 			$player->displayWeight(), $player->displayMaxWeight())
 		);
-		
+
 		return Shadowrun4::lang($key, $args);
-		
-		
-		
+
+
+
 		# Status message
 // 		if ($player->getBase('magic') >= 0)
 // 		{
@@ -894,7 +894,7 @@ final class Shadowfunc
 		{
 			return false;
 		}
-		
+
 		$back = '';
 		foreach ($requirements as $k => $v)
 		{
@@ -914,7 +914,7 @@ final class Shadowfunc
 				}
 			}
 		}
-		
+
 		return $back === '' ? false : Shadowrun4::lang('1006', array(substr($back, 2)));
 // 		return sprintf('You do not meet the requirements: %s.', substr($back, 2));
 	}
@@ -925,7 +925,7 @@ final class Shadowfunc
 		{
 			return '';
 		}
-		
+
 		$back = '';
 		foreach ($requirements as $k => $v)
 		{
@@ -1488,14 +1488,14 @@ final class Shadowfunc
 	private static function getGenericView(SR_Player $player, $items, array $args, $is_store, $text, $ipp=10)
 	{
 		$bot = Shadowrap::instance($player);
-		
+
 		if ( (count($args) > 2) /*|| (count($args) < 1)*/ )
 		{
 			return self::arrayGet($text, 'usage', Shadowhelp::getHelp($player, 'view'));
 // 			$bot->reply(self::arrayGet($text, 'usage', Shadowhelp::getHelp($player, 'viewi')));
 // 			return false;
 		}
-		
+
 		# Setup pattern and page
 		if (count($args) === 2)
 		{
@@ -1528,11 +1528,11 @@ final class Shadowfunc
 		{
 
 			$items = Shadowfunc::getGroupedItems($items, $start_index, $end_index, $pattern, $is_store, $num_items);
-		
+
 		} else {
 
 			$inventory = $items;
-			
+
 			$items = $inventory->getItemsByGroupedIndex($start_index, $end_index, $pattern, $player, $num_items);
 
 			if ($items === false)
@@ -1541,9 +1541,9 @@ final class Shadowfunc
 			}
 
 		}
-		
+
 		$num_pages = (int) (($num_items+$ipp-1)/$ipp);
-		
+
 		# Display page
 		if (count($items) === 0)
 		{
@@ -1564,7 +1564,7 @@ final class Shadowfunc
 		{
 			return self::arrayGet($text, 'no_page', Shadowrun4::lang('1009'));
 		}
-		
+
 		$code = self::arrayGet($text, 'code', '5276');
 		return $player->lang($code, array(sprintf('%s%s', self::arrayGet($text, 'prefix', Shadowrun4::lang('items')), $pageStr)));
 // 		return sprintf('%s, %s', self::arrayGet($text, 'prefix', Shadowrun4::lang('items')), $pageStr);

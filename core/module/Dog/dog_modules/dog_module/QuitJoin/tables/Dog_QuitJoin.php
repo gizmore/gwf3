@@ -30,14 +30,14 @@ class Dog_QuitJoin extends GDO
 	{
 		$uid = $user->getID();
 		$cid = $channel->getID();
-		
+
 		if (!isset(self::$JOIN[$cid]))
 		{
 			self::$JOIN[$cid] = array();
 		}
 
 		self::$JOIN[$cid][$uid] = array(GWF_Time::getDateMillis(), microtime(true));
-		
+
 // 		printf("START JOIN [%s][%s] with %s and %s\n", $cid, $uid, GWF_Time::getDateMillis(), microtime(true));
 	}
 	

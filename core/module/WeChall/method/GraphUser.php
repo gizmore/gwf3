@@ -129,7 +129,7 @@ final class WeChall_GraphUser extends GWF_Method
 		{
 			$time = intval($row[0]);
 			$xdata[] = $time;
-			
+
 			$value = intval($row[1]);
 			$ydata[] = $invert ? -$value : $value;
 			$highestValue = $value > $highestValue ? $value : $highestValue;

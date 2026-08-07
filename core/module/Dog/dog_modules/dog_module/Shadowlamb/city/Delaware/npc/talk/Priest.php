@@ -33,7 +33,7 @@ final class Delaware_Priest extends SR_TalkingNPC
 			return $this->rply('free');
 // 			return $this->reply('You are free from all sins, my son.');
 		}
-		
+
 		$price = $this->calcPrice($player, $badkarma);
 		if ( (count($args) === 1) && (strtolower($args[0]) === 'now') )
 		{

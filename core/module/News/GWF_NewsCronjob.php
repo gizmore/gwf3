@@ -64,7 +64,7 @@ final class GWF_NewsCronjob extends GWF_Cronjob
 			if ($rec->hasBeenMailed($newsid)) {
 				continue;
 			}
-			
+
 			$langid = $rec->getVar('nl_langid');
 			$uselid = $first_id;
 			foreach ($ts as $tlid => $t)
@@ -75,24 +75,24 @@ final class GWF_NewsCronjob extends GWF_Cronjob
 					break;
 				}
 			}
-			
+
 			$iso = GWF_Language::getISOByID($uselid);
-			
+
 			$receive_mail = $rec->getVar('nl_email');
 			self::notice("Sending EMail to $receive_mail ($iso)");
-			
+
 			$title = GWF_HTML::display($ts[$uselid]['newst_title']);
 			$message = GWF_Message::display($ts[$uselid]['newst_message'], true, false, false);
 			$username = GWF_HTML::display($rec->getUsername());
 			$unsign = $unsign = $rec->getUnsignAnchor();
 			$body = $module->langISO($iso, 'newsletter_wrap', array($username, $unsign, $title, $message));
-			
+
 			$mail = new GWF_Mail();
 			$mail->setSender($sender_mail);
 			$mail->setReceiver($receive_mail);
 			$mail->setSubject($module->langISO($iso, 'newsletter_title'));
 			$mail->setBody($body);
-			
+
 //			if (GWF_DEBUG_EMAIL) {
 //				$success = true;
 //			}
@@ -101,14 +101,14 @@ final class GWF_NewsCronjob extends GWF_Cronjob
 				if (false !== ($user = $rec->getUser())) {
 					$success = $mail->sendToUser($user);
 				}
-				
+
 //			}
 //			else if ($rec->isHTML()) {
 //				$success = $mail->sendAsHTML();
 //			} else {
 //				$success = $mail->sendAsText();
 //			}
-			
+
 			if (!$success) {
 				self::error("Can not send email to $receive_mail.");
 				return;
@@ -118,7 +118,7 @@ final class GWF_NewsCronjob extends GWF_Cronjob
 			}
 
 			usleep($micros);
-			
+
 //			return;
 		}
 		

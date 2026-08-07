@@ -8,16 +8,16 @@ final class Shadowcmd_exit extends Shadowcmd
 		{
 			return false;
 		}
-		
+
 		$party = $player->getParty();
 		if (false === self::checkMove($party))
 		{
 			return false;
 		}
-		
+
 		$party->pushAction(SR_Party::ACTION_OUTSIDE);
 		return $party->ntice('5020', array($party->getLocation()));
-		
+
 // 		$party->notice(sprintf('You exit the %s.', $party->getLocation()));
 // 		return true;
 	}

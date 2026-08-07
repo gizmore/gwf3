@@ -45,7 +45,7 @@ final class Seattle_Blackmarket extends SR_Store
 				$names[] = $member->getName();
 			}
 		}
-		
+
 		if (count($names) === 0)
 		{
 			return parent::onEnter($player);

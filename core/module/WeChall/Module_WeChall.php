@@ -249,15 +249,15 @@ final class Module_WeChall extends GWF_Module
 	{
 		$tags = array();
 		$challs = GDO::table('WC_Challenge')->selectObjects();
-		
+
 		foreach ($challs as $chall)
 		{
 			$chall instanceof WC_Challenge;
-			
+
 			$t = explode(',', trim($chall->getVar('chall_tags'), ','));
-			
+
 			$temp = array();
-			
+
 			foreach ($t as $st)
 			{
 				if ('' === ($st = trim($st))) {
@@ -269,18 +269,18 @@ final class Module_WeChall extends GWF_Module
 				$tags[$st]++;
 				$temp[] = $st;
 			}
-			
+
 			$chall->saveVar('chall_tags', ','.implode(',', $temp).',');
 		}
-		
+
 		ksort($tags);
-		
+
 		$save = '';
 		foreach ($tags as $tag => $count)
 		{
 			$save .= ':'.$tag.'-'.$count;
 		}
-		
+
 		return GWF_Settings::setSetting('WC_CHALL_CLOUD', substr($save, 1));
 
 //		return $this->saveModuleVar('wc_ctags', substr($save, 1));
@@ -421,7 +421,7 @@ final class Module_WeChall extends GWF_Module
 			if (count($data) === 0) {
 				continue;
 			}
-			
+
 			$day = $weekdays[$i];
 			if ($date === $yesterday) {
 				$day = WC_HTML::lang('Yesterday');
@@ -438,7 +438,7 @@ final class Module_WeChall extends GWF_Module
 			elseif ($date > $today) {
 				$day = WC_HTML::lang('bd_soon', array($day));
 			}
-			
+
 			$text .= $day.': ';
 			$app = '';
 			foreach ($data as $username)

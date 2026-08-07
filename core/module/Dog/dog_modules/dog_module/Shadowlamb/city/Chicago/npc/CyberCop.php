@@ -13,7 +13,7 @@ final class Chicago_CyberCop extends SR_NPC
 	}
 
 	public function getNPCInventory() { return array('Ammo_5mm', 'Ammo_5mm', 'Ammo_5mm', 'Ammo_5mm', 'Ammo_5mm'); }
-	
+
 	public function getNPCModifiers()
 	{
 		return array(
@@ -29,7 +29,7 @@ final class Chicago_CyberCop extends SR_NPC
 			'base_hp' => rand(15, 20),
 		);
 	}
-	
+
 // 	public function getNPCLoot(SR_Player $player)
 // 	{
 // 		if (rand(0,1))

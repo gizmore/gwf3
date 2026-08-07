@@ -8,7 +8,7 @@
 abstract class Dog_Conf extends GDO
 {
 	public function getClassName() { return __CLASS__; }
-	
+
 	protected abstract function getConfColumnName(); # conf_sid
 	protected abstract function getConfColumnDefine(); #getIntegerColumnDefine()
 
@@ -23,14 +23,14 @@ abstract class Dog_Conf extends GDO
 	}
 
 	protected function getTable() { return self::table($this->getClassName()); }
-	
+
 	protected function getConfWhere($id, $key)
 	{
 		return sprintf('%s=\'%s\' AND conf_key=\'%s\'',
 			$this->getConfColumnName(), self::escape($id), self::escape($key)
 		);
 	}
-	
+
 	public function get($id, $key, $default)
 	{
 		if (false === ($value = $this->getCached($id, $key)))
@@ -41,21 +41,21 @@ abstract class Dog_Conf extends GDO
 			}
 			$this->setCache($id, $key, $value);
 		}
-		
+
 // 		if (!in_array($key, array('throttle')))
 // 		{
 // 			echo $this->getClassName()." GET ID=$id key=$key def=$default value=$value\n";
 // 		}
-		
+
 		return $value;
 	}
-	
+
 	private static $CACHE = array('Dog_Conf_Bot' => array(),'Dog_Conf_Chan' => array(),'Dog_Conf_Mod' => array(),'Dog_Conf_Mod_Chan' => array(),'Dog_Conf_Mod_Serv' => array(),'Dog_Conf_Mod_User' => array(),'Dog_Conf_Plug' => array(),'Dog_Conf_Plug_Chan' => array(),'Dog_Conf_Plug_Serv' => array(),'Dog_Conf_Plug_User' => array(),'Dog_Conf_User' => array(), /* Dog_Conf_Serv' => array()*/);
 	public static function flushCache()
 	{
 		self::$CACHE = array('Dog_Conf_Bot' => array(),'Dog_Conf_Chan' => array(),'Dog_Conf_Mod' => array(),'Dog_Conf_Mod_Chan' => array(),'Dog_Conf_Mod_Serv' => array(),'Dog_Conf_Mod_User' => array(),'Dog_Conf_Plug' => array(),'Dog_Conf_Plug_Chan' => array(),'Dog_Conf_Plug_Serv' => array(),'Dog_Conf_Plug_User' => array(),'Dog_Conf_User' => array(), /* Dog_Conf_Serv' => array()*/);
 	}
-	
+
 	private function getCached($id, $key)
 	{
 		if (isset(self::$CACHE[$this->getClassName()][$id.':'.$key]))
@@ -64,18 +64,18 @@ abstract class Dog_Conf extends GDO
 		}
 		return false;
 	}
-	
+
 	public function setCache($id, $key, $value)
 	{
 		self::$CACHE[$this->getClassName()][$id.':'.$key] = $value;
 	}
-	
-	
+
+
 	public function unsetCache($id, $key)
 	{
 		unset(self::$CACHE[$this->getClassName()][$id.':'.$key]);
 	}
-	
+
 	public function set($id, $key, $value)
 	{
 		$value = $this->convertValue($value);
@@ -86,7 +86,7 @@ abstract class Dog_Conf extends GDO
 			'conf_value' => $value,
 		));
 	}
-	
+
 	private function convertValue($value)
 	{
 		if (is_bool($value))
@@ -95,7 +95,7 @@ abstract class Dog_Conf extends GDO
 		}
 		return (string) $value;
 	}
-	
+
 	public function remove($id, $key)
 	{
 		return $this->getTable()->deleteWhere($this->getConfWhere($id, $key));

@@ -110,7 +110,7 @@ abstract class SR_NPCBase extends SR_Player
 				$word = 'hello';
 			}
 		}
-		
+
 		$this->chat_partner = $player;
 		return $this->onNPCTalk($player, strtolower($word), $args);
 

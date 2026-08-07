@@ -66,14 +66,14 @@ final class Shadowcmd_clan extends Shadowcmd
 	private static function showClanInfo(SR_Player $player, SR_Player $target)
 	{
 // 		$bot = Shadowrap::instance($player);
-		
+
 		if (false === ($clan = SR_Clan::getByPlayer($target)))
 		{
 			$player->msg('5038', array($target->getName()));
 // 			$bot->reply(sprintf('Player %s does not belong to a clan yet.', $target->getName()));
 			return false;
 		}
-		
+
 		return $player->msg('5039', array(
 			$target->getName(), $clan->getName(),
 			$clan->getMembercount(), $clan->getMaxMembercount(),
@@ -81,7 +81,7 @@ final class Shadowcmd_clan extends Shadowcmd
 			$clan->displayStorage(), $clan->displayMaxStorage(),
 			$clan->getSlogan()
 		));
-		
+
 // 		$message = sprintf(
 // 			'%s is in the "%s" clan with %s/%s members, %s/%s wealth and %s/%s in the bank. Their motto: %s',
 // 			$target->getName(), $clan->getName(),
@@ -134,7 +134,7 @@ final class Shadowcmd_clan extends Shadowcmd
 // 			$player->message('This page is empty.');
 			return false;
 		}
-		
+
 		$back = '';
 		$format = $player->lang('fmt_sumlist');
 		foreach ($members as $row)
@@ -143,7 +143,7 @@ final class Shadowcmd_clan extends Shadowcmd
 			$back .= sprintf($format, $from, "{$row[0]}{{$row[1]}}", "L{$row[2]}");
 // 			$back .= sprintf(', %d-%s{%s}(L%s)', $from, $row[0], $row[1], $row[2]);
 		}
-		
+
 		return $player->msg('5040', array($nItems, $page, $nPages, ltrim($back, ',; ')));
 // 		return Shadowrap::instance($player)->reply(sprintf('%d ClanMembers page %d/%d: %s.', $nItems, $page, $nPages, substr($back, 2)));
 	}
@@ -156,14 +156,14 @@ final class Shadowcmd_clan extends Shadowcmd
 	private static function showHistoryPage(SR_Player $player, $page)
 	{
 // 		$bot = Shadowrap::instance($player);
-		
+
 		if (false === ($clan = SR_Clan::getByPlayer($player)))
 		{
 			return $player->msg('1019');
 // 			$bot->reply('You don\'t belong to a clan yet.');
 			return false;
 		}
-		
+
 		$ipp = 5;
 		$table = GDO::table('SR_ClanHistory');
 		$where = 'sr4ch_cid='.$clan->getID();
@@ -191,7 +191,7 @@ final class Shadowcmd_clan extends Shadowcmd
 			$b2 = $b === 0 ? '' : "\X02";
 			$out[] = $b2.SR_ClanHistory::getHistMessage($player, $row[0], $row[1], $row[2], $row[3], $row[4]).$b2;
 		}
-		
+
 		return $player->msg('5041', array($page, $nPages, implode('  ', $out)));
 // 		$message = sprintf('ClanHistory page %d/%d: %s', $page, $nPages, implode('  ', $out));
 // 		return $bot->reply($message);

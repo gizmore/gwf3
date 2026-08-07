@@ -69,9 +69,9 @@ final class TGC_Commands
 	public static function cmd_pos(TGC_Player $player, $payload, $mid)
 	{
 		$coords = json_decode($payload);
-		
+
 		$player->moveTo($coords->lat, $coords->lng);
-		
+
 		$payload = json_encode(array(
 			'player' => array_merge(array('name' => $player->getName(), 'hash' => $player->getStatsHash())),
 			'pos' => array(
@@ -84,7 +84,7 @@ final class TGC_Commands
 		$player->forNearMe(function($p, $payload) {
 			$p->sendCommand('POS', $payload);
 		}, $payload);
-		
+
 // 		player->initialPositionUpdate();
 	}
 	

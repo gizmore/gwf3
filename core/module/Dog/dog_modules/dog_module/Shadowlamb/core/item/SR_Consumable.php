@@ -2,15 +2,15 @@
 abstract class SR_Consumable extends SR_Usable
 {
 	public abstract function onConsume(SR_Player $player);
-	
+
 	public abstract function getWater();
 	public abstract function getCalories();
 	public abstract function getLitres();
-	
+
 	public function onItemUse(SR_Player $player, array $args)
 	{
 		$busy = $player->isFighting() ? $this->getItemUseTime() : 0;
-		
+
 //		if ($this->isBroken())
 //		{
 //			$player->message(sprintf('Your %s is broken and cannot get consumed.', $this->getItemName()));
@@ -24,24 +24,24 @@ abstract class SR_Consumable extends SR_Usable
 			SR_Feelings::consume($player, $this);
 			$player->modify();
 		}
-		
-		
+
+
 		if ($busy > 0)
 		{
 			$busy = $player->busy($busy);
 		}
-		
+
 		# Announce Usage
 		$pname = $player->getName();
 		$p = $player->getParty();
 		$p->ntice('5201', array($pname, $this->getName(), $busy));
-		
+
 		if ($p->isFighting())
 		{
 			$ep = $p->getEnemyParty();
 			$ep->ntice('5201', array($pname, $this->getName(), $busy));
 		}
-		
+
 		# Announce Usage
 // 		$message = $this->getConsumeMessage($busy);
 // 		$p = $player->getParty();
@@ -50,7 +50,7 @@ abstract class SR_Consumable extends SR_Usable
 // 			$player->getEnemyParty()->message($player, $message);
 // 		}
 	}
-	
+
 // 	public function getConsumeMessage($busy)
 // 	{
 // 		$busy = $busy > 0 ? sprintf(' %s busy.', GWF_Time::humanDuration($busy)) : '';

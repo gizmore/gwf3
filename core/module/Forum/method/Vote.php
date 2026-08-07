@@ -29,13 +29,13 @@ final class Forum_Vote extends GWF_Method
 		if (!$this->module->cfgVotesEnabled()) {
 			return $this->module->error('err_votes_off');
 		}
-		
+
 		$userid = GWF_Session::getUserID();
 
 		if ($userid === $post->getUserID()) {
 			return $this->module->error('err_vote_self');
 		}
-		
+
 		if ($up === 1) {
 			$post->onVoteUp($userid);
 		} else {

@@ -33,7 +33,7 @@ abstract class SR_School extends SR_Store
 	public function on_courses(SR_Player $player, array $args)
 	{
 		$bot = Shadowrap::instance($player);
-		
+
 		$format = $player->lang('fmt_sumlist');
 		$i = 1;
 		$c = '';
@@ -44,7 +44,7 @@ abstract class SR_School extends SR_Store
 			$c .= sprintf($format, $i++, $data[0], $dp);
 // 			$c .= sprintf(', %s(%s)', $data[0], $price);
 		}
-		
+
 		$c = $c === '' ? $player->lang('none') : ltrim($c, ',; ');
 		return $bot->rply('5183', array($c));
 // 		$bot->reply(sprintf('Available Courses: %s.', substr($c, 2)));

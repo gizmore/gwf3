@@ -68,7 +68,7 @@ final class Seattle_AresMan extends SR_TalkingNPC
 // 			$player->message("You already have permission to enter the blackmarket in Seattle.");
 // 			return ;
 		}
-		
+
 		$nuyen = $player->getNuyen();
 		if ($nuyen < $this->price)
 		{
@@ -76,7 +76,7 @@ final class Seattle_AresMan extends SR_TalkingNPC
 // 			$player->message("The salesman is shaking his head...\"No!\", he says, \"I want $this->price, not $nuyen\".");
 // 			return;
 		}
-		
+
 		$player->giveNuyen(-$this->price);
 		$player->message($this->langNPC('give', array($this->price)));
 // 		$player->message("You give $this->price Nuyen to the salesman...");

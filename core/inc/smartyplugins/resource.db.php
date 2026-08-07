@@ -19,8 +19,8 @@ function smarty_resource_db_source($tpl_name, &$tpl_source, $smarty)
 	}
 	$tpl_source = $result['c'];
 	return true;
-	
-	
+
+
 //	$query = 'SELECT page_content c, page_options o, page_author_name author, page_date pd, page_create_date pcd, page_id pid, page_otherid oid FROM '.GWF_TABLE_PREFIX.'page WHERE page_id='.((int)$tpl_name);
 //	if (false === ($result = gdo_db()->queryFirst($query))) {
 //		$tpl_source = GWF_HTML::err(ERR_DATABASE, array(__FILE__, __LINE__));

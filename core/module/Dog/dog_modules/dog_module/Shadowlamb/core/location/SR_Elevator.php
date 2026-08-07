@@ -311,9 +311,9 @@ abstract class SR_Elevator extends SR_Entrance
 	{
 		$b = chr(2);
 		$bot = Shadowrap::instance($player);
-		
+
 		$out = '';
-		
+
 		# Cellars
 		$i = 8;
 		$bit = self::FLOOR_C8;
@@ -343,7 +343,7 @@ abstract class SR_Elevator extends SR_Entrance
 			$bit <<= 1;
 			$i++;
 		}
-		
+
 		$out = $out === '' ? $player->lang('none') : substr($out, 2);
 		return $bot->rply('5178', array($this->getElevatorCity(), $this->getElevatorButtonFromN($this->getElevatorN()), $out));
 // 		$message = sprintf('You are on %s floor %s. Accessible floors: %s.', $this->getElevatorCity(), $this->getElevatorButtonFromN($this->getElevatorN()), $out);
