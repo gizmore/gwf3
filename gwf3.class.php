@@ -237,7 +237,7 @@ class GWF3
 //		}
 
 		# Default defines
-		define('GWF_PATH', dirname(__FILE__).'/');
+		define('GWF_PATH', __DIR__.'/');
 		define('GWF_EXTRA_PATH', GWF_PATH.'extra/');
 		define('GWF_CORE_PATH', GWF_PATH.'core/');
 	

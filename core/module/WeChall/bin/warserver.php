@@ -30,7 +30,7 @@
 #
 
 
-chdir(dirname(__FILE__));
+chdir(__DIR__);
 chdir('../../../../www');
 
 # Load config

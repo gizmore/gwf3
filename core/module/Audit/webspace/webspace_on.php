@@ -48,7 +48,7 @@ if (!is_dir($dir))
 	}
 }
 
-$skeldir = dirname(__FILE__).'/skel';
+$skeldir = __DIR__.'/skel';
 foreach (scandir($skeldir) as $skel)
 {
 	if ($skel !== '.' && $skel !== '..')

@@ -1,5 +1,5 @@
 <?php
-define('DOG_PATH', dirname(__FILE__).'/');
+define('DOG_PATH', __DIR__.'/');
 define('DOG_VERSION', '0.94a');
 require_once 'dog_include/Dog_Includes.php';
 

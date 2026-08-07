@@ -1,5 +1,5 @@
 <?php
-chdir(dirname(__FILE__));
+chdir(__DIR__);
 $argv = array(
 	'dogdev.php',
 	'config_dog_dev.php', 'install', 'noflush', 'noimport', 'dev', 'gizmore'

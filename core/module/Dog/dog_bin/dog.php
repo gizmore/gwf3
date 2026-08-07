@@ -1,5 +1,5 @@
 <?php
-chdir(dirname(__FILE__));
+chdir(__DIR__);
 chdir('../');
 
 define('DOG_WS_QUEUE', true);

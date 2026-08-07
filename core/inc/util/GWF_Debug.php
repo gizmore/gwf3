@@ -102,7 +102,7 @@ final class GWF_Debug
 
 			if ($error && ($error['type'] != 0))
 			{
-				$dirname = dirname(__FILE__);
+				$dirname = __DIR__;
 				require_once $dirname.'/GWF_Log.php';
 				require_once $dirname.'/GWF_IP6.php';
 				require_once $dirname.'/GWF_Mail.php';
