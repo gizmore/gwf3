@@ -53,10 +53,10 @@ final class VersionServer_Upgrade extends GWF_Method
 	{
 		$out = '';
 		$modules = GWF_Module::loadModulesFS();
-		
+
 		$hash = $this->getHash('inc');
 		$out .= sprintf('core:inc:%0.02f:%s', GWF_CORE_VERSION, $hash);
-		
+
 //		return 
 	}
 	

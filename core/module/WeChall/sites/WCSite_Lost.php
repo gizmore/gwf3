@@ -16,11 +16,11 @@ class WCSite_Lost extends WC_Site
 // 		if (count($data) !== 5) {
 // 			return htmlDisplayError(WC_HTML::lang('err_response', array(GWF_HTML::display($result), $this->displayName())));
 // 		}
-		
+
 // 		if ($data[1] > $data[2] || $data[1] < 0 || $data[3] == 0) {
 // 			return htmlDisplayError(WC_HTML::lang('err_response', array(GWF_HTML::display($result), $this->displayName())));
 // 		}
-		
+
 // 		return array($data[1], $data[0], -1, $data[2], $data[3], $data[4]);
 // 	}
 }

@@ -7,12 +7,12 @@ final class Module_GWF extends GWF_Module
 {
 	private static $instance;
 	private static $pagecount = 0;
-	
+
 	/**
 	 * @return Module_GWF
 	 */
 	public static function instance() { return self::$instance; }
-	
+
 	##################
 	### GWF_Module ###
 	##################
@@ -23,7 +23,7 @@ final class Module_GWF extends GWF_Module
 	public function onLoadLanguage() { return $this->loadLanguage('lang/gwf'); }
 	public function getDefaultAutoLoad() { return true; }
 	public function getDefaultPriority() { return 3; }
-	
+
 	##############
 	### Config ###
 	##############
@@ -34,7 +34,7 @@ final class Module_GWF extends GWF_Module
 	public function cfgUserrecordEnabled() { return $this->getModuleVar('userrec', true); }
 	public function cfgUserrecordCount() { return (int) $this->getModuleVar('userrecc', 0); }
 	public function cfgUserrecordDate() { return GWF_Time::displayDate($this->getModuleVar('userrecd', '00000000000000')); }
-	
+
 	###############
 	### Startup ###
 	###############
@@ -42,20 +42,20 @@ final class Module_GWF extends GWF_Module
 	{
 //		var_dump('GWF::onStartup()');
 		self::$instance = $this;
-		
+
 		if ($this->isAjax()) {
 			return;
 		}
-		
+
 //		if ($this->cfgRobotUsers()) {
 //			$this->onRobotUsers();
 //		}
-		
+
 		if ($this->cfgPagecountEnabled())
 		{
 			$this->increasePageView();
 		}
-		
+
 		if ($this->cfgUserrecordEnabled())
 		{
 			$this->checkUserRecord();
@@ -68,7 +68,7 @@ final class Module_GWF extends GWF_Module
 
 //		GWF_Website::addJavascript(GWF_WEB_ROOT.'js/gwf3.js?v=1');
 //		GWF_Website::addJavascript(GWF_WEB_ROOT.'js/jquery-1.4.2.min.js');
-		
+
 //		$is_bot = GWF_Browser::isBot();
 //		if ($is_bot) {s()
 //	{
@@ -104,7 +104,7 @@ final class Module_GWF extends GWF_Module
 //			$user->saveVar('user_lastactivity', time());
 //		}
 	}
-	
+
 	private function increasePageView($by=1)
 	{
 //		require_once 'GWF_Pageview.php';
@@ -118,7 +118,7 @@ final class Module_GWF extends GWF_Module
 //		$url = GWF_WEB_ROOT.'index.php?mo=GWF&me=JSEnabled&url='.$url.'&w=\'+screen.width+\'&h=\'+screen.height+\'';
 //		return sprintf('window.location = \'%s\'; ', $url);
 //	}
-	
+
 	private function checkUserRecord()
 	{
 		$count = GWF_Session::getOnlineCount(true);
@@ -129,8 +129,8 @@ final class Module_GWF extends GWF_Module
 			$this->saveModuleVar('userrecd', GWF_Time::getDate(GWF_Date::LEN_SECOND));
 		}
 	}
-	
-	
+
+
 	/**
 	 * Show SEO lang anchors. Type may be 1 for native name, 2 for english name, 3 for ISO
 	 * @param int $type

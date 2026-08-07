@@ -109,7 +109,7 @@ abstract class SR_SecondHandStore extends SR_Store
 		}
 
 		$price = $this->calcSellPrice($player, $item);
-		
+
 		# Sell it
 		if ($item->isEquipped($player))
 		{

@@ -16,18 +16,18 @@ final class SR_BadKarma
 				$add += 0.05;
 				continue;
 			}
-			
-			
+
+
 			$badkarma = $e->getBase('bad_karma');
 			if ($badkarma > 1.0)
 			{
 				continue; # Attack Badboy is ok			}
 			}
-			
+
 			# Fighting others is 0.1
 			$add += 0.1;
 
-			
+
 //			$bounty = $e->getBase('sr4pl_bounty');
 
 // 			$l2 = $e->get('level');
@@ -36,7 +36,7 @@ final class SR_BadKarma
 // 			{
 // 				continue; # May attack higher player? Hmm..
 // 			}
-			
+
 // 			$add += round($diff / 10, 2);
 		}
 		

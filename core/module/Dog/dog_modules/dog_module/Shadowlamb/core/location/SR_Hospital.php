@@ -215,13 +215,13 @@ abstract class SR_Hospital extends SR_Store
 		echo "Got $field\n";
 		$field = Shadowfunc::untranslateVariable($player, $field); # rüstung => armor
 		echo "Got $field\n";
-		
+
 		if ($field === 'essence')
 		{
 			$player->msg('1176', array($field)); # You cannot do surgery on your %s.
 			return false;
 		}
-		
+
 		if (true === in_array($field, SR_Player::$ATTRIBUTE))
 		{
 			$price = $this->getAttributePrice($field);
@@ -239,7 +239,7 @@ abstract class SR_Hospital extends SR_Store
 				$player->msg('1048'); # You don't have this spell.
 				return false;
 			}
-			
+
 			$price = $this->getSpellPrice($field);
 			$section = 'spell';
 		}
@@ -263,40 +263,40 @@ abstract class SR_Hospital extends SR_Store
 			$player->msg('1176', array($field)); # You cannot do surgery on your %s.
 			return false;
 		}
-		
+
 		if ($price === false)
 		{
 			$player->msg('1176', array($field)); # You cannot do surgery on your %s.
 			return false;
 		}
-		
+
 		$dprice = Shadowfunc::displayNuyen($price);
 		if ($price > $player->getNuyen())
 		{
 			$player->msg('1063', array($dprice, $player->displayNuyen()));
 			return false;
 		}
-		
+
 		if (false === ($cost = Shadowcmd_lvlup::getKarmaCostFactor($field)))
 		{
 // 			$player->message('Database error 1!');
 // 			return false;
 		}
-		
+
 		$karma_back = 0;
-		
+
 		switch ($section)
 		{
 			case 'skill':
 			case 'knowledge':
 			case 'attribute':
-				
+
 				if ($cost === false)
 				{
 					$player->message('Database error 2.2!');
 					return false;
 				}
-				
+
 				# Get the minimum base
 				if (0 > ($racebase = $player->getRaceBaseVar($field, -1)))
 				{
@@ -304,108 +304,108 @@ abstract class SR_Hospital extends SR_Store
 // 					$player->message('Database error 2!');
 // 					return false;
 				}
-				
+
 				# Get current base
 				if (false === ($current = $player->getBase($field)))
 				{
 					$player->message('Database error 3!');
 					return false;
 				}
-				
+
 				# Reached min?
 				if ($current <= $racebase)
 				{
 					$player->msg('1177', array($field, $racebase));
 					return false;
 				}
-				
+
 				$karma_back = $cost * $current;
-				
+
 				if (false === $player->increaseField($field, -1))
 				{
 					$player->message('Database error 5!');
 					return false;
 				}
-				
+
 				$current--;
-				
+
 				break;
-				
+
 			case 'spell':
-				
+
 				if ($cost === false)
 				{
 					$player->message('Database error 2.2!');
 					return false;
 				}
-				
+
 				# Get current base
 				if (-1 === ($current = $player->getSpellBaseLevel($field)))
 				{
 					$player->message('Database error 3!');
 					return false;
 				}
-				
+
 				# Reached min?
 				if ($current <= 0)
 				{
 					$player->msg('1177', array($field, $racebase));
 					return false;
 				}
-				
+
 				$karma_back = $cost * $current;
-				
+
 				if (false === $player->levelupSpell($field, -1))
 				{
 					$player->message('Database error 7-1!');
 					return false;
 				}
-				
+
 				$current--;
-				
+
 				break;
-			
+
 			case 'gender':
 				if (false === $player->saveBase($section, $field))
 				{
 					$player->message('Database error 6.1!');
 				}
-				
+
 				$current = $field;
-				
+
 				break;
-				
+
 			case 'race':
 				$player->message('Database Error 0.8.15');
 				return false;
-				
+
 			default:
 				$player->msg('1176', array($field));
 				return false;
 		}
-		
+
 		if (false === $player->pay($price))
 		{
 			$player->message('Database error 0.1!');
 			return false;
 		}
-		
+
 		if (false === $player->increaseField('karma', $karma_back))
 		{
 			$player->message('Database error 0.2!');
 			return false;
 		}
-		
+
 // 		if (false === $player->alterField($field, $by))
 // 		{
 // 			$player->message('Database error 0.1!');
 // 			return false;
 // 		}
-		
+
 		$player->modify();
-		
+
 		$essence_lost = 0;
-		
+
 		return $player->msg('5263', array($dprice, $field, $current, $essence_lost, $karma_back)); # You paid %s and got your %s changed to %s. You lost %s essence while getting %s karma back.
 	}
 	

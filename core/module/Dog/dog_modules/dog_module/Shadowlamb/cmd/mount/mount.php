@@ -74,12 +74,12 @@ final class Shadowcmd_mount extends Shadowcmd
 		{
 			return false;
 		}
-		
+
 		$bot = Shadowrap::instance($player);
 		$mount = $player->getMount();
-		
+
 		array_shift($args);
-		
+
 		# Item
 		$itemname = array_shift($args);
 		if (false === ($item = $player->getInvItem($itemname)))
@@ -98,7 +98,7 @@ final class Shadowcmd_mount extends Shadowcmd
 // 			$bot->reply(sprintf('You cannot store items in your %s.', $mount->getName()));
 			return false;
 		}
-		
+
 		# Amt
 		$amt = isset($args[0]) ? intval(array_shift($args)) : 1;
 		if ($amt < 1)
@@ -107,7 +107,7 @@ final class Shadowcmd_mount extends Shadowcmd
 // 			$bot->reply('Please store a positive amount of items.');
 			return false;
 		}
-		
+
 		# Is mount in mount?
 		if ($item instanceof SR_Mount)
 		{
@@ -115,7 +115,7 @@ final class Shadowcmd_mount extends Shadowcmd
 // 			$bot->reply(sprintf('You cannot put mounts in your %s.', $mount->getName()));
 			return false;
 		}
-		
+
 		# Make sure we have enough items in invemtory.
 		# N.B.: $have_amt/$items2 is used later on!
 		if ($item->isItemStackable())
@@ -151,7 +151,7 @@ final class Shadowcmd_mount extends Shadowcmd
 // 			$bot->reply(sprintf('Your %s(%s/%s) has no room for %d of your %s (%s).', $mount->getName(), Shadowfunc::displayWeight($we), Shadowfunc::displayWeight($max), $amt, $item->getName(), Shadowfunc::displayWeight($iw)));
 			return false;
 		}
-		
+
 		# A stackable?
 		if ($item->isItemStackable())
 		{
@@ -159,7 +159,7 @@ final class Shadowcmd_mount extends Shadowcmd
 			$player->putInMountInv(SR_Item::createByName($item->getItemName(), $amt, true));
 			$stored = $amt;
 		}
-		
+
 		# Not stackable
 		else
 		{
@@ -177,9 +177,9 @@ final class Shadowcmd_mount extends Shadowcmd
 				}
 			}
 		}
-		
+
 		$player->modify();
-		
+
 		return $player->msg('5080', array($stored, $ditemname, $mount->getName()));
 // 		$message = sprintf('You stored %d of your %s in your %s.', $stored, $itemname, $mount->getName());
 // 		return $player->message($message);
@@ -196,12 +196,12 @@ final class Shadowcmd_mount extends Shadowcmd
 		{
 			return false;
 		}
-		
+
 		$bot = Shadowrap::instance($player);
 		$mount = $player->getMount();
-		
+
 		array_shift($args);
-		
+
 // 		if (0 === ($cnt = count($args)))
 // 		{
 // 			return self::on_show($player, $args);
@@ -210,7 +210,7 @@ final class Shadowcmd_mount extends Shadowcmd
 // 		{
 // 			return self::on_help($player, $args);
 // 		}
-		
+
 		# Is Storage Mount?
 		if (0 >= ($max = $mount->getMountWeight()))
 		{
@@ -218,7 +218,7 @@ final class Shadowcmd_mount extends Shadowcmd
 // 			$bot->reply(sprintf('You cannot store items in your %s.', $mount->getName()));
 			return false;
 		}
-		
+
 		# GetItem
 		$itemname = array_shift($args);
 		if (false === ($item = $player->getMountInvItem($itemname)))
@@ -231,7 +231,7 @@ final class Shadowcmd_mount extends Shadowcmd
 		$ditemname = $item->displayFullName($player);
 		$amt = isset($args[0]) ? intval(array_shift($args)) : 1;
 		$collected = 0;
-		
+
 		# Pre-Amt
 		if ($amt <= 0)
 		{
@@ -239,7 +239,7 @@ final class Shadowcmd_mount extends Shadowcmd
 // 			$bot->reply('Please pop a positve amount of items.');
 			return false;
 		}
-		
+
 		# Stack
 		if ($item->isItemStackable())
 		{
@@ -250,7 +250,7 @@ final class Shadowcmd_mount extends Shadowcmd
 // 				$bot->reply(sprintf('You don\'t have that much %s in your %s.', $itemname, $mount->getName()));
 				return false;
 			}
-			
+
 			if (false === ($item2 = SR_Item::createByName($itemname, $amt, true)))
 			{
 				$bot->reply(sprintf('Cannot create item in %s line %s.', __FILE__, __LINE__));
@@ -262,7 +262,7 @@ final class Shadowcmd_mount extends Shadowcmd
 				$bot->reply(sprintf('Cannot use item amount in %s line %s.', __FILE__, __LINE__));
 				return false;
 			}
-			
+
 // 			if ($item->getAmount() <= 0)
 // 			{
 // 				if (false === $player->removeFromMountInv($item))
@@ -270,11 +270,11 @@ final class Shadowcmd_mount extends Shadowcmd
 // 					$bot->reply(sprintf('Cannot remove from mount inventory in %s line %s.', __FILE__, __LINE__));
 // 				}
 // 			}
-			
+
 			$player->giveItem($item2);
 			$collected = $amt;
 		}
-		
+
 		# NonStackable
 		else
 		{
@@ -294,10 +294,10 @@ final class Shadowcmd_mount extends Shadowcmd
 				}
 			}
 		}
-		
+
 // 		$player->updateInventory();
 		$player->modify();
-		
+
 		$invid = -1;
 		if (false !== ($invItem = $player->getInvItemByName($itemname)))
 		{
@@ -312,7 +312,7 @@ final class Shadowcmd_mount extends Shadowcmd
 // 		{
 // 			$reply .= sprintf(' Inventory ID: %d.', $invItem->getInventoryID());
 // 		}
-		
+
 // 		return $bot->reply($reply);
 	}
 	
@@ -322,19 +322,19 @@ final class Shadowcmd_mount extends Shadowcmd
 		{
 			return false;
 		}
-		
+
 		if (count($args) !== 1)
 		{
 			return self::on_help($player, $args);
 		}
-		
+
 		while (count($player->getMountInvItems()) > 0)
 		{
 			$item = $player->getMountInvItemByID(1);
 			$player->removeFromMountInv($item);
 			$player->giveItem($item);
 		}
-		
+
 		$player->modify();
 // 		$player->updateInventory();
 		return $player->msg('5082');

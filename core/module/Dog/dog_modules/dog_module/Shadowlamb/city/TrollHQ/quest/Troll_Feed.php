@@ -26,14 +26,14 @@ final class Quest_Troll_Feed extends SR_Quest
 	public function checkQuest(SR_NPC $npc, SR_Player $player)
 	{
 		$data = $this->getTrollFeedData();
-		
+
 		$have_bacon = $this->giveQuesties($player, $npc, 'Bacon', $data['bacon'], self::NEED_BACON);
 		$have_beer = $this->giveQuesties($player, $npc, 'LargeBeer', $data['beer'], self::NEED_BEER);
-		
+
 		$data['bacon'] = $have_bacon;
 		$data['beer'] = $have_beer;
 		$this->saveQuestData($data);
-		
+
 		if ( ($have_bacon >= self::NEED_BACON) && ($have_beer >= self::NEED_BEER) )
 		{
 			$npc->reply($this->lang('thx'));

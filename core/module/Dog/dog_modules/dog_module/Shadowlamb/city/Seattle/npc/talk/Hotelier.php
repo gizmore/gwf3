@@ -20,12 +20,12 @@ final class Seattle_Hotelier extends SR_TalkingNPC
 	public function onNPCTalk(SR_Player $player, $word, array $args)
 	{
 		$price = 40;
-		
+
 		if ($this->checkRJ3Quest($player))
 		{
 			return true;
 		}
-		
+
 		switch ($word)
 		{
 			case 'malois': #return $this->reply('Are you a friend of Malois? He owes me money.');
@@ -35,7 +35,7 @@ final class Seattle_Hotelier extends SR_TalkingNPC
 
 			case 'negotiation':
 			case 'nego':
-				
+
 				$this->rply('nego1');
 // 				$this->reply('Negotiation. The art of getting better deals by being smart in a discussion.');
 				if ($player->getBase('negotiation') < 0)
@@ -49,7 +49,7 @@ final class Seattle_Hotelier extends SR_TalkingNPC
 					}
 				}
 				return true;
-				
+
 			case 'yes':
 				if ($player->hasTemp(self::TEMP_WORD2))
 				{
@@ -69,7 +69,7 @@ final class Seattle_Hotelier extends SR_TalkingNPC
 // 					$this->reply('Please use #sleep to rent a room.');
 				}
 // 				return;
-				
+
 			case 'no':
 				if ($player->hasTemp(self::TEMP_WORD2))
 				{
@@ -99,14 +99,14 @@ final class Seattle_Hotelier extends SR_TalkingNPC
 // 					$this->reply('Please come back later.');
 				}
 				return true;
-				
+
 			default:
 				$this->rply('default', array($price));
 // 				$this->reply("Hello. We offer a room to you for {$price} Nuyen per day and person, and we don't negotiate. We hope you enjoy your stay.");
 				$player->giveKnowledge('words', 'Negotiation');
 				return true;
 		}
-		
+
 // 		$this->reply($msg);
 	}
 
@@ -120,11 +120,11 @@ final class Seattle_Hotelier extends SR_TalkingNPC
 // 			$this->reply(sprintf('Chummer, I want %s but you only have %s Nuyen.', $price, $have));
 // 			return;
 		}
-		
+
 		$player->giveNuyen(-$price);
 		$player->alterField('negotiation', 1);
 		$player->modify();
-		
+
 		$player->message($this->langNPC('pay', array($price, $player->getNuyen())));
 // 		$player->message(sprintf('You hand %s Nuyen to the Hotelier and he teaches you the negotiation skill. You now have %s Nuyen left.', $price, $player->getNuyen()));
 		return $this->rply('paid');

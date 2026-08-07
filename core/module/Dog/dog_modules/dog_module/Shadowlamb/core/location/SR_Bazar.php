@@ -112,13 +112,13 @@ abstract class SR_Bazar extends SR_Location
 		$nPages = GWF_PageMenu::getPagecount($ipp, $nShops);
 		$page = Common::clamp($page, 1, $nPages);
 		$from = GWF_PageMenu::getFrom($page, $ipp);
-		
+
 		if (false === ($result = $table->select('sr4bs_pname, sr4bs_itemcount', $where, "sr4bs_pname ASC", NULL, $ipp, $from)))
 		{
 			$player->message('Database error!');
 			return false;
 		}
-		
+
 		$out = '';
 		$format = $player->lang('fmt_bazar_shops');
 		while (false !== ($row = $table->fetch($result, GDO::ARRAY_N)))
@@ -126,16 +126,16 @@ abstract class SR_Bazar extends SR_Location
 			$out .= sprintf($format, $row[0], $row[1]);
 // 			$out .= sprintf(", \X02%s\X02(%d)", $row[0], $row[1]);
 		}
-		
+
 		$table->free($result);
-		
+
 		if ($out === '')
 		{
 			$player->msg('1105');
 // 			$out = $out === '' ? 'There are no open shops yet' : substr($out, 2);
 			return false;
 		}
-		
+
 		return $player->msg('5149', array($page, $nPages, substr($out, 2)));
 // 		return $player->message("Shops (Page {$page}/{$nPages}): {$out}.");
 	}
@@ -191,22 +191,22 @@ abstract class SR_Bazar extends SR_Location
 // 			$player->message("{$pname} does not have a shop.");
 			return false;
 		}
-		
+
 		if (false === ($bi = SR_BazarItem::getBazarItem($pname, $iname)))
 		{
 			$player->msg('1108');
 // 			$player->message('This shop does not offer this item.');
 			return false;
 		}
-		
+
 		if (false === ($item = $bi->createItemClass()))
 		{
 			$player->message('The item seems invalid! Report this to gizmore!');
 			return false;
 		}
-		
+
 		$price = $this->calcBuyPrice($bi->getVar('sr4ba_price'));
-		
+
 		return $player->msg('5152', array(
 			$pname, $bi->getVar('sr4ba_iamt'), $item->getItemName(), Shadowfunc::displayNuyen($price), Shadowcmd::translate('buy'), $item->getItemInfo($player)
 		));
@@ -274,19 +274,19 @@ abstract class SR_Bazar extends SR_Location
 // 				$player->message("All your bazar slots are in use. Try #pop or #buyslot.");
 				return false;
 			}
-			
+
 			if (false === SR_BazarShop::createShop($pname))
 			{
 				$player->message('Database Error 6!');
 				return false;
 			}
-			
+
 			if (false === ($shop = SR_BazarShop::getShop($pname)))
 			{
 				$player->message('Database Error 10!');
 				return false;
 			}
-			
+
 			# Stacked
 			if ($item->isItemStackable())
 			{
@@ -296,20 +296,20 @@ abstract class SR_Bazar extends SR_Location
 // 					$player->message(sprintf("You only have %d of %s but you want to push %d.", $item->getAmount(), $item->getItemName(), $amt));
 					return false;
 				}
-				
+
 				if (false === $item->useAmount($player, $amt))
 				{
 					$player->message('Database Error 1!');
 					return false;
 				}
-				
+
 				if (false === SR_BazarItem::insertBazarItem($player->getName(), $iname, $price, $amt))
 				{
 					$player->message('Database Error 2!');
 					return false;
 				}
 			}
-			
+
 			# Not Stacked
 			else
 			{
@@ -320,21 +320,21 @@ abstract class SR_Bazar extends SR_Location
 // 					$player->message(sprintf("You only have %d of %s but you want to push %d.", count($items), $iname, $amt));
 					return false;
 				}
-				
+
 				foreach ($items as $item2)
 				{
 					$item2 instanceof SR_Item;
 					$player->removeItem($item2);
 					$item2->delete();
 				}
-				
+
 				if (false === SR_BazarItem::insertBazarItem($player->getName(), $iname, $price, $amt))
 				{
 					$player->message('Database Error 3!');
 					return false;
 				}
 			}
-			
+
 //			if (false === ($shop->increase('sr4bs_itemcount', 1)))
 //			{
 //				$player->message('Database Error 12!');
@@ -348,14 +348,14 @@ abstract class SR_Bazar extends SR_Location
 
 			$price2 = $this->calcBuyPrice($price);
 			$dprice = Shadowfunc::displayNuyen($price2);
-			
+
 			$player->msg('5153', array($amt, $iname, $dprice));
-			
+
 			# Global shout.
 			Shadowshout::sendGlobalMessage(sprintf('%s offers %d x %s for %s each in their bazaar.',
 				$player->getName(), $amt, $iname, $dprice
 			));
-			
+
 			return true;
 // 			return $player->message(sprintf('You now offer %d %s for %s each in your bazar.', $amt, $iname, $dprice));
 		}
@@ -368,7 +368,7 @@ abstract class SR_Bazar extends SR_Location
 				$player->message('Database Error 16!');
 				return false;
 			}
-			
+
 			# Stacked
 			if ($item->isItemStackable())
 			{
@@ -394,7 +394,7 @@ abstract class SR_Bazar extends SR_Location
 // 					$player->message(sprintf('You want to push %d %s but you only got %d.', $amt, $iname, count($items2)));
 					return false;
 				}
-				
+
 				foreach ($items2 as $item2)
 				{
 					$item2 instanceof SR_Item;
@@ -411,18 +411,18 @@ abstract class SR_Bazar extends SR_Location
 				$player->message('Database Error 4!');
 				return false;
 			}
-			
+
 			if (false === ($shop->fixItemCount()))
 			{
 				$player->message('Database Error 21!');
 			}
-			
+
 			if (false === $bitem->saveVar('sr4ba_price', $price))
 			{
 				$player->message('Database Error 5!');
 				return false;
 			}
-			
+
 			$amt = $bitem->getVar('sr4ba_iamt');
 			$price2 = $this->calcBuyPrice($price);
 			$dprice = Shadowfunc::displayNuyen($price2);
@@ -469,46 +469,46 @@ abstract class SR_Bazar extends SR_Location
 		{
 			return $this->onViewOwnShop($player);
 		}
-		
+
 		$pname = $player->getName();
 		$iname = $args[0];
 		$amt = isset($args[1]) ? intval($args[1], 10) : 1;
-		
+
 		if ($amt < 1)
 		{
 			$player->msg('1038');
 // 			$player->message('Please pop a positive amount of your bazar.');
 			return false;
 		}
-		
+
 		if (false === ($shop = SR_BazarShop::getShop($pname)))
 		{
 			$player->msg('1106', array($pname));
 // 			$player->message('You don\'t have a shop yet.');
 			return false;
 		}
-		
+
 		if (false === ($bitem = SR_BazarItem::getBazarItem($pname, $iname)))
 		{
 			$player->msg('1112');
 // 			$player->message('You don\'t have this item in your bazar.');
 			return false;
 		}
-		
+
 		if ($amt > $bitem->getVar('sr4ba_iamt'))
 		{
 			$player->msg('1113', array($iname));
 // 			$player->message(sprintf('You try to pop %d %s out of your bazar, but you only have %s.', $amt, $iname, $bitem->getVar('sr4ba_iamt')));
 			return false;
 		}
-		
+
 		if (false === ($item = $bitem->createItemClass()))
 		{
 			$player->message('The itemname is invalid. Please report this to gizmore!');
 			return false;
 		}
 		$iname = $item->getItemName();
-		
+
 		$fee = $this->calcPopFee($player, $amt);
 		if ($player->getNuyen() < $fee)
 		{
@@ -551,13 +551,13 @@ abstract class SR_Bazar extends SR_Location
 // 				return false;
 // 			}
 		}
-		
+
 		if (false === $bitem->onPurchased($amt))
 		{
 			$player->message('Database Error 5!');
 			return false;
 		} 
-		
+
 //		if (false === $shop->increase('sr4bs_itemcount', -$amt))
 //		{
 //			$player->message('Database Error 4!');
@@ -568,9 +568,9 @@ abstract class SR_Bazar extends SR_Location
 		{
 			$player->message('Database Error 21!');
 		}
-		
+
 		$player->giveNuyen(-$fee);
-		
+
 		return $player->msg('5154', array(Shadowfunc::displayNuyen($fee), $amt, $iname));
 // 		return $player->message(sprintf('You pay the fee of %s and remove %d %s from your bazar and put it into your inventory.', Shadowfunc::displayNuyen($fee), $amt, $iname));
 	}
@@ -795,20 +795,20 @@ abstract class SR_Bazar extends SR_Location
 // 			$player->message(sprintf('It would cost %s to purchase slot number %s, but you only have %s.', Shadowfunc::displayNuyen($price), $avail_slots+1, $player->displayNuyen()));
 			return false;
 		}
-		
+
 		if (false === $player->giveNuyen(-$price))
 		{
 			$player->message('Database Error 1!');
 			return false;
 		}
-		
+
 		$ps = SR_PlayerVar::getVal($player, '__BAZAAR_SLOTS', 0);
 		if (false === SR_PlayerVar::setVal($player, '__BAZAAR_SLOTS', $ps+1))
 		{
 			$player->message('Database Error 1!');
 			return false;
 		}
-		
+
 		$player->msg('5158', array(Shadowfunc::displayNuyen($price), $avail_slots+1));
 // 		return $player->message(sprintf('You pay the fee of %s and now have %s bazar slots.', Shadowfunc::displayNuyen($price), $avail_slots+1));
 	}
@@ -830,7 +830,7 @@ abstract class SR_Bazar extends SR_Location
 // 			$player->message('You did not create a shop yet. You can do so by #push or #buyslot.');
 			return false;
 		}
-		
+
 		return $player->msg('5150', array($pname, $shop->getSlogan()));
 // 		return $player->message(sprintf('Your shop\'s slogan: %s.', $shop->getSlogan()));
 	}
@@ -883,21 +883,21 @@ abstract class SR_Bazar extends SR_Location
 		$pname = $player->getName();
 		$iname = $args[0];
 		$price = (int)$args[1];
-		
+
 		if (false === ($shop = SR_BazarShop::getShop($pname)))
 		{
 			$player->msg('1106', array($pname));
 // 			$player->message('You don\'t have a shop yet.');
 			return false;
 		}
-		
+
 		if (false === ($bitem = SR_BazarItem::getBazarItem($pname, $iname)))
 		{
 			$player->msg('1112');
 // 			$player->message('You don\'t have this item in your bazar.');
 			return false;
 		}
-		
+
 		if ($price < self::MIN_PRICE)
 		{
 			$player->msg('1109', array(Shadowfunc::displayNuyen(self::MIN_PRICE)));
@@ -910,13 +910,13 @@ abstract class SR_Bazar extends SR_Location
 // 			$player->message("Your price exceeds the max price.");
 			return false;
 		}
-		
+
 		if (false === $bitem->saveVar('sr4ba_price', $price))
 		{
 			$player->message('Database Error 1!');
 			return false;
 		}
-		
+
 		$amt = $bitem->getVar('sr4ba_iamt');
 		$price2 = $this->calcBuyPrice($price);
 		$dprice = Shadowfunc::displayNuyen($price2);
@@ -930,17 +930,17 @@ abstract class SR_Bazar extends SR_Location
 	public function on_search(SR_Player $player, array $args)
 	{
 		$ipp = 5;
-		
+
 		$count = count($args);
 		if ($count !== 1)
 		{
 			$player->message(Shadowhelp::getHelp($player, 'bazar_search'));
 			return false;
 		}
-		
+
 		$term = $args[0];
 		$table = GDO::table('SR_BazarItem');
-		
+
 		if (false === ($conditions = GWF_QuickSearch::getQuickSearchConditions($table, array('sr4ba_iname'), $term)))
 		{
 			$player->message(Shadowhelp::getHelp($player, 'bazar_search'));
@@ -948,14 +948,14 @@ abstract class SR_Bazar extends SR_Location
 		}
 		$orderby = 'sr4ba_price ASC';
 		$nItems = $table->countRows($conditions);
-		
+
 		if ($nItems === 0)
 		{
 			$player->msg('1007');
 // 			$player->message('No item matches your search query :(');
 			return false;
 		}
-		
+
 		$nPages = GWF_PageMenu::getPagecount($ipp, $nItems);
 
 		$old_term = $player->getTemp(self::TEMP_SEARCH, '');
@@ -980,7 +980,7 @@ abstract class SR_Bazar extends SR_Location
 				$player->setTemp(self::TEMP_PAGE, 2);
 			}
 		}
-		
+
 		if ($page > $nPages)
 		{
 			$player->msg('1009');
@@ -988,7 +988,7 @@ abstract class SR_Bazar extends SR_Location
 // 			$player->message('There are no more matches.');
 			return false;
 		}
-		
+
 		$from = GWF_PageMenu::getFrom($page, $ipp);
 
 		if (false === ($result = $table->select('*', $conditions, $orderby, NULL, $ipp, $from)))
@@ -996,7 +996,7 @@ abstract class SR_Bazar extends SR_Location
 			$player->message('Database error!');
 			return false;
 		}
-		
+
 		$out = '';
 		$format = $player->lang('fmt_bazar_search');
 		while (false !== ($row = $table->fetch($result, GDO::ARRAY_A)))
@@ -1004,9 +1004,9 @@ abstract class SR_Bazar extends SR_Location
 			$out .= sprintf($format, $row['sr4ba_pname'], $row['sr4ba_iname'], $row['sr4ba_iamt'], Shadowfunc::displayNuyen($row['sr4ba_price']));
 // 			$out .= sprintf(", %s \X02%s\X02 %s%s", $row['sr4ba_pname'], $row['sr4ba_iname'], $row['sr4ba_price'], $amt);
 		}
-		
+
 		$table->free($result);
-		
+
 		return $player->msg('5160', array($page, $nPages, substr($out, 2)));
 // 		return $player->message(sprintf('Matches %d/%d: %s.', $page, $nPages, substr($out, 2)));
 	}
@@ -1212,7 +1212,7 @@ abstract class SR_Bazar extends SR_Location
 					$player->message('Database error 6!');
 					return false;
 				}
-				
+
 				if (false === $player->giveItem($item2))
 				{
 					$player->message('Database error 7!');
@@ -1224,7 +1224,7 @@ abstract class SR_Bazar extends SR_Location
 // 				$player->message('Database error 7!');
 // 				return false;
 // 			}
-			
+
 			$player->getParty()->ntice('5156', array($player->getName(), $amt, $iname, '!Shadowlamb!'));
 // 			$player->getParty()->notice(sprintf('%s purchased %d %s from the bazar.', $player->getName(), $amt, $iname));
 		}

@@ -4,7 +4,7 @@ final class Chicago_GiantTroll extends SR_NPC
 	public function getNPCLevel() { return 25; }
 	public function getNPCPlayerName() { return 'GiantTroll'; }
 	public function getNPCMeetPercent(SR_Party $party) { return 50.00; }
-	
+
 	public function getNPCEquipment()
 	{
 		return array(
@@ -16,7 +16,7 @@ final class Chicago_GiantTroll extends SR_NPC
 			'shield' => 'KevlarShield',
 		);
 	}
-	
+
 	public function getNPCCyberware()
 	{
 		return array(
@@ -25,9 +25,9 @@ final class Chicago_GiantTroll extends SR_NPC
 			'WiredReflexesV2',
 		);
 	}
-	
+
 	public function getNPCInventory() { return array('Stimpatch', 'Pizza'); }
-	
+
 	public function getNPCModifiers()
 	{
 		return array(
@@ -43,7 +43,7 @@ final class Chicago_GiantTroll extends SR_NPC
 			'base_hp' => rand(35, 45),
 		);
 	}
-	
+
 // 	public function getNPCLoot(SR_Player $player)
 // 	{
 // 		$quest = SR_Quest::getQuest($player, 'Chicago_ShrineMonksRevenge');

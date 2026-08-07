@@ -16,7 +16,7 @@ class WCSite_Root extends WC_Site
 		if (count($stats) !== 7) {
 			return htmlDisplayError(WC_HTML::lang('err_response', array(GWF_HTML::display($result), $this->displayName())));
 		}
-		
+
 		$uname = $stats[0];
 		$rank = intval($stats[1]);
 		$onsitescore = intval($stats[2]);
@@ -24,11 +24,11 @@ class WCSite_Root extends WC_Site
 		$challssolved = intval($stats[4]);
 		$challcount = intval($stats[5]);
 		$usercount = intval($stats[6]);
-		
+
 		if ($maxscore === 0 || $challcount === 0 || $usercount === 0) {
 			return htmlDisplayError(WC_HTML::lang('err_response', array(GWF_HTML::display($result), $this->displayName())));
 		}
-		
+
 		return array($onsitescore, $rank, $challssolved, $maxscore, $usercount, $challcount);
 	}
 **/

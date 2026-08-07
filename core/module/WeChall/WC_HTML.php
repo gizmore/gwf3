@@ -195,11 +195,11 @@ final class WC_HTML
 	{
 		$sites = WC_Site::getActiveSites();
 		$count = count($sites);
-		
+
 		$back = '<div class="wc_head_bigbox">';
-		
+
 		$back .= '<div class="wc_head_title">'.sprintf('<a href="%sactive_sites">%s</a>', GWF_WEB_ROOT, $module->lang('head_sites')).'</div>';
-		
+
 		$back .= '<div class="wc_head_box">';
 		for ($i = 0; $i < 4; $i++)
 		{
@@ -207,7 +207,7 @@ final class WC_HTML
 			$back .= $sites[$i]->getLink();
 		}
 		$back .= '</div>';
-		
+
 		$back .= '<div class="wc_head_box">';
 		for ($i = 4; $i < 8; $i++)
 		{
@@ -215,7 +215,7 @@ final class WC_HTML
 			$back .= $sites[$i]->getLink();
 		}
 		$back .= '</div>';
-		
+
 		$back .= '</div>';
 		return $back;
 //		$i = 0;

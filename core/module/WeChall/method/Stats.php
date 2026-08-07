@@ -242,7 +242,7 @@ final class WeChall_Stats extends GWF_Method
 		if ($this->user1 === false) {
 			return '#';
 		}
-		
+
 		$y = date('Y');
 		$m = date('m');
 		$d = date('d');

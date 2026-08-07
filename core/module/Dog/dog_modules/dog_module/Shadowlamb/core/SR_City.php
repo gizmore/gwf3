@@ -522,7 +522,7 @@ abstract class SR_City
 		{
 			return false; # fail
 		}
-		
+
 		foreach (Shadowrun4::getParties() as $ep)
 		{
 			if ( ($ep->isMoving()) && ($p->getCity() === $ep->getCity()) && ($ep->getID() !== $p->getID()) )
@@ -532,7 +532,7 @@ abstract class SR_City
 			}
 		}
 		return false;
-				
+
 //		$sqkm = $this->getSquareKM();
 //		$possible = array();
 //		$total = 0;

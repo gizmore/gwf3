@@ -17,7 +17,7 @@ final class Chicago_Cobra extends SR_NPC
 	}
 
 	public function getNPCInventory() { return array('Ammo_5mm', 'Ammo_5mm', 'Ammo_5mm', 'Ammo_5mm', 'Ammo_5mm', 'Knife', 'Stimpatch'); }
-	
+
 	public function getNPCModifiers()
 	{
 		return array(
@@ -34,13 +34,13 @@ final class Chicago_Cobra extends SR_NPC
 			'base_hp' => rand(22, 28),
 		);
 	}
-	
+
 // 	public function getNPCLoot(SR_Player $player)
 // 	{
 // 		SR_Quest::getQuest($player, 'Troll_Forever')->onKillCommando($player);
 // 		return array();
 // 	}
-	
+
 //	
 //	public function getNPCLoot(SR_Player $player)
 //	{

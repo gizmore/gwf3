@@ -41,8 +41,8 @@ final class Module_Guestbook extends GWF_Module
 //		}
 //		return '';
 //	}	
-	
-	
+
+
 	###########
 	### API ###
 	###########
@@ -60,12 +60,12 @@ final class Module_Guestbook extends GWF_Module
 		}
 		return true;
 	}
-	
+
 	public function hasGuestbook($userid)
 	{
 		return $this->getGuestbook($userid) !== false;
 	}
-	
+
 	/**
 	 * Get a guestbook by userid.
 	 * @param int $userid
@@ -75,7 +75,7 @@ final class Module_Guestbook extends GWF_Module
 	{
 		return GWF_Guestbook::getByUID($userid);
 	}
-	
+
 //	public function hrefEdit($userid)
 //	{
 //		if (false === ($gb = $this->getGuestbook($userid))) {

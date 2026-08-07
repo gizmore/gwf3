@@ -12,23 +12,23 @@ final class Links_Redirect extends GWF_Method
 		if (false === ($link = GWF_Links::getByID(Common::getGet('lid')))) {
 			return $this->module->error('err_link');
 		}
-		
+
 		if (!$link->mayView(GWF_Session::getUser())) {
 			return $this->module->error('err_view_perm');
 		}
-		
+
 		if (false === $link->increase('link_clicks', 1)) {
 			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
 		}
-		
+
 		if (false === $link->onCalcPopularity()) {
 			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
 		}
-		
+
 //		$link->markRead(GWF_Session::getUser());
-		
+
 		return $this->module->message('msg_counted_visit');
-		
+
 //		header('Location: '.$link->getVar('link_href'));
 //		return $this->module->message('msg_redirecting', array($link->display('link_href')));
 	}

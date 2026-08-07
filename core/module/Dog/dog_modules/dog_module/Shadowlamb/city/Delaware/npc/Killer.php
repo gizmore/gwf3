@@ -16,7 +16,7 @@ final class Delaware_Killer extends SR_NPC
 	}
 
 	public function getNPCInventory() { return array('Ammo_11mm', 'Ammo_11mm', 'Ammo_11mm', 'Ammo_11mm', 'Knife'); }
-	
+
 	public function getNPCModifiers()
 	{
 		return array(

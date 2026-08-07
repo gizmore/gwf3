@@ -5,23 +5,23 @@ final class Item_Flashbang extends SR_Grenade
 	public function getItemPrice() { return 150; }
 	public function getItemUsetime() { return 15; }
 	public function getItemWeight() { return 450; }
-	
+
 	public function onThrow(SR_Player $player, SR_Player $target)
 	{
 		$party = $player->getParty();
 		$ep = $party->getEnemyParty();
 		$mc = $party->getMemberCount();
 		$firearms = $player->get('firearms');
-		
+
 		$atk = 15;
 		$mindmg = 1;
 		$maxdmg = 4;
-		
+
 		$damage = array();
-		
+
 		$inaccuracy = rand(2,4) - ($firearms?1:0);
 		$targets = self::computeDistances($target, $inaccuracy);
-		
+
 		foreach ($targets as $data)
 		{
 			list($pid, $d) = $data;
@@ -36,33 +36,33 @@ final class Item_Flashbang extends SR_Grenade
 			$hits = Common::clamp($hits, 0);
 			echo "Dicing... DIST: $d, ATK: $a, DEF: $def. Hits: $hits\n";
 //			$hits -= $arm;
-			
+
 			if ($hits <= 0)
 			{
 				continue;
 			}
-			
+
 			$dmg = round($mindmg + ($hits*0.1), 2);
 			$dmg = Common::clamp($dmg, $mindmg, $maxdmg);
 			$dmg -= $arm;
-			
+
 			if ($dmg <= 0)
 			{
 				continue;
 			}
-			
+
 			echo "Blinding the target with $hits hits ...\n";
 			for ($i = 0; $i<$hits; $i+=3)
 			{
 				$target->addEffects(new SR_Effect($i*10, array('attack'=>-0.15), SR_Effect::MODE_ONCE));
 			}
-			
+
 			$damage[$pid] = $dmg;
 		}
-		
+
 		Shadowfunc::multiDamage($player, $damage, 'The Flashbang totally missed all targets.');
 	}
-	
+
 //	public function onThrowOLD(SR_Player $player, SR_Player $target)
 //	{
 //		$party = $player->getParty();

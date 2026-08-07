@@ -320,9 +320,9 @@ final class WeChall_SiteEdit extends GWF_Method
 		if (false !== ($errors = $form->validate($this->module))) {
 			return $errors;
 		}
-		
+
 		$basescore_changed = $language_changed = $status_changed = $spc_changed = $powarg_changed = false;
-		
+
 		if ($is_admin)
 		{
 			$basescore_changed = $form->getVar('site_basescore') != $site->getBasescore();
@@ -330,7 +330,7 @@ final class WeChall_SiteEdit extends GWF_Method
 			$status_changed = $form->getVar('site_status') !== $site->getStatus();
 			$spc_changed = $form->getVar('site_spc') !== $site->getVar('site_spc');
 			$powarg_changed = $form->getVar('site_powarg') !== $site->getVar('site_powarg');
-			
+
 			$site->saveVars(array(
 				'site_classname' => $form->getVar('site_classname'),
 				'site_basescore' => $form->getVar('site_basescore'),
@@ -364,10 +364,10 @@ final class WeChall_SiteEdit extends GWF_Method
 // 			'site_war_rs' => $form->getVar('warscrd'),
 //			'site_description' => $form->getVar('site_description'),
 		));
-		
+
 		$site->setVar('site_country', GWF_Country::getByID($form->getVar('site_country')));
 		$site->setVar('site_language', GWF_Language::getByID($form->getVar('site_language')));
-		
+
 		# Update tags if Admin
 		if ($is_admin)
 		{
@@ -379,9 +379,9 @@ final class WeChall_SiteEdit extends GWF_Method
 				WC_SiteCats::fixCatBits();
 			}
 		}
-		
+
 // 		$out = $this->onEditWarflag($site, isset($_POST['warenbl']));
-		
+
 		$old_linear = $site->isLinear();
 		$site->saveOption(WC_Site::LINEAR, isset($_POST['linear']));
 		$linear_changed = $old_linear !== $site->isLinear();
@@ -398,7 +398,7 @@ final class WeChall_SiteEdit extends GWF_Method
 // // 			$site->getWarIP();
 // 			Module_WeChall::instance()->flushWarboxConfig();
 // 		}
-		
+
 		# Recalculate in case of a change
 //		if ($site->isScored())
 //		{
@@ -408,7 +408,7 @@ final class WeChall_SiteEdit extends GWF_Method
 				WC_RegAt::calcTotalscores();
 			}
 //		}
-		
+
 		return $this->module->message('msg_site_edited', array($site->displayName())); #.$out;
 	}
 

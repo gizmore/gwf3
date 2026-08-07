@@ -13,7 +13,7 @@ final class Redmond_Teacher extends SR_TalkingNPC
 		{
 			return true;
 		}
-		
+
 		switch ($word)
 		{
 			case 'learn':
@@ -41,7 +41,7 @@ final class Redmond_Teacher extends SR_TalkingNPC
 				$player->giveKnowledge('words', 'Magic');
 				return true;
 		}
-		
+
 // 		$c = Shadowrun4::SR_SHORTCUT;
 // 		$b = chr(2);
 // 		switch ($word)
@@ -70,7 +70,7 @@ final class Redmond_Teacher extends SR_TalkingNPC
 // 				$player->giveKnowledge('words', 'Magic');
 // 				return;
 // 		}
-		
+
 // 		$this->reply($msg);
 	}
 }

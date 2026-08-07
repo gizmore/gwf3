@@ -298,19 +298,19 @@ class GWF_Form
 				case self::DATE:
 					$this->form_data[$key][1] = GWF_DateSelect::getDateSelects($key, $data[1], $data[4], false, false, false);
 					break;
-		
+
 				case self::DATE_FUTURE:
 					$this->form_data[$key][1] = GWF_DateSelect::getDateSelects($key, $data[1], $data[4], false, true, false);
 					break;
-		
+
 				case self::TIME:
 					$this->form_data[$key][1] = GWF_TimeSelect::select($key.'h', $key.'i', $data[1]);
 					break;
-				
+
 				case self::ENUM:
 					$this->form_data[$key][1] = GWF_Select::display($key, $data[4], $this->getVar($key, $data[1]));
 					break;
-		
+
 				case self::SELECT:
 				case self::SELECT_A:
 				case self::SUBMIT:
@@ -321,11 +321,11 @@ class GWF_Form
 				case self::DIVIDER:
 				case self::VALIDATOR:
 					break;
-		
+
 				case self::HIDDEN:
 					$this->form_data[$key][1] = htmlspecialchars($this->form_data[$key][1]);
 					break;
-		
+
 				case self::CHECKBOX:
 					# TODO: Optimize for size. Tricky, as $this->getVar() is not always appropriate for overwriting, because bool=isset or notset.
 					$arr = $this->method === self::METHOD_GET ? $_GET : $_POST;
@@ -338,18 +338,18 @@ class GWF_Form
 						$this->form_data[$key][1] = false;
 					}
 					break;
-		
+
 				case self::FILE:
 				case self::FILE_OPT:
 				case self::HTML:
 					break;
-		
+
 				default:
 					if (false !== ($v = $this->getVar($key)))
 					{
 						$this->form_data[$key][1] = $v;
 					}
-		
+
 					if (true === is_array($this->form_data[$key][1]))
 					{
 					# recursion needet?

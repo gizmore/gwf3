@@ -77,7 +77,7 @@ final class WeChall_Warbox extends GWF_Method
 	private function getWarboxes($all=false)
 	{
 		$table = GDO::table('WC_Warbox');
-		
+
 		$joins = array('sites');
 		$orderby = 'site_name ASC, wb_name ASC';
 		if (!$all)

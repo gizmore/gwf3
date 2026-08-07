@@ -903,7 +903,7 @@ final class SR_Party extends GDO
 			Dog_Log::error('Cannot talk to empty party!');
 			return false;
 		}
-		
+
 		Shadowcmd_bye::onPartyMeet($party, $this);
 		$this->pushAction(self::ACTION_TALK, $party->getID(), 0);
 		$party->pushAction(self::ACTION_TALK, $this->getID(), 0);
@@ -911,7 +911,7 @@ final class SR_Party extends GDO
 		$party->setContactEta(60);
 		$this->initFightBusy(1);
 		$party->initFightBusy(-1);
-		
+
 		if ($announce === true)
 		{
 			$this->ntice('5096', array($party->displayMembers(true, true), SR_Bounty::displayBountyParty($party), SR_BadKarma::displayBadKarmaParty($party)));
@@ -919,7 +919,7 @@ final class SR_Party extends GDO
 // 			$this->notice(sprintf('You meet %s.%s%s', $party->displayMembers(false, true), SR_Bounty::displayBountyParty($party), SR_BadKarma::displayBadKarmaParty($party)));
 // 			$party->notice(sprintf('You meet %s.%s%s', $this->displayMembers(false, true), SR_Bounty::displayBountyParty($this), SR_BadKarma::displayBadKarmaParty($this)));
 		}
-		
+
 // 		$this->setMemberOptions(SR_Player::PARTY_DIRTY, true);
 // 		$party->setMemberOptions(SR_Player::PARTY_DIRTY, true);
 	}

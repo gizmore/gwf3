@@ -4,19 +4,19 @@ final class Shadowcmd_set_distance extends Shadowcmd
 	public static function execute(SR_Player $player, array $args)
 	{
 		$bot = Shadowrap::instance($player);
-		
+
 		if (count($args) === 0)
 		{
 			return self::showDistances($player);
 		}
-		
+
 		# err args
 		if ( (count($args) !== 1) || (!is_numeric($args[0])) )
 		{
 			$bot->reply(Shadowhelp::getHelp($player, 'set_distance'));
 			return false;
 		}
-		
+
 		# Out of bounds
 		$d = round(floatval($args[0]), 1);
 		if ($d < 1 || $d > SR_Player::MAX_SD)
@@ -24,7 +24,7 @@ final class Shadowcmd_set_distance extends Shadowcmd
 			$bot->reply(Shadowhelp::getHelp($player, 'set_distance'));
 			return false;
 		}
-		
+
 		foreach ($player->getParty()->getMembers() as $member)
 		{
 			$member instanceof SR_Player;
@@ -33,7 +33,7 @@ final class Shadowcmd_set_distance extends Shadowcmd
 				$member->msg('5278', array($player->getName(), $d));
 			}
 		}
-		
+
 		$player->updateField('distance', $d);
 		return $player->msg('5122', array($d));
 // 		$player->message(sprintf("Your default combat distance has been set to %.01f meters.", $d));

@@ -5,7 +5,7 @@ final class Vegas_MRX extends SR_NPC
 	public function getNPCPlayerName() { return 'MRX'; }
 	public function canNPCMeet(SR_Party $party) { return true; }
 	public function getNPCMeetPercent(SR_Party $party) { return 20.00; }
-	
+
 	public function getNPCModifiers()
 	{
 		return array(
@@ -21,7 +21,7 @@ final class Vegas_MRX extends SR_NPC
 			'nuyen' => rand(20, 70),
 		);
 	}
-	
+
 	public function getNPCEquipment()
 	{
 		return array(
@@ -33,7 +33,7 @@ final class Vegas_MRX extends SR_NPC
 			'gloves' => array('Yugake'),
 		);
 	}
-	
+
 	public function getNPCInventory()
 	{
 		return array(

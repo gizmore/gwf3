@@ -62,12 +62,12 @@ final class BAIM_SetMC extends GWF_Method
 		if (false !== ($errors = $form->validate($this->module))) {
 			return $errors;
 		}
-		
+
 //		$mc = $_POST['mc'];
 		if (false === $row->changeMC(NULL)) {
 			return GWF_HTML::err('ERR_DATABASE', array( __FILE__, __LINE__));
 		}
-		
+
 		return $this->module->message('msg_set_mc');#, GWF_HTML::display($mc));
 	}
 }

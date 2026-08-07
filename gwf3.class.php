@@ -45,7 +45,7 @@ class GWF3
 	public function __construct($basepath=NULL, array $config = array())
 	{
 		self::$CONFIG = ($config = array_merge(self::$CONFIG, $config));
-		
+
 		# Set session_name to something we might clean up ourselves from time to time.
 		# We don't use php sessions(yet), but 3rd party might use it, and we can even cleanup.
 		session_name(GWF_SESS_NAME);
@@ -55,13 +55,13 @@ class GWF3
 		{
 			GWF_Bootstrap::init();
 		}
-		
+
 		# Windows patch
 //		if (GWF_ServerInfo::isWindows())
 //		{
 // 			$basepath = str_replace('\\', '/', $basepath);
 //		}
-		
+
 		# Important definements...
 		$basepath = $basepath === NULL ? GWF_PATH.'www' : $basepath;
 		Common::defineConst('GWF_WWW_PATH', $basepath.'/');
@@ -87,11 +87,11 @@ class GWF3
 				GWF_Website::addDefaultOutput('<p style="color: #ff0000">Welcome back Admin! GWF_WORKER_IP is activated</p>');
 			}
 		}
-		
+
 		# Set valid mo/me
 		$_GET['mo'] = Common::getGetString('mo', GWF_DEFAULT_MODULE);
 		$_GET['me'] = Common::getGetString('me', GWF_DEFAULT_METHOD);
-		
+
 		# Setting the Design... TODO...
 		self::setDesign(Common::getConst('GWF_DEFAULT_DESIGN', 'default'));
 

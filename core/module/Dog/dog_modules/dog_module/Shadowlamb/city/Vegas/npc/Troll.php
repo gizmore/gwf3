@@ -5,7 +5,7 @@ final class Vegas_Troll extends SR_NPC
 	public function getNPCPlayerName() { return 'Troll'; }
 	public function canNPCMeet(SR_Party $party) { return true; }
 	public function getNPCMeetPercent(SR_Party $party) { return 100.00; }
-	
+
 	public function getNPCModifiers()
 	{
 		return array(
@@ -22,7 +22,7 @@ final class Vegas_Troll extends SR_NPC
 			'nuyen' => rand(80, 140),
 		);
 	}
-	
+
 	public function getNPCEquipment()
 	{
 		return array(
@@ -33,7 +33,7 @@ final class Vegas_Troll extends SR_NPC
 			'belt' => array('LeatherBelt'),
 		);
 	}
-	
+
 	public function getNPCInventory()
 	{
 		return array(

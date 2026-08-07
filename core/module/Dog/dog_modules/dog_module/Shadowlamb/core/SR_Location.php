@@ -88,7 +88,7 @@ abstract class SR_Location
 	public function displayName(SR_Player $player)
 	{
 		return $this->getName();
-		
+
 		# Overriden by location?
 // 		if ($this->hasLang('name'))
 // 		{
@@ -101,7 +101,7 @@ abstract class SR_Location
 // 		{
 // 			return Shadowrun4::langPlayer($player, $key);
 // 		}
-		
+
 // 		# Nothing at all :O
 // 		return $this->getName();
 	}

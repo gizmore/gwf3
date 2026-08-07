@@ -33,7 +33,7 @@ final class SR_Install
 	{
 		$player = Shadowrun4::getDummyPlayer();
 // 		Shadowcmd::$CURRENT_PLAYER = $player;
-		
+
 // 		$spells = SR_Spell::getSpells();
 // 		ksort($spells);
 // 		foreach ($spells as $name => $spell)
@@ -42,9 +42,9 @@ final class SR_Install
 // 		}
 // 		die();
 		$back = self::createItemLangFile() && self::createItemTypeFile() && self::createStatUUIDFile(); # && self::createItemDataFile();
-		
+
 		Shadowcmd::$CURRENT_PLAYER = NULL;
-		
+
 		return $back;
 // 		return true;
 // 		return

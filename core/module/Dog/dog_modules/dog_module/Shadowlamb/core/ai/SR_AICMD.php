@@ -26,11 +26,11 @@ class SR_AICMD
 				$ai = self::DEFAULT_COMBAT_AI;
 			}
 		}
-		
+
 //		$data = array();
 //		$total = 0;
 		$decisions = array();
-		
+
 		$ai = explode(';', $ai);
 		foreach ($ai as $func)
 		{
@@ -65,7 +65,7 @@ class SR_AICMD
 				Dog_Log::debug(sprintf('PREG MATCH FAILED: %s.', $func));
 			}
 		}
-		
+
 		# Best
 		if (count($decisions) > 0)
 		{
@@ -73,7 +73,7 @@ class SR_AICMD
 			$command = key($decisions);
 			$player->combatPush($command);
 		}
-		
+
 		# Rand
 //		if (false !== ($command = Shadowfunc::randomData($data, $total)))
 //		{

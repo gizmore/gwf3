@@ -83,19 +83,19 @@ abstract class SR_Subway extends SR_Location
 			$out .= sprintf($format, $i+1, $target, $dprice);
 // 			$out .= sprintf(', %s:%s(%s)', $i+1, $target, $price);
 		}
-		
+
 		if ($out === '')
 		{
 			return $bot->rply('1152');
 // 			$out = 'There are no trains planned for today.';
 		}
-		
+
 		return $bot->rply('5259', array(ltrim($out, ',; ')));
-		
+
 // 		else {
 // 			$out = substr($out, 2);
 // 		}
-		
+
 // 		$bot->reply($out);
 	}
 	

@@ -27,7 +27,7 @@ final class Shadowcmd_lvlup extends Shadowcmd
 //			$player->message('You cannot lvlup when your party is fighting.');
 //			return false;
 //		}
-		
+
 // 		$bot = Shadowrap::instance($player);
 		$runner = $player->isRunner();
 		$have = $player->getBase('karma');
@@ -102,24 +102,24 @@ final class Shadowcmd_lvlup extends Shadowcmd
 // 			$bot->reply('You can not levelup your essence.');
 			return false;
 		}
-			
+
 		$is_spell = false;
 		$cost = self::getKarmaCostFactor($f);
-		
+
 		if (in_array($f, SR_Player::$SKILL))
 		{
 			$level = $player->getBase($f);
 // 			$cost = self::KARMA_COST_SKILL;
 			$max = $runner ? self::MAX_VAL_SKILL_RUNNER : self::MAX_VAL_SKILL;
 		}
-		
+
 		elseif (in_array($f, SR_Player::$ATTRIBUTE))
 		{
 			$level = $player->getBase($f);
 // 			$cost = self::KARMA_COST_ATTRIBUTE;
 			$max = $runner ? self::MAX_VAL_ATTRIBUTE_RUNNER : self::MAX_VAL_ATTRIBUTE;
 		}
-		
+
 		elseif (in_array($f, SR_Player::$KNOWLEDGE))
 		{
 			$level = $player->getBase($f);
@@ -132,40 +132,40 @@ final class Shadowcmd_lvlup extends Shadowcmd
 			$is_spell = true;
 			$max = $runner ? self::MAX_VAL_SPELL_RUNNER : self::MAX_VAL_SPELL;
 		}
-		
+
 		else
 		{
 			$player->msg('1024');
 // 			$bot->reply('You can only levelup attributes, skills, knowledge and spells.');
 			return false;
 		}
-		
+
 		if ($level < 0)
 		{
 			$player->msg('1025', array($f));
 // 			$bot->reply(sprintf('You need to learn %s first.', $f));
 			return false;
 		}
-		
+
 		if ($level >= $max)
 		{
 			$player->msg('1026', array($max, $f));
 // 			$bot->reply(sprintf('You already have reached the max level of %d for %s.', $max, $f));
 			return false;
 		}
-		
+
 		$need = ($level+1) * $cost;
-		
+
 		if ($need > $have)
 		{
 			$player->msg('1027', array($need, $f, $level, $level+1, $have));
 // 			$bot->reply(sprintf('You need %d karma to increase your base level for %s from %d to %d, but you only have %d karma.', $need, $f, $level, $level+1, $have));
 			return false;
 		}
-		
+
 		# Reduce Karma
 		$player->alterField('karma', -$need);
-		
+
 		# Lvlup
 		if ($is_spell === true)
 		{
@@ -176,7 +176,7 @@ final class Shadowcmd_lvlup extends Shadowcmd
 			$player->levelupField($f, 1);
 // 			$player->alterField($f, 1);
 		}
-		
+
 // 		$player->modify();
 		return $player->msg('5061', array($need, $f, $level, $level+1));
 // 		return $bot->reply(sprintf('You used %d karma and leveled up your %s from %d to %d.', $need, $f, $level, $level+1));

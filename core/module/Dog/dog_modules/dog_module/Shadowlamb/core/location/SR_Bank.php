@@ -73,7 +73,7 @@ abstract class SR_Bank extends SR_Location
 		{
 			return false;
 		}
-		
+
 		# Announce payment
 		return $player->msg('5143', array($price));
 // 		return sprintf('You pay %s nuyen.', $price);
@@ -114,15 +114,15 @@ abstract class SR_Bank extends SR_Location
 	public function on_push(SR_Player $player, array $args)
 	{
 		$bot = Shadowrap::instance($player);
-		
+
 		if ( (count($args) === 0) || (count($args) > 2) )
 		{
 			$bot->reply(Shadowhelp::getHelp($player, 'push'));
 			return false;
 		}
-		
+
 		$args[0] = strtolower($args[0]);
-		
+
 		if (false === $this->checkAfford($player))
 		{
 // 			$bot->reply($error);
@@ -134,7 +134,7 @@ abstract class SR_Bank extends SR_Location
 // 			$bot->reply('You don`t have that item in your inventory.');
 			return false;
 		}
-		
+
 		# Room in bank?
 		if ($item->isItemStackable())
 		{
@@ -160,12 +160,12 @@ abstract class SR_Bank extends SR_Location
 // 			$player->putInBank($item);
 // 			$stored = 1;
 // 		}
-		
+
 		# A stackable?
 		if ($item->isItemStackable())
 		{
 			$have_amt = $item->getAmount();
-			
+
 			# Store all amt
 			if (count($args) === 1)
 			{
@@ -173,7 +173,7 @@ abstract class SR_Bank extends SR_Location
 				$player->putInBank($item);
 				$stored = $have_amt;
 			}
-			
+
 			# Split item
 			else
 			{
@@ -190,7 +190,7 @@ abstract class SR_Bank extends SR_Location
 // 					$bot->reply(sprintf('You have not that much %s.', $item->getItemName()));
 					return false;
 				}
-				
+
 				$item->useAmount($player, $amt);
 				$item2 = SR_Item::createByName($item->getItemName(), $amt, true);
 				$item2->saveVar('sr4it_uid', $player->getID());
@@ -198,7 +198,7 @@ abstract class SR_Bank extends SR_Location
 				$stored = $amt;
 			}
 		}
-		
+
 		# Not stackable
 		else
 		{
@@ -208,7 +208,7 @@ abstract class SR_Bank extends SR_Location
 				$player->putInBank($item);
 				$stored = 1;
 			}
-			
+
 			else
 			{
 				$amt = (int)$args[1];
@@ -218,7 +218,7 @@ abstract class SR_Bank extends SR_Location
 // 					$bot->reply('Please push a larger amount than zero.');
 					return false;
 				}
-				
+
 				$items2 = $player->getInvItems($item->getItemName(), $amt);
 				if (count($items2) < $amt)
 				{
@@ -226,7 +226,7 @@ abstract class SR_Bank extends SR_Location
 // 					$bot->reply(sprintf('You have not that much %s.', $item->getItemName()));
 					return false;
 				}
-				
+
 				$stored = 0;
 				foreach ($items2 as $item2)
 				{
@@ -240,13 +240,13 @@ abstract class SR_Bank extends SR_Location
 				}
 			}
 		}
-		
+
 		# Pay
 		if (false === $this->pay($player))
 		{
 			return false;
 		}
-		
+
 		$player->modify();
 		return $bot->rply('5144', array(
 			$stored, $item->displayFullName($player),
@@ -411,9 +411,9 @@ abstract class SR_Bank extends SR_Location
 // 			$bot->reply('You don`t have that item in your bank.');
 			return false;
 		}
-		
+
 		$itemname = $args[0];
-		
+
 		# Whole stack or single
 		if (count($args) === 1)
 		{
@@ -431,7 +431,7 @@ abstract class SR_Bank extends SR_Location
 
 			$collected = $item->getAmount();
 		}
-		
+
 		else
 		{
 			# Args
@@ -442,7 +442,7 @@ abstract class SR_Bank extends SR_Location
 // 				$bot->reply('Please pop a positve amount of items.');
 				return false;
 			}
-			
+
 			# Limits
 			if ($item->isItemStackable())
 			{
@@ -459,7 +459,7 @@ abstract class SR_Bank extends SR_Location
 // 				$bot->reply(sprintf('You do not have that much %s in your bank.', $item->getItemName()));
 				return false;
 			}
-			
+
 			# Split Stack
 			if ($item->isItemStackable())
 			{
@@ -468,7 +468,7 @@ abstract class SR_Bank extends SR_Location
 					$bot->reply(sprintf('Database error in %s line %s.', __FILE__, __LINE__));
 					return false;
 				}
-				
+
 				if (false === $item2 = SR_Item::createByName($item->getItemName(), $amt, true))
 				{
 					$bot->reply(sprintf('Database error in %s line %s.', __FILE__, __LINE__));
@@ -480,10 +480,10 @@ abstract class SR_Bank extends SR_Location
 					$bot->reply(sprintf('Database error in %s line %s.', __FILE__, __LINE__));
 					return false;
 				}
-				
+
 				$collected = $amt;
 			}
-			
+
 			# Multi Equipment
 			else
 			{
@@ -509,20 +509,20 @@ abstract class SR_Bank extends SR_Location
 				}
 			}
 		}
-		
+
 		$player->modify();
 // 		$player->updateInventory();
-		
+
 		if (false === $this->pay($player))
 		{
 			return false;
 		}
-		
+
 		return $bot->rply('5145', array(
 			$collected, $item->displayFullName($player),
 			Shadowfunc::displayWeight($player->get('weight')), Shadowfunc::displayWeight($player->get('max_weight'))
 		));
-		
+
 // 		if ('' === ($paymsg = $this->pay($player))) {
 // 			$paymsg .= 'You ';
 // 		}
@@ -656,20 +656,20 @@ abstract class SR_Bank extends SR_Location
 			$this->showNuyen($player, '5146');
 			return true;
 		}
-		
+
 		if (0 >= ($want = round(floatval($args[0]), 2)))
 		{
 			$bot->rply('1062');
 // 			$bot->reply(sprintf('Please push a positive amount of nuyen.'));
 			return false;
 		}
-		
+
 		if (false === $this->checkAfford($player, $want))
 		{
 			return false;
 		}
-		
-		
+
+
 		$have = $player->getNuyen();
 		if ($want > $have)
 		{
@@ -677,16 +677,16 @@ abstract class SR_Bank extends SR_Location
 // 			$bot->reply(sprintf('You can not push %s, because you only carry %s.', Shadowfunc::displayNuyen($want), $player->displayNuyen()));
 			return false;
 		}
-		
+
 		if (false === $this->pay($player))
 		{
 			return false;
 		}
-		
+
 		$player->alterField('bank_nuyen', $want);
 		$player->giveNuyen(-$want);
 		$have = $player->getBase('bank_nuyen');
-		
+
 		return $bot->rply('5147', array(
 			Shadowfunc::displayNuyen($want), Shadowfunc::displayNuyen($have), $player->displayNuyen()
 		));
@@ -707,19 +707,19 @@ abstract class SR_Bank extends SR_Location
 			$this->showNuyen($player, '5279');
 			return true;
 		}
-		
+
 		if (false === $this->checkAfford($player))
 		{
 			return false;
 		}
-		
+
 		if (0 >= ($want = round(floatval($args[0]), 2)))
 		{
 			$bot->rply('1062');
 // 			$bot->reply(sprintf('Please pop a positive amount of nuyen.'));
 			return false;
 		}
-		
+
 		$have = $player->getBase('bank_nuyen');
 		if ($want > $have)
 		{
@@ -732,11 +732,11 @@ abstract class SR_Bank extends SR_Location
 		{
 			return false;
 		}
-		
+
 		$player->alterField('bank_nuyen', -$want);
 		$player->giveNuyen($want);
 		$have = $player->getBase('bank_nuyen');
-		
+
 		return $bot->rply('5148', array(
 			Shadowfunc::displayNuyen($want), Shadowfunc::displayNuyen($have), $player->displayNuyen()
 		));

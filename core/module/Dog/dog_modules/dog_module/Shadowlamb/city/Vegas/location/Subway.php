@@ -4,7 +4,7 @@ final class Vegas_Subway extends SR_Subway
 	public function getNPCS(SR_Player $player) { return array('talk' => 'Vegas_Passenger'); }
 	public function getFoundPercentage() { return 100.00; }
 // 	public function getFoundText(SR_Player $player) { return $this->lang($player, 'found'); }
-	
+
 	public function getSubwayTargets(SR_Player $player)
 	{
 		return array(
@@ -15,11 +15,11 @@ final class Vegas_Subway extends SR_Subway
 			array('WestVegas_Subway', 200, WestVegas::TIME_TO_VEGAS, 15),
 		);
 	}
-	
+
 // 	public function onEnter(SR_Player $player)
 // 	{
 // 		parent::onEnter($player);
-	
+
 // 		$c = Shadowrun4::SR_SHORTCUT;
 // 		$party = $player->getParty();
 // 		$this->partyMessage($player, 'enter');

@@ -11,7 +11,7 @@ final class Seattle_Archer extends SR_TalkingNPC
 		if ($quest->checkQuest($this, $player)) {
 			return true;
 		}
-		
+
 		$key = "SEATTLE_ARCHER_QUEST_T";
 		switch ($word)
 		{
@@ -19,9 +19,9 @@ final class Seattle_Archer extends SR_TalkingNPC
 				return $this->rply($word);
 // 				$msg = "The bow is a silent weapon. The bow skill increase your attack and damage for bows.";
 // 				break;
-			
+
 			case 'shadowrun':
-				
+
 				if ($player->hasTemp($key))
 				{
 // 					$player->unsetTemp($key);
@@ -48,9 +48,9 @@ final class Seattle_Archer extends SR_TalkingNPC
 					return true;
 				}
 // 				break;
-				
+
 			case 'yes':
-				
+
 				if ($player->hasTemp($key))
 				{
 					$quest->accept($player);
@@ -76,11 +76,11 @@ final class Seattle_Archer extends SR_TalkingNPC
 					return $this->rply('no1');
 				}
 // 				break;
-				
+
 			case 'malois':
 				return $this->rply($word);
 // 				$msg = 'What are you talking about?'; break;
-				
+
 			default:
 				return $this->rply('default');
 // 				$msg = "Hello, welcome to the seattle archery. Have fun with the range. Also feel free to visit our shop or {$b}learn{$b} the skill of {$b}bow{$b}."; break;

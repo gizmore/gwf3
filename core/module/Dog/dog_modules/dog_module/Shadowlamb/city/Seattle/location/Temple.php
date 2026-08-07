@@ -35,7 +35,7 @@ final class Seattle_Temple extends SR_School
 		parent::onEnter($player);
 		$this->partyMessage($player, 'hi');
 		return true;
-		
+
 // 		$p = $player->getParty();
 // 		$p->notice("The shamane says: \"Hi, do you want to {$b}{$c}learn{$b} the arcane powers of {$b}magic{$b}?\"");
 	}

@@ -17,7 +17,7 @@ final class Chicago_DarkPriest extends SR_NPC
 	}
 
 	public function getNPCInventory() { return array('FirstAid'); }
-	
+
 	public function getNPCModifiers()
 	{
 		return array(
@@ -37,7 +37,7 @@ final class Chicago_DarkPriest extends SR_NPC
 			'base_mp' => rand(20, 30),
 		);
 	}
-	
+
 	public function getNPCSpells()
 	{
 		return array(
@@ -45,13 +45,13 @@ final class Chicago_DarkPriest extends SR_NPC
 			'freeze' => 3,
 		);
 	}
-	
+
 // 	public function getNPCLoot(SR_Player $player)
 // 	{
 // 		SR_Quest::getQuest($player, 'Troll_Forever')->onKillCommando($player);
 // 		return array();
 // 	}
-	
+
 //	
 //	public function getNPCLoot(SR_Player $player)
 //	{

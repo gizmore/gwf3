@@ -410,7 +410,7 @@ abstract class SR_Store extends SR_Location
 			$bot->reply(Shadowhelp::getHelp($player, 'sell'));
 			return false;
 		}
-		
+
 		# Item
 		$itemname = array_shift($args);
 		if (false === ($item = $player->getInvItem($itemname)))
@@ -426,22 +426,22 @@ abstract class SR_Store extends SR_Location
 // 			$bot->reply(sprintf('I don\'t want your %s.', $item->getItemName()));
 			return false;
 		}
-		
+
 		# Amount
 		$amt = isset($args[0]) ? array_shift($args) : 1;
-		
+
 		if (!Common::isNumeric($amt))
 		{
 			$bot->rply('1040', array($item->getItemName()));
 			return false; 
 		}
-		
+
 		if ($amt < 1)
 		{
 			$bot->rply('1038', array($item->getItemName()));
 			return false; 
 		}
-		
+
 		# A stackable?
 		if ($item->isItemStackable())
 		{
@@ -453,14 +453,14 @@ abstract class SR_Store extends SR_Location
 // 				$bot->reply(sprintf('You have not that much %s.', $item->getItemName()));
 				return false;
 			}
-				
+
 			if (!$item->useAmount($player, $amt))
 			{
 				$bot->reply('Database Error R2 D2.');
 				return false;
 			}
 		}
-		
+
 		# Not stackable
 		else
 		{
@@ -471,7 +471,7 @@ abstract class SR_Store extends SR_Location
 // 				$bot->reply(sprintf('You have not that much %s.', $item->getItemName()));
 				return false;
 			}
-				
+
 			foreach ($items2 as $item2)
 			{
 				$item2 instanceof SR_Item;
@@ -484,17 +484,17 @@ abstract class SR_Store extends SR_Location
 			}
 			$player->modify();
 		}
-		
+
 		# Price
 		$total = $this->calcSellPrice($player, $item, $amt);
-		
+
 		$player->giveNuyen($total);
 
 		return $bot->rply('5191', array(
 			$amt, $item->displayFullName($player), Shadowfunc::displayNuyen($total),
 			Shadowfunc::displayWeight($player->get('weight')), Shadowfunc::displayWeight($player->get('max_weight'))
 		));
-		
+
 // 		$bot->reply(sprintf('You sold %d of your %s for %s. You now carry %s/%s.',
 // 			$amt, $item->getItemName(), Shadowfunc::displayNuyen($total),
 // 			Shadowfunc::displayWeight($player->get('weight')), Shadowfunc::displayWeight($player->get('max_weight'))

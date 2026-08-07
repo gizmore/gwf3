@@ -25,24 +25,24 @@ final class Quest_Seattle_BD4 extends SR_Quest
 		{
 			$ny = Shadowfunc::displayNuyen(self::REWARD_NUYEN);
 			$xp = self::REWARD_XP;
-			
+
 			$npc->reply($this->lang('thx1'));
 			$npc->reply($this->lang('thx2', array($ny)));
 			$player->message($this->lang('thx3', array($ny, $xp)));
-			
+
 // 			$npc->reply('Haha, great! You are the best. This might have been a lesson for them.');
 // 			$npc->reply(sprintf('I am still a bit short on money. But you can have %s.', $ny));
 // 			$player->message(sprintf('The smith hands you %s. You also gain %s XP.', $ny, $xp));
-			
+
 			$player->giveNuyen(self::REWARD_NUYEN);
 			$player->giveXP($xp);
 			$this->onSolve($player);
 
 			$npc->reply($this->lang('thx4'));
 // 			$npc->reply('You know what ... I will teach you how to use lockpicking.');
-			
+
 			$player->alterField('lockpicking', 1);
-			
+
 			$player->message($this->lang('thx5'));
 // 			$player->message(sprintf('Your lockpicking skill has increased by 1.'));
 		}

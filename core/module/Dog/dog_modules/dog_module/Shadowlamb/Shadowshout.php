@@ -85,10 +85,10 @@ final class Shadowshout
 		$sid = $server->getID();
 //		$cid = $channel->getID();
 		$party = $player->getParty();
-		
+
 //		$b = chr(2);
 //		$message = sprintf('%s in %s: "%s".', $player->getName(), $party->getLocation(), $message);
-		
+
 // 		$sent = 0;
 		foreach (Shadowrun4::getParties() as $pid => $p)
 		{
@@ -99,21 +99,21 @@ final class Shadowshout
 				foreach ($p->getMembers() as $m)
 				{
 					$m instanceof SR_Player;
-					
+
 					if ($m->isCreated())
 					{
 // 						if (false === ($u = $m->getUser()))
 // 						{
 // 							continue;
 // 						}
-						
+
 // 						if (false === ($s = $u->getServer()))
 // 						{
 // 							continue;
 // 						}
-						
+
 // 						$c = $s->getChannelByName('#shadowlamb');
-						
+
 // 						if ($sid === $s->getID())
 // 						{
 // 							if ( ($channel !== false) && ($channel->getUserByName($u->getName()) !== false) )
@@ -122,7 +122,7 @@ final class Shadowshout
 // //								continue; # player already read it in irc.
 // 							}
 // 						}
-						
+
 						# send to player.
 						echo "Sending to {$m->getName()}\n";
 						$m->msg($key, $args);
@@ -132,7 +132,7 @@ final class Shadowshout
 				}
 			}
 		}
-		
+
 //		if ($sent > 0)
 //		{
 //			$player->message(sprintf('%s players on cross servers read your message inside the same location. Use #exit or privmsg/query/pm with the bot.'));

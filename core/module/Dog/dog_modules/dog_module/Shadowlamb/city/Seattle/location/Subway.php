@@ -18,13 +18,13 @@ final class Seattle_Subway extends SR_Subway
 	public function onEnter(SR_Player $player)
 	{
 		parent::onEnter($player);
-		
+
 		$c = Shadowrun4::SR_SHORTCUT;
 		$party = $player->getParty();
 		$this->partyMessage($player, 'enter');
 		$party->getLeader()->help($this->lang($player, 'help2'));
 		$this->partyHelpMessage($player, 'help');
-		
+
 // 		$party->notice('You enter the Subway and move to the tracks. You see one passenger waiting for a train.');
 // 		$party->getLeader()->help("Use {$c}travel 1 to travel to Redmond.");
 // 		$party->help("Use {$c}talk <topic> to talk to the passenger.");

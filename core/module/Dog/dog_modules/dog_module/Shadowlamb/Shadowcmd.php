@@ -408,7 +408,7 @@ class Shadowcmd
 // 		{
 // 			return true;
 // 		}
-		
+
 // 		$party->ntice('', array(substr($back, 2)));
 // 		return false;
 // 		return $back === '' ? false : 'You cannot move because '.substr($back, 2).'.';

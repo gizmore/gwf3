@@ -29,20 +29,20 @@ abstract class SR_Hotel extends SR_Location
 		$bot = Shadowrap::instance($player);
 		$party = $player->getParty();
 		$price = $this->calcPrice($player);
-		
+
 		if (!$party->needsToRest())
 		{
 			return $bot->rply('1137');
 // 			return $bot->reply('You don`t need to rest.');
 		}
-		
-		
+
+
 		if (false === ($player->pay($price)))
 		{
 			return $bot->rply('1063', array(Shadowfunc::displayNuyen($price), $player->displayNuyen()));
 // 			return $bot->reply(sprintf('To rent a room for your party, you need %s. You only got %s!', Shadowfunc::displayNuyen($price), $player->displayNuyen()));
 		}
-		
+
 		if ($price > 0)
 		{
 			$player->msg('5143', array($price));
@@ -51,13 +51,13 @@ abstract class SR_Hotel extends SR_Location
 
 		$b = chr(2);
 		$party->pushAction(SR_Party::ACTION_SLEEP);
-		
+
 //		foreach ($party->getMembers() as $member)
 //		{
 //			$member instanceof SR_Player;
 //			$member->effectsReset();
 //		}
-		
+
 		return $party->ntice('5182');
 // 		$party->notice("The party goes to sleep. You go to your {$b}own{$b} bedroom.");
 	}

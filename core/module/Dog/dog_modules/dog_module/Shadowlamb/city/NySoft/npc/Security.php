@@ -4,7 +4,7 @@ final class NySoft_Security extends SR_NPC
 	public function getNPCLevel() { return 20; }
 	public function getNPCPlayerName() { return 'Security'; }
 	public function getNPCMeetPercent(SR_Party $party) { return 40.00; }
-	
+
 	public function getNPCEquipment()
 	{
 		return array(
@@ -16,9 +16,9 @@ final class NySoft_Security extends SR_NPC
 // 			'shield' => 'SmallShield',
 		);
 	}
-	
+
 	public function getNPCInventory() { return array('Ammo_11mm', 'Ammo_11mm', 'Ammo_11mm', 'Ammo_11mm', 'Ammo_11mm', 'Stimpatch'); }
-	
+
 	public function getNPCModifiers()
 	{
 		return array(
@@ -36,7 +36,7 @@ final class NySoft_Security extends SR_NPC
 			'base_hp' => rand(24, 34),
 		);
 	}
-	
+
 // 	public function getNPCLoot(SR_Player $player)
 // 	{
 // 		$quest = SR_Quest::getQuest($player, 'Chicago_ShrineMonksRevenge');

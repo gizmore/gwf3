@@ -146,18 +146,18 @@ final class Votes_AddPoll extends GWF_Method
 		foreach ($opts as $i => $op)
 		{
 			$op = trim($op);
-			
+
 			$i = (int)$i;
-			
+
 //			# XSS/SQLI escape! 
 //			if (!is_numeric($i)) { $i = GWF_HTML::display($i); }
-			
+
 			$len = GWF_String::strlen($op);
 			if ($len < $min || $len > $max)
 			{
 				$err .= ', '.$i;
 			}
-			
+
 			$post[$i] = $op;
 //			$_POST['opt'][$i] = $op;
 		}

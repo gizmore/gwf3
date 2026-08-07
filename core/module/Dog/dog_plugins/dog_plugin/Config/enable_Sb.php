@@ -33,25 +33,25 @@ if ($chan === false)
 	{
 		return Dog::noPermission('a');
 	}
-	
+
 	if (false !== ($plug = Dog_Plugin::getPlug($name)))
 	{
 		Dog_Conf_Plug_Serv::setDisabled($plug->getName(), $sid, '0');
 		$plugin->rply('plg_on_serv', array($name, $serv->displayName()));
 	}
-	
+
 	if (false !== ($mod = Dog_Module::getByTrigger($name)))
 	{
 		Dog_Conf_Mod_Serv::setTriggerDisabled($mod->getName(), $sid, $name, '0');
 		$plugin->rply('trg_on_serv', array($name, $mod->displayName(), $serv->displayName()));
 	}
-	
+
 	if (false !== ($mod = Dog_Module::getByName($name)))
 	{
 		Dog_Conf_Mod_Serv::setModuleDisabled($mod->getName(), $sid, '0');
 		$plugin->rply('mod_on_serv', array($mod->displayName(), $serv->displayName()));
 	}
-	
+
 // 	else
 // 	{
 // 		Dog::rply('err_command');
@@ -72,19 +72,19 @@ else
 		Dog_Conf_Plug_Chan::setDisabled($plug->getName(), $cid, '0');
 		$plugin->rply('plg_on_chan', array($name, $chan->displayLongName()));
 	}
-	
+
 	if (false !== ($mod = Dog_Module::getByTrigger($name)))
 	{
 		Dog_Conf_Mod_Chan::setTriggerDisabled($mod->getName(), $cid, $name, '0');
 		$plugin->rply('trg_on_chan', array($name, $mod->displayName(), $chan->displayLongName()));
 	}
-	
+
 	if (false !== ($mod = Dog_Module::getByName($name)))
 	{
 		Dog_Conf_Mod_Chan::setModuleDisabled($mod->getName(), $cid, '0');
 		$plugin->rply('mod_on_chan', array($mod->displayName(), $chan->displayLongName()));
 	}
-	
+
 // 	else
 // 	{
 // 		Dog::rply('err_command');

@@ -117,18 +117,18 @@ final class GWF_AdminWebSpiders
 	{
 		GWF_Numeric::setInputCharset('0123456789abcdef');
 		GWF_Numeric::setOutputCharset('0123456789');
-		
+
 		$botname = '['.$botname.']';
 		if (false === ($user = GWF_User::getByName($botname))) {
 			if (false === ($user = self::insert_bot($botname))) {
 				return false;
 			}
 		}
-		
+
 		$uid = $user->getID();
 		$count = count($ips);
 		echo "Installing Bot $botname (UID:$uid) with $count IPs...<br/>";
-		
+
 		$ranged = array();
 		foreach ($ips as $i => $ip)
 		{
@@ -141,24 +141,24 @@ final class GWF_AdminWebSpiders
 				$ips[$i] = GWF_Numeric::baseConvert($ip6, 16, 10);
 			}
 		}
-		
+
 //		var_dump($ranged); echo '<br/>';
-		
+
 		$ranged = self::merge_ranges($ranged);
 
 //		var_dump($ranged); echo '<br/>';
-		
+
 		sort($ips);
 		foreach ($ips as $ip)
 		{
 			self::merge_into_ranges($ranged, $ip);
 		}
-		
+
 		$ranged = self::merge_ranges($ranged);
-	
-		
+
+
 		echo "Total Ranges: ".count($ranged).".<br/>";
-		
+
 		GWF_Numeric::setInputCharset('0123456789');
 		GWF_Numeric::setOutputCharset('0123456789abcdef');
 		foreach ($ranged as $range)
