@@ -11,6 +11,7 @@
 	<script type="text/javascript" src="{$root}js/php.js?v=57"></script>
 	<script type="text/javascript" src="{$root}js/gwf3.js?v=57"></script>
 	<script type="text/javascript" src="{$root}js/gwf3bb.js?v=58"></script>
+	<link rel="alternate" type="application/rss+xml" title="WeChall RSS" href="{$root}index.php?mo=WeChall&amp;me=RSS" />
 	{$js}
 	{$head_links}
 </head>
