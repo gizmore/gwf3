@@ -1,6 +1,7 @@
 <html>
 <head>
 	<title>{$page_title}</title>
+	<link rel="canonical" href="{$canonical}" />
 	<meta name="robots" content="index, follow" />
 	{$meta}
 	<meta name="generator" content="GWFv{$smarty.const.GWF_CORE_VERSION}" />
