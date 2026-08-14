@@ -276,6 +276,7 @@ final class GWF_Website
 		$tVars = array(
 			'page_title' => self::displayPageTitle(),
 			'language' => GWF_Language::getCurrentISO(),
+			'canonical' => self::getCanonicalURL(),
 			'meta' => self::displayMeta(),
 			'js' => self::displayJavascripts(),
 			'head_links' => self::displayLink(),
@@ -285,6 +286,15 @@ final class GWF_Website
 		GWF_Error::displayAll();
 
 		return GWF_Doctype::getDoctype(GWF_DEFAULT_DOCTYPE) . GWF_Template::templateMain('html_head.tpl', $tVars) . PHP_EOL;
+	}
+
+	/**
+	 * The canonical host is configuration-owned, never derived from HTTP_HOST.
+	 */
+	public static function getCanonicalURL()
+	{
+		$uri = Common::getServer('REQUEST_URI', GWF_WEB_ROOT);
+		return htmlspecialchars(Common::getProtocol().'://'.GWF_DOMAIN.$uri, ENT_QUOTES, 'UTF-8');
 	}
 
 	public static function getHTMLbody_head($tVars=NULL)
