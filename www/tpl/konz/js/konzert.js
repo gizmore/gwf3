@@ -134,7 +134,7 @@ function initGhostwriterIntro()
 {
 	var p = $('.ghost_intro');
 	p.ghostwriter('init', {
-		'style_processed': 'font-size: 32px; color: #fff;',
+		'style_processed': 'font-size: 2rem; color: #fff;',
 		'color_left': '#feffff',
 		'color_right': '#fbfb26',
 		'size_left': 32,

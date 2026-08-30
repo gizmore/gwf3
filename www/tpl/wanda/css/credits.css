@@ -3,7 +3,7 @@
 	bottom: 16px;
 	right: 16px;
 	font-family: sans-serif;
-	font-size: 23px;
+	font-size: 1.4375rem;
 }
 
 #crid {
@@ -26,7 +26,7 @@
 	position: relative;
 	text-align: center;
 	line-height: 32px;
-	font-size: 28px;
+	font-size: 1.75rem;
 	font-family: monospace;
 	position: relative;
 	color: #fff;

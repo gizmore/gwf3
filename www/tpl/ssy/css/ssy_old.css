@@ -21,7 +21,7 @@
 
 .ssy_langmenu a {
 	display: block;
-	font-size: 12px;
+	font-size: 0.75rem;
 	text-decoration: none;
 	color: #ffffff;
 }
@@ -49,7 +49,7 @@
 .sys_assess {
 	text-align: center;
 	color: white;
-	font-size: 38px;
+	font-size: 2.375rem;
 	color: #e2e2e2;
 	background: url(/template/sys/img/RoseSmall.png) no-repeat transparent center bottom;
 	height: 190px;

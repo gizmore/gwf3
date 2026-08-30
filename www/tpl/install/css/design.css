@@ -24,7 +24,7 @@ div#gwf_inst_head {
 div#gwf_inst_logo h1 {
 	float: left; 
 	width: 40%;
-	font-size: 100px;
+	font-size: 6.25rem;
 	line-height: 110px;
 	vertical-align: middle;
 }
