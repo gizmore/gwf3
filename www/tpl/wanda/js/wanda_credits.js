@@ -158,7 +158,19 @@ window.XMGFX.execNewValue = function(pattern, row, col, value) {
 // --- Init --- //
 
 $(function(){
-	window.CC.initScreen();
-	window.CC.initElements();
-	window.CC.initMusic();
+	// https://developer.chrome.com/blog/autoplay/
+	// new API requires user interaction to auto-play
+	function playManually() {
+		document.removeEventListener('click', playManually);
+		document.removeEventListener('keydown', playManually);
+		document.removeEventListener('touchstart', playManually);
+
+		window.CC.initScreen();
+		window.CC.initElements();
+		window.CC.initMusic();
+	}
+	document.addEventListener('click', playManually);
+	document.addEventListener('keydown', playManually);
+	document.addEventListener('touchstart', playManually);
+});
 });
