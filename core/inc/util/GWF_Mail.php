@@ -118,7 +118,60 @@ final class GWF_Mail
 	
 	private static function br2nl($s, $nl=PHP_EOL)
 	{
-		return preg_replace('/< *br *\/? *>/i', $nl, $s);
+		return preg_replace('/< *br *\/? *>(?![\r\n])/i', $nl, $s);
+	}
+
+	private static function quoteToText($body)
+	{
+		$text = '';
+		$depth = 0;
+		$break = false;
+		$parts = preg_split("/(<!--(?:.*?-->|.*\z)|<(?:[^<>\"']++|\"[^\"]*+\"|'[^']*+')*+>)/s", $body, -1, PREG_SPLIT_DELIM_CAPTURE);
+		foreach ($parts as $i => $part)
+		{
+			if ($i % 2)
+			{
+				if (preg_match('/^<(\/?)blockquote(?:\s|>)/i', $part, $matches))
+				{
+					if ($matches[1] === '/' && $depth === 0)
+					{
+						continue;
+					}
+					$depth += $matches[1] === '' ? 1 : -1;
+					$break = true;
+				}
+				elseif ($depth > 0 && preg_match('/^<\/?div(?:\s|>)/i', $part))
+				{
+					$break = true;
+				}
+				continue;
+			}
+			$part = $depth > 0 ? html_entity_decode($part, ENT_QUOTES, 'UTF-8') : $part;
+			if ($break && $depth > 0)
+			{
+				$part = ltrim($part, "\r\n");
+			}
+			if ($part === '')
+			{
+				continue;
+			}
+			$line_start = $text === '' || substr($text, -1) === "\r" || substr($text, -1) === "\n";
+			if ($break && !$line_start && $part[0] !== "\r" && $part[0] !== "\n")
+			{
+				$text .= PHP_EOL;
+				$line_start = true;
+			}
+			if ($depth > 0)
+			{
+				$prefix = str_repeat('> ', $depth);
+				$text .= $line_start ? $prefix : '';
+				$part = preg_replace('/(\r\n|\r(?!\n)|\n)(?!\z)/', '$1'.$prefix, $part);
+				$part = str_replace('&', '&amp;', $part);
+			}
+			$text .= $part;
+			$break = false;
+		}
+		return $text;
 	}
 	
 	public function nestedHTMLBody()
@@ -136,10 +189,8 @@ final class GWF_Mail
 
 	public function nestedTextBody()
 	{
-		$body = $this->body;
-		#$body = preg_replace('/<[^>]+>([^<]+)<[^>+]>/', '$1', $body);
-		$body = preg_replace('/<[^>]+>/', '', $body);
-		$body = self::br2nl($body);
+		$body = self::br2nl($this->body);
+		$body = preg_match('/<blockquote(?:\s|>)/i', $body) ? self::quoteToText($body) : preg_replace('/<[^>]+>/', '', $body);
 		$body = preg_replace("/(GeSHi`ed .*\n)([0-9\n]*)/m", '$1', $body);
 		$body = html_entity_decode($body, ENT_QUOTES, 'UTF-8');
 		return $body;
