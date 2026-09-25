@@ -121,55 +121,104 @@ final class GWF_Mail
 		return preg_replace('/< *br *\/? *>(?![\r\n])/i', $nl, $s);
 	}
 
-	private static function quoteToText($body)
+	private static function quoteToText($body, $nl)
 	{
 		$text = '';
+		$part = '';
 		$depth = 0;
-		$break = false;
+		$indents = array(NULL);
 		$parts = preg_split("/(<!--(?:.*?-->|.*\z)|<(?:[^<>\"']++|\"[^\"]*+\"|'[^']*+')*+>)/s", $body, -1, PREG_SPLIT_DELIM_CAPTURE);
-		foreach ($parts as $i => $part)
+		$parts[] = '';
+		foreach ($parts as $i => $tag)
 		{
-			if ($i % 2)
+			if ($i % 2 === 0)
 			{
-				if (preg_match('/^<(\/?)blockquote(?:\s|>)/i', $part, $matches))
-				{
-					if ($matches[1] === '/' && $depth === 0)
-					{
-						continue;
-					}
-					$depth += $matches[1] === '' ? 1 : -1;
-					$break = true;
-				}
-				elseif ($depth > 0 && preg_match('/^<\/?div(?:\s|>)/i', $part))
-				{
-					$break = true;
-				}
+				$part .= $depth > 0 ? html_entity_decode($tag, ENT_QUOTES, 'UTF-8') : $tag;
 				continue;
 			}
-			$part = $depth > 0 ? html_entity_decode($part, ENT_QUOTES, 'UTF-8') : $part;
-			if ($break && $depth > 0)
+			$change = 0;
+			if (preg_match('/^<(\/?)blockquote(?:\s|>)/i', $tag, $matches))
 			{
-				$part = ltrim($part, "\r\n");
+				$change = $matches[1] === '' ? 1 : -1;
+				if ($change < 0 && $depth === 0)
+				{
+					continue;
+				}
 			}
-			if ($part === '')
+			elseif ($tag !== '' && !($depth > 0 && preg_match('/^<\/?div(?:\s|>)/i', $tag)))
 			{
 				continue;
-			}
-			$line_start = $text === '' || substr($text, -1) === "\r" || substr($text, -1) === "\n";
-			if ($break && !$line_start && $part[0] !== "\r" && $part[0] !== "\n")
-			{
-				$text .= PHP_EOL;
-				$line_start = true;
 			}
 			if ($depth > 0)
 			{
-				$prefix = str_repeat('> ', $depth);
-				$text .= $line_start ? $prefix : '';
-				$part = preg_replace('/(\r\n|\r(?!\n)|\n)(?!\z)/', '$1'.$prefix, $part);
-				$part = str_replace('&', '&amp;', $part);
+				if (trim($part, " \t\r\n") === '')
+				{
+					$part = '';
+				}
+				elseif ($indents[$depth] === NULL)
+				{
+					$leading = substr($part, 0, strspn($part, " \t\r\n"));
+					$indents[$depth] = preg_match('/(?:\r\n|\r|\n)([ \t]*)\z/', $leading, $matches) ? $matches[1] : '';
+					foreach (preg_split('/\r\n|\r|\n/', $part) as $line)
+					{
+						if (trim($line, " \t") === '')
+						{
+							continue;
+						}
+						$length = min(strlen($indents[$depth]), strspn($line, " \t"));
+						$j = 0;
+						while ($j < $length && $line[$j] === $indents[$depth][$j])
+						{
+							$j++;
+						}
+						$indents[$depth] = substr($indents[$depth], 0, $j);
+					}
+				}
+				$leading = substr($part, 0, strspn($part, " \t\r\n"));
+				$part = substr($part, strlen(rtrim($leading, " \t")));
+				$end = strlen(rtrim($part, " \t\r\n"));
+				if (preg_match('/\r\n|\r|\n/', substr($part, $end), $matches))
+				{
+					$part = substr($part, 0, $end).$matches[0];
+				}
+				if ($indents[$depth] !== NULL && $indents[$depth] !== '')
+				{
+					$lines = preg_split('/(\r\n|\r|\n)/', $part, -1, PREG_SPLIT_DELIM_CAPTURE);
+					$length = strlen($indents[$depth]);
+					foreach ($lines as $j => $line)
+					{
+						if ($j % 2 === 0 && strncmp($line, $indents[$depth], $length) === 0)
+						{
+							$lines[$j] = substr($line, $length);
+						}
+					}
+					$part = implode('', $lines);
+				}
+				if ($part !== '')
+				{
+					$prefix = str_repeat('> ', $depth);
+					$part = $prefix.preg_replace('/(\r\n|\r(?!\n)|\n)(?!\z)/', '$1'.$prefix, $part);
+					$part = str_replace('&', '&amp;', $part);
+				}
+			}
+			if ($text !== '' && $part !== '')
+			{
+				if (substr($text, -1) === "\r" || substr($text, -1) === "\n")
+				{
+					$part = preg_replace('/\A(?:\r\n|\r|\n)/', '', $part);
+				}
+				elseif ($part[0] !== "\r" && $part[0] !== "\n")
+				{
+					$text .= $nl;
+				}
 			}
 			$text .= $part;
-			$break = false;
+			$part = '';
+			$depth += $change;
+			if ($change > 0)
+			{
+				$indents[$depth] = NULL;
+			}
 		}
 		return $text;
 	}
@@ -189,8 +238,9 @@ final class GWF_Mail
 
 	public function nestedTextBody()
 	{
-		$body = self::br2nl($this->body);
-		$body = preg_match('/<blockquote(?:\s|>)/i', $body) ? self::quoteToText($body) : preg_replace('/<[^>]+>/', '', $body);
+		$nl = preg_match('/\r\n|\r|\n/', $this->body, $matches) ? $matches[0] : PHP_EOL;
+		$body = self::br2nl($this->body, $nl);
+		$body = preg_match('/<blockquote(?:\s|>)/i', $body) ? self::quoteToText($body, $nl) : preg_replace('/<[^>]+>/', '', $body);
 		$body = preg_replace("/(GeSHi`ed .*\n)([0-9\n]*)/m", '$1', $body);
 		$body = html_entity_decode($body, ENT_QUOTES, 'UTF-8');
 		return $body;
