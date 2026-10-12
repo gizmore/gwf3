@@ -15,6 +15,7 @@ final class GWF_ForumPost extends GDO # implements GDO_Searchable
 	const GUEST_VIEW = 0x10;
 	const INVISIBLE = 0x20;
 	const DELETED = 0x40;
+	const MAIL_EDIT = 0x80;
 	###########
 	### GDO ###
 	###########

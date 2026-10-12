@@ -166,6 +166,7 @@ final class Forum_EditPost extends GWF_Method
 			$t = $p->getThread();
 			$t->markUnRead(GWF_Session::getUserID());
 			$t->saveVar('thread_lastdate', $date);
+			$p->saveOption(GWF_ForumPost::MAIL_EDIT, true);
 			$p->saveOption(GWF_ForumPost::MAIL_OUT, true);
 		}
 		

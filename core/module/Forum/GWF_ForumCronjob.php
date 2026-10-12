@@ -115,7 +115,22 @@ final class GWF_ForumCronjob extends GWF_Cronjob
 		foreach ($threaded as $tid => $data)
 		{
 			list($thread, $posts) = $data;
-			GWF_ForumSubscription::sendSubscription($module, $thread, $posts);
+			$newPosts = array();
+			$editedPosts = array();
+			foreach ($posts as $post)
+			{
+				if ($post->getVar('post_options') & GWF_ForumPost::MAIL_EDIT)
+				{
+					$editedPosts[] = $post;
+					$post->saveOption(GWF_ForumPost::MAIL_EDIT, false);
+				}
+				else
+				{
+					$newPosts[] = $post;
+				}
+			}
+			if ($newPosts) GWF_ForumSubscription::sendSubscription($module, $thread, $newPosts);
+			if ($editedPosts) GWF_ForumSubscription::sendSubscription($module, $thread, $editedPosts, true);
 		}
 	}
 	
