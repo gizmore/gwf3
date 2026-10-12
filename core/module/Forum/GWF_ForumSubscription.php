@@ -266,7 +266,7 @@ final class GWF_ForumSubscription extends GDO
 	#########################
 	### Subscription Mail ###
 	#########################
-	public static function sendSubscription(Module_Forum $module, GWF_ForumThread $thread, $posts)
+	public static function sendSubscription(Module_Forum $module, GWF_ForumThread $thread, $posts, $edited=false)
 	{
 		$users = self::getSubscriptions($thread);
 		
@@ -289,12 +289,12 @@ final class GWF_ForumSubscription extends GDO
 		
 		foreach ($users as $user)
 		{
-			self::sendSubscriptionB($module, $thread, $user, $last_poster, $msg_block, count($posts), $boardText, $threadTitle, $sender);
+			self::sendSubscriptionB($module, $thread, $user, $last_poster, $msg_block, count($posts), $boardText, $threadTitle, $sender, $edited);
 			usleep($module->cfgMailMicrosleep());
 		}
 	}
 	
-	private static function sendSubscriptionB(Module_Forum $module, GWF_ForumThread $thread, GWF_User $user, $postername, $msg_block, $msg_count, $boardText, $threadTitle, $sender)
+	private static function sendSubscriptionB(Module_Forum $module, GWF_ForumThread $thread, GWF_User $user, $postername, $msg_block, $msg_count, $boardText, $threadTitle, $sender, $edited)
 	{
 		$userid = $user->getID();
 		$username = $user->displayUsername();
@@ -324,7 +324,7 @@ final class GWF_ForumSubscription extends GDO
 		$mail = new GWF_Mail();
 		$mail->setSender($sender);
 		$mail->setReceiver($receiver);
-		$mail->setSubject($module->langUser($user, 'submail_subj', array($threadTitle, $postername, $boardText)));
+		$mail->setSubject($module->langUser($user, $edited ? 'submail_edit_subj' : 'submail_subj', array($threadTitle, $postername, $boardText)));
 		$mail->setBody($module->langUser($user, 'submail_body', array($username, $msg_count, $boardText, $threadTitle, $msg_block, $showLink, $unsubLink, $unsubLinkAll)));
 		
 		if (false === $mail->sendToUser($user))

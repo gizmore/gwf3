@@ -198,6 +198,7 @@ $lang = array(
 
 	# New Post EMail
 	'submail_subj' => GWF_SITENAME.': Uusi viesti: "%s" by %s in %s',
+	'submail_edit_subj' => GWF_SITENAME.': [Edit post] %s by %s in %s',
 	'submail_body' => 
 		'Hyvä %s'.PHP_EOL.
 		PHP_EOL.

@@ -198,6 +198,7 @@ $lang = array(
 
 	# New Post EMail
 	'submail_subj' => GWF_SITENAME.': Новое сообщение: "%s", автор %s, в %s',
+	'submail_edit_subj' => GWF_SITENAME.': [Edit post] %s by %s in %s',
 	'submail_body' =>
 		'Здравствуйте, %s'.PHP_EOL.
 		PHP_EOL.
