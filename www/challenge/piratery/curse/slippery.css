@@ -1,0 +1,5 @@
+/* Piratery curse: the slippery lock */
+#wc_solutionbox input[name="answer"] {
+	position: relative;
+	transition: transform .15s ease-out;
+}
