@@ -1,0 +1,99 @@
+/*
+ * Piratery layout: a parchment scroll, carved wood for the chest text, a pinned map.
+ * Colors are taken from piratery.png. External file only, as the Content-Security-Policy
+ * blocks inline styles. The curses override all of this with !important rules.
+ */
+
+/* Parchment scroll holding the text and the image */
+.piratery_scroll {
+	max-width: 860px;
+	margin: 8px 0;
+	padding: 30px 38px 22px;
+	color: #462d19;
+	font-family: "Palatino Linotype", "Book Antiqua", Palatino, Georgia, "DejaVu Serif", serif;
+	font-size: 15px;
+	line-height: 1.6;
+	text-align: left;
+	background-color: #ead4a4;
+	background-image: radial-gradient(ellipse at center, #f1dfb3 0%, #ead4a4 45%, #cdb98d 100%);
+	border: 2px solid #5e4830;
+	border-radius: 4px;
+	outline: 1px solid #908365;
+	outline-offset: -10px;
+	box-shadow: inset 0 0 40px rgba(94, 72, 48, .35), 0 3px 10px rgba(0, 0, 0, .35);
+}
+
+/*
+ * Red initial, like the X of the map. Not floated: the text is made of <br/> separated
+ * lines, so a drop cap spanning several lines would leave the first one alone at its top.
+ * It sits on the baseline of the first line instead.
+ */
+.piratery_scroll::first-letter {
+	margin-right: 1px;
+	font-size: 1.9em;
+	line-height: 1;
+	font-weight: bold;
+	color: #aa1414;
+}
+
+/* Closing anchor */
+.piratery_scroll::after {
+	content: "\2693";
+	display: block;
+	margin-top: 8px;
+	text-align: center;
+	font-size: 22px;
+	color: #8a6a3c;
+}
+
+/* The theme sets its own font on some tags */
+.piratery_scroll blockquote, .piratery_scroll em, .piratery_scroll p { font-family: inherit; }
+
+.piratery_scroll a { color: #aa1414; }
+
+/* Text carved in the wood of the chest */
+.piratery_scroll blockquote {
+	max-width: 560px;
+	margin: 18px auto;
+	padding: 16px 24px;
+	color: #f1dfb3;
+	font-style: italic;
+	text-align: center;
+	letter-spacing: .03em;
+	background-color: #6b4a2b;
+	background-image:
+		repeating-linear-gradient(0deg, rgba(0, 0, 0, .10) 0, rgba(0, 0, 0, .10) 2px, transparent 2px, transparent 10px),
+		linear-gradient(180deg, #7a5532, #5e4026);
+	border: 3px solid #3d2814;
+	border-radius: 6px;
+	box-shadow: inset 0 2px 6px rgba(0, 0, 0, .6), 0 2px 4px rgba(0, 0, 0, .4);
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, .8), 0 1px 0 rgba(255, 235, 190, .15);
+}
+
+/* The clue, set apart with a red margin */
+.piratery_scroll em {
+	display: block;
+	margin: 14px 0;
+	padding-left: 14px;
+	color: #5e4830;
+	border-left: 3px solid #aa1414;
+}
+
+/* Images pinned on the scroll, slightly askew */
+.piratery_img {
+	display: block;
+	max-width: 100%;
+	height: auto;
+	margin: 18px auto 4px;
+	border: 6px solid #c4b189;
+	outline: 1px solid #5e4830;
+	box-shadow: 0 6px 14px rgba(0, 0, 0, .45);
+	transform: rotate(-1.2deg);
+	transition: transform .3s ease;
+}
+.piratery_img:hover { transform: rotate(0deg) scale(1.01); }
+
+@media (max-width: 600px) {
+	.piratery_scroll { padding: 20px 16px 14px; font-size: 14px; }
+	.piratery_img { transform: none; border-width: 3px; }
+}

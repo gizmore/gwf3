@@ -1,0 +1,21 @@
+/* Piratery curse: the darkness of the abyss, the whole page black on black */
+/* :not(#piratery_light) raises specificity above the theme's own !important rules */
+html, body, body *:not(#piratery_light) {
+	background-color: #000 !important;
+	background-image: none !important;
+	color: #000 !important;
+	border-color: #000 !important;
+	outline-color: #000 !important;
+	box-shadow: none !important;
+	text-shadow: none !important;
+}
+img:not(#piratery_light) { filter: brightness(0) !important; }
+input:not(#piratery_light), select:not(#piratery_light), textarea:not(#piratery_light), button:not(#piratery_light) { appearance: none !important; accent-color: #000 !important; }
+/* Pseudo elements too (drop cap, ornaments) */
+body *:not(#piratery_light)::first-letter,
+body *:not(#piratery_light)::before,
+body *:not(#piratery_light)::after {
+	color: #000 !important;
+	background-color: #000 !important;
+	border-color: #000 !important;
+}
